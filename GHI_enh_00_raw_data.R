@@ -87,7 +87,7 @@ if (havetorun) {
     }
 
     cat(paste("\n    Will read", length(input_files), "input files\n"))
-
+af <- input_files[30]
     if ( !file.exists(CS_file) | max(file.mtime(input_files)) > file.mtime(CS_file)) {
         cat(paste("\n    Load data from Clear Sky process from original\n\n"))
         DATA <- data.table()
