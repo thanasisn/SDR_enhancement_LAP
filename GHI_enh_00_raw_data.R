@@ -65,7 +65,7 @@ dir.create("./images",           showWarnings = FALSE)
 dir.create("./runtime",          showWarnings = FALSE)
 
 
-##_  Check if we need to run data export  --------------------------------------
+## _ Check if we need to run data export  --------------------------------------
 havetorun <- !file.exists(common_data) |
     file.mtime(CS_file)          > file.mtime(common_data) |
     file.mtime(variables_fl)     > file.mtime(common_data) |
@@ -75,7 +75,7 @@ havetorun <- !file.exists(common_data) |
 if (havetorun) {
     cat(paste("\n !! Create raw input data ->", raw_input_data),"\n")
 
-    ##_  Get data from Clear sky id data  --------------------------------------
+    ## _ Get data from Clear sky id data  --------------------------------------
     input_files <- list.files(path       = CLEARdir,
                               pattern    = inpatern,
                               full.names = T )
@@ -98,42 +98,30 @@ if (havetorun) {
             temp$CHP1temp           <- NULL
             temp$CHP1tempSD         <- NULL
             temp$CHP1tempUNC        <- NULL
-            temp$CS_ref             <- NULL
+            temp$ClearnessIndex_kt  <- NULL
+            temp$Clearness_Kt       <- NULL
             temp$DIFF_strict        <- NULL
+            temp$DIF_HOR            <- NULL
             temp$DIR_strict         <- NULL
             temp$DiffuseFraction_Kd <- NULL
             temp$DiffuseFraction_kd <- NULL
+            temp$Direct_max         <- NULL
             temp$GLBINC_SD_wpsm     <- NULL
             temp$GLBINC_strict      <- NULL
             temp$GLBINC_wpsm        <- NULL
+            temp$Global_max         <- NULL
             temp$HOR_strict         <- NULL
             temp$Pressure           <- NULL
             temp$Pressure_source    <- NULL
+            temp$RaylDIFF           <- NULL
             temp$chp1TempCF         <- NULL
             temp$pressure           <- NULL
             temp$wattDIR_tmp_cr     <- NULL
             temp$wattHOR_tmp_cr     <- NULL
-            temp$Global_max         <- NULL
-            temp$Direct_max         <- NULL
 
-            rm.cols.DT(temp, "VIL_*")
+            rm.cols.DT(temp, "VIL_*"    )
             rm.cols.DT(temp, "*Clim_lim")
 
-            DATA[, CS_ref_HOR         := NULL]
-            DATA[, ClearnessIndex_kt  := NULL]
-            DATA[, Clearness_Kt       := NULL]
-            DATA[, ClrSW              := NULL]
-            DATA[, ClrSW_ref2         := NULL]
-            DATA[, DIF_HOR            := NULL]
-            DATA[, Elevat             := NULL]
-            DATA[, Glo_max_ref        := NULL]
-            DATA[, RaylDIFF           := NULL]
-            DATA[, wattDIR_1au        := NULL]
-            DATA[, wattGLB_1au        := NULL]
-            DATA[, wattHOR_1au        := NULL]
-
-
-            stop()
             temp <- unique(temp)
             DATA <- rbind(temp, DATA, fill = TRUE)
             rm(temp)
@@ -161,7 +149,6 @@ if (havetorun) {
         test <- DATA[duplicated(DATA$Date) | duplicated(DATA$Date, fromLast = TRUE)]
         cat("\nThere are ", nrow(test), " duplicate dates remaining!\n")
 
-stop()
         ## FIXME do we still need this?
         ## this is used by old scripts
         setorder(DATA, Date)
@@ -170,26 +157,25 @@ stop()
         DATA <- readRDS(CS_file)
     }
 
-
-    ##_  Skip data ranges for CM-21  -------------------------------------------
+stop()
+    ## _ Skip data ranges for CM-21  -------------------------------------------
     for (as in nrow(SKIP_cm21)) {
         skip <- SKIP_cm21[as,]
         DATA[ Date >= skip$From & Date <= skip$Until, wattGLB    := NA ]
         DATA[ Date >= skip$From & Date <= skip$Until, wattGLB_SD := NA ]
     }
-    # DATA[ Date >= skip$From & Date <= skip$Until, wattGLB]
 
 
     #   Select data for this project  ------------------------------------------
 
-    ##_  Set date range to use  ------------------------------------------------
+    ## _ Set date range to use  ------------------------------------------------
     DATA <- DATA[Date < LAST_DAY ]
     DATA <- DATA[Date > FIRST_DAY]
 
-    ##_  Keep daylight only  ---------------------------------------------------
+    ## _ Keep daylight only  ---------------------------------------------------
     DATA <- DATA[Elevat >= 0, ]
 
-    ##_  Exclude low Sun elevation  --------------------------------------------
+    ## _ Exclude low Sun elevation  --------------------------------------------
     DATA[Elevat < MIN_ELEVA, wattDIR     := NA ]
     DATA[Elevat < MIN_ELEVA, wattDIR_sds := NA ]
     DATA[Elevat < MIN_ELEVA, wattGLB     := NA ]
@@ -216,7 +202,7 @@ stop()
     # DATA <- DATA[Elevat >= MIN_ELEVA, ]
 
 
-    ##_  Keep data characterized as 'good' by Radiation Quality control v13 ----
+    ## _ Keep data characterized as 'good' by Radiation Quality control v13 ----
     if (D_13) {
         keepQF <- c("good",
                     "Possible Direct Obstruction (23)",
@@ -226,58 +212,41 @@ stop()
         DATA[!QCF_GLB %in% keepQF, wattGLB := NA]
     }
 
-    ##_  Keep data characterized as 'TRUE' by Radiation Quality control v14 ----
+    ## _ Keep data characterized as 'TRUE' by Radiation Quality control v14 ----
     if (D_14 | D_14_2) {
         DATA[QCF_DIR == FALSE, wattDIR := NA]
         DATA[QCF_DIR == FALSE, wattHOR := NA]
         DATA[QCF_GLB == FALSE, wattGLB := NA]
     }
 
-    ##_  Count daylight length  ------------------------------------------------
+    ## _ Count daylight length  ------------------------------------------------
     DATA[, DayLength := .N, by = Day]
 
-    ##_  DROP MISSING RECORDS!! ------------------------------------------------
+    ## _ DROP MISSING RECORDS!! ------------------------------------------------
     DATA <- DATA[ !(is.na(wattDIR) & is.na(wattGLB)) ]
 
-    ##_  Info for TIS time span source used  -----------------------------------
+    ## _ Info for TIS time span source used  -----------------------------------
     TSI_info <- DATA[, .(Start = min(Date),
                          End   = max(Date)), by = TSI_Source]
     dir.create("./figures/", showWarnings = FALSE)
     write_dat(object = TSI_info,
-                        file   = "./figures/tbl_tsi_info.dat",
-                        clean  = TRUE)
+              file   = "./figures/tbl_tsi_info.dat",
+              clean  = TRUE)
     rm(TSI_info)
 
 
     #  Data preparation  -------------------------------------------------------
 
-    ##_  Move measurements to mean earth distance  -----------------------------
+    ## _ Move measurements to mean earth distance  -----------------------------
     DATA[, wattDIR_1au := wattDIR * (sun_dist ^ 2)]
     DATA[, wattGLB_1au := wattGLB * (sun_dist ^ 2)]
     DATA[, wattHOR_1au := wattHOR * (sun_dist ^ 2)]
-
-    ##_  Relative to actual TSI at 1au variable representation
-
-    ## !! Replace original variable representation for convenience !!
-    DATA[, DIR_att := wattDIR_1au]
-    DATA[, GLB_att := wattGLB_1au]
-    DATA[, HOR_att := wattHOR_1au]
-
-    ## Ground effect removal?
-    ## Aerosol direct effects on global solar shortwave irradiance at high mountainous station Musala Bulgaria_Nojarov2021.pdf
-    # DATA$wattGLB_1au <- DATA$wattGLB_1au / cosde(DATA$SZA)
-    # DATA$wattDIR_1au <- DATA$wattDIR_1au / cosde(DATA$SZA)
-
-
-    ##_  Calculate Bouguer atmospheric transparency  ---------------------------
-    ## Changes in solar radiation and their influence on temperature trend in Estonia 1955 2007_Russak2009.pdf
-    DATA[, DIR_transp := ( wattDIR_1au / tsi_1au_comb ) ^ ( 1 / cosde(SZA) ) ]
 
     ## fix noon just in case
     DATA[Azimuth <= 180 , preNoon := TRUE ]
     DATA[Azimuth >  180 , preNoon := FALSE]
 
-    ##_  DROP SOME DATA  -------------------------------------------------------
+    ## _ DROP SOME DATA  -------------------------------------------------------
     DATA[, CS_ref_HOR         := NULL]
     DATA[, ClearnessIndex_kt  := NULL]
     DATA[, Clearness_Kt       := NULL]
@@ -291,14 +260,9 @@ stop()
     DATA[, Glo_max_ref        := NULL]
     DATA[, Global_max         := NULL]
     DATA[, RaylDIFF           := NULL]
-    DATA[, wattDIR_1au        := NULL]
-    DATA[, wattGLB_1au        := NULL]
-    DATA[, wattHOR_1au        := NULL]
 
     rm.cols.DT(DATA, "QCv9*")
     rm.cols.DT(DATA, "QCF_*")
-    rm.cols.DT(DATA, "VIL_*")
-    rm.cols.DT(DATA, "*Clim_lim")
 
 
     #  GLB Representation filtering  -------------------------------------------
@@ -313,7 +277,8 @@ stop()
 
     Days_with_all_glb_data      <- temp[ , .N ]
     Days_with_filtered_glb_data <- temp[ Day_N >= DayLim, .N ]
-    cat("\nExcluded days:", Days_with_all_glb_data - Days_with_filtered_glb_data, "\n\n")
+    cat("\nExcluded days with less than", DayLim, "GLB points:", Days_with_all_glb_data - Days_with_filtered_glb_data, "\n\n")
+
 
     all_days_to_keep <- temp[ Day_N >= DayLim, Day ]
     rm(temp)
@@ -326,7 +291,7 @@ stop()
     DATA <- DATA[Day %in% all_days_to_keep ]
 
 
-    #  Split data to Clear Sky, non Clear sky and cloud sky data  --------------
+    #  Mark data Clear / cloud sky  --------------------------------------------
     #
     #  Method based and adapted from: Identification of Periods of Clear Sky
     #  Irradiance in Time Series of GHI Measurements _Matthew J. Reno and
