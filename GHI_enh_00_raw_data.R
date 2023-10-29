@@ -291,7 +291,7 @@ if (havetorun) {
 
     #  Save raw input data  ----------------------------------------------------
     saveRDS(DATA, file = raw_input_data, compress = "xz")
-    cat("\nSaved raw input data:", raw_input_data, "\n\n")
+    cat("\n  Saved raw input data:", raw_input_data, "\n\n")
 } else {
     cat(paste("\n Raw input data are ready in ", raw_input_data), "\n")
 }
