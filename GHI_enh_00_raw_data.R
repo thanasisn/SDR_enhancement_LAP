@@ -60,7 +60,7 @@ havetorun <- !file.exists(raw_input_data) |
 
 
 if (havetorun) {
-    cat(paste("\n !! Create raw input data ->", raw_input_data),"\n")
+    cat(paste("\n !! Create raw input data ->", raw_input_data), "\n")
 
     ## _ Get data from Clear sky id data  --------------------------------------
     input_files <- list.files(path       = CLEARdir,
@@ -292,5 +292,7 @@ if (havetorun) {
     #  Save raw input data  ----------------------------------------------------
     saveRDS(DATA, file = raw_input_data, compress = "xz")
     cat("\nSaved raw input data:", raw_input_data, "\n\n")
+} else {
+    cat(paste("\n Raw input data are ready in ", raw_input_data), "\n")
 }
 
