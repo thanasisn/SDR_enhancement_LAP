@@ -13,7 +13,7 @@ require(zoo)
 source("~/CODE/FUNCTIONS/R/trig_deg.R")
 source("~/CODE/FUNCTIONS/R/data.R")
 source("~/CODE/R_myRtools/myRtools/R/write_.R")
-source("./GHI_enh_0_variables.R")
+source("./GHI_enh_00_variables.R")
 
 #  Run data construction  ------------------------------------------------------
 
@@ -56,7 +56,7 @@ dir.create("./runtime",          showWarnings = FALSE)
 ## _ Check if we need to run data export  --------------------------------------
 havetorun <- !file.exists(raw_input_data) |
     file.mtime(variables_fl)              > file.mtime(raw_input_data) |
-    file.mtime("./GHI_enh_00_raw_data.R") > file.mtime(raw_input_data)
+    file.mtime("./GHI_enh_01_raw_data.R") > file.mtime(raw_input_data)
 
 
 if (havetorun) {
