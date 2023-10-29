@@ -245,7 +245,6 @@ if (havetorun) {
     DATA[, CS_ref_HOR         := NULL]
     DATA[, Elevat             := NULL]
     DATA[, Glo_max_ref        := NULL]
-    DATA[, RaylDIFF           := NULL]
 
     rm.cols.DT(DATA, "QCv9*")
     rm.cols.DT(DATA, "QCF_*")
