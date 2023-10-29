@@ -30,43 +30,37 @@ D_14_2 <- TRUE
 # D_13   <- TRUE
 
 TEST <- TRUE
-TEST <- FALSE
+# TEST <- FALSE
 
 
 
 ## new new implementation with corrected limits
 if (D_14_2) {
-    common_data <- common_data_14_2
-    CS_file     <- CS_file_14_2
     inpatern    <- "Clear_sky_id_Reno-Hansen_apply_v14_2_[0-9]{4}.Rds"
 }
 
 ## new implementation with corrected limits
 if (D_14) {
-    common_data <- common_data_14
-    CS_file     <- CS_file_14
     inpatern    <- "Clear_sky_id_Reno-Hansen_apply_v14_[0-9]{4}.Rds"
 }
 
 ## old implementation with corrected limits
 if (D_13) {
-    common_data <- common_data_13
-    CS_file     <- CS_file_13
     inpatern    <- "Clear_Sky_[0-9]{4}.Rds"
 }
 
+
 ## create local folders
-dir.create(dirname(common_data), showWarnings = FALSE)
+dir.create(dirname(raw_input_data), showWarnings = FALSE)
 dir.create("./figures",          showWarnings = FALSE)
 dir.create("./images",           showWarnings = FALSE)
 dir.create("./runtime",          showWarnings = FALSE)
 
 
 ## _ Check if we need to run data export  --------------------------------------
-havetorun <- !file.exists(common_data) |
-    file.mtime(CS_file)          > file.mtime(common_data) |
-    file.mtime(variables_fl)     > file.mtime(common_data) |
-    file.mtime("./GHI_enh_00_raw_data.R") > file.mtime(common_data)
+havetorun <- !file.exists(raw_input_data) |
+    file.mtime(variables_fl)              > file.mtime(raw_input_data) |
+    file.mtime("./GHI_enh_00_raw_data.R") > file.mtime(raw_input_data)
 
 
 if (havetorun) {
@@ -80,65 +74,65 @@ if (havetorun) {
 
     if (TEST == TRUE) {
         warning("\n\nTEST MODE IS ACTIVE!!\n")
-        input_files <- sample(input_files, 2)
+        input_files    <- sample(input_files, 2)
+        raw_input_data <- sub("\\.Rds", "_test.Rds", raw_input_data)
     }
 
     cat(paste("\n    Will read", length(input_files), "input files\n"))
 
-    if ( !file.exists(CS_file) | max(file.mtime(input_files)) > file.mtime(CS_file)) {
-        cat(paste("\n    Load data from Clear Sky process from original\n\n"))
-        DATA <- data.table()
-        for (af in input_files) {
-            cat("READING:", af, "\n")
-            temp <- readRDS(af)
-            ## drop some data
-            temp$CHP1temp           <- NULL
-            temp$CHP1tempSD         <- NULL
-            temp$CHP1tempUNC        <- NULL
-            temp$ClearnessIndex_kt  <- NULL
-            temp$Clearness_Kt       <- NULL
-            temp$DIFF_strict        <- NULL
-            temp$DIF_HOR            <- NULL
-            temp$DIR_strict         <- NULL
-            temp$DiffuseFraction_Kd <- NULL
-            temp$DiffuseFraction_kd <- NULL
-            temp$Direct_max         <- NULL
-            temp$GLBINC_SD_wpsm     <- NULL
-            temp$GLBINC_strict      <- NULL
-            temp$GLBINC_wpsm        <- NULL
-            temp$Global_max         <- NULL
-            temp$HOR_strict         <- NULL
-            temp$Pressure           <- NULL
-            temp$Pressure_source    <- NULL
-            temp$RaylDIFF           <- NULL
-            temp$chp1TempCF         <- NULL
-            temp$pressure           <- NULL
-            temp$wattDIR_tmp_cr     <- NULL
-            temp$wattHOR_tmp_cr     <- NULL
+    cat(paste("\n    Load data from Clear Sky process from original\n\n"))
+    DATA <- data.table()
+    for (af in input_files) {
+        cat("READING:", af, "\n")
+        temp <- readRDS(af)
+        ## drop some data
+        temp$CHP1temp           <- NULL
+        temp$CHP1tempSD         <- NULL
+        temp$CHP1tempUNC        <- NULL
+        temp$ClearnessIndex_kt  <- NULL
+        temp$Clearness_Kt       <- NULL
+        temp$DIFF_strict        <- NULL
+        temp$DIF_HOR            <- NULL
+        temp$DIR_strict         <- NULL
+        temp$DiffuseFraction_Kd <- NULL
+        temp$DiffuseFraction_kd <- NULL
+        temp$Direct_max         <- NULL
+        temp$GLBINC_SD_wpsm     <- NULL
+        temp$GLBINC_strict      <- NULL
+        temp$GLBINC_wpsm        <- NULL
+        temp$Global_max         <- NULL
+        temp$HOR_strict         <- NULL
+        temp$Pressure           <- NULL
+        temp$Pressure_source    <- NULL
+        temp$RaylDIFF           <- NULL
+        temp$chp1TempCF         <- NULL
+        temp$pressure           <- NULL
+        temp$wattDIR_tmp_cr     <- NULL
+        temp$wattHOR_tmp_cr     <- NULL
 
-            rm.cols.DT(temp, "VIL_*"    )
-            rm.cols.DT(temp, "*Clim_lim")
+        rm.cols.DT(temp, "VIL_*"    )
+        rm.cols.DT(temp, "*Clim_lim")
 
-            temp <- unique(temp)
-            DATA <- rbind(temp, DATA, fill = TRUE)
-            rm(temp)
-        }
-        DATA <- unique(DATA)
-        gc()
+        temp <- unique(temp)
+        DATA <- rbind(temp, DATA, fill = TRUE)
+        rm(temp)
+    } ## FOR END: read input files
+    DATA <- unique(DATA)
+    gc()
 
-        ## TODO warn duplicate dates
-        if (sum(duplicated(DATA$Date)) > 0) {
-            warning("There are duplicate dates in the data")
-        }
+    ## TODO warn duplicate dates
+    if (sum(duplicated(DATA$Date)) > 0) {
+        warning("There are duplicate dates in the data")
+    }
 
-        ## There are some duplicates introduced at some point!!
-        test <- DATA[duplicated(DATA$Date) | duplicated(DATA$Date, fromLast = TRUE)]
-        stopifnot( nrow(test) < 1000 )
+    ## There are some duplicates introduced at some point!!
+    test <- DATA[duplicated(DATA$Date) | duplicated(DATA$Date, fromLast = TRUE)]
+    stopifnot( nrow(test) < 1000 )
 
-        ## Workaround for duplicates
-        test_vec <- DATA[is.na(wattGLB) &
-                             (duplicated(DATA$Date) | duplicated(DATA$Date, fromLast = TRUE)),
-                         which = TRUE]
+    ## Workaround for duplicates
+    test_vec <- DATA[is.na(wattGLB) &
+                         (duplicated(DATA$Date) | duplicated(DATA$Date, fromLast = TRUE)),
+                     which = TRUE]
         ## Drop some data
         DATA <- DATA[!test_vec]
 
@@ -149,10 +143,7 @@ if (havetorun) {
         ## FIXME do we still need this?
         ## this is used by old scripts
         setorder(DATA, Date)
-        write_RDS(object = DATA, file = CS_file, clean = TRUE)
-    } else {
-        DATA <- readRDS(CS_file)
-    }
+
 
     ## _ Skip data ranges for CM-21  -------------------------------------------
     for (as in nrow(SKIP_cm21)) {
@@ -299,12 +290,7 @@ if (havetorun) {
     # DATA_Clear <- DATA_all[ CSflag == 0 ]
 
     #  Save raw input data  ----------------------------------------------------
-    if (TEST == FALSE) {
-        saveRDS(DATA, file = raw_input_data, compress = "xz")
-        cat("\nSaved raw input data:", raw_input_data, "\n\n")
-    }
-    # } else {
-    #     cat(paste("\n\nLoad raw input data: ", raw_input_data,"\n\n"))
-    #     readRDS(file = raw_input_data)
+    saveRDS(DATA, file = raw_input_data, compress = "xz")
+    cat("\nSaved raw input data:", raw_input_data, "\n\n")
 }
 
