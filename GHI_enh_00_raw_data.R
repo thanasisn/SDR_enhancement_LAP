@@ -32,9 +32,6 @@ D_14_2 <- TRUE
 TEST <- TRUE
 TEST <- FALSE
 
-if (TEST == TRUE) {
-    warning("Running in TEST mode!!")
-}
 
 
 ## new new implementation with corrected limits
@@ -82,12 +79,12 @@ if (havetorun) {
     input_files <- grep("_stats_", input_files, value = TRUE, invert = TRUE)
 
     if (TEST == TRUE) {
-        warning("\nTEST MODE IS ACTIVE!!\n\n")
+        warning("\n\nTEST MODE IS ACTIVE!!\n")
         input_files <- sample(input_files, 2)
     }
 
     cat(paste("\n    Will read", length(input_files), "input files\n"))
-af <- input_files[30]
+
     if ( !file.exists(CS_file) | max(file.mtime(input_files)) > file.mtime(CS_file)) {
         cat(paste("\n    Load data from Clear Sky process from original\n\n"))
         DATA <- data.table()
@@ -157,14 +154,12 @@ af <- input_files[30]
         DATA <- readRDS(CS_file)
     }
 
-stop()
     ## _ Skip data ranges for CM-21  -------------------------------------------
     for (as in nrow(SKIP_cm21)) {
         skip <- SKIP_cm21[as,]
         DATA[ Date >= skip$From & Date <= skip$Until, wattGLB    := NA ]
         DATA[ Date >= skip$From & Date <= skip$Until, wattGLB_SD := NA ]
     }
-
 
     #   Select data for this project  ------------------------------------------
 
@@ -248,17 +243,8 @@ stop()
 
     ## _ DROP SOME DATA  -------------------------------------------------------
     DATA[, CS_ref_HOR         := NULL]
-    DATA[, ClearnessIndex_kt  := NULL]
-    DATA[, Clearness_Kt       := NULL]
-    DATA[, ClrSW              := NULL]
-    DATA[, ClrSW_ref2         := NULL]
-    DATA[, DIF_HOR            := NULL]
-    DATA[, DiffuseFraction_Kd := NULL]
-    DATA[, DiffuseFraction_kd := NULL]
-    DATA[, Direct_max         := NULL]
     DATA[, Elevat             := NULL]
     DATA[, Glo_max_ref        := NULL]
-    DATA[, Global_max         := NULL]
     DATA[, RaylDIFF           := NULL]
 
     rm.cols.DT(DATA, "QCv9*")
@@ -270,15 +256,14 @@ stop()
     #  Remove days with too few data, as they can not be representative of a
     #  normal day.
     #
-    temp <- DATA[!is.na(GLB_att),
+    temp <- DATA[!is.na(wattGLB),
                  .(Day_N = .N,
                    DayLim = max(DayLength) * All_daily_ratio_lim),
                  by = Day]
 
     Days_with_all_glb_data      <- temp[ , .N ]
     Days_with_filtered_glb_data <- temp[ Day_N >= DayLim, .N ]
-    cat("\nExcluded days with less than", DayLim, "GLB points:", Days_with_all_glb_data - Days_with_filtered_glb_data, "\n\n")
-
+    cat("\nExcluded days with less than", All_daily_ratio_lim, "of daylight GLB points:", Days_with_all_glb_data - Days_with_filtered_glb_data, "\n\n")
 
     all_days_to_keep <- temp[ Day_N >= DayLim, Day ]
     rm(temp)
@@ -310,7 +295,6 @@ stop()
 
     ## remove unused columns
     rm.cols.DT(DATA,   "CSflag_*")
-
 
     ## legacy flags usage
     # DATA_Clear <- DATA_all[ CSflag == 0 ]
