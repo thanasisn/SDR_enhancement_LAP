@@ -1,16 +1,12 @@
 
 #  Prepare raw data for use in the paper ---------------------------------------
 #
-#  This collects raw data and prepare it for SDR trend analysis.
-#  It uses the data output of ClearSky algorithm.
-#  It caches the raw data in order to reuse it in different states of analyses.
+#  This collects raw data and prepare it mainly SDR analysis.
+#  It uses the data output of one of ClearSky algorithms.
+#  It caches the raw data in order to reuse it in next states of analyses.
 #  Creates:
-#    - Clear_Sky_##.Rds
 #    - Raw_Input.Rds
 #
-
-## to force a rebuild of the dataset remove stored
-# file.remove(common_data)
 
 require(data.table)
 require(zoo)
@@ -30,9 +26,9 @@ D_14_2 <- TRUE
 # D_13   <- TRUE
 
 TEST <- TRUE
-# TEST <- FALSE
+TEST <- FALSE
 
-
+## _ Select ClearSky algorithm  ------------------------------------------------
 
 ## new new implementation with corrected limits
 if (D_14_2) {
@@ -110,8 +106,8 @@ if (havetorun) {
         temp$wattDIR_tmp_cr     <- NULL
         temp$wattHOR_tmp_cr     <- NULL
 
-        rm.cols.DT(temp, "VIL_*"    )
-        rm.cols.DT(temp, "*Clim_lim")
+        rm.cols.DT(temp, "VIL_*"    , quiet = TRUE)
+        rm.cols.DT(temp, "*Clim_lim", quiet = TRUE)
 
         temp <- unique(temp)
         DATA <- rbind(temp, DATA, fill = TRUE)
@@ -138,7 +134,7 @@ if (havetorun) {
 
         ## retest
         test <- DATA[duplicated(DATA$Date) | duplicated(DATA$Date, fromLast = TRUE)]
-        cat("\nThere are ", nrow(test), " duplicate dates remaining!\n")
+        cat("\n  There are ", nrow(test), " duplicate dates remaining!\n")
 
         ## FIXME do we still need this?
         ## this is used by old scripts
@@ -146,6 +142,7 @@ if (havetorun) {
 
 
     ## _ Skip data ranges for CM-21  -------------------------------------------
+    cat("\n  Extra SKIP of CM-21 data!\n")
     for (as in nrow(SKIP_cm21)) {
         skip <- SKIP_cm21[as,]
         DATA[ Date >= skip$From & Date <= skip$Until, wattGLB    := NA ]
@@ -174,6 +171,7 @@ if (havetorun) {
     # plot(DATA[ !is.na(wattGLB) ,Elevat, Azimuth])
 
     ##_  Bais paper obstacle filter  -------------------------------------------
+    cat("\n  Keep Azimuth and Elevation according to Bais paper!\n")
     DATA[Azimuth > 35 & Azimuth < 120 & Elevat < 10, wattDIR     := NA ]
     DATA[Azimuth > 35 & Azimuth < 120 & Elevat < 10, wattDIR_sds := NA ]
     DATA[Azimuth > 35 & Azimuth < 120 & Elevat < 10, wattGLB     := NA ]
@@ -189,6 +187,7 @@ if (havetorun) {
 
 
     ## _ Keep data characterized as 'good' by Radiation Quality control v13 ----
+    cat("\n  Select quality data only\n\n")
     if (D_13) {
         keepQF <- c("good",
                     "Possible Direct Obstruction (23)",
@@ -224,6 +223,7 @@ if (havetorun) {
     #  Data preparation  -------------------------------------------------------
 
     ## _ Move measurements to mean earth distance  -----------------------------
+    cat("\n  Sun Earth distance correction\n")
     DATA[, wattDIR_1au := wattDIR * (sun_dist ^ 2)]
     DATA[, wattGLB_1au := wattGLB * (sun_dist ^ 2)]
     DATA[, wattHOR_1au := wattHOR * (sun_dist ^ 2)]
@@ -237,8 +237,8 @@ if (havetorun) {
     DATA[, Elevat             := NULL]
     DATA[, Glo_max_ref        := NULL]
 
-    rm.cols.DT(DATA, "QCv9*")
-    rm.cols.DT(DATA, "QCF_*")
+    rm.cols.DT(DATA, "QCv9*", quiet = TRUE)
+    rm.cols.DT(DATA, "QCF_*", quiet = TRUE)
 
 
     #  GLB Representation filtering  -------------------------------------------
@@ -253,7 +253,7 @@ if (havetorun) {
 
     Days_with_all_glb_data      <- temp[ , .N ]
     Days_with_filtered_glb_data <- temp[ Day_N >= DayLim, .N ]
-    cat("\nExcluded days with less than", All_daily_ratio_lim, "of daylight GLB points:", Days_with_all_glb_data - Days_with_filtered_glb_data, "\n\n")
+    cat("\n  Excluded days with less than", All_daily_ratio_lim, "of daylight GLB points:", Days_with_all_glb_data - Days_with_filtered_glb_data, "\n\n")
 
     all_days_to_keep <- temp[ Day_N >= DayLim, Day ]
     rm(temp)
@@ -261,7 +261,7 @@ if (havetorun) {
     ## Keep only good enough days
     all_glb_datapoints     <- DATA[Day %in% all_days_to_keep, .N]
     filterd_glb_datapoints <- DATA[, .N]
-    cat("\nKeeping:", 100 * all_glb_datapoints / filterd_glb_datapoints, "% of ALL data\n\n")
+    cat("\n  Keeping:", 100 * all_glb_datapoints / filterd_glb_datapoints, "% of ALL data\n\n")
 
     DATA <- DATA[Day %in% all_days_to_keep ]
 
@@ -284,7 +284,7 @@ if (havetorun) {
     DATA[rowSums(DATA[, ..wecare ], na.rm = T) != 0, TYPE := "Cloud"]
 
     ## remove unused columns
-    rm.cols.DT(DATA,   "CSflag_*")
+    rm.cols.DT(DATA, "CSflag_*", quiet = TRUE)
 
     ## legacy flags usage
     # DATA_Clear <- DATA_all[ CSflag == 0 ]
