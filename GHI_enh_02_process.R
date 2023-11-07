@@ -1,5 +1,78 @@
 # /* Copyright (C) 2022 Athanasios Natsis <natsisthanasis@gmail.com> */
 
+
+require(data.table)
+require(zoo)
+# source("~/CODE/FUNCTIONS/R/trig_deg.R")
+source("~/CODE/FUNCTIONS/R/data.R")
+source("./GHI_enh_00_variables.R")
+
+
+##  Prepare raw data if needed  ------------------------------------------------
+## check previous steps
+if (
+    file.exists(raw_input_data) == FALSE |
+    file.mtime(raw_input_data) < file.mtime("./GHI_enh_00_variables.R") |
+    file.mtime(raw_input_data) < file.mtime("./GHI_enh_01_raw_data.R")
+) {
+    source("./GHI_enh_01_raw_data.R")
+    dummy <- gc()
+}
+
+##  Prepare raw data  ----------------------------------------------------------
+DATA <- readRDS(raw_input_data)
+
+
+#'
+#'  Alpha * HAU is CS_ref
+#'
+#+ include=FALSE, echo=FALSE
+
+## __ Variables  ---------------------------------------------------------------
+GLB_ench_THRES     <- 0     ## enchantment % relative to HAU
+GLB_diff_THRES     <- 10    ## enchantment absolute diff to HAU
+Clearness_Kt_THRES <- 0.8   ## enchantment threshold
+wattGLB_THRES      <- 20    ## minimum value to consider
+wattDIR_THRES      <- 20    ## minimum value to consider
+min_elevation      <- 10    ## minimum sun elevation to use
+ampl               <- 1.05  ## adjusted HAU amplified threshold
+SZA_BIN            <- 1
+
+
+
+## __ Create some metrics  -----------------------------------------------------
+DATA[ , GLB_diff :=   wattGLB - CS_ref ]            ## enhancement
+DATA[ , GLB_ench := ( wattGLB - CS_ref ) / CS_ref ] ## relative enhancement
+DATA[ , GLB_rati :=   wattGLB / CS_ref   ]
+
+
+
+## __  Display some interesting days  ------------------------------------------
+
+## select some days for display
+enh_days <- DATA[GLB_ench     > GLB_ench_THRES      &
+                 Clearness_Kt > Clearness_Kt_THRES  &
+                 wattGLB      > wattGLB_THRES       &
+                 GLB_diff     > GLB_diff_THRES,
+                 .(Enh_sum      = sum(GLB_ench, na.rm = TRUE),
+                   Enh_max      = max(GLB_ench, na.rm = TRUE),
+                   Enh_diff_sum = sum(GLB_diff, na.rm = TRUE),
+                   Enh_diff_max = sum(GLB_diff, na.rm = TRUE)),
+                 Day]
+
+names(DATA)
+
+## interesting days first
+setorder(enh_days, -Enh_sum )
+setorder(enh_days, -Enh_max )
+setorder(enh_days, -Enh_diff_sum )
+
+## plot some interesting days
+daylist <- enh_days$Day
+daylist <- daylist[1:30]
+
+
+
 #
 # Note from editor
 #
@@ -25,14 +98,6 @@ stop("DO NOT USE")
 load("./data/Combinations_results_2022-06-14_153313.Rds")
 
 
-GLB_ench_THRES     <- 0    ## enchantment % relative to HAU
-GLB_diff_THRES     <- 10   ## enchantment absolute diff to HAU
-Clearness_Kt_THRES <- 0.8  ## enchantment threshold
-wattGLB_THRES      <- 20   ## minimum value to consider
-wattDIR_THRES      <- 20   ## minimum value to consider
-min_elevation      <- 10   ## minimum sun elevation to use
-ampl               <- 1.05 ## adjusted HAU amplified threshold
-SZA_BIN            <- 1
 
 #'
 #'
@@ -65,64 +130,6 @@ SZA_BIN            <- 1
 
 
 
-
-HAU <- function(sza,
-                a = 1098,
-                b = 0.057 ) {
-    GHI <- a * cosde( sza ) * exp( - b / cosde(sza) )
-    GHI <- gather_results$alpha[gather_results$CS_models == "HAU"] * GHI
-    return(GHI)
-}
-
-
-CSdt <- readRDS("./data/Clear_Sky.Rds")
-suppressMessages( rm.cols.DT(CSdt, "CSflag_*") )
-
-## keep only whole years
-CSdt <- CSdt[ year(Date) >= 1994 & year(Date) <= 2021 ]
-
-## only when sun is up
-CSdt <- CSdt[ Elevat > min_elevation ]
-
-## Quality Control data only
-## FIXME this will change in the future
-CSdt[QCF_DIR != "good", wattDIR := NA]
-CSdt[QCF_GLB != "good", wattGLB := NA]
-CSdt$QCF_DIR <- NULL
-CSdt$QCF_GLB <- NULL
-
-
-## Use cs model
-## i) the GHI_MEASURED - MODELED higher than 5% (GHI_MEASURED-MODELED >= 5%)
-CSdt[ , HAU    := HAU(SZA) * ampl ]
-CSdt[ , defHAU := HAU(SZA) ]
-
-
-
-## some metrics
-CSdt[ , GLB_diff :=   wattGLB - HAU ]         ## enhancement
-CSdt[ , GLB_ench := ( wattGLB - HAU ) / HAU ] ## relative enhancement
-CSdt[ , GLB_rati :=   wattGLB / HAU   ]
-
-## select some days for display
-enh_days <- CSdt[GLB_ench     > GLB_ench_THRES      &
-                 Clearness_Kt > Clearness_Kt_THRES  &
-                 wattGLB      > wattGLB_THRES       &
-                 GLB_diff     > GLB_diff_THRES,
-                 .(Enh_sum      = sum(GLB_ench, na.rm = TRUE),
-                   Enh_max      = max(GLB_ench, na.rm = TRUE),
-                   Enh_diff_sum = sum(GLB_diff, na.rm = TRUE),
-                   Enh_diff_max = sum(GLB_diff, na.rm = TRUE)) , Day]
-
-
-## interesting days first
-setorder(enh_days, -Enh_sum )
-setorder(enh_days, -Enh_max )
-setorder(enh_days, -Enh_diff_sum )
-
-## plot some interesting days
-daylist <- enh_days$Day
-daylist <- daylist[1:30]
 
 ## plot one selected day ####
 #+ dayexample, include=T, echo=F, fig.cap="Diurnal variability of GHI (green) and DNI (blue) for 08-4-2017. Red cycles denote the enhancement cases that were identified during the day. The red line represents the the GHI threshold ($\\text{GHI}_\\text{Threshold}$) we use, and the black line is the TSI at the TOA for reference."

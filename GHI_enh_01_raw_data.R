@@ -85,8 +85,6 @@ if (havetorun) {
         temp$CHP1temp           <- NULL
         temp$CHP1tempSD         <- NULL
         temp$CHP1tempUNC        <- NULL
-        temp$ClearnessIndex_kt  <- NULL
-        temp$Clearness_Kt       <- NULL
         temp$DIFF_strict        <- NULL
         temp$DIF_HOR            <- NULL
         temp$DIR_strict         <- NULL
