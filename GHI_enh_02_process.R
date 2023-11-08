@@ -1,74 +1,4 @@
-# /* #!/usr/bin/env Rscript */
-# /* Copyright (C) 2022 Athanasios Natsis <natsisphysicist@gmail.com> */
-#' ---
-#' title:         "Enhancement of SDR in Thessaloniki "
-#' author:
-#'   - Natsis Athanasios^[Laboratory of Atmospheric Physics, AUTH, natsisphysicist@gmail.com]
-#'   - Alkiviadis Bais^[Laboratory of Atmospheric Physics, AUTH]
-#' abstract:
-#'   "Study of GHI enchancment."
-#'
-#' documentclass:  article
-#' classoption:    a4paper,oneside
-#' fontsize:       10pt
-#' geometry:       "left=0.5in,right=0.5in,top=0.5in,bottom=0.5in"
-#' link-citations: yes
-#' colorlinks:     yes
-#'
-#' header-includes:
-#' - \usepackage{caption}
-#' - \usepackage{placeins}
-#' - \captionsetup{font=small}
-#'
-#' output:
-#'   bookdown::pdf_document2:
-#'     number_sections: no
-#'     fig_caption:     no
-#'     keep_tex:        yes
-#'     latex_engine:    xelatex
-#'     toc:             yes
-#'     toc_depth:       4
-#'     fig_width:       7
-#'     fig_height:      4.5
-#'   html_document:
-#'     toc:             true
-#'     keep_md:         yes
-#'     fig_width:       7
-#'     fig_height:      4.5
-#'
-#' date: "`r format(Sys.time(), '%F')`"
-#'
-#' ---
-
-#+ echo=F, include=T
-
-
-## __ Document options ---------------------------------------------------------
-
-#+ echo=F, include=F
-knitr::opts_chunk$set(comment    = ""       )
-knitr::opts_chunk$set(dev        = c("pdf", "png"))
-# knitr::opts_chunk$set(dev        = "png"    )
-knitr::opts_chunk$set(out.width  = "100%"   )
-knitr::opts_chunk$set(fig.align  = "center" )
-knitr::opts_chunk$set(cache      =  FALSE   )  ## !! breaks calculations
-# knitr::opts_chunk$set(fig.pos    = '!h'    )
-warning("Don't use cache it breaks computations")
-
-#+ include=F, echo=F
-## __ Set environment ----------------------------------------------------------
-Sys.setenv(TZ = "UTC")
-Script.Name <- "./DHI_GHI_1_longterm_trends.R"
-
-if (!interactive()) {
-    pdf( file = paste0("./runtime/",  basename(sub("\\.R$",".pdf", Script.Name))))
-    sink(file = paste0("./runtime/",  basename(sub("\\.R$",".out", Script.Name))), split = TRUE)
-    filelock::lock(paste0("./runtime/", basename(sub("\\.R$",".lock", Script.Name))), timeout = 0)
-}
-
-
-#+ echo=F, include=T
-library(data.table, quietly = TRUE, warn.conflicts = FALSE)
+# /* Copyright (C) 2022 Athanasios Natsis <natsisthanasis@gmail.com> */
 
 
 require(data.table)
@@ -116,20 +46,14 @@ DATA[ , GLB_ench := ( wattGLB - CS_ref ) / CS_ref ]  ## relative enhancement
 DATA[ , GLB_rati :=   wattGLB / CS_ref            ]
 
 
+stop()
 ## __  Display some interesting days  ------------------------------------------
 
-
-## Mark enhancements
-DATA[, Enhancement := NA ]
-DATA[GLB_ench              > GLB_ench_THRES      &
-         ClearnessIndex_kt > Clearness_Kt_THRES  &
-         wattGLB           > wattGLB_THRES       &
-         GLB_diff          > GLB_diff_THRES,
-     Enhancement := TRUE]
-
-
-## Estimate enhancement magnitude
-enh_days <- DATA[Enhancement == TRUE,
+## select some days for display
+enh_days <- DATA[GLB_ench         > GLB_ench_THRES      &
+                     Clearness_Kt > Clearness_Kt_THRES  &
+                     wattGLB      > wattGLB_THRES       &
+                     GLB_diff     > GLB_diff_THRES,
                  .(Enh_sum      = sum(GLB_ench, na.rm = TRUE),
                    Enh_max      = max(GLB_ench, na.rm = TRUE),
                    Enh_diff_sum = sum(GLB_diff, na.rm = TRUE),
@@ -137,77 +61,22 @@ enh_days <- DATA[Enhancement == TRUE,
                  Day]
 
 
+
+enh_days
+names(DATA)
+
+plot( DATA$ClearnessIndex_kt / DATA$Clearness_Kt )
+
+table(DATA[, ClearnessIndex_kt , Clearness_Kt])
+
 ## interesting days first
-setorder(enh_days, -Enh_sum      )
-setorder(enh_days, -Enh_max      )
+setorder(enh_days, -Enh_sum )
+setorder(enh_days, -Enh_max )
 setorder(enh_days, -Enh_diff_sum )
 
 ## plot some interesting days
 daylist <- enh_days$Day
-daylist <- sort(daylist[1:30])
-
-
-#'
-#' ## Plot some days with strong enhancement cases
-#'
-#+ strong_days, include=FALSE, echo=FALSE
-for (aday in daylist) {
-    temp <- DATA[ Day == aday ]
-    par(mar = c(4,4,1,1))
-    ylim = range(0, temp$TSIextEARTH_comb * cosde(temp$SZA), temp$wattGLB)
-
-    plot(temp$Date, temp$wattGLB, "l", col = "green",
-         ylim = ylim,
-         ylab = expression(Watt/m^2), xlab = "Time (UTC)")
-
-    lines(temp$Date, temp$wattHOR, col = "blue")
-
-    lines(temp$Date, temp$TSIextEARTH_comb * cosde(temp$SZA))
-
-    lines(temp$Date, temp$CS_ref + GLB_diff_THRES, col = "red" )
-
-    # lines(temp$Date, temp$HAU + wattGLB_THRES , col = "red" )
-    # lines(temp$Date, temp$CS_ref, col = "red" ,lty=3)
-    # points(temp[ GLB_ench > GLB_ench_THRES, Date ], temp[ GLB_ench > GLB_ench_THRES, wattGLB ], col = "cyan")
-    # points(temp[ Clearness_Kt > Clearness_Kt_THRES, Date ], temp[ Clearness_Kt > Clearness_Kt_THRES , wattGLB ], col = "yellow")
-
-
-    points(temp[Enhancement == TRUE, wattGLB, Date], col = "red")
-
-    title(main = as.Date(aday, origin = "1970-01-01"))
-    # legend("topleft", c("GHI","DNI",  "A-HAU", "TSI on horizontal level","GHI Enhancement event"),
-    #        col = c("green",   "blue", "red", "black", "red"),
-    #        pch = c(     NA,       NA,    NA,      NA,    1 ),
-    #        lty = c(      1,        1,     1,       1,   NA ),
-    #        bty = "n"
-    # )
-
-    legend("topleft", c("GHI","DNI",  "GHI threshold", "TSI on horizontal level","GHI Enhancement event"),
-           col = c("green",   "blue", "red", "black",  "red"),
-           pch = c(     NA,       NA,    NA,      NA,     1 ),
-           lty = c(      1,        1,     1,       1,    NA ),
-           bty = "n"
-    )
-
-    # plot(temp$Date, temp$Clearness_Kt)
-    # abline(h=.8,col="red")
-    # plot(temp$Date, temp$DiffuseFraction_Kd)
-    # plot(temp$Date, temp$GLB_ench)
-    # plot(temp$Date, temp$GLB_diff)
-}
-
-
-
-
-
-
-
-
-
-
-
-
-
+daylist <- daylist[1:30]
 
 
 
@@ -229,6 +98,12 @@ for (aday in daylist) {
 #+ include=FALSE, echo=FALSE
 
 stop("DO NOT USE")
+
+
+## load models
+# load("/home/athan/Aerosols/source_R/Global_models.Rda")
+load("./data/Combinations_results_2022-06-14_153313.Rds")
+
 
 
 #'
@@ -267,7 +142,7 @@ stop("DO NOT USE")
 #+ dayexample, include=T, echo=F, fig.cap="Diurnal variability of GHI (green) and DNI (blue) for 08-4-2017. Red cycles denote the enhancement cases that were identified during the day. The red line represents the the GHI threshold ($\\text{GHI}_\\text{Threshold}$) we use, and the black line is the TSI at the TOA for reference."
 daylist <- as.Date(c("2017-04-08"))
 for (aday in daylist) {
-    temp <- DATA[ Day == aday ]
+    temp <- CSdt[ Day == aday ]
     par(mar = c(4,4,1,1))
     ylim = range(0, temp$TSIextEARTH_comb * cosde(temp$SZA), temp$wattGLB)
 
@@ -279,16 +154,22 @@ for (aday in daylist) {
 
     lines(temp$Date, temp$TSIextEARTH_comb * cosde(temp$SZA))
 
-    lines(temp$Date, temp$CS_ref + GLB_diff_THRES, col = "red" )
+    # lines(temp$Date, temp$defHAU, col = "red", lty = 2 )
+    lines(temp$Date, temp$HAU + GLB_diff_THRES, col = "red" )
 
     # lines(temp$Date, temp$HAU + wattGLB_THRES , col = "red" )
     # lines(temp$Date, temp$CS_ref, col = "red" ,lty=3)
     # points(temp[ GLB_ench > GLB_ench_THRES, Date ], temp[ GLB_ench > GLB_ench_THRES, wattGLB ], col = "cyan")
     # points(temp[ Clearness_Kt > Clearness_Kt_THRES, Date ], temp[ Clearness_Kt > Clearness_Kt_THRES , wattGLB ], col = "yellow")
 
-    temp[Enhancement == TRUE, wattGLB, Date]
-
-    points(temp[Enhancement == TRUE, wattGLB, Date], col = "red")
+    points(temp[GLB_ench     > GLB_ench_THRES     &
+                Clearness_Kt > Clearness_Kt_THRES &
+                wattGLB      > wattGLB_THRES      &
+                GLB_diff     > GLB_diff_THRES, Date ],
+           temp[GLB_ench     > GLB_ench_THRES     &
+                Clearness_Kt > Clearness_Kt_THRES &
+                wattGLB      > wattGLB_THRES      &
+                GLB_diff     > GLB_diff_THRES, wattGLB ], col = "red")
 
     title(main = as.Date(aday, origin = "1970-01-01"))
     # legend("topleft", c("GHI","DNI",  "A-HAU", "TSI on horizontal level","GHI Enhancement event"),
