@@ -85,6 +85,7 @@ if (havetorun) {
         temp$CHP1temp           <- NULL
         temp$CHP1tempSD         <- NULL
         temp$CHP1tempUNC        <- NULL
+        temp$Clearness_Kt       <- NULL
         temp$DIFF_strict        <- NULL
         temp$DIF_HOR            <- NULL
         temp$DIR_strict         <- NULL
@@ -219,6 +220,9 @@ if (havetorun) {
 
 
     #  Data preparation  -------------------------------------------------------
+
+    ## - Create Clearness Index (BB may not filled yet) ------------------------
+    DATA[, ClearnessIndex_kt := wattGLB / (cosde(SZA) * TSIextEARTH_comb)]
 
     ## _ Move measurements to mean earth distance  -----------------------------
     cat("\n  Sun Earth distance correction\n")

@@ -41,26 +41,33 @@ SZA_BIN            <- 1
 
 
 ## __ Create some metrics  -----------------------------------------------------
-DATA[ , GLB_diff :=   wattGLB - CS_ref ]            ## enhancement
-DATA[ , GLB_ench := ( wattGLB - CS_ref ) / CS_ref ] ## relative enhancement
-DATA[ , GLB_rati :=   wattGLB / CS_ref   ]
+DATA[ , GLB_diff :=   wattGLB - CS_ref            ]  ## enhancement
+DATA[ , GLB_ench := ( wattGLB - CS_ref ) / CS_ref ]  ## relative enhancement
+DATA[ , GLB_rati :=   wattGLB / CS_ref            ]
 
 
-
+stop()
 ## __  Display some interesting days  ------------------------------------------
 
 ## select some days for display
-enh_days <- DATA[GLB_ench     > GLB_ench_THRES      &
-                 Clearness_Kt > Clearness_Kt_THRES  &
-                 wattGLB      > wattGLB_THRES       &
-                 GLB_diff     > GLB_diff_THRES,
+enh_days <- DATA[GLB_ench         > GLB_ench_THRES      &
+                     Clearness_Kt > Clearness_Kt_THRES  &
+                     wattGLB      > wattGLB_THRES       &
+                     GLB_diff     > GLB_diff_THRES,
                  .(Enh_sum      = sum(GLB_ench, na.rm = TRUE),
                    Enh_max      = max(GLB_ench, na.rm = TRUE),
                    Enh_diff_sum = sum(GLB_diff, na.rm = TRUE),
                    Enh_diff_max = sum(GLB_diff, na.rm = TRUE)),
                  Day]
 
+
+
+enh_days
 names(DATA)
+
+plot( DATA$ClearnessIndex_kt / DATA$Clearness_Kt )
+
+table(DATA[, ClearnessIndex_kt , Clearness_Kt])
 
 ## interesting days first
 setorder(enh_days, -Enh_sum )
