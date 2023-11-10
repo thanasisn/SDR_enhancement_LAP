@@ -354,7 +354,9 @@ DATA_Enh <- DATA[Enhancement == TRUE ]
 ##;
 ##;
 
-Enh_daily <- DATA_Enh[, .(N        = sum(!is.na(GLB_ench)),
+sum(DATA$Enhancement, na.rm = T)
+
+Enh_daily <- DATA_Enh[, .(N        = sum( Enhancement, na.rm = T),
                           N_ex     = sum( wattGLB > TSIextEARTH_comb * cosde(SZA)),
                           sum_Ench = sum( GLB_diff),
                           avg_Ench = mean(GLB_ench),
@@ -417,12 +419,9 @@ plot(Enh_daily$Day, Enh_daily$sum_Ench)
 plot(Enh_daily$Day, Enh_daily$avg_Ench)
 
 
+fit1 <- lm(Enh_yearly$N_att ~ Enh_yearly$year)[[1]]
+fit2 <- lm(Enh_yearly$Ench_intesit ~ Enh_yearly$year)[[1]]
 
-
-
-##;  fit1 <- lm( Enh_yearly$N_att ~ Enh_yearly$year )[[1]]
-##;  fit2 <- lm( Enh_yearly$Ench_intesit ~ Enh_yearly$year )[[1]]
-##;
 ##;  ## results ####
 ##;
 ##;  #'
@@ -442,70 +441,103 @@ plot(Enh_daily$Day, Enh_daily$avg_Ench)
 ##;  #'
 ##;
 ##;
-##;  #+ enchtrend, include=T, echo=F, fig.cap="Trend of the total of enhancement cases per year."
-##;  plot( Enh_yearly$year, Enh_yearly$N_att ,
-##;        xlab = "Year",
-##;        ylab = bquote("Difference from mean [%]" )
-##;        )
-##;  # title("Number of enchantments incidences", cex = 0.7)
-##;  lm1        <- lm( Enh_yearly$N_att ~ Enh_yearly$year )
-##;  abline(lm1)
-##;  fit <- lm1[[1]]
-##;  legend('topleft', lty = 1, bty = "n",
-##;         paste('Y =', signif(fit[1],2),if(fit[2]>0)'+'else'-',signif(abs(fit[2]*1),3),'* year'))
-##;  #'
-##;
-##;
-##;  #+ enchtrendN, include=F, echo=F, fig.cap="Trend of yearly number of enhancement cases."
-##;  plot( Enh_yearly$year, Enh_yearly$N ,
-##;        xlab = "",
-##;        ylab = bquote("Number of yearly cases" )
-##;  )
-##;  # title("Number of enchantments incidences", cex = 0.7)
-##;  lm1        <- lm( Enh_yearly$N ~ Enh_yearly$year )
-##;  abline(lm1)
-##;  fit <- lm1[[1]]
-##;  legend('topleft', lty = 1, bty = "n",
-##;         paste('Y =', signif(fit[1],2),if(fit[2]>0)'+'else'-', signif(abs(fit[2]*1),3),'* year'))
-##;  #'
-##;
-##;
-##;  #+ excessenergy, include=F, echo=F, fig.cap="The sum of the energy (in 1 minute resolution), above the reference model."
-##;  plot( Enh_yearly$year, Enh_yearly$sum_Ench_att,
-##;        xlab = "Year",
-##;        ylab = bquote("Difference from mean [%]")
-##;       )
-##;  title("Sum of radiation above enhancement threshold", cex = 0.7)
-##;  lm1        <- lm( Enh_yearly$sum_Ench_att ~ Enh_yearly$year )
-##;  abline(lm1)
-##;  fit <- lm1[[1]]
-##;  legend('topleft', lty = 1, bty = "n",
-##;         paste('Y =', signif(fit[1],2),if(fit[2]>0)'+'else'-',signif(abs(fit[2]*1),3),'* year'))
-##;  #'
-##;
-##;
-##;  #+ excess, include=F, echo=F, fig.cap="Trend and mean radiation enhancement radiation, above threshold, per case."
-##;  plot( Enh_yearly$year, Enh_yearly$Ench_intesit,
-##;        xlab = "Year",
-##;        ylab = bquote("Mean enhancement intensity ["~ Watt~m^-2~N^-1~"]")
-##;  )
-##;  abline( h = mean(Enh_yearly$Ench_intesit, na.rm = TRUE), lty = 2 )
-##;  lm1        <- lm( Enh_yearly$Ench_intesit ~ Enh_yearly$year )
-##;  abline(lm1)
-##;  fit <- lm1[[1]]
-##;  legend('topleft', lty = 1, bty = "n",
-##;         paste('Y =', signif(fit[1],2),if(fit[2]>0)'+'else'-',signif(abs(fit[2]*1),3),'* year'))
-##;
-##;
-##;  #+ include=F, echo=F
-##;  plot( Enh_yearly$year, Enh_yearly$avg_Ench,
-##;         xlab = "Year",
-##;         ylab = bquote("Average enchantment intensity ["~ Watt~m^-2~"]")
-##;  )
-##;
-##;  plot(Enh_daily$Day, Enh_daily$sum_Diff)
-##;
-##;
+
+#+ enchtrendyear, include=T, echo=F, fig.cap="Trend of the total of enhancement cases per year."
+plot( Enh_yearly$year, Enh_yearly$N_att ,
+      xlab = "Year",
+      ylab = bquote("Difference from mean [%]" )
+      )
+# title("Number of enchantments incidences", cex = 0.7)
+lm1        <- lm( Enh_yearly$N_att ~ Enh_yearly$year )
+abline(lm1)
+fit <- lm1[[1]]
+legend('topleft', lty = 1, bty = "n",
+       paste('Y =', signif(fit[1],2),if(fit[2]>0)'+'else'-',signif(abs(fit[2]*1),3),'* year'))
+#'
+
+
+#+ enchtrendday, include=T, echo=F, fig.cap="Trend of the total of enhancement cases per year."
+plot( Enh_daily$Day, Enh_daily$N_att ,
+      # xlab = "Year",
+      ylab = bquote("Difference from mean [%]" )
+      )
+# title("Number of enchantments incidences", cex = 0.7)
+lm1        <- lm( Enh_daily$N_att ~ Enh_daily$Day )
+abline(lm1, col = "red")
+fit <- lm1[[1]]
+legend('topleft', lty = 1, bty = "n",
+       paste('Y =', signif(fit[1],2),if(fit[2]>0)'+'else'-',signif(abs(fit[2]*1),3),'* year'))
+#'
+
+#+ enchtrendday, include=T, echo=F, fig.cap="Trend of the total of enhancement cases per year."
+plot( Enh_daily$Day, Enh_daily$N ,
+      # xlab = "Year",
+      ylab = bquote("" )
+)
+# title("Number of enchantments incidences", cex = 0.7)
+lm1        <- lm( Enh_daily$N ~ Enh_daily$Day )
+abline(lm1)
+fit <- lm1[[1]]
+legend('topleft', lty = 1, bty = "n",
+       paste('Y =', signif(fit[1],2),if(fit[2]>0)'+'else'-',signif(abs(fit[2]*1),3),'* year'))
+#'
+
+
+
+
+
+
+
+#+ enchtrendN, include=F, echo=F, fig.cap="Trend of yearly number of enhancement cases."
+plot( Enh_yearly$year, Enh_yearly$N ,
+      xlab = "",
+      ylab = bquote("Number of yearly cases" )
+)
+# title("Number of enchantments incidences", cex = 0.7)
+lm1        <- lm( Enh_yearly$N ~ Enh_yearly$year )
+abline(lm1)
+fit <- lm1[[1]]
+legend('topleft', lty = 1, bty = "n",
+       paste('Y =', signif(fit[1],2),if(fit[2]>0)'+'else'-', signif(abs(fit[2]*1),3),'* year'))
+#'
+
+
+#+ excessenergy, include=F, echo=F, fig.cap="The sum of the energy (in 1 minute resolution), above the reference model."
+plot( Enh_yearly$year, Enh_yearly$sum_Ench_att,
+      xlab = "Year",
+      ylab = bquote("Difference from mean [%]")
+)
+title("Sum of radiation above enhancement threshold", cex = 0.7)
+lm1        <- lm( Enh_yearly$sum_Ench_att ~ Enh_yearly$year )
+abline(lm1)
+fit <- lm1[[1]]
+legend('topleft', lty = 1, bty = "n",
+       paste('Y =', signif(fit[1],2),if(fit[2]>0)'+'else'-',signif(abs(fit[2]*1),3),'* year'))
+#'
+
+
+#+ excess, include=F, echo=F, fig.cap="Trend and mean radiation enhancement radiation, above threshold, per case."
+plot( Enh_yearly$year, Enh_yearly$Ench_intesit,
+      xlab = "Year",
+      ylab = bquote("Mean enhancement intensity ["~ Watt~m^-2~N^-1~"]")
+)
+abline( h = mean(Enh_yearly$Ench_intesit, na.rm = TRUE), lty = 2 )
+lm1        <- lm( Enh_yearly$Ench_intesit ~ Enh_yearly$year )
+abline(lm1)
+fit <- lm1[[1]]
+legend('topleft', lty = 1, bty = "n",
+       paste('Y =', signif(fit[1],2),if(fit[2]>0)'+'else'-',signif(abs(fit[2]*1),3),'* year'))
+
+
+#+ include=F, echo=F
+plot( Enh_yearly$year, Enh_yearly$avg_Ench,
+      xlab = "Year",
+      ylab = bquote("Average enchantment intensity ["~ Watt~m^-2~"]")
+)
+
+plot(Enh_daily$Day, Enh_daily$sum_Diff)
+
+
 ##;
 ##;  #### Conclusions ####
 ##;  #'
@@ -524,38 +556,38 @@ plot(Enh_daily$Day, Enh_daily$avg_Ench)
 ##;  #'
 ##;  #' The number of case characterization is skewed by the SZA angle of the case, although this connection is indicative to the complexity of factor we have to take into account.
 ##;  #'
-##;
-##;  #+ include=F, echo=F, fig.cap="Number of cases by SZA."
-##;  plot(Enh_sza$SZA, Enh_sza$N)
-##;  #'
-##;
-##;  ## ignore extreme cases for now
-##;  # plot(Enh_sza$SZA, Enh_sza$N_ex)
-##;
-##;
-##;  #+ include=F, echo=F
-##;  plot(Enh_sza$SZA, Enh_sza$sum_Ench, main = "Total exess energy")
-##;
-##;
+
+#+ include=F, echo=F, fig.cap="Number of cases by SZA."
+plot(Enh_sza$SZA, Enh_sza$N)
+#'
+
+## ignore extreme cases for now
+# plot(Enh_sza$SZA, Enh_sza$N_ex)
+
+
+#+ include=F, echo=F
+plot(Enh_sza$SZA, Enh_sza$sum_Ench, main = "Total exess energy")
+
+
 ##;
 ##;  #'
 ##;  #' there is a dependency of the magnitude of the enhancement with the
 ##;  #' SZA.
 ##;  #'
-##;
-##;  #+ include=F, echo=F, fig.cap="Mean enhancement intensity relative to reference (A-HAU) by SZA."
-##;  ylim <- range(Enh_sza$avg_Ench - Enh_sza$Ench_EM, Enh_sza$avg_Ench + Enh_sza$Ench_EM, na.rm = T)
-##;  plot(  Enh_sza$SZA, Enh_sza$avg_Ench, pch = 19, cex = 0.7, ylim = ylim)
-##;  arrows(Enh_sza$SZA, Enh_sza$avg_Ench - Enh_sza$Ench_EM, Enh_sza$SZA, Enh_sza$avg_Ench + Enh_sza$Ench_EM, length=0.03, angle=90, code=3)
-##;  #'
-##;
-##;
-##;  #+ szacases, include=T, echo=F, fig.cap="Enhancement cases percentage in total GHI data per SZA ($1^\\circ$ bin)."
-##;  plot( Data_sza$SZA, Data_sza[, 100 * N_enha / N_total ],
-##;        xlab = "Solar zenith angle",
-##;        ylab = bquote("Enhancement cases [%] of total data")
-##;        )
-##;  #'
+
+#+ include=F, echo=F, fig.cap="Mean enhancement intensity relative to reference (A-HAU) by SZA."
+ylim <- range(Enh_sza$avg_Ench - Enh_sza$Ench_EM, Enh_sza$avg_Ench + Enh_sza$Ench_EM, na.rm = T)
+plot(  Enh_sza$SZA, Enh_sza$avg_Ench, pch = 19, cex = 0.7, ylim = ylim)
+arrows(Enh_sza$SZA, Enh_sza$avg_Ench - Enh_sza$Ench_EM, Enh_sza$SZA, Enh_sza$avg_Ench + Enh_sza$Ench_EM, length=0.03, angle=90, code=3)
+#'
+
+
+#+ szacases, include=T, echo=F, fig.cap="Enhancement cases percentage in total GHI data per SZA ($1^\\circ$ bin)."
+plot( Data_sza$SZA, Data_sza[, 100 * N_enha / N_total ],
+      xlab = "Solar zenith angle",
+      ylab = bquote("Enhancement cases [%] of total data")
+)
+#'
 
 
 #' **END**
