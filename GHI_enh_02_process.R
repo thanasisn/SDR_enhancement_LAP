@@ -165,7 +165,7 @@ daylist <- enh_days$Day
 daylist <- sort(daylist[1:30])
 
 
-##  Plot some days with strong enhancement cases  ------------------------------
+##  Days with strong enhancement cases  ----------------------------------------
 
 #'
 #' ## Plot some days with strong enhancement cases
@@ -322,23 +322,17 @@ for (aday in daylist) {
 ##;  #'
 ##;
 ##;
-##;
-##;  ## keep only enhanced cases
-##;  Enh <- CSdt[GLB_ench     > GLB_ench_THRES     &
-##;              Clearness_Kt > Clearness_Kt_THRES &
-##;              wattGLB      > wattGLB_THRES      &
-##;              GLB_diff     > GLB_diff_THRES    ]
-##;
-##;
-##;  DATA_Enh <- CSdt[ , Enhancement := GLB_ench     > GLB_ench_THRES     &
-##;                                     Clearness_Kt > Clearness_Kt_THRES &
-##;                                     wattGLB      > wattGLB_THRES      &
-##;                                     GLB_diff     > GLB_diff_THRES    ]
-##;
-##;
-##;
-##;
-##;
+
+
+##  Enhancement cases stats  ---------------------------------------------------
+
+
+
+## keep only enhanced cases
+DATA_Enh <- DATA[Enhancement == TRUE ]
+
+
+
 ##;  ##TODO get indexes of continues cases
 ##;  ## ## get time diffs
 ##;  ## coo <- diff(Enh$Date)
