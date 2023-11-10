@@ -53,7 +53,7 @@ knitr::opts_chunk$set(out.width  = "100%"   )
 knitr::opts_chunk$set(fig.align  = "center" )
 knitr::opts_chunk$set(cache      =  FALSE   )  ## !! breaks calculations
 # knitr::opts_chunk$set(fig.pos    = '!h'    )
-warning("Don't use cache it breaks computations")
+
 
 #+ include=F, echo=F
 ## __ Set environment ----------------------------------------------------------
@@ -111,6 +111,7 @@ if (
 ##  Prepare Enhancement data  ----------------------------------------------------------
 DATA <- readRDS(raw_input_data)
 tic  <- Sys.time()
+
 
 
 #'
@@ -324,7 +325,7 @@ for (aday in daylist) {
 ##;
 
 
-##  Enhancement cases stats  ---------------------------------------------------
+##  Enhancement cases statistics  ----------------------------------------------
 
 
 
@@ -352,71 +353,73 @@ DATA_Enh <- DATA[Enhancement == TRUE ]
 ##;  ## which(diff(coo) != 1)
 ##;
 ##;
-##;  Enh_daily <- Enh[, .( N        = sum(!is.na(GLB_ench)),
-##;                        N_ex     = sum( wattGLB > TSIextEARTH_comb * cosde(SZA)),
-##;                        sum_Ench = sum( GLB_diff),
-##;                        avg_Ench = mean(GLB_ench),
-##;                        sd_Ench  = sd( GLB_ench),
-##;                        sum_Diff = sum( GLB_diff)),
-##;                   by = "Day"  ]
-##;
-##;  Enh_yearly <- Enh[, .( N        = sum(!is.na(GLB_ench)),
-##;                         N_ex     = sum( wattGLB > TSIextEARTH_comb * cosde(SZA)),
-##;                         sum_Ench = sum( GLB_diff),
-##;                         avg_Ench = mean(GLB_ench),
-##;                         sd_Ench  = sd(  GLB_ench),
-##;                         sum_Diff = sum( GLB_diff)),
-##;                    by = year(Date)  ]
-##;
-##;  Enh_total <- Enh[, .( N        = sum(!is.na(GLB_ench)),
-##;                         N_ex     = sum( wattGLB > TSIextEARTH_comb * cosde(SZA)),
-##;                         sum_Ench = sum( GLB_diff),
-##;                         avg_Ench = mean(GLB_ench),
-##;                         sd_Ench  = sd(  GLB_ench),
-##;                         sum_Diff = sum( GLB_diff))   ]
-##;
-##;
-##;  Enh_sza    <- Enh[, .(N        = sum(!is.na(GLB_ench)),
-##;                        N_ex     = sum( wattGLB > TSIextEARTH_comb * cosde(SZA)),
-##;                        sum_Ench = sum( GLB_diff),
-##;                        avg_Ench = mean(GLB_ench),
-##;                        sd_Ench  = sd(  GLB_ench),
-##;                        sum_Diff = sum( GLB_diff)),
-##;                    by = .(SZA = (SZA - SZA_BIN / 2 ) %/% SZA_BIN) ]
-##;
-##;
-##;  Data_sza    <- DATA_Enh[, .(N_enha  = sum(Enhancement, na.rm = TRUE),
-##;                              N_total = sum(!is.na(wattGLB))),
-##;                          by = .(SZA = (SZA - SZA_BIN / 2 ) %/% SZA_BIN) ]
-##;
-##;
-##;
-##;  CONF_INTERV <- .95
-##;  conf_param  <- 1 - (1 - CONF_INTERV) / 2
-##;  suppressWarnings({
-##;  Enh_sza[,   Ench_EM := qt(conf_param, df = N - 1) * sd_Ench / sqrt(N)]
-##;  Enh_daily[, Ench_EM := qt(conf_param, df = N - 1) * sd_Ench / sqrt(N)]
-##;  Enh_yearly[,Ench_EM := qt(conf_param, df = N - 1) * sd_Ench / sqrt(N)]
-##;  Enh_total[, Ench_EM := qt(conf_param, df = N - 1) * sd_Ench / sqrt(N)]
-##;  })
-##;
-##;
-##;  ## Make values relative ####
-##;  Enh_yearly[ , N_att        := 100*(N - mean(N))/mean(N)]
-##;  Enh_yearly[ , sum_Ench_att := 100*(sum_Ench - mean(sum_Ench))/mean(sum_Ench)]
-##;  Enh_yearly[ , Ench_intesit := sum_Ench / N ]
-##;
-##;
-##;  #+ include=F, echo=F
-##;  plot(Enh_daily$Day, Enh_daily$N)
-##;  plot(Enh_daily$Day, Enh_daily$N_ex)
-##;  plot(Enh_daily$Day, Enh_daily$sum_Ench)
-##;  plot(Enh_daily$Day, Enh_daily$avg_Ench)
-##;
-##;
-##;
-##;
-##;
+
+Enh_daily <- DATA_Enh[, .(N        = sum(!is.na(GLB_ench)),
+                          N_ex     = sum( wattGLB > TSIextEARTH_comb * cosde(SZA)),
+                          sum_Ench = sum( GLB_diff),
+                          avg_Ench = mean(GLB_ench),
+                          sd_Ench  = sd(  GLB_ench),
+                          sum_Diff = sum( GLB_diff)),
+                      by = "Day"]
+
+
+Enh_yearly <- DATA_Enh[, .(N        = sum(!is.na(GLB_ench)),
+                           N_ex     = sum( wattGLB > TSIextEARTH_comb * cosde(SZA)),
+                           sum_Ench = sum( GLB_diff),
+                           avg_Ench = mean(GLB_ench),
+                           sd_Ench  = sd(  GLB_ench),
+                           sum_Diff = sum( GLB_diff)),
+                       by = year(Date)]
+
+Enh_total <- DATA_Enh[, .(N        = sum(!is.na(GLB_ench)),
+                          N_ex     = sum( wattGLB > TSIextEARTH_comb * cosde(SZA)),
+                          sum_Ench = sum( GLB_diff),
+                          avg_Ench = mean(GLB_ench),
+                          sd_Ench  = sd(  GLB_ench),
+                          sum_Diff = sum( GLB_diff))]
+
+
+Enh_sza    <- DATA_Enh[, .(N        = sum(!is.na(GLB_ench)),
+                           N_ex     = sum( wattGLB > TSIextEARTH_comb * cosde(SZA)),
+                           sum_Ench = sum( GLB_diff),
+                           avg_Ench = mean(GLB_ench),
+                           sd_Ench  = sd(  GLB_ench),
+                           sum_Diff = sum( GLB_diff)),
+                       by = .(SZA = (SZA - SZA_BIN / 2 ) %/% SZA_BIN)]
+
+
+Data_sza    <- DATA_Enh[, .(N_enha  = sum(Enhancement, na.rm = TRUE),
+                            N_total = sum(!is.na(wattGLB))),
+                        by = .(SZA = (SZA - SZA_BIN / 2 ) %/% SZA_BIN) ]
+
+
+
+CONF_INTERV <- .95
+conf_param  <- 1 - (1 - CONF_INTERV) / 2
+suppressWarnings({
+    Enh_sza[,   Ench_EM := qt(conf_param, df = N - 1) * sd_Ench / sqrt(N)]
+    Enh_daily[, Ench_EM := qt(conf_param, df = N - 1) * sd_Ench / sqrt(N)]
+    Enh_yearly[,Ench_EM := qt(conf_param, df = N - 1) * sd_Ench / sqrt(N)]
+    Enh_total[, Ench_EM := qt(conf_param, df = N - 1) * sd_Ench / sqrt(N)]
+})
+
+
+## Make values relative ####
+Enh_yearly[ , N_att        := 100*(N - mean(N))/mean(N)]
+Enh_yearly[ , sum_Ench_att := 100*(sum_Ench - mean(sum_Ench))/mean(sum_Ench)]
+Enh_yearly[ , Ench_intesit := sum_Ench / N ]
+
+
+#+ include=F, echo=F
+plot(Enh_daily$Day, Enh_daily$N)
+plot(Enh_daily$Day, Enh_daily$N_ex)
+plot(Enh_daily$Day, Enh_daily$sum_Ench)
+plot(Enh_daily$Day, Enh_daily$avg_Ench)
+
+
+
+
+
 ##;  fit1 <- lm( Enh_yearly$N_att ~ Enh_yearly$year )[[1]]
 ##;  fit2 <- lm( Enh_yearly$Ench_intesit ~ Enh_yearly$year )[[1]]
 ##;
