@@ -137,7 +137,6 @@ DATA[ , GLB_ench := ( wattGLB - CS_ref ) / CS_ref ]  ## relative enhancement
 DATA[ , GLB_rati :=   wattGLB / CS_ref            ]
 
 
-
 ## __ Mark enhancements  -------------------------------------------------------
 DATA[, Enhancement := NA ]
 DATA[GLB_ench              > GLB_ench_THRES      &
