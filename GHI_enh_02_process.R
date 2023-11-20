@@ -333,9 +333,15 @@ for (aday in daylist) {
 
 
 
+test <- c(F,T,F, rep(T,5),F,T,F,F, rep(T,5))
 
+DT <- data.table(test)
 
+DT[, diff := c(F,diff(test))]
 
+DT[, cd := cumsum(diff)]
+
+DT[, g := rleid(cd)]
 
 
 rleid()
@@ -365,7 +371,7 @@ rleid()
 # DT[, group := rleid(cumsum(c(FALSE, diff(Var1) != step)))]
 
 
-
+diff(test)
 
 
 ## keep only enhanced cases
