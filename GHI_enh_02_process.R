@@ -139,7 +139,7 @@ DATA[ , GLB_ench := ( wattGLB - CS_ref ) / CS_ref ]  ## relative enhancement
 DATA[ , GLB_rati :=   wattGLB / CS_ref            ]
 
 
-## __ Mark enhancements  -------------------------------------------------------
+## __ Enhancement critiria  ----------------------------------------------------
 DATA[, Enhancement := NA ]
 DATA[GLB_ench              > GLB_ench_THRES      &
          ClearnessIndex_kt > Clearness_Kt_THRES  &
@@ -330,30 +330,49 @@ for (aday in daylist) {
 
 
 
+
+
+
+
+
+
+
+
+rleid()
+
+
+
+##TODO get indexes of continues cases
+## ## get time diffs
+## coo <- diff(Enh$Date)
+## ## get indexes of successive cases
+## suc <- which(coo == 1)
+## ## get the range of each sequence
+## iv  <- seqToIntervals(suc)
+## ## stats on each event
+## Events <- data.frame( Start_date = apply(iv,1, function(x) { min( Enh$Date[ c( x[1]:(x[2]+1) ) ]  ),
+##                       End_date   = apply(iv,1, function(x) { max( Enh$Date[ c( x[1]:(x[2]+1) ) ]  ),
+##                       Duration   = apply(iv,1, function(x) { length( Enh$Date[ c( x[1]:(x[2]+1) )  } )
+## )
+## hist(Events$Duration, breaks = 100)
+## ivv <- seqToIntervals(coo)
+## coo[ivv[1,1]:ivv[1,2]]
+## # gives the indices of the 'jumps'.
+## which(diff(coo) != 1)
+
+# step <- 2
+# DT <- data.table(Var1 = c(seq(1,10, 2), seq(13,30, 2)))
+# DT[, group := rleid(cumsum(c(FALSE, diff(Var1) != step)))]
+
+
+
+
+
 ## keep only enhanced cases
 DATA_Enh <- DATA[Enhancement == TRUE ]
 
 
 
-##;  ##TODO get indexes of continues cases
-##;  ## ## get time diffs
-##;  ## coo <- diff(Enh$Date)
-##;  ## ## get indexes of successive cases
-##;  ## suc <- which(coo == 1)
-##;  ## ## get the range of each sequence
-##;  ## iv  <- seqToIntervals(suc)
-##;  ## ## stats on each event
-##;  ## Events <- data.frame( Start_date = apply(iv,1, function(x) { min( Enh$Date[ c( x[1]:(x[2]+1) ) ] ) } ),
-##;  ##                       End_date   = apply(iv,1, function(x) { max( Enh$Date[ c( x[1]:(x[2]+1) ) ] ) } ),
-##;  ##                       Duration   = apply(iv,1, function(x) { length( Enh$Date[ c( x[1]:(x[2]+1) ) ] ) } )
-##;  ## )
-##;  ## hist(Events$Duration, breaks = 100)
-##;  ## ivv <- seqToIntervals(coo)
-##;  ## coo[ivv[1,1]:ivv[1,2]]
-##;  ## # gives the indices of the 'jumps'.
-##;  ## which(diff(coo) != 1)
-##;
-##;
 
 sum(DATA$Enhancement, na.rm = T)
 
@@ -374,6 +393,20 @@ Enh_yearly <- DATA_Enh[, .(N        = sum(!is.na(GLB_ench)),
                            sum_Diff = sum( GLB_diff)),
                        by = year(Date)]
 
+Enh_monthly <- DATA_Enh[, .(N        = sum(!is.na(GLB_ench)),
+                           N_ex     = sum( wattGLB > TSIextEARTH_comb * cosde(SZA)),
+                           sum_Ench = sum( GLB_diff),
+                           avg_Ench = mean(GLB_ench),
+                           sd_Ench  = sd(  GLB_ench),
+                           sum_Diff = sum( GLB_diff)),
+                       by = .(year(Date), month(Date))]
+
+Enh_monthly$Date <- as.POSIXct(strptime(paste(Enh_monthly$year, Enh_monthly$month, "1"),"%Y %m %d"))
+
+
+
+
+
 Enh_total <- DATA_Enh[, .(N        = sum(!is.na(GLB_ench)),
                           N_ex     = sum( wattGLB > TSIextEARTH_comb * cosde(SZA)),
                           sum_Ench = sum( GLB_diff),
@@ -391,9 +424,9 @@ Enh_sza    <- DATA_Enh[, .(N        = sum(!is.na(GLB_ench)),
                        by = .(SZA = (SZA - SZA_BIN / 2 ) %/% SZA_BIN)]
 
 
-Data_sza    <- DATA_Enh[, .(N_enha  = sum(Enhancement, na.rm = TRUE),
-                            N_total = sum(!is.na(wattGLB))),
-                        by = .(SZA = (SZA - SZA_BIN / 2 ) %/% SZA_BIN) ]
+Data_sza    <- DATA[, .(N_enha  = sum(Enhancement, na.rm = TRUE),
+                        N_total = sum(!is.na(wattGLB))),
+                    by = .(SZA = (SZA - SZA_BIN / 2 ) %/% SZA_BIN) ]
 
 
 
@@ -408,9 +441,18 @@ suppressWarnings({
 
 
 ## Make values relative ####
-Enh_yearly[ , N_att        := 100*(N - mean(N))/mean(N)]
-Enh_yearly[ , sum_Ench_att := 100*(sum_Ench - mean(sum_Ench))/mean(sum_Ench)]
-Enh_yearly[ , Ench_intesit := sum_Ench / N ]
+Enh_yearly[, N_att        := 100 * (N - mean(N))/mean(N)]
+Enh_yearly[, sum_Ench_att := 100 * (sum_Ench - mean(sum_Ench))/mean(sum_Ench)]
+Enh_yearly[, Ench_intesit :=        sum_Ench / N ]
+
+Enh_daily[, N_att        := 100 * (N - mean(N))/mean(N)]
+Enh_daily[, sum_Ench_att := 100 * (sum_Ench - mean(sum_Ench))/mean(sum_Ench)]
+Enh_daily[, Ench_intesit :=        sum_Ench / N ]
+
+Enh_monthly[, N_att        := 100 * (N - mean(N))/mean(N)]
+Enh_monthly[, sum_Ench_att := 100 * (sum_Ench - mean(sum_Ench))/mean(sum_Ench)]
+Enh_monthly[, Ench_intesit :=        sum_Ench / N ]
+
 
 
 #+ include=F, echo=F
@@ -443,11 +485,14 @@ fit2 <- lm(Enh_yearly$Ench_intesit ~ Enh_yearly$year)[[1]]
 ##;
 ##;
 
+
+## _ Cases per year  -----------------------------------------------------------
+
 #+ enchtrendyear, include=T, echo=F, fig.cap="Trend of the total of enhancement cases per year."
-plot( Enh_yearly$year, Enh_yearly$N_att ,
-      xlab = "Year",
-      ylab = bquote("Difference from mean [%]" )
-      )
+plot(Enh_yearly$year, Enh_yearly$N_att ,
+     xlab = "Year",
+     ylab = bquote("Difference from mean [%]" )
+)
 # title("Number of enchantments incidences", cex = 0.7)
 lm1        <- lm( Enh_yearly$N_att ~ Enh_yearly$year )
 abline(lm1)
@@ -457,11 +502,28 @@ legend('topleft', lty = 1, bty = "n",
 #'
 
 
+## _ Cases per month  ----------------------------------------------------------
+
+
+
+plot(Enh_monthly$Date, Enh_monthly$N_att ,
+     ylab = bquote("Difference from mean [%]" )
+)
+# title("Number of enchantments incidences", cex = 0.7)
+lm1        <- lm( Enh_monthly$N_att ~ Enh_monthly$Date )
+abline(lm1, col = "red")
+fit <- lm1[[1]]
+legend('topleft', lty = 1, bty = "n",
+       paste('Y =', signif(fit[1],2),if(fit[2]>0)'+'else'-',signif(abs(fit[2]*Days_of_year),3),'* year'))
+
+
+
+## _ Cases per day  ------------------------------------------------------------
+
 #+ enchtrendday, include=T, echo=F, fig.cap="Trend of the total of enhancement cases per year."
-plot( Enh_daily$Day, Enh_daily$N_att ,
-      # xlab = "Year",
-      ylab = bquote("Difference from mean [%]" )
-      )
+plot(Enh_daily$Day, Enh_daily$N_att ,
+     ylab = bquote("Difference from mean [%]" )
+     )
 # title("Number of enchantments incidences", cex = 0.7)
 lm1        <- lm( Enh_daily$N_att ~ Enh_daily$Day )
 abline(lm1, col = "red")
@@ -469,6 +531,17 @@ fit <- lm1[[1]]
 legend('topleft', lty = 1, bty = "n",
        paste('Y =', signif(fit[1],2),if(fit[2]>0)'+'else'-',signif(abs(fit[2]*1),3),'* year'))
 #'
+
+
+
+
+
+
+
+
+
+
+
 
 #+ enchtrendday, include=T, echo=F, fig.cap="Trend of the total of enhancement cases per year."
 plot( Enh_daily$Day, Enh_daily$N ,
@@ -480,8 +553,10 @@ lm1        <- lm( Enh_daily$N ~ Enh_daily$Day )
 abline(lm1)
 fit <- lm1[[1]]
 legend('topleft', lty = 1, bty = "n",
-       paste('Y =', signif(fit[1],2),if(fit[2]>0)'+'else'-',signif(abs(fit[2]*1),3),'* year'))
+       paste('Y =', signif(fit[1],2),if(fit[2]>0)'+'else'-',signif(abs(fit[2]*Days_of_year),3),'* year'))
 #'
+
+
 
 
 
