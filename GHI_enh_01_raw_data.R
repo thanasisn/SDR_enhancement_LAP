@@ -291,6 +291,66 @@ if (havetorun) {
     ## legacy flags usage
     # DATA_Clear <- DATA_all[ CSflag == 0 ]
 
+
+    ## _ Enhancement ID  ------------------------------------------------------
+
+    ## __ Variables  -----------------------------------------------------------
+    GLB_ench_THRES     <- 0     ## enchantment % relative to HAU
+    GLB_diff_THRES     <- 10    ## enchantment absolute diff to HAU
+    Clearness_Kt_THRES <- 0.8   ## enchantment threshold
+    wattGLB_THRES      <- 20    ## minimum value to consider
+    wattDIR_THRES      <- 20    ## minimum value to consider
+    min_elevation      <- 10    ## minimum sun elevation to use
+    ampl               <- 1.05  ## adjusted HAU amplified threshold
+    SZA_BIN            <- 1
+
+
+
+    ## __ Create some metrics  -------------------------------------------------
+    DATA[ , GLB_diff :=   wattGLB - CS_ref            ]  ## enhancement
+    DATA[ , GLB_ench := ( wattGLB - CS_ref ) / CS_ref ]  ## relative enhancement
+    DATA[ , GLB_rati :=   wattGLB / CS_ref            ]
+
+
+    ## __ Enhancement criteria  ------------------------------------------------
+    DATA[, Enhancement := FALSE]
+    DATA[GLB_ench              > GLB_ench_THRES      &
+             ClearnessIndex_kt > Clearness_Kt_THRES  &
+             wattGLB           > wattGLB_THRES       &
+             GLB_diff          > GLB_diff_THRES,
+         Enhancement := TRUE]
+
+
+    ## __ Group contimioys values  ---------------------------------------------
+    DATA[, cnF := cumsum(Enhancement == FALSE)]
+    DATA[, cnT := cumsum(Enhancement == TRUE) ]
+    ## Init groups logical
+    DATA[, G1  := Enhancement]
+    DATA[, G0  := Enhancement]
+
+    ## Find groups with one gap
+    for (i in 1:nrow(DATA)) {
+        p1 <- i - 1
+        n1 <- i + 1
+        if (p1 > 0 & n1 <= nrow(DATA)) {
+            if (DATA$G1[p1] == TRUE  &
+                DATA$G1[i]  == FALSE &
+                DATA$G1[n1] == TRUE  ) {
+                DATA$G1[i]  <- TRUE
+            }
+        }
+    }
+
+    DATA[, Grp1 := rleid(c(NA,diff(cumsum(G1))))]
+    DATA[G1 == FALSE, Grp1 := NA]
+
+    DATA[, Grp0 := rleid(c(NA,diff(cumsum(G0))))]
+    DATA[G0 == FALSE, Grp0 := NA]
+
+
+
+
+
     #  Save raw input data  ----------------------------------------------------
     saveRDS(DATA, file = raw_input_data, compress = "xz")
     cat("\n  Saved raw input data:", raw_input_data, "\n\n")
