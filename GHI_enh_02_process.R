@@ -333,15 +333,25 @@ for (aday in daylist) {
 
 
 
-test <- c(F,T,F, rep(T,5),F,T,F,F, rep(T,5))
+test <- c(F,T,F, rep(T,5),F,T,F,F,F, rep(T,5))
 
 DT <- data.table(test)
+DT[, cnF := cumsum(test == FALSE)]
+DT[, cnT := cumsum(test == TRUE) ]
 
-DT[, diff := c(F,diff(test))]
+DT[, ddF := diff(cnF)]
+DT[, ddT := diff(cnT)]
 
-DT[, cd := cumsum(diff)]
 
-DT[, g := rleid(cd)]
+allow <- 1
+for (i in 1:nrow(DT)) {
+    DT$test[i]
+
+
+    cat(paste(DT[i]), "\n", sep = "\t")
+}
+
+
 
 
 rleid()
