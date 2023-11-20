@@ -139,8 +139,8 @@ DATA[ , GLB_ench := ( wattGLB - CS_ref ) / CS_ref ]  ## relative enhancement
 DATA[ , GLB_rati :=   wattGLB / CS_ref            ]
 
 
-## __ Enhancement critiria  ----------------------------------------------------
-DATA[, Enhancement := NA ]
+## __ Enhancement criteria  ----------------------------------------------------
+DATA[, Enhancement := FALSE]
 DATA[GLB_ench              > GLB_ench_THRES      &
          ClearnessIndex_kt > Clearness_Kt_THRES  &
          wattGLB           > wattGLB_THRES       &
@@ -333,40 +333,76 @@ for (aday in daylist) {
 
 
 
-test <- c(F,T,F, rep(T,5),F,F,T,F,F,F, rep(T,5))
+# test <- c(F,T,F, rep(T,5),F,F,T,F,F,F, rep(T,5))
+#
+# DT <- data.table(test)
+# DT[, cnF := cumsum(test == FALSE)]
+# DT[, cnT := cumsum(test == TRUE) ]
+# # the realation of diff may be a general solution
+# DT[, ddF := c(0, diff(cnF))]
+# DT[, ddT := c(0, diff(cnT))]
+#
+# DT[, G1  := test]
+# DT[, G0  := test]
+#
+#
+# allow <- 1
+# for (i in 1:nrow(DT)) {
+#     p1 <- i - 1
+#     n1 <- i + 1
+#     if (p1 > 0 & n1 <= nrow(DT)) {
+#         if (DT$G1[p1] == TRUE  &
+#             DT$G1[i]  == FALSE &
+#             DT$G1[n1] == TRUE  ) {
+#             DT$G1[i]  <- TRUE
+#         }
+#     }
+# }
+#
+# DT[, Grp1 := rleid(c(NA,diff(cumsum(G1))))]
+# DT[G1 == FALSE, Grp1 := NA]
+#
+# DT[, Grp0 := rleid(c(NA,diff(cumsum(G0))))]
+# DT[G0 == FALSE, Grp0 := NA]
+#
+# DT
 
-DT <- data.table(test)
-DT[, cnF := cumsum(test == FALSE)]
-DT[, cnT := cumsum(test == TRUE) ]
-
-DT[, ddF := c(0, diff(cnF))]
-DT[, ddT := c(0, diff(cnT))]
-
-DT[, G1  := test]
-DT[, G0  := test]
 
 
-allow <- 1
-for (i in 1:nrow(DT)) {
+
+DATA[, cnF := cumsum(Enhancement == FALSE)]
+DATA[, cnT := cumsum(Enhancement == TRUE) ]
+## Init groups logical
+DATA[, G1  := Enhancement]
+DATA[, G0  := Enhancement]
+
+## Find groups with one gap
+for (i in 1:nrow(DATA)) {
     p1 <- i - 1
     n1 <- i + 1
-    if (p1 > 0 & n1 <= nrow(DT)) {
-        if (DT$G1[p1] == TRUE  &
-            DT$G1[i]  == FALSE &
-            DT$G1[n1] == TRUE  ) {
-            DT$G1[i]  <- TRUE
+    if (p1 > 0 & n1 <= nrow(DATA)) {
+        if (DATA$G1[p1] == TRUE  &
+            DATA$G1[i]  == FALSE &
+            DATA$G1[n1] == TRUE  ) {
+            DATA$G1[i]  <- TRUE
         }
     }
 }
 
-DT[, Grp1 := rleid(c(NA,diff(cumsum(G1))))]
-DT[G1 == FALSE, Grp1 := NA]
+DATA[, Grp1 := rleid(c(NA,diff(cumsum(G1))))]
+DATA[G1 == FALSE, Grp1 := NA]
 
-DT[, Grp0 := rleid(c(NA,diff(cumsum(G0))))]
-DT[G0 == FALSE, Grp0 := NA]
+DATA[, Grp0 := rleid(c(NA,diff(cumsum(G0))))]
+DATA[G0 == FALSE, Grp0 := NA]
 
-
+stop("kkkkk")
 DT
+
+
+
+
+
+
 
 
 
