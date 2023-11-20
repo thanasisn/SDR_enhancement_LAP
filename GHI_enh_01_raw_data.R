@@ -294,18 +294,6 @@ if (havetorun) {
 
     ## _ Enhancement ID  ------------------------------------------------------
 
-    ## __ Variables  -----------------------------------------------------------
-    GLB_ench_THRES     <- 0     ## enchantment % relative to HAU
-    GLB_diff_THRES     <- 10    ## enchantment absolute diff to HAU
-    Clearness_Kt_THRES <- 0.8   ## enchantment threshold
-    wattGLB_THRES      <- 20    ## minimum value to consider
-    wattDIR_THRES      <- 20    ## minimum value to consider
-    min_elevation      <- 10    ## minimum sun elevation to use
-    ampl               <- 1.05  ## adjusted HAU amplified threshold
-    SZA_BIN            <- 1
-
-
-
     ## __ Create some metrics  -------------------------------------------------
     DATA[ , GLB_diff :=   wattGLB - CS_ref            ]  ## enhancement
     DATA[ , GLB_ench := ( wattGLB - CS_ref ) / CS_ref ]  ## relative enhancement
@@ -321,7 +309,7 @@ if (havetorun) {
          Enhancement := TRUE]
 
 
-    ## __ Group contimioys values  ---------------------------------------------
+    ## __ Group continuous values  ---------------------------------------------
     DATA[, cnF := cumsum(Enhancement == FALSE)]
     DATA[, cnT := cumsum(Enhancement == TRUE) ]
     ## Init groups logical
@@ -341,14 +329,13 @@ if (havetorun) {
         }
     }
 
+    ## Allow one gap group
     DATA[, Grp1 := rleid(c(NA,diff(cumsum(G1))))]
     DATA[G1 == FALSE, Grp1 := NA]
 
+    ## No gap group
     DATA[, Grp0 := rleid(c(NA,diff(cumsum(G0))))]
     DATA[G0 == FALSE, Grp0 := NA]
-
-
-
 
 
     #  Save raw input data  ----------------------------------------------------

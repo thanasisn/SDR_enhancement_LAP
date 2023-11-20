@@ -73,7 +73,6 @@ running_mean_window_years <-   5
 running_mean_window_days  <- running_mean_window_years * Days_of_year
 
 MIN_ELEVA                 <-   5  ##  global low elevation limit
-SZA_BIN                   <-   1
 MIN_N                     <-   4
 SEAS_MIN_N                <-   3
 
@@ -104,5 +103,17 @@ SKIP_cm21 <- matrix(
 SKIP_cm21 <- data.frame(From    = as.POSIXct(  SKIP_cm21[,1]),
                         Until   = as.POSIXct(  SKIP_cm21[,2]),
                         Comment = as.character(SKIP_cm21[,3]))
+
+
+## __ Variables  -----------------------------------------------------------
+GLB_ench_THRES     <- 0     ## enchantment % relative to HAU
+GLB_diff_THRES     <- 10    ## enchantment absolute diff to HAU
+Clearness_Kt_THRES <- 0.8   ## enchantment threshold
+wattGLB_THRES      <- 20    ## minimum value to consider
+wattDIR_THRES      <- 20    ## minimum value to consider
+min_elevation      <- 10    ## minimum sun elevation to use
+ampl               <- 1.05  ## adjusted HAU amplified threshold
+SZA_BIN            <- 1
+
 
 
