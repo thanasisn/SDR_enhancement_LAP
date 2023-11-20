@@ -339,8 +339,8 @@ DT <- data.table(test)
 DT[, cnF := cumsum(test == FALSE)]
 DT[, cnT := cumsum(test == TRUE) ]
 
-DT[, ddF := diff(cnF)]
-DT[, ddT := diff(cnT)]
+DT[, ddF := c(0, diff(cnF))]
+DT[, ddT := c(0, diff(cnT))]
 
 
 allow <- 1
@@ -351,6 +351,7 @@ for (i in 1:nrow(DT)) {
     cat(paste(DT[i]), "\n", sep = "\t")
 }
 
+DT
 
 
 
