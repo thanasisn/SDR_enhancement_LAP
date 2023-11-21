@@ -70,7 +70,7 @@ if (!interactive()) {
 library(data.table, quietly = TRUE, warn.conflicts = FALSE)
 require(zoo       , quietly = TRUE, warn.conflicts = FALSE)
 library(pander    , quietly = TRUE, warn.conflicts = FALSE)
-
+library(ggplot2   , quietly = TRUE, warn.conflicts = FALSE)
 
 panderOptions("table.alignment.default", "right")
 panderOptions("table.split.table",        120   )
@@ -113,13 +113,75 @@ DATA <- readRDS(raw_input_data)
 tic  <- Sys.time()
 
 
-# TODO k clastering Vamvakas2020
-
+# TODO -------------------------------------------------------------------------
+# k clastering Vamvakas2020
+# Stats on groups
+# Stats on enhancement cases
+# R-R analysis
+# Seasonal occurance
+# Tapakis2014 plots and stats
 
 #'
 #'  Alpha * HAU is CS_ref
 #'
 #+ include=FALSE, echo=FALSE
+
+
+theme_ben <- function(base_size = 14) {
+    theme_bw(base_size = base_size) %+replace%
+        theme(
+            # L'ensemble de la figure
+            plot.title = element_text(size = rel(1), face = "bold", margin = margin(0,0,5,0), hjust = 0),
+            # Zone où se situe le graphique
+            panel.grid.minor = element_blank(),
+            panel.border = element_blank(),
+            # Les axes
+            axis.title = element_text(size = rel(0.85), face = "bold"),
+            axis.text = element_text(size = rel(0.70), face = "bold"),
+            axis.line = element_line(color = "black", arrow = arrow(length = unit(0.3, "lines"), type = "closed")),
+            # La légende
+            legend.title = element_text(size = rel(0.85), face = "bold"),
+            legend.text = element_text(size = rel(0.70), face = "bold"),
+            legend.key = element_rect(fill = "transparent", colour = NA),
+            legend.key.size = unit(1.5, "lines"),
+            legend.background = element_rect(fill = "transparent", colour = NA),
+            # Les étiquettes dans le cas d'un facetting
+            strip.background = element_rect(fill = "#17252D", color = "#17252D"),
+            strip.text = element_text(size = rel(0.85), face = "bold", color = "white", margin = margin(5,0,5,0))
+        )
+}
+
+## TODO plot only enhancement cases
+## DO it whith baseplot
+p <-
+    ggplot(DATA[year(Date) == 2018], aes(CS_ref, wattGLB)) +
+    geom_point(data = DATA[year(Date) == 2018 & GLB_diff < 0], colour = "black", size = 0.5) +
+    geom_point(data = DATA[year(Date) == 2018 & GLB_diff > 0], size = 0.5, aes(color = GLB_diff)) +
+    scale_colour_gradient(low = "blue", high = "red", na.value = NA) +
+    theme(
+        panel.background      = element_rect(fill='transparent'), #transparent panel bg
+        plot.background       = element_rect(fill='transparent', color=NA), #transparent plot bg
+        # panel.grid.major      = element_blank(), #remove major gridlines
+        # panel.grid.minor      = element_blank(), #remove minor gridlines
+        legend.background     = element_rect(fill='transparent'), #transparent legend bg
+        legend.box.background = element_rect(fill='transparent') #transparent legend panel
+    ) +
+    theme_ben()
+
+#+ include=T, echo=FALSE
+print(p)
+#+ include=F, echo=FALSE
+
+# ggplot(DATA, aes(CS_ref, wattGLB)) +
+#     geom_point(data = DATA[GLB_diff < 0], colour = "black", size = 0.5) +
+#     geom_point(data = DATA[GLB_diff > 0], size = 0.5, aes(color = GLB_diff)) +
+#     scale_colour_gradient(low = "blue", high = "red", na.value = NA)
+
+
+# ggplot(DATA[year(Date) == 2018], aes(CS_ref, wattGLB)) +
+#     geom_point(data = DATA[year(Date) == 2018 & GLB_diff < 0], colour = "black", size = 0.5) +
+#     geom_point(data = DATA[year(Date) == 2018 & GLB_diff > 0], size = 0.5, aes(color = GLB_diff)) +
+#     scale_colour_gradient2(low = "black", mid = "yellow", high = "red", na.value = NA)
 
 
 
@@ -133,13 +195,15 @@ enh_days <- DATA[Enhancement == TRUE,
 
 
 ## interesting days first
-setorder(enh_days, -Enh_sum      )
-setorder(enh_days, -Enh_max      )
-setorder(enh_days, -Enh_diff_sum )
+setorder(enh_days, -Enh_sum     )
+setorder(enh_days, -Enh_max     )
+setorder(enh_days, -Enh_diff_sum)
 
 ## plot some interesting days
 daylist <- enh_days$Day
 daylist <- sort(daylist[1:30])
+
+
 
 
 ##  Days with strong enhancement cases  ----------------------------------------
@@ -308,46 +372,6 @@ for (aday in daylist) {
 
 
 
-# test <- c(F,T,F, rep(T,5),F,F,T,F,F,F, rep(T,5))
-#
-# DT <- data.table(test)
-# DT[, cnF := cumsum(test == FALSE)]
-# DT[, cnT := cumsum(test == TRUE) ]
-# # the realation of diff may be a general solution
-# DT[, ddF := c(0, diff(cnF))]
-# DT[, ddT := c(0, diff(cnT))]
-#
-# DT[, G1  := test]
-# DT[, G0  := test]
-#
-#
-# allow <- 1
-# for (i in 1:nrow(DT)) {
-#     p1 <- i - 1
-#     n1 <- i + 1
-#     if (p1 > 0 & n1 <= nrow(DT)) {
-#         if (DT$G1[p1] == TRUE  &
-#             DT$G1[i]  == FALSE &
-#             DT$G1[n1] == TRUE  ) {
-#             DT$G1[i]  <- TRUE
-#         }
-#     }
-# }
-#
-# DT[, Grp1 := rleid(c(NA,diff(cumsum(G1))))]
-# DT[G1 == FALSE, Grp1 := NA]
-#
-# DT[, Grp0 := rleid(c(NA,diff(cumsum(G0))))]
-# DT[G0 == FALSE, Grp0 := NA]
-#
-# DT
-
-
-
-
-
-stop("kkkkk")
-DT
 
 
 
@@ -359,40 +383,12 @@ DT
 
 
 
-
-##TODO get indexes of continues cases
-## ## get time diffs
-## coo <- diff(Enh$Date)
-## ## get indexes of successive cases
-## suc <- which(coo == 1)
-## ## get the range of each sequence
-## iv  <- seqToIntervals(suc)
-## ## stats on each event
-## Events <- data.frame( Start_date = apply(iv,1, function(x) { min( Enh$Date[ c( x[1]:(x[2]+1) ) ]  ),
-##                       End_date   = apply(iv,1, function(x) { max( Enh$Date[ c( x[1]:(x[2]+1) ) ]  ),
-##                       Duration   = apply(iv,1, function(x) { length( Enh$Date[ c( x[1]:(x[2]+1) )  } )
-## )
-## hist(Events$Duration, breaks = 100)
-## ivv <- seqToIntervals(coo)
-## coo[ivv[1,1]:ivv[1,2]]
-## # gives the indices of the 'jumps'.
-## which(diff(coo) != 1)
-
-# step <- 2
-# DT <- data.table(Var1 = c(seq(1,10, 2), seq(13,30, 2)))
-# DT[, group := rleid(cumsum(c(FALSE, diff(Var1) != step)))]
-
-
-diff(test)
-
-
-## keep only enhanced cases
+##  Stats on enhancement cases  ------------------------------------------------
 DATA_Enh <- DATA[Enhancement == TRUE ]
 
 
 
 
-sum(DATA$Enhancement, na.rm = T)
 
 Enh_daily <- DATA_Enh[, .(N        = sum( Enhancement, na.rm = T),
                           N_ex     = sum( wattGLB > TSIextEARTH_comb * cosde(SZA)),
@@ -553,16 +549,8 @@ legend('topleft', lty = 1, bty = "n",
 
 
 
-
-
-
-
-
-
-
-
-#+ enchtrendday, include=T, echo=F, fig.cap="Trend of the total of enhancement cases per year."
-plot( Enh_daily$Day, Enh_daily$N ,
+#+ enchNtrendday, include=T, echo=F, fig.cap="Trend of the total of enhancement cases per year."
+plot(Enh_daily$Day, Enh_daily$N ,
       # xlab = "Year",
       ylab = bquote("" )
 )
@@ -682,6 +670,49 @@ plot( Data_sza$SZA, Data_sza[, 100 * N_enha / N_total ],
       ylab = bquote("Enhancement cases [%] of total data")
 )
 #'
+
+
+
+
+
+## consecutive data id
+# test <- c(F,T,F, rep(T,5),F,F,T,F,F,F, rep(T,5))
+#
+# DT <- data.table(test)
+# DT[, cnF := cumsum(test == FALSE)]
+# DT[, cnT := cumsum(test == TRUE) ]
+# # the realation of diff may be a general solution
+# DT[, ddF := c(0, diff(cnF))]
+# DT[, ddT := c(0, diff(cnT))]
+#
+# DT[, G1  := test]
+# DT[, G0  := test]
+#
+#
+# allow <- 1
+# for (i in 1:nrow(DT)) {
+#     p1 <- i - 1
+#     n1 <- i + 1
+#     if (p1 > 0 & n1 <= nrow(DT)) {
+#         if (DT$G1[p1] == TRUE  &
+#             DT$G1[i]  == FALSE &
+#             DT$G1[n1] == TRUE  ) {
+#             DT$G1[i]  <- TRUE
+#         }
+#     }
+# }
+#
+# DT[, Grp1 := rleid(c(NA,diff(cumsum(G1))))]
+# DT[G1 == FALSE, Grp1 := NA]
+#
+# DT[, Grp0 := rleid(c(NA,diff(cumsum(G0))))]
+# DT[G0 == FALSE, Grp0 := NA]
+#
+# DT
+
+
+
+
 
 
 #' **END**
