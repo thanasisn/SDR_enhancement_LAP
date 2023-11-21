@@ -97,7 +97,6 @@ options(error = function() {
 
 
 ##  Prepare raw data if needed  ------------------------------------------------
-## check previous steps
 if (
     file.exists(raw_input_data) == FALSE |
     file.mtime(raw_input_data) < file.mtime("./GHI_enh_00_variables.R") |
@@ -108,7 +107,7 @@ if (
 }
 
 
-##  Prepare Enhancement data  ----------------------------------------------------------
+##  Load Enhancement data  -----------------------------------------------------
 DATA <- readRDS(raw_input_data)
 tic  <- Sys.time()
 
@@ -125,64 +124,6 @@ tic  <- Sys.time()
 #'  Alpha * HAU is CS_ref
 #'
 #+ include=FALSE, echo=FALSE
-
-
-theme_ben <- function(base_size = 14) {
-    theme_bw(base_size = base_size) %+replace%
-        theme(
-            # L'ensemble de la figure
-            plot.title = element_text(size = rel(1), face = "bold", margin = margin(0,0,5,0), hjust = 0),
-            # Zone où se situe le graphique
-            panel.grid.minor = element_blank(),
-            panel.border = element_blank(),
-            # Les axes
-            axis.title = element_text(size = rel(0.85), face = "bold"),
-            axis.text = element_text(size = rel(0.70), face = "bold"),
-            axis.line = element_line(color = "black", arrow = arrow(length = unit(0.3, "lines"), type = "closed")),
-            # La légende
-            legend.title = element_text(size = rel(0.85), face = "bold"),
-            legend.text = element_text(size = rel(0.70), face = "bold"),
-            legend.key = element_rect(fill = "transparent", colour = NA),
-            legend.key.size = unit(1.5, "lines"),
-            legend.background = element_rect(fill = "transparent", colour = NA),
-            # Les étiquettes dans le cas d'un facetting
-            strip.background = element_rect(fill = "#17252D", color = "#17252D"),
-            strip.text = element_text(size = rel(0.85), face = "bold", color = "white", margin = margin(5,0,5,0))
-        )
-}
-
-## TODO plot only enhancement cases
-## DO it whith baseplot
-pyear <- 2018
-p <-
-    ggplot(DATA[year(Date) == pyear], aes(CS_ref, wattGLB)) +
-    geom_point(data = DATA[year(Date) == pyear & Enhancement == F,], colour = "black", size = 0.5) +
-    geom_point(data = DATA[year(Date) == pyear & Enhancement == T,], size = 0.5, aes(color = GLB_diff)) +
-    scale_colour_gradient(low = "blue", high = "red", na.value = NA) +
-    theme(
-        panel.background      = element_rect(fill='transparent'), #transparent panel bg
-        plot.background       = element_rect(fill='transparent', color=NA), #transparent plot bg
-        # panel.grid.major      = element_blank(), #remove major gridlines
-        # panel.grid.minor      = element_blank(), #remove minor gridlines
-        legend.background     = element_rect(fill='transparent'), #transparent legend bg
-        legend.box.background = element_rect(fill='transparent') #transparent legend panel
-    )
-
-#+ include=T, echo=FALSE
-print(p)
-#+ include=F, echo=FALSE
-
-# ggplot(DATA, aes(CS_ref, wattGLB)) +
-#     geom_point(data = DATA[GLB_diff < 0], colour = "black", size = 0.5) +
-#     geom_point(data = DATA[GLB_diff > 0], size = 0.5, aes(color = GLB_diff)) +
-#     scale_colour_gradient(low = "blue", high = "red", na.value = NA)
-
-
-# ggplot(DATA[year(Date) == 2018], aes(CS_ref, wattGLB)) +
-#     geom_point(data = DATA[year(Date) == 2018 & GLB_diff < 0], colour = "black", size = 0.5) +
-#     geom_point(data = DATA[year(Date) == 2018 & GLB_diff > 0], size = 0.5, aes(color = GLB_diff)) +
-#     scale_colour_gradient2(low = "black", mid = "yellow", high = "red", na.value = NA)
-
 
 
 ## __ Estimate enhancement daily magnitude  ------------------------------------
@@ -202,9 +143,6 @@ setorder(enh_days, -Enh_diff_sum)
 ## plot some interesting days
 daylist <- enh_days$Day
 daylist <- sort(daylist[1:30])
-
-
-
 
 ##  Days with strong enhancement cases  ----------------------------------------
 
@@ -256,6 +194,57 @@ for (aday in daylist) {
     # plot(temp$Date, temp$GLB_ench)
     # plot(temp$Date, temp$GLB_diff)
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+## TODO plot only enhancement cases
+## DO it whith baseplot
+pyear <- 2018
+p <-
+     ggplot(DATA[year(Date) == pyear], aes(CS_ref, wattGLB)) +
+    geom_point(data = DATA[year(Date) == pyear & Enhancement == F,], colour = "black", size = 0.2) +
+    geom_point(data = DATA[year(Date) == pyear & Enhancement == T,], size = 0.2, aes(color = GLB_diff)) +
+    scale_colour_gradient(low = "blue", high = "red", na.value = NA) +
+    theme(
+        panel.background      = element_rect(fill='transparent'), #transparent panel bg
+        plot.background       = element_rect(fill='transparent', color=NA), #transparent plot bg
+        # panel.grid.major      = element_blank(), #remove major gridlines
+        # panel.grid.minor      = element_blank(), #remove minor gridlines
+        legend.background     = element_rect(fill='transparent'), #transparent legend bg
+        legend.box.background = element_rect(fill='transparent') #transparent legend panel
+    )
+#+ include=T, echo=FALSE
+print(p)
+#+ include=F, echo=FALSE
+
+# ggplot(DATA, aes(CS_ref, wattGLB)) +
+#     geom_point(data = DATA[GLB_diff < 0], colour = "black", size = 0.5) +
+#     geom_point(data = DATA[GLB_diff > 0], size = 0.5, aes(color = GLB_diff)) +
+#     scale_colour_gradient(low = "blue", high = "red", na.value = NA)
+
+
+# ggplot(DATA[year(Date) == 2018], aes(CS_ref, wattGLB)) +
+#     geom_point(data = DATA[year(Date) == 2018 & GLB_diff < 0], colour = "black", size = 0.5) +
+#     geom_point(data = DATA[year(Date) == 2018 & GLB_diff > 0], size = 0.5, aes(color = GLB_diff)) +
+#     scale_colour_gradient2(low = "black", mid = "yellow", high = "red", na.value = NA)
+
 
 
 
