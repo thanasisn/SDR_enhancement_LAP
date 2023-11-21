@@ -165,8 +165,7 @@ p <-
         # panel.grid.minor      = element_blank(), #remove minor gridlines
         legend.background     = element_rect(fill='transparent'), #transparent legend bg
         legend.box.background = element_rect(fill='transparent') #transparent legend panel
-    ) +
-    theme_ben()
+    )
 
 #+ include=T, echo=FALSE
 print(p)
