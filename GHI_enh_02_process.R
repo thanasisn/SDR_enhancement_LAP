@@ -153,10 +153,11 @@ theme_ben <- function(base_size = 14) {
 
 ## TODO plot only enhancement cases
 ## DO it whith baseplot
+pyear <- 2018
 p <-
-    ggplot(DATA[year(Date) == 2018], aes(CS_ref, wattGLB)) +
-    geom_point(data = DATA[year(Date) == 2018 & GLB_diff < 0], colour = "black", size = 0.5) +
-    geom_point(data = DATA[year(Date) == 2018 & GLB_diff > 0], size = 0.5, aes(color = GLB_diff)) +
+    ggplot(DATA[year(Date) == pyear], aes(CS_ref, wattGLB)) +
+    geom_point(data = DATA[year(Date) == pyear & Enhancement == F,], colour = "black", size = 0.5) +
+    geom_point(data = DATA[year(Date) == pyear & Enhancement == T,], size = 0.5, aes(color = GLB_diff)) +
     scale_colour_gradient(low = "blue", high = "red", na.value = NA) +
     theme(
         panel.background      = element_rect(fill='transparent'), #transparent panel bg
