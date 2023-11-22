@@ -1,16 +1,88 @@
+# /* #!/usr/bin/env Rscript */
+# /* Copyright (C) 2022 Athanasios Natsis <natsisphysicist@gmail.com> */
+#' ---
+#' title:         "Enhancement of SDR in Thessaloniki "
+#' author:
+#'   - Natsis Athanasios^[Laboratory of Atmospheric Physics, AUTH, natsisphysicist@gmail.com]
+#'   - Alkiviadis Bais^[Laboratory of Atmospheric Physics, AUTH]
+#' abstract:
+#'   "Study of GHI enchantment."
+#'
+#' documentclass:  article
+#' classoption:    a4paper,oneside
+#' fontsize:       10pt
+#' geometry:       "left=0.5in,right=0.5in,top=0.5in,bottom=0.5in"
+#' link-citations: yes
+#' colorlinks:     yes
+#'
+#' header-includes:
+#' - \usepackage{caption}
+#' - \usepackage{placeins}
+#' - \captionsetup{font=small}
+#'
+#' output:
+#'   bookdown::pdf_document2:
+#'     number_sections: no
+#'     fig_caption:     no
+#'     keep_tex:        yes
+#'     latex_engine:    xelatex
+#'     toc:             yes
+#'     toc_depth:       4
+#'     fig_width:       7
+#'     fig_height:      4.5
+#'   html_document:
+#'     toc:             true
+#'     keep_md:         yes
+#'     fig_width:       7
+#'     fig_height:      4.5
+#'
+#' date: "`r format(Sys.time(), '%F')`"
+#'
+#' ---
 
-#  Prepare raw data for use in the paper ---------------------------------------
-#
-#  This collects raw data and prepare it mainly SDR analysis.
-#  It uses the data output of one of ClearSky algorithms.
-#  It caches the raw data in order to reuse it in next states of analyses.
-#  Creates:
-#    - Raw_Input.Rds
-#
 
-require(data.table)
-require(lubridate)
-require(zoo)
+#'  ## Prepare raw data for use in the paper
+#'
+#'  This collects raw data and prepare it mainly SDR analysis.
+#'  It uses the data output of one of the ClearSky algorithms.
+#'  It caches the raw data in order to reuse it in next states of analyses.
+#'  Creates:
+#'    - Raw_Input.Rds
+#'
+#+ echo=F, include=T
+
+
+## __ Document options ---------------------------------------------------------
+
+#+ echo=F, include=F
+knitr::opts_chunk$set(comment    = ""       )
+knitr::opts_chunk$set(dev        = c("pdf", "png"))
+# knitr::opts_chunk$set(dev        = "png"    )
+knitr::opts_chunk$set(out.width  = "100%"   )
+knitr::opts_chunk$set(fig.align  = "center" )
+knitr::opts_chunk$set(cache      =  FALSE   )  ## !! breaks calculations
+# knitr::opts_chunk$set(fig.pos    = '!h'    )
+
+
+#+ include=T, echo=F
+## __ Set environment ----------------------------------------------------------
+Sys.setenv(TZ = "UTC")
+Script.Name <- "./GHI_enh_02_process.R"
+
+if (!interactive()) {
+    pdf( file = paste0("./runtime/",  basename(sub("\\.R$",".pdf", Script.Name))))
+    sink(file = paste0("./runtime/",  basename(sub("\\.R$",".out", Script.Name))), split = TRUE)
+}
+
+#+ echo=F, include=T
+library(data.table, quietly = TRUE, warn.conflicts = FALSE)
+require(zoo       , quietly = TRUE, warn.conflicts = FALSE)
+library(pander    , quietly = TRUE, warn.conflicts = FALSE)
+library(lubridate , quietly = TRUE, warn.conflicts = FALSE)
+
+panderOptions("table.alignment.default", "right")
+panderOptions("table.split.table",        120   )
+
 source("~/CODE/FUNCTIONS/R/trig_deg.R")
 source("~/CODE/FUNCTIONS/R/data.R")
 source("~/CODE/R_myRtools/myRtools/R/write_.R")
@@ -149,6 +221,7 @@ if (havetorun) {
         DATA[ Date >= skip$From & Date <= skip$Until, wattGLB_SD := NA ]
     }
 
+
     #   Select data for this project  ------------------------------------------
 
     ## _ Set date range to use  ------------------------------------------------
@@ -157,13 +230,40 @@ if (havetorun) {
 
 
     ## _ Keep near daylight only  ----------------------------------------------
-    DATA <- DATA[Elevat >= 0, ]
+    DATA <- DATA[Elevat >= -5, ]
+
+    ## _ Keep data characterized as 'good' by Radiation Quality control v13 ----
+    cat("\n  Select quality data only\n\n")
+    if (D_13) {
+        keepQF <- c("good",
+                    "Possible Direct Obstruction (23)",
+                    "Biology Building (22)")
+        DATA[!QCF_DIR %in% keepQF, wattDIR := NA]
+        DATA[!QCF_DIR %in% keepQF, wattHOR := NA]
+        DATA[!QCF_GLB %in% keepQF, wattGLB := NA]
+    }
+
+    ## _ Keep data characterized as 'TRUE' by Radiation Quality control v14 ----
+    if (D_14 | D_14_2) {
+        DATA[QCF_DIR == FALSE, wattDIR           := NA]
+        DATA[QCF_DIR == FALSE, wattHOR           := NA]
+        DATA[QCF_GLB == FALSE, wattGLB           := NA]
+        DATA[QCF_GLB == FALSE, ClearnessIndex_kt := NA]
+    }
 
     ## _ Zero negative radiation  ----------------------------------------------
-    DATA[wattDIR < 0, wattDIR := 0]
-    DATA[wattGLB < 0, wattGLB := 0]
-    DATA[wattHOR < 0, wattHOR := 0]
+    DATA[wattDIR < 0, wattDIR           := 0]
+    DATA[wattGLB < 0, wattGLB           := 0]
+    DATA[wattGLB < 0, ClearnessIndex_kt := 0]
+    DATA[wattHOR < 0, wattHOR           := 0]
 
+    ## _ Drop some data  -------------------------------------------------------
+    rm.cols.DT(DATA, "QCv9*", quiet = TRUE)
+    rm.cols.DT(DATA, "QCF_*", quiet = TRUE)
+
+
+
+    ## biology elevation 11.55479
 
 
 
@@ -172,15 +272,35 @@ if (havetorun) {
     ## CastillejoCuberos2020
     ## valid data 45min /h and 5h / day
 
-    ## hours with low data count
+    ## For global
     DATA[, floor_date := floor_date(DATA$Date, "1 hour")]
-
     DATA[, BAD_h := sum(!is.na(wattGLB)) < 45,
          by = floor_date]
 
+    table(DATA[, sum(!is.na(wattGLB)),
+               by = floor_date]$V1)
+
+    hours <- DATA[, .(Good = sum(!is.na(wattGLB)) >= 45,
+                      N    = sum(!is.na(wattGLB))),
+                  by = .(Day, floor_date)]
+    days  <- hours[, .(GoodH_N = sum(Good)),
+                   by = Day]
+
+    table(days$GoodH_N)
+    table(hours$N)
+
+    hist(days$GoodH_N, main = "Valid hour per day")
+    hist(hours$N,      main = "Valid data per hour")
+
+    ## _ Keep only days with good global representation  -----------------------
+    DATA <- DATA[Day %in% days[GoodH_N > 5, Day], ]
+    rm(days, hours)
 
 
-    floor_date(DATA$Date, "1 hour")
+
+
+    DATA[is.na(wattGLB), ClearnessIndex_kt := NA]
+
 
     stop()
 
@@ -206,26 +326,7 @@ if (havetorun) {
     # DATA <- DATA[Elevat >= MIN_ELEVA, ]
 
 
-    ## _ Keep data characterized as 'good' by Radiation Quality control v13 ----
-    cat("\n  Select quality data only\n\n")
-    if (D_13) {
-        keepQF <- c("good",
-                    "Possible Direct Obstruction (23)",
-                    "Biology Building (22)")
-        DATA[!QCF_DIR %in% keepQF, wattDIR := NA]
-        DATA[!QCF_DIR %in% keepQF, wattHOR := NA]
-        DATA[!QCF_GLB %in% keepQF, wattGLB := NA]
-    }
 
-    ## _ Keep data characterized as 'TRUE' by Radiation Quality control v14 ----
-    if (D_14 | D_14_2) {
-        DATA[QCF_DIR == FALSE, wattDIR := NA]
-        DATA[QCF_DIR == FALSE, wattHOR := NA]
-        DATA[QCF_GLB == FALSE, wattGLB := NA]
-    }
-
-    ## _ Count daylight length  ------------------------------------------------
-    DATA[, DayLength := .N, by = Day]
 
     ## _ DROP MISSING RECORDS!! ------------------------------------------------
     DATA <- DATA[ !(is.na(wattDIR) & is.na(wattGLB)) ]
@@ -243,6 +344,7 @@ if (havetorun) {
     #  Data preparation  -------------------------------------------------------
 
     ## - Create Clearness Index (BB may not filled yet) ------------------------
+    DATA[, ClearnessIndex_kt := NA]
     DATA[, ClearnessIndex_kt := wattGLB / (cosde(SZA) * TSIextEARTH_comb)]
 
     ## _ Move measurements to mean earth distance  -----------------------------
@@ -256,9 +358,9 @@ if (havetorun) {
     DATA[Azimuth >  180 , preNoon := FALSE]
 
     ## _ DROP SOME DATA  -------------------------------------------------------
-    DATA[, CS_ref_HOR         := NULL]
+    # DATA[, CS_ref_HOR         := NULL]
     DATA[, Elevat             := NULL]
-    DATA[, Glo_max_ref        := NULL]
+    # DATA[, Glo_max_ref        := NULL]
 
     rm.cols.DT(DATA, "QCv9*", quiet = TRUE)
     rm.cols.DT(DATA, "QCF_*", quiet = TRUE)
@@ -309,8 +411,7 @@ if (havetorun) {
     ## remove unused columns
     rm.cols.DT(DATA, "CSflag_*", quiet = TRUE)
 
-    ## legacy flags usage
-    # DATA_Clear <- DATA_all[ CSflag == 0 ]
+
 
 
     ## _ Enhancement ID  ------------------------------------------------------
@@ -343,7 +444,8 @@ if (havetorun) {
     ## Vamvakas2020
     ## +5% from model => enhancements above 15 Wm^2 the instrument uncertainty
 
-
+    ## Gueymard2017
+    ## Clearness index > 0.8 / 1
 
 
 #    ## __ Group continuous values  ---------------------------------------------
@@ -382,3 +484,11 @@ if (havetorun) {
     cat(paste("\n Raw input data are ready in ", raw_input_data), "\n")
 }
 
+
+
+
+#' **END**
+#+ include=T, echo=F
+tac <- Sys.time()
+cat(sprintf("%s %s@%s %s %f mins\n\n", Sys.time(), Sys.info()["login"],
+            Sys.info()["nodename"], basename(Script.Name), difftime(tac,tic,units = "mins")))
