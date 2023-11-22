@@ -117,8 +117,9 @@ tic  <- Sys.time()
 # Stats on groups
 # Stats on enhancement cases
 # R-R analysis
-# Seasonal occurance
+# Seasonal occurrence
 # Tapakis2014 plots and stats
+# Different criteria
 
 #'
 #'  Alpha * HAU is CS_ref
