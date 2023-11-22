@@ -235,6 +235,14 @@ enh_days <- DATA[get(SelEnhanc) == TRUE,
                    Enh_diff_max = sum(GLB_diff, na.rm = TRUE)),
                  Day]
 
+sunny_days <- DATA[, .(Sunshine = sum(TYPE == "Clear")/DayLength), by = Day]
+sunny_days <- unique(sunny_days)
+
+sunnyd <- sunny_days[Sunshine > 0.85, Day]
+
+hist(sunny_days$Sunshine)
+
+
 
 ## interesting days first
 setorder(enh_days, -Enh_sum     )
@@ -244,6 +252,10 @@ setorder(enh_days, -Enh_diff_sum)
 ## plot some interesting days
 daylist <- enh_days$Day
 daylist <- sort(daylist[1:30])
+daylist <- unique(c(daylist, sunnyd))
+
+
+## TODO add some clear days
 
 ##  Days with strong enhancement cases  ----------------------------------------
 
@@ -267,7 +279,7 @@ for (aday in daylist) {
     lines(temp$Date, temp$CS_ref + GLB_diff_THRES, col = "red" )
 
 
-    points(temp[Enhancement == TRUE, wattGLB, Date], col = "red")
+    points(temp[get(SelEnhanc) == TRUE, wattGLB, Date], col = "red")
 
     title(main = as.Date(aday, origin = "1970-01-01"))
     # legend("topleft", c("GHI","DNI",  "A-HAU", "TSI on horizontal level","GHI Enhancement event"),
@@ -300,7 +312,7 @@ for (aday in daylist) {
 
 
 
-
+stop()
 
 
 
