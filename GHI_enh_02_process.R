@@ -127,6 +127,16 @@ tic  <- Sys.time()
 #+ include=FALSE, echo=FALSE
 
 
+
+
+
+
+
+
+
+
+
+
 ## __ Estimate enhancement daily magnitude  ------------------------------------
 enh_days <- DATA[Enhancement == TRUE,
                  .(Enh_sum      = sum(GLB_ench, na.rm = TRUE),
