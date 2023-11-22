@@ -72,9 +72,10 @@ Days_of_year              <- 365.2425 ## Mean Gregorian calendar year
 running_mean_window_years <-   5
 running_mean_window_days  <- running_mean_window_years * Days_of_year
 
-MIN_ELEVA                 <- -10  ##  no global elevation limit
-MIN_N                     <-   4
-SEAS_MIN_N                <-   3
+MIN_ELEVA                 <-  -10  ##  no global elevation limit
+MIN_N                     <-    4
+SEAS_MIN_N                <-    3
+BIO_ELEVA                 <-   12  ## 11.55479
 
 Daily_confidence_limit    <-   0.99
 SZA_confidence_limit      <-   0.99

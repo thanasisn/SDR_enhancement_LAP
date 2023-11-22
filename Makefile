@@ -70,7 +70,7 @@ LIBRARY      = ~/LIBRARY/REPORTS/
 
 ###   1. raw data  ####################################
 
-TARGET := GHI_enh_01_raw_data.R
+TARGET := GHI_enh_01_raw_data
 RMD    := $(TARGET).R
 PDF    := $(TARGET).pdf
 RUNT   := ./runtime/$(TARGET).pdf
