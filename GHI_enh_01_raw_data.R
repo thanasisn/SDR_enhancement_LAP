@@ -9,6 +9,7 @@
 #
 
 require(data.table)
+require(lubridate)
 require(zoo)
 source("~/CODE/FUNCTIONS/R/trig_deg.R")
 source("~/CODE/FUNCTIONS/R/data.R")
@@ -169,6 +170,25 @@ if (havetorun) {
     ## FIXME there is some error in Azimuth/Elevation angles see plot!!
     # plot(DATA[ !is.na(wattGLB) ,Elevat, Azimuth])
 
+    ## _ Data representation  --------------------------------------------------
+
+    ## CastillejoCuberos2020
+    ## valid data 45min /h and 5h / day
+
+    ## hours with low data count
+    DATA[, floor_date := floor_date(DATA$Date, "1 hour")]
+
+    DATA[, BAD_h := sum(!is.na(wattGLB)) < 45,
+         by = floor_date]
+
+
+
+    floor_date(DATA$Date, "1 hour")
+
+    stop()
+
+
+
     ##_  Bais paper obstacle filter  -------------------------------------------
     cat("\n  Keep Azimuth and Elevation according to Bais paper!\n")
     DATA[Azimuth > 35 & Azimuth < 120 & Elevat < 10, wattDIR     := NA ]
@@ -177,6 +197,10 @@ if (havetorun) {
     DATA[Azimuth > 35 & Azimuth < 120 & Elevat < 10, wattGLB_sds := NA ]
     DATA[Azimuth > 35 & Azimuth < 120 & Elevat < 10, wattHOR     := NA ]
     DATA[Azimuth > 35 & Azimuth < 120 & Elevat < 10, wattHOR_sds := NA ]
+
+
+
+
 
     ## show included data
     # plot(DATA[ !is.na(wattGLB) ,Elevat, Azimuth])
@@ -301,41 +325,57 @@ if (havetorun) {
 
 
     ## __ Enhancement criteria  ------------------------------------------------
-    DATA[, Enhancement := FALSE]
+
+    GLB_ench_THRES     <- 0     ## enchantment % relative to HAU
+    GLB_diff_THRES     <- 10    ## enchantment absolute diff to HAU
+    Clearness_Kt_THRES <- 0.8   ## enchantment threshold
+    wattGLB_THRES      <- 20    ## minimum value to consider
+
+    DATA[, Enhanc_C_1 := FALSE]
     DATA[GLB_ench              > GLB_ench_THRES      &
              ClearnessIndex_kt > Clearness_Kt_THRES  &
              wattGLB           > wattGLB_THRES       &
              GLB_diff          > GLB_diff_THRES,
-         Enhancement := TRUE]
+         Enhanc_C_1 := TRUE]
 
 
-    ## __ Group continuous values  ---------------------------------------------
-    DATA[, cnF := cumsum(Enhancement == FALSE)]
-    DATA[, cnT := cumsum(Enhancement == TRUE) ]
-    ## Init groups logical
-    DATA[, G1  := Enhancement]
-    DATA[, G0  := Enhancement]
+    ## Mol2023
+    ## activate when +1% and 10w/m from model reference
+    ## near by values with +0.1 are also accepted
 
-    ## Find groups with one gap
-    for (i in 1:nrow(DATA)) {
-        p1 <- i - 1
-        n1 <- i + 1
-        if (p1 > 0 & n1 <= nrow(DATA)) {
-            if (DATA$G1[p1] == TRUE  &
-                DATA$G1[i]  == FALSE &
-                DATA$G1[n1] == TRUE  ) {
-                DATA$G1[i]  <- TRUE
-            }
-        }
-    }
+    ## Vamvakas2020
+    ## +5% from model => enhancements above 15 Wm^2 the instrument uncertainty
 
-    ## Allow one gap group
-    DATA[, Grp1 := rleid(c(NA,diff(cumsum(G1))))]
-    DATA[G1 == FALSE, Grp1 := NA]
 
-    ## No gap group
-    DATA[, Grp0 := rleid(c(NA,diff(cumsum(G0))))]
-    DATA[G0 == FALSE, Grp0 := NA]
+
+
+#    ## __ Group continuous values  ---------------------------------------------
+#    DATA[, cnF := cumsum(Enhanc_C_1 == FALSE)]
+#    DATA[, cnT := cumsum(Enhanc_C_1 == TRUE) ]
+#    ## Init groups logical
+#    DATA[, C1G1  := Enhanc_C_1]
+#    DATA[, C1G0  := Enhanc_C_1]
+#
+#    ## Find groups with one gap
+#    for (i in 1:nrow(DATA)) {
+#        p1 <- i - 1
+#        n1 <- i + 1
+#        if (p1 > 0 & n1 <= nrow(DATA)) {
+#            if (DATA$C1G1[p1] == TRUE  &
+#                DATA$C1G1[i]  == FALSE &
+#                DATA$C1G1[n1] == TRUE  ) {
+#                DATA$C1G1[i]  <- TRUE
+#            }
+#        }
+#    }
+#
+#    ## Allow one gap group
+#    DATA[, C1Grp1 := rleid(c(NA,diff(cumsum(G1))))]
+#    DATA[C1G1 == FALSE, C1Grp1 := NA]
+#
+#    ## No gap group
+#    DATA[, C1Grp0 := rleid(c(NA,diff(cumsum(G0))))]
+#    DATA[C1G0 == FALSE, C1Grp0 := NA]
 
 
     #  Save raw input data  ----------------------------------------------------
