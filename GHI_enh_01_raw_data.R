@@ -54,17 +54,15 @@
 
 ## __ Document options ---------------------------------------------------------
 
-#+ echo=F, include=F
+#+ ch01, echo=F, include=T
 knitr::opts_chunk$set(comment    = ""       )
+knitr::opts_chunk$set(echo       = FALSE    )
 knitr::opts_chunk$set(dev        = c("pdf", "png"))
-# knitr::opts_chunk$set(dev        = "png"    )
 knitr::opts_chunk$set(out.width  = "100%"   )
 knitr::opts_chunk$set(fig.align  = "center" )
-knitr::opts_chunk$set(cache      =  FALSE   )  ## !! breaks calculations
-# knitr::opts_chunk$set(fig.pos    = '!h'    )
 
 
-#+ include=T, echo=F
+#+ ch02, include=T, echo=F
 ## __ Set environment ----------------------------------------------------------
 Sys.setenv(TZ = "UTC")
 Script.Name <- "./GHI_enh_02_process.R"
@@ -75,7 +73,7 @@ if (!interactive()) {
     sink(file = paste0("./runtime/",  basename(sub("\\.R$",".out", Script.Name))), split = TRUE)
 }
 
-#+ echo=F, include=T
+#+ ch03, echo=F, include=T
 library(data.table, quietly = TRUE, warn.conflicts = FALSE)
 require(zoo       , quietly = TRUE, warn.conflicts = FALSE)
 library(pander    , quietly = TRUE, warn.conflicts = FALSE)
@@ -128,11 +126,11 @@ dir.create("./runtime",          showWarnings = FALSE)
 
 
 ## _ Check if we need to run data export  --------------------------------------
-havetorun <- !file.exists(raw_input_data) |
+havetorun <- !file.exists(raw_input_data)                              |
     file.mtime(variables_fl)              > file.mtime(raw_input_data) |
     file.mtime("./GHI_enh_01_raw_data.R") > file.mtime(raw_input_data)
 
-
+#+ ch04, include=T, echo=F, results="asis"
 if (havetorun) {
     cat(paste("\n !! Create raw input data ->", raw_input_data), "\n")
 
@@ -252,7 +250,7 @@ if (havetorun) {
         DATA[QCF_GLB == FALSE, ClearnessIndex_kt := NA]
     }
 
-    ## _ Zero negative radiation  ----------------------------------------------
+    ## _ Zero any negative radiation  ------------------------------------------
     DATA[wattDIR < 0, wattDIR           := 0]
     DATA[wattGLB < 0, wattGLB           := 0]
     DATA[wattGLB < 0, ClearnessIndex_kt := 0]
@@ -261,11 +259,6 @@ if (havetorun) {
     ## _ Drop some data  -------------------------------------------------------
     rm.cols.DT(DATA, "QCv9*", quiet = TRUE)
     rm.cols.DT(DATA, "QCF_*", quiet = TRUE)
-
-
-
-    ## biology elevation 11.55479
-
 
 
     ## _ Data representation  --------------------------------------------------
@@ -354,8 +347,6 @@ if (havetorun) {
     DATA[, Elevat             := NULL]
     # DATA[, Glo_max_ref        := NULL]
 
-    rm.cols.DT(DATA, "QCv9*", quiet = TRUE)
-    rm.cols.DT(DATA, "QCF_*", quiet = TRUE)
 
 
 #    #  GLB Representation filtering  -------------------------------------------
@@ -404,7 +395,7 @@ if (havetorun) {
     rm.cols.DT(DATA, "CSflag_*", quiet = TRUE)
 
 
-
+stop()
 
     ## _ Enhancement ID  ------------------------------------------------------
 
@@ -416,28 +407,51 @@ if (havetorun) {
 
     ## __ Enhancement criteria  ------------------------------------------------
 
+    ## __ My criteria  ---------------------------------------------------------
     GLB_ench_THRES     <- 0     ## enchantment % relative to HAU
     GLB_diff_THRES     <- 10    ## enchantment absolute diff to HAU
     Clearness_Kt_THRES <- 0.8   ## enchantment threshold
     wattGLB_THRES      <- 20    ## minimum value to consider
 
     DATA[, Enhanc_C_1 := FALSE]
-    DATA[GLB_ench              > GLB_ench_THRES      &
-             ClearnessIndex_kt > Clearness_Kt_THRES  &
-             wattGLB           > wattGLB_THRES       &
+    DATA[GLB_ench              > GLB_ench_THRES     &
+             ClearnessIndex_kt > Clearness_Kt_THRES &
+             wattGLB           > wattGLB_THRES      &
              GLB_diff          > GLB_diff_THRES,
          Enhanc_C_1 := TRUE]
+
+
+    ## __ Gueymard2017 Criteria  -----------------------------------------------
+    ## Clearness index > 0.8 / 1
+
+    DATA[, Enhanc_C_2 := FALSE]
+    DATA[ClearnessIndex_kt > 0.8,
+         Enhanc_C_2 := TRUE]
+
+
+    ## Vamvakas2020
+    ## +5% from model => enhancements above 15 Wm^2 the instrument uncertainty
+    DATA[, Enhanc_C_3 := FALSE]
+    DATA[GLB_ench > 1.05,
+         Enhanc_C_3 := TRUE]
+
+    hist(DATA[GLB_ench > 1, GLB_ench])
+    abline(v = 1.05, col = "red")
+
+    hist(DATA[Enhanc_C_3 == TRUE, GLB_diff])
+
+    plot(DATA[Enhanc_C_3 == TRUE, GLB_diff, GLB_ench])
+
+
 
 
     ## Mol2023
     ## activate when +1% and 10w/m from model reference
     ## near by values with +0.1 are also accepted
 
-    ## Vamvakas2020
-    ## +5% from model => enhancements above 15 Wm^2 the instrument uncertainty
 
-    ## Gueymard2017
-    ## Clearness index > 0.8 / 1
+
+
 
 
 #    ## __ Group continuous values  ---------------------------------------------
