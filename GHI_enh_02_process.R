@@ -125,6 +125,96 @@ tic  <- Sys.time()
 #'  Alpha * HAU is CS_ref
 #'
 #+ include=FALSE, echo=FALSE
+alpha <- 0.9653023236718680788471
+
+
+
+
+## __ Enhancement criteria  ------------------------------------------------
+SelEnhanc <- "Enhanc_C_1"
+# SelEnhanc <- "Enhanc_C_2"
+# SelEnhanc <- "Enhanc_C_3"
+
+
+## __ My criteria  ---------------------------------------------------------
+GLB_ench_THRES     <-  0    ## enchantment % relative to HAU
+GLB_diff_THRES     <- 10    ## enchantment absolute diff to HAU
+Clearness_Kt_THRES <-  0.8  ## enchantment threshold
+wattGLB_THRES      <- 20    ## minimum value to consider
+
+DATA[, Enhanc_C_1 := FALSE]
+DATA[GLB_ench              > GLB_ench_THRES     &
+         ClearnessIndex_kt > Clearness_Kt_THRES &
+         wattGLB           > wattGLB_THRES      &
+         GLB_diff          > GLB_diff_THRES,
+     Enhanc_C_1 := TRUE]
+##  check if all are needed
+
+## __ Gueymard2017 Criteria  -----------------------------------------------
+## Clearness index > 0.8 / 1
+
+DATA[, Enhanc_C_2 := FALSE]
+DATA[ClearnessIndex_kt > 0.8,
+     Enhanc_C_2 := TRUE]
+
+
+## Vamvakas2020
+## +5% from model => enhancements above 15 Wm^2 the instrument uncertainty
+DATA[, Enhanc_C_3 := FALSE]
+DATA[GLB_ench > 1.05,
+     Enhanc_C_3 := TRUE]
+
+hist(DATA[GLB_ench > 1, GLB_ench])
+abline(v = 1.05, col = "red")
+
+hist(DATA[Enhanc_C_3 == TRUE, GLB_diff])
+plot(DATA[Enhanc_C_3 == TRUE, GLB_diff, GLB_ench])
+
+
+
+## Mol2023
+## activate when +1% and 10w/m from model reference
+## near by values with +0.1 are also accepted
+
+
+
+
+
+#    ## __ Group continuous values  ---------------------------------------------
+#    DATA[, cnF := cumsum(Enhanc_C_1 == FALSE)]
+#    DATA[, cnT := cumsum(Enhanc_C_1 == TRUE) ]
+#    ## Init groups logical
+#    DATA[, C1G1  := Enhanc_C_1]
+#    DATA[, C1G0  := Enhanc_C_1]
+#
+#    ## Find groups with one gap
+#    for (i in 1:nrow(DATA)) {
+#        p1 <- i - 1
+#        n1 <- i + 1
+#        if (p1 > 0 & n1 <= nrow(DATA)) {
+#            if (DATA$C1G1[p1] == TRUE  &
+#                DATA$C1G1[i]  == FALSE &
+#                DATA$C1G1[n1] == TRUE  ) {
+#                DATA$C1G1[i]  <- TRUE
+#            }
+#        }
+#    }
+#
+#    ## Allow one gap group
+#    DATA[, C1Grp1 := rleid(c(NA,diff(cumsum(G1))))]
+#    DATA[C1G1 == FALSE, C1Grp1 := NA]
+#
+#    ## No gap group
+#    DATA[, C1Grp0 := rleid(c(NA,diff(cumsum(G0))))]
+#    DATA[C1G0 == FALSE, C1Grp0 := NA]
+
+
+
+
+
+
+
+
 
 
 
@@ -138,7 +228,7 @@ tic  <- Sys.time()
 
 
 ## __ Estimate enhancement daily magnitude  ------------------------------------
-enh_days <- DATA[Enhancement == TRUE,
+enh_days <- DATA[get(SelEnhanc) == TRUE,
                  .(Enh_sum      = sum(GLB_ench, na.rm = TRUE),
                    Enh_max      = max(GLB_ench, na.rm = TRUE),
                    Enh_diff_sum = sum(GLB_diff, na.rm = TRUE),
@@ -175,11 +265,6 @@ for (aday in daylist) {
     lines(temp$Date, temp$TSIextEARTH_comb * cosde(temp$SZA))
 
     lines(temp$Date, temp$CS_ref + GLB_diff_THRES, col = "red" )
-
-    # lines(temp$Date, temp$HAU + wattGLB_THRES , col = "red" )
-    # lines(temp$Date, temp$CS_ref, col = "red" ,lty=3)
-    # points(temp[ GLB_ench > GLB_ench_THRES, Date ], temp[ GLB_ench > GLB_ench_THRES, wattGLB ], col = "cyan")
-    # points(temp[ Clearness_Kt > Clearness_Kt_THRES, Date ], temp[ Clearness_Kt > Clearness_Kt_THRES , wattGLB ], col = "yellow")
 
 
     points(temp[Enhancement == TRUE, wattGLB, Date], col = "red")
