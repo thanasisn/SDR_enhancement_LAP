@@ -114,7 +114,7 @@ if (havetorun) {
         rm(temp)
     } ## FOR END: read input files
     DATA <- unique(DATA)
-    gc()
+    dummy <- gc()
 
     ## TODO warn duplicate dates
     if (sum(duplicated(DATA$Date)) > 0) {
@@ -129,16 +129,16 @@ if (havetorun) {
     test_vec <- DATA[is.na(wattGLB) &
                          (duplicated(DATA$Date) | duplicated(DATA$Date, fromLast = TRUE)),
                      which = TRUE]
-        ## Drop some data
-        DATA <- DATA[!test_vec]
+    ## Drop some data
+    DATA <- DATA[!test_vec]
 
-        ## retest
-        test <- DATA[duplicated(DATA$Date) | duplicated(DATA$Date, fromLast = TRUE)]
-        cat("\n  There are ", nrow(test), " duplicate dates remaining!\n")
+    ## retest
+    test <- DATA[duplicated(DATA$Date) | duplicated(DATA$Date, fromLast = TRUE)]
+    cat("\n  There are ", nrow(test), " duplicate dates remaining!\n")
 
-        ## FIXME do we still need this?
-        ## this is used by old scripts
-        setorder(DATA, Date)
+    ## FIXME do we still need this?
+    ## this is used by old scripts
+    setorder(DATA, Date)
 
 
     ## _ Skip data ranges for CM-21  -------------------------------------------
@@ -155,20 +155,17 @@ if (havetorun) {
     DATA <- DATA[Date < LAST_DAY ]
     DATA <- DATA[Date > FIRST_DAY]
 
-    ## _ Keep daylight only  ---------------------------------------------------
+
+    ## _ Keep near daylight only  ----------------------------------------------
     DATA <- DATA[Elevat >= 0, ]
 
-    ## _ Exclude low Sun elevation  --------------------------------------------
-    DATA[Elevat < MIN_ELEVA, wattDIR     := NA ]
-    DATA[Elevat < MIN_ELEVA, wattDIR_sds := NA ]
-    DATA[Elevat < MIN_ELEVA, wattGLB     := NA ]
-    DATA[Elevat < MIN_ELEVA, wattGLB_sds := NA ]
-    DATA[Elevat < MIN_ELEVA, wattHOR     := NA ]
-    DATA[Elevat < MIN_ELEVA, wattHOR_sds := NA ]
+    ## _ Zero negative radiation  ----------------------------------------------
+    DATA[wattDIR < 0, wattDIR := 0]
+    DATA[wattGLB < 0, wattGLB := 0]
+    DATA[wattHOR < 0, wattHOR := 0]
 
-    ## show included data
-    ## FIXME there is some error in Azimuth/Elevation angles see plot!!
-    # plot(DATA[ !is.na(wattGLB) ,Elevat, Azimuth])
+
+
 
     ## _ Data representation  --------------------------------------------------
 
