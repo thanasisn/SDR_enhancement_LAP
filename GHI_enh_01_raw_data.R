@@ -68,6 +68,7 @@ knitr::opts_chunk$set(cache      =  FALSE   )  ## !! breaks calculations
 ## __ Set environment ----------------------------------------------------------
 Sys.setenv(TZ = "UTC")
 Script.Name <- "./GHI_enh_02_process.R"
+tic <- Sys.time()
 
 if (!interactive()) {
     pdf( file = paste0("./runtime/",  basename(sub("\\.R$",".pdf", Script.Name))))
