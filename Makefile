@@ -7,8 +7,8 @@ SHELL = /bin/bash
 all:       clean_all pdf rtim
 render:    pdf rtim
 Ap:        Ap1 Ap2
-pdf:       p2 p3 Ap
-rtim:      r2 r3
+pdf:       p1 p2 p3 Ap
+rtim:      r1 r2 r3
 clean_all: clean_cache clean_data clean_pdfs
 
 include .buildver.makefile
@@ -68,10 +68,27 @@ LIBRARY      = ~/LIBRARY/REPORTS/
 
 
 
+###   1. raw data  ####################################
+
+TARGET := GHI_enh_01_raw_data.R
+RMD    := $(TARGET).R
+PDF    := $(TARGET).pdf
+RUNT   := ./runtime/$(TARGET).pdf
+
+p1: $(PDF)
+$(PDF): $(RMD)
+	@echo "Building: $@"
+	-Rscript -e "rmarkdown::find_pandoc(dir = '/usr/lib/rstudio/resources/app/bin/quarto/bin/tools'); rmarkdown::render('$?', output_format='bookdown::pdf_document2', output_file='$@')"
+	@-rsync -a --prune-empty-dirs --exclude 'unnamed-chunk*' --include '*.pdf' --include '*.png' ./GHI_*/figure-latex/ ./images
+	@-rsync -a "$@" ${LIBRARY}
+	@-touch Article.Rmd
+
+r1: $(RUNT)
+$(RUNT): $(RMD)
+	-Rscript $?
 
 
-
-###   2. DHI_GHI_longterm_trends  ####################################
+###   2. process  ####################################
 
 TARGET := GHI_enh_02_process
 RMD    := $(TARGET).R
@@ -91,30 +108,10 @@ $(RUNT): $(RMD)
 	-Rscript $?
 
 
-# ###   2. DHI_GHI_sza_trends  #########################################
-# 
-# TARGET := DHI_GHI_2_sza_trends
-# RMD    := $(TARGET).R
-# PDF    := $(TARGET).pdf
-# RUNT   := ./runtime/$(TARGET).pdf
-# 
-# p2: $(PDF)
-# $(PDF): $(RMD)
-# 	@echo "Building: $@"
-# 	-Rscript -e "rmarkdown::find_pandoc(dir = '/usr/lib/rstudio/resources/app/bin/quarto/bin/tools'); rmarkdown::render('$?', output_format='bookdown::pdf_document2', output_file='$@')"
-# 	@-rsync -a --prune-empty-dirs --exclude 'unnamed-chunk*' --include '*.pdf' --include '*.png' ./DHI_GHI_*/figure-latex/ ./images
-# 	@#setsid evince    $@ &
-# 	@-rsync -a "$@" ${LIBRARY}
-# 	@-touch Article.Rmd
-# 
-# r2: $(RUNT)
-# $(RUNT): $(RMD)
-# 	-Rscript $?
-# 
-# 
-# 
-# 
-# 
+ 
+ 
+ 
+ 
 # ###   3. DHI_GHI_trends_consistency  #################################
 # 
 # TARGET := DHI_GHI_3_trends_consistency
