@@ -297,35 +297,26 @@ if (havetorun) {
     rm(days, hours)
 
 
+    ##_  Count daylight length  ------------------------------------------------
+    DATA <- DATA[Elevat > 0]
+    DATA[, DayLength := .N, by = Day]
 
+    ## _ Use only data above the biology building  -----------------------------
+    DATA <- DATA[Elevat > BIO_ELEVA]
 
-    DATA[is.na(wattGLB), ClearnessIndex_kt := NA]
-
-
-    stop()
-
-
-
-    ##_  Bais paper obstacle filter  -------------------------------------------
-    cat("\n  Keep Azimuth and Elevation according to Bais paper!\n")
-    DATA[Azimuth > 35 & Azimuth < 120 & Elevat < 10, wattDIR     := NA ]
-    DATA[Azimuth > 35 & Azimuth < 120 & Elevat < 10, wattDIR_sds := NA ]
-    DATA[Azimuth > 35 & Azimuth < 120 & Elevat < 10, wattGLB     := NA ]
-    DATA[Azimuth > 35 & Azimuth < 120 & Elevat < 10, wattGLB_sds := NA ]
-    DATA[Azimuth > 35 & Azimuth < 120 & Elevat < 10, wattHOR     := NA ]
-    DATA[Azimuth > 35 & Azimuth < 120 & Elevat < 10, wattHOR_sds := NA ]
-
-
-
-
+    # cat("\n  Keep Azimuth and Elevation according to Bais paper!\n")
+    # DATA[Azimuth > 35 & Azimuth < 120 & Elevat < 10, wattDIR     := NA ]
+    # DATA[Azimuth > 35 & Azimuth < 120 & Elevat < 10, wattDIR_sds := NA ]
+    # DATA[Azimuth > 35 & Azimuth < 120 & Elevat < 10, wattGLB     := NA ]
+    # DATA[Azimuth > 35 & Azimuth < 120 & Elevat < 10, wattGLB_sds := NA ]
+    # DATA[Azimuth > 35 & Azimuth < 120 & Elevat < 10, wattHOR     := NA ]
+    # DATA[Azimuth > 35 & Azimuth < 120 & Elevat < 10, wattHOR_sds := NA ]
 
     ## show included data
     # plot(DATA[ !is.na(wattGLB) ,Elevat, Azimuth])
 
     ## Filter min elevation
     # DATA <- DATA[Elevat >= MIN_ELEVA, ]
-
-
 
 
     ## _ DROP MISSING RECORDS!! ------------------------------------------------
@@ -366,29 +357,29 @@ if (havetorun) {
     rm.cols.DT(DATA, "QCF_*", quiet = TRUE)
 
 
-    #  GLB Representation filtering  -------------------------------------------
-    #
-    #  Remove days with too few data, as they can not be representative of a
-    #  normal day.
-    #
-    temp <- DATA[!is.na(wattGLB),
-                 .(Day_N = .N,
-                   DayLim = max(DayLength) * All_daily_ratio_lim),
-                 by = Day]
-
-    Days_with_all_glb_data      <- temp[ , .N ]
-    Days_with_filtered_glb_data <- temp[ Day_N >= DayLim, .N ]
-    cat("\n  Excluded days with less than", All_daily_ratio_lim, "of daylight GLB points:", Days_with_all_glb_data - Days_with_filtered_glb_data, "\n\n")
-
-    all_days_to_keep <- temp[ Day_N >= DayLim, Day ]
-    rm(temp)
-
-    ## Keep only good enough days
-    all_glb_datapoints     <- DATA[Day %in% all_days_to_keep, .N]
-    filterd_glb_datapoints <- DATA[, .N]
-    cat("\n  Keeping:", 100 * all_glb_datapoints / filterd_glb_datapoints, "% of ALL data\n\n")
-
-    DATA <- DATA[Day %in% all_days_to_keep ]
+#    #  GLB Representation filtering  -------------------------------------------
+#    #
+#    #  Remove days with too few data, as they can not be representative of a
+#    #  normal day.
+#    #
+#    temp <- DATA[!is.na(wattGLB),
+#                 .(Day_N = .N,
+#                   DayLim = max(DayLength) * All_daily_ratio_lim),
+#                 by = Day]
+#
+#    Days_with_all_glb_data      <- temp[ , .N ]
+#    Days_with_filtered_glb_data <- temp[ Day_N >= DayLim, .N ]
+#    cat("\n  Excluded days with less than", All_daily_ratio_lim, "of daylight GLB points:", Days_with_all_glb_data - Days_with_filtered_glb_data, "\n\n")
+#
+#    all_days_to_keep <- temp[ Day_N >= DayLim, Day ]
+#    rm(temp)
+#
+#    ## Keep only good enough days
+#    all_glb_datapoints     <- DATA[Day %in% all_days_to_keep, .N]
+#    filterd_glb_datapoints <- DATA[, .N]
+#    cat("\n  Keeping:", 100 * all_glb_datapoints / filterd_glb_datapoints, "% of ALL data\n\n")
+#
+#    DATA <- DATA[Day %in% all_days_to_keep ]
 
 
     #  Mark data Clear / cloud sky  --------------------------------------------
