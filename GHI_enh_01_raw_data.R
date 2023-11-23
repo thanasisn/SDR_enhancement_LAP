@@ -330,7 +330,8 @@ if (havetorun) {
 
     ## - Create Clearness Index (BB may not filled yet) ------------------------
     DATA[, ClearnessIndex_kt := NA]
-    DATA[, ClearnessIndex_kt := wattGLB / (cosde(SZA) * TSIextEARTH_comb)]
+    DATA[, ETH := cosde(SZA) * TSIextEARTH_comb ]  ## TSI at ground
+    DATA[, ClearnessIndex_kt := wattGLB / ETH ]
 
     ## _ Move measurements to mean earth distance  -----------------------------
     cat("\n  Sun Earth distance correction\n")
