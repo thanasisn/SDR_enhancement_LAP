@@ -54,7 +54,6 @@
 
 ## __ Document options ---------------------------------------------------------
 
-#+ ch01, echo=F, include=T
 knitr::opts_chunk$set(comment    = ""       )
 knitr::opts_chunk$set(echo       = FALSE    )
 knitr::opts_chunk$set(dev        = c("pdf", "png"))
@@ -62,7 +61,6 @@ knitr::opts_chunk$set(out.width  = "100%"   )
 knitr::opts_chunk$set(fig.align  = "center" )
 
 
-#+ ch02, include=T, echo=F
 ## __ Set environment ----------------------------------------------------------
 Sys.setenv(TZ = "UTC")
 Script.Name <- "./GHI_enh_02_process.R"
@@ -73,7 +71,7 @@ if (!interactive()) {
     sink(file = paste0("./runtime/",  basename(sub("\\.R$",".out", Script.Name))), split = TRUE)
 }
 
-#+ ch03, echo=F, include=T
+
 library(data.table, quietly = TRUE, warn.conflicts = FALSE)
 require(zoo       , quietly = TRUE, warn.conflicts = FALSE)
 library(pander    , quietly = TRUE, warn.conflicts = FALSE)
@@ -130,7 +128,6 @@ havetorun <- !file.exists(raw_input_data)                              |
     file.mtime(variables_fl)              > file.mtime(raw_input_data) |
     file.mtime("./GHI_enh_01_raw_data.R") > file.mtime(raw_input_data)
 
-#+ ch04, include=T, echo=F, results="asis"
 if (havetorun) {
     cat(paste("\n !! Create raw input data ->", raw_input_data), "\n")
 

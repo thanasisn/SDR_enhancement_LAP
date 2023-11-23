@@ -58,7 +58,7 @@ knitr::opts_chunk$set(cache      =  FALSE   )  ## !! breaks calculations
 #+ include=F, echo=F
 ## __ Set environment ----------------------------------------------------------
 Sys.setenv(TZ = "UTC")
-Script.Name <- "./GHI_enh_02_process.R"
+Script.Name <- "./GHI_enh_03_process.R"
 
 if (!interactive()) {
     pdf( file = paste0("./runtime/",  basename(sub("\\.R$",".pdf", Script.Name))))
@@ -98,17 +98,17 @@ options(error = function() {
 
 ##  Prepare raw data if needed  ------------------------------------------------
 if (
-    file.exists(raw_input_data) == FALSE |
-    file.mtime(raw_input_data) < file.mtime("./GHI_enh_00_variables.R") |
-    file.mtime(raw_input_data) < file.mtime("./GHI_enh_01_raw_data.R")
+    file.exists(Input_data_ID) == FALSE |
+    file.mtime(Input_data_ID) < file.mtime("./GHI_enh_00_variables.R") |
+    file.mtime(Input_data_ID) < file.mtime("./GHI_enh_02_ID_CE.R")
 ) {
-    source("./GHI_enh_01_raw_data.R")
+    source("./GHI_enh_02_ID_CE.R")
     dummy <- gc()
 }
 
 
 ##  Load Enhancement data  -----------------------------------------------------
-DATA <- readRDS(raw_input_data)
+DATA <- readRDS(Input_data_ID)
 tic  <- Sys.time()
 
 
@@ -133,274 +133,6 @@ alpha <- 0.9653023236718680788471
 SelEnhanc <- "Enhanc_C_1"
 # SelEnhanc <- "Enhanc_C_2"
 # SelEnhanc <- "Enhanc_C_3"
-
-DATA[ , GLB_diff :=   wattGLB - CS_ref            ]  ## enhancement
-DATA[ , GLB_ench := ( wattGLB - CS_ref ) / CS_ref ]  ## relative enhancement
-DATA[ , GLB_rati :=   wattGLB / CS_ref            ]
-
-
-## __ My criteria  ---------------------------------------------------------
-GLB_ench_THRES     <-  1.12 ## enchantment relative to HAU
-GLB_diff_THRES     <- 30    ## enchantment absolute diff to HAU
-Clearness_Kt_THRES <-  0.8  ## enchantment threshold
-wattGLB_THRES      <- 20    ## minimum value to consider
-
-DATA[, Enhanc_C_1 := FALSE]
-# DATA[wattGLB           > CS_ref * GLB_ench_THRES + GLB_diff_THRES &
-#      ClearnessIndex_kt > Clearness_Kt_THRES,
-#      Enhanc_C_1 := TRUE]
-
-# DATA[wattGLB           > CS_ref * GLB_ench_THRES + GLB_diff_THRES &
-#          ClearnessIndex_kt > Clearness_Kt_THRES,
-#      Enhanc_C_1 := TRUE]
-
-# DATA[ ClearnessIndex_kt > Clearness_Kt_THRES,
-#      Enhanc_C_1 := TRUE]
-
-DATA[ wattGLB > ETH * Clearness_Kt_THRES + GLB_diff_THRES,
-      Enhanc_C_1 := TRUE]
-
-
-DATA[CS_ref * GLB_ench_THRES + GLB_diff_THRES > ETH * Clearness_Kt_THRES, ]
-
-
-# DATA[wattGLB           > CS_ref * GLB_ench_THRES + GLB_diff_THRES,
-#      Enhanc_C_1 := TRUE]
-
-
-table(DATA$Enhanc_C_1)
-
-##  check if all are needed
-
-## __ Gueymard2017 Criteria  -----------------------------------------------
-## Clearness index > 0.8 / 1
-
-DATA[, Enhanc_C_2 := FALSE]
-DATA[ClearnessIndex_kt > 0.8,
-     Enhanc_C_2 := TRUE]
-
-
-## Vamvakas2020
-## +5% from model => enhancements above 15 Wm^2 the instrument uncertainty
-DATA[, Enhanc_C_3 := FALSE]
-DATA[GLB_ench > 1.05,
-     Enhanc_C_3 := TRUE]
-
-hist(DATA[GLB_ench > 1, GLB_ench])
-abline(v = 1.05, col = "red")
-
-hist(DATA[Enhanc_C_3 == TRUE, GLB_diff])
-plot(DATA[Enhanc_C_3 == TRUE, GLB_diff, GLB_ench])
-
-
-
-## Mol2023
-## activate when +1% and 10w/m from model reference
-## near by values with +0.1 are also accepted
-
-
-
-
-
-hist(DATA[TYPE == "Cloud", ClearnessIndex_kt])
-hist(DATA[TYPE == "Cloud", CS_ref * GLB_ench_THRES + GLB_diff_THRES - wattGLB ])
-
-
-
-#    ## __ Group continuous values  ---------------------------------------------
-#    DATA[, cnF := cumsum(Enhanc_C_1 == FALSE)]
-#    DATA[, cnT := cumsum(Enhanc_C_1 == TRUE) ]
-#    ## Init groups logical
-#    DATA[, C1G1  := Enhanc_C_1]
-#    DATA[, C1G0  := Enhanc_C_1]
-#
-#    ## Find groups with one gap
-#    for (i in 1:nrow(DATA)) {
-#        p1 <- i - 1
-#        n1 <- i + 1
-#        if (p1 > 0 & n1 <= nrow(DATA)) {
-#            if (DATA$C1G1[p1] == TRUE  &
-#                DATA$C1G1[i]  == FALSE &
-#                DATA$C1G1[n1] == TRUE  ) {
-#                DATA$C1G1[i]  <- TRUE
-#            }
-#        }
-#    }
-#
-#    ## Allow one gap group
-#    DATA[, C1Grp1 := rleid(c(NA,diff(cumsum(G1))))]
-#    DATA[C1G1 == FALSE, C1Grp1 := NA]
-#
-#    ## No gap group
-#    DATA[, C1Grp0 := rleid(c(NA,diff(cumsum(G0))))]
-#    DATA[C1G0 == FALSE, C1Grp0 := NA]
-
-
-
-## __ Estimate enhancement daily magnitude  ------------------------------------
-enh_days <- DATA[get(SelEnhanc) == TRUE,
-                 .(Enh_sum      = sum(GLB_ench, na.rm = TRUE),
-                   Enh_max      = max(GLB_ench, na.rm = TRUE),
-                   Enh_diff_sum = sum(GLB_diff, na.rm = TRUE),
-                   Enh_diff_max = sum(GLB_diff, na.rm = TRUE)),
-                 Day]
-
-sunny_days <- DATA[, .(Sunshine = sum(TYPE == "Clear")/max(DayLength, na.rm = TRUE),
-                       Energy   = sum(ClearnessIndex_kt, na.rm = TRUE)/sum(TYPE == "Clear"),
-                       EC       = sum(get(SelEnhanc)),
-                       Cloud    = sum(TYPE == "Cloud")),
-                   by = Day]
-
-hist(sunny_days$Sunshine)
-hist(sunny_days$Energy)
-
-
-sunnyd   <- sunny_days[Sunshine > 0.8 & Energy > 0.74]
-sunnyd   <- sunnyd[sample(1:nrow(sunnyd), 10) ]
-
-sunnyEnh <- sunny_days[Sunshine > 0.8 & Energy > 0.7 & EC > 0]
-
-clouds <- sunny_days[Sunshine > 0.8 & Energy > 0.7 & EC > 0 & Cloud > 5]
-
-
-
-hist(sunnyd$Energy)
-
-
-## interesting days first
-setorder(enh_days, -Enh_sum     )
-setorder(enh_days, -Enh_max     )
-setorder(enh_days, -Enh_diff_sum)
-
-## plot some interesting days
-daylist <- enh_days$Day
-daylist <- sort(daylist[1:30])
-daylist <- unique(c(daylist, sunnyd$Day, clouds$Day, sunnyEnh$Day))
-
-
-all_days  <- unique(DATA$Day)
-rest_days <- all_days[!all_days %in% daylist]
-
-
-daylist <- sort(unique(c(daylist, sample(rest_days, 100))))
-
-##  Days with strong enhancement cases  ----------------------------------------
-
-#'
-#' ## Plot some days with strong enhancement cases
-#'
-#+ strong_days, echo=F, include=T
-if (!interactive()) {
-    pdf(file = "~/MANUSCRIPTS/02_enhancement/testplot.pdf")
-}
-
-for (aday in daylist) {
-    temp <- DATA[ Day == aday ]
-    par(mar = c(4,4,1,1))
-    ylim = range(0, temp$TSIextEARTH_comb * cosde(temp$SZA), temp$wattGLB, na.rm = TRUE)
-
-    plot(temp$Date, temp$wattGLB, "l", col = "green",
-         ylim = ylim,
-         ylab = expression(Watt/m^2), xlab = "Time (UTC)")
-
-    lines(temp$Date, temp$wattHOR, col = "blue")
-
-    lines(temp$Date, temp$TSIextEARTH_comb * cosde(temp$SZA))
-
-    lines(temp$Date, Clearness_Kt_THRES * temp$TSIextEARTH_comb * cosde(temp$SZA), lty = 3)
-
-
-    if (SelEnhanc == "Enhanc_C_1") {
-        lines(temp$Date, temp$CS_ref * GLB_ench_THRES + GLB_diff_THRES , col = "red" )
-    }
-
-    points(temp[get(SelEnhanc) == TRUE, wattGLB, Date], col = "red")
-    points(temp[TYPE == "Cloud", wattGLB, Date], col = "blue", pch = 3)
-
-    # if (any(temp$TYPE == "Cloud")) stop("DD")
-
-    title(main = paste(as.Date(aday, origin = "1970-01-01"), temp[get(SelEnhanc) == TRUE, .N], temp[TYPE == "Cloud", .N]))
-    # legend("topleft", c("GHI","DNI",  "A-HAU", "TSI on horizontal level","GHI Enhancement event"),
-    #        col = c("green",   "blue", "red", "black", "red"),
-    #        pch = c(     NA,       NA,    NA,      NA,    1 ),
-    #        lty = c(      1,        1,     1,       1,   NA ),
-    #        bty = "n"
-    # )
-
-    legend("topleft", c("GHI","DNI",  "GHI threshold", "TSI on horizontal level","GHI Enhancement event"),
-           col = c("green",   "blue", "red", "black",  "red"),
-           pch = c(     NA,       NA,    NA,      NA,     1 ),
-           lty = c(      1,        1,     1,       1,    NA ),
-           bty = "n"
-    )
-
-    # par(new = T)
-    # plot(temp$Date, temp$ClearnessIndex_kt, "l")
-    # abline(h = Clearness_Kt_THRES)
-
-    # plot(temp$Date, temp$Clearness_Kt)
-    # abline(h=.8,col="red")
-    # plot(temp$Date, temp$DiffuseFraction_Kd)
-    # plot(temp$Date, temp$GLB_ench)
-    # plot(temp$Date, temp$GLB_diff)
-}
-
-dev.off()
-
-
-
-
-
-
-
-
-stop("wait")
-
-
-
-
-
-
-
-
-
-## TODO plot only enhancement cases
-## DO it whith baseplot
-pyear <- 2018
-p <-
-     ggplot(DATA[year(Date) == pyear], aes(CS_ref, wattGLB)) +
-    geom_point(data = DATA[year(Date) == pyear & get(SelEnhanc) == F,], colour = "black", size = 0.2) +
-    geom_point(data = DATA[year(Date) == pyear & get(SelEnhanc) == T,], size = 0.2, aes(color = GLB_diff)) +
-    scale_colour_gradient(low = "blue", high = "red", na.value = NA) +
-    theme(
-        panel.background      = element_rect(fill='transparent'), #transparent panel bg
-        plot.background       = element_rect(fill='transparent', color=NA), #transparent plot bg
-        # panel.grid.major      = element_blank(), #remove major gridlines
-        # panel.grid.minor      = element_blank(), #remove minor gridlines
-        legend.background     = element_rect(fill='transparent'), #transparent legend bg
-        legend.box.background = element_rect(fill='transparent') #transparent legend panel
-    )
-#+ include=T, echo=FALSE
-print(p)
-#+ include=F, echo=FALSE
-
-# ggplot(DATA, aes(CS_ref, wattGLB)) +
-#     geom_point(data = DATA[GLB_diff < 0], colour = "black", size = 0.5) +
-#     geom_point(data = DATA[GLB_diff > 0], size = 0.5, aes(color = GLB_diff)) +
-#     scale_colour_gradient(low = "blue", high = "red", na.value = NA)
-
-
-# ggplot(DATA[year(Date) == 2018], aes(CS_ref, wattGLB)) +
-#     geom_point(data = DATA[year(Date) == 2018 & GLB_diff < 0], colour = "black", size = 0.5) +
-#     geom_point(data = DATA[year(Date) == 2018 & GLB_diff > 0], size = 0.5, aes(color = GLB_diff)) +
-#     scale_colour_gradient2(low = "black", mid = "yellow", high = "red", na.value = NA)
-
-
-
-
-
-
-
 
 
 ##;  #
