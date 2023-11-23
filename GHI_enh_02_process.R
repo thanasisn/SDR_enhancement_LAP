@@ -128,6 +128,7 @@ tic  <- Sys.time()
 alpha <- 0.9653023236718680788471
 
 
+d
 
 
 ## __ Enhancement criteria  ------------------------------------------------
@@ -135,19 +136,29 @@ SelEnhanc <- "Enhanc_C_1"
 # SelEnhanc <- "Enhanc_C_2"
 # SelEnhanc <- "Enhanc_C_3"
 
+DATA[ , GLB_diff :=   wattGLB - CS_ref            ]  ## enhancement
+DATA[ , GLB_ench := ( wattGLB - CS_ref ) / CS_ref ]  ## relative enhancement
+DATA[ , GLB_rati :=   wattGLB / CS_ref            ]
+
 
 ## __ My criteria  ---------------------------------------------------------
-GLB_ench_THRES     <-  0    ## enchantment % relative to HAU
-GLB_diff_THRES     <- 10    ## enchantment absolute diff to HAU
+GLB_ench_THRES     <-  1.12 ## enchantment relative to HAU
+GLB_diff_THRES     <- 30    ## enchantment absolute diff to HAU
 Clearness_Kt_THRES <-  0.8  ## enchantment threshold
 wattGLB_THRES      <- 20    ## minimum value to consider
 
 DATA[, Enhanc_C_1 := FALSE]
-DATA[GLB_ench              > GLB_ench_THRES     &
-         ClearnessIndex_kt > Clearness_Kt_THRES &
-         wattGLB           > wattGLB_THRES      &
-         GLB_diff          > GLB_diff_THRES,
+# DATA[wattGLB           > CS_ref * GLB_ench_THRES + GLB_diff_THRES &
+#      ClearnessIndex_kt > Clearness_Kt_THRES,
+#      Enhanc_C_1 := TRUE]
+
+DATA[wattGLB           > CS_ref * GLB_ench_THRES + GLB_diff_THRES,
      Enhanc_C_1 := TRUE]
+
+range(DATA[, CS_ref])
+
+table(DATA$Enhanc_C_1)
+
 ##  check if all are needed
 
 ## __ Gueymard2017 Criteria  -----------------------------------------------
@@ -177,6 +188,11 @@ plot(DATA[Enhanc_C_3 == TRUE, GLB_diff, GLB_ench])
 ## near by values with +0.1 are also accepted
 
 
+
+
+
+hist(DATA[TYPE == "Cloud", ClearnessIndex_kt])
+hist(DATA[TYPE == "Cloud", CS_ref * GLB_ench_THRES + GLB_diff_THRES - wattGLB ])
 
 
 
@@ -210,23 +226,6 @@ plot(DATA[Enhanc_C_3 == TRUE, GLB_diff, GLB_ench])
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 ## __ Estimate enhancement daily magnitude  ------------------------------------
 enh_days <- DATA[get(SelEnhanc) == TRUE,
                  .(Enh_sum      = sum(GLB_ench, na.rm = TRUE),
@@ -235,16 +234,20 @@ enh_days <- DATA[get(SelEnhanc) == TRUE,
                    Enh_diff_max = sum(GLB_diff, na.rm = TRUE)),
                  Day]
 
-sunny_days <- DATA[, .(Sunshine = sum(TYPE == "Clear")/DayLength,
-                       Energy   = sum(ClearnessIndex_kt, na)), by = Day]
-sunny_days <- unique(sunny_days)
-
-
-sunnyd <- sunny_days[Sunshine > 0.85, Day]
+sunny_days <- DATA[, .(Sunshine = sum(TYPE == "Clear")/max(DayLength, na.rm = TRUE),
+                       Energy   = sum(ClearnessIndex_kt, na.rm = TRUE)/sum(TYPE == "Clear"),
+                       EC       = sum(get(SelEnhanc))),
+                   by = Day]
 
 hist(sunny_days$Sunshine)
+hist(sunny_days$Energy)
 
-stop()
+
+sunnyd <- sunny_days[Sunshine > 0.8 & Energy > 0.74]
+sunnyd <- sunny_days[Sunshine > 0.8 & Energy > 0.7 & EC > 0]
+
+hist(sunnyd$Energy)
+
 
 ## interesting days first
 setorder(enh_days, -Enh_sum     )
@@ -254,7 +257,7 @@ setorder(enh_days, -Enh_diff_sum)
 ## plot some interesting days
 daylist <- enh_days$Day
 daylist <- sort(daylist[1:30])
-daylist <- unique(c(daylist, sunnyd))
+daylist <- unique(c(daylist, sunnyd$Day))
 
 
 ## TODO add some clear days
@@ -278,10 +281,17 @@ for (aday in daylist) {
 
     lines(temp$Date, temp$TSIextEARTH_comb * cosde(temp$SZA))
 
-    lines(temp$Date, temp$CS_ref + GLB_diff_THRES, col = "red" )
+    lines(temp$Date, Clearness_Kt_THRES * temp$TSIextEARTH_comb * cosde(temp$SZA), lty = 3)
 
+
+    if (SelEnhanc == "Enhanc_C_1") {
+        lines(temp$Date, temp$CS_ref * GLB_ench_THRES + GLB_diff_THRES , col = "red" )
+    }
 
     points(temp[get(SelEnhanc) == TRUE, wattGLB, Date], col = "red")
+    points(temp[TYPE == "Cloud", wattGLB, Date], col = "blue", pch = 3)
+
+    if (any(temp$TYPE == "Cloud")) stop("DD")
 
     title(main = as.Date(aday, origin = "1970-01-01"))
     # legend("topleft", c("GHI","DNI",  "A-HAU", "TSI on horizontal level","GHI Enhancement event"),
@@ -297,6 +307,10 @@ for (aday in daylist) {
            lty = c(      1,        1,     1,       1,    NA ),
            bty = "n"
     )
+
+    # par(new = T)
+    # plot(temp$Date, temp$ClearnessIndex_kt, "l")
+    # abline(h = Clearness_Kt_THRES)
 
     # plot(temp$Date, temp$Clearness_Kt)
     # abline(h=.8,col="red")
