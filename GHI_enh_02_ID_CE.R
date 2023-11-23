@@ -154,8 +154,11 @@ DATA[, Enhanc_C_1 := FALSE]
 #          ClearnessIndex_kt > Clearness_Kt_THRES,
 #      Enhanc_C_1 := TRUE]
 
-DATA[ ClearnessIndex_kt > Clearness_Kt_THRES,
-     Enhanc_C_1 := TRUE]
+# DATA[ ClearnessIndex_kt > Clearness_Kt_THRES,
+#      Enhanc_C_1 := TRUE]
+
+DATA[ wattGLB > ETH * Clearness_Kt_THRES + GLB_diff_THRES,
+      Enhanc_C_1 := TRUE]
 
 
 DATA[CS_ref * GLB_ench_THRES + GLB_diff_THRES > ETH * Clearness_Kt_THRES, ]
@@ -164,7 +167,6 @@ DATA[CS_ref * GLB_ench_THRES + GLB_diff_THRES > ETH * Clearness_Kt_THRES, ]
 # DATA[wattGLB           > CS_ref * GLB_ench_THRES + GLB_diff_THRES,
 #      Enhanc_C_1 := TRUE]
 
-range(DATA[, CS_ref])
 
 table(DATA$Enhanc_C_1)
 
@@ -245,15 +247,22 @@ enh_days <- DATA[get(SelEnhanc) == TRUE,
 
 sunny_days <- DATA[, .(Sunshine = sum(TYPE == "Clear")/max(DayLength, na.rm = TRUE),
                        Energy   = sum(ClearnessIndex_kt, na.rm = TRUE)/sum(TYPE == "Clear"),
-                       EC       = sum(get(SelEnhanc))),
+                       EC       = sum(get(SelEnhanc)),
+                       Cloud    = sum(TYPE == "Cloud")),
                    by = Day]
 
 hist(sunny_days$Sunshine)
 hist(sunny_days$Energy)
 
 
-sunnyd <- sunny_days[Sunshine > 0.8 & Energy > 0.74]
-sunnyd <- sunny_days[Sunshine > 0.8 & Energy > 0.7 & EC > 0]
+sunnyd   <- sunny_days[Sunshine > 0.8 & Energy > 0.74]
+sunnyd   <- sunnyd[sample(1:nrow(sunnyd), 10) ]
+
+sunnyEnh <- sunny_days[Sunshine > 0.8 & Energy > 0.7 & EC > 0]
+
+clouds <- sunny_days[Sunshine > 0.8 & Energy > 0.7 & EC > 0 & Cloud > 5]
+
+
 
 hist(sunnyd$Energy)
 
@@ -266,10 +275,14 @@ setorder(enh_days, -Enh_diff_sum)
 ## plot some interesting days
 daylist <- enh_days$Day
 daylist <- sort(daylist[1:30])
-daylist <- unique(c(daylist, sunnyd$Day))
+daylist <- unique(c(daylist, sunnyd$Day, clouds$Day, sunnyEnh$Day))
 
 
-## TODO add some clear days
+all_days  <- unique(DATA$Day)
+rest_days <- all_days[!all_days %in% daylist]
+
+
+daylist <- sort(unique(c(daylist, sample(rest_days, 100))))
 
 ##  Days with strong enhancement cases  ----------------------------------------
 
@@ -277,6 +290,10 @@ daylist <- unique(c(daylist, sunnyd$Day))
 #' ## Plot some days with strong enhancement cases
 #'
 #+ strong_days, echo=F, include=T
+if (!interactive()) {
+    pdf(file = "~/MANUSCRIPTS/02_enhancement/testplot.pdf")
+}
+
 for (aday in daylist) {
     temp <- DATA[ Day == aday ]
     par(mar = c(4,4,1,1))
@@ -300,9 +317,9 @@ for (aday in daylist) {
     points(temp[get(SelEnhanc) == TRUE, wattGLB, Date], col = "red")
     points(temp[TYPE == "Cloud", wattGLB, Date], col = "blue", pch = 3)
 
-    if (any(temp$TYPE == "Cloud")) stop("DD")
+    # if (any(temp$TYPE == "Cloud")) stop("DD")
 
-    title(main = as.Date(aday, origin = "1970-01-01"))
+    title(main = paste(as.Date(aday, origin = "1970-01-01"), temp[get(SelEnhanc) == TRUE, .N], temp[TYPE == "Cloud", .N]))
     # legend("topleft", c("GHI","DNI",  "A-HAU", "TSI on horizontal level","GHI Enhancement event"),
     #        col = c("green",   "blue", "red", "black", "red"),
     #        pch = c(     NA,       NA,    NA,      NA,    1 ),
@@ -328,6 +345,7 @@ for (aday in daylist) {
     # plot(temp$Date, temp$GLB_diff)
 }
 
+dev.off()
 
 
 
@@ -336,8 +354,7 @@ for (aday in daylist) {
 
 
 
-
-stop()
+stop("wait")
 
 
 
@@ -352,8 +369,8 @@ stop()
 pyear <- 2018
 p <-
      ggplot(DATA[year(Date) == pyear], aes(CS_ref, wattGLB)) +
-    geom_point(data = DATA[year(Date) == pyear & Enhancement == F,], colour = "black", size = 0.2) +
-    geom_point(data = DATA[year(Date) == pyear & Enhancement == T,], size = 0.2, aes(color = GLB_diff)) +
+    geom_point(data = DATA[year(Date) == pyear & get(SelEnhanc) == F,], colour = "black", size = 0.2) +
+    geom_point(data = DATA[year(Date) == pyear & get(SelEnhanc) == T,], size = 0.2, aes(color = GLB_diff)) +
     scale_colour_gradient(low = "blue", high = "red", na.value = NA) +
     theme(
         panel.background      = element_rect(fill='transparent'), #transparent panel bg
@@ -506,13 +523,13 @@ print(p)
 
 
 ##  Stats on enhancement cases  ------------------------------------------------
-DATA_Enh <- DATA[Enhancement == TRUE ]
+DATA_Enh <- DATA[get(SelEnhanc) == TRUE ]
 
 
 
 
 
-Enh_daily <- DATA_Enh[, .(N        = sum( Enhancement, na.rm = T),
+Enh_daily <- DATA_Enh[, .(N        = sum( get(SelEnhanc), na.rm = T),
                           N_ex     = sum( wattGLB > TSIextEARTH_comb * cosde(SZA)),
                           sum_Ench = sum( GLB_diff),
                           avg_Ench = mean(GLB_ench),
@@ -521,7 +538,7 @@ Enh_daily <- DATA_Enh[, .(N        = sum( Enhancement, na.rm = T),
                       by = "Day"]
 
 
-Enh_yearly <- DATA_Enh[, .(N        = sum(!is.na(GLB_ench)),
+Enh_yearly <- DATA_Enh[, .(N        = sum( get(SelEnhanc), na.rm = T),
                            N_ex     = sum( wattGLB > TSIextEARTH_comb * cosde(SZA)),
                            sum_Ench = sum( GLB_diff),
                            avg_Ench = mean(GLB_ench),
@@ -529,7 +546,7 @@ Enh_yearly <- DATA_Enh[, .(N        = sum(!is.na(GLB_ench)),
                            sum_Diff = sum( GLB_diff)),
                        by = year(Date)]
 
-Enh_monthly <- DATA_Enh[, .(N        = sum(!is.na(GLB_ench)),
+Enh_monthly <- DATA_Enh[, .(N        = sum( get(SelEnhanc), na.rm = T),
                            N_ex     = sum( wattGLB > TSIextEARTH_comb * cosde(SZA)),
                            sum_Ench = sum( GLB_diff),
                            avg_Ench = mean(GLB_ench),
@@ -543,7 +560,7 @@ Enh_monthly$Date <- as.POSIXct(strptime(paste(Enh_monthly$year, Enh_monthly$mont
 
 
 
-Enh_total <- DATA_Enh[, .(N        = sum(!is.na(GLB_ench)),
+Enh_total <- DATA_Enh[, .(N        = sum( get(SelEnhanc), na.rm = T),
                           N_ex     = sum( wattGLB > TSIextEARTH_comb * cosde(SZA)),
                           sum_Ench = sum( GLB_diff),
                           avg_Ench = mean(GLB_ench),
@@ -551,7 +568,7 @@ Enh_total <- DATA_Enh[, .(N        = sum(!is.na(GLB_ench)),
                           sum_Diff = sum( GLB_diff))]
 
 
-Enh_sza    <- DATA_Enh[, .(N        = sum(!is.na(GLB_ench)),
+Enh_sza    <- DATA_Enh[, .(N        = sum( get(SelEnhanc), na.rm = T),
                            N_ex     = sum( wattGLB > TSIextEARTH_comb * cosde(SZA)),
                            sum_Ench = sum( GLB_diff),
                            avg_Ench = mean(GLB_ench),
@@ -560,7 +577,7 @@ Enh_sza    <- DATA_Enh[, .(N        = sum(!is.na(GLB_ench)),
                        by = .(SZA = (SZA - SZA_BIN / 2 ) %/% SZA_BIN)]
 
 
-Data_sza    <- DATA[, .(N_enha  = sum(Enhancement, na.rm = TRUE),
+Data_sza    <- DATA[, .(N_enha  = sum(sum( get(SelEnhanc), na.rm = T), na.rm = TRUE),
                         N_total = sum(!is.na(wattGLB))),
                     by = .(SZA = (SZA - SZA_BIN / 2 ) %/% SZA_BIN) ]
 
