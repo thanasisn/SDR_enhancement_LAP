@@ -152,6 +152,15 @@ DATA[, Enhanc_C_1 := FALSE]
 #      ClearnessIndex_kt > Clearness_Kt_THRES,
 #      Enhanc_C_1 := TRUE]
 
+DATA[wattGLB           > CS_ref * GLB_ench_THRES + GLB_diff_THRES &
+         ClearnessIndex_kt > Clearness_Kt_THRES,
+     Enhanc_C_1 := TRUE]
+
+DATA[, CS_ref * GLB_ench_THRES + GLB_diff_THRES > ]
+
+
+DATA
+
 DATA[wattGLB           > CS_ref * GLB_ench_THRES + GLB_diff_THRES,
      Enhanc_C_1 := TRUE]
 
