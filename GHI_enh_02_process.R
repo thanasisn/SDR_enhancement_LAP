@@ -128,8 +128,6 @@ tic  <- Sys.time()
 alpha <- 0.9653023236718680788471
 
 
-d
-
 
 ## __ Enhancement criteria  ------------------------------------------------
 SelEnhanc <- "Enhanc_C_1"
@@ -152,17 +150,19 @@ DATA[, Enhanc_C_1 := FALSE]
 #      ClearnessIndex_kt > Clearness_Kt_THRES,
 #      Enhanc_C_1 := TRUE]
 
-DATA[wattGLB           > CS_ref * GLB_ench_THRES + GLB_diff_THRES &
-         ClearnessIndex_kt > Clearness_Kt_THRES,
+# DATA[wattGLB           > CS_ref * GLB_ench_THRES + GLB_diff_THRES &
+#          ClearnessIndex_kt > Clearness_Kt_THRES,
+#      Enhanc_C_1 := TRUE]
+
+DATA[ ClearnessIndex_kt > Clearness_Kt_THRES,
      Enhanc_C_1 := TRUE]
 
-DATA[, CS_ref * GLB_ench_THRES + GLB_diff_THRES > ]
+
+DATA[CS_ref * GLB_ench_THRES + GLB_diff_THRES > ETH * Clearness_Kt_THRES, ]
 
 
-DATA
-
-DATA[wattGLB           > CS_ref * GLB_ench_THRES + GLB_diff_THRES,
-     Enhanc_C_1 := TRUE]
+# DATA[wattGLB           > CS_ref * GLB_ench_THRES + GLB_diff_THRES,
+#      Enhanc_C_1 := TRUE]
 
 range(DATA[, CS_ref])
 
