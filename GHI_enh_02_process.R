@@ -235,14 +235,16 @@ enh_days <- DATA[get(SelEnhanc) == TRUE,
                    Enh_diff_max = sum(GLB_diff, na.rm = TRUE)),
                  Day]
 
-sunny_days <- DATA[, .(Sunshine = sum(TYPE == "Clear")/DayLength), by = Day]
+sunny_days <- DATA[, .(Sunshine = sum(TYPE == "Clear")/DayLength,
+                       Energy   = sum(ClearnessIndex_kt, na)), by = Day]
 sunny_days <- unique(sunny_days)
+
 
 sunnyd <- sunny_days[Sunshine > 0.85, Day]
 
 hist(sunny_days$Sunshine)
 
-
+stop()
 
 ## interesting days first
 setorder(enh_days, -Enh_sum     )
