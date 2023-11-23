@@ -26,16 +26,16 @@ LIBRARY      = ~/LIBRARY/REPORTS/
 # $(PDF): $(RMD)
 # 	@echo "Building: $@"
 # 	@#-Rscript -e "rmarkdown::render('$?', output_format='bookdown::pdf_document2', output_file='$@')"
-# 	-Rscript -e "rmarkdown::find_pandoc(dir = '/usr/lib/rstudio/resources/app/bin/quarto/bin/tools'); rmarkdown::render('$?', output_format='rticles::mdpi_article', output_file='$@', clean = TRUE)" 
+# 	-Rscript -e "rmarkdown::find_pandoc(dir = '/usr/lib/rstudio/resources/app/bin/quarto/bin/tools'); rmarkdown::render('$?', output_format='rticles::mdpi_article', output_file='$@', clean = TRUE)"
 # 	@# echo "Changed:  $?"
 # 	@#setsid evince    $@ &
 # 	@-rsync -a "$@" ${LIBRARY}
-# 
-# 
+#
+#
 # ## simple default pdf
 # TARGET = Article
 # RMD    = $(TARGET).Rmd
-# PDF    = $(TARGET)_A.pdf 
+# PDF    = $(TARGET)_A.pdf
 # Ap1: $(PDF)
 # $(PDF): $(RMD)
 # 	@echo "Building: $@"
@@ -44,10 +44,10 @@ LIBRARY      = ~/LIBRARY/REPORTS/
 # 	@# echo "Changed:  $?"
 # 	@#setsid evince    $@ &
 # 	@-rsync -a "$@" ${LIBRARY}
-# 
-# 
-# 
-# 
+#
+#
+#
+#
 # ## Article pdf with build number
 # ## using rstudio pandoc
 # TARGET = MDPI_submission
@@ -88,9 +88,9 @@ $(RUNT): $(RMD)
 	-Rscript $?
 
 
-###   2. process  ####################################
+###   2. ID CE  ####################################
 
-TARGET := GHI_enh_02_process
+TARGET := GHI_enh_02_ID_CE
 RMD    := $(TARGET).R
 PDF    := $(TARGET).pdf
 RUNT   := ./runtime/$(TARGET).pdf
@@ -108,17 +108,17 @@ $(RUNT): $(RMD)
 	-Rscript $?
 
 
- 
- 
- 
- 
+
+
+
+
 # ###   3. DHI_GHI_trends_consistency  #################################
-# 
+#
 # TARGET := DHI_GHI_3_trends_consistency
 # RMD    := $(TARGET).R
 # PDF    := $(TARGET).pdf
 # RUNT   := ./runtime/$(TARGET).pdf
-# 
+#
 # p3: $(PDF)
 # $(PDF): $(RMD)
 # 	@echo "Building: $@"
@@ -127,11 +127,11 @@ $(RUNT): $(RMD)
 # 	@#setsid evince    $@ &
 # 	@-rsync -a "$@" ${LIBRARY}
 # 	@-touch Article.Rmd
-# 
+#
 # r3: $(RUNT)
 # $(RUNT): $(RMD)
 # 	-Rscript $?
-# 
+#
 
 
 # clean_cache:
@@ -143,12 +143,12 @@ $(RUNT): $(RMD)
 # 	rm -f -r ./DHI_GHI_3_trends_consistency_cache
 # 	rm -f -r ./DHI_GHI_3_trends_consistency_files
 # 	rm -f -r ./runtime/GHI*.pdf
-# 
+#
 # clean_pdfs:
 # 	rm -f    ./DHI_GHI_1_longterm_trends.pdf
 # 	rm -f    ./DHI_GHI_2_sza_trends.pdf
 # 	rm -f    ./DHI_GHI_3_trends_consistency.pdf
-# 
+#
 # clean_data:
 # 	rm -f    ./data/*.*
 
