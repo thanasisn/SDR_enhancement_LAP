@@ -87,11 +87,13 @@ source("./GHI_enh_00_variables.R")
 
 #  Run data construction  ------------------------------------------------------
 
+D_15   <- FALSE
 D_14_2 <- FALSE
 D_14   <- FALSE
 D_13   <- FALSE
 
-D_14_2 <- TRUE
+D_15   <- TRUE
+# D_14_2 <- TRUE
 # D_14   <- TRUE
 # D_13   <- TRUE
 
@@ -104,6 +106,11 @@ TEST <- FALSE
 if (D_14_2) {
     inpatern    <- "Clear_sky_id_Reno-Hansen_apply_v14_2_[0-9]{4}.Rds"
 }
+
+if (D_15) {
+    inpatern    <- "Clear_sky_id_Reno-Hansen_apply_v15_[0-9]{4}.Rds"
+}
+
 
 ## new implementation with corrected limits
 if (D_14) {
@@ -240,7 +247,11 @@ if (havetorun) {
     }
 
     ## _ Keep data characterized as 'TRUE' by Radiation Quality control v14 ----
-    if (D_14 | D_14_2) {
+    if (D_14 | D_14_2 | D_15) {
+
+        cat("\nDROP DIRECT DATA POINTS:", DATA[QCF_DIR == FALSE & !is.na(wattDIR), .N], "!!\n\n")
+        cat("\nDROP GLOBAL DATA POINTS:", DATA[QCF_GLB == FALSE & !is.na(wattGLB), .N], "!!\n\n")
+
         DATA[QCF_DIR == FALSE, wattDIR           := NA]
         DATA[QCF_DIR == FALSE, wattHOR           := NA]
         DATA[QCF_GLB == FALSE, wattGLB           := NA]

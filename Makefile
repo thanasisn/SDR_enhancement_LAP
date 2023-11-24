@@ -112,43 +112,39 @@ $(RUNT): $(RMD)
 
 
 
-# ###   3. DHI_GHI_trends_consistency  #################################
-#
-# TARGET := DHI_GHI_3_trends_consistency
-# RMD    := $(TARGET).R
-# PDF    := $(TARGET).pdf
-# RUNT   := ./runtime/$(TARGET).pdf
-#
-# p3: $(PDF)
-# $(PDF): $(RMD)
-# 	@echo "Building: $@"
-# 	-Rscript -e "rmarkdown::find_pandoc(dir = '/usr/lib/rstudio/resources/app/bin/quarto/bin/tools'); rmarkdown::render('$?', output_format='bookdown::pdf_document2', output_file='$@')"
-# 	@-rsync -a --prune-empty-dirs --exclude 'unnamed-chunk*' --include '*.pdf' --include '*.png' ./DHI_GHI_*/figure-latex/ ./images
-# 	@#setsid evince    $@ &
-# 	@-rsync -a "$@" ${LIBRARY}
-# 	@-touch Article.Rmd
-#
-# r3: $(RUNT)
-# $(RUNT): $(RMD)
-# 	-Rscript $?
-#
+###   3.   #################################
+
+TARGET := GHI_enh_03_process
+RMD    := $(TARGET).R
+PDF    := $(TARGET).pdf
+RUNT   := ./runtime/$(TARGET).pdf
+
+p3: $(PDF)
+$(PDF): $(RMD)
+	@echo "Building: $@"
+	-Rscript -e "rmarkdown::find_pandoc(dir = '/usr/lib/rstudio/resources/app/bin/quarto/bin/tools'); rmarkdown::render('$?', output_format='bookdown::pdf_document2', output_file='$@')"
+	@-rsync -a --prune-empty-dirs --exclude 'unnamed-chunk*' --include '*.pdf' --include '*.png' ./DHI_GHI_*/figure-latex/ ./images
+	@#setsid evince    $@ &
+	@-rsync -a "$@" ${LIBRARY}
+	@-touch Article.Rmd
+
+r3: $(RUNT)
+$(RUNT): $(RMD)
+	-Rscript $?
 
 
-# clean_cache:
-# 	rm -f -r ./Article_cache
-# 	rm -f -r ./DHI_GHI_1_longterm_trends_cache
-# 	rm -f -r ./DHI_GHI_1_longterm_trends_files
-# 	rm -f -r ./DHI_GHI_2_sza_trends_cache
-# 	rm -f -r ./DHI_GHI_2_sza_trends_files
-# 	rm -f -r ./DHI_GHI_3_trends_consistency_cache
-# 	rm -f -r ./DHI_GHI_3_trends_consistency_files
-# 	rm -f -r ./runtime/GHI*.pdf
-#
-# clean_pdfs:
-# 	rm -f    ./DHI_GHI_1_longterm_trends.pdf
-# 	rm -f    ./DHI_GHI_2_sza_trends.pdf
-# 	rm -f    ./DHI_GHI_3_trends_consistency.pdf
-#
-# clean_data:
-# 	rm -f    ./data/*.*
+
+clean_cache:
+	rm -f -r ./Article_cache
+	rm -f -r ./GHI_enh_02_ID_CE_files
+	rm -f -r ./GHI_enh_02_process_files
+	rm -f -r ./runtime/GHI*.pdf
+
+clean_pdfs:
+	rm -f    ./GHI_enh_01_raw_data.pdf
+	rm -f    ./GHI_enh_02_ID_CE.pdf
+	rm -f    ./DHI_GHI_3_trends_consistency.pdf
+
+clean_data:
+	rm -f    ./data/*.*
 
