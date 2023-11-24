@@ -107,6 +107,68 @@ if (
 }
 
 
+
+## __ Set plot options  --------------------------------------------------------
+
+theme_paper <- function(){
+    # font <- "Georgia"   #assign font family up front
+
+    theme_bw() %+replace%    #replace elements we want to change
+        theme(
+            # panel.grid.major = element_blank(),    #strip major gridlines
+            # panel.grid.minor = element_blank(),    #strip minor gridlines
+            panel.background   = element_rect(fill = 'transparent'), #transparent panel bg
+
+            # axis.ticks = element_blank(),          #strip axis ticks
+
+            #text elements
+            # plot.title = element_text(             #title
+            #     family = font,            #set font family
+            #     size = 20,                #set font size
+            #     face = 'bold',            #bold typeface
+            #     hjust = 0,                #left align
+            #     vjust = 2),               #raise slightly
+            #
+            # plot.subtitle = element_text(          #subtitle
+            #     family = font,            #font family
+            #     size = 14),               #font size
+            #
+            # plot.caption = element_text(           #caption
+            #     family = font,            #font family
+            #     size = 9,                 #font size
+            #     hjust = 1),               #right align
+            #
+            # axis.title = element_text(             #axis titles
+            #     family = font,            #font family
+            #     size = 10),               #font size
+            #
+            # axis.text = element_text(              #axis text
+            #     family = font,            #axis famuly
+            #     size = 9),                #font size
+            #
+            # axis.text.x = element_text(            #margin for axis text
+            #     margin=margin(5, b = 10)),
+
+            plot.background       = element_rect(fill = 'transparent', color = NA), #transparent plot bg
+            # panel.grid.major      = element_blank(), #remove major gridlines
+            # panel.grid.minor      = element_blank(), #remove minor gridlines
+            legend.background     = element_rect(fill = 'transparent',
+                                                 linewidth = 0.5,
+                                                 color = "black"), #transparent legend bg
+            legend.box.background = element_rect(fill = 'transparent'), #transparent legend panel
+            # axis.line             = element_line(linewidth = .5, colour = "black", linetype = 1),
+
+            NULL
+        )
+}
+
+theme_set(theme_paper())
+
+
+
+
+
+
 ##  Load Enhancement data  -----------------------------------------------------
 DATA <- readRDS(raw_input_data)
 tic  <- Sys.time()
@@ -141,7 +203,7 @@ SelEnhanc <- "Enhanc_C_1"
 
 ## __ My criteria  ---------------------------------------------------------
 GLB_ench_THRES     <-  1.12 ## enchantment relative to HAU
-GLB_diff_THRES     <- 30    ## enchantment absolute diff to HAU
+GLB_diff_THRES     <- 15    ## enchantment absolute diff to HAU
 Clearness_Kt_THRES <-  0.8  ## enchantment threshold
 wattGLB_THRES      <- 20    ## minimum value to consider
 
@@ -190,7 +252,7 @@ DATA[wattGLB > Enhanc_C_2_ref,
 
 if (SelEnhanc == "Enhanc_C_2") {
     DATA[ , GLB_diff :=   wattGLB - Enhanc_C_2_ref                    ]  ## enhancement
-    DATA[ , GLB_ench := ( wattGLB - Enhanc_C_2_ref ) / Enhanc_C_1_ref ]  ## relative enhancement
+    DATA[ , GLB_ench := ( wattGLB - Enhanc_C_2_ref ) / Enhanc_C_2_ref ]  ## relative enhancement
     DATA[ , GLB_rati :=   wattGLB / Enhanc_C_2_ref                    ]
 }
 
@@ -205,7 +267,7 @@ DATA[wattGLB > Enhanc_C_3_ref,
 
 if (SelEnhanc == "Enhanc_C_3") {
     DATA[ , GLB_diff :=   wattGLB - Enhanc_C_3_ref                    ]  ## enhancement
-    DATA[ , GLB_ench := ( wattGLB - Enhanc_C_3_ref ) / Enhanc_C_1_ref ]  ## relative enhancement
+    DATA[ , GLB_ench := ( wattGLB - Enhanc_C_3_ref ) / Enhanc_C_3_ref ]  ## relative enhancement
     DATA[ , GLB_rati :=   wattGLB / Enhanc_C_3_ref                    ]
 }
 
@@ -306,7 +368,7 @@ setorder(enh_days, -Enh_diff_sum)
 ## strong enhancement days
 daylist <- enh_days$Day
 daylist <- sort(daylist[1:300])
-enhsnd  <- data.table(Day = sample(daylist, 30))
+enhsnd  <- data.table(Day = sample(daylist, 40))
 
 
 
@@ -314,18 +376,18 @@ enhsnd  <- data.table(Day = sample(daylist, 30))
 ## sellect some sunny days
 sunnyd  <- sunny_days[Sunshine > 0.79 & Energy > 0.74]
 sunnyd  <- sunnyd[ !Day %in% enhsnd$Day]
-sunnyd  <- sunnyd[sample(1:nrow(sunnyd), 10) ]
+sunnyd  <- sunnyd[sample(1:nrow(sunnyd), 20)]
 
 
 ## cloudy days
 clouds <- sunny_days[Sunshine > 0.6 & Energy > 0.6 & EC > 2 & Cloud > 5]
 clouds <- clouds[!Day %in% enhsnd$Day & !Day %in% sunnyd$Day]
-clouds <- clouds[sample(1:nrow(clouds), 10) ]
+clouds <- clouds[sample(1:nrow(clouds), 20)]
 
 ## some random days
 all_days <- data.table(Day=unique(DATA[, Day]))
 all_days <- all_days[!Day %in% enhsnd$Day & !Day %in% sunnyd$Day & !Day %in% clouds]
-all_days <- all_days[sample(1:nrow(all_days), 100) ]
+all_days <- all_days[sample(1:nrow(all_days), 40)]
 
 
 
@@ -339,7 +401,7 @@ all_days <- all_days[sample(1:nrow(all_days), 100) ]
 #'
 #' ## Plot some days with strong enhancement cases
 #'
-#+ echo=F, include=T
+#+ echo=F, include=T, results="asis"
 
 
 vecData  <- c("enhsnd",             "sunnyd", "clouds",    "all_days")
@@ -353,31 +415,35 @@ for (ii in 1:length(vecData)) {
 
 
     for (aday in daylist) {
-        temp <- DATA[ Day == aday ]
-        par(mar = c(4,4,1,1))
-        ylim = range(0, temp$TSIextEARTH_comb * cosde(temp$SZA), temp$wattGLB, na.rm = TRUE)
+        temp <- DATA[Day == aday]
+        par(mar = c(4, 4, 1, 1))
+        ylim <- range(0, temp$TSIextEARTH_comb * cosde(temp$SZA), temp$wattGLB, na.rm = TRUE)
 
-        plot(temp$Date, temp$wattGLB, "l", col = "green",
+        # if (aday == "1997-04-23") stop("www")
+
+        plot(temp$Date, temp$wattGLB, col = "green",
+             pch  = ".", cex = 2,
              ylim = ylim,
              ylab = expression(Watt/m^2), xlab = "Time (UTC)")
+
+        lines(temp$Date, temp$wattGLB, col = "green")
 
         lines(temp$Date, temp$wattHOR, col = "blue")
 
         lines(temp$Date, temp$TSIextEARTH_comb * cosde(temp$SZA))
 
-        lines(temp$Date, Clearness_Kt_THRES * temp$TSIextEARTH_comb * cosde(temp$SZA), lty = 3)
+        # lines(temp$Date, Clearness_Kt_THRES * temp$TSIextEARTH_comb * cosde(temp$SZA), lty = 3)
 
 
-        if (SelEnhanc == "Enhanc_C_1") {
-            lines(temp$Date, temp$CS_ref * GLB_ench_THRES + GLB_diff_THRES , col = "red" )
-        }
+        lines(temp[, get(paste0(SelEnhanc,"_ref")), Date], col = "red" )
+
 
         points(temp[get(SelEnhanc) == TRUE, wattGLB, Date], col = "red")
-        points(temp[TYPE == "Cloud", wattGLB, Date], col = "blue", pch = 3)
+        points(temp[TYPE == "Cloud", wattGLB, Date], col = "blue", pch = 3, cex = 0.3)
 
         # if (any(temp$TYPE == "Cloud")) stop("DD")
 
-        title(main = paste(as.Date(aday, origin = "1970-01-01"), temp[get(SelEnhanc) == TRUE, .N], temp[TYPE == "Cloud", .N]))
+        title(main = paste(as.Date(aday, origin = "1970-01-01"), temp[get(SelEnhanc) == TRUE, .N], temp[TYPE == "Cloud", .N], vecNames[ii]))
         # legend("topleft", c("GHI","DNI",  "A-HAU", "TSI on horizontal level","GHI Enhancement event"),
         #        col = c("green",   "blue", "red", "black", "red"),
         #        pch = c(     NA,       NA,    NA,      NA,    1 ),
@@ -410,31 +476,41 @@ for (ii in 1:length(vecData)) {
 #'
 #' ## Plot years with enhancement cases
 #'
-#+ strong_days, echo=F, include=T
+#+ echo=F, include=T, results="asis"
 
 ## TODO plot only enhancement cases
 ## DO it with base plot
-## TODO chenge plot reference by creteria
 ##
 yearstodo <- unique(year(DATA$Date))
 
+
+
+
+
+
+pyear <- 2018
 for (pyear in yearstodo) {
     p <-
-        ggplot(DATA[year(Date) == pyear], aes(CS_ref, wattGLB)) +
-        geom_point(data = DATA[year(Date) == pyear & get(SelEnhanc) == F,], colour = "black", size = 0.2) +
-        geom_point(data = DATA[year(Date) == pyear & get(SelEnhanc) == T,], size = 0.2, aes(color = GLB_diff)) +
+        ggplot(DATA[year(Date) == pyear],
+               aes(get(paste0(SelEnhanc,"_ref")), wattGLB)) +
+        geom_point(data = DATA[year(Date) == pyear & get(SelEnhanc) == F,],
+                   colour = "black", size = 0.2) +
+        geom_point(data = DATA[year(Date) == pyear & get(SelEnhanc) == T,],
+                   size = 0.2, aes(color = GLB_diff)) +
         scale_colour_gradient(low = "blue", high = "red", na.value = NA) +
+        labs(title = pyear) +
+        xlab(paste0(SelEnhanc,"_ref")) +
+        labs(color = "Over\nreference") +
         theme(
-            panel.background      = element_rect(fill='transparent'), #transparent panel bg
-            plot.background       = element_rect(fill='transparent', color=NA), #transparent plot bg
-            # panel.grid.major      = element_blank(), #remove major gridlines
-            # panel.grid.minor      = element_blank(), #remove minor gridlines
-            legend.background     = element_rect(fill='transparent'), #transparent legend bg
-            legend.box.background = element_rect(fill='transparent') #transparent legend panel
-        )
-    #+ include=T, echo=FALSE
+            legend.position = c(.03, .97),
+            legend.justification = c("left", "top"),
+            legend.box.just = "right",
+            legend.margin = margin(6, 6, 6, 6)
+        ) +
+        scale_x_continuous(expand = expansion(mult = c(0.03, 0.03))) +
+        scale_y_continuous(breaks = scales::breaks_extended(n = 6),
+                           expand = expansion(mult = c(0.03, 0.03)))
     print(p)
-    #+ include=F, echo=FALSE
 
     # ggplot(DATA, aes(CS_ref, wattGLB)) +
     #     geom_point(data = DATA[GLB_diff < 0], colour = "black", size = 0.5) +
