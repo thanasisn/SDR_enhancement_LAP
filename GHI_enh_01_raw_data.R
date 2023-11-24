@@ -92,8 +92,8 @@ D_14_2 <- FALSE
 D_14   <- FALSE
 D_13   <- FALSE
 
-D_15   <- TRUE
-# D_14_2 <- TRUE
+# D_15   <- TRUE
+D_14_2 <- TRUE
 # D_14   <- TRUE
 # D_13   <- TRUE
 
