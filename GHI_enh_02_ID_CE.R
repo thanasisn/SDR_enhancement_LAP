@@ -366,8 +366,8 @@ all_days <- all_days[sample(1:nrow(all_days), 30)]
 
 ##  Days with strong enhancement cases  ----------------------------------------
 
-#'
-#' ## Plot some days with strong enhancement cases
+#' \FloatBarrier
+#' # Plot some days with strong enhancement cases
 #'
 #+ echo=F, include=T, results="asis"
 
@@ -375,6 +375,7 @@ vecData  <- c("maxenhd",       "enhsnd",             "sunnyd", "clouds",    "all
 vecNames <- c("extrene cases", "strong enhancement", "sun",    "clouds ID", "random selection")
 
 for (ii in 1:length(vecData)) {
+    cat("\n\\FloatBarrier\n\n")
     cat("\n## Days with", vecNames[ii], "\n\n")
     temp    <- get(vecData[ii])
     daylist <- sort(temp$Day)
@@ -440,7 +441,8 @@ for (ii in 1:length(vecData)) {
 
 
 #'
-#' ## Plot years with enhancement cases
+#' \FloatBarrier
+#' # Plot years with enhancement cases
 #'
 #+ echo=F, include=T, results="asis"
 
@@ -449,29 +451,30 @@ for (ii in 1:length(vecData)) {
 ##
 yearstodo <- unique(year(DATA$Date))
 
-
-
-
-
-
 pyear <- 2018
 for (pyear in yearstodo) {
     p <-
         ggplot(DATA[year(Date) == pyear],
                aes(get(paste0(SelEnhanc,"_ref")), wattGLB)) +
-        geom_point(data = DATA[year(Date) == pyear & get(SelEnhanc) == F,],
-                   colour = "black", size = 0.2) +
-        geom_point(data = DATA[year(Date) == pyear & get(SelEnhanc) == T,],
-                   size = 0.2, aes(color = GLB_diff)) +
-        scale_colour_gradient(low = "blue", high = "red", na.value = NA) +
+        geom_point(data   = DATA[year(Date) == pyear & get(SelEnhanc) == F,],
+                   colour = "black",
+                   na.rm  = TRUE,
+                   size   = 0.2) +
+        geom_point(data   = DATA[year(Date) == pyear & get(SelEnhanc) == T,],
+                   na.rm  = TRUE,
+                   size   = 0.2,
+                   aes(color = GLB_diff)) +
+        scale_colour_gradient(low      = "blue",
+                              high     = "red",
+                              na.value = NA) +
         labs(title = pyear) +
-        xlab(paste0(SelEnhanc,"_ref")) +
+        xlab(paste0(SelEnhanc, "_ref")) +
         labs(color = "Over\nreference") +
         theme(
-            legend.position = c(.03, .97),
+            legend.position      = c(.03, .97),
             legend.justification = c("left", "top"),
-            legend.box.just = "right",
-            legend.margin = margin(6, 6, 6, 6)
+            legend.box.just      = "right",
+            legend.margin        = margin(6, 6, 6, 6)
         ) +
         scale_x_continuous(expand = expansion(mult = c(0.03, 0.03))) +
         scale_y_continuous(breaks = scales::breaks_extended(n = 6),
