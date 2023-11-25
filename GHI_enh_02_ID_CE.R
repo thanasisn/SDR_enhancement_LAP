@@ -47,8 +47,8 @@
 
 #+ echo=F, include=F
 knitr::opts_chunk$set(comment    = ""       )
-knitr::opts_chunk$set(dev        = c("pdf", "png"))
-# knitr::opts_chunk$set(dev        = "png"    )
+knitr::opts_chunk$set(dev        = c("pdf", "png")) ## expected option
+knitr::opts_chunk$set(dev        = "png"    )       ## too much data
 knitr::opts_chunk$set(out.width  = "100%"   )
 knitr::opts_chunk$set(fig.align  = "center" )
 knitr::opts_chunk$set(cache      =  FALSE   )  ## !! breaks calculations
@@ -196,10 +196,6 @@ SelEnhanc <- "Enhanc_C_1"
 # SelEnhanc <- "Enhanc_C_2"
 # SelEnhanc <- "Enhanc_C_3"
 
-# DATA[ , GLB_diff :=   wattGLB - CS_ref            ]  ## enhancement
-# DATA[ , GLB_ench := ( wattGLB - CS_ref ) / CS_ref ]  ## relative enhancement
-# DATA[ , GLB_rati :=   wattGLB / CS_ref            ]
-
 
 ## __ My criteria  ---------------------------------------------------------
 GLB_ench_THRES     <-  1.12 ## enchantment relative to HAU
@@ -216,8 +212,6 @@ DATA[, Enhanc_C_1 := FALSE]
 #          ClearnessIndex_kt > Clearness_Kt_THRES,
 #      Enhanc_C_1 := TRUE]
 
-# DATA[ ClearnessIndex_kt > Clearness_Kt_THRES,
-#      Enhanc_C_1 := TRUE]
 
 DATA[, Enhanc_C_1_ref := ETH * Clearness_Kt_THRES + GLB_diff_THRES]
 DATA[wattGLB > Enhanc_C_1_ref,
@@ -229,11 +223,6 @@ if (SelEnhanc == "Enhanc_C_1") {
     DATA[ , GLB_rati :=   wattGLB / Enhanc_C_1_ref                    ]
 }
 
-
-# DATA[CS_ref * GLB_ench_THRES + GLB_diff_THRES > ETH * Clearness_Kt_THRES, ]
-
-# DATA[wattGLB           > CS_ref * GLB_ench_THRES + GLB_diff_THRES,
-#      Enhanc_C_1 := TRUE]
 
 
 

@@ -161,7 +161,11 @@ if (havetorun) {
         temp$CHP1temp           <- NULL
         temp$CHP1tempSD         <- NULL
         temp$CHP1tempUNC        <- NULL
+        # temp$CS_ref             <- NULL
+        temp$CS_ref_HOR         <- NULL
         temp$Clearness_Kt       <- NULL
+        temp$ClrSW              <- NULL
+        temp$ClrSW_ref2         <- NULL
         temp$DIFF_strict        <- NULL
         temp$DIF_HOR            <- NULL
         temp$DIR_strict         <- NULL
@@ -171,6 +175,7 @@ if (havetorun) {
         temp$GLBINC_SD_wpsm     <- NULL
         temp$GLBINC_strict      <- NULL
         temp$GLBINC_wpsm        <- NULL
+        temp$Glo_max_ref        <- NULL
         temp$Global_max         <- NULL
         temp$HOR_strict         <- NULL
         temp$Pressure           <- NULL
@@ -403,13 +408,6 @@ if (havetorun) {
     ## remove unused columns
     rm.cols.DT(DATA, "CSflag_*", quiet = TRUE)
 
-
-    ## _ Enhancement ID  ------------------------------------------------------
-
-    ## __ Create some metrics  -------------------------------------------------
-    DATA[ , GLB_diff :=   wattGLB - CS_ref            ]  ## enhancement
-    DATA[ , GLB_ench := ( wattGLB - CS_ref ) / CS_ref ]  ## relative enhancement
-    DATA[ , GLB_rati :=   wattGLB / CS_ref            ]
 
     #  Save raw input data  ----------------------------------------------------
     saveRDS(DATA, file = raw_input_data, compress = "xz")
