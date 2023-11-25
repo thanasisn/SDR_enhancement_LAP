@@ -314,7 +314,8 @@ enh_days <- DATA[get(SelEnhanc) == TRUE,
                  .(Enh_sum      = sum(GLB_ench, na.rm = TRUE),
                    Enh_max      = max(GLB_ench, na.rm = TRUE),
                    Enh_diff_sum = sum(GLB_diff, na.rm = TRUE),
-                   Enh_diff_max = max(GLB_diff, na.rm = TRUE)),
+                   Enh_diff_max = max(GLB_diff, na.rm = TRUE),
+                   Enh_N        = sum(get(SelEnhanc))),
                  Day]
 
 hist(enh_days$Enh_sum)
@@ -323,7 +324,7 @@ hist(enh_days$Enh_diff_max)
 hist(enh_days$Enh_diff_sum)
 
 
-sunny_days <- DATA[, .(Sunshine = sum(TYPE == "Clear")/max(DayLength, na.rm = TRUE),
+sunny_days <- DATA[, .(Sunshine = sum(TYPE == "Clear") / max(DayLength, na.rm = TRUE),
                        Energy   = sum(ClearnessIndex_kt, na.rm = TRUE)/sum(TYPE == "Clear"),
                        EC       = sum(get(SelEnhanc)),
                        Cloud    = sum(TYPE == "Cloud")),
@@ -351,14 +352,20 @@ sunnyd  <- sunny_days[Sunshine > 0.79 & Energy > 0.74]
 sunnyd  <- sunnyd[!Day %in% maxenhd$Day & !Day %in% enhsnd$Day]
 sunnyd  <- sunnyd[sample(1:nrow(sunnyd), 20)]
 
+
+## sunny with enhancements
+sunnyenh <- sunny_days[Sunshine > 0.77 & Energy > 0.73 & EC > 0]
+sunnyenh <- sunnyenh[!Day %in% maxenhd$Day & !Day %in% enhsnd$Day & !Day %in% sunnyd$Day]
+
+
 ## cloudy days
 clouds <- sunny_days[Sunshine > 0.6 & Energy > 0.6 & EC > 2 & Cloud > 5]
-clouds <- clouds[!Day %in% maxenhd$Day & !Day %in% enhsnd$Day & !Day %in% sunnyd$Day]
+clouds <- clouds[!Day %in% sunnyenh$Day & !Day %in% maxenhd$Day & !Day %in% enhsnd$Day & !Day %in% sunnyd$Day]
 clouds <- clouds[sample(1:nrow(clouds), 20)]
 
 ## some random days
 all_days <- data.table(Day=unique(DATA[, Day]))
-all_days <- all_days[!Day %in% maxenhd$Day & !Day %in% enhsnd$Day & !Day %in% sunnyd$Day & !Day %in% clouds]
+all_days <- all_days[!Day %in% sunnyenh$Day & !Day %in% maxenhd$Day & !Day %in% enhsnd$Day & !Day %in% sunnyd$Day & !Day %in% clouds]
 all_days <- all_days[sample(1:nrow(all_days), 30)]
 
 
@@ -371,8 +378,8 @@ all_days <- all_days[sample(1:nrow(all_days), 30)]
 #'
 #+ echo=F, include=T, results="asis"
 
-vecData  <- c("maxenhd",       "enhsnd",             "sunnyd", "clouds",    "all_days")
-vecNames <- c("extrene cases", "strong enhancement", "sun",    "clouds ID", "random selection")
+vecData  <- c("maxenhd",       "enhsnd",             "sunnyd", "sunnyenh",          "clouds",    "all_days")
+vecNames <- c("extrene cases", "strong enhancement", "sun",    "sunny enhansement", "clouds ID", "random selection")
 
 for (ii in 1:length(vecData)) {
     cat("\n\\FloatBarrier\n\n")
@@ -380,11 +387,12 @@ for (ii in 1:length(vecData)) {
     temp    <- get(vecData[ii])
     daylist <- sort(temp$Day)
 
-
     for (aday in daylist) {
         temp <- DATA[Day == aday]
         par(mar = c(4, 4, 1, 1))
-        ylim <- range(0, temp$TSIextEARTH_comb * cosde(temp$SZA), temp$wattGLB, na.rm = TRUE)
+        ylim <- range(0, temp$ETH, temp$wattGLB, na.rm = TRUE)
+
+
 
         # if (aday == "1997-04-23") stop("www")
 
@@ -437,6 +445,7 @@ for (ii in 1:length(vecData)) {
         # plot(temp$Date, temp$GLB_diff)
     }
 }
+#+ echo=F, include=T
 
 
 
