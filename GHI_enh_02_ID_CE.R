@@ -45,17 +45,16 @@
 
 ## __ Document options ---------------------------------------------------------
 
-#+ echo=F, include=F
+#+ echo=FALSE, include=TRUE
 knitr::opts_chunk$set(comment    = ""       )
-knitr::opts_chunk$set(dev        = c("pdf", "png")) ## expected option
-knitr::opts_chunk$set(dev        = "png"    )       ## too much data
+# knitr::opts_chunk$set(dev        = c("pdf", "png")) ## expected option
+knitr::opts_chunk$set(dev        = "png"    )       ## for too much data
 knitr::opts_chunk$set(out.width  = "100%"   )
 knitr::opts_chunk$set(fig.align  = "center" )
 knitr::opts_chunk$set(cache      =  FALSE   )  ## !! breaks calculations
-# knitr::opts_chunk$set(fig.pos    = '!h'    )
 
 
-#+ include=F, echo=F
+#+ echo=FALSE, include=TRUE
 ## __ Set environment ----------------------------------------------------------
 Sys.setenv(TZ = "UTC")
 Script.Name <- "./GHI_enh_02_ID_CE.R"
@@ -66,7 +65,7 @@ if (!interactive()) {
 }
 
 
-#+ echo=F, include=T
+#+ echo=FALSE, include=TRUE
 library(data.table, quietly = TRUE, warn.conflicts = FALSE)
 require(zoo       , quietly = TRUE, warn.conflicts = FALSE)
 library(pander    , quietly = TRUE, warn.conflicts = FALSE)
@@ -166,6 +165,7 @@ theme_set(theme_paper())
 
 
 
+alpha <- 0.9653023236718680788471
 
 
 
@@ -186,19 +186,15 @@ tic  <- Sys.time()
 #'
 #'  Alpha * HAU is CS_ref
 #'
-#+ include=FALSE, echo=FALSE
-alpha <- 0.9653023236718680788471
+#+ echo=TRUE, include=TRUE
 
-
-
-## __ Enhancement criteria  ------------------------------------------------
+## __ Enhancement criteria  ----------------------------------------------------
 SelEnhanc <- "Enhanc_C_1"
 # SelEnhanc <- "Enhanc_C_2"
 # SelEnhanc <- "Enhanc_C_3"
 
-
-## __ My criteria  ---------------------------------------------------------
-GLB_ench_THRES     <-  1.12 ## enchantment relative to HAU
+## __ My criteria  -------------------------------------------------------------
+GLB_ench_THRES     <-  1.10 ## enchantment relative to HAU
 GLB_diff_THRES     <- 15    ## enchantment absolute diff to HAU
 Clearness_Kt_THRES <-  0.8  ## enchantment threshold
 wattGLB_THRES      <- 20    ## minimum value to consider
@@ -208,28 +204,18 @@ DATA[, Enhanc_C_1 := FALSE]
 #      ClearnessIndex_kt > Clearness_Kt_THRES,
 #      Enhanc_C_1 := TRUE]
 
-# DATA[wattGLB           > CS_ref * GLB_ench_THRES + GLB_diff_THRES &
-#          ClearnessIndex_kt > Clearness_Kt_THRES,
-#      Enhanc_C_1 := TRUE]
-
-
 DATA[, Enhanc_C_1_ref := ETH * Clearness_Kt_THRES + GLB_diff_THRES]
 DATA[wattGLB > Enhanc_C_1_ref,
      Enhanc_C_1 := TRUE]
 
 if (SelEnhanc == "Enhanc_C_1") {
-    DATA[ , GLB_diff :=   wattGLB - Enhanc_C_1_ref                    ]  ## enhancement
-    DATA[ , GLB_ench := ( wattGLB - Enhanc_C_1_ref ) / Enhanc_C_1_ref ]  ## relative enhancement
+    DATA[ , GLB_diff :=   wattGLB - Enhanc_C_1_ref                    ] ## enhancement
+    DATA[ , GLB_ench := ( wattGLB - Enhanc_C_1_ref ) / Enhanc_C_1_ref ] ## relative enhancement
     DATA[ , GLB_rati :=   wattGLB / Enhanc_C_1_ref                    ]
 }
 
 
-
-
-
-
-
-## __ Gueymard2017 Criteria  -----------------------------------------------
+## __ Gueymard2017 Criteria  ---------------------------------------------------
 ## Clearness index > 0.8 / 1
 
 DATA[, Enhanc_C_2 := FALSE]
@@ -240,14 +226,14 @@ DATA[wattGLB > Enhanc_C_2_ref,
      Enhanc_C_2 := TRUE]
 
 if (SelEnhanc == "Enhanc_C_2") {
-    DATA[ , GLB_diff :=   wattGLB - Enhanc_C_2_ref                    ]  ## enhancement
-    DATA[ , GLB_ench := ( wattGLB - Enhanc_C_2_ref ) / Enhanc_C_2_ref ]  ## relative enhancement
+    DATA[ , GLB_diff :=   wattGLB - Enhanc_C_2_ref                    ] ## enhancement
+    DATA[ , GLB_ench := ( wattGLB - Enhanc_C_2_ref ) / Enhanc_C_2_ref ] ## relative enhancement
     DATA[ , GLB_rati :=   wattGLB / Enhanc_C_2_ref                    ]
 }
 
 
 
-## Vamvakas2020
+## __ Vamvakas2020  Criteria  --------------------------------------------------
 ## +5% from model => enhancements above 15 Wm^2 the instrument uncertainty
 DATA[, Enhanc_C_3 := FALSE]
 DATA[, Enhanc_C_3_ref := CS_ref * 1.05]
@@ -255,12 +241,12 @@ DATA[wattGLB > Enhanc_C_3_ref,
      Enhanc_C_3 := TRUE]
 
 if (SelEnhanc == "Enhanc_C_3") {
-    DATA[ , GLB_diff :=   wattGLB - Enhanc_C_3_ref                    ]  ## enhancement
-    DATA[ , GLB_ench := ( wattGLB - Enhanc_C_3_ref ) / Enhanc_C_3_ref ]  ## relative enhancement
+    DATA[ , GLB_diff :=   wattGLB - Enhanc_C_3_ref                    ] ## enhancement
+    DATA[ , GLB_ench := ( wattGLB - Enhanc_C_3_ref ) / Enhanc_C_3_ref ] ## relative enhancement
     DATA[ , GLB_rati :=   wattGLB / Enhanc_C_3_ref                    ]
 }
 
-
+#+ include=TRUE, echo=FALSE
 
 # hist(DATA[GLB_ench > 0, GLB_ench])
 # hist(DATA[GLB_diff > 0, GLB_diff])
@@ -277,10 +263,6 @@ abline(v = 1, col = "red")
 
 
 
-hist(DATA[Enhanc_C_3 == TRUE, GLB_diff])
-plot(DATA[Enhanc_C_3 == TRUE, GLB_diff, GLB_ench])
-
-
 
 ## Mol2023
 ## activate when +1% and 10w/m from model reference
@@ -290,8 +272,6 @@ plot(DATA[Enhanc_C_3 == TRUE, GLB_diff, GLB_ench])
 table(DATA$Enhanc_C_1)
 table(DATA$Enhanc_C_2)
 table(DATA$Enhanc_C_3)
-
-
 
 
 hist(DATA[TYPE == "Cloud", ClearnessIndex_kt])
@@ -334,8 +314,14 @@ enh_days <- DATA[get(SelEnhanc) == TRUE,
                  .(Enh_sum      = sum(GLB_ench, na.rm = TRUE),
                    Enh_max      = max(GLB_ench, na.rm = TRUE),
                    Enh_diff_sum = sum(GLB_diff, na.rm = TRUE),
-                   Enh_diff_max = sum(GLB_diff, na.rm = TRUE)),
+                   Enh_diff_max = max(GLB_diff, na.rm = TRUE)),
                  Day]
+
+hist(enh_days$Enh_sum)
+hist(enh_days$Enh_max)
+hist(enh_days$Enh_diff_max)
+hist(enh_days$Enh_diff_sum)
+
 
 sunny_days <- DATA[, .(Sunshine = sum(TYPE == "Clear")/max(DayLength, na.rm = TRUE),
                        Energy   = sum(ClearnessIndex_kt, na.rm = TRUE)/sum(TYPE == "Clear"),
@@ -345,44 +331,37 @@ sunny_days <- DATA[, .(Sunshine = sum(TYPE == "Clear")/max(DayLength, na.rm = TR
 
 hist(sunny_days$Sunshine)
 hist(sunny_days$Energy)
+hist(sunny_days$EC)
+hist(sunny_days$Cloud)
 
 
 
+## days with maximum values
+setorder(enh_days, -Enh_diff_max)
+maxenhd <- enh_days[1:20]
 
-## interesting days first
-setorder(enh_days, -Enh_sum     )
-setorder(enh_days, -Enh_max     )
-setorder(enh_days, -Enh_diff_sum)
+## strong total enhancement days
+setorder(enh_days, -Enh_sum)
+daylist <- enh_days[1:200]
+daylist <- daylist[!Day %in% maxenhd$Day]
+enhsnd  <- daylist[sample(1:nrow(daylist), 30)]
 
-## strong enhancement days
-daylist <- enh_days$Day
-daylist <- sort(daylist[1:300])
-enhsnd  <- data.table(Day = sample(daylist, 40))
-
-
-
-
-## sellect some sunny days
+## select some sunny days
 sunnyd  <- sunny_days[Sunshine > 0.79 & Energy > 0.74]
-sunnyd  <- sunnyd[ !Day %in% enhsnd$Day]
+sunnyd  <- sunnyd[!Day %in% maxenhd$Day & !Day %in% enhsnd$Day]
 sunnyd  <- sunnyd[sample(1:nrow(sunnyd), 20)]
-
 
 ## cloudy days
 clouds <- sunny_days[Sunshine > 0.6 & Energy > 0.6 & EC > 2 & Cloud > 5]
-clouds <- clouds[!Day %in% enhsnd$Day & !Day %in% sunnyd$Day]
+clouds <- clouds[!Day %in% maxenhd$Day & !Day %in% enhsnd$Day & !Day %in% sunnyd$Day]
 clouds <- clouds[sample(1:nrow(clouds), 20)]
 
 ## some random days
 all_days <- data.table(Day=unique(DATA[, Day]))
-all_days <- all_days[!Day %in% enhsnd$Day & !Day %in% sunnyd$Day & !Day %in% clouds]
-all_days <- all_days[sample(1:nrow(all_days), 40)]
+all_days <- all_days[!Day %in% maxenhd$Day & !Day %in% enhsnd$Day & !Day %in% sunnyd$Day & !Day %in% clouds]
+all_days <- all_days[sample(1:nrow(all_days), 30)]
 
 
-
-
-
-## some more see git!!?
 
 
 ##  Days with strong enhancement cases  ----------------------------------------
@@ -392,10 +371,8 @@ all_days <- all_days[sample(1:nrow(all_days), 40)]
 #'
 #+ echo=F, include=T, results="asis"
 
-
-vecData  <- c("enhsnd",             "sunnyd", "clouds",    "all_days")
-vecNames <- c("strong enhancement", "sun",    "clouds ID", "random selection")
-
+vecData  <- c("maxenhd",       "enhsnd",             "sunnyd", "clouds",    "all_days")
+vecNames <- c("extrene cases", "strong enhancement", "sun",    "clouds ID", "random selection")
 
 for (ii in 1:length(vecData)) {
     cat("\n## Days with", vecNames[ii], "\n\n")
