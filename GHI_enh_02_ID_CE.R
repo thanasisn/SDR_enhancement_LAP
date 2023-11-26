@@ -195,7 +195,7 @@ SelEnhanc <- "Enhanc_C_1"
 
 ## __ My criteria  -------------------------------------------------------------
 GLB_ench_THRES     <-  1.10 ## enchantment relative to HAU
-GLB_diff_THRES     <- 15    ## enchantment absolute diff to HAU
+GLB_diff_THRES     <- 20    ## enchantment absolute diff to HAU
 Clearness_Kt_THRES <-  0.8  ## enchantment threshold
 wattGLB_THRES      <- 20    ## minimum value to consider
 
@@ -369,24 +369,10 @@ all_days <- all_days[!Day %in% sunnyenh$Day & !Day %in% maxenhd$Day & !Day %in% 
 all_days <- all_days[sample(1:nrow(all_days), 30)]
 
 ## manual selection
-testdays <- c("2013-05-27",
-              "2000-07-14",
-              "2007-07-06")
-
-
-chp1_calibration_data <- matrix(
-##        Date,         Sensitivity [μV/W/m^2], Acquisition Gain []
-       c("2016-04-01",  8.08,                   2000,
-         "2016-04-02",  8.08,                   2000,  ## <- fake, just for interpolation
-          NULL),
-       byrow = TRUE,
-       ncol  = 3)
-
-## Format to data frame
-chp1_calibration_data <- data.frame(Date        = as.POSIXct(chp1_calibration_data[,1]),
-                                    Sensitivity = as.numeric(chp1_calibration_data[,2]),
-                                    Gain        = as.numeric(chp1_calibration_data[,3]))
-
+testdays <- data.table(Day =
+                           c("2013-05-27",
+                             "2000-07-14",
+                             "2007-07-06"))
 
 
 ##  Days with strong enhancement cases  ----------------------------------------
@@ -396,21 +382,36 @@ chp1_calibration_data <- data.frame(Date        = as.POSIXct(chp1_calibration_da
 #'
 #+ echo=F, include=T, results="asis"
 
-vecData  <- c("maxenhd",       "enhsnd",             "sunnyd", "sunnyenh",          "clouds",    "all_days")
-vecNames <- c("extrene cases", "strong enhancement", "sun",    "sunny enhansement", "clouds ID", "random selection")
+vec_days <- matrix(
+    ##   Data      Description
+    c("maxenhd",  "extrene cases",
+      "enhsnd",   "strong enhancement",
+      "sunnyd",   "sun",
+      "sunnyenh", "sunny enhansement",
+      "clouds",   "clouds ID",
+      "all_days", "random selection",
+      "testdays", "manual test days",
+      NULL),
+    byrow = TRUE,
+    ncol  = 2)
 
-for (ii in 1:length(vecData)) {
+## Format to data frame
+vec_days <- data.frame(Data        = vec_days[,1],
+                       Descriprion = vec_days[,2])
+
+#vecData  <- c("maxenhd",       "enhsnd",             "sunnyd", "sunnyenh",          "clouds",    "all_days")
+#vecNames <- c("extrene cases", "strong enhancement", "sun",    "sunny enhansement", "clouds ID", "random selection")
+
+for (ii in 1:nrow(vec_days)) {
     cat("\n\\FloatBarrier\n\n")
-    cat("\n## Days with", vecNames[ii], "\n\n")
-    temp    <- get(vecData[ii])
+    cat("\n## Days with", vec_days$Descriprion[ii], "\n\n")
+    temp    <- get(vec_days$Data[ii])
     daylist <- sort(temp$Day)
 
     for (aday in daylist) {
         temp <- DATA[Day == aday]
         par(mar = c(4, 4, 1, 1))
         ylim <- range(0, temp$ETH, temp$wattGLB, na.rm = TRUE)
-
-
 
         # if (aday == "1997-04-23") stop("www")
 
@@ -436,7 +437,7 @@ for (ii in 1:length(vecData)) {
 
         # if (any(temp$TYPE == "Cloud")) stop("DD")
 
-        title(main = paste(as.Date(aday, origin = "1970-01-01"), temp[get(SelEnhanc) == TRUE, .N], temp[TYPE == "Cloud", .N], vecNames[ii]))
+        title(main = paste(as.Date(aday, origin = "1970-01-01"), temp[get(SelEnhanc) == TRUE, .N], temp[TYPE == "Cloud", .N], vec_days$Descriprion[ii]))
         # legend("topleft", c("GHI","DNI",  "A-HAU", "TSI on horizontal level","GHI Enhancement event"),
         #        col = c("green",   "blue", "red", "black", "red"),
         #        pch = c(     NA,       NA,    NA,      NA,    1 ),
