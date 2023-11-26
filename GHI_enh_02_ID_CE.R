@@ -368,6 +368,24 @@ all_days <- data.table(Day=unique(DATA[, Day]))
 all_days <- all_days[!Day %in% sunnyenh$Day & !Day %in% maxenhd$Day & !Day %in% enhsnd$Day & !Day %in% sunnyd$Day & !Day %in% clouds]
 all_days <- all_days[sample(1:nrow(all_days), 30)]
 
+## manual selection
+testdays <- c("2013-05-27",
+              "2000-07-14",
+              "2007-07-06")
+
+
+chp1_calibration_data <- matrix(
+##        Date,         Sensitivity [μV/W/m^2], Acquisition Gain []
+       c("2016-04-01",  8.08,                   2000,
+         "2016-04-02",  8.08,                   2000,  ## <- fake, just for interpolation
+          NULL),
+       byrow = TRUE,
+       ncol  = 3)
+
+## Format to data frame
+chp1_calibration_data <- data.frame(Date        = as.POSIXct(chp1_calibration_data[,1]),
+                                    Sensitivity = as.numeric(chp1_calibration_data[,2]),
+                                    Gain        = as.numeric(chp1_calibration_data[,3]))
 
 
 
