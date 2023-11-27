@@ -1,19 +1,14 @@
 
 ## Variables for project
 
-
 #### dictionary ####
 dict <- list(DIR_att    = 'Dir. Beam Irrad.',
              HOR_att    = 'Dir. Irrad. horizontal plane',
              DIR_transp = 'Transp. for Dir. Irrad.',
              GLB_att    = "SDR",
              tsi1au_att = "TSI at 1au",
-             ALL        = "All sky cond.",
-             CLEAR      = "Clear sky cond.",
              CLOUD      = "Cloudy sky cond.")
 ## function to translate objects names
-# translate <- function(...) as.vector(unlist(dict[c(...) == names(dict)]))
-
 translate <- function(x) {
     res <- c()
     for (ax in x) {
@@ -27,16 +22,10 @@ translate <- function(x) {
 }
 
 
-
-
 #### Data range ####
 ## will not include the last/first day
-# LAST_DAY                 <- as.Date("2023-06-01") ## Cleaned data
-# LAST_DAY                 <- as.Date("2011-04-01") ## similar to Bais analysis
 LAST_DAY                 <- as.POSIXct("2023-04-13 11:59:30") ## set the date of last NOAA TSI data
 FIRST_DAY                <- as.POSIXct("1900-07-01") ## include all available
-# FIRST_DAY                <- as.Date("2005-01-01") ## data inspected by me
-# FIRST_DAY                <- as.Date("2016-04-01") ## start of chp1
 
 
 #### Paths ####
@@ -49,20 +38,12 @@ CS_file_14_2             <- "./data/Clear_Sky_14_2.Rds"
 common_data_13           <- "./data/common_data_13.Rda"
 common_data_14           <- "./data/common_data_14.Rda"
 common_data_14_2         <- "./data/common_data_14_2.Rda"
-variables_fl             <- "./GHI_enh_0_variables.R"
-data_procsess_fl         <- "./GHI_enh_00_raw_data.R"
-raw_input_data           <- "./data/Raw_Input.Rds"
+variables_fl             <- "./GHI_enh_00_variables.R"
+raw_input_data           <- "./data/CE_ID_Input.Rds"
 Input_data_ID            <- "./data/CE_ID_Input.Rds"
 I1_longterm              <- "./data/Input_1_longterm_trends.Rda"
 I2_szatrend              <- "./data/Input_2_sza_trends.Rda"
 I3_trendsconsist         <- "./data/Input_3_trends_consist.Rda"
-
-#### colors ####
-col_DIR_att              <- "#2166ac"
-col_HOR_att              <- "#4244ac"
-col_DIR_transp           <- "#9970ab"
-col_GLB_att              <- "#1a9850"
-col_tsi1au_att           <- "#e3e300"
 
 
 #### parameters ####
@@ -106,13 +87,8 @@ SKIP_cm21 <- data.frame(From    = as.POSIXct(  SKIP_cm21[,1]),
                         Until   = as.POSIXct(  SKIP_cm21[,2]),
                         Comment = as.character(SKIP_cm21[,3]))
 
-
 ## __ Variables  -----------------------------------------------------------
-
-
-min_elevation      <- 10    ## minimum sun elevation to use
 ampl               <- 1.05  ## adjusted HAU amplified threshold
 SZA_BIN            <- 1
-
 
 
