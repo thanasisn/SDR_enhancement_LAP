@@ -209,47 +209,11 @@ Alpha * HAU is CS\_ref
 \hypertarget{distribution-of-different-criteria}{%
 \section{Distribution of different criteria}\label{distribution-of-different-criteria}}
 
-\begin{Shaded}
-\begin{Highlighting}[]
-\CommentTok{\# hist(DATA[GLB\_ench \textgreater{} 0, GLB\_ench])}
-\CommentTok{\# hist(DATA[GLB\_diff \textgreater{} 0, GLB\_diff])}
-\CommentTok{\# hist(DATA[GLB\_rati \textgreater{} 1, GLB\_rati])}
-
-\FunctionTok{hist}\NormalTok{(DATA[, GLB\_ench], }\AttributeTok{breaks =} \DecValTok{100}\NormalTok{)}
-\FunctionTok{abline}\NormalTok{(}\AttributeTok{v =} \DecValTok{0}\NormalTok{, }\AttributeTok{col =} \StringTok{"red"}\NormalTok{)}
-\end{Highlighting}
-\end{Shaded}
-
 \begin{center}\includegraphics[width=1\linewidth]{GHI_enh_02_ID_CE_files/figure-latex/unnamed-chunk-7-1} \end{center}
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\FunctionTok{hist}\NormalTok{(DATA[, GLB\_diff], }\AttributeTok{breaks =} \DecValTok{100}\NormalTok{)}
-\FunctionTok{abline}\NormalTok{(}\AttributeTok{v =} \DecValTok{0}\NormalTok{, }\AttributeTok{col =} \StringTok{"red"}\NormalTok{)}
-\end{Highlighting}
-\end{Shaded}
 
 \begin{center}\includegraphics[width=1\linewidth]{GHI_enh_02_ID_CE_files/figure-latex/unnamed-chunk-7-2} \end{center}
 
-\begin{Shaded}
-\begin{Highlighting}[]
-\FunctionTok{hist}\NormalTok{(DATA[, GLB\_rati], }\AttributeTok{breaks =} \DecValTok{100}\NormalTok{)}
-\FunctionTok{abline}\NormalTok{(}\AttributeTok{v =} \DecValTok{1}\NormalTok{, }\AttributeTok{col =} \StringTok{"red"}\NormalTok{)}
-\end{Highlighting}
-\end{Shaded}
-
 \begin{center}\includegraphics[width=1\linewidth]{GHI_enh_02_ID_CE_files/figure-latex/unnamed-chunk-7-3} \end{center}
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\DocumentationTok{\#\# Mol2023}
-\DocumentationTok{\#\# activate when +1\% and 10w/m from model reference}
-\DocumentationTok{\#\# near by values with +0.1 are also accepted}
-
-
-\FunctionTok{table}\NormalTok{(DATA}\SpecialCharTok{$}\NormalTok{Enhanc\_C\_1)}
-\end{Highlighting}
-\end{Shaded}
 
 \begin{verbatim}
 
@@ -257,23 +221,11 @@ Alpha * HAU is CS\_ref
 5872811  115864 
 \end{verbatim}
 
-\begin{Shaded}
-\begin{Highlighting}[]
-\FunctionTok{table}\NormalTok{(DATA}\SpecialCharTok{$}\NormalTok{Enhanc\_C\_2)}
-\end{Highlighting}
-\end{Shaded}
-
 \begin{verbatim}
 
   FALSE    TRUE 
 5805054  183621 
 \end{verbatim}
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\FunctionTok{table}\NormalTok{(DATA}\SpecialCharTok{$}\NormalTok{Enhanc\_C\_3)}
-\end{Highlighting}
-\end{Shaded}
 
 \begin{verbatim}
 
@@ -281,166 +233,23 @@ Alpha * HAU is CS\_ref
 5259266  729409 
 \end{verbatim}
 
-\begin{Shaded}
-\begin{Highlighting}[]
-\FunctionTok{hist}\NormalTok{(DATA[TYPE }\SpecialCharTok{==} \StringTok{"Cloud"}\NormalTok{, ClearnessIndex\_kt])}
-\end{Highlighting}
-\end{Shaded}
-
 \begin{center}\includegraphics[width=1\linewidth]{GHI_enh_02_ID_CE_files/figure-latex/unnamed-chunk-7-4} \end{center}
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\CommentTok{\#    \#\# \_\_ Group continuous values  {-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}}
-\CommentTok{\#    DATA[, cnF := cumsum(Enhanc\_C\_1 == FALSE)]}
-\CommentTok{\#    DATA[, cnT := cumsum(Enhanc\_C\_1 == TRUE) ]}
-\CommentTok{\#    \#\# Init groups logical}
-\CommentTok{\#    DATA[, C1G1  := Enhanc\_C\_1]}
-\CommentTok{\#    DATA[, C1G0  := Enhanc\_C\_1]}
-\CommentTok{\#}
-\CommentTok{\#    \#\# Find groups with one gap}
-\CommentTok{\#    for (i in 1:nrow(DATA)) \{}
-\CommentTok{\#        p1 \textless{}{-} i {-} 1}
-\CommentTok{\#        n1 \textless{}{-} i + 1}
-\CommentTok{\#        if (p1 \textgreater{} 0 \& n1 \textless{}= nrow(DATA)) \{}
-\CommentTok{\#            if (DATA$C1G1[p1] == TRUE  \&}
-\CommentTok{\#                DATA$C1G1[i]  == FALSE \&}
-\CommentTok{\#                DATA$C1G1[n1] == TRUE  ) \{}
-\CommentTok{\#                DATA$C1G1[i]  \textless{}{-} TRUE}
-\CommentTok{\#            \}}
-\CommentTok{\#        \}}
-\CommentTok{\#    \}}
-\CommentTok{\#}
-\CommentTok{\#    \#\# Allow one gap group}
-\CommentTok{\#    DATA[, C1Grp1 := rleid(c(NA,diff(cumsum(G1))))]}
-\CommentTok{\#    DATA[C1G1 == FALSE, C1Grp1 := NA]}
-\CommentTok{\#}
-\CommentTok{\#    \#\# No gap group}
-\CommentTok{\#    DATA[, C1Grp0 := rleid(c(NA,diff(cumsum(G0))))]}
-\CommentTok{\#    DATA[C1G0 == FALSE, C1Grp0 := NA]}
-
-
-
-\DocumentationTok{\#\# \_\_ Estimate enhancement daily magnitude  {-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}}
-\NormalTok{enh\_days }\OtherTok{\textless{}{-}}\NormalTok{ DATA[}\FunctionTok{get}\NormalTok{(SelEnhanc) }\SpecialCharTok{==} \ConstantTok{TRUE}\NormalTok{,}
-\NormalTok{                 .(}\AttributeTok{Enh\_sum      =} \FunctionTok{sum}\NormalTok{(GLB\_ench, }\AttributeTok{na.rm =} \ConstantTok{TRUE}\NormalTok{),}
-                   \AttributeTok{Enh\_max      =} \FunctionTok{max}\NormalTok{(GLB\_ench, }\AttributeTok{na.rm =} \ConstantTok{TRUE}\NormalTok{),}
-                   \AttributeTok{Enh\_diff\_sum =} \FunctionTok{sum}\NormalTok{(GLB\_diff, }\AttributeTok{na.rm =} \ConstantTok{TRUE}\NormalTok{),}
-                   \AttributeTok{Enh\_diff\_max =} \FunctionTok{max}\NormalTok{(GLB\_diff, }\AttributeTok{na.rm =} \ConstantTok{TRUE}\NormalTok{),}
-                   \AttributeTok{Enh\_N        =} \FunctionTok{sum}\NormalTok{(}\FunctionTok{get}\NormalTok{(SelEnhanc))),}
-\NormalTok{                 Day]}
-
-\FunctionTok{hist}\NormalTok{(enh\_days}\SpecialCharTok{$}\NormalTok{Enh\_sum)}
-\end{Highlighting}
-\end{Shaded}
 
 \begin{center}\includegraphics[width=1\linewidth]{GHI_enh_02_ID_CE_files/figure-latex/unnamed-chunk-7-5} \end{center}
 
-\begin{Shaded}
-\begin{Highlighting}[]
-\FunctionTok{hist}\NormalTok{(enh\_days}\SpecialCharTok{$}\NormalTok{Enh\_max)}
-\end{Highlighting}
-\end{Shaded}
-
 \begin{center}\includegraphics[width=1\linewidth]{GHI_enh_02_ID_CE_files/figure-latex/unnamed-chunk-7-6} \end{center}
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\FunctionTok{hist}\NormalTok{(enh\_days}\SpecialCharTok{$}\NormalTok{Enh\_diff\_max)}
-\end{Highlighting}
-\end{Shaded}
 
 \begin{center}\includegraphics[width=1\linewidth]{GHI_enh_02_ID_CE_files/figure-latex/unnamed-chunk-7-7} \end{center}
 
-\begin{Shaded}
-\begin{Highlighting}[]
-\FunctionTok{hist}\NormalTok{(enh\_days}\SpecialCharTok{$}\NormalTok{Enh\_diff\_sum)}
-\end{Highlighting}
-\end{Shaded}
-
 \begin{center}\includegraphics[width=1\linewidth]{GHI_enh_02_ID_CE_files/figure-latex/unnamed-chunk-7-8} \end{center}
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\NormalTok{sunny\_days }\OtherTok{\textless{}{-}}\NormalTok{ DATA[, .(}\AttributeTok{Sunshine =} \FunctionTok{sum}\NormalTok{(TYPE }\SpecialCharTok{==} \StringTok{"Clear"}\NormalTok{) }\SpecialCharTok{/} \FunctionTok{max}\NormalTok{(DayLength, }\AttributeTok{na.rm =} \ConstantTok{TRUE}\NormalTok{),}
-                       \AttributeTok{Energy   =} \FunctionTok{sum}\NormalTok{(ClearnessIndex\_kt, }\AttributeTok{na.rm =} \ConstantTok{TRUE}\NormalTok{)}\SpecialCharTok{/}\FunctionTok{sum}\NormalTok{(TYPE }\SpecialCharTok{==} \StringTok{"Clear"}\NormalTok{),}
-                       \AttributeTok{EC       =} \FunctionTok{sum}\NormalTok{(}\FunctionTok{get}\NormalTok{(SelEnhanc)),}
-                       \AttributeTok{Cloud    =} \FunctionTok{sum}\NormalTok{(TYPE }\SpecialCharTok{==} \StringTok{"Cloud"}\NormalTok{)),}
-\NormalTok{                   by }\OtherTok{=}\NormalTok{ Day]}
-
-\FunctionTok{hist}\NormalTok{(sunny\_days}\SpecialCharTok{$}\NormalTok{Sunshine)}
-\end{Highlighting}
-\end{Shaded}
 
 \begin{center}\includegraphics[width=1\linewidth]{GHI_enh_02_ID_CE_files/figure-latex/unnamed-chunk-7-9} \end{center}
 
-\begin{Shaded}
-\begin{Highlighting}[]
-\FunctionTok{hist}\NormalTok{(sunny\_days}\SpecialCharTok{$}\NormalTok{Energy)}
-\end{Highlighting}
-\end{Shaded}
-
 \begin{center}\includegraphics[width=1\linewidth]{GHI_enh_02_ID_CE_files/figure-latex/unnamed-chunk-7-10} \end{center}
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\FunctionTok{hist}\NormalTok{(sunny\_days}\SpecialCharTok{$}\NormalTok{EC)}
-\end{Highlighting}
-\end{Shaded}
 
 \begin{center}\includegraphics[width=1\linewidth]{GHI_enh_02_ID_CE_files/figure-latex/unnamed-chunk-7-11} \end{center}
 
-\begin{Shaded}
-\begin{Highlighting}[]
-\FunctionTok{hist}\NormalTok{(sunny\_days}\SpecialCharTok{$}\NormalTok{Cloud)}
-\end{Highlighting}
-\end{Shaded}
-
 \begin{center}\includegraphics[width=1\linewidth]{GHI_enh_02_ID_CE_files/figure-latex/unnamed-chunk-7-12} \end{center}
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\DocumentationTok{\#\# days with maximum values}
-\FunctionTok{setorder}\NormalTok{(enh\_days, }\SpecialCharTok{{-}}\NormalTok{Enh\_diff\_max)}
-\NormalTok{maxenhd }\OtherTok{\textless{}{-}}\NormalTok{ enh\_days[}\DecValTok{1}\SpecialCharTok{:}\DecValTok{20}\NormalTok{]}
-
-\DocumentationTok{\#\# strong total enhancement days}
-\FunctionTok{setorder}\NormalTok{(enh\_days, }\SpecialCharTok{{-}}\NormalTok{Enh\_sum)}
-\NormalTok{daylist }\OtherTok{\textless{}{-}}\NormalTok{ enh\_days[}\DecValTok{1}\SpecialCharTok{:}\DecValTok{200}\NormalTok{]}
-\NormalTok{daylist }\OtherTok{\textless{}{-}}\NormalTok{ daylist[}\SpecialCharTok{!}\NormalTok{Day }\SpecialCharTok{\%in\%}\NormalTok{ maxenhd}\SpecialCharTok{$}\NormalTok{Day]}
-\NormalTok{enhsnd  }\OtherTok{\textless{}{-}}\NormalTok{ daylist[}\FunctionTok{sample}\NormalTok{(}\DecValTok{1}\SpecialCharTok{:}\FunctionTok{nrow}\NormalTok{(daylist), }\DecValTok{30}\NormalTok{)]}
-
-\DocumentationTok{\#\# select some sunny days}
-\NormalTok{sunnyd  }\OtherTok{\textless{}{-}}\NormalTok{ sunny\_days[Sunshine }\SpecialCharTok{\textgreater{}} \FloatTok{0.79} \SpecialCharTok{\&}\NormalTok{ Energy }\SpecialCharTok{\textgreater{}} \FloatTok{0.74}\NormalTok{]}
-\NormalTok{sunnyd  }\OtherTok{\textless{}{-}}\NormalTok{ sunnyd[}\SpecialCharTok{!}\NormalTok{Day }\SpecialCharTok{\%in\%}\NormalTok{ maxenhd}\SpecialCharTok{$}\NormalTok{Day }\SpecialCharTok{\&} \SpecialCharTok{!}\NormalTok{Day }\SpecialCharTok{\%in\%}\NormalTok{ enhsnd}\SpecialCharTok{$}\NormalTok{Day]}
-\NormalTok{sunnyd  }\OtherTok{\textless{}{-}}\NormalTok{ sunnyd[}\FunctionTok{sample}\NormalTok{(}\DecValTok{1}\SpecialCharTok{:}\FunctionTok{nrow}\NormalTok{(sunnyd), }\DecValTok{20}\NormalTok{)]}
-
-
-\DocumentationTok{\#\# sunny with enhancements}
-\NormalTok{sunnyenh }\OtherTok{\textless{}{-}}\NormalTok{ sunny\_days[Sunshine }\SpecialCharTok{\textgreater{}} \FloatTok{0.77} \SpecialCharTok{\&}\NormalTok{ Energy }\SpecialCharTok{\textgreater{}} \FloatTok{0.73} \SpecialCharTok{\&}\NormalTok{ EC }\SpecialCharTok{\textgreater{}} \DecValTok{0}\NormalTok{]}
-\NormalTok{sunnyenh }\OtherTok{\textless{}{-}}\NormalTok{ sunnyenh[}\SpecialCharTok{!}\NormalTok{Day }\SpecialCharTok{\%in\%}\NormalTok{ maxenhd}\SpecialCharTok{$}\NormalTok{Day }\SpecialCharTok{\&} \SpecialCharTok{!}\NormalTok{Day }\SpecialCharTok{\%in\%}\NormalTok{ enhsnd}\SpecialCharTok{$}\NormalTok{Day }\SpecialCharTok{\&} \SpecialCharTok{!}\NormalTok{Day }\SpecialCharTok{\%in\%}\NormalTok{ sunnyd}\SpecialCharTok{$}\NormalTok{Day]}
-
-
-\DocumentationTok{\#\# cloudy days}
-\NormalTok{clouds }\OtherTok{\textless{}{-}}\NormalTok{ sunny\_days[Sunshine }\SpecialCharTok{\textgreater{}} \FloatTok{0.6} \SpecialCharTok{\&}\NormalTok{ Energy }\SpecialCharTok{\textgreater{}} \FloatTok{0.6} \SpecialCharTok{\&}\NormalTok{ EC }\SpecialCharTok{\textgreater{}} \DecValTok{2} \SpecialCharTok{\&}\NormalTok{ Cloud }\SpecialCharTok{\textgreater{}} \DecValTok{5}\NormalTok{]}
-\NormalTok{clouds }\OtherTok{\textless{}{-}}\NormalTok{ clouds[}\SpecialCharTok{!}\NormalTok{Day }\SpecialCharTok{\%in\%}\NormalTok{ sunnyenh}\SpecialCharTok{$}\NormalTok{Day }\SpecialCharTok{\&} \SpecialCharTok{!}\NormalTok{Day }\SpecialCharTok{\%in\%}\NormalTok{ maxenhd}\SpecialCharTok{$}\NormalTok{Day }\SpecialCharTok{\&} \SpecialCharTok{!}\NormalTok{Day }\SpecialCharTok{\%in\%}\NormalTok{ enhsnd}\SpecialCharTok{$}\NormalTok{Day }\SpecialCharTok{\&} \SpecialCharTok{!}\NormalTok{Day }\SpecialCharTok{\%in\%}\NormalTok{ sunnyd}\SpecialCharTok{$}\NormalTok{Day]}
-\NormalTok{clouds }\OtherTok{\textless{}{-}}\NormalTok{ clouds[}\FunctionTok{sample}\NormalTok{(}\DecValTok{1}\SpecialCharTok{:}\FunctionTok{nrow}\NormalTok{(clouds), }\DecValTok{20}\NormalTok{)]}
-
-\DocumentationTok{\#\# some random days}
-\NormalTok{all\_days }\OtherTok{\textless{}{-}} \FunctionTok{data.table}\NormalTok{(}\AttributeTok{Day=}\FunctionTok{unique}\NormalTok{(DATA[, Day]))}
-\NormalTok{all\_days }\OtherTok{\textless{}{-}}\NormalTok{ all\_days[}\SpecialCharTok{!}\NormalTok{Day }\SpecialCharTok{\%in\%}\NormalTok{ sunnyenh}\SpecialCharTok{$}\NormalTok{Day }\SpecialCharTok{\&} \SpecialCharTok{!}\NormalTok{Day }\SpecialCharTok{\%in\%}\NormalTok{ maxenhd}\SpecialCharTok{$}\NormalTok{Day }\SpecialCharTok{\&} \SpecialCharTok{!}\NormalTok{Day }\SpecialCharTok{\%in\%}\NormalTok{ enhsnd}\SpecialCharTok{$}\NormalTok{Day }\SpecialCharTok{\&} \SpecialCharTok{!}\NormalTok{Day }\SpecialCharTok{\%in\%}\NormalTok{ sunnyd}\SpecialCharTok{$}\NormalTok{Day }\SpecialCharTok{\&} \SpecialCharTok{!}\NormalTok{Day }\SpecialCharTok{\%in\%}\NormalTok{ clouds]}
-\NormalTok{all\_days }\OtherTok{\textless{}{-}}\NormalTok{ all\_days[}\FunctionTok{sample}\NormalTok{(}\DecValTok{1}\SpecialCharTok{:}\FunctionTok{nrow}\NormalTok{(all\_days), }\DecValTok{30}\NormalTok{)]}
-
-\DocumentationTok{\#\# manual selection}
-\NormalTok{testdays }\OtherTok{\textless{}{-}} \FunctionTok{data.table}\NormalTok{(}\AttributeTok{Day =}
-                           \FunctionTok{c}\NormalTok{(}\StringTok{"2013{-}05{-}27"}\NormalTok{,}
-                             \StringTok{"2000{-}07{-}14"}\NormalTok{,}
-                             \StringTok{"2007{-}07{-}06"}\NormalTok{))}
-
-
-\DocumentationTok{\#\#  Days with strong enhancement cases  {-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}}
-\end{Highlighting}
-\end{Shaded}
 
 \FloatBarrier
 
@@ -617,12 +426,12 @@ Alpha * HAU is CS\_ref
 
 \begin{center}\includegraphics[width=1\linewidth]{GHI_enh_02_ID_CE_files/figure-latex/unnamed-chunk-8-75} \end{center}
 
+\begin{center}\includegraphics[width=1\linewidth]{GHI_enh_02_ID_CE_files/figure-latex/unnamed-chunk-8-76} \end{center}
+
 \FloatBarrier
 
 \hypertarget{days-with-clouds-id}{%
 \subsection{Days with clouds ID}\label{days-with-clouds-id}}
-
-\begin{center}\includegraphics[width=1\linewidth]{GHI_enh_02_ID_CE_files/figure-latex/unnamed-chunk-8-76} \end{center}
 
 \begin{center}\includegraphics[width=1\linewidth]{GHI_enh_02_ID_CE_files/figure-latex/unnamed-chunk-8-77} \end{center}
 
@@ -662,12 +471,12 @@ Alpha * HAU is CS\_ref
 
 \begin{center}\includegraphics[width=1\linewidth]{GHI_enh_02_ID_CE_files/figure-latex/unnamed-chunk-8-95} \end{center}
 
+\begin{center}\includegraphics[width=1\linewidth]{GHI_enh_02_ID_CE_files/figure-latex/unnamed-chunk-8-96} \end{center}
+
 \FloatBarrier
 
 \hypertarget{days-with-random-selection}{%
 \subsection{Days with random selection}\label{days-with-random-selection}}
-
-\begin{center}\includegraphics[width=1\linewidth]{GHI_enh_02_ID_CE_files/figure-latex/unnamed-chunk-8-96} \end{center}
 
 \begin{center}\includegraphics[width=1\linewidth]{GHI_enh_02_ID_CE_files/figure-latex/unnamed-chunk-8-97} \end{center}
 
@@ -727,16 +536,18 @@ Alpha * HAU is CS\_ref
 
 \begin{center}\includegraphics[width=1\linewidth]{GHI_enh_02_ID_CE_files/figure-latex/unnamed-chunk-8-125} \end{center}
 
+\begin{center}\includegraphics[width=1\linewidth]{GHI_enh_02_ID_CE_files/figure-latex/unnamed-chunk-8-126} \end{center}
+
 \FloatBarrier
 
 \hypertarget{days-with-manual-test-days}{%
 \subsection{Days with manual test days}\label{days-with-manual-test-days}}
 
-\begin{center}\includegraphics[width=1\linewidth]{GHI_enh_02_ID_CE_files/figure-latex/unnamed-chunk-8-126} \end{center}
-
 \begin{center}\includegraphics[width=1\linewidth]{GHI_enh_02_ID_CE_files/figure-latex/unnamed-chunk-8-127} \end{center}
 
 \begin{center}\includegraphics[width=1\linewidth]{GHI_enh_02_ID_CE_files/figure-latex/unnamed-chunk-8-128} \end{center}
+
+\begin{center}\includegraphics[width=1\linewidth]{GHI_enh_02_ID_CE_files/figure-latex/unnamed-chunk-8-129} \end{center}
 
 \newpage
 \FloatBarrier
@@ -744,74 +555,12 @@ Alpha * HAU is CS\_ref
 \hypertarget{plot-years-with-enhancement-cases}{%
 \section{Plot years with enhancement cases}\label{plot-years-with-enhancement-cases}}
 
-\begin{center}\includegraphics[width=1\linewidth]{GHI_enh_02_ID_CE_files/figure-latex/unnamed-chunk-10-1} \end{center}
-
-\begin{center}\includegraphics[width=1\linewidth]{GHI_enh_02_ID_CE_files/figure-latex/unnamed-chunk-10-2} \end{center}
-
-\begin{center}\includegraphics[width=1\linewidth]{GHI_enh_02_ID_CE_files/figure-latex/unnamed-chunk-10-3} \end{center}
-
-\begin{center}\includegraphics[width=1\linewidth]{GHI_enh_02_ID_CE_files/figure-latex/unnamed-chunk-10-4} \end{center}
-
-\begin{center}\includegraphics[width=1\linewidth]{GHI_enh_02_ID_CE_files/figure-latex/unnamed-chunk-10-5} \end{center}
-
-\begin{center}\includegraphics[width=1\linewidth]{GHI_enh_02_ID_CE_files/figure-latex/unnamed-chunk-10-6} \end{center}
-
-\begin{center}\includegraphics[width=1\linewidth]{GHI_enh_02_ID_CE_files/figure-latex/unnamed-chunk-10-7} \end{center}
-
-\begin{center}\includegraphics[width=1\linewidth]{GHI_enh_02_ID_CE_files/figure-latex/unnamed-chunk-10-8} \end{center}
-
-\begin{center}\includegraphics[width=1\linewidth]{GHI_enh_02_ID_CE_files/figure-latex/unnamed-chunk-10-9} \end{center}
-
-\begin{center}\includegraphics[width=1\linewidth]{GHI_enh_02_ID_CE_files/figure-latex/unnamed-chunk-10-10} \end{center}
-
-\begin{center}\includegraphics[width=1\linewidth]{GHI_enh_02_ID_CE_files/figure-latex/unnamed-chunk-10-11} \end{center}
-
-\begin{center}\includegraphics[width=1\linewidth]{GHI_enh_02_ID_CE_files/figure-latex/unnamed-chunk-10-12} \end{center}
-
-\begin{center}\includegraphics[width=1\linewidth]{GHI_enh_02_ID_CE_files/figure-latex/unnamed-chunk-10-13} \end{center}
-
-\begin{center}\includegraphics[width=1\linewidth]{GHI_enh_02_ID_CE_files/figure-latex/unnamed-chunk-10-14} \end{center}
-
-\begin{center}\includegraphics[width=1\linewidth]{GHI_enh_02_ID_CE_files/figure-latex/unnamed-chunk-10-15} \end{center}
-
-\begin{center}\includegraphics[width=1\linewidth]{GHI_enh_02_ID_CE_files/figure-latex/unnamed-chunk-10-16} \end{center}
-
-\begin{center}\includegraphics[width=1\linewidth]{GHI_enh_02_ID_CE_files/figure-latex/unnamed-chunk-10-17} \end{center}
-
-\begin{center}\includegraphics[width=1\linewidth]{GHI_enh_02_ID_CE_files/figure-latex/unnamed-chunk-10-18} \end{center}
-
-\begin{center}\includegraphics[width=1\linewidth]{GHI_enh_02_ID_CE_files/figure-latex/unnamed-chunk-10-19} \end{center}
-
-\begin{center}\includegraphics[width=1\linewidth]{GHI_enh_02_ID_CE_files/figure-latex/unnamed-chunk-10-20} \end{center}
-
-\begin{center}\includegraphics[width=1\linewidth]{GHI_enh_02_ID_CE_files/figure-latex/unnamed-chunk-10-21} \end{center}
-
-\begin{center}\includegraphics[width=1\linewidth]{GHI_enh_02_ID_CE_files/figure-latex/unnamed-chunk-10-22} \end{center}
-
-\begin{center}\includegraphics[width=1\linewidth]{GHI_enh_02_ID_CE_files/figure-latex/unnamed-chunk-10-23} \end{center}
-
-\begin{center}\includegraphics[width=1\linewidth]{GHI_enh_02_ID_CE_files/figure-latex/unnamed-chunk-10-24} \end{center}
-
-\begin{center}\includegraphics[width=1\linewidth]{GHI_enh_02_ID_CE_files/figure-latex/unnamed-chunk-10-25} \end{center}
-
-\begin{center}\includegraphics[width=1\linewidth]{GHI_enh_02_ID_CE_files/figure-latex/unnamed-chunk-10-26} \end{center}
-
-\begin{center}\includegraphics[width=1\linewidth]{GHI_enh_02_ID_CE_files/figure-latex/unnamed-chunk-10-27} \end{center}
-
-\begin{center}\includegraphics[width=1\linewidth]{GHI_enh_02_ID_CE_files/figure-latex/unnamed-chunk-10-28} \end{center}
-
-\begin{center}\includegraphics[width=1\linewidth]{GHI_enh_02_ID_CE_files/figure-latex/unnamed-chunk-10-29} \end{center}
-
-\begin{center}\includegraphics[width=1\linewidth]{GHI_enh_02_ID_CE_files/figure-latex/unnamed-chunk-10-30} \end{center}
-
-\begin{center}\includegraphics[width=1\linewidth]{GHI_enh_02_ID_CE_files/figure-latex/unnamed-chunk-10-31} \end{center}
-
 Saved raw input data: ./data/CE\_ID\_Input.Rds
 
 \textbf{END}
 
 \begin{verbatim}
-2023-11-27 10:16:04.2 athan@tyler GHI_enh_02_ID_CE.R 21.157158 mins
+2023-11-27 15:52:03.0 athan@tyler GHI_enh_02_ID_CE.R 15.654593 mins
 \end{verbatim}
 
 \end{document}

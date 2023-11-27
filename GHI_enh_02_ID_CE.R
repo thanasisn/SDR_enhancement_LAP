@@ -407,7 +407,6 @@ for (ii in 1:nrow(vec_days)) {
         lines(temp[, Enhanc_C_3_ref, Date], col = "magenta" )
 
 
-
         points(temp[get(SelEnhanc) == TRUE, wattGLB, Date], col = "red")
         points(temp[TYPE == "Cloud", wattGLB, Date], col = "blue", pch = 3, cex = 0.3)
 
@@ -460,7 +459,7 @@ yearstodo <- unique(year(DATA$Date))
 
 pyear <- 2018
 for (pyear in yearstodo) {
-    p <-
+    # p <-
         ggplot(DATA[year(Date) == pyear],
                aes(get(paste0(SelEnhanc,"_ref")), wattGLB)) +
         geom_point(data   = DATA[year(Date) == pyear & get(SelEnhanc) == F,],
@@ -486,7 +485,7 @@ for (pyear in yearstodo) {
         scale_x_continuous(expand = expansion(mult = c(0.03, 0.03))) +
         scale_y_continuous(breaks = scales::breaks_extended(n = 6),
                            expand = expansion(mult = c(0.03, 0.03)))
-    print(p)
+    # print(p)
 
     # ggplot(DATA, aes(CS_ref, wattGLB)) +
     #     geom_point(data = DATA[GLB_diff < 0], colour = "black", size = 0.5) +
@@ -504,21 +503,30 @@ for (pyear in yearstodo) {
 
 ## __ Group continuous values  -------------------------------------------------
 
-DATA[, cnF := cumsum(get(SelEnhanc) == FALSE)]
-DATA[, cnT := cumsum(get(SelEnhanc) == TRUE) ]
 ## Init groups logical
-DATA[, C1G1 := get(SelEnhanc)]
-DATA[, C1G0 := get(SelEnhanc)]
+DATA[, C1G1 := Enhanc_C_1]
+DATA[, C1G0 := Enhanc_C_1]
 
 ## No gap group
-DATA[, C1Grp0 := rleid(c(NA,diff(cumsum(G0))))]
+DATA[, C1Grp0 := rleid(c(NA,diff(cumsum(C1G0))))]
 DATA[C1G0 == FALSE, C1Grp0 := NA]
 
+## Allow one gap group
+DATA[shift(C1G1, n = +1)[[1L]] == TRUE &
+     shift(C1G1, n = -1)[[1L]] == TRUE &
+     C1G1 == FALSE,
+     C1G1 := TRUE]
+DATA[, C1Grp1 := rleid(c(NA,diff(cumsum(C1G1))))]
+DATA[C1G1 == FALSE, C1Grp1 := NA]
 
-DATA[, C1G1]
 
 
-## TODO optimize that
+## Slow implementation
+# DATA[, cnF := cumsum(Enhanc_C_1 == FALSE)]
+# DATA[, cnT := cumsum(Enhanc_C_1 == TRUE) ]
+# ## Init groups logical
+# DATA[, C1G1  := Enhanc_C_1]
+# DATA[, C1G0  := Enhanc_C_1]
 # ## Find groups with one gap
 # for (i in 1:nrow(DATA)) {
 #     p1 <- i - 1
@@ -531,55 +539,17 @@ DATA[, C1G1]
 #         }
 #     }
 # }
-#
 # ## Allow one gap group
 # DATA[, C1Grp1 := rleid(c(NA,diff(cumsum(G1))))]
 # DATA[C1G1 == FALSE, C1Grp1 := NA]
-#
+# ## No gap group
+# DATA[, C1Grp0 := rleid(c(NA,diff(cumsum(G0))))]
+# DATA[C1G0 == FALSE, C1Grp0 := NA]
 
 
-
-
-
-
-#    DATA[, cnF := cumsum(Enhanc_C_1 == FALSE)]
-#    DATA[, cnT := cumsum(Enhanc_C_1 == TRUE) ]
-#    ## Init groups logical
-#    DATA[, C1G1  := Enhanc_C_1]
-#    DATA[, C1G0  := Enhanc_C_1]
-#
-#    ## Find groups with one gap
-#    for (i in 1:nrow(DATA)) {
-#        p1 <- i - 1
-#        n1 <- i + 1
-#        if (p1 > 0 & n1 <= nrow(DATA)) {
-#            if (DATA$C1G1[p1] == TRUE  &
-#                DATA$C1G1[i]  == FALSE &
-#                DATA$C1G1[n1] == TRUE  ) {
-#                DATA$C1G1[i]  <- TRUE
-#            }
-#        }
-#    }
-#
-#    ## Allow one gap group
-#    DATA[, C1Grp1 := rleid(c(NA,diff(cumsum(G1))))]
-#    DATA[C1G1 == FALSE, C1Grp1 := NA]
-#
-#    ## No gap group
-#    DATA[, C1Grp0 := rleid(c(NA,diff(cumsum(G0))))]
-#    DATA[C1G0 == FALSE, C1Grp0 := NA]
-
-
-
-
-
-#  Save raw input data  ----------------------------------------------------
+#  Save processed data  --------------------------------------------------------
 saveRDS(DATA, file = Input_data_ID, compress = "xz")
 cat("\n  Saved raw input data:", Input_data_ID, "\n\n")
-
-
-
-
 
 
 #' **END**
