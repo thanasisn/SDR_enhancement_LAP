@@ -2,7 +2,7 @@
 title:    SDR enhancement by clouds
 subtitle: A Short Subtitle
 author:
-
+    
   - name:  Athanasios Natsis
     email: natsisphysicist@gmail.com
     affiliations: 
@@ -16,7 +16,6 @@ author:
     attributes:
         corresponding: true
     note: This is the first author footnote.
-    
   - name:  Alkiviadis Bais
     email: abais@auth.gr
     affiliations:
@@ -29,13 +28,11 @@ author:
           postal-code: Postal Code
     note: |
       Another author footnote, this is a very long footnote and it should be a really long footnote. But this footnote is not yet sufficiently long enough to make two lines of footnote text.
-
   - name:  Charikleia Meleti
     email: meleti@auth.gr
     affiliations:
         - ref: auth
     note: Yet another author footnote.
-
 abstract: |
   This is the abstract. Lorem ipsum dolor sit amet, eu efficitur justo rutrum at. Sed at tempus elit.
 keywords: 
@@ -49,22 +46,49 @@ format:
     journal:
       name:       Journal Name
       formatting: preprint
-      model: 3p
-      cite-style: super
+      model:      3p
+      cite-style: authoryear
   docx: default
   html: default
-
 editor_options: 
   chunk_output_type: console
 ---
 
 # Intro
 
+
+
+
 # Data and methodology
+
+
+Data with quality control
+
+
+Clear sky identification
+- helps on determining thresholds
+
+
+Criteria for enhancement based on TSI
+- some other were tested
+
+Thresholds by inspecting a selection of days with some specs
+
+
 
 # Results
 
+- max
+- seasonal
+- trends
+- duration
+- occurrence
+- SZA
+
+
+
 # Discussion and conclusions
+
 
 ------------------------------------------------------------------------
 

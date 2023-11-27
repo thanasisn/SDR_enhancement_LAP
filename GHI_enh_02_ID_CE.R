@@ -85,7 +85,7 @@ source("~/CODE/FUNCTIONS/R/trig_deg.R")
 source("./GHI_enh_00_variables.R")
 
 
-## Overide notification function
+## Override notification function
 options(error = function() {
     if (interactive()) {
         system("mplayer /usr/share/sounds/freedesktop/stereo/dialog-warning.oga", ignore.stdout = T, ignore.stderr = T)
@@ -175,7 +175,7 @@ tic  <- Sys.time()
 
 
 # TODO -------------------------------------------------------------------------
-# k clastering Vamvakas2020
+# k clustering Vamvakas2020
 # Stats on groups
 # Stats on enhancement cases
 # R-R analysis
@@ -275,12 +275,12 @@ abline(v = 1, col = "red")
 ## near by values with +0.1 are also accepted
 
 
-table(DATA$Enhanc_C_1)
-table(DATA$Enhanc_C_2)
-table(DATA$Enhanc_C_3)
+pander(table(DATA$Enhanc_C_1))
 
+pander(table(DATA$Enhanc_C_2))
 
-hist(DATA[TYPE == "Cloud", ClearnessIndex_kt])
+pander(table(DATA$Enhanc_C_3))
+
 
 
 
@@ -293,10 +293,10 @@ enh_days <- DATA[get(SelEnhanc) == TRUE,
                    Enh_N        = sum(get(SelEnhanc))),
                  Day]
 
-hist(enh_days$Enh_sum)
-hist(enh_days$Enh_max)
-hist(enh_days$Enh_diff_max)
-hist(enh_days$Enh_diff_sum)
+hist(enh_days$Enh_sum,      breaks = 100)
+hist(enh_days$Enh_max,      breaks = 100)
+hist(enh_days$Enh_diff_max, breaks = 100)
+hist(enh_days$Enh_diff_sum, breaks = 100)
 
 
 sunny_days <- DATA[, .(Sunshine = sum(TYPE == "Clear") / max(DayLength, na.rm = TRUE),
@@ -305,10 +305,10 @@ sunny_days <- DATA[, .(Sunshine = sum(TYPE == "Clear") / max(DayLength, na.rm = 
                        Cloud    = sum(TYPE == "Cloud")),
                    by = Day]
 
-hist(sunny_days$Sunshine)
-hist(sunny_days$Energy)
-hist(sunny_days$EC)
-hist(sunny_days$Cloud)
+hist(sunny_days$Sunshine, breaks = 100)
+hist(sunny_days$Energy,   breaks = 100)
+hist(sunny_days$EC,       breaks = 100)
+hist(sunny_days$Cloud,    breaks = 100)
 
 
 
@@ -327,11 +327,9 @@ sunnyd  <- sunny_days[Sunshine > 0.79 & Energy > 0.74]
 sunnyd  <- sunnyd[!Day %in% maxenhd$Day & !Day %in% enhsnd$Day]
 sunnyd  <- sunnyd[sample(1:nrow(sunnyd), 20)]
 
-
 ## sunny with enhancements
 sunnyenh <- sunny_days[Sunshine > 0.77 & Energy > 0.73 & EC > 0]
 sunnyenh <- sunnyenh[!Day %in% maxenhd$Day & !Day %in% enhsnd$Day & !Day %in% sunnyd$Day]
-
 
 ## cloudy days
 clouds <- sunny_days[Sunshine > 0.6 & Energy > 0.6 & EC > 2 & Cloud > 5]
@@ -359,10 +357,10 @@ testdays <- data.table(Day =
 
 vec_days <- matrix(
     ##   Data      Description
-    c("maxenhd",  "extrene cases",
+    c("maxenhd",  "extreme cases",
       "enhsnd",   "strong enhancement",
       "sunnyd",   "sun",
-      "sunnyenh", "sunny enhansement",
+      "sunnyenh", "sunny enhancement",
       "clouds",   "clouds ID",
       "all_days", "random selection",
       "testdays", "manual test days",
@@ -385,40 +383,26 @@ for (ii in 1:nrow(vec_days)) {
         par(mar = c(4, 4, 1, 1))
         ylim <- range(0, temp$ETH, temp$wattGLB, na.rm = TRUE)
 
-        # if (aday == "1997-04-23") stop("www")
-
         plot(temp$Date, temp$wattGLB, col = "green",
              pch  = ".", cex = 2,
              ylim = ylim,
              ylab = expression(Watt/m^2), xlab = "Time (UTC)")
-
+        ## Global
         lines(temp$Date, temp$wattGLB, col = "green")
-
+        ## Direct
         lines(temp$Date, temp$wattHOR, col = "blue")
-
+        ## TSI on ground
         lines(temp$Date, temp$ETH)
-
-        # lines(temp$Date, Clearness_Kt_THRES * temp$TSIextEARTH_comb * cosde(temp$SZA), lty = 3)
-
-        ## active model reference
+        ## Active model reference
         lines(temp[, get(paste0(SelEnhanc,"_ref")), Date], col = "red" )
-
         ## HAU based reference
         lines(temp[, Enhanc_C_3_ref, Date], col = "magenta" )
-
-
+        ## Enchantment cases
         points(temp[get(SelEnhanc) == TRUE, wattGLB, Date], col = "red")
+        ## Cloud cases
         points(temp[TYPE == "Cloud", wattGLB, Date], col = "blue", pch = 3, cex = 0.3)
 
-        # if (any(temp$TYPE == "Cloud")) stop("DD")
-
         title(main = paste(as.Date(aday, origin = "1970-01-01"), temp[get(SelEnhanc) == TRUE, .N], temp[TYPE == "Cloud", .N], vec_days$Descriprion[ii]))
-        # legend("topleft", c("GHI","DNI",  "A-HAU", "TSI on horizontal level","GHI Enhancement event"),
-        #        col = c("green",   "blue", "red", "black", "red"),
-        #        pch = c(     NA,       NA,    NA,      NA,    1 ),
-        #        lty = c(      1,        1,     1,       1,   NA ),
-        #        bty = "n"
-        # )
 
         legend("topleft", c("GHI","DNI",  "GHI threshold", "TSI on horizontal level","GHI Enhancement event"),
                col = c("green",   "blue", "red", "black",  "red"),
@@ -459,7 +443,7 @@ yearstodo <- unique(year(DATA$Date))
 
 pyear <- 2018
 for (pyear in yearstodo) {
-    # p <-
+    p <-
         ggplot(DATA[year(Date) == pyear],
                aes(get(paste0(SelEnhanc,"_ref")), wattGLB)) +
         geom_point(data   = DATA[year(Date) == pyear & get(SelEnhanc) == F,],
@@ -485,7 +469,7 @@ for (pyear in yearstodo) {
         scale_x_continuous(expand = expansion(mult = c(0.03, 0.03))) +
         scale_y_continuous(breaks = scales::breaks_extended(n = 6),
                            expand = expansion(mult = c(0.03, 0.03)))
-    # print(p)
+    print(p)
 
     # ggplot(DATA, aes(CS_ref, wattGLB)) +
     #     geom_point(data = DATA[GLB_diff < 0], colour = "black", size = 0.5) +
@@ -501,17 +485,17 @@ for (pyear in yearstodo) {
 
 
 
-## __ Group continuous values  -------------------------------------------------
+##  Group continuous values  ---------------------------------------------------
 
 ## Init groups logical
 DATA[, C1G1 := Enhanc_C_1]
 DATA[, C1G0 := Enhanc_C_1]
 
-## No gap group
+## __ No gap group  ------------------------------------------------------------
 DATA[, C1Grp0 := rleid(c(NA,diff(cumsum(C1G0))))]
 DATA[C1G0 == FALSE, C1Grp0 := NA]
 
-## Allow one gap group
+## __ Allow one gap group  -----------------------------------------------------
 DATA[shift(C1G1, n = +1)[[1L]] == TRUE &
      shift(C1G1, n = -1)[[1L]] == TRUE &
      C1G1 == FALSE,
@@ -519,7 +503,8 @@ DATA[shift(C1G1, n = +1)[[1L]] == TRUE &
 DATA[, C1Grp1 := rleid(c(NA,diff(cumsum(C1G1))))]
 DATA[C1G1 == FALSE, C1Grp1 := NA]
 
-
+## For bigger gaps should use a similar method with the one gap
+## for the pattern TTFFTT -> TTTTTT
 
 ## Slow implementation
 # DATA[, cnF := cumsum(Enhanc_C_1 == FALSE)]
@@ -542,9 +527,6 @@ DATA[C1G1 == FALSE, C1Grp1 := NA]
 # ## Allow one gap group
 # DATA[, C1Grp1 := rleid(c(NA,diff(cumsum(G1))))]
 # DATA[C1G1 == FALSE, C1Grp1 := NA]
-# ## No gap group
-# DATA[, C1Grp0 := rleid(c(NA,diff(cumsum(G0))))]
-# DATA[C1G0 == FALSE, C1Grp0 := NA]
 
 
 #  Save processed data  --------------------------------------------------------
