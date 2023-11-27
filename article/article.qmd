@@ -1,0 +1,138 @@
+---
+title:    SDR enhancement by clouds
+subtitle: A Short Subtitle
+author:
+
+  - name:  Athanasios Natsis
+    email: natsisphysicist@gmail.com
+    affiliations: 
+        - id:          auth
+          name:        Aristotle University of Thessaloniki
+          department:  Laboratory of Atmospheric Physics
+          address:     Campus Box 149 
+          city:        Thessaloniki
+          state:       Greece
+          postal-code: 54124
+    attributes:
+        corresponding: true
+    note: This is the first author footnote.
+    
+  - name:  Alkiviadis Bais
+    email: abais@auth.gr
+    affiliations:
+        - id: another-u
+          name: Another University
+          department: Department Name
+          address: Street Address
+          city: City
+          state: State
+          postal-code: Postal Code
+    note: |
+      Another author footnote, this is a very long footnote and it should be a really long footnote. But this footnote is not yet sufficiently long enough to make two lines of footnote text.
+
+  - name:  Charikleia Meleti
+    email: meleti@auth.gr
+    affiliations:
+        - ref: auth
+    note: Yet another author footnote.
+
+abstract: |
+  This is the abstract. Lorem ipsum dolor sit amet, eu efficitur justo rutrum at. Sed at tempus elit.
+keywords: 
+  - keyword1
+  - keyword2
+date: last-modified
+bibliography:  [bibliography.bib, Mainreferences.bib]
+format:
+  elsevier-pdf:
+    keep-tex:     true
+    journal:
+      name:       Journal Name
+      formatting: preprint
+      model: 3p
+      cite-style: super
+  docx: default
+  html: default
+
+editor_options: 
+  chunk_output_type: console
+---
+
+# Intro
+
+# Data and methodology
+
+# Results
+
+# Discussion and conclusions
+
+------------------------------------------------------------------------
+
+::: callout-important
+## gcff
+
+This is nice
+:::
+
+<!--# check this out -->
+
+# Bibliography styles
+
+Here are two sample references: @Feynman1963118 @Dirac1953888.
+
+By default, natbib will be used with the `authoryear` style, set in `classoption` variable in YAML. You can sets extra options with `natbiboptions` variable in YAML header. Example
+
+```         
+natbiboptions: longnamesfirst,angle,semicolon
+```
+
+There are various more specific bibliography styles available at <https://support.stmdocs.in/wiki/index.php?title=Model-wise_bibliographic_style_files>. To use one of these, add it in the header using, for example, `biblio-style: model1-num-names`.
+
+## Using CSL
+
+If `cite-method` is set to `citeproc` in `elsevier_article()`, then pandoc is used for citations instead of `natbib`. In this case, the `csl` option is used to format the references. By default, this template will provide an appropriate style, but alternative `csl` files are available from <https://www.zotero.org/styles?q=elsevier>. These can be downloaded and stored locally, or the url can be used as in the example header.
+
+@eq-lowbap
+
+[@Bais1997]
+
+[@Bais2013; @Bennie2008]
+
+# Equations
+
+Here is an equation: $$ 
+  f_{X}(x) = \left(\frac{\alpha}{\beta}\right)
+  \left(\frac{x}{\beta}\right)^{\alpha-1}
+  e^{-\left(\frac{x}{\beta}\right)^{\alpha}}; 
+  \alpha,\beta,x > 0 .
+$$ {#eq-lowbap}
+
+Inline equations work as well: $\sum_{i = 2}^\infty\{\alpha_i^\beta\}$
+
+# Figures and tables
+
+@fig-meaningless is generated using an R chunk.
+
+```{r}
+#| label: fig-meaningless
+#| fig-cap: A meaningless scatterplot
+#| fig-width: 5
+#| fig-height: 5
+#| fig-align: center
+#| out-width: 50%
+#| echo: false
+plot(runif(25), runif(25))
+```
+
+# Tables coming from R
+
+Tables can also be generated using R chunks, as shown in @tbl-simple example.
+
+```{r}
+#| label: tbl-simple
+#| tbl-cap: Caption centered above table
+#| echo: true
+knitr::kable(head(mtcars)[,1:4])
+```
+
+# References {.unnumbered}

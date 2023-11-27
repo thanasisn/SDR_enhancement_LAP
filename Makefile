@@ -6,7 +6,7 @@ SHELL = /bin/bash
 
 all:       clean_all pdf rtim
 render:    pdf rtim
-Ap:        Ap1 Ap2
+Ap:        Ap1
 pdf:       p1 p2 p3 Ap
 rtim:      r1 r2 r3
 clean_all: clean_cache clean_data clean_pdfs
@@ -30,24 +30,24 @@ LIBRARY      = ~/LIBRARY/REPORTS/
 # 	@# echo "Changed:  $?"
 # 	@#setsid evince    $@ &
 # 	@-rsync -a "$@" ${LIBRARY}
-#
-#
-# ## simple default pdf
-# TARGET = Article
-# RMD    = $(TARGET).Rmd
-# PDF    = $(TARGET)_A.pdf
-# Ap1: $(PDF)
-# $(PDF): $(RMD)
-# 	@echo "Building: $@"
-# 	@#-Rscript -e "rmarkdown::render('$?', output_format='bookdown::pdf_document2', output_file='$@')"
-# 	-Rscript -e "rmarkdown::find_pandoc(dir = '/usr/lib/rstudio/resources/app/bin/quarto/bin/tools'); rmarkdown::render('$?', output_format='bookdown::pdf_document2', output_file='$@', clean = TRUE)"
-# 	@# echo "Changed:  $?"
-# 	@#setsid evince    $@ &
-# 	@-rsync -a "$@" ${LIBRARY}
-#
-#
-#
-#
+
+
+## simple default pdf
+TARGET = ./article/article
+QMD    = $(TARGET).qmd
+PDF    = $(TARGET).pdf
+Ap1: $(PDF)
+$(PDF): $(QMD)
+	@echo "Building: $? -> $@"
+	@#-Rscript -e "rmarkdown::render('$?', output_format='bookdown::pdf_document2', output_file='$@')"
+	@#-Rscript -e "rmarkdown::find_pandoc(dir = '/usr/lib/rstudio/resources/app/bin/quarto/bin/tools'); rmarkdown::render('$?', output_format='bookdown::pdf_document2', output_file='$@', clean = TRUE)"
+	quarto render '$?' --to elsevier-pdf
+	@#setsid evince    $@ &
+	@-rsync -a "$@" ${LIBRARY}
+
+
+
+
 # ## Article pdf with build number
 # ## using rstudio pandoc
 # TARGET = MDPI_submission
@@ -81,7 +81,7 @@ $(PDF): $(RMD)
 	-Rscript -e "rmarkdown::find_pandoc(dir = '/usr/lib/rstudio/resources/app/bin/quarto/bin/tools'); rmarkdown::render('$?', output_format='bookdown::pdf_document2', output_file='$@')"
 	@-rsync -a --prune-empty-dirs --exclude 'unnamed-chunk*' --include '*.pdf' --include '*.png' ./GHI_*/figure-latex/ ./images
 	@-rsync -a "$@" ${LIBRARY}
-	@-touch Article.Rmd
+	@-touch article/article.qmd
 
 r1: $(RUNT)
 $(RUNT): $(RMD)
@@ -101,7 +101,7 @@ $(PDF): $(RMD)
 	-Rscript -e "rmarkdown::find_pandoc(dir = '/usr/lib/rstudio/resources/app/bin/quarto/bin/tools'); rmarkdown::render('$?', output_format='bookdown::pdf_document2', output_file='$@')"
 	@-rsync -a --prune-empty-dirs --exclude 'unnamed-chunk*' --include '*.pdf' --include '*.png' ./GHI_*/figure-latex/ ./images
 	@-rsync -a "$@" ${LIBRARY}
-	@-touch Article.Rmd
+	@-touch article/article.qmd
 
 r2: $(RUNT)
 $(RUNT): $(RMD)
@@ -126,7 +126,7 @@ $(PDF): $(RMD)
 	@-rsync -a --prune-empty-dirs --exclude 'unnamed-chunk*' --include '*.pdf' --include '*.png' ./DHI_GHI_*/figure-latex/ ./images
 	@#setsid evince    $@ &
 	@-rsync -a "$@" ${LIBRARY}
-	@-touch Article.Rmd
+	@-touch article/article.qmd
 
 r3: $(RUNT)
 $(RUNT): $(RMD)
