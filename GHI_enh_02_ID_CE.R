@@ -462,6 +462,10 @@ for (ii in 1:nrow(vec_days)) {
         # plot(temp$Date, temp$DiffuseFraction_Kd)
         # plot(temp$Date, temp$GLB_ench)
         # plot(temp$Date, temp$GLB_diff)
+
+        plot.new()
+        dev.off()
+        cat(' \n \n')
     }
 }
 #+ echo=F, include=T
