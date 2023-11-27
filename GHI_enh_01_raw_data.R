@@ -63,7 +63,7 @@ knitr::opts_chunk$set(fig.align  = "center" )
 
 ## __ Set environment ----------------------------------------------------------
 Sys.setenv(TZ = "UTC")
-Script.Name <- "./GHI_enh_02_process.R"
+Script.Name <- "./GHI_enh_01_raw_data.R"
 tic <- Sys.time()
 
 if (!interactive()) {

@@ -41,8 +41,8 @@ abstract: |
 keywords: 
   - keyword1
   - keyword2
-date: last-modified
-bibliography:  [bibliography.bib, Mainreferences.bib]
+date:          last-modified
+bibliography:  [bibliography.bib]
 format:
   elsevier-pdf:
     keep-tex:     true
@@ -96,7 +96,6 @@ If `cite-method` is set to `citeproc` in `elsevier_article()`, then pandoc is us
 
 [@Bais1997]
 
-[@Bais2013; @Bennie2008]
 
 # Equations
 

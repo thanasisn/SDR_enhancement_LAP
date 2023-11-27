@@ -253,7 +253,7 @@ rutrum at. Sed at tempus elit.
     keyword2
 \end{keyword}
 \end{frontmatter}
-    \ifdefined\Shaded\renewenvironment{Shaded}{\begin{tcolorbox}[interior hidden, breakable, boxrule=0pt, frame hidden, borderline west={3pt}{0pt}{shadecolor}, enhanced, sharp corners]}{\end{tcolorbox}}\fi
+    \ifdefined\Shaded\renewenvironment{Shaded}{\begin{tcolorbox}[boxrule=0pt, interior hidden, breakable, frame hidden, enhanced, borderline west={3pt}{0pt}{shadecolor}, sharp corners]}{\end{tcolorbox}}\fi
 
 \hypertarget{intro}{%
 \section{Intro}\label{intro}}
@@ -269,7 +269,7 @@ rutrum at. Sed at tempus elit.
 
 \begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
 
-\begin{tcolorbox}[enhanced jigsaw, leftrule=.75mm, colframe=quarto-callout-important-color-frame, colbacktitle=quarto-callout-important-color!10!white, toptitle=1mm, bottomtitle=1mm, rightrule=.15mm, bottomrule=.15mm, opacitybacktitle=0.6, breakable, coltitle=black, title=\textcolor{quarto-callout-important-color}{\faExclamation}\hspace{0.5em}{gcff}, titlerule=0mm, opacityback=0, left=2mm, arc=.35mm, toprule=.15mm, colback=white]
+\begin{tcolorbox}[enhanced jigsaw, colbacktitle=quarto-callout-important-color!10!white, opacityback=0, titlerule=0mm, arc=.35mm, title=\textcolor{quarto-callout-important-color}{\faExclamation}\hspace{0.5em}{gcff}, toprule=.15mm, coltitle=black, breakable, bottomtitle=1mm, rightrule=.15mm, colframe=quarto-callout-important-color-frame, opacitybacktitle=0.6, toptitle=1mm, bottomrule=.15mm, leftrule=.75mm, left=2mm, colback=white]
 
 This is nice
 
@@ -308,8 +308,6 @@ and stored locally, or the url can be used as in the example header.
 Equation~\ref{eq-lowbap}
 
 \citep{Bais1997}
-
-\citep{Bais2013, Bennie2008}
 
 \hypertarget{equations}{%
 \section{Equations}\label{equations}}
@@ -373,7 +371,7 @@ Valiant & 18.1 & 6 & 225 & 105 \\
 
 
 \renewcommand\refname{References}
-  \bibliography{bibliography.bib,Mainreferences.bib}
+  \bibliography{bibliography.bib}
 
 
 \end{document}
