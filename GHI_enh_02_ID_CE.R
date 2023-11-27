@@ -252,7 +252,7 @@ if (SelEnhanc == "Enhanc_C_3") {
 #'
 #' # Distribution of different criteria
 #'
-#+ echo=TRUE, include=TRUE
+#+ echo=FALSE, include=TRUE
 
 
 # hist(DATA[GLB_ench > 0, GLB_ench])
@@ -373,9 +373,6 @@ vec_days <- matrix(
 ## Format to data frame
 vec_days <- data.frame(Data        = vec_days[,1],
                        Descriprion = vec_days[,2])
-
-#vecData  <- c("maxenhd",       "enhsnd",             "sunnyd", "sunnyenh",          "clouds",    "all_days")
-#vecNames <- c("extrene cases", "strong enhancement", "sun",    "sunny enhansement", "clouds ID", "random selection")
 
 for (ii in 1:nrow(vec_days)) {
     cat("\n\\FloatBarrier\n\n")
@@ -505,13 +502,20 @@ for (pyear in yearstodo) {
 
 
 
-#    ## __ Group continuous values  ---------------------------------------------
+## __ Group continuous values  -------------------------------------------------
 
 DATA[, cnF := cumsum(get(SelEnhanc) == FALSE)]
 DATA[, cnT := cumsum(get(SelEnhanc) == TRUE) ]
 ## Init groups logical
 DATA[, C1G1 := get(SelEnhanc)]
 DATA[, C1G0 := get(SelEnhanc)]
+
+## No gap group
+DATA[, C1Grp0 := rleid(c(NA,diff(cumsum(G0))))]
+DATA[C1G0 == FALSE, C1Grp0 := NA]
+
+
+DATA[, C1G1]
 
 
 ## TODO optimize that
@@ -532,10 +536,7 @@ DATA[, C1G0 := get(SelEnhanc)]
 # DATA[, C1Grp1 := rleid(c(NA,diff(cumsum(G1))))]
 # DATA[C1G1 == FALSE, C1Grp1 := NA]
 #
-# ## No gap group
-# DATA[, C1Grp0 := rleid(c(NA,diff(cumsum(G0))))]
-# DATA[C1G0 == FALSE, C1Grp0 := NA]
-#
+
 
 
 
