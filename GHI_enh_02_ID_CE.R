@@ -284,36 +284,6 @@ hist(DATA[TYPE == "Cloud", ClearnessIndex_kt])
 
 
 
-#    ## __ Group continuous values  ---------------------------------------------
-#    DATA[, cnF := cumsum(Enhanc_C_1 == FALSE)]
-#    DATA[, cnT := cumsum(Enhanc_C_1 == TRUE) ]
-#    ## Init groups logical
-#    DATA[, C1G1  := Enhanc_C_1]
-#    DATA[, C1G0  := Enhanc_C_1]
-#
-#    ## Find groups with one gap
-#    for (i in 1:nrow(DATA)) {
-#        p1 <- i - 1
-#        n1 <- i + 1
-#        if (p1 > 0 & n1 <= nrow(DATA)) {
-#            if (DATA$C1G1[p1] == TRUE  &
-#                DATA$C1G1[i]  == FALSE &
-#                DATA$C1G1[n1] == TRUE  ) {
-#                DATA$C1G1[i]  <- TRUE
-#            }
-#        }
-#    }
-#
-#    ## Allow one gap group
-#    DATA[, C1Grp1 := rleid(c(NA,diff(cumsum(G1))))]
-#    DATA[C1G1 == FALSE, C1Grp1 := NA]
-#
-#    ## No gap group
-#    DATA[, C1Grp0 := rleid(c(NA,diff(cumsum(G0))))]
-#    DATA[C1G0 == FALSE, C1Grp0 := NA]
-
-
-
 ## __ Estimate enhancement daily magnitude  ------------------------------------
 enh_days <- DATA[get(SelEnhanc) == TRUE,
                  .(Enh_sum      = sum(GLB_ench, na.rm = TRUE),
@@ -532,6 +502,71 @@ for (pyear in yearstodo) {
     #     scale_colour_gradient2(low = "black", mid = "yellow", high = "red", na.value = NA)
 
 }
+
+
+
+#    ## __ Group continuous values  ---------------------------------------------
+
+DATA[, cnF := cumsum(get(SelEnhanc) == FALSE)]
+DATA[, cnT := cumsum(get(SelEnhanc) == TRUE) ]
+## Init groups logical
+DATA[, C1G1 := get(SelEnhanc)]
+DATA[, C1G0 := get(SelEnhanc)]
+
+
+## TODO optimize that
+# ## Find groups with one gap
+# for (i in 1:nrow(DATA)) {
+#     p1 <- i - 1
+#     n1 <- i + 1
+#     if (p1 > 0 & n1 <= nrow(DATA)) {
+#         if (DATA$C1G1[p1] == TRUE  &
+#             DATA$C1G1[i]  == FALSE &
+#             DATA$C1G1[n1] == TRUE  ) {
+#             DATA$C1G1[i]  <- TRUE
+#         }
+#     }
+# }
+#
+# ## Allow one gap group
+# DATA[, C1Grp1 := rleid(c(NA,diff(cumsum(G1))))]
+# DATA[C1G1 == FALSE, C1Grp1 := NA]
+#
+# ## No gap group
+# DATA[, C1Grp0 := rleid(c(NA,diff(cumsum(G0))))]
+# DATA[C1G0 == FALSE, C1Grp0 := NA]
+#
+
+
+
+
+
+#    DATA[, cnF := cumsum(Enhanc_C_1 == FALSE)]
+#    DATA[, cnT := cumsum(Enhanc_C_1 == TRUE) ]
+#    ## Init groups logical
+#    DATA[, C1G1  := Enhanc_C_1]
+#    DATA[, C1G0  := Enhanc_C_1]
+#
+#    ## Find groups with one gap
+#    for (i in 1:nrow(DATA)) {
+#        p1 <- i - 1
+#        n1 <- i + 1
+#        if (p1 > 0 & n1 <= nrow(DATA)) {
+#            if (DATA$C1G1[p1] == TRUE  &
+#                DATA$C1G1[i]  == FALSE &
+#                DATA$C1G1[n1] == TRUE  ) {
+#                DATA$C1G1[i]  <- TRUE
+#            }
+#        }
+#    }
+#
+#    ## Allow one gap group
+#    DATA[, C1Grp1 := rleid(c(NA,diff(cumsum(G1))))]
+#    DATA[C1G1 == FALSE, C1Grp1 := NA]
+#
+#    ## No gap group
+#    DATA[, C1Grp0 := rleid(c(NA,diff(cumsum(G0))))]
+#    DATA[C1G0 == FALSE, C1Grp0 := NA]
 
 
 
