@@ -248,6 +248,13 @@ if (SelEnhanc == "Enhanc_C_3") {
 
 #+ include=TRUE, echo=FALSE
 
+#' \FloatBarrier
+#'
+#' # Distribution of different criteria
+#'
+#+ echo=TRUE, include=TRUE
+
+
 # hist(DATA[GLB_ench > 0, GLB_ench])
 # hist(DATA[GLB_diff > 0, GLB_diff])
 # hist(DATA[GLB_rati > 1, GLB_rati])
@@ -263,7 +270,6 @@ abline(v = 1, col = "red")
 
 
 
-
 ## Mol2023
 ## activate when +1% and 10w/m from model reference
 ## near by values with +0.1 are also accepted
@@ -275,7 +281,6 @@ table(DATA$Enhanc_C_3)
 
 
 hist(DATA[TYPE == "Cloud", ClearnessIndex_kt])
-hist(DATA[TYPE == "Cloud", CS_ref * GLB_ench_THRES + GLB_diff_THRES - wattGLB ])
 
 
 
@@ -424,12 +429,16 @@ for (ii in 1:nrow(vec_days)) {
 
         lines(temp$Date, temp$wattHOR, col = "blue")
 
-        lines(temp$Date, temp$TSIextEARTH_comb * cosde(temp$SZA))
+        lines(temp$Date, temp$ETH)
 
         # lines(temp$Date, Clearness_Kt_THRES * temp$TSIextEARTH_comb * cosde(temp$SZA), lty = 3)
 
-
+        ## active model reference
         lines(temp[, get(paste0(SelEnhanc,"_ref")), Date], col = "red" )
+
+        ## HAU based reference
+        lines(temp[, Enhanc_C_3_ref, Date], col = "magenta" )
+
 
 
         points(temp[get(SelEnhanc) == TRUE, wattGLB, Date], col = "red")
@@ -463,8 +472,6 @@ for (ii in 1:nrow(vec_days)) {
         # plot(temp$Date, temp$GLB_ench)
         # plot(temp$Date, temp$GLB_diff)
 
-        plot.new()
-        dev.off()
         cat(' \n \n')
     }
 }
