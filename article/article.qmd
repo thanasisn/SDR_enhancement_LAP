@@ -54,8 +54,6 @@ editor_options:
   chunk_output_type: console
 ---
 
-
-
 ```{r setup, echo=F, include=T, warning=FALSE, message=FALSE}
 suppressMessages(
     res <- rmarkdown::find_pandoc(dir = '/usr/lib/rstudio/resources/app/bin/quarto/bin/tools')
@@ -95,30 +93,33 @@ TSIinfo <- data.table(read.csv("../figures/tbl_tsi_info.dat",
 
 ```
 
-
-
-
 # Intro
 
 # Data and methodology
 
-Data with quality control
+## Data quality control
 
-### Data selection
+## Data selection
 
-To preserve an unbiased representation of the data we applied a constrain similar the one used by @CastillejoCuberos2020. Where, for each valid hour of day, there must exist at list 45 minutes of valid measurements, including night time near sunrise and sunset. Days with less than 5 valid hours are rejected completely.
+To preserve an unbiased representation of the data we applied a constrain similar the one used by @CastillejoCuberos2020. Where, for each valid hour of day, there must exist at list 45 minutes of valid measurements, including night time near sunrise and sunset. Days with less than 5 valid hours are rejected completely. <!--# CastillejoCuberos2020 There must be at least 5 h of valid data (Tests 1–7), otherwise all data for this day is flagged as invalid. There must be at least This work valid data 45 min of valid data (Tests 1–7) for an hour to be flagged as valid, otherwise all minute data for this hour is flagged as invalid. --> Furthermore, due to a systematic obstruction of the horizon and the significant measurement uncertainty on large SZAs, we excluded all data with $SZA > `r 90 - BIO_ELEVA`^\circ$.
 
-<!--# CastillejoCuberos2020 There must be at least 5 h of valid data (Tests 1–7), otherwise all data for this day is flagged as invalid. There must be at least This work valid data 45 min of valid data (Tests 1–7) for an hour to be flagged as valid, otherwise all minute data for this hour is flagged as invalid. -->
+## Clear sky identification
 
--   CastillejoCuberos2020
--   valid data 45min /h and 5h / day
--   SZA above biology
+Use it to find some interesting days to manual check the CE thresholds. No other usage of clear/cloud characterization in CE.
 
-Clear sky identification
+## Criteria for enhancement based on TSI
 
--   helps on determining thresholds
+Many have used models or some statistical method to determine then CE thresholds.
 
-Criteria for enhancement based on TSI
+....... cite ...... Descriptions
+
+We used as reference the .... extraterrestrial horizontal irradiance .....
+
+
+
+
+ETH := cosde(SZA) * \text{TSI}
+
 
 -   some other were tested
 

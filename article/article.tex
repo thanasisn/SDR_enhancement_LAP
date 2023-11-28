@@ -267,7 +267,7 @@ rutrum at. Sed at tempus elit.
     keyword2
 \end{keyword}
 \end{frontmatter}
-    \ifdefined\Shaded\renewenvironment{Shaded}{\begin{tcolorbox}[enhanced, frame hidden, borderline west={3pt}{0pt}{shadecolor}, interior hidden, breakable, sharp corners, boxrule=0pt]}{\end{tcolorbox}}\fi
+    \ifdefined\Shaded\renewenvironment{Shaded}{\begin{tcolorbox}[boxrule=0pt, breakable, frame hidden, interior hidden, borderline west={3pt}{0pt}{shadecolor}, sharp corners, enhanced]}{\end{tcolorbox}}\fi
 
 \hypertarget{intro}{%
 \section{Intro}\label{intro}}
@@ -275,26 +275,19 @@ rutrum at. Sed at tempus elit.
 \hypertarget{data-and-methodology}{%
 \section{Data and methodology}\label{data-and-methodology}}
 
-Data with quality control
+\hypertarget{data-quality-control}{%
+\subsection{Data quality control}\label{data-quality-control}}
 
 \hypertarget{data-selection}{%
-\subsubsection{Data selection}\label{data-selection}}
+\subsection{Data selection}\label{data-selection}}
 
 To preserve an unbiased representation of the data we applied a
 constrain similar the one used by \citet{CastillejoCuberos2020}. Where,
 for each valid hour of day, there must exist at list 45 minutes of valid
 measurements, including night time near sunrise and sunset. Days with
-less than 5 valid hours are rejected completely.
-
-\begin{itemize}
-\tightlist
-\item
-  CastillejoCuberos2020
-\item
-  valid data 45min /h and 5h / day
-\item
-  SZA above biology
-\end{itemize}
+less than 5 valid hours are rejected completely. Furthermore, due to a
+systematic obstruction of the horizon and the significant measurement
+uncertainty on large SZAs, we excluded all data with \(SZA > 78^\circ\).
 
 Clear sky identification
 
@@ -338,7 +331,7 @@ Thresholds by inspecting a selection of days with some specs
 
 \begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
 
-\begin{tcolorbox}[enhanced jigsaw, colback=white, title=\textcolor{quarto-callout-important-color}{\faExclamation}\hspace{0.5em}{gcff}, toptitle=1mm, titlerule=0mm, colbacktitle=quarto-callout-important-color!10!white, rightrule=.15mm, left=2mm, opacityback=0, bottomtitle=1mm, coltitle=black, leftrule=.75mm, breakable, arc=.35mm, bottomrule=.15mm, colframe=quarto-callout-important-color-frame, opacitybacktitle=0.6, toprule=.15mm]
+\begin{tcolorbox}[enhanced jigsaw, rightrule=.15mm, left=2mm, title=\textcolor{quarto-callout-important-color}{\faExclamation}\hspace{0.5em}{gcff}, leftrule=.75mm, toprule=.15mm, coltitle=black, titlerule=0mm, arc=.35mm, opacitybacktitle=0.6, bottomtitle=1mm, breakable, colframe=quarto-callout-important-color-frame, opacityback=0, bottomrule=.15mm, colbacktitle=quarto-callout-important-color!10!white, colback=white, toptitle=1mm]
 
 This is nice
 
