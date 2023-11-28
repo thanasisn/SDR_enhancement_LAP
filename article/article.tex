@@ -225,7 +225,7 @@
 \begin{document}
 
 \begin{frontmatter}
-\title{SDR enhancement by clouds \\\large{A Short Subtitle} }
+\title{SDR enhancement by clouds \\\large{An analysis} }
 \author[1]{Athanasios Natsis%
 \corref{cor1}%
 \fnref{fn1}}
@@ -267,7 +267,7 @@ rutrum at. Sed at tempus elit.
     keyword2
 \end{keyword}
 \end{frontmatter}
-    \ifdefined\Shaded\renewenvironment{Shaded}{\begin{tcolorbox}[boxrule=0pt, breakable, frame hidden, interior hidden, borderline west={3pt}{0pt}{shadecolor}, sharp corners, enhanced]}{\end{tcolorbox}}\fi
+    \ifdefined\Shaded\renewenvironment{Shaded}{\begin{tcolorbox}[boxrule=0pt, enhanced, sharp corners, interior hidden, borderline west={3pt}{0pt}{shadecolor}, breakable, frame hidden]}{\end{tcolorbox}}\fi
 
 \hypertarget{intro}{%
 \section{Intro}\label{intro}}
@@ -289,20 +289,38 @@ less than 5 valid hours are rejected completely. Furthermore, due to a
 systematic obstruction of the horizon and the significant measurement
 uncertainty on large SZAs, we excluded all data with \(SZA > 78^\circ\).
 
-Clear sky identification
+\hypertarget{clear-sky-identification}{%
+\subsection{Clear sky identification}\label{clear-sky-identification}}
+
+Use it to find some interesting days to manual check the CE thresholds.
+No other usage of clear/cloud characterization in CE.
+
+\hypertarget{criteria-for-enhancement-based-on-tsi}{%
+\subsection{Criteria for enhancement based on
+TSI}\label{criteria-for-enhancement-based-on-tsi}}
+
+Many have used models or some statistical method to determine then CE
+thresholds.
+
+\ldots\ldots. cite \ldots\ldots{} Descriptions
+
+We used as reference the \ldots. extraterrestrial horizontal irradiance
+\ldots..
+
+\[
+\text{ETH} = \cos(\theta) \times \text{TSI}_\text{TOA}
+\]
+
+\begin{equation}\protect\hypertarget{eq-CEcrit1}{}{
+\text{GHI} > 0.8 \times \text{ETH} + 20\,Wm^{-2}
+}\label{eq-CEcrit1}\end{equation}
+
+Where GHI sddsfa
 
 \begin{itemize}
 \tightlist
 \item
-  helps on determining thresholds
-\end{itemize}
-
-Criteria for enhancement based on TSI
-
-\begin{itemize}
-\tightlist
-\item
-  some other were tested
+  some other were tested Equation~\ref{eq-CEcrit1}
 \end{itemize}
 
 Thresholds by inspecting a selection of days with some specs
@@ -331,57 +349,11 @@ Thresholds by inspecting a selection of days with some specs
 
 \begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
 
-\begin{tcolorbox}[enhanced jigsaw, rightrule=.15mm, left=2mm, title=\textcolor{quarto-callout-important-color}{\faExclamation}\hspace{0.5em}{gcff}, leftrule=.75mm, toprule=.15mm, coltitle=black, titlerule=0mm, arc=.35mm, opacitybacktitle=0.6, bottomtitle=1mm, breakable, colframe=quarto-callout-important-color-frame, opacityback=0, bottomrule=.15mm, colbacktitle=quarto-callout-important-color!10!white, colback=white, toptitle=1mm]
+\begin{tcolorbox}[enhanced jigsaw, toprule=.15mm, leftrule=.75mm, colframe=quarto-callout-important-color-frame, breakable, coltitle=black, rightrule=.15mm, title=\textcolor{quarto-callout-important-color}{\faExclamation}\hspace{0.5em}{gcff}, colbacktitle=quarto-callout-important-color!10!white, arc=.35mm, toptitle=1mm, left=2mm, bottomtitle=1mm, bottomrule=.15mm, titlerule=0mm, opacitybacktitle=0.6, opacityback=0, colback=white]
 
 This is nice
 
 \end{tcolorbox}
-
-\hypertarget{bibliography-styles}{%
-\section{Bibliography styles}\label{bibliography-styles}}
-
-Here are two sample references: \citet{Feynman1963118}
-\citet{Dirac1953888}.
-
-By default, natbib will be used with the \texttt{authoryear} style, set
-in \texttt{classoption} variable in YAML. You can sets extra options
-with \texttt{natbiboptions} variable in YAML header. Example
-
-\begin{verbatim}
-natbiboptions: longnamesfirst,angle,semicolon
-\end{verbatim}
-
-There are various more specific bibliography styles available at
-\url{https://support.stmdocs.in/wiki/index.php?title=Model-wise_bibliographic_style_files}.
-To use one of these, add it in the header using, for example,
-\texttt{biblio-style:\ model1-num-names}.
-
-\hypertarget{using-csl}{%
-\subsection{Using CSL}\label{using-csl}}
-
-If \texttt{cite-method} is set to \texttt{citeproc} in
-\texttt{elsevier\_article()}, then pandoc is used for citations instead
-of \texttt{natbib}. In this case, the \texttt{csl} option is used to
-format the references. By default, this template will provide an
-appropriate style, but alternative \texttt{csl} files are available from
-\url{https://www.zotero.org/styles?q=elsevier}. These can be downloaded
-and stored locally, or the url can be used as in the example header.
-
-Equation~\ref{eq-lowbap}
-
-\citep{Bais1997}
-
-\hypertarget{equations}{%
-\section{Equations}\label{equations}}
-
-Here is an equation: \begin{equation}\protect\hypertarget{eq-lowbap}{}{ 
-  f_{X}(x) = \left(\frac{\alpha}{\beta}\right)
-  \left(\frac{x}{\beta}\right)^{\alpha-1}
-  e^{-\left(\frac{x}{\beta}\right)^{\alpha}}; 
-  \alpha,\beta,x > 0 .
-}\label{eq-lowbap}\end{equation}
-
-Inline equations work as well: \(\sum_{i = 2}^\infty\{\alpha_i^\beta\}\)
 
 \hypertarget{figures-and-tables}{%
 \section{Figures and tables}\label{figures-and-tables}}
