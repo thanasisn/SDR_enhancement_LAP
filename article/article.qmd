@@ -116,10 +116,12 @@ Many have used models or some statistical method to determine then CE thresholds
 We used as reference the .... extraterrestrial horizontal irradiance .....
 
 $$
-\text{ETH} = \cos(\theta)
+\text{ETH} = \cos(\theta) \times \text{TSI}_\text{TOA}
 $$
 
-ETH := cosde(SZA) \* \text{TSI}
+$$
+\text{GHI} > `r C` \text{ETH}
+$$
 
 -   some other were tested
 

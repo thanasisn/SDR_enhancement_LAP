@@ -537,6 +537,27 @@ saveRDS(DATA, file = Input_data_ID, compress = "xz")
 cat("\n  Saved raw input data:", Input_data_ID, "\n\n")
 
 
+rm(DATA)
+
+
+save(file = paste("./data/", basename(sub("\\.R", ".Rda", Script.Name))),
+     # list = ls(pattern = "^ALL_1_|^CLEAR_1_|^CLOUD_1_"),
+     compress = "xz")
+objects <- ls()
+
+objects
+is.function(objects)
+is.atomic()
+is.element()
+
+mylist <- Filter(is.data.frame, objects)
+
+sapply(objects, function(x) is.numeric(get(x)) | is.character(x)  , simplify = T)
+
+
+is.numeric(Days_of_year)
+is.numeric(ST_all)
+
 #' **END**
 #+ include=T, echo=F
 tac <- Sys.time()
