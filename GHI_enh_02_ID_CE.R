@@ -194,17 +194,17 @@ SelEnhanc <- "Enhanc_C_1"
 # SelEnhanc <- "Enhanc_C_3"
 
 ## __ My criteria  -------------------------------------------------------------
-GLB_ench_THRES     <-  1.10 ## enchantment relative to HAU
-GLB_diff_THRES     <- 20    ## enchantment absolute diff to HAU
-Clearness_Kt_THRES <-  0.8  ## enchantment threshold
-wattGLB_THRES      <- 20    ## minimum value to consider
+# C1_GLB_ench_THRES     <-  1.10 ## enchantment relative to HAU
+C1_GLB_diff_THRES     <- 20    ## enchantment absolute diff to HAU
+C1_Clearness_Kt_THRES <-  0.8  ## enchantment threshold
+# C1_wattGLB_THRES      <- 20    ## minimum value to consider
 
 DATA[, Enhanc_C_1 := FALSE]
-# DATA[wattGLB           > CS_ref * GLB_ench_THRES + GLB_diff_THRES &
-#      ClearnessIndex_kt > Clearness_Kt_THRES,
+# DATA[wattGLB           > CS_ref * C1_GLB_ench_THRES + C1_GLB_diff_THRES &
+#      ClearnessIndex_kt > C1_Clearness_Kt_THRES,
 #      Enhanc_C_1 := TRUE]
 
-DATA[, Enhanc_C_1_ref := ETH * Clearness_Kt_THRES + GLB_diff_THRES]
+DATA[, Enhanc_C_1_ref := ETH * C1_Clearness_Kt_THRES + C1_GLB_diff_THRES]
 DATA[wattGLB > Enhanc_C_1_ref,
      Enhanc_C_1 := TRUE]
 
@@ -217,10 +217,10 @@ if (SelEnhanc == "Enhanc_C_1") {
 
 ## __ Gueymard2017 Criteria  ---------------------------------------------------
 ## Clearness index > 0.8 / 1
-
+C2_Clearness_Kt_THRES <- 0.8
 DATA[, Enhanc_C_2 := FALSE]
-DATA[, Enhanc_C_2_ref := ETH * Clearness_Kt_THRES]
-# DATA[ClearnessIndex_kt > Clearness_Kt_THRES,
+DATA[, Enhanc_C_2_ref := ETH * C2_Clearness_Kt_THRES]
+# DATA[ClearnessIndex_kt > C1_Clearness_Kt_THRES,
 #      Enhanc_C_2 := TRUE]
 DATA[wattGLB > Enhanc_C_2_ref,
      Enhanc_C_2 := TRUE]
@@ -235,8 +235,9 @@ if (SelEnhanc == "Enhanc_C_2") {
 
 ## __ Vamvakas2020  Criteria  --------------------------------------------------
 ## +5% from model => enhancements above 15 Wm^2 the instrument uncertainty
+C3_cs_ref_ratio <- 1.05
 DATA[, Enhanc_C_3 := FALSE]
-DATA[, Enhanc_C_3_ref := CS_ref * 1.05]
+DATA[, Enhanc_C_3_ref := CS_ref * C3_cs_ref_ratio]
 DATA[wattGLB > Enhanc_C_3_ref,
      Enhanc_C_3 := TRUE]
 
@@ -414,7 +415,7 @@ for (ii in 1:nrow(vec_days)) {
         # overplot clearnesindex
         # par(new = T)
         # plot(temp$Date, temp$ClearnessIndex_kt, "l")
-        # abline(h = Clearness_Kt_THRES)
+        # abline(h = C1_Clearness_Kt_THRES)
 
         # plot(temp$Date, temp$Clearness_Kt)
         # abline(h=.8,col="red")
@@ -531,32 +532,32 @@ DATA[, C1G1 := NULL]
 # DATA[, C1Grp1 := rleid(c(NA,diff(cumsum(G1))))]
 # DATA[C1G1 == FALSE, C1Grp1 := NA]
 
-
+stop()
 #  Save processed data  --------------------------------------------------------
 saveRDS(DATA, file = Input_data_ID, compress = "xz")
 cat("\n  Saved raw input data:", Input_data_ID, "\n\n")
 
 
-rm(DATA)
 
+
+
+objects <- grep("^tic$|^tac$|^Script.Name$|^tag$", ls(), value = T, invert = T)
+objects <- objects[sapply(objects, function(x)
+    is.numeric(get(x)) |
+        is.character(get(x)) &
+        (!is.vector(get(x)) |
+             !is.function(get(x))), simplify = T)]
+
+for (as in objects) {
+    sizeof(as)
+}
+
+object.
 
 save(file = paste("./data/", basename(sub("\\.R", ".Rda", Script.Name))),
-     # list = ls(pattern = "^ALL_1_|^CLEAR_1_|^CLOUD_1_"),
+     list = objects,
      compress = "xz")
-objects <- ls()
 
-objects
-is.function(objects)
-is.atomic()
-is.element()
-
-mylist <- Filter(is.data.frame, objects)
-
-sapply(objects, function(x) is.numeric(get(x)) | is.character(x)  , simplify = T)
-
-
-is.numeric(Days_of_year)
-is.numeric(ST_all)
 
 #' **END**
 #+ include=T, echo=F
