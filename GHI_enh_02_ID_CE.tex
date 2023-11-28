@@ -150,17 +150,17 @@ Alpha * HAU is CS\_ref
 \CommentTok{\# SelEnhanc \textless{}{-} "Enhanc\_C\_3"}
 
 \DocumentationTok{\#\# \_\_ My criteria  {-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}}
-\NormalTok{GLB\_ench\_THRES     }\OtherTok{\textless{}{-}}  \FloatTok{1.10} \DocumentationTok{\#\# enchantment relative to HAU}
-\NormalTok{GLB\_diff\_THRES     }\OtherTok{\textless{}{-}} \DecValTok{20}    \DocumentationTok{\#\# enchantment absolute diff to HAU}
-\NormalTok{Clearness\_Kt\_THRES }\OtherTok{\textless{}{-}}  \FloatTok{0.8}  \DocumentationTok{\#\# enchantment threshold}
-\NormalTok{wattGLB\_THRES      }\OtherTok{\textless{}{-}} \DecValTok{20}    \DocumentationTok{\#\# minimum value to consider}
+\CommentTok{\# C1\_GLB\_ench\_THRES     \textless{}{-}  1.10 \#\# enchantment relative to HAU}
+\NormalTok{C1\_GLB\_diff\_THRES     }\OtherTok{\textless{}{-}} \DecValTok{20}    \DocumentationTok{\#\# enchantment absolute diff to HAU}
+\NormalTok{C1\_Clearness\_Kt\_THRES }\OtherTok{\textless{}{-}}  \FloatTok{0.8}  \DocumentationTok{\#\# enchantment threshold}
+\CommentTok{\# C1\_wattGLB\_THRES      \textless{}{-} 20    \#\# minimum value to consider}
 
 \NormalTok{DATA[, Enhanc\_C\_1 }\SpecialCharTok{:=} \ConstantTok{FALSE}\NormalTok{]}
-\CommentTok{\# DATA[wattGLB           \textgreater{} CS\_ref * GLB\_ench\_THRES + GLB\_diff\_THRES \&}
-\CommentTok{\#      ClearnessIndex\_kt \textgreater{} Clearness\_Kt\_THRES,}
+\CommentTok{\# DATA[wattGLB           \textgreater{} CS\_ref * C1\_GLB\_ench\_THRES + C1\_GLB\_diff\_THRES \&}
+\CommentTok{\#      ClearnessIndex\_kt \textgreater{} C1\_Clearness\_Kt\_THRES,}
 \CommentTok{\#      Enhanc\_C\_1 := TRUE]}
 
-\NormalTok{DATA[, Enhanc\_C\_1\_ref }\SpecialCharTok{:=}\NormalTok{ ETH }\SpecialCharTok{*}\NormalTok{ Clearness\_Kt\_THRES }\SpecialCharTok{+}\NormalTok{ GLB\_diff\_THRES]}
+\NormalTok{DATA[, Enhanc\_C\_1\_ref }\SpecialCharTok{:=}\NormalTok{ ETH }\SpecialCharTok{*}\NormalTok{ C1\_Clearness\_Kt\_THRES }\SpecialCharTok{+}\NormalTok{ C1\_GLB\_diff\_THRES]}
 \NormalTok{DATA[wattGLB }\SpecialCharTok{\textgreater{}}\NormalTok{ Enhanc\_C\_1\_ref,}
 \NormalTok{     Enhanc\_C\_1 }\SpecialCharTok{:=} \ConstantTok{TRUE}\NormalTok{]}
 
@@ -173,10 +173,10 @@ Alpha * HAU is CS\_ref
 
 \DocumentationTok{\#\# \_\_ Gueymard2017 Criteria  {-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}}
 \DocumentationTok{\#\# Clearness index \textgreater{} 0.8 / 1}
-
+\NormalTok{C2\_Clearness\_Kt\_THRES }\OtherTok{\textless{}{-}} \FloatTok{0.8}
 \NormalTok{DATA[, Enhanc\_C\_2 }\SpecialCharTok{:=} \ConstantTok{FALSE}\NormalTok{]}
-\NormalTok{DATA[, Enhanc\_C\_2\_ref }\SpecialCharTok{:=}\NormalTok{ ETH }\SpecialCharTok{*}\NormalTok{ Clearness\_Kt\_THRES]}
-\CommentTok{\# DATA[ClearnessIndex\_kt \textgreater{} Clearness\_Kt\_THRES,}
+\NormalTok{DATA[, Enhanc\_C\_2\_ref }\SpecialCharTok{:=}\NormalTok{ ETH }\SpecialCharTok{*}\NormalTok{ C2\_Clearness\_Kt\_THRES]}
+\CommentTok{\# DATA[ClearnessIndex\_kt \textgreater{} C1\_Clearness\_Kt\_THRES,}
 \CommentTok{\#      Enhanc\_C\_2 := TRUE]}
 \NormalTok{DATA[wattGLB }\SpecialCharTok{\textgreater{}}\NormalTok{ Enhanc\_C\_2\_ref,}
 \NormalTok{     Enhanc\_C\_2 }\SpecialCharTok{:=} \ConstantTok{TRUE}\NormalTok{]}
@@ -191,8 +191,9 @@ Alpha * HAU is CS\_ref
 
 \DocumentationTok{\#\# \_\_ Vamvakas2020  Criteria  {-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}}
 \DocumentationTok{\#\# +5\% from model =\textgreater{} enhancements above 15 Wm\^{}2 the instrument uncertainty}
+\NormalTok{C3\_cs\_ref\_ratio }\OtherTok{\textless{}{-}} \FloatTok{1.05}
 \NormalTok{DATA[, Enhanc\_C\_3 }\SpecialCharTok{:=} \ConstantTok{FALSE}\NormalTok{]}
-\NormalTok{DATA[, Enhanc\_C\_3\_ref }\SpecialCharTok{:=}\NormalTok{ CS\_ref }\SpecialCharTok{*} \FloatTok{1.05}\NormalTok{]}
+\NormalTok{DATA[, Enhanc\_C\_3\_ref }\SpecialCharTok{:=}\NormalTok{ CS\_ref }\SpecialCharTok{*}\NormalTok{ C3\_cs\_ref\_ratio]}
 \NormalTok{DATA[wattGLB }\SpecialCharTok{\textgreater{}}\NormalTok{ Enhanc\_C\_3\_ref,}
 \NormalTok{     Enhanc\_C\_3 }\SpecialCharTok{:=} \ConstantTok{TRUE}\NormalTok{]}
 
@@ -452,14 +453,14 @@ TRUE
 
 \begin{center}\includegraphics[width=1\linewidth]{GHI_enh_02_ID_CE_files/figure-latex/unnamed-chunk-8-74} \end{center}
 
-\begin{center}\includegraphics[width=1\linewidth]{GHI_enh_02_ID_CE_files/figure-latex/unnamed-chunk-8-75} \end{center}
-
-\begin{center}\includegraphics[width=1\linewidth]{GHI_enh_02_ID_CE_files/figure-latex/unnamed-chunk-8-76} \end{center}
-
 \FloatBarrier
 
 \hypertarget{days-with-clouds-id}{%
 \subsection{Days with clouds ID}\label{days-with-clouds-id}}
+
+\begin{center}\includegraphics[width=1\linewidth]{GHI_enh_02_ID_CE_files/figure-latex/unnamed-chunk-8-75} \end{center}
+
+\begin{center}\includegraphics[width=1\linewidth]{GHI_enh_02_ID_CE_files/figure-latex/unnamed-chunk-8-76} \end{center}
 
 \begin{center}\includegraphics[width=1\linewidth]{GHI_enh_02_ID_CE_files/figure-latex/unnamed-chunk-8-77} \end{center}
 
@@ -497,14 +498,14 @@ TRUE
 
 \begin{center}\includegraphics[width=1\linewidth]{GHI_enh_02_ID_CE_files/figure-latex/unnamed-chunk-8-94} \end{center}
 
-\begin{center}\includegraphics[width=1\linewidth]{GHI_enh_02_ID_CE_files/figure-latex/unnamed-chunk-8-95} \end{center}
-
-\begin{center}\includegraphics[width=1\linewidth]{GHI_enh_02_ID_CE_files/figure-latex/unnamed-chunk-8-96} \end{center}
-
 \FloatBarrier
 
 \hypertarget{days-with-random-selection}{%
 \subsection{Days with random selection}\label{days-with-random-selection}}
+
+\begin{center}\includegraphics[width=1\linewidth]{GHI_enh_02_ID_CE_files/figure-latex/unnamed-chunk-8-95} \end{center}
+
+\begin{center}\includegraphics[width=1\linewidth]{GHI_enh_02_ID_CE_files/figure-latex/unnamed-chunk-8-96} \end{center}
 
 \begin{center}\includegraphics[width=1\linewidth]{GHI_enh_02_ID_CE_files/figure-latex/unnamed-chunk-8-97} \end{center}
 
@@ -562,20 +563,16 @@ TRUE
 
 \begin{center}\includegraphics[width=1\linewidth]{GHI_enh_02_ID_CE_files/figure-latex/unnamed-chunk-8-124} \end{center}
 
-\begin{center}\includegraphics[width=1\linewidth]{GHI_enh_02_ID_CE_files/figure-latex/unnamed-chunk-8-125} \end{center}
-
-\begin{center}\includegraphics[width=1\linewidth]{GHI_enh_02_ID_CE_files/figure-latex/unnamed-chunk-8-126} \end{center}
-
 \FloatBarrier
 
 \hypertarget{days-with-manual-test-days}{%
 \subsection{Days with manual test days}\label{days-with-manual-test-days}}
 
+\begin{center}\includegraphics[width=1\linewidth]{GHI_enh_02_ID_CE_files/figure-latex/unnamed-chunk-8-125} \end{center}
+
+\begin{center}\includegraphics[width=1\linewidth]{GHI_enh_02_ID_CE_files/figure-latex/unnamed-chunk-8-126} \end{center}
+
 \begin{center}\includegraphics[width=1\linewidth]{GHI_enh_02_ID_CE_files/figure-latex/unnamed-chunk-8-127} \end{center}
-
-\begin{center}\includegraphics[width=1\linewidth]{GHI_enh_02_ID_CE_files/figure-latex/unnamed-chunk-8-128} \end{center}
-
-\begin{center}\includegraphics[width=1\linewidth]{GHI_enh_02_ID_CE_files/figure-latex/unnamed-chunk-8-129} \end{center}
 
 \newpage
 \FloatBarrier
@@ -650,7 +647,7 @@ Saved raw input data: ./data/CE\_ID\_Input.Rds
 \textbf{END}
 
 \begin{verbatim}
-2023-11-28 09:20:24.2 athan@sagan GHI_enh_02_ID_CE.R 6.453513 mins
+2023-11-28 17:45:58.0 athan@sagan GHI_enh_02_ID_CE.R 6.494719 mins
 \end{verbatim}
 
 \end{document}
