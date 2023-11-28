@@ -447,11 +447,11 @@ for (pyear in yearstodo) {
     p <-
         ggplot(DATA[year(Date) == pyear],
                aes(get(paste0(SelEnhanc,"_ref")), wattGLB)) +
-        geom_point(data   = DATA[year(Date) == pyear & get(SelEnhanc) == F,],
+        geom_point(data   = DATA[year(Date) == pyear & get(SelEnhanc) == FALSE,],
                    colour = "black",
                    na.rm  = TRUE,
                    size   = 0.2) +
-        geom_point(data   = DATA[year(Date) == pyear & get(SelEnhanc) == T,],
+        geom_point(data   = DATA[year(Date) == pyear & get(SelEnhanc) == TRUE,],
                    na.rm  = TRUE,
                    size   = 0.2,
                    aes(color = GLB_diff)) +
@@ -532,29 +532,20 @@ DATA[, C1G1 := NULL]
 # DATA[, C1Grp1 := rleid(c(NA,diff(cumsum(G1))))]
 # DATA[C1G1 == FALSE, C1Grp1 := NA]
 
-stop()
 #  Save processed data  --------------------------------------------------------
 saveRDS(DATA, file = Input_data_ID, compress = "xz")
 cat("\n  Saved raw input data:", Input_data_ID, "\n\n")
 
-
-
-
-
+#  Save variables from environment  --------------------------------------------
 objects <- grep("^tic$|^tac$|^Script.Name$|^tag$", ls(), value = T, invert = T)
 objects <- objects[sapply(objects, function(x)
     is.numeric(get(x)) |
         is.character(get(x)) &
+        object.size(get(as)) < 1009 &
         (!is.vector(get(x)) |
              !is.function(get(x))), simplify = T)]
 
-for (as in objects) {
-    sizeof(as)
-}
-
-object.
-
-save(file = paste("./data/", basename(sub("\\.R", ".Rda", Script.Name))),
+save(file = paste0("./data/", basename(sub("\\.R", ".Rda", Script.Name))),
      list = objects,
      compress = "xz")
 
@@ -564,3 +555,7 @@ save(file = paste("./data/", basename(sub("\\.R", ".Rda", Script.Name))),
 tac <- Sys.time()
 cat(sprintf("%s %s@%s %s %f mins\n\n", Sys.time(), Sys.info()["login"],
             Sys.info()["nodename"], basename(Script.Name), difftime(tac,tic,units = "mins")))
+if (interactive()) {
+    system("mplayer /usr/share/sounds/freedesktop/stereo/dialog-warning.oga", ignore.stdout = T, ignore.stderr = T)
+    system("notify-send -u normal -t 30000 'R script ended'")
+}

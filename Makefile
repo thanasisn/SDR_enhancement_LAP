@@ -41,7 +41,7 @@ $(PDF): $(QMD)
 	@echo "Building: $? -> $@"
 	@#-Rscript -e "rmarkdown::render('$?', output_format='bookdown::pdf_document2', output_file='$@')"
 	@#-Rscript -e "rmarkdown::find_pandoc(dir = '/usr/lib/rstudio/resources/app/bin/quarto/bin/tools'); rmarkdown::render('$?', output_format='bookdown::pdf_document2', output_file='$@', clean = TRUE)"
-	quarto render '$?' --to elsevier-pdf
+	quarto render '$?' --to elsevier-pdf --log-level warning
 	@#setsid evince    $@ &
 	@-rsync -a "$@" ${LIBRARY}
 
