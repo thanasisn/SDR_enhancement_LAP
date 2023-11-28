@@ -233,23 +233,36 @@ ST_total <- DATA[, unlist(lapply(.SD, data.summary, na.rm = TRUE),
 ST_daily <- DATA[, unlist(lapply(.SD, data.summary, na.rm = FALSE),
                           recursive = FALSE),
                  .SDcols = my.cols,
-                 by = Day]
+                 by = .(Date = Day)]
 
 ST_extreme_daily <- DATA[wattGLB > ETH,
                    unlist(lapply(.SD, data.summary, na.rm = TRUE),
                           recursive = FALSE),
                    .SDcols = my.cols,
-                   by = Day]
+                   by = .(Date = Day)]
 
 
 ST_E_daily <- DATA[get(SelEnhanc) == TRUE,
                    unlist(lapply(.SD, enhanc.summary, na.rm = FALSE),
                           recursive = FALSE),
                    .SDcols = my.cols,
-                   by = Day]
+                   by = .(Date = Day)]
+
+ST_E_daily_seas <- DATA[get(SelEnhanc) == TRUE,
+                   unlist(lapply(.SD, enhanc.summary, na.rm = FALSE),
+                          recursive = FALSE),
+                   .SDcols = my.cols,
+                   by = DOY]
 
 
-# _ Monthly stats  ---------------------------------------------------------------
+for (avar in grep("^DOY$", names(ST_E_daily_seas), value = T, invert = T) ) {
+    plot(ST_E_daily_seas[, get(avar), DOY],
+         ylab = avar)
+    title(paste("ST_E_daily_seas", avar))
+}
+
+
+# _ Monthly stats  -------------------------------------------------------------
 
 ST_monthly <- DATA[, unlist(lapply(.SD, data.summary, na.rm = FALSE),
                             recursive = FALSE),
@@ -276,66 +289,112 @@ ST_E_monthly <- as.POSIXct(strptime(paste(ST_E_monthly$year, ST_E_monthly$month,
 
 
 
+ST_E_monthly_seas <- DATA[get(SelEnhanc) == TRUE,
+                     unlist(lapply(.SD, enhanc.summary, na.rm = FALSE),
+                            recursive = FALSE),
+                     .SDcols = my.cols,
+                     by = .(month(Date))]
+
+
+for (avar in grep("^month$", names(ST_E_monthly_seas), value = T, invert = T) ) {
+    plot(ST_E_monthly_seas[, get(avar), month],
+         ylab = avar)
+    title(paste("ST_E_monthly_seas", avar))
+}
+
+
+
+# _ SZA stats  -----------------------------------------------------------------
+
+
+ST_sza <- DATA[, unlist(lapply(.SD, data.summary, na.rm = TRUE),
+                        recursive = FALSE),
+               .SDcols = my.cols,
+               by = .(SZA = (SZA - SZA_BIN / 2 ) %/% SZA_BIN)]
+
+for (avar in grep("^SZA$", names(ST_sza), value = T, invert = T) ) {
+    plot(ST_sza[, get(avar), SZA],
+         ylab = avar)
+    title(paste("ST_sza", avar))
+}
+
+
+
+ST_E_sza <- DATA[get(SelEnhanc) == TRUE,
+                 unlist(lapply(.SD, enhanc.summary, na.rm = FALSE),
+                        recursive = FALSE),
+                 .SDcols = my.cols,
+                 by = .(SZA = (SZA - SZA_BIN / 2 ) %/% SZA_BIN)]
 
 
 
 
 
+## Quarter of year with one month shift to include December in the next years winter
+DATA[,   season_Yqrt := as.yearqtr(as.yearmon(paste(year(Date), month(Date), sep = "-")) + 1/12)]
+ST_daily[,   season_Yqrt := as.yearqtr(as.yearmon(paste(year(Date), month(Date), sep = "-")) + 1/12)]
+ST_monthly[, season_Yqrt := as.yearqtr(as.yearmon(paste(year(Date), month(Date), sep = "-")) + 1/12)]
 
-stop()
-
-
-Enh_sza    <- DATA_Enh[, .(N        = sum( get(SelEnhanc), na.rm = T),
-                           N_ex     = sum( wattGLB > TSIextEARTH_comb * cosde(SZA)),
-                           sum_Ench = sum( GLB_diff),
-                           avg_Ench = mean(GLB_ench),
-                           sd_Ench  = sd(  GLB_ench),
-                           sum_Diff = sum( GLB_diff)),
-                       by = .(SZA = (SZA - SZA_BIN / 2 ) %/% SZA_BIN)]
-
-
-Data_sza    <- DATA[, .(N_enha  = sum(sum( get(SelEnhanc), na.rm = T), na.rm = TRUE),
-                        N_total = sum(!is.na(wattGLB))),
-                    by = .(SZA = (SZA - SZA_BIN / 2 ) %/% SZA_BIN) ]
-
-
-
-CONF_INTERV <- .95
-conf_param  <- 1 - (1 - CONF_INTERV) / 2
-suppressWarnings({
-    Enh_sza[,   Ench_EM := qt(conf_param, df = N - 1) * sd_Ench / sqrt(N)]
-    Enh_daily[, Ench_EM := qt(conf_param, df = N - 1) * sd_Ench / sqrt(N)]
-    Enh_yearly[,Ench_EM := qt(conf_param, df = N - 1) * sd_Ench / sqrt(N)]
-    Enh_total[, Ench_EM := qt(conf_param, df = N - 1) * sd_Ench / sqrt(N)]
-})
+## Flag seasons using quarters
+DATA[season_Yqrt %% 1 == 0   , Season := "Winter"]
+DATA[season_Yqrt %% 1 == 0.25, Season := "Spring"]
+DATA[season_Yqrt %% 1 == 0.50, Season := "Summer"]
+DATA[season_Yqrt %% 1 == 0.75, Season := "Autumn"]
+ST_daily[season_Yqrt %% 1 == 0   , Season := "Winter"]
+ST_daily[season_Yqrt %% 1 == 0.25, Season := "Spring"]
+ST_daily[season_Yqrt %% 1 == 0.50, Season := "Summer"]
+ST_daily[season_Yqrt %% 1 == 0.75, Season := "Autumn"]
+ST_monthly[season_Yqrt %% 1 == 0   , Season := "Winter"]
+ST_monthly[season_Yqrt %% 1 == 0.25, Season := "Spring"]
+ST_monthly[season_Yqrt %% 1 == 0.50, Season := "Summer"]
+ST_monthly[season_Yqrt %% 1 == 0.75, Season := "Autumn"]
 
 
-## Make values relative ####
-Enh_yearly[, N_att        := 100 * (N - mean(N))/mean(N)]
-Enh_yearly[, sum_Ench_att := 100 * (sum_Ench - mean(sum_Ench))/mean(sum_Ench)]
-Enh_yearly[, Ench_intesit :=        sum_Ench / N ]
-
-Enh_daily[, N_att        := 100 * (N - mean(N))/mean(N)]
-Enh_daily[, sum_Ench_att := 100 * (sum_Ench - mean(sum_Ench))/mean(sum_Ench)]
-Enh_daily[, Ench_intesit :=        sum_Ench / N ]
-
-Enh_monthly[, N_att        := 100 * (N - mean(N))/mean(N)]
-Enh_monthly[, sum_Ench_att := 100 * (sum_Ench - mean(sum_Ench))/mean(sum_Ench)]
-Enh_monthly[, Ench_intesit :=        sum_Ench / N ]
+# - by season
+# - by season_yqrt
 
 
 
-#+ include=F, echo=F
-plot(Enh_daily$Day, Enh_daily$N)
-plot(Enh_daily$Day, Enh_daily$N_ex)
-plot(Enh_daily$Day, Enh_daily$sum_Ench)
-plot(Enh_daily$Day, Enh_daily$avg_Ench)
+#
+#
+# CONF_INTERV <- .95
+# conf_param  <- 1 - (1 - CONF_INTERV) / 2
+# suppressWarnings({
+#     Enh_sza[,   Ench_EM := qt(conf_param, df = N - 1) * sd_Ench / sqrt(N)]
+#     Enh_daily[, Ench_EM := qt(conf_param, df = N - 1) * sd_Ench / sqrt(N)]
+#     Enh_yearly[,Ench_EM := qt(conf_param, df = N - 1) * sd_Ench / sqrt(N)]
+#     Enh_total[, Ench_EM := qt(conf_param, df = N - 1) * sd_Ench / sqrt(N)]
+# })
+#
+#
+# ## Make values relative ####
+# Enh_yearly[, N_att        := 100 * (N - mean(N))/mean(N)]
+# Enh_yearly[, sum_Ench_att := 100 * (sum_Ench - mean(sum_Ench))/mean(sum_Ench)]
+# Enh_yearly[, Ench_intesit :=        sum_Ench / N ]
+#
+# Enh_daily[, N_att        := 100 * (N - mean(N))/mean(N)]
+# Enh_daily[, sum_Ench_att := 100 * (sum_Ench - mean(sum_Ench))/mean(sum_Ench)]
+# Enh_daily[, Ench_intesit :=        sum_Ench / N ]
+#
+# Enh_monthly[, N_att        := 100 * (N - mean(N))/mean(N)]
+# Enh_monthly[, sum_Ench_att := 100 * (sum_Ench - mean(sum_Ench))/mean(sum_Ench)]
+# Enh_monthly[, Ench_intesit :=        sum_Ench / N ]
+#
+#
+#
+# #+ include=F, echo=F
+# plot(Enh_daily$Day, Enh_daily$N)
+# plot(Enh_daily$Day, Enh_daily$N_ex)
+# plot(Enh_daily$Day, Enh_daily$sum_Ench)
+# plot(Enh_daily$Day, Enh_daily$avg_Ench)
+#
+#
+# fit1 <- lm(Enh_yearly$N_att ~ Enh_yearly$year)[[1]]
+# fit2 <- lm(Enh_yearly$Ench_intesit ~ Enh_yearly$year)[[1]]
 
 
-fit1 <- lm(Enh_yearly$N_att ~ Enh_yearly$year)[[1]]
-fit2 <- lm(Enh_yearly$Ench_intesit ~ Enh_yearly$year)[[1]]
+##  PLOTS  ---------------------------------------------------------------------
 
-##;  ## results ####
 ##;
 ##;  #'
 ##;  #' ## Results
@@ -357,6 +416,7 @@ fit2 <- lm(Enh_yearly$Ench_intesit ~ Enh_yearly$year)[[1]]
 
 
 ## _ Cases per year  -----------------------------------------------------------
+
 
 #+ enchtrendyear, include=T, echo=F, fig.cap="Trend of the total of enhancement cases per year."
 plot(Enh_yearly$year, Enh_yearly$N_att ,
