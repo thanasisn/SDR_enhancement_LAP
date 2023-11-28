@@ -541,7 +541,7 @@ objects <- grep("^tic$|^tac$|^Script.Name$|^tag$", ls(), value = T, invert = T)
 objects <- objects[sapply(objects, function(x)
     is.numeric(get(x)) |
         is.character(get(x)) &
-        object.size(get(as)) < 1009 &
+        object.size(get(x)) < 1009 &
         (!is.vector(get(x)) |
              !is.function(get(x))), simplify = T)]
 
@@ -557,5 +557,5 @@ cat(sprintf("%s %s@%s %s %f mins\n\n", Sys.time(), Sys.info()["login"],
             Sys.info()["nodename"], basename(Script.Name), difftime(tac,tic,units = "mins")))
 if (interactive()) {
     system("mplayer /usr/share/sounds/freedesktop/stereo/dialog-warning.oga", ignore.stdout = T, ignore.stderr = T)
-    system("notify-send -u normal -t 30000 'R script ended'")
+    system(paste("notify-send -u normal -t 30000 ", Script.Name, " 'R script ended'"))
 }
