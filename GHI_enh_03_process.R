@@ -181,36 +181,19 @@ SelEnhanc <- "Enhanc_C_1"
 ##;  #' \end{equation}
 ##;  #'
 ##;
-##;
-##;
-##;
-
 
 ##  Enhancement cases statistics  ----------------------------------------------
 
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-stop()
 ##  Stats on enhancement cases  ------------------------------------------------
-DATA_Enh <- DATA[get(SelEnhanc) == TRUE ]
+# DATA_Enh <- DATA[get(SelEnhanc) == TRUE ]
 
 
 names(DATA)
 
-
+## _ Stats functions  ----------------------------------------------------------
 data.summary <- function(x, na.rm = FALSE)
     list(
         mean   = mean  (x, na.rm = na.rm),
@@ -236,11 +219,12 @@ enhanc.summary <- function(x, na.rm = FALSE)
         N      = sum(!is.na(x))
     )
 
+## Stats for colomuns
 my.cols <- c("wattGLB",
              "GLB_ench",
              "GLB_diff")
 
-ST_all <- DATA[, unlist(lapply(.SD, data.summary, na.rm = TRUE),
+ST_total <- DATA[, unlist(lapply(.SD, data.summary, na.rm = TRUE),
                         recursive = FALSE),
                .SDcols = my.cols]
 
@@ -267,29 +251,38 @@ ST_E_daily <- DATA[get(SelEnhanc) == TRUE,
 
 # _ Monthly stats  ---------------------------------------------------------------
 
+ST_monthly <- DATA[, unlist(lapply(.SD, data.summary, na.rm = FALSE),
+                            recursive = FALSE),
+                   .SDcols = my.cols,
+                   by = .(year(Date), month(Date))]
+ST_monthly$Date <- as.POSIXct(strptime(paste(ST_monthly$year, ST_monthly$month, "1"),"%Y %m %d"))
+
+
+ST_extreme_monthly <- DATA[wattGLB > ETH,
+                           unlist(lapply(.SD, data.summary, na.rm = TRUE),
+                                  recursive = FALSE),
+                           .SDcols = my.cols,
+                           by = .(year(Date), month(Date))]
+ST_extreme_monthly$Date <- as.POSIXct(strptime(paste(ST_extreme_monthly$year, ST_extreme_monthly$month, "1"),"%Y %m %d"))
 
 
 
-Enh_monthly <- DATA_Enh[, .(N        = sum( get(SelEnhanc), na.rm = T),
-                           N_ex     = sum( wattGLB > TSIextEARTH_comb * cosde(SZA)),
-                           sum_Ench = sum( GLB_diff),
-                           avg_Ench = mean(GLB_ench),
-                           sd_Ench  = sd(  GLB_ench),
-                           sum_Diff = sum( GLB_diff)),
-                       by = .(year(Date), month(Date))]
-
-Enh_monthly$Date <- as.POSIXct(strptime(paste(Enh_monthly$year, Enh_monthly$month, "1"),"%Y %m %d"))
+ST_E_monthly <- DATA[get(SelEnhanc) == TRUE,
+                     unlist(lapply(.SD, enhanc.summary, na.rm = FALSE),
+                            recursive = FALSE),
+                     .SDcols = my.cols,
+                     by = .(year(Date), month(Date))]
+ST_E_monthly <- as.POSIXct(strptime(paste(ST_E_monthly$year, ST_E_monthly$month, "1"),"%Y %m %d"))
 
 
 
 
 
-Enh_total <- DATA_Enh[, .(N        = sum( get(SelEnhanc), na.rm = T),
-                          N_ex     = sum( wattGLB > TSIextEARTH_comb * cosde(SZA)),
-                          sum_Ench = sum( GLB_diff),
-                          avg_Ench = mean(GLB_ench),
-                          sd_Ench  = sd(  GLB_ench),
-                          sum_Diff = sum( GLB_diff))]
+
+
+
+
+stop()
 
 
 Enh_sza    <- DATA_Enh[, .(N        = sum( get(SelEnhanc), na.rm = T),

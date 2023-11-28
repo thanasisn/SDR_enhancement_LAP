@@ -118,6 +118,20 @@
 \def\fps@figure{htbp}
 \makeatother
 
+\usepackage{booktabs}
+\usepackage{longtable}
+\usepackage{array}
+\usepackage{multirow}
+\usepackage{wrapfig}
+\usepackage{float}
+\usepackage{colortbl}
+\usepackage{pdflscape}
+\usepackage{tabu}
+\usepackage{threeparttable}
+\usepackage{threeparttablex}
+\usepackage[normalem]{ulem}
+\usepackage{makecell}
+\usepackage{xcolor}
 \makeatletter
 \@ifpackageloaded{tcolorbox}{}{\usepackage[skins,breakable]{tcolorbox}}
 \@ifpackageloaded{fontawesome5}{}{\usepackage{fontawesome5}}
@@ -253,7 +267,7 @@ rutrum at. Sed at tempus elit.
     keyword2
 \end{keyword}
 \end{frontmatter}
-    \ifdefined\Shaded\renewenvironment{Shaded}{\begin{tcolorbox}[boxrule=0pt, breakable, sharp corners, frame hidden, interior hidden, borderline west={3pt}{0pt}{shadecolor}, enhanced]}{\end{tcolorbox}}\fi
+    \ifdefined\Shaded\renewenvironment{Shaded}{\begin{tcolorbox}[enhanced, frame hidden, borderline west={3pt}{0pt}{shadecolor}, interior hidden, breakable, sharp corners, boxrule=0pt]}{\end{tcolorbox}}\fi
 
 \hypertarget{intro}{%
 \section{Intro}\label{intro}}
@@ -269,8 +283,8 @@ Data with quality control
 To preserve an unbiased representation of the data we applied a
 constrain similar the one used by \citet{CastillejoCuberos2020}. Where,
 for each valid hour of day, there must exist at list 45 minutes of valid
-measurements, including night time, near dusk and dawn. Days with less
-than 5 complete hours are rejected completely.
+measurements, including night time near sunrise and sunset. Days with
+less than 5 valid hours are rejected completely.
 
 \begin{itemize}
 \tightlist
@@ -324,7 +338,7 @@ Thresholds by inspecting a selection of days with some specs
 
 \begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
 
-\begin{tcolorbox}[enhanced jigsaw, opacitybacktitle=0.6, breakable, left=2mm, rightrule=.15mm, bottomrule=.15mm, colframe=quarto-callout-important-color-frame, colback=white, toprule=.15mm, colbacktitle=quarto-callout-important-color!10!white, bottomtitle=1mm, toptitle=1mm, coltitle=black, title=\textcolor{quarto-callout-important-color}{\faExclamation}\hspace{0.5em}{gcff}, titlerule=0mm, arc=.35mm, opacityback=0, leftrule=.75mm]
+\begin{tcolorbox}[enhanced jigsaw, colback=white, title=\textcolor{quarto-callout-important-color}{\faExclamation}\hspace{0.5em}{gcff}, toptitle=1mm, titlerule=0mm, colbacktitle=quarto-callout-important-color!10!white, rightrule=.15mm, left=2mm, opacityback=0, bottomtitle=1mm, coltitle=black, leftrule=.75mm, breakable, arc=.35mm, bottomrule=.15mm, colframe=quarto-callout-important-color-frame, opacitybacktitle=0.6, toprule=.15mm]
 
 This is nice
 
@@ -381,7 +395,7 @@ Inline equations work as well: \(\sum_{i = 2}^\infty\{\alpha_i^\beta\}\)
 
 Figure~\ref{fig-meaningless} is generated using an R chunk.
 
-\begin{figure}
+\begin{figure}[h!]
 
 {\centering \includegraphics[width=0.5\textwidth,height=\textheight]{article_files/figure-pdf/fig-meaningless-1.pdf}
 
@@ -404,25 +418,28 @@ Table~\ref{tbl-simple} example.
 \end{Shaded}
 
 \hypertarget{tbl-simple}{}
-\begin{longtable}[]{@{}lrrrr@{}}
-\caption{\label{tbl-simple}Caption centered above table}\tabularnewline
-\toprule\noalign{}
-& mpg & cyl & disp & hp \\
-\midrule\noalign{}
-\endfirsthead
-\toprule\noalign{}
-& mpg & cyl & disp & hp \\
-\midrule\noalign{}
-\endhead
-\bottomrule\noalign{}
-\endlastfoot
-Mazda RX4 & 21.0 & 6 & 160 & 110 \\
-Mazda RX4 Wag & 21.0 & 6 & 160 & 110 \\
-Datsun 710 & 22.8 & 4 & 108 & 93 \\
-Hornet 4 Drive & 21.4 & 6 & 258 & 110 \\
-Hornet Sportabout & 18.7 & 8 & 360 & 175 \\
-Valiant & 18.1 & 6 & 225 & 105 \\
-\end{longtable}
+\begin{table}
+\caption{\label{tbl-simple}Caption centered above table }\tabularnewline
+
+\centering
+\begin{tabular}{l|r|r|r|r}
+\hline
+  & mpg & cyl & disp & hp\\
+\hline
+Mazda RX4 & 21.0 & 6 & 160 & 110\\
+\hline
+Mazda RX4 Wag & 21.0 & 6 & 160 & 110\\
+\hline
+Datsun 710 & 22.8 & 4 & 108 & 93\\
+\hline
+Hornet 4 Drive & 21.4 & 6 & 258 & 110\\
+\hline
+Hornet Sportabout & 18.7 & 8 & 360 & 175\\
+\hline
+Valiant & 18.1 & 6 & 225 & 105\\
+\hline
+\end{tabular}
+\end{table}
 
 
 \renewcommand\refname{References}
