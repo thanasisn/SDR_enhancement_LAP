@@ -193,7 +193,7 @@ if (havetorun) {
         DATA <- rbind(temp, DATA, fill = TRUE)
         rm(temp)
     } ## FOR END: read input files
-    DATA <- unique(DATA)
+    DATA  <- unique(DATA)
     dummy <- gc()
 
     ## TODO warn duplicate dates
@@ -238,7 +238,7 @@ if (havetorun) {
 
 
     ## _ Keep near daylight only  ----------------------------------------------
-    DATA <- DATA[Elevat >= -5, ]
+    DATA <- DATA[Elevat >= -10, ]
 
     ## _ Keep data characterized as 'good' by Radiation Quality control v13 ----
     cat("\n  Select quality data only\n\n")
@@ -300,11 +300,13 @@ if (havetorun) {
     hist(hours$N,      main = "Valid data per hour")
 
     ## _ Keep only days with good global representation  -----------------------
+    ## Keep days with at least 5 acceptable hours
     DATA <- DATA[Day %in% days[GoodH_N > 5, Day], ]
     rm(days, hours)
 
 
     ##_  Count daylight length  ------------------------------------------------
+    ## Drop all night data
     DATA <- DATA[Elevat > 0]
     DATA[, DayLength := .N, by = Day]
 
@@ -327,7 +329,7 @@ if (havetorun) {
 
 
     ## _ DROP MISSING RECORDS!! ------------------------------------------------
-    DATA <- DATA[ !(is.na(wattDIR) & is.na(wattGLB)) ]
+    # DATA <- DATA[ !(is.na(wattDIR) & is.na(wattGLB)) ]
 
     ## _ Info for TIS time span source used  -----------------------------------
     TSI_info <- DATA[, .(Start = min(Date),
@@ -341,7 +343,7 @@ if (havetorun) {
 
     #  Data preparation  -------------------------------------------------------
 
-    ## - Create Clearness Index (BB may not filled yet) ------------------------
+    ## _ Create Clearness Index (BB may not filled yet) ------------------------
     DATA[, ClearnessIndex_kt := NA]
     DATA[, ETH := cosde(SZA) * TSIextEARTH_comb ]  ## TSI at ground
     DATA[, ClearnessIndex_kt := wattGLB / ETH ]

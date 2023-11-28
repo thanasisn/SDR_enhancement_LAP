@@ -109,6 +109,7 @@ if (
 
 ##  Load Enhancement data  -----------------------------------------------------
 DATA <- readRDS(Input_data_ID)
+DATA[, DOY := yday(Date)]
 tic  <- Sys.time()
 
 
@@ -183,57 +184,6 @@ SelEnhanc <- "Enhanc_C_1"
 ##;
 ##;
 ##;
-##;  ## plot one selected day ####
-##;  #+ dayexample, include=T, echo=F, fig.cap="Diurnal variability of GHI (green) and DNI (blue) for 08-4-2017. Red cycles denote the enhancement cases that were identified during the day. The red line represents the the GHI threshold ($\\text{GHI}_\\text{Threshold}$) we use, and the black line is the TSI at the TOA for reference."
-##;  daylist <- as.Date(c("2017-04-08"))
-##;  for (aday in daylist) {
-##;      temp <- DATA[ Day == aday ]
-##;      par(mar = c(4,4,1,1))
-##;      ylim = range(0, temp$TSIextEARTH_comb * cosde(temp$SZA), temp$wattGLB)
-##;
-##;      plot(temp$Date, temp$wattGLB, "l", col = "green",
-##;           ylim = ylim,
-##;           ylab = expression(Watt/m^2), xlab = "Time (UTC)")
-##;
-##;      lines(temp$Date, temp$wattHOR, col = "blue")
-##;
-##;      lines(temp$Date, temp$TSIextEARTH_comb * cosde(temp$SZA))
-##;
-##;      lines(temp$Date, temp$CS_ref + GLB_diff_THRES, col = "red" )
-##;
-##;      # lines(temp$Date, temp$HAU + wattGLB_THRES , col = "red" )
-##;      # lines(temp$Date, temp$CS_ref, col = "red" ,lty=3)
-##;      # points(temp[ GLB_ench > GLB_ench_THRES, Date ], temp[ GLB_ench > GLB_ench_THRES, wattGLB ], col = "cyan")
-##;      # points(temp[ Clearness_Kt > Clearness_Kt_THRES, Date ], temp[ Clearness_Kt > Clearness_Kt_THRES , wattGLB ], col = "yellow")
-##;
-##;      temp[Enhancement == TRUE, wattGLB, Date]
-##;
-##;      points(temp[Enhancement == TRUE, wattGLB, Date], col = "red")
-##;
-##;      title(main = as.Date(aday, origin = "1970-01-01"))
-##;      # legend("topleft", c("GHI","DNI",  "A-HAU", "TSI on horizontal level","GHI Enhancement event"),
-##;      #        col = c("green",   "blue", "red", "black", "red"),
-##;      #        pch = c(     NA,       NA,    NA,      NA,    1 ),
-##;      #        lty = c(      1,        1,     1,       1,   NA ),
-##;      #        bty = "n"
-##;      # )
-##;
-##;      legend("topleft", c("GHI","DNI",  "GHI threshold", "TSI on horizontal level","GHI Enhancement event"),
-##;             col = c("green",   "blue", "red", "black",  "red"),
-##;             pch = c(     NA,       NA,    NA,      NA,     1 ),
-##;             lty = c(      1,        1,     1,       1,    NA ),
-##;             bty = "n"
-##;      )
-##;
-##;      # plot(temp$Date, temp$Clearness_Kt)
-##;      # abline(h=.8,col="red")
-##;      # plot(temp$Date, temp$DiffuseFraction_Kd)
-##;      # plot(temp$Date, temp$GLB_ench)
-##;      # plot(temp$Date, temp$GLB_diff)
-##;  }
-##;  #'
-##;
-##;
 
 
 ##  Enhancement cases statistics  ----------------------------------------------
@@ -253,30 +203,72 @@ SelEnhanc <- "Enhanc_C_1"
 
 
 
-
+stop()
 ##  Stats on enhancement cases  ------------------------------------------------
 DATA_Enh <- DATA[get(SelEnhanc) == TRUE ]
 
 
+names(DATA)
+
+
+data.summary <- function(x, na.rm = FALSE)
+    list(
+        mean   = mean  (x, na.rm = na.rm),
+        SD     = sd    (x, na.rm = na.rm),
+        max    = max   (x, na.rm = na.rm),
+        min    = min   (x, na.rm = na.rm),
+        median = median(x, na.rm = na.rm),
+        sum    = sum   (x, na.rm = na.rm),
+        sumPOS = sum(x[which(x>0)], na.rm = na.rm),
+        sumNEG = sum(x[which(x<0)], na.rm = na.rm),
+        N      = sum(!is.na(x)),
+        TotalN = length(x)
+    )
+
+enhanc.summary <- function(x, na.rm = FALSE)
+    list(
+        mean   = mean  (x, na.rm = na.rm),
+        SD     = sd    (x, na.rm = na.rm),
+        max    = max   (x, na.rm = na.rm),
+        min    = min   (x, na.rm = na.rm),
+        median = median(x, na.rm = na.rm),
+        sum    = sum   (x, na.rm = na.rm),
+        N      = sum(!is.na(x))
+    )
+
+my.cols <- c("wattGLB",
+             "GLB_ench",
+             "GLB_diff")
+
+ST_all <- DATA[, unlist(lapply(.SD, data.summary, na.rm = TRUE),
+                        recursive = FALSE),
+               .SDcols = my.cols]
+
+
+# _ Daily stats  ---------------------------------------------------------------
+ST_daily <- DATA[, unlist(lapply(.SD, data.summary, na.rm = FALSE),
+                          recursive = FALSE),
+                 .SDcols = my.cols,
+                 by = Day]
+
+ST_extreme_daily <- DATA[wattGLB > ETH,
+                   unlist(lapply(.SD, data.summary, na.rm = TRUE),
+                          recursive = FALSE),
+                   .SDcols = my.cols,
+                   by = Day]
+
+
+ST_E_daily <- DATA[get(SelEnhanc) == TRUE,
+                   unlist(lapply(.SD, enhanc.summary, na.rm = FALSE),
+                          recursive = FALSE),
+                   .SDcols = my.cols,
+                   by = Day]
+
+
+# _ Monthly stats  ---------------------------------------------------------------
 
 
 
-Enh_daily <- DATA_Enh[, .(N        = sum( get(SelEnhanc), na.rm = T),
-                          N_ex     = sum( wattGLB > TSIextEARTH_comb * cosde(SZA)),
-                          sum_Ench = sum( GLB_diff),
-                          avg_Ench = mean(GLB_ench),
-                          sd_Ench  = sd(  GLB_ench),
-                          sum_Diff = sum( GLB_diff)),
-                      by = "Day"]
-
-
-Enh_yearly <- DATA_Enh[, .(N        = sum( get(SelEnhanc), na.rm = T),
-                           N_ex     = sum( wattGLB > TSIextEARTH_comb * cosde(SZA)),
-                           sum_Ench = sum( GLB_diff),
-                           avg_Ench = mean(GLB_ench),
-                           sd_Ench  = sd(  GLB_ench),
-                           sum_Diff = sum( GLB_diff)),
-                       by = year(Date)]
 
 Enh_monthly <- DATA_Enh[, .(N        = sum( get(SelEnhanc), na.rm = T),
                            N_ex     = sum( wattGLB > TSIextEARTH_comb * cosde(SZA)),

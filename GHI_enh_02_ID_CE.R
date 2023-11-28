@@ -505,6 +505,9 @@ DATA[C1G1 == FALSE, C1Grp1 := NA]
 
 ## For bigger gaps should use a similar method with the one gap
 ## for the pattern TTFFTT -> TTTTTT
+## and may need these
+DATA[, C1G0 := NULL]
+DATA[, C1G1 := NULL]
 
 ## Slow implementation
 # DATA[, cnF := cumsum(Enhanc_C_1 == FALSE)]
