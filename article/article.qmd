@@ -56,39 +56,40 @@ editor_options:
 
 # Intro
 
-
-
-
 # Data and methodology
-
 
 Data with quality control
 
+### Data selection
+
+To preserve an unbiased representation of the data we applied a constrain similar the one used by @CastillejoCuberos2020. Where, for each valid hour of day, there must exist at list 45 minutes of valid measurements, including night time near sunrise and sunset. Days with less than 5 valid hours are rejected completely.
+
+<!--# CastillejoCuberos2020 There must be at least 5 h of valid data (Tests 1–7), otherwise all data for this day is flagged as invalid. There must be at least This work valid data 45 min of valid data (Tests 1–7) for an hour to be flagged as valid, otherwise all minute data for this hour is flagged as invalid. -->
+
+-   CastillejoCuberos2020
+-   valid data 45min /h and 5h / day
+-   SZA above biology
 
 Clear sky identification
-- helps on determining thresholds
 
+-   helps on determining thresholds
 
 Criteria for enhancement based on TSI
-- some other were tested
+
+-   some other were tested
 
 Thresholds by inspecting a selection of days with some specs
 
-
-
 # Results
 
-- max
-- seasonal
-- trends
-- duration
-- occurrence
-- SZA
-
-
+-   max
+-   seasonal
+-   trends
+-   duration
+-   occurrence
+-   SZA
 
 # Discussion and conclusions
-
 
 ------------------------------------------------------------------------
 
@@ -119,7 +120,6 @@ If `cite-method` is set to `citeproc` in `elsevier_article()`, then pandoc is us
 @eq-lowbap
 
 [@Bais1997]
-
 
 # Equations
 
