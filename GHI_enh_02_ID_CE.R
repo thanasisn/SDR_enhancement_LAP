@@ -174,6 +174,11 @@ DATA <- readRDS(raw_input_data)
 tic  <- Sys.time()
 
 
+
+# export <- DATA[year(Date) %in% c(2022,2023), ]
+# write.csv(export, "exportCS.csv")
+
+
 # TODO -------------------------------------------------------------------------
 # k clustering Vamvakas2020
 # Stats on groups
