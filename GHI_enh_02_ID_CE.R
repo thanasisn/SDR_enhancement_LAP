@@ -91,7 +91,6 @@ options(error = function() {
         system("mplayer /usr/share/sounds/freedesktop/stereo/dialog-warning.oga", ignore.stdout = T, ignore.stderr = T)
         system(paste("notify-send -u normal -t 30000 ", Script.Name, " 'An error occurred!'"))
     }
-    traceback()
 })
 
 
@@ -162,6 +161,15 @@ theme_paper <- function(){
 }
 
 theme_set(theme_paper())
+
+
+## __ Execution control -------------
+TEST <- FALSE
+TEST <- TRUE
+
+if (TEST) {
+    warning("\n\n ** Test is active!! ** \n\n")
+}
 
 
 
@@ -446,6 +454,10 @@ for (ii in 1:nrow(vec_days)) {
 ## DO it with base plot
 ##
 yearstodo <- unique(year(DATA$Date))
+
+if (TEST) {
+    yearstodo <- sample(yearstodo, 3)
+}
 
 pyear <- 2018
 for (pyear in yearstodo) {
