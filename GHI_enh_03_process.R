@@ -92,7 +92,6 @@ options(error = function() {
         system("mplayer /usr/share/sounds/freedesktop/stereo/dialog-warning.oga", ignore.stdout = T, ignore.stderr = T)
         system("notify-send -u normal -t 30000 'R session' 'An error occurred!'")
     }
-    traceback()
 })
 
 
@@ -665,7 +664,24 @@ plot( Data_sza$SZA, Data_sza[, 100 * N_enha / N_total ],
 
 
 
+library(timetk)
 
+
+
+plot_time_series(date, value, .smooth=F, .interactive = F)
+
+plot_time_series(date, value, .smooth=T, .smooth_span = 0.3, .interactive = F)
+
+plot_acf_giagnostics(date, value, .interactive =F, .lags =1:60)
+
+plot_stl_diagnostics(date, value,
+                     .feature_set = c("observed","season", "trend", "remainder"),
+                     .trend = 180,
+                     .frequency = 30,
+                     .interactive = F
+                     )
+
+plot_seasonal_diagnostics(date, value, .interactive = F)
 
 
 #' **END**
