@@ -163,9 +163,10 @@ theme_paper <- function(){
 theme_set(theme_paper())
 
 
+
 ## __ Execution control -------------
 TEST <- FALSE
-TEST <- TRUE
+# TEST <- TRUE
 
 if (TEST) {
     warning("\n\n ** Test is active!! ** \n\n")
@@ -567,6 +568,7 @@ save(file = paste0("./data/", basename(sub("\\.R", ".Rda", Script.Name))),
      compress = "xz")
 
 
+
 #' **END**
 #+ include=T, echo=F
 tac <- Sys.time()
@@ -576,3 +578,4 @@ if (interactive() & difftime(tac,tic,units = "sec") > 30) {
     system("mplayer /usr/share/sounds/freedesktop/stereo/dialog-warning.oga", ignore.stdout = T, ignore.stderr = T)
     system(paste("notify-send -u normal -t 30000 ", Script.Name, " 'R script ended'"))
 }
+

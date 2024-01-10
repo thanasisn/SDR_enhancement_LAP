@@ -297,7 +297,7 @@ ST_E_monthly <- DATA[get(SelEnhanc) == TRUE,
 ST_E_monthly <- as.POSIXct(strptime(paste(ST_E_monthly$year, ST_E_monthly$month, "1"),"%Y %m %d"))
 
 
-## mothly climatology
+## monthly climatology
 ST_E_monthly_seas <- DATA[get(SelEnhanc) == TRUE,
                      unlist(lapply(.SD, enhanc.summary, na.rm = FALSE),
                             recursive = FALSE),
@@ -342,13 +342,6 @@ ST_E_yearly <- DATA[get(SelEnhanc) == TRUE,
 ST_E_yearly <- as.POSIXct(strptime(paste(ST_E_yearly$year, "01", "1"),"%Y %m %d"))
 
 
-## seasonal stats on enhancement cases
-ST_E_yearly_seas <- DATA[get(SelEnhanc) == TRUE,
-                     unlist(lapply(.SD, enhanc.summary, na.rm = FALSE),
-                            recursive = FALSE),
-                     .SDcols = my.cols,
-                     by = .(month(Date))]
-
 
 
 
@@ -388,7 +381,7 @@ ST_E_sza <- DATA[get(SelEnhanc) == TRUE,
 
 
 ## Quarter of year with one month shift to include December in the next years winter
-DATA[,   season_Yqrt := as.yearqtr(as.yearmon(paste(year(Date), month(Date), sep = "-")) + 1/12)]
+DATA[,       season_Yqrt := as.yearqtr(as.yearmon(paste(year(Date), month(Date), sep = "-")) + 1/12)]
 ST_daily[,   season_Yqrt := as.yearqtr(as.yearmon(paste(year(Date), month(Date), sep = "-")) + 1/12)]
 ST_monthly[, season_Yqrt := as.yearqtr(as.yearmon(paste(year(Date), month(Date), sep = "-")) + 1/12)]
 
@@ -410,7 +403,7 @@ ST_monthly[season_Yqrt %% 1 == 0.75, Season := "Autumn"]
 # - by season
 # - by season_yqrt
 
-
+##TODO create deseasonal data
 
 #
 #
