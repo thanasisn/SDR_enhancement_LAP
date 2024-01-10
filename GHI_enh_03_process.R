@@ -294,7 +294,7 @@ ST_E_monthly <- DATA[get(SelEnhanc) == TRUE,
                             recursive = FALSE),
                      .SDcols = my.cols,
                      by = .(year(Date), month(Date))]
-ST_E_monthly <- as.POSIXct(strptime(paste(ST_E_monthly$year, ST_E_monthly$month, "1"),"%Y %m %d"))
+ST_E_monthly$Date <- as.POSIXct(strptime(paste(ST_E_monthly$year, ST_E_monthly$month, "1"),"%Y %m %d"))
 
 
 ## monthly climatology
@@ -664,6 +664,11 @@ plot_time_series(ST_E_daily, Date, wattGLB.mean)
 plot_time_series(ST_E_daily, Date, wattGLB.sum)
 plot_time_series(ST_E_daily, Date, wattGLB.max)
 plot_time_series(ST_E_daily, Date, wattGLB.N)
+
+plot_time_series(ST_E_monthly, Date, wattGLB.mean)
+plot_time_series(ST_E_monthly, Date, wattGLB.sum)
+plot_time_series(ST_E_monthly, Date, wattGLB.max)
+plot_time_series(ST_E_monthly, Date, wattGLB.N)
 
 
 plot_time_series(date, value, .smooth=F, .interactive = F)
