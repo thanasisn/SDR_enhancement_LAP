@@ -193,6 +193,8 @@ SelEnhanc <- "Enhanc_C_1"
 names(DATA)
 
 ## _ Stats functions  ----------------------------------------------------------
+
+## stats for all data
 data.summary <- function(x, na.rm = FALSE)
     list(
         mean   = mean  (x, na.rm = na.rm),
@@ -201,12 +203,13 @@ data.summary <- function(x, na.rm = FALSE)
         min    = min   (x, na.rm = na.rm),
         median = median(x, na.rm = na.rm),
         sum    = sum   (x, na.rm = na.rm),
-        sumPOS = sum(x[which(x>0)], na.rm = na.rm),
-        sumNEG = sum(x[which(x<0)], na.rm = na.rm),
+        sumPOS = sum(x[which(x>0)], na.rm = na.rm),  ## not meaningful for a subset
+        sumNEG = sum(x[which(x<0)], na.rm = na.rm),  ## not meaningful for a subset
         N      = sum(!is.na(x)),
-        TotalN = length(x)
-    )
+        TotalN = length(x)                           ## not meaningful for a subset
+            )
 
+## stats for a subset of data
 enhanc.summary <- function(x, na.rm = FALSE)
     list(
         mean   = mean  (x, na.rm = na.rm),
@@ -218,7 +221,7 @@ enhanc.summary <- function(x, na.rm = FALSE)
         N      = sum(!is.na(x))
     )
 
-## Stats for colomuns
+## Stats for columns
 my.cols <- c("wattGLB",
              "GLB_ench",
              "GLB_diff")
@@ -229,11 +232,14 @@ ST_total <- DATA[, unlist(lapply(.SD, data.summary, na.rm = TRUE),
 
 
 # _ Daily stats  ---------------------------------------------------------------
+
+## stats on all data
 ST_daily <- DATA[, unlist(lapply(.SD, data.summary, na.rm = FALSE),
                           recursive = FALSE),
                  .SDcols = my.cols,
                  by = .(Date = Day)]
 
+## stats on extreme enhancement cases
 ST_extreme_daily <- DATA[wattGLB > ETH,
                    unlist(lapply(.SD, data.summary, na.rm = TRUE),
                           recursive = FALSE),
@@ -241,12 +247,14 @@ ST_extreme_daily <- DATA[wattGLB > ETH,
                    by = .(Date = Day)]
 
 
+## stats on enhancement cases
 ST_E_daily <- DATA[get(SelEnhanc) == TRUE,
                    unlist(lapply(.SD, enhanc.summary, na.rm = FALSE),
                           recursive = FALSE),
                    .SDcols = my.cols,
                    by = .(Date = Day)]
 
+## climatology daily
 ST_E_daily_seas <- DATA[get(SelEnhanc) == TRUE,
                    unlist(lapply(.SD, enhanc.summary, na.rm = FALSE),
                           recursive = FALSE),
@@ -263,13 +271,15 @@ for (avar in grep("^DOY$", names(ST_E_daily_seas), value = T, invert = T) ) {
 
 # _ Monthly stats  -------------------------------------------------------------
 
-ST_monthly <- DATA[, unlist(lapply(.SD, data.summary, na.rm = FALSE),
-                            recursive = FALSE),
-                   .SDcols = my.cols,
-                   by = .(year(Date), month(Date))]
-ST_monthly$Date <- as.POSIXct(strptime(paste(ST_monthly$year, ST_monthly$month, "1"),"%Y %m %d"))
 
+## stats on all data
+ST_monthly          <- DATA[, unlist(lapply(.SD, data.summary, na.rm = FALSE),
+                                     recursive = FALSE),
+                            .SDcols = my.cols,
+                            by = .(year(Date), month(Date))]
+ST_monthly$Date     <- as.POSIXct(strptime(paste(ST_monthly$year, ST_monthly$month, "1"),"%Y %m %d"))
 
+## stats on extreme enhancement cases
 ST_extreme_monthly <- DATA[wattGLB > ETH,
                            unlist(lapply(.SD, data.summary, na.rm = TRUE),
                                   recursive = FALSE),
@@ -278,7 +288,7 @@ ST_extreme_monthly <- DATA[wattGLB > ETH,
 ST_extreme_monthly$Date <- as.POSIXct(strptime(paste(ST_extreme_monthly$year, ST_extreme_monthly$month, "1"),"%Y %m %d"))
 
 
-
+## stats on enhancement cases
 ST_E_monthly <- DATA[get(SelEnhanc) == TRUE,
                      unlist(lapply(.SD, enhanc.summary, na.rm = FALSE),
                             recursive = FALSE),
@@ -287,7 +297,7 @@ ST_E_monthly <- DATA[get(SelEnhanc) == TRUE,
 ST_E_monthly <- as.POSIXct(strptime(paste(ST_E_monthly$year, ST_E_monthly$month, "1"),"%Y %m %d"))
 
 
-
+## mothly climatology
 ST_E_monthly_seas <- DATA[get(SelEnhanc) == TRUE,
                      unlist(lapply(.SD, enhanc.summary, na.rm = FALSE),
                             recursive = FALSE),
@@ -302,9 +312,11 @@ for (avar in grep("^month$", names(ST_E_monthly_seas), value = T, invert = T) ) 
 }
 
 
+
+
 # _ Yearly stats  --------------------------------------------------------------
 
-
+## stats on all data
 ST_yearly <- DATA[, unlist(lapply(.SD, data.summary, na.rm = FALSE),
                             recursive = FALSE),
                    .SDcols = my.cols,
@@ -312,6 +324,7 @@ ST_yearly <- DATA[, unlist(lapply(.SD, data.summary, na.rm = FALSE),
 ST_yearly$Date <- as.POSIXct(strptime(paste(ST_yearly$year, "01", "1"),"%Y %m %d"))
 
 
+## stats on extreme enhancement cases
 ST_extreme_yearly <- DATA[wattGLB > ETH,
                            unlist(lapply(.SD, data.summary, na.rm = TRUE),
                                   recursive = FALSE),
@@ -320,7 +333,7 @@ ST_extreme_yearly <- DATA[wattGLB > ETH,
 ST_extreme_yearly$Date <- as.POSIXct(strptime(paste(ST_extreme_yearly$year, "01", "1"),"%Y %m %d"))
 
 
-
+## stats on enhancement cases
 ST_E_yearly <- DATA[get(SelEnhanc) == TRUE,
                      unlist(lapply(.SD, enhanc.summary, na.rm = FALSE),
                             recursive = FALSE),
@@ -329,7 +342,7 @@ ST_E_yearly <- DATA[get(SelEnhanc) == TRUE,
 ST_E_yearly <- as.POSIXct(strptime(paste(ST_E_yearly$year, "01", "1"),"%Y %m %d"))
 
 
-
+## seasonal stats on enhancement cases
 ST_E_yearly_seas <- DATA[get(SelEnhanc) == TRUE,
                      unlist(lapply(.SD, enhanc.summary, na.rm = FALSE),
                             recursive = FALSE),
@@ -343,6 +356,7 @@ ST_E_yearly_seas <- DATA[get(SelEnhanc) == TRUE,
 # _ SZA stats  -----------------------------------------------------------------
 
 
+## stats on all data
 ST_sza <- DATA[, unlist(lapply(.SD, data.summary, na.rm = TRUE),
                         recursive = FALSE),
                .SDcols = my.cols,
@@ -354,8 +368,15 @@ for (avar in grep("^SZA$", names(ST_sza), value = T, invert = T) ) {
     title(paste("ST_sza", avar))
 }
 
+## stats on extreme enhancement cases
+ST_extreme_SZA <- DATA[wattGLB > ETH,
+                           unlist(lapply(.SD, enhanc.summary, na.rm = TRUE),
+                                  recursive = FALSE),
+                           .SDcols = my.cols,
+                           by = .(SZA = (SZA - SZA_BIN / 2 ) %/% SZA_BIN)]
 
 
+## stats on enhancement cases
 ST_E_sza <- DATA[get(SelEnhanc) == TRUE,
                  unlist(lapply(.SD, enhanc.summary, na.rm = FALSE),
                         recursive = FALSE),
