@@ -705,16 +705,18 @@ plot_time_series_regression(
     .date_var     = Date,
     .formula      = wattGLB.N ~ as.numeric(Date)  ,
     .facet_ncol   = 2,
-    .interactive  = FALSE,
-    .show_summary = FALSE
+    # .interactive  = FALSE,
+    .show_summary = TRUE
 )
+lm1 <- lm(ST_E_monthly$wattGLB.N ~ ST_E_monthly$Date)
+summary(lm1)
 
 plot_time_series_regression(
     .data         = ST_E_daily,
     .date_var     = Date,
     .formula      = wattGLB.N ~ as.numeric(Date)  ,
     .facet_ncol   = 2,
-    .interactive  = FALSE,
+    # .interactive  = FALSE,
     .show_summary = FALSE
 )
 
