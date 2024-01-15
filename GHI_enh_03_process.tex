@@ -127,7 +127,7 @@
 
 \title{Enhancement of SDR in Thessaloniki}
 \author{Natsis Athanasios\footnote{Laboratory of Atmospheric Physics, AUTH, \href{mailto:natsisphysicist@gmail.com}{\nolinkurl{natsisphysicist@gmail.com}}} \and Alkiviadis Bais\footnote{Laboratory of Atmospheric Physics, AUTH}}
-\date{2023-11-27}
+\date{2024-01-15}
 
 \begin{document}
 \maketitle
@@ -142,118 +142,356 @@ Study of GHI enchantment.
 }
 Alpha * HAU is CS\_ref
 
-\begin{figure}
-
-{\centering \includegraphics[width=1\linewidth]{GHI_enh_03_process_files/figure-latex/enchtrendyear-1} 
-
-}
-
-\caption{Trend of the total of enhancement cases per year.}\label{fig:enchtrendyear}
-\end{figure}
+\hypertarget{time-series-decomposition-tests}{%
+\subsection{Time series decomposition tests}\label{time-series-decomposition-tests}}
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\DocumentationTok{\#\# \_ Cases per month  {-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}}
+\FunctionTok{plot\_time\_series}\NormalTok{(ST\_daily, Date, wattGLB.mean)}
+\end{Highlighting}
+\end{Shaded}
 
+\begin{verbatim}
+TypeError: Attempting to change the setter of an unconfigurable property.
+TypeError: Attempting to change the setter of an unconfigurable property.
+\end{verbatim}
 
+\begin{center}\includegraphics[width=1\linewidth]{GHI_enh_03_process_files/figure-latex/unnamed-chunk-6-1} \end{center}
 
-\FunctionTok{plot}\NormalTok{(Enh\_monthly}\SpecialCharTok{$}\NormalTok{Date, Enh\_monthly}\SpecialCharTok{$}\NormalTok{N\_att ,}
-     \AttributeTok{ylab =} \FunctionTok{bquote}\NormalTok{(}\StringTok{"Difference from mean [\%]"}\NormalTok{ )}
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{plot\_time\_series}\NormalTok{(ST\_daily, Date, wattGLB.sum)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+TypeError: Attempting to change the setter of an unconfigurable property.
+TypeError: Attempting to change the setter of an unconfigurable property.
+\end{verbatim}
+
+\begin{center}\includegraphics[width=1\linewidth]{GHI_enh_03_process_files/figure-latex/unnamed-chunk-6-2} \end{center}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{plot\_time\_series}\NormalTok{(ST\_daily, Date, wattGLB.max)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+TypeError: Attempting to change the setter of an unconfigurable property.
+TypeError: Attempting to change the setter of an unconfigurable property.
+\end{verbatim}
+
+\begin{center}\includegraphics[width=1\linewidth]{GHI_enh_03_process_files/figure-latex/unnamed-chunk-6-3} \end{center}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{plot\_time\_series}\NormalTok{(ST\_daily, Date, wattGLB.N)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+TypeError: Attempting to change the setter of an unconfigurable property.
+TypeError: Attempting to change the setter of an unconfigurable property.
+\end{verbatim}
+
+\begin{center}\includegraphics[width=1\linewidth]{GHI_enh_03_process_files/figure-latex/unnamed-chunk-6-4} \end{center}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{plot\_time\_series}\NormalTok{(ST\_E\_daily, Date, wattGLB.mean)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+TypeError: Attempting to change the setter of an unconfigurable property.
+TypeError: Attempting to change the setter of an unconfigurable property.
+\end{verbatim}
+
+\begin{center}\includegraphics[width=1\linewidth]{GHI_enh_03_process_files/figure-latex/unnamed-chunk-6-5} \end{center}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{plot\_time\_series}\NormalTok{(ST\_E\_daily, Date, wattGLB.sum)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+TypeError: Attempting to change the setter of an unconfigurable property.
+TypeError: Attempting to change the setter of an unconfigurable property.
+\end{verbatim}
+
+\begin{center}\includegraphics[width=1\linewidth]{GHI_enh_03_process_files/figure-latex/unnamed-chunk-6-6} \end{center}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{plot\_time\_series}\NormalTok{(ST\_E\_daily, Date, wattGLB.max)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+TypeError: Attempting to change the setter of an unconfigurable property.
+TypeError: Attempting to change the setter of an unconfigurable property.
+\end{verbatim}
+
+\begin{center}\includegraphics[width=1\linewidth]{GHI_enh_03_process_files/figure-latex/unnamed-chunk-6-7} \end{center}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{plot\_time\_series}\NormalTok{(ST\_E\_daily, Date, wattGLB.N)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+TypeError: Attempting to change the setter of an unconfigurable property.
+TypeError: Attempting to change the setter of an unconfigurable property.
+\end{verbatim}
+
+\begin{center}\includegraphics[width=1\linewidth]{GHI_enh_03_process_files/figure-latex/unnamed-chunk-6-8} \end{center}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{plot\_time\_series}\NormalTok{(ST\_E\_monthly, Date, wattGLB.mean)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+TypeError: Attempting to change the setter of an unconfigurable property.
+TypeError: Attempting to change the setter of an unconfigurable property.
+\end{verbatim}
+
+\begin{center}\includegraphics[width=1\linewidth]{GHI_enh_03_process_files/figure-latex/unnamed-chunk-6-9} \end{center}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{plot\_time\_series}\NormalTok{(ST\_E\_monthly, Date, wattGLB.sum )}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+TypeError: Attempting to change the setter of an unconfigurable property.
+TypeError: Attempting to change the setter of an unconfigurable property.
+\end{verbatim}
+
+\begin{center}\includegraphics[width=1\linewidth]{GHI_enh_03_process_files/figure-latex/unnamed-chunk-6-10} \end{center}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{plot\_time\_series}\NormalTok{(ST\_E\_monthly, Date, wattGLB.max )}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+TypeError: Attempting to change the setter of an unconfigurable property.
+TypeError: Attempting to change the setter of an unconfigurable property.
+\end{verbatim}
+
+\begin{center}\includegraphics[width=1\linewidth]{GHI_enh_03_process_files/figure-latex/unnamed-chunk-6-11} \end{center}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{plot\_time\_series}\NormalTok{(ST\_E\_monthly, Date, wattGLB.N   )}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+TypeError: Attempting to change the setter of an unconfigurable property.
+TypeError: Attempting to change the setter of an unconfigurable property.
+\end{verbatim}
+
+\begin{center}\includegraphics[width=1\linewidth]{GHI_enh_03_process_files/figure-latex/unnamed-chunk-6-12} \end{center}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{plot\_time\_series}\NormalTok{(ST\_E\_monthly, Date, wattGLB.N   ,}\AttributeTok{.smooth=}\NormalTok{T, }\AttributeTok{.smooth\_span =} \FloatTok{0.3}\NormalTok{, }\AttributeTok{.interactive =}\NormalTok{ F)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{center}\includegraphics[width=1\linewidth]{GHI_enh_03_process_files/figure-latex/unnamed-chunk-6-13} \end{center}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{plot\_acf\_diagnostics}\NormalTok{(ST\_E\_daily, Date, wattGLB.N, }\AttributeTok{.interactive =}\NormalTok{F, }\AttributeTok{.lags =}\DecValTok{1}\SpecialCharTok{:}\DecValTok{60}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{center}\includegraphics[width=1\linewidth]{GHI_enh_03_process_files/figure-latex/unnamed-chunk-6-14} \end{center}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{plot\_stl\_diagnostics}\NormalTok{(ST\_E\_daily, Date, wattGLB.N,}
+                     \AttributeTok{.feature\_set =} \FunctionTok{c}\NormalTok{(}\StringTok{"observed"}\NormalTok{,}\StringTok{"season"}\NormalTok{, }\StringTok{"trend"}\NormalTok{, }\StringTok{"remainder"}\NormalTok{),}
+                     \AttributeTok{.trend =} \DecValTok{180}\NormalTok{,}
+                     \AttributeTok{.frequency =} \DecValTok{30}\NormalTok{,}
+                     \AttributeTok{.interactive =}\NormalTok{ F}
+\NormalTok{                     )}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+frequency = 30 observations
+\end{verbatim}
+
+\begin{verbatim}
+trend = 180 observations
+\end{verbatim}
+
+\begin{center}\includegraphics[width=1\linewidth]{GHI_enh_03_process_files/figure-latex/unnamed-chunk-6-15} \end{center}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{plot\_stl\_diagnostics}\NormalTok{(ST\_E\_monthly, Date, wattGLB.N,}
+                     \AttributeTok{.feature\_set =} \FunctionTok{c}\NormalTok{(}\StringTok{"observed"}\NormalTok{,}\StringTok{"season"}\NormalTok{, }\StringTok{"trend"}\NormalTok{, }\StringTok{"remainder"}\NormalTok{),}
+                     \AttributeTok{.trend =} \DecValTok{180}\NormalTok{,}
+                     \AttributeTok{.frequency =} \DecValTok{30}\NormalTok{,}
+                     \AttributeTok{.interactive =}\NormalTok{ F}
 \NormalTok{)}
-\CommentTok{\# title("Number of enchantments incidences", cex = 0.7)}
-\NormalTok{lm1        }\OtherTok{\textless{}{-}} \FunctionTok{lm}\NormalTok{( Enh\_monthly}\SpecialCharTok{$}\NormalTok{N\_att }\SpecialCharTok{\textasciitilde{}}\NormalTok{ Enh\_monthly}\SpecialCharTok{$}\NormalTok{Date )}
-\FunctionTok{abline}\NormalTok{(lm1, }\AttributeTok{col =} \StringTok{"red"}\NormalTok{)}
-\NormalTok{fit }\OtherTok{\textless{}{-}}\NormalTok{ lm1[[}\DecValTok{1}\NormalTok{]]}
-\FunctionTok{legend}\NormalTok{(}\StringTok{\textquotesingle{}topleft\textquotesingle{}}\NormalTok{, }\AttributeTok{lty =} \DecValTok{1}\NormalTok{, }\AttributeTok{bty =} \StringTok{"n"}\NormalTok{,}
-       \FunctionTok{paste}\NormalTok{(}\StringTok{\textquotesingle{}Y =\textquotesingle{}}\NormalTok{, }\FunctionTok{signif}\NormalTok{(fit[}\DecValTok{1}\NormalTok{],}\DecValTok{2}\NormalTok{),}\ControlFlowTok{if}\NormalTok{(fit[}\DecValTok{2}\NormalTok{]}\SpecialCharTok{\textgreater{}}\DecValTok{0}\NormalTok{)}\StringTok{\textquotesingle{}+\textquotesingle{}}\NormalTok{else}\StringTok{\textquotesingle{}{-}\textquotesingle{}}\NormalTok{,}\FunctionTok{signif}\NormalTok{(}\FunctionTok{abs}\NormalTok{(fit[}\DecValTok{2}\NormalTok{]}\SpecialCharTok{*}\NormalTok{Days\_of\_year),}\DecValTok{3}\NormalTok{),}\StringTok{\textquotesingle{}* year\textquotesingle{}}\NormalTok{))}
 \end{Highlighting}
 \end{Shaded}
 
-\begin{center}\includegraphics[width=1\linewidth]{GHI_enh_03_process_files/figure-latex/unnamed-chunk-7-1} \end{center}
+\begin{verbatim}
+frequency = 30 observations
+trend = 180 observations
+\end{verbatim}
+
+\begin{center}\includegraphics[width=1\linewidth]{GHI_enh_03_process_files/figure-latex/unnamed-chunk-6-16} \end{center}
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\DocumentationTok{\#\# \_ Cases per day  {-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}}
+\FunctionTok{plot\_seasonal\_diagnostics}\NormalTok{(ST\_E\_daily, Date, wattGLB.N, }\AttributeTok{.interactive =}\NormalTok{ F,}
+                          \AttributeTok{.feature\_set =} \FunctionTok{c}\NormalTok{(}\StringTok{"week"}\NormalTok{, }\StringTok{"month.lbl"}\NormalTok{, }\StringTok{"quarter"}\NormalTok{, }\StringTok{"year"}\NormalTok{))}
 \end{Highlighting}
 \end{Shaded}
 
-\begin{figure}
-
-{\centering \includegraphics[width=1\linewidth]{GHI_enh_03_process_files/figure-latex/enchtrendday-1} 
-
-}
-
-\caption{Trend of the total of enhancement cases per year.}\label{fig:enchtrendday}
-\end{figure}
-
-\begin{figure}
-
-{\centering \includegraphics[width=1\linewidth]{GHI_enh_03_process_files/figure-latex/enchNtrendday-1} 
-
-}
-
-\caption{Trend of the total of enhancement cases per year.}\label{fig:enchNtrendday}
-\end{figure}
+\begin{center}\includegraphics[width=1\linewidth]{GHI_enh_03_process_files/figure-latex/unnamed-chunk-6-17} \end{center}
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\DocumentationTok{\#\# ignore extreme cases for now}
-\CommentTok{\# plot(Enh\_sza$SZA, Enh\_sza$N\_ex)}
+\FunctionTok{plot\_seasonal\_diagnostics}\NormalTok{(ST\_E\_monthly, Date, wattGLB.N, }\AttributeTok{.interactive =}\NormalTok{ F)}
 \end{Highlighting}
 \end{Shaded}
 
-\begin{figure}
-
-{\centering \includegraphics[width=1\linewidth]{GHI_enh_03_process_files/figure-latex/szacases-1} 
-
-}
-
-\caption{Enhancement cases percentage in total GHI data per SZA ($1^\circ$ bin).}\label{fig:szacases}
-\end{figure}
+\begin{center}\includegraphics[width=1\linewidth]{GHI_enh_03_process_files/figure-latex/unnamed-chunk-6-18} \end{center}
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\DocumentationTok{\#\# consecutive data id}
-\CommentTok{\# test \textless{}{-} c(F,T,F, rep(T,5),F,F,T,F,F,F, rep(T,5))}
-\CommentTok{\#}
-\CommentTok{\# DT \textless{}{-} data.table(test)}
-\CommentTok{\# DT[, cnF := cumsum(test == FALSE)]}
-\CommentTok{\# DT[, cnT := cumsum(test == TRUE) ]}
-\CommentTok{\# \# the realation of diff may be a general solution}
-\CommentTok{\# DT[, ddF := c(0, diff(cnF))]}
-\CommentTok{\# DT[, ddT := c(0, diff(cnT))]}
-\CommentTok{\#}
-\CommentTok{\# DT[, G1  := test]}
-\CommentTok{\# DT[, G0  := test]}
-\CommentTok{\#}
-\CommentTok{\#}
-\CommentTok{\# allow \textless{}{-} 1}
-\CommentTok{\# for (i in 1:nrow(DT)) \{}
-\CommentTok{\#     p1 \textless{}{-} i {-} 1}
-\CommentTok{\#     n1 \textless{}{-} i + 1}
-\CommentTok{\#     if (p1 \textgreater{} 0 \& n1 \textless{}= nrow(DT)) \{}
-\CommentTok{\#         if (DT$G1[p1] == TRUE  \&}
-\CommentTok{\#             DT$G1[i]  == FALSE \&}
-\CommentTok{\#             DT$G1[n1] == TRUE  ) \{}
-\CommentTok{\#             DT$G1[i]  \textless{}{-} TRUE}
-\CommentTok{\#         \}}
-\CommentTok{\#     \}}
-\CommentTok{\# \}}
-\CommentTok{\#}
-\CommentTok{\# DT[, Grp1 := rleid(c(NA,diff(cumsum(G1))))]}
-\CommentTok{\# DT[G1 == FALSE, Grp1 := NA]}
-\CommentTok{\#}
-\CommentTok{\# DT[, Grp0 := rleid(c(NA,diff(cumsum(G0))))]}
-\CommentTok{\# DT[G0 == FALSE, Grp0 := NA]}
-\CommentTok{\#}
-\CommentTok{\# DT}
+\CommentTok{\# https://business{-}science.github.io/timetk/articles/TK08\_Automatic\_Anomaly\_Detection.html}
+
+\FunctionTok{plot\_time\_series\_regression}\NormalTok{(}
+    \AttributeTok{.data         =}\NormalTok{ ST\_E\_monthly,}
+    \AttributeTok{.date\_var     =}\NormalTok{ Date,}
+    \AttributeTok{.formula      =}\NormalTok{ wattGLB.N }\SpecialCharTok{\textasciitilde{}} \FunctionTok{as.numeric}\NormalTok{(Date)  ,}
+    \AttributeTok{.facet\_ncol   =} \DecValTok{2}\NormalTok{,}
+    \CommentTok{\# .interactive  = FALSE,}
+    \AttributeTok{.show\_summary =} \ConstantTok{TRUE}
+\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+
+Call:
+stats::lm(formula = .formula, data = df)
+
+Residuals:
+   Min     1Q Median     3Q    Max 
+-404.5 -198.5  -82.3  139.7 1090.3 
+
+Coefficients:
+                   Estimate Std. Error t value Pr(>|t|)    
+(Intercept)      -7.444e+01  6.622e+01  -1.124    0.262    
+as.numeric(Date)  3.317e-07  5.344e-08   6.207 1.51e-09 ***
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+
+Residual standard error: 276.5 on 353 degrees of freedom
+Multiple R-squared:  0.09841,   Adjusted R-squared:  0.09585 
+F-statistic: 38.53 on 1 and 353 DF,  p-value: 1.513e-09
+\end{verbatim}
+
+\begin{verbatim}
+TypeError: Attempting to change the setter of an unconfigurable property.
+TypeError: Attempting to change the setter of an unconfigurable property.
+\end{verbatim}
+
+\begin{center}\includegraphics[width=1\linewidth]{GHI_enh_03_process_files/figure-latex/unnamed-chunk-6-19} \end{center}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{lm1 }\OtherTok{\textless{}{-}} \FunctionTok{lm}\NormalTok{(ST\_E\_monthly}\SpecialCharTok{$}\NormalTok{wattGLB.N }\SpecialCharTok{\textasciitilde{}}\NormalTok{ ST\_E\_monthly}\SpecialCharTok{$}\NormalTok{Date)}
+\FunctionTok{summary}\NormalTok{(lm1)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+
+Call:
+lm(formula = ST_E_monthly$wattGLB.N ~ ST_E_monthly$Date)
+
+Residuals:
+   Min     1Q Median     3Q    Max 
+-404.5 -198.5  -82.3  139.7 1090.3 
+
+Coefficients:
+                    Estimate Std. Error t value Pr(>|t|)    
+(Intercept)       -7.444e+01  6.622e+01  -1.124    0.262    
+ST_E_monthly$Date  3.317e-07  5.344e-08   6.207 1.51e-09 ***
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+
+Residual standard error: 276.5 on 353 degrees of freedom
+Multiple R-squared:  0.09841,   Adjusted R-squared:  0.09585 
+F-statistic: 38.53 on 1 and 353 DF,  p-value: 1.513e-09
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{plot\_time\_series\_regression}\NormalTok{(}
+    \AttributeTok{.data         =}\NormalTok{ ST\_E\_daily,}
+    \AttributeTok{.date\_var     =}\NormalTok{ Date,}
+    \AttributeTok{.formula      =}\NormalTok{ wattGLB.N }\SpecialCharTok{\textasciitilde{}} \FunctionTok{as.numeric}\NormalTok{(Date)  ,}
+    \AttributeTok{.facet\_ncol   =} \DecValTok{2}\NormalTok{,}
+    \CommentTok{\# .interactive  = FALSE,}
+    \AttributeTok{.show\_summary =} \ConstantTok{FALSE}
+\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+TypeError: Attempting to change the setter of an unconfigurable property.
+TypeError: Attempting to change the setter of an unconfigurable property.
+\end{verbatim}
+
+\begin{center}\includegraphics[width=1\linewidth]{GHI_enh_03_process_files/figure-latex/unnamed-chunk-6-20} \end{center}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\#  Save from environment  {-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}}
+\DocumentationTok{\#\# Variables}
+\NormalTok{objects }\OtherTok{\textless{}{-}} \FunctionTok{grep}\NormalTok{(}\StringTok{"\^{}tic$|\^{}tac$|\^{}Script.Name$|\^{}tag$"}\NormalTok{, }\FunctionTok{ls}\NormalTok{(), }\AttributeTok{value =}\NormalTok{ T, }\AttributeTok{invert =}\NormalTok{ T)}
+\NormalTok{objects }\OtherTok{\textless{}{-}}\NormalTok{ objects[}\FunctionTok{sapply}\NormalTok{(objects, }\ControlFlowTok{function}\NormalTok{(x)}
+    \FunctionTok{is.numeric}\NormalTok{(}\FunctionTok{get}\NormalTok{(x)) }\SpecialCharTok{|}
+        \FunctionTok{is.character}\NormalTok{(}\FunctionTok{get}\NormalTok{(x)) }\SpecialCharTok{\&}
+        \FunctionTok{object.size}\NormalTok{(}\FunctionTok{get}\NormalTok{(x)) }\SpecialCharTok{\textless{}} \DecValTok{1009} \SpecialCharTok{\&}
+\NormalTok{        (}\SpecialCharTok{!}\FunctionTok{is.vector}\NormalTok{(}\FunctionTok{get}\NormalTok{(x)) }\SpecialCharTok{|}
+             \SpecialCharTok{!}\FunctionTok{is.function}\NormalTok{(}\FunctionTok{get}\NormalTok{(x))), }\AttributeTok{simplify =}\NormalTok{ T)]}
+\DocumentationTok{\#\# Data}
+\NormalTok{objects }\OtherTok{\textless{}{-}} \FunctionTok{c}\NormalTok{(}
+\NormalTok{    objects,}
+    \FunctionTok{grep}\NormalTok{(}\StringTok{"\^{}ST\_"}\NormalTok{, }\FunctionTok{ls}\NormalTok{(), }\AttributeTok{value =} \ConstantTok{TRUE}\NormalTok{)}
+\NormalTok{)}
+
+
+\FunctionTok{save}\NormalTok{(}\AttributeTok{file =} \FunctionTok{paste0}\NormalTok{(}\StringTok{"./data/"}\NormalTok{, }\FunctionTok{basename}\NormalTok{(}\FunctionTok{sub}\NormalTok{(}\StringTok{"}\SpecialCharTok{\textbackslash{}\textbackslash{}}\StringTok{.R"}\NormalTok{, }\StringTok{".Rda"}\NormalTok{, Script.Name))),}
+     \AttributeTok{list =}\NormalTok{ objects,}
+     \AttributeTok{compress =} \StringTok{"xz"}\NormalTok{)}
 \end{Highlighting}
 \end{Shaded}
 
 \textbf{END}
 
 \begin{verbatim}
-2023-11-27 17:04:40.0 athan@sagan GHI_enh_03_process.R 0.099028 mins
+2024-01-15 09:05:38.4 athan@sagan GHI_enh_03_process.R 1.420055 mins
 \end{verbatim}
 
 \end{document}
