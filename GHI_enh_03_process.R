@@ -238,6 +238,7 @@ ST_daily <- DATA[, unlist(lapply(.SD, data.summary, na.rm = FALSE),
                           recursive = FALSE),
                  .SDcols = my.cols,
                  by = .(Date = Day)]
+ST_daily[, yts := (year(Date) - min(year(Date))) + ( yday(Date) - 1 ) / Hmisc::yearDays(Date)]
 
 ## stats on extreme enhancement cases
 ST_extreme_daily <- DATA[wattGLB > ETH,
@@ -245,6 +246,7 @@ ST_extreme_daily <- DATA[wattGLB > ETH,
                           recursive = FALSE),
                    .SDcols = my.cols,
                    by = .(Date = Day)]
+ST_extreme_daily[, yts := (year(Date) - min(year(Date))) + ( yday(Date) - 1 ) / Hmisc::yearDays(Date)]
 
 
 ## stats on enhancement cases
@@ -253,6 +255,8 @@ ST_E_daily <- DATA[get(SelEnhanc) == TRUE,
                           recursive = FALSE),
                    .SDcols = my.cols,
                    by = .(Date = Day)]
+ST_E_daily[, yts := (year(Date) - min(year(Date))) + ( yday(Date) - 1 ) / Hmisc::yearDays(Date)]
+
 
 ## climatology daily
 ST_E_daily_seas <- DATA[get(SelEnhanc) == TRUE,
