@@ -1,0 +1,126 @@
+# /* #!/usr/bin/env Rscript */
+# /* Copyright (C) 2022 Athanasios Natsis <natsisphysicist@gmail.com> */
+#' ---
+#' title:         "Enhancement of SDR in Thessaloniki "
+#' author:
+#'   - Natsis Athanasios^[Laboratory of Atmospheric Physics, AUTH, natsisphysicist@gmail.com]
+#'   - Alkiviadis Bais^[Laboratory of Atmospheric Physics, AUTH]
+#' abstract:
+#'   "Study of GHI enchantment."
+#'
+#' documentclass:  article
+#' classoption:    a4paper,oneside
+#' fontsize:       10pt
+#' geometry:       "left=0.5in,right=0.5in,top=0.5in,bottom=0.5in"
+#' link-citations: yes
+#' colorlinks:     yes
+#'
+#' header-includes:
+#' - \usepackage{caption}
+#' - \usepackage{placeins}
+#' - \captionsetup{font=small}
+#'
+#' output:
+#'   bookdown::pdf_document2:
+#'     number_sections: no
+#'     fig_caption:     no
+#'     keep_tex:        yes
+#'     latex_engine:    xelatex
+#'     toc:             yes
+#'     toc_depth:       4
+#'     fig_width:       7
+#'     fig_height:      4.5
+#'   html_document:
+#'     toc:             true
+#'     keep_md:         yes
+#'     fig_width:       7
+#'     fig_height:      4.5
+#'
+#' date: "`r format(Sys.time(), '%F')`"
+#'
+#' ---
+
+#+ echo=F, include=T
+
+
+## __ Document options ---------------------------------------------------------
+
+#+ echo=F, include=F
+knitr::opts_chunk$set(comment    = ""       )
+knitr::opts_chunk$set(dev        = c("pdf", "png"))
+# knitr::opts_chunk$set(dev        = "png"    )
+knitr::opts_chunk$set(out.width  = "100%"   )
+knitr::opts_chunk$set(fig.align  = "center" )
+knitr::opts_chunk$set(cache      =  FALSE   )  ## !! breaks calculations
+# knitr::opts_chunk$set(fig.pos    = '!h'    )
+
+
+#+ include=F, echo=F
+## __ Set environment ----------------------------------------------------------
+Sys.setenv(TZ = "UTC")
+Script.Name <- "./GHI_enh_04_investigate.R"
+
+if (!interactive()) {
+    pdf( file = paste0("./runtime/",  basename(sub("\\.R$",".pdf", Script.Name))))
+    sink(file = paste0("./runtime/",  basename(sub("\\.R$",".out", Script.Name))), split = TRUE)
+}
+
+
+#+ echo=F, include=T
+library(data.table, quietly = TRUE, warn.conflicts = FALSE)
+require(zoo       , quietly = TRUE, warn.conflicts = FALSE)
+library(pander    , quietly = TRUE, warn.conflicts = FALSE)
+library(ggplot2   , quietly = TRUE, warn.conflicts = FALSE)
+
+panderOptions("table.alignment.default", "right")
+panderOptions("table.split.table",        120   )
+
+## __ Load external functions --------------------------------------------------
+## Functions from `https://github.com/thanasisn/IStillBreakStuff/tree/main/FUNCTIONS/R`
+source("~/CODE/FUNCTIONS/R/data.R")
+source("~/CODE/FUNCTIONS/R/trig_deg.R")
+
+
+## __ Source initial scripts ---------------------------------------------------
+# source("./DHI_GHI_0_data_input.R")
+source("./GHI_enh_00_variables.R")
+
+
+## Override notification function
+options(error = function() {
+    if (interactive()) {
+        system("mplayer /usr/share/sounds/freedesktop/stereo/dialog-warning.oga", ignore.stdout = T, ignore.stderr = T)
+        system("notify-send -u normal -t 30000 'R session' 'An error occurred!'")
+    }
+})
+
+
+##  Prepare raw data if needed  ------------------------------------------------
+if (
+    file.exists("./data/GHI_enh_03_process.Rda") == FALSE |
+    file.mtime(Input_data_ID) < file.mtime("./GHI_enh_00_variables.R") |
+    file.mtime(Input_data_ID) < file.mtime("./GHI_enh_03_process.R")
+) {
+    source("./GHI_enh_04_investigate.R")
+    dummy <- gc()
+}
+
+
+##  Load Enhancement data  -----------------------------------------------------
+DATA <- readRDS("./data/GHI_enh_03_process.Rda")
+tic  <- Sys.time()
+
+
+
+
+
+#' **END**
+#+ include=T, echo=F
+tac <- Sys.time()
+cat(sprintf("%s %s@%s %s %f mins\n\n", Sys.time(), Sys.info()["login"],
+            Sys.info()["nodename"], basename(Script.Name), difftime(tac,tic,units = "mins")))
+if (interactive() & difftime(tac,tic,units = "sec") > 30) {
+    system("mplayer /usr/share/sounds/freedesktop/stereo/dialog-warning.oga", ignore.stdout = T, ignore.stderr = T)
+    system(paste("notify-send -u normal -t 30000 ", Script.Name, " 'R script ended'"))
+}
+

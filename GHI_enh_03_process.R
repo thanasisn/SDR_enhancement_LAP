@@ -238,7 +238,8 @@ ST_daily <- DATA[, unlist(lapply(.SD, data.summary, na.rm = FALSE),
                           recursive = FALSE),
                  .SDcols = my.cols,
                  by = .(Date = Day)]
-ST_daily[, yts := (year(Date) - min(year(Date))) + ( yday(Date) - 1 ) / Hmisc::yearDays(Date)]
+ST_daily[, yts2 := (year(Date) - min(year(Date))) + ( yday(Date) - 1 ) / Hmisc::yearDays(Date)]
+
 
 ## stats on extreme enhancement cases
 ST_extreme_daily <- DATA[wattGLB > ETH,
@@ -266,6 +267,7 @@ ST_E_daily_seas <- DATA[get(SelEnhanc) == TRUE,
                    by = DOY]
 
 
+
 for (avar in grep("^DOY$", names(ST_E_daily_seas), value = T, invert = T) ) {
     plot(ST_E_daily_seas[, get(avar), DOY],
          ylab = avar)
@@ -282,6 +284,8 @@ ST_monthly          <- DATA[, unlist(lapply(.SD, data.summary, na.rm = FALSE),
                             .SDcols = my.cols,
                             by = .(year(Date), month(Date))]
 ST_monthly$Date     <- as.POSIXct(strptime(paste(ST_monthly$year, ST_monthly$month, "1"),"%Y %m %d"))
+ST_monthly[, yts := (year(Date) - min(year(Date))) + ( yday(Date) - 1 ) / Hmisc::yearDays(Date)]
+
 
 ## stats on extreme enhancement cases
 ST_extreme_monthly <- DATA[wattGLB > ETH,
@@ -290,6 +294,8 @@ ST_extreme_monthly <- DATA[wattGLB > ETH,
                            .SDcols = my.cols,
                            by = .(year(Date), month(Date))]
 ST_extreme_monthly$Date <- as.POSIXct(strptime(paste(ST_extreme_monthly$year, ST_extreme_monthly$month, "1"),"%Y %m %d"))
+ST_extreme_monthly[, yts := (year(Date) - min(year(Date))) + ( yday(Date) - 1 ) / Hmisc::yearDays(Date)]
+
 
 
 ## stats on enhancement cases
@@ -299,6 +305,7 @@ ST_E_monthly <- DATA[get(SelEnhanc) == TRUE,
                      .SDcols = my.cols,
                      by = .(year(Date), month(Date))]
 ST_E_monthly$Date <- as.POSIXct(strptime(paste(ST_E_monthly$year, ST_E_monthly$month, "1"),"%Y %m %d"))
+ST_E_monthly[, yts := (year(Date) - min(year(Date))) + ( yday(Date) - 1 ) / Hmisc::yearDays(Date)]
 
 
 ## monthly climatology
@@ -657,6 +664,9 @@ ST_monthly[season_Yqrt %% 1 == 0.75, Season := "Autumn"]
 
 library(timetk)
 
+#'
+#' ## Time series decomposition tests
+#'
 
 plot_time_series(ST_daily, Date, wattGLB.mean)
 plot_time_series(ST_daily, Date, wattGLB.sum)
@@ -726,8 +736,36 @@ plot_time_series_regression(
 
 
 
+#  Save from environment  ------------------------------------------------------
+## Variables
+objects <- grep("^tic$|^tac$|^Script.Name$|^tag$", ls(), value = T, invert = T)
+objects <- objects[sapply(objects, function(x)
+    is.numeric(get(x)) |
+        is.character(get(x)) &
+        object.size(get(x)) < 1009 &
+        (!is.vector(get(x)) |
+             !is.function(get(x))), simplify = T)]
+## Data
+objects <- c(
+    objects,
+    grep("^ST_", ls(), value = TRUE)
+)
+
+
+save(file = paste0("./data/", basename(sub("\\.R", ".Rda", Script.Name))),
+     list = objects,
+     compress = "xz")
+
+
+
+
 #' **END**
 #+ include=T, echo=F
 tac <- Sys.time()
 cat(sprintf("%s %s@%s %s %f mins\n\n", Sys.time(), Sys.info()["login"],
             Sys.info()["nodename"], basename(Script.Name), difftime(tac,tic,units = "mins")))
+if (interactive() & difftime(tac,tic,units = "sec") > 30) {
+    system("mplayer /usr/share/sounds/freedesktop/stereo/dialog-warning.oga", ignore.stdout = T, ignore.stderr = T)
+    system(paste("notify-send -u normal -t 30000 ", Script.Name, " 'R script ended'"))
+}
+
