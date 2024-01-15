@@ -664,84 +664,80 @@ ST_monthly[season_Yqrt %% 1 == 0.75, Season := "Autumn"]
 
 library(timetk)
 
-isinteractive <- (isTRUE(getOption('knitr.in.progress')) == F & interactive())
-formals(plot_time_series           )$.interactive <- isinteractive
-formals(plot_acf_diagnostics       )$.interactive <- isinteractive
-formals(plot_stl_diagnostics       )$.interactive <- isinteractive
-formals(plot_seasonal_diagnostics  )$.interactive <- isinteractive
-formals(plot_time_series_regression)$.interactive <- isinteractive
-
+isinter <- (isTRUE(getOption('knitr.in.progress')) == F & interactive())
 
 #'
 #' ## Time series decomposition tests
 #'
-#' interactive `r print(isinteractive)`
+#' interactive `r as.character(isinter)`
 #'
 
-# plot_time_series(ST_daily, Date, wattGLB.mean)
-# plot_time_series(ST_daily, Date, wattGLB.sum)
-# plot_time_series(ST_daily, Date, wattGLB.max)
-# plot_time_series(ST_daily, Date, wattGLB.N)
 
-#
-# plot_time_series(ST_E_daily, Date, wattGLB.mean)
-# plot_time_series(ST_E_daily, Date, wattGLB.sum)
-# plot_time_series(ST_E_daily, Date, wattGLB.max)
-# plot_time_series(ST_E_daily, Date, wattGLB.N)
-#
-# plot_time_series(ST_E_monthly, Date, wattGLB.mean)
-# plot_time_series(ST_E_monthly, Date, wattGLB.sum )
-# plot_time_series(ST_E_monthly, Date, wattGLB.max )
-# plot_time_series(ST_E_monthly, Date, wattGLB.N   )
-# plot_time_series(ST_E_monthly, Date, wattGLB.N   , .smooth = T, .smooth_span = 0.3 )
-#
-#
-#
-# plot_acf_diagnostics(ST_E_daily, Date, wattGLB.N, .interactive = F, .lags = 1:60)
-#
-#
-#
-# plot_stl_diagnostics(ST_E_daily, Date, wattGLB.N,
-#                      .feature_set = c("observed","season", "trend", "remainder"),
-#                      .trend = 180,
-#                      .frequency = 30,
-#                      .interactive = F
-#                      )
-#
-# plot_stl_diagnostics(ST_E_monthly, Date, wattGLB.N,
-#                      .feature_set = c("observed","season", "trend", "remainder"),
-#                      .trend = 180,
-#                      .frequency = 30,
-#                      .interactive = F
-# )
-#
-#
-# plot_seasonal_diagnostics(ST_E_daily, Date, wattGLB.N, .interactive = F,
-#                           .feature_set = c("week", "month.lbl", "quarter", "year"))
-#
-# plot_seasonal_diagnostics(ST_E_monthly, Date, wattGLB.N, .interactive = F)
-#
-# # https://business-science.github.io/timetk/articles/TK08_Automatic_Anomaly_Detection.html
-#
-# plot_time_series_regression(
-#     .data         = ST_E_monthly,
-#     .date_var     = Date,
-#     .formula      = wattGLB.N ~ as.numeric(Date)  ,
-#     .facet_ncol   = 2,
-#     # .interactive  = FALSE,
-#     .show_summary = TRUE
-# )
-# lm1 <- lm(ST_E_monthly$wattGLB.N ~ ST_E_monthly$Date)
-# summary(lm1)
-#
-# plot_time_series_regression(
-#     .data         = ST_E_daily,
-#     .date_var     = Date,
-#     .formula      = wattGLB.N ~ as.numeric(Date)  ,
-#     .facet_ncol   = 2,
-#     # .interactive  = FALSE,
-#     .show_summary = FALSE
-# )
+
+plot_time_series(ST_daily, Date, wattGLB.mean, .interactive = isinter)
+plot_time_series(ST_daily, Date, wattGLB.sum , .interactive = isinter)
+plot_time_series(ST_daily, Date, wattGLB.max , .interactive = isinter)
+plot_time_series(ST_daily, Date, wattGLB.N   , .interactive = isinter)
+
+
+plot_time_series(ST_E_daily, Date, wattGLB.mean, .interactive = isinter)
+plot_time_series(ST_E_daily, Date, wattGLB.sum , .interactive = isinter)
+plot_time_series(ST_E_daily, Date, wattGLB.max , .interactive = isinter)
+plot_time_series(ST_E_daily, Date, wattGLB.N   , .interactive = isinter)
+
+plot_time_series(ST_E_monthly, Date, wattGLB.mean, .interactive = isinter)
+plot_time_series(ST_E_monthly, Date, wattGLB.sum , .interactive = isinter)
+plot_time_series(ST_E_monthly, Date, wattGLB.max , .interactive = isinter)
+plot_time_series(ST_E_monthly, Date, wattGLB.N   , .interactive = isinter)
+plot_time_series(ST_E_monthly, Date, wattGLB.N   , .interactive = isinter, .smooth = T, .smooth_span = 0.3 )
+
+
+
+plot_acf_diagnostics(ST_E_daily, Date, wattGLB.N, .interactive = F, .lags = 1:60, .interactive = isinter)
+
+
+
+plot_stl_diagnostics(ST_E_daily, Date, wattGLB.N,
+                     .feature_set = c("observed","season", "trend", "remainder"),
+                     .trend = 180,
+                     .frequency = 30,
+                     .interactive = isinter
+                     )
+
+plot_stl_diagnostics(ST_E_monthly, Date, wattGLB.N,
+                     .feature_set = c("observed","season", "trend", "remainder"),
+                     .trend = 180,
+                     .frequency = 30,
+                     .interactive = isinter
+                     )
+
+
+plot_seasonal_diagnostics(ST_E_daily, Date, wattGLB.N, .interactive = isinter,
+                          .feature_set = c("week", "month.lbl", "quarter", "year"))
+
+plot_seasonal_diagnostics(ST_E_monthly, Date, wattGLB.N, .interactive = isinter)
+
+# https://business-science.github.io/timetk/articles/TK08_Automatic_Anomaly_Detection.html
+
+plot_time_series_regression(
+    .data         = ST_E_monthly,
+    .date_var     = Date,
+    .formula      = wattGLB.N ~ as.numeric(Date)  ,
+    .facet_ncol   = 2,
+    .interactive  = isinter,
+    .show_summary = TRUE
+)
+lm1 <- lm(ST_E_monthly$wattGLB.N ~ ST_E_monthly$Date)
+summary(lm1)
+
+plot_time_series_regression(
+    .data         = ST_E_daily,
+    .date_var     = Date,
+    .formula      = wattGLB.N ~ as.numeric(Date)  ,
+    .facet_ncol   = 2,
+    .interactive  = isinter,
+    .show_summary = FALSE
+)
 
 
 
