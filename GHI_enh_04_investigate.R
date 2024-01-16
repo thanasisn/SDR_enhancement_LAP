@@ -66,9 +66,9 @@ if (!interactive()) {
 }
 
 
+
 #+ echo=F, include=T
 library(data.table, quietly = TRUE, warn.conflicts = FALSE)
-require(zoo       , quietly = TRUE, warn.conflicts = FALSE)
 library(pander    , quietly = TRUE, warn.conflicts = FALSE)
 library(ggplot2   , quietly = TRUE, warn.conflicts = FALSE)
 
@@ -84,6 +84,7 @@ source("~/CODE/FUNCTIONS/R/trig_deg.R")
 ## __ Source initial scripts ---------------------------------------------------
 # source("./DHI_GHI_0_data_input.R")
 source("./GHI_enh_00_variables.R")
+source("./GHI_enh_00_dictionary.R")
 
 
 ## Override notification function
@@ -98,17 +99,47 @@ options(error = function() {
 ##  Prepare raw data if needed  ------------------------------------------------
 if (
     file.exists("./data/GHI_enh_03_process.Rda") == FALSE |
-    file.mtime(Input_data_ID) < file.mtime("./GHI_enh_00_variables.R") |
-    file.mtime(Input_data_ID) < file.mtime("./GHI_enh_03_process.R")
+    file.mtime("./data/GHI_enh_03_process.Rda") < file.mtime("./GHI_enh_00_variables.R") |
+    file.mtime("./data/GHI_enh_03_process.Rda") < file.mtime("./GHI_enh_03_process.R")
 ) {
-    source("./GHI_enh_04_investigate.R")
+    torun <- "./GHI_enh_03_process.R"
+    cat(paste("Run previous step:", torun))
+    source(torun)
     dummy <- gc()
 }
 
 
 ##  Load Enhancement data  -----------------------------------------------------
-DATA <- readRDS("./data/GHI_enh_03_process.Rda")
+load("./data/GHI_enh_03_process.Rda")
 tic  <- Sys.time()
+
+
+
+
+
+
+
+
+##  Daily  ---------------------------------------------------------------------
+
+
+cat(ls(pattern = "^ST.*daily"))
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
