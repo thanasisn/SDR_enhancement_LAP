@@ -81,7 +81,6 @@ source("~/CODE/FUNCTIONS/R/trig_deg.R")
 
 
 ## __ Source initial scripts ---------------------------------------------------
-# source("./DHI_GHI_0_data_input.R")
 source("./GHI_enh_00_variables.R")
 
 
@@ -105,62 +104,6 @@ if (
 }
 
 
-
-## __ Set plot options  --------------------------------------------------------
-
-theme_paper <- function(){
-    # font <- "Georgia"   #assign font family up front
-
-    theme_bw() %+replace%    #replace elements we want to change
-        theme(
-            # panel.grid.major = element_blank(),    #strip major gridlines
-            # panel.grid.minor = element_blank(),    #strip minor gridlines
-            panel.background   = element_rect(fill = 'transparent'), #transparent panel bg
-
-            # axis.ticks = element_blank(),          #strip axis ticks
-
-            #text elements
-            # plot.title = element_text(             #title
-            #     family = font,            #set font family
-            #     size = 20,                #set font size
-            #     face = 'bold',            #bold typeface
-            #     hjust = 0,                #left align
-            #     vjust = 2),               #raise slightly
-            #
-            # plot.subtitle = element_text(          #subtitle
-            #     family = font,            #font family
-            #     size = 14),               #font size
-            #
-            # plot.caption = element_text(           #caption
-            #     family = font,            #font family
-            #     size = 9,                 #font size
-            #     hjust = 1),               #right align
-            #
-            # axis.title = element_text(             #axis titles
-            #     family = font,            #font family
-            #     size = 10),               #font size
-            #
-            # axis.text = element_text(              #axis text
-            #     family = font,            #axis famuly
-            #     size = 9),                #font size
-            #
-            # axis.text.x = element_text(            #margin for axis text
-            #     margin=margin(5, b = 10)),
-
-            plot.background       = element_rect(fill = 'transparent', color = NA), #transparent plot bg
-            # panel.grid.major      = element_blank(), #remove major gridlines
-            # panel.grid.minor      = element_blank(), #remove minor gridlines
-            legend.background     = element_rect(fill = 'transparent',
-                                                 linewidth = 0.5,
-                                                 color = "black"), #transparent legend bg
-            legend.box.background = element_rect(fill = 'transparent'), #transparent legend panel
-            # axis.line             = element_line(linewidth = .5, colour = "black", linetype = 1),
-
-            NULL
-        )
-}
-
-theme_set(theme_paper())
 
 
 
@@ -551,8 +494,8 @@ DATA[, C1G1 := NULL]
 # DATA[C1G1 == FALSE, C1Grp1 := NA]
 
 #  Save processed data  --------------------------------------------------------
-saveRDS(DATA, file = Input_data_ID, compress = "xz")
-cat("\n  Saved raw input data:", Input_data_ID, "\n\n")
+# saveRDS(DATA, file = Input_data_ID, compress = "xz")
+# cat("\n  Saved raw input data:", Input_data_ID, "\n\n")
 
 #  Save variables from environment  --------------------------------------------
 objects <- grep("^tic$|^tac$|^Script.Name$|^tag$", ls(), value = T, invert = T)
@@ -562,6 +505,11 @@ objects <- objects[sapply(objects, function(x)
         object.size(get(x)) < 1009 &
         (!is.vector(get(x)) |
              !is.function(get(x))), simplify = T)]
+## Data
+objects <- c(
+    objects, "DATA"
+)
+
 
 save(file = paste0("./data/", basename(sub("\\.R", ".Rda", Script.Name))),
      list = objects,

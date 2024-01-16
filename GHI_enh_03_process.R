@@ -84,6 +84,7 @@ source("~/CODE/FUNCTIONS/R/trig_deg.R")
 ## __ Source initial scripts ---------------------------------------------------
 # source("./DHI_GHI_0_data_input.R")
 source("./GHI_enh_00_variables.R")
+source("./GHI_enh_00_dictionary.R")
 
 
 ## Overide notification function
@@ -97,9 +98,9 @@ options(error = function() {
 
 ##  Prepare raw data if needed  ------------------------------------------------
 if (
-    file.exists(Input_data_ID) == FALSE |
-    file.mtime(Input_data_ID) < file.mtime("./GHI_enh_00_variables.R") |
-    file.mtime(Input_data_ID) < file.mtime("./GHI_enh_02_ID_CE.R")
+    file.exists("data/GHI_enh_02_ID_CE.Rda") == FALSE |
+    file.mtime("data/GHI_enh_02_ID_CE.Rda") < file.mtime("./GHI_enh_00_variables.R") |
+    file.mtime("data/GHI_enh_02_ID_CE.Rda") < file.mtime("./GHI_enh_02_ID_CE.R")
 ) {
     source("./GHI_enh_02_ID_CE.R")
     dummy <- gc()
@@ -107,7 +108,7 @@ if (
 
 
 ##  Load Enhancement data  -----------------------------------------------------
-DATA <- readRDS(Input_data_ID)
+load("data/GHI_enh_02_ID_CE.Rda")
 DATA[, DOY := yday(Date)]
 tic  <- Sys.time()
 

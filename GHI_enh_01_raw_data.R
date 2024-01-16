@@ -410,7 +410,6 @@ if (havetorun) {
     ## remove unused columns
     rm.cols.DT(DATA, "CSflag_*", quiet = TRUE)
 
-
     #  Save raw input data  ----------------------------------------------------
     saveRDS(DATA, file = raw_input_data, compress = "xz")
     cat("\n  Saved raw input data:", raw_input_data, "\n\n")
