@@ -133,7 +133,7 @@ $(RUNT): $(RMD)
 	-Rscript $?
 
 
-###   4. aggregate data   #################################
+###   4. investigate  data   #################################
 
 TARGET := GHI_enh_04_investigate
 RMD    := $(TARGET).R
