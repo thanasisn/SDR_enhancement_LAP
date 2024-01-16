@@ -1,12 +1,12 @@
 
-#### dictionary ####
+#### dictionary  ---------------------------------------------------------------
 dictionay <- list(
-    # Name        Short                             Long
-    ST_daily         = c("Daily",                       "Daily statistics",                       ),
-    ST_E_daily       = c("Daily Enhancements",           "Daily Enhancements",           ),
-    ST_E_daily_seas  = c("Seasonal Daily Enhancements", "Seasonal Daily Enhancements", ),
-    ST_extreme_daily = c("Daily Extreme Enhancements",   "Daily Extreme Enhancements",   ),
-    empty            = c(" --- empty --- ",             " --- empty --- "              )
+    # Name        Short                                 Long
+    ST_daily         = c("Daily",                       "Daily statistics"                      ),
+    ST_E_daily       = c("Daily Enhancements",          "Daily Enhancements statistics"         ),
+    ST_E_daily_seas  = c("Seasonal Daily Enhancements", "Seasonal Daily Enhancements"           ),
+    ST_extreme_daily = c("Daily Extreme Enhancements",  "Daily Extreme Enhancements statistics" ),
+    empty            = c(" --- empty --- ",             " --- empty --- "                       )
 )
 
 
@@ -41,4 +41,63 @@ tr_var <- function(x, type = "short") {
 
 
 tr_var(x = "DIR_att")
+
+
+
+## __ Set ggplot global theme  -------------------------------------------------
+
+theme_paper <- function(){
+    # font <- "Georgia"   #assign font family up front
+
+    theme_bw() %+replace%    #replace elements we want to change
+        theme(
+            # panel.grid.major = element_blank(),    #strip major gridlines
+            # panel.grid.minor = element_blank(),    #strip minor gridlines
+            panel.background   = element_rect(fill = 'transparent'), #transparent panel bg
+
+            # axis.ticks = element_blank(),          #strip axis ticks
+
+            #text elements
+            # plot.title = element_text(             #title
+            #     family = font,            #set font family
+            #     size = 20,                #set font size
+            #     face = 'bold',            #bold typeface
+            #     hjust = 0,                #left align
+            #     vjust = 2),               #raise slightly
+            #
+            # plot.subtitle = element_text(          #subtitle
+            #     family = font,            #font family
+            #     size = 14),               #font size
+            #
+            # plot.caption = element_text(           #caption
+            #     family = font,            #font family
+            #     size = 9,                 #font size
+            #     hjust = 1),               #right align
+            #
+            # axis.title = element_text(             #axis titles
+            #     family = font,            #font family
+            #     size = 10),               #font size
+            #
+            # axis.text = element_text(              #axis text
+            #     family = font,            #axis famuly
+            #     size = 9),                #font size
+            #
+            # axis.text.x = element_text(            #margin for axis text
+            #     margin=margin(5, b = 10)),
+
+            plot.background       = element_rect(fill = 'transparent', color = NA), #transparent plot bg
+            # panel.grid.major      = element_blank(), #remove major gridlines
+            # panel.grid.minor      = element_blank(), #remove minor gridlines
+            legend.background     = element_rect(fill = 'transparent',
+                                                 linewidth = 0.5,
+                                                 color = "black"), #transparent legend bg
+            legend.box.background = element_rect(fill = 'transparent'), #transparent legend panel
+            # axis.line             = element_line(linewidth = .5, colour = "black", linetype = 1),
+
+            NULL
+        )
+}
+
+theme_set(theme_paper())
+
 
