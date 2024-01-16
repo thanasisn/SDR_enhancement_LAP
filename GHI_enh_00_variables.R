@@ -1,25 +1,5 @@
 
-## Variables for project
-
-#### dictionary ####
-dict <- list(DIR_att    = 'Dir. Beam Irrad.',
-             HOR_att    = 'Dir. Irrad. horizontal plane',
-             DIR_transp = 'Transp. for Dir. Irrad.',
-             GLB_att    = "SDR",
-             tsi1au_att = "TSI at 1au",
-             CLOUD      = "Cloudy sky cond.")
-## function to translate objects names
-translate <- function(x) {
-    res <- c()
-    for (ax in x) {
-        res <- c(res,
-                 as.vector(unlist(
-                     dict[stringr::str_detect(ax, names(dict))]
-                 ))
-        )
-    }
-    return(res)
-}
+## Project Variables
 
 
 #### Data range ####

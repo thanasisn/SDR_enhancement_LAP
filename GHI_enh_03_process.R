@@ -693,7 +693,7 @@ plot_time_series(ST_E_monthly, Date, wattGLB.N   , .interactive = isinter, .smoo
 
 
 
-plot_acf_diagnostics(ST_E_daily, Date, wattGLB.N, .interactive = F, .lags = 1:60, .interactive = isinter)
+plot_acf_diagnostics(ST_E_daily, Date, wattGLB.N, .lags = 1:60, .interactive = isinter)
 
 
 
