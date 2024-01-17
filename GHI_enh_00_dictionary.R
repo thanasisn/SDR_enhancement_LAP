@@ -2,7 +2,7 @@
 #### dictionary  ---------------------------------------------------------------
 dictionay <- list(
     # Name        Short                                 Long
-    ST_daily         = c("Daily",                       "Daily statistics"                      ),
+    ST_daily         = c("Daily Observations",          "Daily statistics on all obvservations" ),
     ST_E_daily       = c("Daily Enhancements",          "Daily Enhancements statistics"         ),
     ST_E_daily_seas  = c("Seasonal Daily Enhancements", "Seasonal Daily Enhancements"           ),
     ST_extreme_daily = c("Daily Extreme Enhancements",  "Daily Extreme Enhancements statistics" ),
@@ -36,7 +36,11 @@ tr_var <- function(x, type = "short") {
                  )
         )
     }
-    return(res)
+    if (is.null(res)) {
+        return(x)
+    } else {
+        return(res)
+    }
 }
 
 

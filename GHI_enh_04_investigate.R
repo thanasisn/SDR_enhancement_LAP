@@ -113,7 +113,7 @@ if (
 load("./data/GHI_enh_03_process.Rda")
 tic  <- Sys.time()
 
-
+DRAFT <- TRUE
 
 
 
@@ -134,7 +134,169 @@ cat(ls(pattern = "^ST.*daily"))
 
 
 
+#'
+#' \newpage
+#' \FloatBarrier
+#'
+#' ### Trends daily
+#'
+#+ daily, echo=F, include=T, results="asis"
 
+## variables to plot
+prefix <- c("GLB_ench", "GLB_diff")
+sufix  <- c("max", "median", "sum", "N" )
+vars   <- sort(levels(interaction(prefix,sufix, sep = ".")))
+
+## data set to plot
+dbs         <- c("ST_daily", "ST_E_daily", "ST_E_daily_seas", "ST_extreme_daily")
+dbs         <- c("ST_daily", "ST_E_daily")
+
+
+## gather trends
+dialytrends <- data.frame()
+
+for (DBn in dbs) {
+    DB <- get(DBn)
+    cat("\n\\newpage\n")
+    cat("\n#### Trends on", tr_var(DBn), "data\n\n" )
+
+    for (avar in vars) {
+        dataset <- DB
+
+        if (all(is.na(dataset[[avar]]))) next()
+
+        ## linear model by day step
+        lm1 <- lm(dataset[[avar]] ~ dataset$Date)
+        # lm1 <- lm(dataset[[avar]] ~ dataset$yts)
+
+        # d   <- summary(lm1)$coefficients
+        # cat("lm:      ", lm1$coefficients[2] * Days_of_year, "+/-", d[2,2] * Days_of_year,"\n\n")
+        # ## correlation test
+        # cor1 <- cor.test(x = dataset[[avar]], y = as.numeric(dataset$Date), method = 'pearson')
+        #
+        #
+        # ## get daily climatology
+        # dclima <- dataset[, max(get(gsub("_des", "_seas", avar))), by = doy]
+        #
+        # ## capture lm for table
+        # gather <- rbind(gather,
+        #                 data.frame(
+        #                     linear_fit_stats(lm1, confidence_interval = Daily_confidence_limit),
+        #                     cor_test_stats(cor1),
+        #                     DATA       = DBn,
+        #                     var        = avar,
+        #                     N          = sum(!is.na(dataset[[avar]])),
+        #                     N_eff      = N_eff,
+        #                     t_eff      = t_eff,
+        #                     t_eff_cri  = t_eff_cri,
+        #                     conf_2.5   = conf_2.5,
+        #                     conf_97.5  = conf_97.5,
+        #                     mean_clima = mean(dclima$V1, na.rm = T),
+        #                     Tres
+        #                 )
+        # )
+        #
+        #
+        # if (grepl("near_tcc", avar)) {
+        #     acol <- "cyan"
+        # } else {
+        #     acol <- get(paste0(c("col", unlist(strsplit(avar, split = "_"))[1:2]),
+        #                        collapse = "_"))
+        # }
+
+
+
+        ylab <- switch(gsub("\\..*$", "", gsub(".*_", "", avar)),
+                       diff = "Difference from reference",
+                       ench = "Relative to reference",
+                       avar
+        )
+
+        vcol <- switch(gsub("\\..*$", "", gsub(".*_", "", avar)),
+                       diff = "green",
+                       ench = "blue",
+                       "black"
+        )
+
+
+        vnma <- switch(gsub("\\..*$", "", gsub(".*_", "", avar)),
+                       diff = "Above reference",
+                       ench = "Relative Enchancement",
+                       avar
+        )
+
+        vnma <- switch(gsub("\\..*$", "", gsub(".*_", "", avar)),
+                       diff = "Above reference",
+                       ench = "Relative Enchancement",
+                       avar
+        )
+
+        snma <- switch(gsub(".*\\.", "", avar),
+                       sum    = "totals",
+                       min    = "minimum",
+                       max    = "maximun",
+                       median = "median",
+                       sumPOS = "total of positives",
+                       sumNEG = "total of negatives",
+                       N      = "number of cases",
+                       TotalN = "number of observations",
+                       avar
+        )
+
+
+
+        ## plot data
+        plot(dataset$Date, dataset[[avar]],
+             pch      = ".",
+             col      = vcol,
+             cex      = 2,
+             # main     = paste(tr_var(DBn), tr_var(avar)),
+             cex.main = 0.8,
+             yaxt     = "n",
+             xlab     = "",
+             ylab     = ylab
+        )
+
+        ## plot fit line lm
+        abline(lm1, lwd = 2, col = "red")
+
+        # y axis
+        axis(2, pretty(dataset[[avar]]), las = 2 )
+
+        # x axis
+        axis.Date(1,
+                  at = seq(as.Date("1993-01-01"), max(dataset$Date), by = "year"),
+                  format = "%Y",
+                  labels = NA,
+                  tcl = -0.25)
+
+
+        if (DRAFT == TRUE) {
+            title(main = paste(tr_var(DBn), vnma, snma, avar),
+                  cex.main = 0.8 )
+        }
+
+
+        ## display trend on graph
+        fit <- lm1[[1]]
+        legend("top", lty = 1, bty = "n", lwd = 2, cex = 1,
+               paste("Trend: ",
+                     if (fit[2] > 0) "+" else "-",
+                     signif(abs(fit[2]) * Days_of_year, 2) ,"%/y" )
+        )
+
+
+        # fit <- lm1[[1]]
+        # legend("top", lty = 1, bty = "n", lwd = 2, cex = 1,
+        #        paste("Trend: ",
+        #              if (fit[2] > 0) "+" else "-",
+        #              signif(abs(fit[2]) * Days_of_year, 2),
+        #              "±", signif(2 * Tres[2], 2) ,"%/y" )
+        # )
+        cat(" \n \n \n")
+    }
+}
+#+ echo=F, include=F
 
 
 
