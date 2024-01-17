@@ -178,8 +178,8 @@ for (DBn in dbs) {
         # ## get daily climatology
         # dclima <- dataset[, max(get(gsub("_des", "_seas", avar))), by = doy]
         #
-        # ## capture lm for table
-        # gather <- rbind(gather,
+        ## capture lm for table
+        # dialytrends <- rbind(dialytrends,
         #                 data.frame(
         #                     linear_fit_stats(lm1, confidence_interval = Daily_confidence_limit),
         #                     cor_test_stats(cor1),
@@ -195,7 +195,7 @@ for (DBn in dbs) {
         #                     Tres
         #                 )
         # )
-        #
+
         #
         # if (grepl("near_tcc", avar)) {
         #     acol <- "cyan"
@@ -299,6 +299,10 @@ for (DBn in dbs) {
     }
 }
 #+ echo=F, include=F
+
+
+
+
 
 
 
