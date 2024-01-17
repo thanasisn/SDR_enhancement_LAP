@@ -239,7 +239,7 @@ ST_daily <- DATA[, unlist(lapply(.SD, data.summary, na.rm = FALSE),
                           recursive = FALSE),
                  .SDcols = my.cols,
                  by = .(Date = Day)]
-ST_daily[, yts2 := (year(Date) - min(year(Date))) + ( yday(Date) - 1 ) / Hmisc::yearDays(Date)]
+ST_daily[, yts := (year(Date) - min(year(Date))) + ( yday(Date) - 1 ) / Hmisc::yearDays(Date)]
 
 
 ## stats on extreme enhancement cases
@@ -266,7 +266,7 @@ ST_E_daily_seas <- DATA[get(SelEnhanc) == TRUE,
                           recursive = FALSE),
                    .SDcols = my.cols,
                    by = DOY]
-
+ST_E_daily_seas[, yts := DOY ] ## just for convience of programming
 
 
 for (avar in grep("^DOY$", names(ST_E_daily_seas), value = T, invert = T) ) {
