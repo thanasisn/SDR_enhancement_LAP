@@ -138,7 +138,7 @@ cat(ls(pattern = "^ST.*daily"))
 #' \newpage
 #' \FloatBarrier
 #'
-#' ### Trends daily
+#' ### Daily Trends
 #'
 #+ daily, echo=F, include=T, results="asis"
 
@@ -149,7 +149,7 @@ vars   <- sort(levels(interaction(prefix,sufix, sep = ".")))
 
 ## data set to plot
 dbs         <- c("ST_daily", "ST_E_daily", "ST_E_daily_seas", "ST_extreme_daily")
-dbs         <- c("ST_daily", "ST_E_daily")
+dbs         <- c("ST_daily", "ST_E_daily", "ST_extreme_daily")
 
 
 ## gather trends
@@ -167,7 +167,7 @@ for (DBn in dbs) {
 
         ## linear model by day step
         lm1 <- lm(dataset[[avar]] ~ dataset$Date)
-        # lm1 <- lm(dataset[[avar]] ~ dataset$yts)
+        lm2 <- lm(dataset[[avar]] ~ dataset$yts)
 
         # d   <- summary(lm1)$coefficients
         # cat("lm:      ", lm1$coefficients[2] * Days_of_year, "+/-", d[2,2] * Days_of_year,"\n\n")
@@ -260,6 +260,7 @@ for (DBn in dbs) {
         ## plot fit line lm
         abline(lm1, lwd = 2, col = "red")
 
+
         # y axis
         axis(2, pretty(dataset[[avar]]), las = 2 )
 
@@ -282,8 +283,9 @@ for (DBn in dbs) {
         legend("top", lty = 1, bty = "n", lwd = 2, cex = 1,
                paste("Trend: ",
                      if (fit[2] > 0) "+" else "-",
-                     signif(abs(fit[2]) * Days_of_year, 2) ,"%/y" )
+                     signif(abs(fit[2]) * Days_of_year, 2) ,"/y" )
         )
+        lm2[[1]]
 
 
         # fit <- lm1[[1]]
