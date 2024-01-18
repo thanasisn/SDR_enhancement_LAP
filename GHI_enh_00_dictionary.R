@@ -45,7 +45,21 @@ tr_var <- function(x, type = "short") {
 }
 
 
-tr_var(x = "DIR_att")
+
+
+varcol <- function(avar) {
+    switch(gsub("\\..*$", "", gsub(".*_", "", avar)),
+                   diff = "green",
+                   ench = "blue",
+                   rati = "magenta",
+                   "black"
+    )
+}
+
+
+# varcol("GLB_rati")
+# varcol("GLB_rati.max")
+
 
 
 
@@ -104,5 +118,8 @@ theme_paper <- function(){
 }
 
 theme_set(theme_paper())
+
+
+
 
 

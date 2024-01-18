@@ -7,7 +7,7 @@ SHELL = /bin/bash
 all:       clean_all pdf rtim
 render:    pdf rtim
 Ap:        Ap1
-pdf:       p1 p2 p3 p4 Ap
+pdf:       p1 p2 p3 p4 p5 Ap
 rtim:      r1 r2 r3
 clean_all: clean_cache clean_data clean_pdfs
 
@@ -109,9 +109,6 @@ $(RUNT): $(RMD)
 
 
 
-
-
-
 ###   3. aggregate data   #################################
 
 TARGET := GHI_enh_03_process
@@ -150,9 +147,38 @@ $(PDF): $(RMD)
 	@-touch article/article.qmd
 
 
-r3: $(RUNT)
+r4: $(RUNT)
 $(RUNT): $(RMD)
 	-Rscript $?
+
+
+
+###   5. investigate  data   #################################
+
+TARGET := GHI_enh_05_distributions
+RMD    := $(TARGET).R
+PDF    := $(TARGET).pdf
+RUNT   := ./runtime/$(TARGET).pdf
+
+p5: $(PDF)
+$(PDF): $(RMD)
+	@echo "Building: $@"
+	-Rscript -e "rmarkdown::find_pandoc(dir = '/usr/lib/rstudio/resources/app/bin/quarto/bin/tools'); rmarkdown::render('$?', output_format='bookdown::pdf_document2', output_file='$@')"
+	@-rsync -a --prune-empty-dirs --exclude 'unnamed-chunk*' --include '*.pdf' --include '*.png' ./GHI_*/figure-latex/ ./images
+	@#setsid evince    $@ &
+	@-rsync -a "$@" ${LIBRARY}
+	@-touch article/article.qmd
+
+
+r5: $(RUNT)
+$(RUNT): $(RMD)
+	-Rscript $?
+
+
+
+
+
+
 
 clean_cache:
 	rm -f -r ./Article_cache
