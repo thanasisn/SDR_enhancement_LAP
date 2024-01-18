@@ -329,7 +329,7 @@ for (avar in grep("^month$", names(ST_E_monthly_seas), value = T, invert = T) ) 
 # _ Yearly stats  --------------------------------------------------------------
 
 ## stats on all data
-ST_yearly <- DATA[, unlist(lapply(.SD, data.summary, na.rm = FALSE),
+ST_yearly <- DATA[, unlist(lapply(.SD, data.summary, na.rm = TRUE),
                             recursive = FALSE),
                    .SDcols = my.cols,
                    by = .(year(Date))]
@@ -347,11 +347,13 @@ ST_extreme_yearly$Date <- as.POSIXct(strptime(paste(ST_extreme_yearly$year, "01"
 
 ## stats on enhancement cases
 ST_E_yearly <- DATA[get(SelEnhanc) == TRUE,
-                     unlist(lapply(.SD, enhanc.summary, na.rm = FALSE),
+                     unlist(lapply(.SD, enhanc.summary, na.rm = TRUE),
                             recursive = FALSE),
                      .SDcols = my.cols,
                      by = .(year(Date), month(Date))]
 ST_E_yearly <- as.POSIXct(strptime(paste(ST_E_yearly$year, "01", "1"),"%Y %m %d"))
+
+
 
 
 

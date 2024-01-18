@@ -362,6 +362,23 @@ write.csv(x = dailytrendsY,
 
 
 
+#'
+#' \newpage
+#' \FloatBarrier
+#'
+#' ### Energy contribution of enhancements
+#'
+#+ energy, echo=F, include=T, results="asis"
+
+
+ST_yearly$wattGLB
+
+
+
+
+
+
+#+ echo=F,wattGLB.sum#+ echo=F, include=F
 
 
 

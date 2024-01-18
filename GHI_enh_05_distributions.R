@@ -190,6 +190,32 @@ hist(DATA[get(unique(CEC)) == TRUE, GLB_rati],
 
 
 
+hist(DATA[wattGLB > ETH, GLB_diff],
+     breaks = breaks,
+     col  = varcol("GLB_diff"),
+     xlab = bquote(.(varname("GLB_diff")) ~ group("[", W/m^2,"]")),
+     main = paste("Extreme cases of", varname("GLB_diff")) )
+
+
+
+hist(DATA[wattGLB > ETH, GLB_rati],
+     breaks = breaks,
+     col  = varcol("GLB_rati"),
+     xlab = varname("GLB_rati"),
+     main = paste("Extreme cases of", varname("GLB_rati")))
+
+
+hist(DATA[wattGLB > ETH, GLB_ench],
+     breaks = breaks,
+     freq   = FALSE,
+     col    = varcol("GLB_ench"),
+     xlab   = varname("GLB_ench"),
+     main   = paste("Extreme cases of", varname("GLB_ench")))
+
+
+
+
+
 
 
 #' **END**
