@@ -136,12 +136,15 @@ names(DATA)
 #'
 #+ distributions, echo=F, include=T, results="asis"
 
-hist(DATA$GLB_ench)
+hist(DATA[get(unique(CEC)) == TRUE, GLB_ench],
+     col  = varcol("GLB_ench"),
+     xlab = tr_var("GLB_ench"))
 
+hist(DATA[get(unique(CEC)) == TRUE, GLB_diff],
+     col = varcol("GLB_diff"))
 
-hist(DATA$GLB_diff)
-
-hist(DATA$GLB_rati)
+hist(DATA[get(unique(CEC)) == TRUE, GLB_rati],
+     col = varcol("GLB_rati"))
 
 
 

@@ -136,6 +136,7 @@ SelEnhanc <- "Enhanc_C_1"
 # SelEnhanc <- "Enhanc_C_3"
 
 
+
 ##;  #
 ##;  # Note from editor
 ##;  #
@@ -191,7 +192,6 @@ SelEnhanc <- "Enhanc_C_1"
 # DATA_Enh <- DATA[get(SelEnhanc) == TRUE ]
 
 
-names(DATA)
 
 ## _ Stats functions  ----------------------------------------------------------
 

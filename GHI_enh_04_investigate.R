@@ -280,12 +280,6 @@ for (DBn in dbs) {
                        avar
         )
 
-        vnma <- switch(gsub("\\..*$", "", gsub(".*_", "", avar)),
-                       diff = "Above reference",
-                       ench = "Relative Enchancement",
-                       avar
-        )
-
         snma <- switch(gsub(".*\\.", "", avar),
                        sum    = "totals",
                        min    = "minimum",
@@ -303,7 +297,7 @@ for (DBn in dbs) {
         ## plot data
         plot(dataset$Date, dataset[[avar]],
              pch      = 16,
-             col      = vcol,
+             col      = varcol(avar),
              cex      = 0.5,
              # main     = paste(tr_var(DBn), tr_var(avar)),
              cex.main = 0.8,

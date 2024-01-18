@@ -150,6 +150,9 @@ SelEnhanc <- "Enhanc_C_1"
 # SelEnhanc <- "Enhanc_C_2"
 # SelEnhanc <- "Enhanc_C_3"
 
+## mark used criteria for diff rati ench
+DATA[, CEC := SelEnhanc ]
+
 ## __ My criteria  -------------------------------------------------------------
 # C1_GLB_ench_THRES     <-  1.10 ## enchantment relative to HAU
 C1_GLB_diff_THRES     <- 20    ## enchantment absolute diff to HAU
