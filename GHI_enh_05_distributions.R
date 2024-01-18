@@ -141,10 +141,12 @@ hist(DATA[get(unique(CEC)) == TRUE, GLB_ench],
      xlab = tr_var("GLB_ench"))
 
 hist(DATA[get(unique(CEC)) == TRUE, GLB_diff],
-     col = varcol("GLB_diff"))
+     col  = varcol("GLB_diff"),
+     xlab = tr_var("GLB_diff"))
 
 hist(DATA[get(unique(CEC)) == TRUE, GLB_rati],
-     col = varcol("GLB_rati"))
+     col  = varcol("GLB_rati"),
+     xlab = tr_var("GLB_rati"))
 
 
 

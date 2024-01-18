@@ -46,7 +46,7 @@ tr_var <- function(x, type = "short") {
 
 
 
-
+## color for each variable type
 varcol <- function(avar) {
     switch(gsub("\\..*$", "", gsub(".*_", "", avar)),
                    diff = "green",
