@@ -267,11 +267,6 @@ for (DBn in dbs) {
                        avar
         )
 
-        vcol <- switch(gsub("\\..*$", "", gsub(".*_", "", avar)),
-                       diff = "green",
-                       ench = "blue",
-                       "black"
-        )
 
 
         vnma <- switch(gsub("\\..*$", "", gsub(".*_", "", avar)),
