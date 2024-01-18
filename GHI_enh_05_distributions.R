@@ -136,17 +136,55 @@ names(DATA)
 #'
 #+ distributions, echo=F, include=T, results="asis"
 
+
+breaks <- 50
 hist(DATA[get(unique(CEC)) == TRUE, GLB_ench],
+     breaks = breaks,
      col  = varcol("GLB_ench"),
-     xlab = tr_var("GLB_ench"))
+     xlab = varname("GLB_ench"),
+     main = varname("GLB_ench"))
+
 
 hist(DATA[get(unique(CEC)) == TRUE, GLB_diff],
+     breaks = breaks,
      col  = varcol("GLB_diff"),
-     xlab = tr_var("GLB_diff"))
+     xlab = bquote(.(varname("GLB_diff")) ~ group("[", W/m^2,"]")),
+     main = bquote(.(varname("GLB_diff")) ~ group("[", W/m^2,"]")))
+
 
 hist(DATA[get(unique(CEC)) == TRUE, GLB_rati],
+     breaks = breaks,
      col  = varcol("GLB_rati"),
-     xlab = tr_var("GLB_rati"))
+     xlab = varname("GLB_rati"),
+     main = varname("GLB_rati"))
+
+
+
+hist(DATA[get(unique(CEC)) == TRUE, GLB_ench],
+     breaks = breaks,
+     freq   = FALSE,
+     col    = varcol("GLB_ench"),
+     xlab   = varname("GLB_ench"),
+     main   = varname("GLB_ench"))
+
+
+hist(DATA[get(unique(CEC)) == TRUE, GLB_diff],
+     breaks = breaks,
+     freq   = FALSE,
+     col    = varcol("GLB_diff"),
+     xlab   = bquote(.(varname("GLB_diff")) ~ group("[", W/m^2,"]")),
+     main   = bquote(.(varname("GLB_diff")) ~ group("[", W/m^2,"]")))
+
+
+hist(DATA[get(unique(CEC)) == TRUE, GLB_rati],
+     breaks = breaks,
+     freq   = FALSE,
+     col    = varcol("GLB_rati"),
+     xlab   = varname("GLB_rati"),
+     main   = varname("GLB_rati"))
+
+
+
 
 
 

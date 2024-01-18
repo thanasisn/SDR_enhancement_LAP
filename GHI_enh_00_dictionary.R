@@ -49,13 +49,23 @@ tr_var <- function(x, type = "short") {
 ## color for each variable type
 varcol <- function(avar) {
     switch(gsub("\\..*$", "", gsub(".*_", "", avar)),
-                   diff = "green",
-                   ench = "blue",
-                   rati = "magenta",
-                   "black"
+           diff = "green",
+           ench = "blue",
+           rati = "magenta",
+           "black"
     )
 }
 
+
+## Name for each variable
+varname <- function(avar) {
+    switch(gsub("\\..*$", "", gsub(".*_", "", avar)),
+           diff = "Irradiance above reference",
+           ench = "Relative Enchancement",
+           rati = "Enchancement ratio",
+           avar
+    )
+}
 
 # varcol("GLB_rati")
 # varcol("GLB_rati.max")
