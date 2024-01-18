@@ -1,11 +1,12 @@
 
 #### dictionary  ---------------------------------------------------------------
-dictionay <- list(
-    # Name        Short                                 Long
+dictionary <- list(
+    # Name                Short                          Long
     ST_daily         = c("Daily Observations",          "Daily statistics on all obvservations" ),
     ST_E_daily       = c("Daily Enhancements",          "Daily Enhancements statistics"         ),
     ST_E_daily_seas  = c("Seasonal Daily Enhancements", "Seasonal Daily Enhancements"           ),
     ST_extreme_daily = c("Daily Extreme Enhancements",  "Daily Extreme Enhancements statistics" ),
+    DATA             = c("All Observations",            "All Observations"                      ),
     empty            = c(" --- empty --- ",             " --- empty --- "                       )
 )
 
@@ -32,7 +33,7 @@ tr_var <- function(x, type = "short") {
     for (ax in x) {
         res <- c(res,
                  as.vector(
-                     unlist(dictionay[str_detect(ax, names(dictionay))])[[ty]]
+                     unlist(dictionary[str_detect(ax, names(dictionary))])[[ty]]
                  )
         )
     }
