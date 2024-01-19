@@ -126,24 +126,20 @@ DRAFT <- TRUE
 ##  Daily  ---------------------------------------------------------------------
 
 
-names(DATA)
-
 #'
-#' \newpage
 #' \FloatBarrier
 #'
-#' ### Distributions
+#' ### Frequency Distributions
 #'
-#+ distributions, echo=F, include=T, results="asis"
+#+ freqdistributions, echo=F, include=T, results="asis"
 
 
 breaks <- 50
 hist(DATA[get(unique(CEC)) == TRUE, GLB_ench],
      breaks = breaks,
-     col  = varcol("GLB_ench"),
+     col  = varcol( "GLB_ench"),
      xlab = varname("GLB_ench"),
      main = varname("GLB_ench"))
-
 
 hist(DATA[get(unique(CEC)) == TRUE, GLB_diff],
      breaks = breaks,
@@ -151,19 +147,51 @@ hist(DATA[get(unique(CEC)) == TRUE, GLB_diff],
      xlab = bquote(.(varname("GLB_diff")) ~ group("[", W/m^2,"]")),
      main = bquote(.(varname("GLB_diff")) ~ group("[", W/m^2,"]")))
 
-
 hist(DATA[get(unique(CEC)) == TRUE, GLB_rati],
      breaks = breaks,
-     col  = varcol("GLB_rati"),
+     col  = varcol( "GLB_rati"),
+     xlab = varname("GLB_rati"),
+     main = varname("GLB_rati"))
+
+
+## test for one year
+ayear <- 2020
+
+hist(DATA[get(unique(CEC)) == TRUE & year(Date) == ayear, GLB_ench],
+     breaks = breaks,
+     col  = varcol( "GLB_ench"),
+     xlab = varname("GLB_ench"),
+     main = paste(varname("GLB_ench"), ayear))
+
+
+hist(DATA[get(unique(CEC)) == TRUE & year(Date) == ayear, GLB_diff],
+     breaks = breaks,
+     col  = varcol("GLB_diff"),
+     xlab = bquote(.(varname("GLB_diff")) ~ group("[", W/m^2,"]")),
+     main = bquote(.(varname("GLB_diff")) ~ group("[", W/m^2,"]")))
+
+hist(DATA[get(unique(CEC)) == TRUE & year(Date) == ayear, GLB_rati],
+     breaks = breaks,
+     col  = varcol( "GLB_rati"),
      xlab = varname("GLB_rati"),
      main = varname("GLB_rati"))
 
 
 
+
+
+
+#'
+#' \FloatBarrier
+#'
+#' ### Distributions
+#'
+#+ relativedistributions, echo=F, include=T, results="asis"
+
 hist(DATA[get(unique(CEC)) == TRUE, GLB_ench],
      breaks = breaks,
      freq   = FALSE,
-     col    = varcol("GLB_ench"),
+     col    = varcol( "GLB_ench"),
      xlab   = varname("GLB_ench"),
      main   = varname("GLB_ench"))
 
@@ -179,7 +207,7 @@ hist(DATA[get(unique(CEC)) == TRUE, GLB_diff],
 hist(DATA[get(unique(CEC)) == TRUE, GLB_rati],
      breaks = breaks,
      freq   = FALSE,
-     col    = varcol("GLB_rati"),
+     col    = varcol( "GLB_rati"),
      xlab   = varname("GLB_rati"),
      main   = varname("GLB_rati"))
 
@@ -188,6 +216,12 @@ hist(DATA[get(unique(CEC)) == TRUE, GLB_rati],
 
 
 
+#'
+#' \FloatBarrier
+#'
+#' ### Extreme cases Distributions
+#'
+#+ extremedistributions, echo=F, include=T, results="asis"
 
 
 hist(DATA[wattGLB > ETH, GLB_diff],
@@ -195,7 +229,6 @@ hist(DATA[wattGLB > ETH, GLB_diff],
      col  = varcol("GLB_diff"),
      xlab = bquote(.(varname("GLB_diff")) ~ group("[", W/m^2,"]")),
      main = paste("Extreme cases of", varname("GLB_diff")) )
-
 
 
 hist(DATA[wattGLB > ETH, GLB_rati],
@@ -211,6 +244,26 @@ hist(DATA[wattGLB > ETH, GLB_ench],
      col    = varcol("GLB_ench"),
      xlab   = varname("GLB_ench"),
      main   = paste("Extreme cases of", varname("GLB_ench")))
+
+
+
+
+
+
+
+
+#'
+#' \FloatBarrier
+#'
+#' ### Energy calculations
+#'
+#+ energy, echo=F, include=T, results="asis"
+
+
+
+
+
+
 
 
 
