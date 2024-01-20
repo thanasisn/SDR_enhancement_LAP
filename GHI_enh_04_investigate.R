@@ -380,7 +380,8 @@ plot(ST_G0$GLB_ench.N, ST_G0$GLB_diff.sum/ST_G0$GLB_ench.N,
 
 plot(ST_E_daily[, sum(GLB_ench.N), by = yday(Date)],
      ylab = "Enhancement cases",
-     xlab = "DOY")
+     xlab = "DOY",
+     main = "Enhancement cases Climatology")
 
 
 
@@ -396,11 +397,7 @@ plot(ST_E_daily[, sum(GLB_ench.N), by = yday(Date)],
 #+ energy, echo=F, include=T, results="asis"
 
 
-ST_yearly$wattGLB.sum
 
-ST_yearly$GLB_ench.sum
-
-ST_yearly$GLB_ench.sumPOS
 
 plot(ST_yearly[, GLB_ench.sumPOS, year],
      ylab = "Sum of enhancement Irradiance")
@@ -409,15 +406,14 @@ plot(ST_yearly[, GLB_ench.N, year],
      ylab = "Total of enhancement minutes")
 
 
-plot(ST_yearly[, GLB_ench.N/GLB_ench.TotalN, year],
+plot(ST_yearly[, GLB_ench.N_pos/GLB_ench.TotalN, year],
      ylab = "Total of enhancement minutes ratio")
 
 
+plot(ST_yearly[, GLB_ench.sumPOS/GLB_ench.N_pos, year],
+     ylab = "enhancement energy per minute")
 
-ST_E_yearly
 
-
-#+ echo=F,wattGLB.sum#+ echo=F, include=F
 
 
 
