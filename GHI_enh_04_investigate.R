@@ -369,6 +369,22 @@ write.csv(x = dailytrendsY,
 
 
 
+hist(ST_G0$GLB_ench.N,
+     xlab = "Minutes of enhacement",
+     main = "Duration of enhancement cases")
+
+plot(ST_G0$GLB_ench.N, ST_G0$GLB_diff.sum/ST_G0$GLB_ench.N,
+     xlab = "Duration of enhancemnt",
+     ylab = "Extra Irradiance per mimute")
+
+
+plot(ST_E_daily[, sum(GLB_ench.N), by = yday(Date)],
+     ylab = "Enhancement cases",
+     xlab = "DOY")
+
+
+
+
 
 
 #'
@@ -380,11 +396,25 @@ write.csv(x = dailytrendsY,
 #+ energy, echo=F, include=T, results="asis"
 
 
-ST_yearly$wattGLB
+ST_yearly$wattGLB.sum
+
+ST_yearly$GLB_ench.sum
+
+ST_yearly$GLB_ench.sumPOS
+
+plot(ST_yearly[, GLB_ench.sumPOS, year],
+     ylab = "Sum of enhancement Irradiance")
+
+plot(ST_yearly[, GLB_ench.N, year],
+     ylab = "Total of enhancement minutes")
+
+
+plot(ST_yearly[, GLB_ench.N/GLB_ench.TotalN, year],
+     ylab = "Total of enhancement minutes ratio")
 
 
 
-
+ST_E_yearly
 
 
 #+ echo=F,wattGLB.sum#+ echo=F, include=F
