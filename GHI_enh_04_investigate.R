@@ -358,6 +358,15 @@ write.csv(x = dailytrendsY,
 
 
 
+#'
+#' \newpage
+#' \FloatBarrier
+#'
+#' ### Group stats
+#'
+#+ daily, echo=F, include=T, results="asis"
+
+
 
 
 

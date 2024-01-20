@@ -244,10 +244,10 @@ ST_daily[, yts := (year(Date) - min(year(Date))) + ( yday(Date) - 1 ) / Hmisc::y
 
 ## stats on extreme enhancement cases
 ST_extreme_daily <- DATA[wattGLB > ETH,
-                   unlist(lapply(.SD, data.summary, na.rm = TRUE),
-                          recursive = FALSE),
-                   .SDcols = my.cols,
-                   by = .(Date = Day)]
+                         unlist(lapply(.SD, data.summary, na.rm = TRUE),
+                                recursive = FALSE),
+                         .SDcols = my.cols,
+                         by = .(Date = Day)]
 ST_extreme_daily[, yts := (year(Date) - min(year(Date))) + ( yday(Date) - 1 ) / Hmisc::yearDays(Date)]
 
 
@@ -266,7 +266,33 @@ ST_E_daily_seas <- DATA[get(SelEnhanc) == TRUE,
                           recursive = FALSE),
                    .SDcols = my.cols,
                    by = DOY]
-ST_E_daily_seas[, yts := DOY ] ## just for convience of programming
+ST_E_daily_seas[, yts := DOY ] ## just for convenient of programming
+
+
+
+## stats on groups
+
+
+##  Groups with zero gaps  -----------------------------------------------------
+ST_G0 <- DATA[!is.na(C1Grp0),
+              unlist(c(lapply(.SD, enhanc.summary, na.rm = FALSE),
+                       Date = min(Date)),
+                     recursive = FALSE),
+              .SDcols = my.cols,
+              by = .(Group0 = C1Grp0)]
+ST_G0$Date <- as.POSIXct(ST_G0$Date, origin = "1970-01-01")
+
+
+##  Groups with one gap  -------------------------------------------------------
+ST_G1 <- DATA[!is.na(C1Grp1),
+              unlist(c(lapply(.SD, enhanc.summary, na.rm = FALSE),
+                       Date = min(Date)),
+                     recursive = FALSE),
+              .SDcols = my.cols,
+              by = .(Group1 = C1Grp1)]
+ST_G1$Date <- as.POSIXct(ST_G1$Date, origin = "1970-01-01")
+
+
 
 
 for (avar in grep("^DOY$", names(ST_E_daily_seas), value = T, invert = T) ) {
