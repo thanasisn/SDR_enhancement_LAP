@@ -67,6 +67,26 @@ varname <- function(avar) {
     )
 }
 
+## Stats name
+staname <- function(avar) {
+    switch(gsub(".*\\.", "", avar),
+           sum    = "totals",
+           min    = "minimum",
+           max    = "maximun",
+           median = "median",
+           sumPOS = "total of positives",
+           sumNEG = "total of negatives",
+           N_pos  = "number of positive cases",
+           N_neg  = "number of negative cases",
+           N      = "number of cases",
+           TotalN = "number of observations",
+           avar
+    )
+
+}
+
+
+
 # varcol("GLB_rati")
 # varcol("GLB_rati.max")
 

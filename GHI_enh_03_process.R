@@ -43,7 +43,7 @@
 #+ echo=F, include=T
 
 
-## __ Document options ---------------------------------------------------------
+## __ Document options  --------------------------------------------------------
 
 #+ echo=F, include=F
 knitr::opts_chunk$set(comment    = ""       )
@@ -56,7 +56,7 @@ knitr::opts_chunk$set(cache      =  FALSE   )  ## !! breaks calculations
 
 
 #+ include=F, echo=F
-## __ Set environment ----------------------------------------------------------
+## __ Set environment  ---------------------------------------------------------
 Sys.setenv(TZ = "UTC")
 Script.Name <- "./GHI_enh_03_process.R"
 
@@ -75,19 +75,19 @@ library(ggplot2   , quietly = TRUE, warn.conflicts = FALSE)
 panderOptions("table.alignment.default", "right")
 panderOptions("table.split.table",        120   )
 
-## __ Load external functions --------------------------------------------------
+## __ Load external functions  -------------------------------------------------
 ## Functions from `https://github.com/thanasisn/IStillBreakStuff/tree/main/FUNCTIONS/R`
 source("~/CODE/FUNCTIONS/R/data.R")
 source("~/CODE/FUNCTIONS/R/trig_deg.R")
 
 
-## __ Source initial scripts ---------------------------------------------------
+## __ Source initial scripts  --------------------------------------------------
 # source("./DHI_GHI_0_data_input.R")
 source("./GHI_enh_00_variables.R")
 source("./GHI_enh_00_dictionary.R")
 
 
-## Overide notification function
+## Override notification function
 options(error = function() {
     if (interactive()) {
         system("mplayer /usr/share/sounds/freedesktop/stereo/dialog-warning.oga", ignore.stdout = T, ignore.stderr = T)
@@ -152,9 +152,6 @@ SelEnhanc <- "Enhanc_C_1"
 ##;  # >
 ##;  #
 ##;
-##;
-##;  #'
-##;  #'
 ##;  #' ## Data and Methodology
 ##;  #'
 ##;  #' Measurements of solar shortwave global horizontal irradiance (GHI) and direct normal irradiance (DNI) are performed simultaneously since 2016 in Thessaloniki, Greece, respectively with a CM-21 pyranometer and a CHP-1 pyrheliometer both by Kipp & Zonen. A data quality assurance procedure was applied on these data based on methods proposed by
@@ -181,7 +178,6 @@ SelEnhanc <- "Enhanc_C_1"
 ##;  #' \text{GHI}_\text{Clear Sky} = `r signif(gather_results$alpha[gather_results$CS_models=="HAU"],digits = 3 )` \times 1098 \times \cos( \text{SZA} ) \times \exp \left( \frac{ - 0.057}{\cos(\text{SZA})} \right)  (\#eq:ahau)
 ##;  #' \end{equation}
 ##;  #'
-##;
 
 ##  Enhancement cases statistics  ----------------------------------------------
 
@@ -224,7 +220,7 @@ enhanc.summary <- function(x, na.rm = FALSE)
         N      = sum(!is.na(x))
     )
 
-## Stats for columns
+## Stats for variables
 my.cols <- c("wattGLB",
              "GLB_ench",
              "GLB_diff")
@@ -272,7 +268,6 @@ ST_E_daily_seas[, yts := DOY ] ## just for convenient of programming
 
 
 
-## stats on groups
 
 
 ##  Groups with zero gaps  -----------------------------------------------------
