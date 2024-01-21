@@ -117,6 +117,7 @@ load("./data/GHI_enh_02_ID_CE.Rda")
 tic  <- Sys.time()
 
 DRAFT <- TRUE
+DRAFT <- FALSE
 
 
 
