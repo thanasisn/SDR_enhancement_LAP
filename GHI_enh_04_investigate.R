@@ -343,7 +343,7 @@ for (DBn in dbs) {
         #              signif(abs(fit[2]) * Days_of_year, 2),
         #              "±", signif(2 * Tres[2], 2) ,"%/y" )
         # )
-        cat(" \n \n \n")
+        cat(" \n \n")
     }
 }
 #+ echo=F, include=F
