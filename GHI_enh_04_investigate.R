@@ -238,32 +238,6 @@ for (DBn in dbs) {
         #                        collapse = "_"))
         # }
 
-        ylab <- switch(gsub("\\..*$", "", gsub(".*_", "", avar)),
-                       diff = "Difference from reference",
-                       ench = "Relative to reference",
-                       avar
-        )
-
-
-
-
-
-        snma <- switch(gsub(".*\\.", "", avar),
-                       sum    = "totals",
-                       min    = "minimum",
-                       max    = "maximun",
-                       median = "median",
-                       sumPOS = "total of positives",
-                       sumNEG = "total of negatives",
-                       N      = "number of cases",
-                       TotalN = "number of observations",
-                       avar
-        )
-
-
-
-
-
 
         ## plot data
         plot(dataset$Date, dataset[[avar]],
@@ -274,7 +248,7 @@ for (DBn in dbs) {
              cex.main = 0.8,
              yaxt     = "n",
              xlab     = "",
-             ylab     = ylab
+             ylab     = varname(avar)
         )
 
         ## plot fit line lm
@@ -293,7 +267,7 @@ for (DBn in dbs) {
 
 
         if (DRAFT == TRUE) {
-            title(main = paste(tr_var(DBn), varname(avar), snma, avar),
+            title(main = paste(tr_var(DBn), varname(avar), staname(avar), avar),
                   cex.main = 0.8 )
         }
 
@@ -305,8 +279,6 @@ for (DBn in dbs) {
                      if (fit[2] > 0) "+" else "-",
                      signif(abs(fit[2]) * Days_of_year, 2) ,"/y" )
         )
-
-
 
         # fit <- lmD[[1]]
         # legend("top", lty = 1, bty = "n", lwd = 2, cex = 1,
@@ -344,6 +316,7 @@ hist(ST_G0$GLB_ench.N,
      xlab = "Minutes of enhacement",
      main = "Duration of enhancement cases")
 
+
 plot(ST_G0$GLB_ench.N, ST_G0$GLB_diff.sum/ST_G0$GLB_ench.N,
      xlab = "Duration of enhancemnt",
      ylab = "Extra Irradiance per mimute")
@@ -370,6 +343,7 @@ plot(ST_E_daily[, sum(GLB_ench.N), by = yday(Date)],
 
 plot(ST_yearly[, GLB_ench.sumPOS, year],
      ylab = "Sum of enhancement Irradiance")
+
 
 plot(ST_yearly[, GLB_ench.N, year],
      ylab = "Total of enhancement minutes")
