@@ -163,7 +163,6 @@ hist(DATA[get(unique(CEC)) == TRUE & year(Date) == ayear, GLB_ench],
      xlab = varname("GLB_ench"),
      main = paste(varname("GLB_ench"), ayear))
 
-
 hist(DATA[get(unique(CEC)) == TRUE & year(Date) == ayear, GLB_diff],
      breaks = breaks,
      col  = varcol("GLB_diff"),
@@ -180,6 +179,7 @@ hist(DATA[get(unique(CEC)) == TRUE & year(Date) == ayear, GLB_rati],
 
 
 
+##  Distributions  -------------------------------------------------------------
 
 #'
 #' \FloatBarrier
@@ -216,6 +216,8 @@ hist(DATA[get(unique(CEC)) == TRUE, GLB_rati],
 
 
 
+##  Extreme cases Distributions  -----------------------------------------------
+
 #'
 #' \FloatBarrier
 #'
@@ -248,9 +250,7 @@ hist(DATA[wattGLB > ETH, GLB_ench],
 
 
 
-
-
-
+##  Energy calculations  -------------------------------------------------------
 
 #'
 #' \FloatBarrier

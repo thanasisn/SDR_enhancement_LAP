@@ -71,6 +71,7 @@ if (!interactive()) {
 library(data.table, quietly = TRUE, warn.conflicts = FALSE)
 library(pander    , quietly = TRUE, warn.conflicts = FALSE)
 library(ggplot2   , quietly = TRUE, warn.conflicts = FALSE)
+library(lmtest    , quietly = TRUE, warn.conflicts = FALSE)
 
 panderOptions("table.alignment.default", "right")
 panderOptions("table.split.table",        120   )
@@ -124,17 +125,7 @@ DRAFT <- TRUE
 
 
 ##  Daily  ---------------------------------------------------------------------
-
-
 cat(ls(pattern = "^ST.*daily"))
-
-
-
-
-
-
-
-
 
 
 #'
@@ -187,17 +178,12 @@ for (DBn in dbs) {
         ## correlation test by day step
         corY <- cor.test(x = dataset[[avar]], y = as.numeric(dataset$yts), method = 'pearson')
 
-
-        lmY[[1]] / Days_of_year
-
-        coef(lmY) / Days_of_year
-
-        summary(lmY)
-        summary(lmD)
-
-        coef(lmD)
-        coef(lmY) /Days_of_year
-
+        #         lmY[[1]] / Days_of_year
+        #         coef(lmY) / Days_of_year
+        #         summary(lmY)
+        #         summary(lmD)
+        #         coef(lmD)
+        #         coef(lmY) /Days_of_year
 
         ## _ auto reggression arima Tourpali -------------------------------
         ## create a time variable (with lag of 1 day ?)
@@ -207,35 +193,14 @@ for (DBn in dbs) {
         Tres <- data.frame(t(lmtest::coeftest(tmodelo)[3,]))
         Tint <- data.frame(t(lmtest::coeftest(tmodelo)[2,]))
         names(Tres) <- paste0("Tmod_", names(Tres))
-        cat("Tourpali:", paste(round(Tres, 4)), "\n\n")
+        cat("Arima:", paste(round(Tres, 4)), "\n\n")
 
 
-        #
-        # ## get daily climatology
-        # dclima <- dataset[, max(get(gsub("_des", "_seas", avar))), by = doy]
-        #
         # capture lm for table
         dailytrends <- rbind(dailytrends,
-                        data.frame(
-                            linear_fit_stats(lmD, confidence_interval = 0.99),
-                            cor_test_stats(corD),
-                            DATA       = DBn,
-                            var        = avar,
-                            N          = sum(!is.na(dataset[[avar]])),
-                            # N_eff      = N_eff,
-                            # t_eff      = t_eff,
-                            # t_eff_cri  = t_eff_cri,
-                            # conf_2.5   = conf_2.5,
-                            # conf_97.5  = conf_97.5,
-                            # mean_clima = mean(dclima$V1, na.rm = T),
-                            Tres
-                        )
-        )
-
-        dailytrendsY <- rbind(dailytrendsY,
                              data.frame(
-                                 linear_fit_stats(lmY, confidence_interval = 0.99),
-                                 cor_test_stats(corY),
+                                 linear_fit_stats(lmD, confidence_interval = 0.99),
+                                 cor_test_stats(corD),
                                  DATA       = DBn,
                                  var        = avar,
                                  N          = sum(!is.na(dataset[[avar]])),
@@ -249,17 +214,29 @@ for (DBn in dbs) {
                              )
         )
 
+        dailytrendsY <- rbind(dailytrendsY,
+                              data.frame(
+                                  linear_fit_stats(lmY, confidence_interval = 0.99),
+                                  cor_test_stats(corY),
+                                  DATA       = DBn,
+                                  var        = avar,
+                                  N          = sum(!is.na(dataset[[avar]])),
+                                  # N_eff      = N_eff,
+                                  # t_eff      = t_eff,
+                                  # t_eff_cri  = t_eff_cri,
+                                  # conf_2.5   = conf_2.5,
+                                  # conf_97.5  = conf_97.5,
+                                  # mean_clima = mean(dclima$V1, na.rm = T),
+                                  Tres
+                              )
+        )
 
-
-        #
         # if (grepl("near_tcc", avar)) {
         #     acol <- "cyan"
         # } else {
         #     acol <- get(paste0(c("col", unlist(strsplit(avar, split = "_"))[1:2]),
         #                        collapse = "_"))
         # }
-
-
 
         ylab <- switch(gsub("\\..*$", "", gsub(".*_", "", avar)),
                        diff = "Difference from reference",
@@ -269,11 +246,7 @@ for (DBn in dbs) {
 
 
 
-        vnma <- switch(gsub("\\..*$", "", gsub(".*_", "", avar)),
-                       diff = "Above reference",
-                       ench = "Relative Enchancement",
-                       avar
-        )
+
 
         snma <- switch(gsub(".*\\.", "", avar),
                        sum    = "totals",
@@ -286,6 +259,9 @@ for (DBn in dbs) {
                        TotalN = "number of observations",
                        avar
         )
+
+
+
 
 
 
@@ -304,10 +280,6 @@ for (DBn in dbs) {
         ## plot fit line lm
         abline(lmD, lwd = 2, col = "red")
 
-        # abline()
-        # lmD[[1]]
-        # lmY[[1]]/Days_of_year
-
 
         # y axis
         axis(2, pretty(dataset[[avar]]), las = 2 )
@@ -321,7 +293,7 @@ for (DBn in dbs) {
 
 
         if (DRAFT == TRUE) {
-            title(main = paste(tr_var(DBn), vnma, snma, avar),
+            title(main = paste(tr_var(DBn), varname(avar), snma, avar),
                   cex.main = 0.8 )
         }
 
@@ -357,6 +329,7 @@ write.csv(x = dailytrendsY,
           file = "./figures/Daily_trends_byYear.csv")
 
 
+##  Group stats  ---------------------------------------------------------------
 
 #'
 #' \newpage
@@ -364,9 +337,7 @@ write.csv(x = dailytrendsY,
 #'
 #' ### Group stats
 #'
-#+ daily, echo=F, include=T, results="asis"
-
-
+#+ groups, echo=F, include=T, results="asis"
 
 
 hist(ST_G0$GLB_ench.N,
@@ -386,7 +357,7 @@ plot(ST_E_daily[, sum(GLB_ench.N), by = yday(Date)],
 
 
 
-
+##  Energy contribution of enhancements  ---------------------------------------
 
 #'
 #' \newpage
@@ -395,8 +366,6 @@ plot(ST_E_daily[, sum(GLB_ench.N), by = yday(Date)],
 #' ### Energy contribution of enhancements
 #'
 #+ energy, echo=F, include=T, results="asis"
-
-
 
 
 plot(ST_yearly[, GLB_ench.sumPOS, year],
@@ -413,6 +382,33 @@ plot(ST_yearly[, GLB_ench.N_pos/GLB_ench.TotalN, year],
 plot(ST_yearly[, GLB_ench.sumPOS/GLB_ench.N_pos, year],
      ylab = "enhancement energy per minute")
 
+
+##  SZA enhancements  ---------------------------------------
+
+#'
+#' \newpage
+#' \FloatBarrier
+#'
+#' ### SZA enhancements
+#'
+#+ sza, echo=F, include=T, results="asis"
+
+
+avar <- "GLB_ench.sum"
+plot(ST_E_sza[, get(avar), SZA],
+     ylab = paste(varname(avar), staname(avar)),
+     main = paste(varname(avar), staname(avar)))
+
+avar <- "GLB_diff.sum"
+plot(ST_E_sza[, get(avar), SZA],
+     ylab = paste(varname(avar), staname(avar)),
+     main = paste(varname(avar), staname(avar)))
+
+
+avar <- "GLB_ench.N"
+plot(ST_E_sza[, get(avar), SZA],
+     ylab = paste(varname(avar), staname(avar)),
+     main = paste(varname(avar), staname(avar)))
 
 
 
