@@ -312,14 +312,23 @@ write.csv(x = dailytrendsY,
 #+ groups, echo=F, include=T, results="asis"
 
 
+
 hist(ST_G0$GLB_ench.N,
+     breaks = 50,
      xlab = "Minutes of enhacement",
      main = "Duration of enhancement cases")
+
 
 
 plot(ST_G0$GLB_ench.N, ST_G0$GLB_diff.sum/ST_G0$GLB_ench.N,
      xlab = "Duration of enhancemnt",
      ylab = "Extra Irradiance per mimute")
+
+
+cat( "@Zhang2018" )
+plot(ST_G0[, GLB_diff.max, GLB_diff.N ],
+     xlab = "Duration of enhancemnt",
+     ylab = "Maximun Over Irradiance")
 
 
 plot(ST_E_daily[, sum(GLB_ench.N), by = yday(Date)],
