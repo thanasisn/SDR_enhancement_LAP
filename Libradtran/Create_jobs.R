@@ -51,19 +51,20 @@ knitr::opts_chunk$set(fig.pos    = '!h'     )
 require(data.table, quietly = TRUE, warn.conflicts = FALSE)
 
 
-
+## read Climatology
 AER <- fread("Thessaloniki_overall.txt", skip = 6, fill = TRUE)
 # read.csv("Thessaloniki_overall.txt", skip = 6)
 
 
-AER$Month
+## create month index
+AER$Month <- match(tolower(AER$Month), tolower(month.abb))
+
+## keep only month data
+AER <- AER[!is.na(Month)]
 
 
 
 
-month.name
-month.abb
-tolower(AER$Month)
 
 
 
