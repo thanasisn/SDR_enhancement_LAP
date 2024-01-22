@@ -354,7 +354,24 @@ plot(ST_yearly[, GLB_ench.N_pos/GLB_ench.TotalN, year],
 
 
 plot(ST_yearly[, GLB_ench.sumPOS/GLB_ench.N_pos, year],
-     ylab = "enhancement energy per minute")
+     ylab = "Enhancement energy per minute")
+
+
+cat( "@Martins2022" )
+plot(ST_yearly[, GLB_diff.sumPOS/wattGLB.sumPOS, year],
+     ylab = "Fraction of the aqumulated enchancements over total energy",
+     main = paste(varname("GLB_diff.sumPOS"),
+                  staname("GLB_diff.sumPOS"),
+                  "/",
+                  varname("wattGLB.sumPOS"),
+                  staname("wattGLB.sumPOS")
+     )
+)
+
+
+
+
+
 
 
 ##  SZA enhancements  ---------------------------------------
