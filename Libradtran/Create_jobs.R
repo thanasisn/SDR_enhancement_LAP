@@ -50,10 +50,13 @@ knitr::opts_chunk$set(fig.pos    = '!h'     )
 ## __  Set environment ---------------------------------------------------------
 require(data.table, quietly = TRUE, warn.conflicts = FALSE)
 
+library("RlibRadtran")
+library("janitor")
 
 ## read Climatology
 AER <- fread("Thessaloniki_overall.txt", skip = 6, fill = TRUE)
-# read.csv("Thessaloniki_overall.txt", skip = 6)
+
+AER <- clean_names(AER)
 
 
 ## create month index
@@ -63,10 +66,54 @@ AER$Month <- match(tolower(AER$Month), tolower(month.abb))
 AER <- AER[!is.na(Month)]
 
 
+AER$pw_avg_mm <- AER$pw_avg_cm * 10
+
+make.names(names(AER), unique = TRUE, allow_ = TRUE)
+
+
+repo <- "~/MANUSCRIPTS/02_enhancement/Libradtran/todo.Rds"
+
+
+if (file.exists(repo)) {
+    repo_runs <- readRDS(repo)
+    if (nrow(repo_runs) > 0) {
+        cat(paste("some job to redo"))
+        meas_data <- repo_runs
+    }
+} else {
+
+    atmosphere_file   <- c("afglms.dat", "afglmw.dat")
+    source_solar      <- "kurudz_0.1nm"
+    albedo            <- 0.2
+    pressure          <- 1013
+    SZA               <- unique(seq(0,90,5))
+    mol_modify_O3     <- 300                  # DU
+    mol_modify_H2O    <- AER$pw_avg_mm        ## this is set with onother value
+    number_of_streams <- 8
+
+    ## outer join ?
+    mol_modify_H2O    <- AER$pw_avg_mm        ## this is set with onother value
+
+
+
+    expand.grid(
+        atmosphere_file   = atmosphere_file,
+        source_solar      = source_solar,
+        albedo            = albedo,
+        pressure          = pressure,
+        sza               = SZA,
+        mol_modify_O3     = mol_modify_O3,
+        number_of_streams = number_of_streams,
+        mol_modify_H2O    = mol_modify_H2O
+    )
 
 
 
 
+    meas_data[, source_solar      := "kurudz_0.1nm" ]
+    meas_data[, number_of_streams := "32" ]
+    meas_data[, rte_solver        := "sdisort" ]
+}
 
 
 
