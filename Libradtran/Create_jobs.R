@@ -119,7 +119,7 @@ COMB <- rbind(
 ## Create all other iterations  ------------------------------------------------
 atmosphere_file   <- c("afglms", "afglmw")
 source_solar      <- "kurudz_0.1nm"
-SZA               <- unique(seq(16, 90, 1))  ## Thessaloniki sun gets up to SZA ~ 17.1
+SZA               <- unique(seq(15, 90, 0.5))  ## Thessaloniki sun gets up to SZA ~ 17.1
 
 BASE <- expand.grid(
     atmosphere_file        = atmosphere_file,
