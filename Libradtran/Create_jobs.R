@@ -53,6 +53,20 @@ require(data.table, quietly = TRUE, warn.conflicts = FALSE)
 library("RlibRadtran")
 library("janitor")
 
+
+## run files
+repo_dir <- "~/MANUSCRIPTS/02_enhancement/Libradtran/io_repo/"
+
+## empty runs
+run_list_rds <- "~/MANUSCRIPTS/02_enhancement/Libradtran/run.Rds"
+run_list_fl  <- "~/MANUSCRIPTS/02_enhancement/Libradtran/run.list"
+
+## all runs
+model_cs     <- "~/MANUSCRIPTS/02_enhancement/Libradtran/Model_CS.Rds"
+
+
+
+
 ## read Climatology
 AER <- fread("Thessaloniki_overall.txt", skip = 6, fill = TRUE, na.strings = "-100")
 
@@ -105,77 +119,87 @@ COMB <- rbind(
 )
 
 
+## create all combinations
 
-repo <- "~/MANUSCRIPTS/02_enhancement/Libradtran/todo.Rds"
-
-
-if (file.exists(repo)) {
-    repo_runs <- readRDS(repo)
-    if (nrow(repo_runs) > 0) {
-        cat(paste("some job to redo"))
-        meas_data <- repo_runs
-    }
-} else {
-
-    atmosphere_file   <- c("afglms.dat", "afglmw.dat")
-    source_solar      <- "kurudz_0.1nm"
-    SZA               <- unique(seq(0,90,5))
-
-    ## outer join ?
+atmosphere_file   <- c("afglms", "afglmw")
+source_solar      <- "kurudz_0.1nm"
+SZA               <- unique(seq(0,90,1))
 
 
-    ## create basic options
-    BASE <- expand.grid(
-        atmosphere_file        = atmosphere_file,
-        source_solar           = source_solar,
-        albedo                 = 0.2,
-        pressure               = 1013,
-        sza                    = SZA,
-        mol_modify_O3          = 300,           # DU
-        number_of_streams      = 8,
-        aerosol_modify_ssa_set = 0.95,
-        aerosol_modify_gg_set  = 0.70,
-        mol_abs_param          = "LOWTRAN",
-        rte_solver             = "disort",
-        pseudospherical        = "pseudospherical",
-        wavelength_min         = 280,
-        wavelength_max         = 2500
-    )
+## create basic options
+BASE <- expand.grid(
+    atmosphere_file        = atmosphere_file,
+    source_solar           = source_solar,
+    albedo                 = 0.2,
+    pressure               = 1013,
+    sza                    = SZA,
+    mol_modify_O3          = 300,           # DU
+    number_of_streams      = 8,
+    aerosol_modify_ssa_set = 0.95,
+    aerosol_modify_gg_set  = 0.70,
+    mol_abs_param          = "LOWTRAN",
+    rte_solver             = "disort",
+    pseudospherical        = "pseudospherical",
+    wavelength_min         = 280,
+    wavelength_max         = 2500
+)
 
-    ALLRUNS <- data.table(dplyr::cross_join(BASE, COMB))
-
-
-    ## create hash id
-    ALLRUNS$ID <- apply(ALLRUNS[, !c("type") ], 1, function(x) digest::digest(x, "md5"))
+ALLRUNS <- data.table(dplyr::cross_join(BASE, COMB))
 
 
-    # ## clean duplicate columns
-    # # create a vector with the checksum for each column (and keep the column names as row names)
-    # col.checksums <- sapply(meas_data_ANT, function(x) digest::digest(x, "md5"), USE.NAMES = T)
-    # # make a data table with one row per column name and hash value
-    # dup.cols      <- data.table(col.name = names(col.checksums), hash.value = col.checksums)
-    # # self join using the hash values and filter out all column name pairs that were joined to themselves
-    # dupscol <- dup.cols[dup.cols,, on = "hash.value", allow.cartesian=T][col.name != i.col.name,]
-    # # remove them
-    # remcol <- unique(grep("SSA_" , as.vector(dupscol$col.name), value = T))
-    # meas_data_ANT[ , (remcol) := NULL]
+## create hash id
+ALLRUNS$ID <- apply(ALLRUNS[, !c("type") ], 1, function(x) digest::digest(x, "md5"))
 
 
-    #TODO
-    #
-    # check if runs have been done
-    #
-    # list all run todo
 
-    TODO <- ALLRUNS
-
+## create a list of remaining runs
+if (file.exists(model_cs)) {
+    storage <- readRDS(model_cs)
+    TODO    <- ALLRUNS[ ! ID %in% storage$ID]
 }
 
 
+# export to do for R
+saveRDS(TODO, run_list_rds)
 
-## create list to run
 
+## export list to run
+WORKER <- "~/MANUSCRIPTS/02_enhancement/Libradtran/LBT_PBS.sh"
 
+## create file with list of jobs to submit serialize
+cat("", file = run_list_fl)
+for (ri in 1:nrow(TODO)) {
+
+    OptVect = TODO[ri,]
+
+    cat(
+        sprintf(""),
+        sprintf("%s ",                                      WORKER                                         ),
+        sprintf("%s ",                                      OptVect$ID                                     ),
+        sprintf("atmosphere_file@@aattmmoo=%s.dat@",        OptVect$atmosphere_file                        ),
+        sprintf("source@@solar@@ssoollaa=%s.dat@@per_nm@",  OptVect$source_solar                           ),
+        sprintf("albedo@@%s@",                              OptVect$albedo                                 ),
+        sprintf("pressure@@%s@",                            OptVect$pressure                               ),
+        sprintf("sza@@%s@",                                 OptVect$sza                                    ),
+        sprintf("mol_modify@@O3@@%s@@DU@",                  OptVect$mol_modify_O3                          ),
+        sprintf("mol_modify@@H2O@@%s@@MM@",                 OptVect$pw_avg_mm                              ),
+        sprintf("aerosol_default@"                                                                         ),
+        sprintf("aerosol_angstrom@@%s@@%s@",                OptVect$a, OptVect$b                           ),
+        sprintf("aerosol_modify@@ssa@@set@@%s@",            OptVect$aerosol_modify_ssa_set                 ),
+        sprintf("aerosol_modify@@gg@@set@@%s@",             OptVect$aerosol_modify_gg_set                  ),
+        sprintf("mol_abs_param@@%s@",                       OptVect$mol_abs_param                          ),
+        sprintf("rte_solver@@%s@",                          OptVect$rte_solver                             ),
+        sprintf("pseudospherical@"                                                                         ),
+        sprintf("number_of_streams@@%s@",                   OptVect$number_of_streams                      ),
+        sprintf("wavelength@@%s@@%s@",                      OptVect$wavelength_min, OptVect$wavelength_max ),
+        sprintf("output_process@@%s@",                      "integrate"                                    ),
+        sprintf("quiet@"),
+        sprintf("\n"),
+        sep = "",
+        file = run_list_fl ,
+        append = TRUE
+    )
+}
 
 
 
