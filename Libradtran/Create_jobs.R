@@ -113,16 +113,16 @@ AER$beta500_cs2 <- AER$tau500_cs2 * ( 500 / 1000 )^AER$alpha500
 
 ## Create table of a, b and watter combinations  -------------------------------
 COMB <- rbind(
-    AER[, .(month, pw_avg_mm, a = alpha500, b = beta500,    type = "Exact B" )],
-    AER[, .(month, pw_avg_mm, a = alpha500, b = beta500_cs, type = "Low B"   )],
-    AER[, .(month, pw_avg_mm, a = alpha500, b = beta500_cs, type = "Low 2 B" )]
+    AER[, .(month, pw_avg_mm, a = alpha500, b = beta500,     type = "Exact B" )],
+    AER[, .(month, pw_avg_mm, a = alpha500, b = beta500_cs,  type = "Low B"   )],
+    AER[, .(month, pw_avg_mm, a = alpha500, b = beta500_cs2, type = "Low 2 B" )]
 )
 
 
 ## Create all other iterations  ------------------------------------------------
 atmosphere_file   <- c("afglms", "afglmw")
 source_solar      <- "kurudz_0.1nm"
-SZA               <- unique(seq(15, 90, 0.5))  ## Thessaloniki sun gets up to SZA ~ 17.1
+SZA               <- unique(seq(15, 90, 0.2))  ## Thessaloniki sun gets up to SZA ~ 17.1
 
 BASE <- expand.grid(
     atmosphere_file        = atmosphere_file,
@@ -144,6 +144,8 @@ BASE <- expand.grid(
 ## Produce all combination to run
 ALLRUNS <- data.table(dplyr::cross_join(BASE, COMB))
 
+table(ALLRUNS$type)
+
 ## Create hash id
 ALLRUNS$ID <- apply(ALLRUNS[, !c("type") ], 1, function(x) digest::digest(x, "md5"))
 
@@ -155,6 +157,8 @@ if (file.exists(model_cs)) {
 } else {
     TODO    <- ALLRUNS
 }
+
+table(storage$type)
 
 # export todo for R
 saveRDS(TODO, run_list_rds)
