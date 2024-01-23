@@ -103,16 +103,19 @@ AER$alpha500   <- AER$ae_440nm_870nm_std
 ## Choose AOD values
 AER$tau500     <- AER$aod_500nm_avg
 ## Choose an best clear case AOD value
-AER$tau500_cs  <- AER$aod_500nm_avg - 1 * AER$aod_500_std
+AER$tau500_cs   <- AER$aod_500nm_avg - 1 * AER$aod_500_std
+AER$tau500_cs2  <- AER$aod_500nm_avg - 2 * AER$aod_500_std
 
 ## Calculate beta
-AER$beta500    <- AER$tau500    * ( 500 / 1000 )^AER$alpha500
-AER$beta500_cs <- AER$tau500_cs * ( 500 / 1000 )^AER$alpha500
+AER$beta500     <- AER$tau500     * ( 500 / 1000 )^AER$alpha500
+AER$beta500_cs  <- AER$tau500_cs  * ( 500 / 1000 )^AER$alpha500
+AER$beta500_cs2 <- AER$tau500_cs2 * ( 500 / 1000 )^AER$alpha500
 
 ## Create table of a, b and watter combinations  -------------------------------
 COMB <- rbind(
-    AER[, .(month, pw_avg_mm, a = alpha500, b = beta500,    type = "Exact B")],
-    AER[, .(month, pw_avg_mm, a = alpha500, b = beta500_cs, type = "Low B"  )]
+    AER[, .(month, pw_avg_mm, a = alpha500, b = beta500,    type = "Exact B" )],
+    AER[, .(month, pw_avg_mm, a = alpha500, b = beta500_cs, type = "Low B"   )],
+    AER[, .(month, pw_avg_mm, a = alpha500, b = beta500_cs, type = "Low 2 B" )]
 )
 
 

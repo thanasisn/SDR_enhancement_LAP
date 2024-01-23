@@ -20,7 +20,7 @@ echo "change file $JOBS_THRO to change throttling"
 
 
 ## set 50% of the cores as default
-echo "80%" > "$JOBS_THRO"
+echo "100%" > "$JOBS_THRO"
 
 ## tic
 SEC1=$(date +%s)

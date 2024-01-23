@@ -64,29 +64,27 @@ rm(DATA)
 
 # LKUO[, target_atm := date_to_standard_atmosphere_file(Date) ]
 
+cc <- 0
+for (aday in (unique(as.Date(LKUO$Date)))) {
 
-for (aday in unique(as.Date(LKUO$Date))) {
-
-    LKUO[as.Date(Date) == aday]
+    cc <- cc + 1
+    # LKUO[as.Date(Date) == aday]
 
     theday  <- as.POSIXct(as.Date(aday, "1970-01-01"))
+
+    cat(paste(theday,"\n"))
 
     atmfile <- date_to_standard_atmosphere_file(as.POSIXct(as.Date(aday, "1970-01-01")))
 
 
-    ## choose data to interpolate
+    ## choose data and interpolate global
     CS_exact <- CS[atmosphere_file == atmfile &
                        month == month(theday) &
-                       type == "Exact B", .(sza, (edir + edn)/1000 )  ]
+                       type == "Exact B", .(sza, (edir + edn) / 1000 )]
 
     CS_low   <- CS[atmosphere_file == atmfile &
                        month == month(theday) &
-                       type == "Low B",   .(sza, (edir + edn)/1000 )  ]
-
-
-
-    plot(  CS_low)
-    points(CS_exact)
+                       type == "Low B",   .(sza, (edir + edn) / 1000 )]
 
     ## Interpolate to SZA
     CS_low_fn   <- approxfun( CS_low$sza,   CS_low$V2)
@@ -103,19 +101,28 @@ for (aday in unique(as.Date(LKUO$Date))) {
     LKUO[as.Date(Date) == aday, CS_exact := CS_exact / sun_dist^2 ]
     LKUO[as.Date(Date) == aday, CS_low   := CS_low   / sun_dist^2 ]
 
-names(LKUO)
+    ## Plot every nth day
+    if ( cc%%30 == 0 ) {
+        p <- ggplot(LKUO[as.Date(Date) == aday], aes(x = Date)) +
+            geom_line( aes(y = CS_low  ), col = "red") +
+            geom_line( aes(y = CS_exact), col = "magenta") +
+            geom_point(aes(y = wattGLB ), col = "green", size = 0.3 ) +
+            labs( title = theday) +
+            theme_bw()
+        print(p)
 
-ggplot(LKUO[as.Date(Date) == aday]) +
-           geom_line(aes(Date, CS_low)) +
-           geom_line(aes(Date, CS_exact)) +
-           geom_line(aes(Date, )) +
+        p <- ggplot(LKUO[as.Date(Date) == aday], aes(x = SZA)) +
+            geom_line( aes(y = CS_low  ), col = "red") +
+            geom_line( aes(y = CS_exact), col = "magenta") +
+            geom_point(aes(y = wattGLB ), col = "green", size = 0.3 ) +
+            labs( title = theday) +
+            theme_bw()
+        print(p)
+    }
 
-
-
-    stop()
 }
 
-
+saveRDS(LKUO, "./CS_LoolUpTable.Rds")
 
 
 
