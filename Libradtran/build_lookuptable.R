@@ -62,7 +62,12 @@ LKUO <- DATA[, .(Date, SZA, sun_dist, wattGLB)]
 rm(DATA)
 
 
-# LKUO[, target_atm := date_to_standard_atmosphere_file(Date) ]
+
+##  Table for rendering document
+#'
+#'  # Plots
+#'
+#+ echo=F, include=T, results="asis"
 
 cc <- 0
 for (aday in (unique(as.Date(LKUO$Date)))) {
@@ -102,7 +107,8 @@ for (aday in (unique(as.Date(LKUO$Date)))) {
     LKUO[as.Date(Date) == aday, CS_low   := CS_low   / sun_dist^2 ]
 
     ## Plot every nth day
-    if ( cc%%30 == 0 ) {
+    if ( cc %% 30 == 0 ) {
+        suppressWarnings({
         p <- ggplot(LKUO[as.Date(Date) == aday], aes(x = Date)) +
             geom_line( aes(y = CS_low  ), col = "red") +
             geom_line( aes(y = CS_exact), col = "magenta") +
@@ -118,6 +124,7 @@ for (aday in (unique(as.Date(LKUO$Date)))) {
             labs( title = theday) +
             theme_bw()
         print(p)
+        })
     }
 
 }
