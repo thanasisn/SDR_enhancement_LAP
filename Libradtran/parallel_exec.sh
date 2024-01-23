@@ -32,6 +32,7 @@ parallel                            \
     --progress                      \
     --eta                           \
     --resume-failed                 \
+    --sshloginfile   "./hosts"      \
     --joblog         "$JOB_RESUM"   \
     --arg-file       "$ARGS_LIST"
 
