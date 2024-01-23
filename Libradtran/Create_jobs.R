@@ -149,6 +149,8 @@ ALLRUNS$ID <- apply(ALLRUNS[, !c("type") ], 1, function(x) digest::digest(x, "md
 if (file.exists(model_cs)) {
     storage <- readRDS(model_cs)
     TODO    <- ALLRUNS[ ! ID %in% storage$ID]
+} else {
+    TODO    <- ALLRUNS
 }
 
 # export todo for R
@@ -159,7 +161,8 @@ saveRDS(TODO, run_list_rds)
 WORKER <- "~/MANUSCRIPTS/02_enhancement/Libradtran/LBT_PBS.sh"
 
 cat("", file = run_list_fl)
-for (ri in 1:nrow(TODO)) {
+for (ri in 1:100) {
+# for (ri in 1:nrow(TODO)) {
     OptVect = TODO[ri,]
 
     cat(
