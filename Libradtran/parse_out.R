@@ -96,6 +96,8 @@ if (length(out_files) > 0 & length(out_files) == length(err_files)) {
     gather <- data.table()
     for (af in out_files) {
 
+        file.size(af)
+
         ## get hash id
         hash <- gsub("LBT_|.out.gz","", basename(af))
 
