@@ -119,7 +119,7 @@ COMB <- rbind(
 ## Create all other iterations  ------------------------------------------------
 atmosphere_file   <- c("afglms", "afglmw")
 source_solar      <- "kurudz_0.1nm"
-SZA               <- unique(seq(0,90,1))
+SZA               <- unique(seq(16, 90, 1))  ## Thessaloniki sun gets up to SZA ~ 17.1
 
 BASE <- expand.grid(
     atmosphere_file        = atmosphere_file,
@@ -161,8 +161,8 @@ saveRDS(TODO, run_list_rds)
 WORKER <- "~/MANUSCRIPTS/02_enhancement/Libradtran/LBT_PBS.sh"
 
 cat("", file = run_list_fl)
-for (ri in 1:100) {
-# for (ri in 1:nrow(TODO)) {
+# for (ri in 1:100) {
+for (ri in 1:nrow(TODO)) {
     OptVect = TODO[ri,]
 
     cat(

@@ -77,7 +77,7 @@ error_param <- function(errfile) {
 }
 
 
-## parse libradtran output
+## parse libradtran outputto fill
 todo <- readRDS(run_list_rds)
 
 out_files <- list.files(path       = repo_dir,
@@ -87,6 +87,14 @@ out_files <- list.files(path       = repo_dir,
 err_files <- list.files(path       = repo_dir,
                         pattern    = "err",
                         full.names = T )
+
+comon <- intersect(
+    sub(".out.gz", "", sub("LBT_", "", basename(out_files))),
+    sub(".err", "", sub("LBT_", "", basename(err_files)))
+)
+
+pmatch(comon, out_files, duplicates.ok = T)
+
 
 ## read new data
 if (length(out_files) > 0 & length(out_files) == length(err_files)) {
@@ -130,15 +138,22 @@ if (file.exists(model_cs)) {
 }
 
 
-trastorage <- rbind(storage, data)
+storage <- unique(rbind(storage, data))
 
 stopifnot(any(!duplicated(storage$ID)))
 
 saveRDS(storage, model_cs)
 
-# file.remove(out_files)
-# file.remove(err_files)
+table(storage$hostname)
+hist(storage[, tacTime - ticTime])
 
+storage[, .(min = min(tacTime - ticTime),
+            max = max(tacTime - ticTime),
+            mean = mean(tacTime - ticTime), .N), by = hostname]
+
+file.remove(out_files)
+file.remove(err_files)
+file.remove(sub(".err", ".inp", err_files))
 
 
 #' **END**
