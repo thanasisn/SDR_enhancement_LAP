@@ -113,6 +113,10 @@ if (length(out_files) > 0 & length(out_files) == length(err_files)) {
         if (!file.exists(af)) next()
         if (!file.exists(erf)) next()
 
+        if (file.size(af)  < 65) next()
+        if (file.size(erf) < 65) next()
+
+
         ddelete <- c(ddelete, erf)
 
         ## get hash id
@@ -136,6 +140,8 @@ if (length(out_files) > 0 & length(out_files) == length(err_files)) {
 if (nrow(data) < 1) {
     ## No new data
     stop()
+} else {
+    cat(nrow(data),"\n")
 }
 
 ## append new data to storage
