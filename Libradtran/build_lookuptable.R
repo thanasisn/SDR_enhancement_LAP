@@ -37,6 +37,9 @@ options(error = function() {
 tic <- Sys.time()
 
 library(data.table)
+library(RlibRadtran)
+library(ggplot2)
+
 source("~/FUNCTIONS/R/data.R")
 
 ## run files
@@ -49,134 +52,73 @@ run_list_rds <- "~/MANUSCRIPTS/02_enhancement/Libradtran/run.Rds"
 model_cs     <- "~/MANUSCRIPTS/02_enhancement/Libradtran/Model_CS.Rds"
 
 
-## Function to parse .err files ##
-error_param <- function(errfile) {
-    ## file should exist
-    if (!file.exists(errfile)) stop(paste("Missing file: ", errfile))
+## Based on raw data
+DATA <- data.table(readRDS("../data/CE_ID_Input.Rds"))
 
-    ## read error file
-    fcon   = file(errfile)
-    lines  = readLines(fcon)
-    close(fcon)
+## Fill with model
+CS <- data.table(readRDS("./Model_CS.Rds"))
 
-    ## get start and end times
-    minD = min(as.numeric(grep("^[0-9]+$", lines, value = TRUE)))
-    maxD = max(as.numeric(grep("^[0-9]+$", lines, value = TRUE)))
-    ## get host name
-    hosts = grep("hostname=.*", lines, value = TRUE)
-    hosts = unlist(strsplit(hosts,"="))[2]
-    if (hosts != "") {
-        host = hosts
-    } else {
-        host = "unknown"
-    }
-
-    return(data.frame( hostname = host,
-                       ticTime  = minD,
-                       tacTime  = maxD, stringsAsFactors = F ))
-}
+LKUO <- DATA[, .(Date, SZA, sun_dist, wattGLB)]
+rm(DATA)
 
 
-## parse libradtran outputto fill
-todo <- readRDS(run_list_rds)
+# LKUO[, target_atm := date_to_standard_atmosphere_file(Date) ]
 
-out_files <- list.files(path       = repo_dir,
-                        pattern    = "out.gz",
-                        full.names = T )
 
-err_files <- list.files(path       = repo_dir,
-                        pattern    = "err",
-                        full.names = T )
+for (aday in unique(as.Date(LKUO$Date))) {
 
-## find common
-comon <- intersect(
-    sub(".out.gz", "", sub("LBT_", "", basename(out_files))),
-    sub(".err",    "", sub("LBT_", "", basename(err_files)))
-)
-out_files <- out_files[max.col(sapply(out_files, grepl, comon))]
-err_files <- err_files[max.col(sapply(err_files, grepl, comon))]
+    LKUO[as.Date(Date) == aday]
 
-all(file.exists(out_files))
-all(file.exists(err_files))
+    theday  <- as.POSIXct(as.Date(aday, "1970-01-01"))
 
-## read new data
-if (length(out_files) > 0 & length(out_files) == length(err_files)) {
+    atmfile <- date_to_standard_atmosphere_file(as.POSIXct(as.Date(aday, "1970-01-01")))
 
-    hist(file.size(err_files), breaks = 100)
-    ddelete <- c()
-    gather <- data.table()
-    for (af in out_files) {
 
-        erf <- sub(".out.gz", ".err", af)
+    ## choose data to interpolate
+    CS_exact <- CS[atmosphere_file == atmfile &
+                       month == month(theday) &
+                       type == "Exact B", .(sza, (edir + edn)/1000 )  ]
 
-        file.size(af)
-        if (!file.exists(af)) next()
-        if (!file.exists(erf)) next()
+    CS_low   <- CS[atmosphere_file == atmfile &
+                       month == month(theday) &
+                       type == "Low B",   .(sza, (edir + edn)/1000 )  ]
 
-        ddelete <- c(ddelete, erf)
 
-        ## get hash id
-        hash <- gsub("LBT_|.out.gz","", basename(af))
 
-        ## get data
-        temp <- read.table(af)
-        names(temp) <- c("lambda", "edir", "edn", "eup", "uavgdir", "uavgdn", "uavgup")
+    plot(  CS_low)
+    points(CS_exact)
 
-        ## get meta data
-        meta <- error_param(sub(".out.gz", ".err", af))
+    ## Interpolate to SZA
+    CS_low_fn   <- approxfun( CS_low$sza,   CS_low$V2)
+    CS_exact_fn <- approxfun( CS_exact$sza, CS_exact$V2)
 
-        ## gather records
-        gather <- rbind(gather, cbind(ID = hash, temp, meta))
-    }
+    LKUO[as.Date(Date) == aday,
+         CS_low := CS_low_fn( LKUO[as.Date(Date) == aday, SZA] )]
 
-    data <- merge(todo, gather, all.x = T, by = "ID")
-    data <- data[!is.na(edir)]
-}
+    LKUO[as.Date(Date) == aday,
+         CS_exact := CS_exact_fn( LKUO[as.Date(Date) == aday, SZA] )]
 
-if (nrow(data) < 1) {
-    ## No new data
+    ## Apply sun - earth distance
+
+    LKUO[as.Date(Date) == aday, CS_exact := CS_exact / sun_dist^2 ]
+    LKUO[as.Date(Date) == aday, CS_low   := CS_low   / sun_dist^2 ]
+
+names(LKUO)
+
+ggplot(LKUO[as.Date(Date) == aday]) +
+           geom_line(aes(Date, CS_low)) +
+           geom_line(aes(Date, CS_exact)) +
+           geom_line(aes(Date, )) +
+
+
+
     stop()
 }
 
-## append new data to storage
-
-if (file.exists(model_cs)) {
-    storage <- readRDS(model_cs)
-} else {
-    storage <- data.table()
-}
-
-
-storage <- unique(rbind(storage, data))
-
-stopifnot(any(!duplicated(storage$ID)))
-
-saveRDS(storage, model_cs)
-
-table(storage$hostname)
-hist(storage[, tacTime - ticTime])
-
-storage[, .(min = min(tacTime - ticTime),
-            max = max(tacTime - ticTime),
-            mean = mean(tacTime - ticTime), .N), by = hostname]
-
-
-## remove read files
-file.remove(ddelete)
-file.remove(sub(".err", ".inp",    ddelete))
-file.remove(sub(".err", ".out.gz", ddelete))
 
 
 
 
-storage[, GLB := edir + edn]
-
-pp <- storage[ month == 7, ]
-
-
-plot(pp[, GLB / 1000, sza])
-
-plot(storage[, GLB / 1000, sza])
 
 
 
