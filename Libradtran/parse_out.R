@@ -114,6 +114,11 @@ if (length(out_files) > 0 & length(out_files) == length(err_files)) {
     data <- data[!is.na(edir)]
 }
 
+if (nrow(data) < 1) {
+    ## No new data
+    stop()
+}
+
 ## append new data to storage
 
 if (file.exists(model_cs)) {
@@ -122,14 +127,17 @@ if (file.exists(model_cs)) {
     storage <- data.table()
 }
 
-storage <- rbind(storage, data)
+
+trastorage <- rbind(storage, data)
 
 stopifnot(any(!duplicated(storage$ID)))
 
 saveRDS(storage, model_cs)
 
-file.remove(out_files)
-file.remove(err_files)
+# file.remove(out_files)
+# file.remove(err_files)
+
+
 
 #' **END**
 #+ include=T, echo=F
