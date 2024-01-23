@@ -38,7 +38,7 @@ tic <- Sys.time()
 
 
 
-## __ Document options ---------------------------------------------------------
+## __ Document options  --------------------------------------------------------
 knitr::opts_chunk$set(comment    = ""       )
 # knitr::opts_chunk$set(dev        = c("pdf", "png"))
 knitr::opts_chunk$set(dev        = "png"    )
@@ -47,12 +47,14 @@ knitr::opts_chunk$set(fig.align  = "center" )
 knitr::opts_chunk$set(cache      =  FALSE   )  ## !! breaks calculations
 knitr::opts_chunk$set(fig.pos    = '!h'     )
 
-## __  Set environment ---------------------------------------------------------
+## __ Set environment  ---------------------------------------------------------
 require(data.table, quietly = TRUE, warn.conflicts = FALSE)
 
 library("RlibRadtran")
 library("janitor")
 
+
+## __ Paths  -------------------------------------------------------------------
 
 ## run files
 repo_dir <- "~/MANUSCRIPTS/02_enhancement/Libradtran/io_repo/"
@@ -66,8 +68,7 @@ model_cs     <- "~/MANUSCRIPTS/02_enhancement/Libradtran/Model_CS.Rds"
 
 
 
-
-## read Climatology
+## Read Climatology from AERONET  ----------------------------------------------
 AER <- fread("Thessaloniki_overall.txt", skip = 6, fill = TRUE, na.strings = "-100")
 
 ## remove NA
@@ -79,54 +80,47 @@ AER <- remove_empty(AER, which = "cols")
 AER <- clean_names(AER)
 AER <- data.table(AER)
 
-
-
 ## create month index
 AER$month <- match(tolower(AER$month), tolower(month.abb))
 
 ## keep only month data
 AER <- AER[!is.na(month), ]
 
-
+## Change units
 AER$pw_avg_mm <- AER$pw_avg_cm * 10
 
 
-## create a and b
+## Create a and b for Angstrom exponent  ---------------------------------------
 #'
 #' $α = \ln(τ_1/τ_2)/\ln(λ_2/λ_1)$
 #'
 #' $β = τ_1 λ_1 ^α = τ_2 λ_2 ^α$
 #'
 
-## select Aod
-
-## use angstrom exponent
+## Use angstrom exponent
 AER$alpha500   <- AER$ae_440nm_870nm_std
 
-## choose an AOD values
+## Choose AOD values
 AER$tau500     <- AER$aod_500nm_avg
-## choose an best clear case AOD value
+## Choose an best clear case AOD value
 AER$tau500_cs  <- AER$aod_500nm_avg - 1 * AER$aod_500_std
 
-## calculate beta
+## Calculate beta
 AER$beta500    <- AER$tau500    * ( 500 / 1000 )^AER$alpha500
 AER$beta500_cs <- AER$tau500_cs * ( 500 / 1000 )^AER$alpha500
 
-
+## Create table of a, b and watter combinations  -------------------------------
 COMB <- rbind(
     AER[, .(month, pw_avg_mm, a = alpha500, b = beta500,    type = "Exact B")],
     AER[, .(month, pw_avg_mm, a = alpha500, b = beta500_cs, type = "Low B"  )]
 )
 
 
-## create all combinations
-
+## Create all other iterations  ------------------------------------------------
 atmosphere_file   <- c("afglms", "afglmw")
 source_solar      <- "kurudz_0.1nm"
 SZA               <- unique(seq(0,90,1))
 
-
-## create basic options
 BASE <- expand.grid(
     atmosphere_file        = atmosphere_file,
     source_solar           = source_solar,
@@ -144,32 +138,28 @@ BASE <- expand.grid(
     wavelength_max         = 2500
 )
 
+## Produce all combination to run
 ALLRUNS <- data.table(dplyr::cross_join(BASE, COMB))
 
-
-## create hash id
+## Create hash id
 ALLRUNS$ID <- apply(ALLRUNS[, !c("type") ], 1, function(x) digest::digest(x, "md5"))
 
 
-
-## create a list of remaining runs
+## Create a list of remaining runs to export  ----------------------------------
 if (file.exists(model_cs)) {
     storage <- readRDS(model_cs)
     TODO    <- ALLRUNS[ ! ID %in% storage$ID]
 }
 
-
-# export to do for R
+# export todo for R
 saveRDS(TODO, run_list_rds)
 
 
-## export list to run
+## Export list for worker  -----------------------------------------------------
 WORKER <- "~/MANUSCRIPTS/02_enhancement/Libradtran/LBT_PBS.sh"
 
-## create file with list of jobs to submit serialize
 cat("", file = run_list_fl)
 for (ri in 1:nrow(TODO)) {
-
     OptVect = TODO[ri,]
 
     cat(
@@ -200,10 +190,6 @@ for (ri in 1:nrow(TODO)) {
         append = TRUE
     )
 }
-
-
-
-
 
 
 #' **END**
