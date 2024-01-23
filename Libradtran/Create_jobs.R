@@ -54,21 +54,56 @@ library("RlibRadtran")
 library("janitor")
 
 ## read Climatology
-AER <- fread("Thessaloniki_overall.txt", skip = 6, fill = TRUE)
+AER <- fread("Thessaloniki_overall.txt", skip = 6, fill = TRUE, na.strings = "-100")
+
+## remove NA
+AER <- remove_empty(AER, which = "cols")
+AER <- data.frame(AER)
+AER[AER == -100] <- NA
+AER <- remove_empty(AER, which = "cols")
 
 AER <- clean_names(AER)
+AER <- data.table(AER)
+
 
 
 ## create month index
-AER$Month <- match(tolower(AER$Month), tolower(month.abb))
+AER$month <- match(tolower(AER$month), tolower(month.abb))
 
 ## keep only month data
-AER <- AER[!is.na(Month)]
+AER <- AER[!is.na(month), ]
 
 
 AER$pw_avg_mm <- AER$pw_avg_cm * 10
 
-make.names(names(AER), unique = TRUE, allow_ = TRUE)
+
+## create a and b
+#'
+#' $α = \ln(τ_1/τ_2)/\ln(λ_2/λ_1)$
+#'
+#' $β = τ_1 λ_1 ^α = τ_2 λ_2 ^α$
+#'
+
+## select Aod
+
+## use angstrom exponent
+AER$alpha500   <- AER$ae_440nm_870nm_std
+
+## choose an AOD values
+AER$tau500     <- AER$aod_500nm_avg
+## choose an best clear case AOD value
+AER$tau500_cs  <- AER$aod_500nm_avg - 1 * AER$aod_500_std
+
+## calculate beta
+AER$beta500    <- AER$tau500    * ( 500 / 1000 )^AER$alpha500
+AER$beta500_cs <- AER$tau500_cs * ( 500 / 1000 )^AER$alpha500
+
+
+COMB <- rbind(
+    AER[, .(month, pw_avg_mm, a = alpha500, b = beta500,    type = "Exact B")],
+    AER[, .(month, pw_avg_mm, a = alpha500, b = beta500_cs, type = "Low B"  )]
+)
+
 
 
 repo <- "~/MANUSCRIPTS/02_enhancement/Libradtran/todo.Rds"
@@ -84,36 +119,66 @@ if (file.exists(repo)) {
 
     atmosphere_file   <- c("afglms.dat", "afglmw.dat")
     source_solar      <- "kurudz_0.1nm"
-    albedo            <- 0.2
-    pressure          <- 1013
     SZA               <- unique(seq(0,90,5))
-    mol_modify_O3     <- 300                  # DU
-    mol_modify_H2O    <- AER$pw_avg_mm        ## this is set with onother value
-    number_of_streams <- 8
 
     ## outer join ?
-    mol_modify_H2O    <- AER$pw_avg_mm        ## this is set with onother value
 
 
-
-    expand.grid(
-        atmosphere_file   = atmosphere_file,
-        source_solar      = source_solar,
-        albedo            = albedo,
-        pressure          = pressure,
-        sza               = SZA,
-        mol_modify_O3     = mol_modify_O3,
-        number_of_streams = number_of_streams,
-        mol_modify_H2O    = mol_modify_H2O
+    ## create basic options
+    BASE <- expand.grid(
+        atmosphere_file        = atmosphere_file,
+        source_solar           = source_solar,
+        albedo                 = 0.2,
+        pressure               = 1013,
+        sza                    = SZA,
+        mol_modify_O3          = 300,           # DU
+        number_of_streams      = 8,
+        aerosol_modify_ssa_set = 0.95,
+        aerosol_modify_gg_set  = 0.70,
+        mol_abs_param          = "LOWTRAN",
+        rte_solver             = "disort",
+        pseudospherical        = "pseudospherical",
+        wavelength_min         = 280,
+        wavelength_max         = 2500
     )
 
+    ALLRUNS <- data.table(dplyr::cross_join(BASE, COMB))
 
 
+    ## create hash id
+    ALLRUNS$ID <- apply(ALLRUNS[, !c("type") ], 1, function(x) digest::digest(x, "md5"))
 
-    meas_data[, source_solar      := "kurudz_0.1nm" ]
-    meas_data[, number_of_streams := "32" ]
-    meas_data[, rte_solver        := "sdisort" ]
+
+    # ## clean duplicate columns
+    # # create a vector with the checksum for each column (and keep the column names as row names)
+    # col.checksums <- sapply(meas_data_ANT, function(x) digest::digest(x, "md5"), USE.NAMES = T)
+    # # make a data table with one row per column name and hash value
+    # dup.cols      <- data.table(col.name = names(col.checksums), hash.value = col.checksums)
+    # # self join using the hash values and filter out all column name pairs that were joined to themselves
+    # dupscol <- dup.cols[dup.cols,, on = "hash.value", allow.cartesian=T][col.name != i.col.name,]
+    # # remove them
+    # remcol <- unique(grep("SSA_" , as.vector(dupscol$col.name), value = T))
+    # meas_data_ANT[ , (remcol) := NULL]
+
+
+    #TODO
+    #
+    # check if runs have been done
+    #
+    # list all run todo
+
+    TODO <- ALLRUNS
+
 }
+
+
+
+## create list to run
+
+
+
+
+
 
 
 
