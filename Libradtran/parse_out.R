@@ -175,32 +175,32 @@ storage[, .(min = min(tacTime - ticTime),
 # storage[tacTime - ticTime < 1,]
 
 ## remove read files
-cat("Deleted err:", sum(file.remove(ddelete)))
-cat("Deleted inp:", sum(file.remove(sub(".err", ".inp",    ddelete))))
-cat("Deleted out:", sum(file.remove(sub(".err", ".out.gz", ddelete))))
+cat("Deleted err:", sum(file.remove(ddelete)), "\n")
+cat("Deleted inp:", sum(file.remove(sub(".err", ".inp",    ddelete))), "\n")
+cat("Deleted out:", sum(file.remove(sub(".err", ".out.gz", ddelete))), "\n")
 
 
 
 
-storage[, GLB := edir + edn]
-
-pp <- storage[ month == 7, ]
-
-
-pp <- janitor::remove_constant(pp)
-
-
-dd <- pp[duplicated(pp[, .(atmosphere_file,
-                           sza,
-                           b,
-                           type)] ),]
-
-setorder(dd, sza)
-
-
-plot(pp[, GLB / 1000, sza])
-
-plot(storage[, GLB / 1000, sza])
+# storage[, GLB := edir + edn]
+#
+# pp <- storage[ month == 7, ]
+#
+#
+# pp <- janitor::remove_constant(pp)
+#
+#
+# dd <- pp[duplicated(pp[, .(atmosphere_file,
+#                            sza,
+#                            b,
+#                            type)] ),]
+#
+# setorder(dd, sza)
+#
+#
+# plot(pp[, GLB / 1000, sza])
+#
+# plot(storage[, GLB / 1000, sza])
 
 
 
