@@ -160,6 +160,9 @@ stopifnot(any(!duplicated(storage$ID)))
 saveRDS(storage, model_cs)
 
 table(storage$hostname)
+table(storage$type)
+
+
 hist(storage[, tacTime - ticTime])
 
 storage[, .(min = min(tacTime - ticTime),
