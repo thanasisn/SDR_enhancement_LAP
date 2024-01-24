@@ -127,7 +127,7 @@ COMB <- rbind(
 ## Create all other iterations  ------------------------------------------------
 atmosphere_file   <- c("afglms", "afglmw")
 source_solar      <- "kurudz_0.1nm"
-SZA               <- unique(seq(15, 90, 1 ))  ## Thessaloniki sun gets up to SZA ~ 17.1
+SZA               <- unique(seq(15, 90, 5 ))  ## Thessaloniki sun gets up to SZA ~ 17.1
 
 BASE <- expand.grid(
     atmosphere_file        = atmosphere_file,
@@ -159,25 +159,29 @@ ALLRUNS$ID <- apply(ALLRUNS, 1, function(x) digest::digest(x, "md5"))
 if (file.exists(model_cs)) {
     storage <- readRDS(model_cs)
     TODO    <- ALLRUNS[ ! ID %in% storage$ID]
+
+    cat("STORAGE\n")
+
+    table(storage$sza)
+
+    table(storage$month)
+
+    table(storage$type)
+
+
 } else {
     TODO    <- ALLRUNS
 }
 
 
-cat("STORAGE\n")
-
-table(storage$sza)
-
-table(storage$month)
-
-table(storage$type)
 
 cat("TODO\n")
-table(TODO$type)
 
 table(TODO$sza)
 
-table(TODO$month)
+table(TODO$type)
+
+table(TODO$type, TODO$month)
 
 
 
@@ -210,7 +214,7 @@ for (ri in sample(1:nrow(TODO))) {
         sprintf("aerosol_modify@@gg@@set@@%s@",             OptVect$aerosol_modify_gg_set                  ),
         sprintf("mol_abs_param@@%s@",                       OptVect$mol_abs_param                          ),
         sprintf("rte_solver@@%s@",                          OptVect$rte_solver                             ),
-        sprintf("%s@"                                       OptVect$geometry                               ),
+        sprintf("%s@",                                      OptVect$geometry                               ),
         sprintf("number_of_streams@@%s@",                   OptVect$number_of_streams                      ),
         sprintf("wavelength@@%s@@%s@",                      OptVect$wavelength_min, OptVect$wavelength_max ),
         sprintf("output_process@@%s@",                      "integrate"                                    ),
