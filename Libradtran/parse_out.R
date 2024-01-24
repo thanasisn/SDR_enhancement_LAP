@@ -172,7 +172,7 @@ storage[, .(min = min(tacTime - ticTime),
             max = max(tacTime - ticTime),
             mean = mean(tacTime - ticTime), .N), by = hostname]
 
-storage[tacTime - ticTime < 1,]
+# storage[tacTime - ticTime < 1,]
 
 ## remove read files
 cat("Deleted err:", sum(file.remove(ddelete)))
