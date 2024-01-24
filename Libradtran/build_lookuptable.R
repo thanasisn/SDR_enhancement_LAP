@@ -55,16 +55,20 @@ model_cs     <- "~/MANUSCRIPTS/02_enhancement/Libradtran/Model_CS.Rds"
 ## Based on raw data
 DATA <- data.table(readRDS("../data/CE_ID_Input.Rds"))
 
-## Fill with model
+## Fill with CS approximation model
 CS <- data.table(readRDS("./Model_CS.Rds"))
 
 ## Keep only relevant
 LKUO <- DATA[, .(Date, SZA, sun_dist, wattGLB)]
 rm(DATA)
 
+table(CS$type)
 
+warning("check for low data")
+##TODO check for low data!!
 table(CS$type, CS$month)
 
+##TODO check for low data!!
 table(CS$type, CS$sza)
 
 
@@ -79,11 +83,10 @@ cc <- 0
 
 
 # test
-for (aday in sample(unique(as.Date(LKUO[month(Date)==7, Date])))) {
+# for (aday in sample(unique(as.Date(LKUO[month(Date)==7, Date])))) {
+# for (aday in sample(unique(as.Date(LKUO$Date)))) {
 
-
-# for (aday in (unique(as.Date(LKUO$Date)))) {
-
+for (aday in (unique(as.Date(LKUO$Date)))) {
 
     cc <- cc + 1
     # LKUO[as.Date(Date) == aday]
@@ -124,37 +127,38 @@ for (aday in sample(unique(as.Date(LKUO[month(Date)==7, Date])))) {
          CS_exact := CS_exact_fn(LKUO[as.Date(Date) == aday, SZA])]
 
 
-    ## Apply sun - earth distance
-
+    ## Apply sun - earth distance correction
     LKUO[as.Date(Date) == aday, CS_exact := CS_exact / sun_dist^2]
     LKUO[as.Date(Date) == aday, CS_low   := CS_low   / sun_dist^2]
     LKUO[as.Date(Date) == aday, CS_2_low := CS_2_low / sun_dist^2]
 
 
-
-    ## Plot every nth day
+    ## Plot every nth day just for check
     if ( cc %% 60 == 0 ) {
         suppressWarnings({
-        p <- ggplot(LKUO[as.Date(Date) == aday], aes(x = Date)) +
-            geom_point(aes(y = wattGLB ), col = "green", size = 0.3 ) +
-            geom_line( aes(y = CS_low  ), col = "red")     +
-            geom_line( aes(y = CS_2_low), col = "cyan")    +
-            geom_line( aes(y = CS_exact), col = "magenta") +
-            labs( title = theday) +
-            theme_bw()
-        print(p)
 
-        p <- ggplot(LKUO[as.Date(Date) == aday], aes(x = SZA)) +
-            geom_point(aes(y = wattGLB ), col = "green", size = 0.3 ) +
-            geom_line( aes(y = CS_low  ), col = "red")     +
-            geom_line( aes(y = CS_2_low), col = "cyan")    +
-            geom_line( aes(y = CS_exact), col = "magenta") +
-            labs( title = theday) +
-            theme_bw()
-        print(p)
+            p <- ggplot(LKUO[as.Date(Date) == aday], aes(x = Date)) +
+                geom_point(aes(y = wattGLB ), col = "green", size = 0.3 ) +
+                geom_line( aes(y = CS_low  ), col = "red")     +
+                geom_line( aes(y = CS_2_low), col = "cyan")    +
+                geom_line( aes(y = CS_exact), col = "magenta") +
+                labs( title = theday) +
+                theme_bw()
+            print(p)
+            # plotly::ggplotly(p)
+
+            p <- ggplot(LKUO[as.Date(Date) == aday], aes(x = SZA)) +
+                geom_point(aes(y = wattGLB ), col = "green", size = 0.3 ) +
+                geom_line( aes(y = CS_low  ), col = "red")     +
+                geom_line( aes(y = CS_2_low), col = "cyan")    +
+                geom_line( aes(y = CS_exact), col = "magenta") +
+                labs( title = theday) +
+                theme_bw()
+            print(p)
+            # plotly::ggplotly(p)
+
         })
     }
-# stop()
 }
 
 LKUO[, wattGLB := NULL ]
