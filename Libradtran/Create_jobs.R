@@ -111,6 +111,11 @@ AER$beta500     <- AER$tau500     * ( 500 / 1000 )^AER$alpha500
 AER$beta500_cs  <- AER$tau500_cs  * ( 500 / 1000 )^AER$alpha500
 AER$beta500_cs2 <- AER$tau500_cs2 * ( 500 / 1000 )^AER$alpha500
 
+## Protect from negative
+AER[beta500_cs2 < 0, beta500_cs2 := 0]
+AER[beta500_cs  < 0, beta500_cs  := 0]
+
+
 ## Create table of a, b and water combinations  --------------------------------
 COMB <- rbind(
     AER[, .(month, pw_avg_mm, a = alpha500, b = beta500,     type = "Exact B")],
@@ -193,7 +198,7 @@ for (ri in sample(1:nrow(TODO))) {
         sprintf("%s ",                                      WORKER                                         ),
         sprintf("%s ",                                      OptVect$ID                                     ),
         sprintf("atmosphere_file@@aattmmoo=%s.dat@",        OptVect$atmosphere_file                        ),
-        sprintf("source@@solar@@ssoollaa=%s.dat@@per_nm@",  OptVect$source_solar                           ),
+        sprintf("source@@solar@@ssoollaa=%s.dat@",          OptVect$source_solar                           ), ## per_nm ?
         sprintf("albedo@@%s@",                              OptVect$albedo                                 ),
         sprintf("pressure@@%s@",                            OptVect$pressure                               ),
         sprintf("sza@@%s@",                                 OptVect$sza                                    ),

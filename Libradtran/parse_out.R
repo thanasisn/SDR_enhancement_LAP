@@ -40,7 +40,7 @@ library(data.table)
 source("~/FUNCTIONS/R/data.R")
 
 ## run files
-repo_dir <- "~/MANUSCRIPTS/02_enhancement/Libradtran/io_repo/"
+repo_dir     <- "~/MANUSCRIPTS/02_enhancement/Libradtran/io_repo/"
 
 ## empty runs
 run_list_rds <- "~/MANUSCRIPTS/02_enhancement/Libradtran/run.Rds"
@@ -99,6 +99,7 @@ err_files <- err_files[max.col(sapply(err_files, grepl, comon))]
 all(file.exists(out_files))
 all(file.exists(err_files))
 
+
 ## read new data
 if (length(out_files) > 0 & length(out_files) == length(err_files)) {
 
@@ -109,7 +110,6 @@ if (length(out_files) > 0 & length(out_files) == length(err_files)) {
 
         erf <- sub(".out.gz", ".err", af)
 
-        file.size(af)
         if (!file.exists(af)) next()
         if (!file.exists(erf)) next()
 
