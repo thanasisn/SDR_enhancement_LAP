@@ -91,42 +91,57 @@ for (aday in (unique(as.Date(LKUO$Date)))) {
                        month == month(theday) &
                        type == "Low B",   .(sza, (edir + edn) / 1000 )]
 
+    CS_2_low <- CS[atmosphere_file == atmfile &
+                       month == month(theday) &
+                       type == "Low 2 B", .(sza, (edir + edn) / 1000 )]
+
+
     ## Interpolate to SZA
-    CS_low_fn   <- approxfun( CS_low$sza,   CS_low$V2)
-    CS_exact_fn <- approxfun( CS_exact$sza, CS_exact$V2)
+    CS_2_low_fn <- approxfun(CS_2_low$sza, CS_2_low$V2)
+    CS_low_fn   <- approxfun(  CS_low$sza,   CS_low$V2)
+    CS_exact_fn <- approxfun(CS_exact$sza, CS_exact$V2)
 
     LKUO[as.Date(Date) == aday,
-         CS_low := CS_low_fn( LKUO[as.Date(Date) == aday, SZA] )]
+         CS_2_low := CS_2_low_fn(LKUO[as.Date(Date) == aday, SZA])]
 
     LKUO[as.Date(Date) == aday,
-         CS_exact := CS_exact_fn( LKUO[as.Date(Date) == aday, SZA] )]
+         CS_low   := CS_low_fn(  LKUO[as.Date(Date) == aday, SZA])]
+
+    LKUO[as.Date(Date) == aday,
+         CS_exact := CS_exact_fn(LKUO[as.Date(Date) == aday, SZA])]
+
 
     ## Apply sun - earth distance
 
-    LKUO[as.Date(Date) == aday, CS_exact := CS_exact / sun_dist^2 ]
-    LKUO[as.Date(Date) == aday, CS_low   := CS_low   / sun_dist^2 ]
+    LKUO[as.Date(Date) == aday, CS_exact := CS_exact / sun_dist^2]
+    LKUO[as.Date(Date) == aday, CS_low   := CS_low   / sun_dist^2]
+    LKUO[as.Date(Date) == aday, CS_2_low := CS_2_low / sun_dist^2]
+
+
 
     ## Plot every nth day
-    if ( cc %% 30 == 0 ) {
+    if ( cc %% 60 == 0 ) {
         suppressWarnings({
         p <- ggplot(LKUO[as.Date(Date) == aday], aes(x = Date)) +
-            geom_line( aes(y = CS_low  ), col = "red") +
-            geom_line( aes(y = CS_exact), col = "magenta") +
             geom_point(aes(y = wattGLB ), col = "green", size = 0.3 ) +
+            geom_line( aes(y = CS_low  ), col = "red")     +
+            geom_line( aes(y = CS_2_low), col = "cyan")    +
+            geom_line( aes(y = CS_exact), col = "magenta") +
             labs( title = theday) +
             theme_bw()
         print(p)
 
         p <- ggplot(LKUO[as.Date(Date) == aday], aes(x = SZA)) +
-            geom_line( aes(y = CS_low  ), col = "red") +
-            geom_line( aes(y = CS_exact), col = "magenta") +
             geom_point(aes(y = wattGLB ), col = "green", size = 0.3 ) +
+            geom_line( aes(y = CS_low  ), col = "red")     +
+            geom_line( aes(y = CS_2_low), col = "cyan")    +
+            geom_line( aes(y = CS_exact), col = "magenta") +
             labs( title = theday) +
             theme_bw()
         print(p)
         })
     }
-
+stop()
 }
 
 LKUO[, wattGLB := NULL ]
