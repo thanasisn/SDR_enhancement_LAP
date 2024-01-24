@@ -62,7 +62,10 @@ CS <- data.table(readRDS("./Model_CS.Rds"))
 LKUO <- DATA[, .(Date, SZA, sun_dist, wattGLB)]
 rm(DATA)
 
-table(CS$type)
+
+table(CS$type, CS$month)
+
+table(CS$type, CS$sza)
 
 
 
@@ -73,7 +76,14 @@ table(CS$type)
 #+ echo=F, include=T, results="asis"
 
 cc <- 0
-for (aday in (unique(as.Date(LKUO$Date)))) {
+
+
+# test
+for (aday in sample(unique(as.Date(LKUO[month(Date)==7, Date])))) {
+
+
+# for (aday in (unique(as.Date(LKUO$Date)))) {
+
 
     cc <- cc + 1
     # LKUO[as.Date(Date) == aday]
@@ -144,7 +154,7 @@ for (aday in (unique(as.Date(LKUO$Date)))) {
         print(p)
         })
     }
-stop()
+# stop()
 }
 
 LKUO[, wattGLB := NULL ]
