@@ -186,18 +186,23 @@ if (difftime(tac, tic, units = "sec") > 30) {
 }
 
 
+3
+
+data <- data.table(A = c("A","A","A","B","B","B","C","C","C"),
+                   B = c(1,1,1,1,1,1,2,2,2),
+                   C = rep(c(0.15, 0.22, 0.3),3))
 
 
-data <- data.table(A = letters[1:3],
-                   B = 1,
-                   C = c(0.15, 0.22, 0.3))
 
+look <- data.table(A = c("A","A","A","B","B","B","C","i","C"),
+                   B = c(1,1,1,1,1,1,2,2,2),
+                   C = rep(c(0.1, 0.2, 0.3),3),
+                   D = c(10, 20, 30, 11,22,33,12,24,36))
 
+rep("A","B","c",3)
 
-look <- data.table(A = letters[1:3],
-                   B = 1,
-                   C = c(0.1, 0.2, 0.3),
-                   D = c(10,  20,   30))
+f <- approxfun(c(0.1, 0.2, 0.3), c(10, 20, 30) )
+f(c(0.15, 0.22, 0.3))
 
 
 
