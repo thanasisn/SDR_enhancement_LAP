@@ -43,7 +43,7 @@ library(ggplot2)
 source("~/FUNCTIONS/R/data.R")
 
 ## run files
-repo_dir <- "~/MANUSCRIPTS/02_enhancement/Libradtran/io_repo/"
+repo_dir     <- "~/MANUSCRIPTS/02_enhancement/Libradtran/io_repo/"
 
 ## empty runs
 run_list_rds <- "~/MANUSCRIPTS/02_enhancement/Libradtran/run.Rds"
@@ -58,8 +58,11 @@ DATA <- data.table(readRDS("../data/CE_ID_Input.Rds"))
 ## Fill with model
 CS <- data.table(readRDS("./Model_CS.Rds"))
 
+## Keep only relevant
 LKUO <- DATA[, .(Date, SZA, sun_dist, wattGLB)]
 rm(DATA)
+
+table(CS$type)
 
 
 
@@ -145,7 +148,7 @@ stop()
 }
 
 LKUO[, wattGLB := NULL ]
-saveRDS(LKUO, "./CS_LoolUpTable.Rds")
+saveRDS(LKUO, "/CS_LoolUpTable.Rds")
 
 
 

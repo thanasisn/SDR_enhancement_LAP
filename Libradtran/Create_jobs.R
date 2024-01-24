@@ -147,7 +147,8 @@ ALLRUNS <- data.table(dplyr::cross_join(BASE, COMB))
 table(ALLRUNS$type)
 
 ## Create hash id
-ALLRUNS$ID <- apply(ALLRUNS[, !c("type") ], 1, function(x) digest::digest(x, "md5"))
+# ALLRUNS$ID <- apply(ALLRUNS[, !c("type") ], 1, function(x) digest::digest(x, "md5"))
+ALLRUNS$ID <- apply(ALLRUNS, 1, function(x) digest::digest(x, "md5"))
 
 ## Create a list of remaining runs to export  ----------------------------------
 if (file.exists(model_cs)) {
