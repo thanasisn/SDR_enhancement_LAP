@@ -141,7 +141,7 @@ BASE <- expand.grid(
     aerosol_modify_gg_set  = 0.70,
     mol_abs_param          = "LOWTRAN",
     rte_solver             = "disort",
-    pseudospherical        = "pseudospherical",
+    geometry               = "pseudospherical",
     wavelength_min         = 280,
     wavelength_max         = 2500
 )
@@ -198,7 +198,7 @@ for (ri in sample(1:nrow(TODO))) {
         sprintf("%s ",                                      WORKER                                         ),
         sprintf("%s ",                                      OptVect$ID                                     ),
         sprintf("atmosphere_file@@aattmmoo=%s.dat@",        OptVect$atmosphere_file                        ),
-        sprintf("source@@solar@@ssoollaa=%s.dat@",          OptVect$source_solar                           ), ## per_nm ?
+        sprintf("source@@solar@@ssoollaa=%s.dat@@per_nm@",  OptVect$source_solar                           ), ## per_nm ?
         sprintf("albedo@@%s@",                              OptVect$albedo                                 ),
         sprintf("pressure@@%s@",                            OptVect$pressure                               ),
         sprintf("sza@@%s@",                                 OptVect$sza                                    ),
@@ -210,7 +210,7 @@ for (ri in sample(1:nrow(TODO))) {
         sprintf("aerosol_modify@@gg@@set@@%s@",             OptVect$aerosol_modify_gg_set                  ),
         sprintf("mol_abs_param@@%s@",                       OptVect$mol_abs_param                          ),
         sprintf("rte_solver@@%s@",                          OptVect$rte_solver                             ),
-        sprintf("pseudospherical@"                                                                         ),
+        sprintf("%s@"                                       OptVect$geometry                               ),
         sprintf("number_of_streams@@%s@",                   OptVect$number_of_streams                      ),
         sprintf("wavelength@@%s@@%s@",                      OptVect$wavelength_min, OptVect$wavelength_max ),
         sprintf("output_process@@%s@",                      "integrate"                                    ),
