@@ -142,6 +142,8 @@ if (nrow(data) < 1) {
     stop()
 } else {
     cat(nrow(data),"\n")
+    table(data$hostname)
+    table(data$type)
 }
 
 ## append new data to storage
@@ -161,6 +163,7 @@ saveRDS(storage, model_cs)
 
 table(storage$hostname)
 table(storage$type)
+table(storage$month)
 
 
 hist(storage[, tacTime - ticTime])
@@ -169,11 +172,12 @@ storage[, .(min = min(tacTime - ticTime),
             max = max(tacTime - ticTime),
             mean = mean(tacTime - ticTime), .N), by = hostname]
 
+storage[tacTime - ticTime < 1,]
 
 ## remove read files
-file.remove(ddelete)
-file.remove(sub(".err", ".inp",    ddelete))
-file.remove(sub(".err", ".out.gz", ddelete))
+cat("Deleted err:", sum(file.remove(ddelete)))
+cat("Deleted inp:", sum(file.remove(sub(".err", ".inp",    ddelete))))
+cat("Deleted out:", sum(file.remove(sub(".err", ".out.gz", ddelete))))
 
 
 
@@ -181,6 +185,17 @@ file.remove(sub(".err", ".out.gz", ddelete))
 storage[, GLB := edir + edn]
 
 pp <- storage[ month == 7, ]
+
+
+pp <- janitor::remove_constant(pp)
+
+
+dd <- pp[duplicated(pp[, .(atmosphere_file,
+                           sza,
+                           b,
+                           type)] ),]
+
+setorder(dd, sza)
 
 
 plot(pp[, GLB / 1000, sza])
