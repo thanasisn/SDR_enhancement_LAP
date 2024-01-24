@@ -184,7 +184,7 @@ WORKER <- "~/MANUSCRIPTS/02_enhancement/Libradtran/LBT_PBS.sh"
 
 cat("", file = run_list_fl)
 # for (ri in 1:100) {
-for (ri in 1:nrow(TODO)) {
+for (ri in sample(1:nrow(TODO))) {
     OptVect = TODO[ri,]
 
     cat(
