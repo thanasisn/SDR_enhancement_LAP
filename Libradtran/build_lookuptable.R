@@ -162,7 +162,7 @@ for (aday in (unique(as.Date(LKUO$Date)))) {
 }
 
 LKUO[, wattGLB := NULL ]
-saveRDS(LKUO, "/CS_LoolUpTable.Rds")
+saveRDS(LKUO, "CS_LoolUpTable.Rds")
 
 
 
