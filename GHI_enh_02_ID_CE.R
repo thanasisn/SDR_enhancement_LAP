@@ -207,6 +207,20 @@ if (SelEnhanc == "Enhanc_C_3") {
     DATA[ , GLB_rati :=   wattGLB / Enhanc_C_3_ref                    ]
 }
 
+
+
+## _ Libradtran CS approximation  ----------------------------------------------
+
+##TODO load and merge reference
+
+## __ AOD CS  ------------------------------------------------------------------
+
+## __ AOD - 1σ CS  -------------------------------------------------------------
+
+## __ AOD - 2σ CS  -------------------------------------------------------------
+
+
+
 #+ include=TRUE, echo=FALSE
 
 #' \FloatBarrier
