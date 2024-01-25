@@ -66,10 +66,12 @@ if (!interactive()) {
 
 
 #+ echo=FALSE, include=TRUE
-library(data.table, quietly = TRUE, warn.conflicts = FALSE)
-require(zoo       , quietly = TRUE, warn.conflicts = FALSE)
-library(pander    , quietly = TRUE, warn.conflicts = FALSE)
-library(ggplot2   , quietly = TRUE, warn.conflicts = FALSE)
+library(data.table  , quietly = TRUE, warn.conflicts = FALSE)
+require(zoo         , quietly = TRUE, warn.conflicts = FALSE)
+library(pander      , quietly = TRUE, warn.conflicts = FALSE)
+library(ggplot2     , quietly = TRUE, warn.conflicts = FALSE)
+library(RColorBrewer, quietly = TRUE, warn.conflicts = FALSE)
+
 
 panderOptions("table.alignment.default", "right")
 panderOptions("table.split.table",        120   )
@@ -127,18 +129,21 @@ tic  <- Sys.time()
 
 
 
+##  Add CS data from Libradtran  -----------------------------------------------
+DATA <- merge(DATA, readRDS("./data/CS_LoolUpTable.Rds"))
+
+
 # export <- DATA[year(Date) %in% c(2022,2023), ]
 # write.csv(export, "exportCS.csv")
 
 
 # TODO -------------------------------------------------------------------------
 # k clustering Vamvakas2020
-# Stats on groups
-# Stats on enhancement cases
 # R-R analysis
 # Seasonal occurrence
 # Tapakis2014 plots and stats
 # Different criteria
+
 
 #'
 #'  Alpha * HAU is CS_ref
@@ -209,15 +214,6 @@ if (SelEnhanc == "Enhanc_C_3") {
 
 
 
-## _ Libradtran CS approximation  ----------------------------------------------
-
-##TODO load and merge reference
-
-## __ AOD CS  ------------------------------------------------------------------
-
-## __ AOD - 1σ CS  -------------------------------------------------------------
-
-## __ AOD - 2σ CS  -------------------------------------------------------------
 
 
 
@@ -386,6 +382,27 @@ for (ii in 1:nrow(vec_days)) {
                bty = "n"
         )
 
+
+        cols <- brewer.pal(n = 9, name = 'Set1')
+        #  display.brewer.pal(n = 9, name = 'Set1')
+
+        p <- ggplot(temp, aes(x = Date)) +
+            geom_point(aes(y = wattGLB,   color = "wattGLB" ), size = 0.3 ) +
+            geom_line( aes(y = CS_low ,   color = "CS_low"  ))     +
+            geom_line( aes(y = CS_2_low), col = "cyan")    +
+            geom_line( aes(y = CS_exact), col = "magenta") +
+            labs( title = aday) +
+            scale_color_manual(values = c(
+                "wattGLB" = cols[3],
+                'CS_low'  = cols[4]),
+                labels=c('High Program', 'Low Program')) +
+            labs(color = "") +
+            theme_bw()
+        print(p)
+        # plotly::ggplotly(p)
+
+
+        stop()
         # overplot clearnesindex
         # par(new = T)
         # plot(temp$Date, temp$ClearnessIndex_kt, "l")
