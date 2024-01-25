@@ -58,6 +58,10 @@ DATA <- data.table(readRDS("../data/CE_ID_Input.Rds"))
 ## Fill with CS approximation model
 CS <- data.table(readRDS("./Model_CS.Rds"))
 CS[, SZA := sza]
+CS[, glo := (edir + edn) / 1000 ]
+
+CS <- janitor::remove_constant(CS)
+
 
 ## Keep only relevant
 LKUO <- DATA[, .(Date, SZA, sun_dist, wattGLB)]
@@ -91,22 +95,27 @@ c("month", "atmosphere_file")
 library(dplyr)
 library(tidyr)
 
+CS %>% filter(type == "Low B")
 
+look <- CS
+data <- LKUO
 
-CS %>%
-    group_by("month", "atmosphere_file") %>%
-    summarise(fun = list(approxfun(SZA, edir)), .groups = 'keep') %>%
-    right_join(nest(LKUO, .by = c("month", "atmosphere_file")), by = join_by("month", "atmosphere_file"))  %>%
-    reframe(C = LKUO[[1]]$SZA, D = fun[[1]](SZA))
+new <- look %>%
+    filter(type == "Low B") %>%
+    group_by(month, atmosphere_file) %>%
+    summarise(fun = list(approxfun(SZA, glo)), .groups = 'keep') %>%
+    right_join(nest(data, .by = c(month, atmosphere_file)), by = join_by(month, atmosphere_file))  %>%
+    reframe(SZA = data[[1]]$SZA, glo = fun[[1]](SZA))
+
 
 
 
 below <-
     LKUO |>
-    left_join(CS, join_by("month", "atmosphere_file", x$SZA >= y$SZA),
+    left_join(CS[type == "Low B"], join_by("month", "atmosphere_file", x$SZA >= y$SZA),
               suffix = c("", "_below"),
               relationship = "many-to-many") |>
-    group_by(month, atmosphere_file, sza) |>
+    group_by(month, atmosphere_file, SZA) |>
     filter(C_below == max(C_below)) |>
     rename(D_below = D) |>
     ungroup()
