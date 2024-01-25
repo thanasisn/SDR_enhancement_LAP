@@ -386,23 +386,56 @@ for (ii in 1:nrow(vec_days)) {
         cols <- brewer.pal(n = 9, name = 'Set1')
         #  display.brewer.pal(n = 9, name = 'Set1')
 
+        temp[TYPE == "Clouds", ]
+
         p <- ggplot(temp, aes(x = Date)) +
-            geom_point(aes(y = wattGLB,   color = "wattGLB" ), size = 0.3 ) +
-            geom_line( aes(y = CS_low ,   color = "CS_low"  ))     +
-            geom_line( aes(y = CS_2_low), col = "cyan")    +
-            geom_line( aes(y = CS_exact), col = "magenta") +
-            labs( title = aday) +
-            scale_color_manual(values = c(
-                "wattGLB" = cols[3],
-                'CS_low'  = cols[4]),
-                labels=c('High Program', 'Low Program')) +
-            labs(color = "") +
-            theme_bw()
+            geom_point(aes(y = wattGLB,                       color = "wattGLB" ),size = .3 ) +
+            geom_line( aes(y = CS_low ,                       color = "CS_low"  ))     +
+            geom_line( aes(y = CS_2_low,                      color = "CS_2_low"))    +
+            geom_line( aes(y = CS_exact,                      color = "CS_exact")) +
+            geom_line( aes(y = get(paste0(SelEnhanc,"_ref")), color = "ref_main")) +
+            geom_line( aes(y = ETH,                           color = "TSI")) +
+            labs( title = as.Date(aday)) +
+            scale_color_manual(
+                values = c(
+                      cols[3],
+                      cols[4],
+                      cols[5],
+                      cols[6],
+                      cols[1],
+                      cols[9]
+                    ),
+                breaks = c(
+                    "wattGLB" ,
+                    'CS_low'  ,
+                    "CS_2_low",
+                    "CS_exact",
+                    "ref_main",
+                    "TSI"
+                ),
+                labels = c(
+                    'GLB',
+                    'CS -1σ',
+                    "CS -2σ",
+                    "CS",
+                    "Current ref",
+                    "TSI"),
+                guide = guide_legend(override.aes = list(
+                    linetype = c(NA, rep( 1, 5)),
+                    shape    = c( 1, rep(NA, 5))))
+                ) +
+            theme_bw() +
+            theme(
+                  # legend.position = c(0.1, .9),
+                  legend.position = "right",
+                  legend.title          = element_blank(),
+                  legend.background     = element_rect(fill = 'transparent'),
+                  legend.box.background = element_rect(fill = 'transparent', color = NA))
+
         print(p)
         # plotly::ggplotly(p)
 
 
-        stop()
         # overplot clearnesindex
         # par(new = T)
         # plot(temp$Date, temp$ClearnessIndex_kt, "l")
