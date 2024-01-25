@@ -176,9 +176,43 @@ LKUO[, CS_exact_v2 := unlist(CS_exact_v2) / sun_dist^2]
 
 
 
-#
-# ## not working suggestion
-#
+
+
+
+
+
+
+# An alternative using DuckDB
+# https://stackoverflow.com/a/77875532/1591737
+
+library(dplyr, warn.conflicts = FALSE)
+library(DBI)
+
+db2 <- dbConnect(duckdb::duckdb())
+
+data2 <- tibble(A = c("A","A","A","B","B","B","C","C","C"),
+               B = c(1,1,1,1,1,1,2,2,2),
+               C = rep(c(0.15, 0.22, 0.3), 3)) |>
+    copy_to(db2, df = _, name = "data", overwrite = TRUE)
+
+look2 <- tibble(A = c("A","A","A","B","B","B","C","C","C"),
+               B = c(1,1,1,1,1,1,2,2,2),
+               C = rep(c(0.1, 0.2, 0.3),3),
+               D = c(10, 20, 30, 11,22,33,12,24,36)) |>
+    copy_to(db2, df = _, name = "look", overwrite = TRUE)
+
+
+
+db <- dbConnect(duckdb::duckdb())
+
+data <- LKUO |>
+    copy_to(db, df = _, name = "data", overwrite = TRUE)
+
+look <- CS[type == "Low B"] |>
+    copy_to(db, df = _, name = "look", overwrite = TRUE)
+
+
+
 # below <-
 #     LKUO |>
 #     left_join(CS[type == "Low B"], join_by("month", "atmosphere_file", x$SZA >= y$SZA),
@@ -188,6 +222,40 @@ LKUO[, CS_exact_v2 := unlist(CS_exact_v2) / sun_dist^2]
 #     filter(C_below == max(C_below)) |>
 #     rename(D_below = D) |>
 #     ungroup()
+
+
+
+
+below2 <-
+    data2 |>
+    left_join(look2, join_by("A", "B", x$C >= y$C),
+              suffix = c("", "_below"),
+              relationship = "many-to-many") |>
+    group_by(A, B, C) |>
+    filter(C_below == max(C_below, na.rm = TRUE)) |>
+    rename(D_below = D) |>
+    ungroup()
+
+above2 <-
+    data2 |>
+    left_join(look2, join_by("A", "B", x$C <= y$C),
+              suffix = c("", "_above"),
+              relationship = "many-to-many") |>
+    group_by(A, B, C) |>
+    filter(C_above == min(C_above, na.rm = TRUE)) |>
+    rename(D_above = D) |>
+    ungroup()
+
+res2 <-
+    below2 |>
+    inner_join(above2, by = join_by(A, B, C)) |>
+    mutate(D = case_when(C_below == C_above ~ D_below,
+                         .default = D_below +
+                             (D_above - D_below)/(C_above - C_below) *
+                             (C - C_below))) |>
+    collect()
+
+
 
 
 
