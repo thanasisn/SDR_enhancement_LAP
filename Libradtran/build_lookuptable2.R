@@ -67,15 +67,17 @@ CS <- janitor::remove_constant(CS)
 
 ## Keep only relevant
 LKUO <- DATA[, .(Date, SZA, sun_dist, wattGLB)]
+
 rm(DATA)
+dummy <- gc()
+
+
+
 
 table(CS$type)
 
-warning("check for low data")
 ##TODO check for low data!!
 table(CS$type, CS$month)
-
-
 table(CS$type, CS$month) == min(table(CS$type, CS$month))
 
 
@@ -86,38 +88,39 @@ table(CS$type, CS$sza) == min(table(CS$type, CS$sza))
 
 ## Fill data with CS variables
 LKUO[, atmosphere_file := date_to_standard_atmosphere_file(Date)]
-LKUO[, month := month(Date)]
+LKUO[, month           := month(Date)]
+
+
+
+
+# ## another approach
+# # https://stackoverflow.com/a/77875400/1591737
+#
+# library(dplyr)
+# library(tidyr)
+#
+# CS %>% filter(type == "Low B")
+#
+# look <- CS
+# data <- LKUO
+#
+# new <- look %>%
+#     filter(type == "Low B") %>%
+#     group_by(month, atmosphere_file) %>%
+#     summarise(fun = list(approxfun(SZA, glo)), .groups = 'keep') %>%
+#     right_join(nest(data, .by = c(month, atmosphere_file)), by = join_by(month, atmosphere_file))  %>%
+#     reframe(SZA = data[[1]]$SZA, glo = fun[[1]](SZA))
+#
+# data_M1 <- cbind(data, glo1 = new$glo)
+# data_M1[, glo1 := glo1 / sun_dist^2]
 
 
 
 
 
-# https://stackoverflow.com/questions/77875177/fill-a-table-by-interpolating-some-matching-values-from-onother-table-with-inter#comment137295011_77875400
-## another approach
-# join by
-c("month", "atmosphere_file")
+##  Data table approach  -------------------------------------------------------
 
-
-
-library(dplyr)
-library(tidyr)
-
-CS %>% filter(type == "Low B")
-
-look <- CS
-data <- LKUO
-
-new <- look %>%
-    filter(type == "Low B") %>%
-    group_by(month, atmosphere_file) %>%
-    summarise(fun = list(approxfun(SZA, glo)), .groups = 'keep') %>%
-    right_join(nest(data, .by = c(month, atmosphere_file)), by = join_by(month, atmosphere_file))  %>%
-    reframe(SZA = data[[1]]$SZA, glo = fun[[1]](SZA))
-
-
-data_M1 <- cbind(data, glo1 = new$glo)
-data_M1[, glo1 := glo1 / sun_dist^2]
-
+# https://stackoverflow.com/a/77878676/1591737
 
 ## 1. Create an `approxfun` for each `A/B` combination
 
@@ -125,47 +128,56 @@ data_M1[, glo1 := glo1 / sun_dist^2]
 ## while creation and thus keeps just the last chunk of it
 
 
-(fns <- look[type == "Low B", .(f = list(approxfun(SZA + 0, glo + 0))), .(month, atmosphere_file)])
-#    A B             f
-# 1: A 1 <function[1]>
-# 2: B 1 <function[1]>
-# 3: C 2 <function[1]>
+fnsLB  <- CS[type == "Low B",   .(f = list(approxfun(SZA + 0, glo + 0))), .(month, atmosphere_file)]
+fnsL2B <- CS[type == "Low 2 B", .(f = list(approxfun(SZA + 0, glo + 0))), .(month, atmosphere_file)]
+fnsEX  <- CS[type == "Exact B", .(f = list(approxfun(SZA + 0, glo + 0))), .(month, atmosphere_file)]
+
 
 ## 2. Join it to data and apply the function
 # data[fns, .(month, atmosphere_file, SZA, glo = Map(\(f, x) f(x), f, SZA)), on = .(month, atmosphere_file)]
 
-data[fns, glo2 := Map(\(f, x) f(x), f, SZA), on = .(month, atmosphere_file)]
+## Do the interpolation
+LKUO[fnsLB,  CS_low_v2   := Map(\(f, x) f(x), f, SZA), on = .(month, atmosphere_file)]
+LKUO[fnsL2B, CS_2_low_v2 := Map(\(f, x) f(x), f, SZA), on = .(month, atmosphere_file)]
+LKUO[fnsEX,  CS_exact_v2 := Map(\(f, x) f(x), f, SZA), on = .(month, atmosphere_file)]
 
-data$glo2 <- unlist(data$glo2)
-
-
-data_M2 <- data
-data_M2[, glo2 := glo2 / sun_dist^2]
-
-
-
-test <- merge(data_M1, data_M2)
-
-plot(test[1:10000, glo1/glo2])
+## Unlist and apply sun distance
+LKUO[, CS_low_v2   := unlist(CS_low_v2)   / sun_dist^2]
+LKUO[, CS_2_low_v2 := unlist(CS_2_low_v2) / sun_dist^2]
+LKUO[, CS_exact_v2 := unlist(CS_exact_v2) / sun_dist^2]
 
 
 
-data_M0 <- readRDS("./CS_LoolUpTable.Rds")
+# # ## compare with dplyr method
+# # test1 <- merge(data_M1, LKUO)
+# # plot(test1[1:10000, glo1/CS_low_v2])
+#
+#
+# ## compare with analytic solution
+# data_M0 <- readRDS("./CS_LoolUpTable.Rds")
+#
+#
+# test2 <- merge(data_M0, LKUO)
+#
+# sample(1:nrow(test2), 100000 )
+#
+# plot(test2[sample(1:nrow(test2), 100000),   CS_low/CS_low_v2  ])
+# plot(test2[sample(1:nrow(test2), 100000), CS_2_low/CS_2_low_v2])
+# plot(test2[sample(1:nrow(test2), 100000), CS_exact/CS_exact_v2])
+#
+#
+# test2[, max(CS_low/CS_low_v2    )]
+# test2[, max(CS_2_low/CS_2_low_v2)]
+# test2[, max(CS_exact/CS_exact_v2)]
+#
+# test2[, max(CS_low   - CS_low_v2  )]
+# test2[, max(CS_2_low - CS_2_low_v2)]
+# test2[, max(CS_exact - CS_exact_v2)]
 
 
-test <- merge(data_M0, test)
 
-
-
-plot(test[1:10000, CS_low/glo2])
-
-plot(test[1:10000, CS_low/glo1])
-
-
-
-stop()
-
-
+#
+# ## not working suggestion
 #
 # below <-
 #     LKUO |>
@@ -176,129 +188,12 @@ stop()
 #     filter(C_below == max(C_below)) |>
 #     rename(D_below = D) |>
 #     ungroup()
-#
-#
-# above <-
-#     data |>
-#     left_join(look, join_by("A", "B", x$C <= y$C),
-#               suffix = c("", "_above"),
-#               relationship = "many-to-many") |>
-#     group_by(A, B, C) |>
-#     filter(C_above == min(C_above)) |>
-#     rename(D_above = D) |>
-#     ungroup()
-#
-# res <-
-#     below |>
-#     inner_join(above, by = join_by(A, B, C)) |>
-#     mutate(D = case_when(C_below == C_above ~ D_below,
-#                          .default = D_below +
-#                              (D_above - D_below)/(C_above - C_below) *
-#                              (C - C_below)))
-#
-#
-#
-#
-#
-#
-#
-# stop()
 
-
-
-##  Table for rendering document
-#'
-#'  # Plots
-#'
-#+ echo=F, include=T, results="asis"
-
-cc <- 0
-
-
-# test
-# for (aday in sample(unique(as.Date(LKUO[month(Date)==7, Date])))) {
-# for (aday in sample(unique(as.Date(LKUO$Date)))) {
-
-for (aday in (unique(as.Date(LKUO$Date)))) {
-
-    cc <- cc + 1
-    # LKUO[as.Date(Date) == aday]
-
-    theday  <- as.POSIXct(as.Date(aday, "1970-01-01"))
-
-    cat(paste(theday,"\n"))
-
-    atmfile <- date_to_standard_atmosphere_file(as.POSIXct(as.Date(aday, "1970-01-01")))
-
-
-    ## choose data and interpolate global
-    CS_exact <- CS[atmosphere_file == atmfile &
-                       month == month(theday) &
-                       type == "Exact B", .(sza, (edir + edn) / 1000 )]
-
-    CS_low   <- CS[atmosphere_file == atmfile &
-                       month == month(theday) &
-                       type == "Low B",   .(sza, (edir + edn) / 1000 )]
-
-    CS_2_low <- CS[atmosphere_file == atmfile &
-                       month == month(theday) &
-                       type == "Low 2 B", .(sza, (edir + edn) / 1000 )]
-
-
-    ## Interpolate to SZA
-    CS_2_low_fn <- approxfun(CS_2_low$sza, CS_2_low$V2)
-    CS_low_fn   <- approxfun(  CS_low$sza,   CS_low$V2)
-    CS_exact_fn <- approxfun(CS_exact$sza, CS_exact$V2)
-
-    LKUO[as.Date(Date) == aday,
-         CS_2_low := CS_2_low_fn(LKUO[as.Date(Date) == aday, SZA])]
-
-    LKUO[as.Date(Date) == aday,
-         CS_low   := CS_low_fn(  LKUO[as.Date(Date) == aday, SZA])]
-
-    LKUO[as.Date(Date) == aday,
-         CS_exact := CS_exact_fn(LKUO[as.Date(Date) == aday, SZA])]
-
-
-    ## Apply sun - earth distance correction
-    LKUO[as.Date(Date) == aday, CS_exact := CS_exact / sun_dist^2]
-    LKUO[as.Date(Date) == aday, CS_low   := CS_low   / sun_dist^2]
-    LKUO[as.Date(Date) == aday, CS_2_low := CS_2_low / sun_dist^2]
-
-
-    ## Plot every nth day just for check
-    if ( cc %% 60 == 0 ) {
-        suppressWarnings({
-
-            p <- ggplot(LKUO[as.Date(Date) == aday], aes(x = Date)) +
-                geom_point(aes(y = wattGLB ), col = "green", size = 0.3 ) +
-                geom_line( aes(y = CS_low  ), col = "red")     +
-                geom_line( aes(y = CS_2_low), col = "cyan")    +
-                geom_line( aes(y = CS_exact), col = "magenta") +
-                labs( title = theday) +
-                theme_bw()
-            print(p)
-            # plotly::ggplotly(p)
-
-            p <- ggplot(LKUO[as.Date(Date) == aday], aes(x = SZA)) +
-                geom_point(aes(y = wattGLB ), col = "green", size = 0.3 ) +
-                geom_line( aes(y = CS_low  ), col = "red")     +
-                geom_line( aes(y = CS_2_low), col = "cyan")    +
-                geom_line( aes(y = CS_exact), col = "magenta") +
-                labs( title = theday) +
-                theme_bw()
-            print(p)
-            # plotly::ggplotly(p)
-
-        })
-    }
-}
-
-LKUO[, wattGLB := NULL ]
-saveRDS(LKUO, "/CS_LoolUpTable2.Rds")
 
 
 
+LKUO[, wattGLB := NULL ]
+saveRDS(LKUO, "./CS_LoolUpTable2.Rds")
 
 
 
