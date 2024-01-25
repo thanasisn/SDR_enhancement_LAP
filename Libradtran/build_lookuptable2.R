@@ -58,6 +58,8 @@ DATA <- data.table(readRDS("../data/CE_ID_Input.Rds"))
 ## Fill with CS approximation model
 CS <- data.table(readRDS("./Model_CS.Rds"))
 CS[, SZA := sza]
+
+## Create global irradiance W/m^2
 CS[, glo := (edir + edn) / 1000 ]
 
 CS <- janitor::remove_constant(CS)
@@ -73,11 +75,16 @@ warning("check for low data")
 ##TODO check for low data!!
 table(CS$type, CS$month)
 
+
+table(CS$type, CS$month) == min(table(CS$type, CS$month))
+
+
 ##TODO check for low data!!
 table(CS$type, CS$sza)
+table(CS$type, CS$sza) == min(table(CS$type, CS$sza))
 
 
-
+## Fill data with CS variables
 LKUO[, atmosphere_file := date_to_standard_atmosphere_file(Date)]
 LKUO[, month := month(Date)]
 
@@ -85,7 +92,7 @@ LKUO[, month := month(Date)]
 
 
 
-
+# https://stackoverflow.com/questions/77875177/fill-a-table-by-interpolating-some-matching-values-from-onother-table-with-inter#comment137295011_77875400
 ## another approach
 # join by
 c("month", "atmosphere_file")
@@ -108,44 +115,96 @@ new <- look %>%
     reframe(SZA = data[[1]]$SZA, glo = fun[[1]](SZA))
 
 
+data_M1 <- cbind(data, glo1 = new$glo)
+data_M1[, glo1 := glo1 / sun_dist^2]
 
 
-below <-
-    LKUO |>
-    left_join(CS[type == "Low B"], join_by("month", "atmosphere_file", x$SZA >= y$SZA),
-              suffix = c("", "_below"),
-              relationship = "many-to-many") |>
-    group_by(month, atmosphere_file, SZA) |>
-    filter(C_below == max(C_below)) |>
-    rename(D_below = D) |>
-    ungroup()
+## 1. Create an `approxfun` for each `A/B` combination
+
+## The + 0 trick is necessary b/c otherwise data.table does not evaluate C, D
+## while creation and thus keeps just the last chunk of it
 
 
-above <-
-    data |>
-    left_join(look, join_by("A", "B", x$C <= y$C),
-              suffix = c("", "_above"),
-              relationship = "many-to-many") |>
-    group_by(A, B, C) |>
-    filter(C_above == min(C_above)) |>
-    rename(D_above = D) |>
-    ungroup()
+(fns <- look[type == "Low B", .(f = list(approxfun(SZA + 0, glo + 0))), .(month, atmosphere_file)])
+#    A B             f
+# 1: A 1 <function[1]>
+# 2: B 1 <function[1]>
+# 3: C 2 <function[1]>
 
-res <-
-    below |>
-    inner_join(above, by = join_by(A, B, C)) |>
-    mutate(D = case_when(C_below == C_above ~ D_below,
-                         .default = D_below +
-                             (D_above - D_below)/(C_above - C_below) *
-                             (C - C_below)))
+## 2. Join it to data and apply the function
+# data[fns, .(month, atmosphere_file, SZA, glo = Map(\(f, x) f(x), f, SZA)), on = .(month, atmosphere_file)]
+
+data[fns, glo2 := Map(\(f, x) f(x), f, SZA), on = .(month, atmosphere_file)]
+
+data$glo2 <- unlist(data$glo2)
+
+
+data_M2 <- data
+data_M2[, glo2 := glo2 / sun_dist^2]
 
 
 
+test <- merge(data_M1, data_M2)
 
+plot(test[1:10000, glo1/glo2])
+
+
+
+data_M0 <- readRDS("./CS_LoolUpTable.Rds")
+
+
+test <- merge(data_M0, test)
+
+
+
+plot(test[1:10000, CS_low/glo2])
+
+plot(test[1:10000, CS_low/glo1])
 
 
 
 stop()
+
+
+#
+# below <-
+#     LKUO |>
+#     left_join(CS[type == "Low B"], join_by("month", "atmosphere_file", x$SZA >= y$SZA),
+#               suffix = c("", "_below"),
+#               relationship = "many-to-many") |>
+#     group_by(month, atmosphere_file, SZA) |>
+#     filter(C_below == max(C_below)) |>
+#     rename(D_below = D) |>
+#     ungroup()
+#
+#
+# above <-
+#     data |>
+#     left_join(look, join_by("A", "B", x$C <= y$C),
+#               suffix = c("", "_above"),
+#               relationship = "many-to-many") |>
+#     group_by(A, B, C) |>
+#     filter(C_above == min(C_above)) |>
+#     rename(D_above = D) |>
+#     ungroup()
+#
+# res <-
+#     below |>
+#     inner_join(above, by = join_by(A, B, C)) |>
+#     mutate(D = case_when(C_below == C_above ~ D_below,
+#                          .default = D_below +
+#                              (D_above - D_below)/(C_above - C_below) *
+#                              (C - C_below)))
+#
+#
+#
+#
+#
+#
+#
+# stop()
+
+
 
 ##  Table for rendering document
 #'
