@@ -47,8 +47,8 @@
 
 #+ echo=FALSE, include=TRUE
 knitr::opts_chunk$set(comment    = ""       )
-# knitr::opts_chunk$set(dev        = c("pdf", "png")) ## expected option
-knitr::opts_chunk$set(dev        = "png"    )       ## for too much data
+knitr::opts_chunk$set(dev        = c("pdf", "png")) ## expected option
+# knitr::opts_chunk$set(dev        = "pdf"    )       ## for too much data
 knitr::opts_chunk$set(out.width  = "100%"   )
 knitr::opts_chunk$set(fig.align  = "center" )
 knitr::opts_chunk$set(cache      =  FALSE   )  ## !! breaks calculations
@@ -113,7 +113,7 @@ if (
 
 ## __ Execution control -------------
 TEST <- FALSE
-# TEST <- TRUE
+TEST <- TRUE
 
 if (TEST) {
     warning("\n\n ** Test is active!! ** \n\n")
@@ -244,18 +244,22 @@ if (SelEnhanc == "Enhanc_C_3") {
 
 
 ## __ my  Criteria  --------------------------------------------------
-C4_cs_ref_ratio <- 1.12
+C4_cs_ref_ratio <- 1.05
+C4_GLB_diff_THRES     <- 20
 DATA[, Enhanc_C_4 := FALSE]
 
 ## ____ Clearness Index scaled by TSI  ----------------------------
 DATA[, ClearnessIndex_C_4 := wattGLB / (CS_low * TSI_Kurudz_factor) ]
 
 
+
+
 hist(DATA$ClearnessIndex_C_4, breaks = 100)
 abline(v = C4_cs_ref_ratio, col = "red" )
 
 ## calculate reference an mark data
-DATA[, Enhanc_C_4_ref := CS_ref * C4_cs_ref_ratio]
+stop("fixtha!!!")
+DATA[, Enhanc_C_4_ref := (CS_low * TSI_Kurudz_factor) * C4_cs_ref_ratio]
 DATA[wattGLB > Enhanc_C_4_ref,
      Enhanc_C_4 := TRUE]
 ## use threshold to compute values
@@ -266,7 +270,39 @@ if (SelEnhanc == "Enhanc_C_4") {
 }
 
 
+pyear <- c(1994, 2010, 2022 )
+pyear <- c(2018 )
+p <-
+    ggplot(DATA[year(Date) %in% pyear],
+           aes(get(paste0(SelEnhanc,"_ref")), wattGLB)) +
+    geom_point(data   = DATA[year(Date) %in% pyear & get(SelEnhanc) == FALSE,],
+               colour = "black",
+               na.rm  = TRUE,
+               size   = 0.2) +
+    geom_point(data   = DATA[year(Date) %in% pyear & get(SelEnhanc) == TRUE,],
+               na.rm  = TRUE,
+               size   = 0.2,
+               aes(color = GLB_diff)) +
+    scale_colour_gradient(low      = "blue",
+                          high     = "red",
+                          na.value = NA) +
+    xlab(paste0(SelEnhanc, "_ref")) +
+    labs(color = "Over\nreference") +
+    theme(
+        legend.position      = c(.03, .97),
+        legend.justification = c("left", "top"),
+        legend.box.just      = "right",
+        legend.margin        = margin(6, 6, 6, 6)
+    ) +
+    scale_x_continuous(expand = expansion(mult = c(0.03, 0.03))) +
+    scale_y_continuous(breaks = scales::breaks_extended(n = 6),
+                       expand = expansion(mult = c(0.03, 0.03)))
+print(p)
 
+
+
+
+stop()
 
 #+ include=TRUE, echo=FALSE
 
@@ -388,7 +424,7 @@ vec_days <- matrix(
     ##   Data      Description
     c("maxenhd",  "extreme cases day",
       "enhsnd",   "strong enhancement day",
-      "sunnyd",   "suny day",
+      "sunnyd",   "sunny day",
       "sunnyenh", "sunny enhancement day",
       "clouds",   "cloudy day",
       "all_days", "random day",
@@ -422,10 +458,16 @@ for (ii in 1:nrow(vec_days)) {
         lines(temp$Date, temp$wattHOR, col = "blue")
         ## TSI on ground
         lines(temp$Date, temp$ETH)
+
         ## Active model reference
         lines(temp[, get(paste0(SelEnhanc,"_ref")), Date], col = "red" )
-        ## HAU based reference
+
+        ## CS libratran reference
         lines(temp[, CS_low, Date], col = "magenta" )
+        ## CS libratran reference
+        lines(temp[, CS_low * TSI_Kurudz_factor , Date], col = "pink" )
+
+
         ## Enchantment cases
         points(temp[get(SelEnhanc) == TRUE, wattGLB, Date], col = "red")
         ## Cloud cases
@@ -433,10 +475,10 @@ for (ii in 1:nrow(vec_days)) {
 
         title(main = paste(as.Date(aday, origin = "1970-01-01"), temp[get(SelEnhanc) == TRUE, .N], temp[TYPE == "Cloud", .N], vec_days$Descriprion[ii]))
 
-        legend("topleft", c("GHI","DNI",  "GHI threshold", "TSI on horizontal level","GHI Enhancement event", "CS -1σ unadjusted"),
-               col = c("green",   "blue", "red", "black",  "red", "magenta" ),
-               pch = c(     NA,       NA,    NA,      NA,     1 , NA),
-               lty = c(      1,        1,     1,       1,    NA ,  1),
+        legend("topleft", c("GHI","DNI",  "GHI threshold", "TSI on horizontal level","GHI Enhancement event", "CS -1σ unadjusted", "CS -1σ adjusted"),
+               col = c("green",   "blue", "red", "black",  "red", "magenta", "pink"),
+               pch = c(     NA,       NA,    NA,      NA,     1 ,        NA,     NA),
+               lty = c(      1,        1,     1,       1,    NA ,         1,      1),
                bty = "n"
         )
 
@@ -517,6 +559,7 @@ for (ii in 1:nrow(vec_days)) {
 #+ echo=F, include=T
 
 
+
 ##  Yearly plots  --------------------------------------------------------------
 
 #' \newpage
@@ -576,7 +619,13 @@ for (pyear in yearstodo) {
 
 }
 
-stop()
+
+if (TEST == TRUE) {
+    warning("  TEST IS ACTIVE  !! ")
+    cat("\n  TEST IS ACTIVE  !! \n\n")
+}
+
+if (TEST == FALSE) {
 
 ##  Group continuous values  ---------------------------------------------------
 
@@ -601,6 +650,8 @@ DATA[C1G1 == FALSE, C1Grp1 := NA]
 ## and may need these
 DATA[, C1G0 := NULL]
 DATA[, C1G1 := NULL]
+
+
 
 ## Slow implementation
 # DATA[, cnF := cumsum(Enhanc_C_1 == FALSE)]
@@ -645,7 +696,7 @@ objects <- c(
 save(file = paste0("./data/", basename(sub("\\.R", ".Rda", Script.Name))),
      list = objects,
      compress = "xz")
-
+}
 
 
 #' **END**
@@ -657,4 +708,3 @@ if (interactive() & difftime(tac,tic,units = "sec") > 30) {
     system("mplayer /usr/share/sounds/freedesktop/stereo/dialog-warning.oga", ignore.stdout = T, ignore.stderr = T)
     system(paste("notify-send -u normal -t 30000 ", Script.Name, " 'R script ended'"))
 }
-
