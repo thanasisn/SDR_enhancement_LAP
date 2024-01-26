@@ -18,9 +18,10 @@
 
 #'
 #' This creates only global and it is intended process to validate the process
-#' of building the look up table with the other loopuptable script.
+#' of building the look up table with the other lookuptable script.
 #'
-#' This is slow.
+#' - This is slow.
+#' - This creates only glo.
 #'
 #+ echo=F, include=T
 rm(list = (ls()[ls() != ""]))
