@@ -71,6 +71,7 @@ require(zoo         , quietly = TRUE, warn.conflicts = FALSE)
 library(pander      , quietly = TRUE, warn.conflicts = FALSE)
 library(ggplot2     , quietly = TRUE, warn.conflicts = FALSE)
 library(RColorBrewer, quietly = TRUE, warn.conflicts = FALSE)
+library(pracma      , quietly = TRUE, warn.conflicts = FALSE)
 
 
 panderOptions("table.alignment.default", "right")
@@ -84,6 +85,7 @@ source("~/CODE/FUNCTIONS/R/trig_deg.R")
 
 ## __ Source initial scripts ---------------------------------------------------
 source("./GHI_enh_00_variables.R")
+source("./GHI_enh_00_dictionary.R")
 
 
 ## Override notification function
@@ -135,14 +137,19 @@ DATA <- merge(DATA, readRDS("./data/CS_LoolUpTable.Rds"))
 
 
 
-##  Get Kurudz  --------
-
-
+##  Get Kurudz Solar constant  -------------------------------------------------
 
 Kurudz <- read.table("~/LibRadTranG/libRadtran-2.0.5/data/solar_flux/kurudz_0.1nm.dat")
+Kurudz <- data.table(Kurudz)
 
-Kurudz[ vec_days  ]
+# currently we only on set to run Libradtran
+spectrum  <- Kurudz[ V1 >= 280 & V1 <= 2500]
+Kurudz_SC <- trapz(x = spectrum$V1, y = spectrum$V2) / 1000
 
+summary(DATA[, tsi_1au_comb / Kurudz_SC ])
+# plot(DATA[, tsi_1au_comb / Kurudz_SC ])
+
+DATA[, TSI_Kurudz_factor := tsi_1au_comb / Kurudz_SC ]
 
 
 
@@ -164,12 +171,17 @@ Kurudz[ vec_days  ]
 #+ echo=TRUE, include=TRUE
 
 ## __ Enhancement criteria  ----------------------------------------------------
-SelEnhanc <- "Enhanc_C_1"
+# SelEnhanc <- "Enhanc_C_1"
 # SelEnhanc <- "Enhanc_C_2"
 # SelEnhanc <- "Enhanc_C_3"
 
+SelEnhanc <- "Enhanc_C_4"
+
+
 ## mark used criteria for diff rati ench
 DATA[, CEC := SelEnhanc ]
+
+
 
 ## __ My criteria  -------------------------------------------------------------
 # C1_GLB_ench_THRES     <-  1.10 ## enchantment relative to HAU
@@ -191,6 +203,7 @@ if (SelEnhanc == "Enhanc_C_1") {
     DATA[ , GLB_ench := ( wattGLB - Enhanc_C_1_ref ) / Enhanc_C_1_ref ] ## relative enhancement
     DATA[ , GLB_rati :=   wattGLB / Enhanc_C_1_ref                    ]
 }
+
 
 
 ## __ Gueymard2017 Criteria  ---------------------------------------------------
@@ -230,9 +243,36 @@ if (SelEnhanc == "Enhanc_C_3") {
 
 
 
+## __ my  Criteria  --------------------------------------------------
+C4_cs_ref_ratio <- 1.12
+DATA[, Enhanc_C_4 := FALSE]
+
+## ____ Clearness Index scaled by TSI  ----------------------------
+DATA[, ClearnessIndex_C_4 := wattGLB / (CS_low * TSI_Kurudz_factor) ]
+
+
+hist(DATA$ClearnessIndex_C_4, breaks = 100)
+abline(v = C4_cs_ref_ratio, col = "red" )
+
+## calculate reference an mark data
+DATA[, Enhanc_C_4_ref := CS_ref * C4_cs_ref_ratio]
+DATA[wattGLB > Enhanc_C_4_ref,
+     Enhanc_C_4 := TRUE]
+## use threshold to compute values
+if (SelEnhanc == "Enhanc_C_4") {
+    DATA[ , GLB_diff :=   wattGLB - Enhanc_C_4_ref                    ] ## enhancement
+    DATA[ , GLB_ench := ( wattGLB - Enhanc_C_4_ref ) / Enhanc_C_4_ref ] ## relative enhancement
+    DATA[ , GLB_rati :=   wattGLB / Enhanc_C_4_ref                    ]
+}
+
+
+
+
 #+ include=TRUE, echo=FALSE
 
 #' \FloatBarrier
+#'
+#' # Using creteria: `r SelEnhanc`
 #'
 #' # Distribution of different criteria
 #'
@@ -243,13 +283,16 @@ if (SelEnhanc == "Enhanc_C_3") {
 # hist(DATA[GLB_diff > 0, GLB_diff])
 # hist(DATA[GLB_rati > 1, GLB_rati])
 
-hist(DATA[, GLB_ench], breaks = 100)
+hist(DATA[, GLB_ench], breaks = 100,
+     main = varname("GLB_ench"))
 abline(v = 0, col = "red")
 
-hist(DATA[, GLB_diff], breaks = 100)
+hist(DATA[, GLB_diff], breaks = 100,
+     main = varname("GLB_diff"))
 abline(v = 0, col = "red")
 
-hist(DATA[, GLB_rati], breaks = 100)
+hist(DATA[, GLB_rati], breaks = 100,
+     main = varname("GLB_rati"))
 abline(v = 1, col = "red")
 
 
@@ -264,6 +307,8 @@ pander(table(DATA$Enhanc_C_1))
 pander(table(DATA$Enhanc_C_2))
 
 pander(table(DATA$Enhanc_C_3))
+
+pander(table(DATA$Enhanc_C_4))
 
 
 
@@ -321,7 +366,7 @@ clouds <- clouds[!Day %in% sunnyenh$Day & !Day %in% maxenhd$Day & !Day %in% enhs
 clouds <- clouds[sample(1:nrow(clouds), 20)]
 
 ## some random days
-all_days <- data.table(Day=unique(DATA[, Day]))
+all_days <- data.table(Day = unique(DATA[, Day]))
 all_days <- all_days[!Day %in% sunnyenh$Day & !Day %in% maxenhd$Day & !Day %in% enhsnd$Day & !Day %in% sunnyd$Day & !Day %in% clouds]
 all_days <- all_days[sample(1:nrow(all_days), 30)]
 
@@ -341,12 +386,12 @@ testdays <- data.table(Day =
 
 vec_days <- matrix(
     ##   Data      Description
-    c("maxenhd",  "extreme cases",
-      "enhsnd",   "strong enhancement",
-      "sunnyd",   "sun",
-      "sunnyenh", "sunny enhancement",
-      "clouds",   "clouds ID",
-      "all_days", "random selection",
+    c("maxenhd",  "extreme cases day",
+      "enhsnd",   "strong enhancement day",
+      "sunnyd",   "suny day",
+      "sunnyenh", "sunny enhancement day",
+      "clouds",   "cloudy day",
+      "all_days", "random day",
       "testdays", "manual test days",
       NULL),
     byrow = TRUE,
@@ -380,7 +425,7 @@ for (ii in 1:nrow(vec_days)) {
         ## Active model reference
         lines(temp[, get(paste0(SelEnhanc,"_ref")), Date], col = "red" )
         ## HAU based reference
-        lines(temp[, Enhanc_C_3_ref, Date], col = "magenta" )
+        lines(temp[, CS_low, Date], col = "magenta" )
         ## Enchantment cases
         points(temp[get(SelEnhanc) == TRUE, wattGLB, Date], col = "red")
         ## Cloud cases
@@ -388,10 +433,10 @@ for (ii in 1:nrow(vec_days)) {
 
         title(main = paste(as.Date(aday, origin = "1970-01-01"), temp[get(SelEnhanc) == TRUE, .N], temp[TYPE == "Cloud", .N], vec_days$Descriprion[ii]))
 
-        legend("topleft", c("GHI","DNI",  "GHI threshold", "TSI on horizontal level","GHI Enhancement event"),
-               col = c("green",   "blue", "red", "black",  "red"),
-               pch = c(     NA,       NA,    NA,      NA,     1 ),
-               lty = c(      1,        1,     1,       1,    NA ),
+        legend("topleft", c("GHI","DNI",  "GHI threshold", "TSI on horizontal level","GHI Enhancement event", "CS -1σ unadjusted"),
+               col = c("green",   "blue", "red", "black",  "red", "magenta" ),
+               pch = c(     NA,       NA,    NA,      NA,     1 , NA),
+               lty = c(      1,        1,     1,       1,    NA ,  1),
                bty = "n"
         )
 
@@ -401,51 +446,58 @@ for (ii in 1:nrow(vec_days)) {
 
         temp[TYPE == "Clouds", ]
 
-        p <- ggplot(temp, aes(x = Date)) +
-            geom_point(aes(y = wattGLB,                       color = "wattGLB" ),size = .3 ) +
-            geom_line( aes(y = CS_low ,                       color = "CS_low"  ))     +
-            geom_line( aes(y = CS_2_low,                      color = "CS_2_low"))    +
-            geom_line( aes(y = CS_exact,                      color = "CS_exact")) +
-            geom_line( aes(y = get(paste0(SelEnhanc,"_ref")), color = "ref_main")) +
-            geom_line( aes(y = ETH,                           color = "TSI")) +
-            labs( title = as.Date(aday)) +
-            scale_color_manual(
-                values = c(
-                      cols[3],
-                      cols[4],
-                      cols[5],
-                      cols[6],
-                      cols[1],
-                      cols[9]
-                    ),
-                breaks = c(
-                    "wattGLB" ,
-                    'CS_low'  ,
-                    "CS_2_low",
-                    "CS_exact",
-                    "ref_main",
-                    "TSI"
-                ),
-                labels = c(
-                    'GLB',
-                    'CS -1σ',
-                    "CS -2σ",
-                    "CS",
-                    "Current ref",
-                    "TSI"),
-                guide = guide_legend(override.aes = list(
-                    linetype = c(NA, rep( 1, 5)),
-                    shape    = c( 1, rep(NA, 5))))
-                ) +
-            theme_bw() +
-            theme(
-                  # legend.position = c(0.1, .9),
-                  legend.position = "right",
-                  legend.title          = element_blank(),
-                  legend.background     = element_rect(fill = 'transparent'),
-                  legend.box.background = element_rect(fill = 'transparent', color = NA))
+        mark <- temp[get(SelEnhanc) == TRUE, wattGLB, Date]
 
-        print(p)
+
+        # p <- ggplot(temp, aes(x = Date)) +
+        #     geom_point(aes(y = wattGLB,                       color = "wattGLB" ),size = .3 ) +
+        #     geom_point(data = mark ,
+        #                aes(x = Date, y = wattGLB ),           color = "red", shape = 1 )  +
+        #     geom_line( aes(y = CS_low ,                       color = "CS_low"  ))     +
+        #     # geom_line( aes(y = CS_2_low,                      color = "CS_2_low"))    +
+        #     geom_line( aes(y = CS_exact,                      color = "CS_exact")) +
+        #     geom_line( aes(y = get(paste0(SelEnhanc,"_ref")), color = "ref_main")) +
+        #     geom_line( aes(y = ETH,                           color = "TSI")) +
+        #     labs( title = as.Date(aday)) +
+        #     scale_color_manual(
+        #         values = c(
+        #               cols[3],
+        #               "red",
+        #               cols[4],
+        #               # cols[5],
+        #               cols[6],
+        #               cols[1],
+        #               cols[9]
+        #             ),
+        #         breaks = c(
+        #             "wattGLB" ,
+        #             "wattGLB" ,
+        #             'CS_low'  ,
+        #             # "CS_2_low",
+        #             "CS_exact",
+        #             "ref_main",
+        #             "TSI"
+        #         ),
+        #         labels = c(
+        #             'GLB',
+        #             "Enhancement",
+        #             'CS -1σ',
+        #             # "CS -2σ",
+        #             "CS",
+        #             "Current ref",
+        #             "TSI"),
+        #         guide = guide_legend(override.aes = list(
+        #             linetype = c(NA, rep( 1, 4)),
+        #             shape    = c( 1, rep(NA, 4))))
+        #         ) +
+        #     theme_bw() +
+        #     theme(
+        #           # legend.position = c(0.1, .9),
+        #           legend.position = "right",
+        #           legend.title          = element_blank(),
+        #           legend.background     = element_rect(fill = 'transparent'),
+        #           legend.box.background = element_rect(fill = 'transparent', color = NA))
+        # print(p)
         # plotly::ggplotly(p)
 
 
@@ -459,7 +511,6 @@ for (ii in 1:nrow(vec_days)) {
         # plot(temp$Date, temp$DiffuseFraction_Kd)
         # plot(temp$Date, temp$GLB_ench)
         # plot(temp$Date, temp$GLB_diff)
-
         cat(' \n \n')
     }
 }
@@ -525,7 +576,7 @@ for (pyear in yearstodo) {
 
 }
 
-
+stop()
 
 ##  Group continuous values  ---------------------------------------------------
 
