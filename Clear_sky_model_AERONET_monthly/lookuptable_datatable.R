@@ -16,9 +16,15 @@
 #' ---
 
 
+#'
+#' This creates only global and it is intended
+#' of building the look up table.
+#'
+#' This is fast.
+#'
 #+ echo=F, include=T
 rm(list = (ls()[ls() != ""]))
-Script.Name <- "~/MANUSCRIPTS/02_enhancement/Libradtran/parse_out.R"
+Script.Name <- "./lookuptable_datatable.R"
 dir.create("./runtime/", showWarnings = FALSE)
 d <- filelock::lock(paste0("./runtime/", basename(sub("\\.R$",".lock", Script.Name))), timeout = 0)
 Sys.setenv(TZ = "UTC")
@@ -37,40 +43,34 @@ options(error = function() {
 tic <- Sys.time()
 
 library(data.table)
-library(RlibRadtran)
+# library(RlibRadtran)
 library(ggplot2)
 
 source("~/FUNCTIONS/R/data.R")
-
-## run files
-repo_dir     <- "~/MANUSCRIPTS/02_enhancement/Libradtran/io_repo/"
-
-## empty runs
-run_list_rds <- "~/MANUSCRIPTS/02_enhancement/Libradtran/run.Rds"
-
-## all runs
-model_cs     <- "~/MANUSCRIPTS/02_enhancement/Libradtran/Model_CS.Rds"
+source("~/Aerosols/RlibRadtran/R/date_to_standard_atmosphere_file.R")
 
 
-## Based on raw data
-DATA <- data.table(readRDS("../data/CE_ID_Input.Rds"))
+## all runs are stored here
+model_cs     <- "./Model_CS.Rds"
+
+
+##  Get raw data we want to create reference for  ------------------------------
+DATA <- data.table(readRDS("~/MANUSCRIPTS/02_enhancement/data/CE_ID_Input.Rds"))
 
 ## Fill with CS approximation model
 CS <- data.table(readRDS("./Model_CS.Rds"))
 CS[, SZA := sza]
 
-## Create global irradiance W/m^2
-CS[, glo := (edir + edn) / 1000 ]
+## Create global irradiance mW/m^2
+CS[, glo := edir + edn ]
+
 
 CS <- janitor::remove_constant(CS)
 
-
-## Keep only relevant
+## Keep only relevant input
 LKUO <- DATA[, .(Date, SZA, sun_dist, wattGLB)]
 
-rm(DATA)
-dummy <- gc()
-
+rm(DATA); dummy <- gc()
 
 
 
@@ -79,7 +79,6 @@ table(CS$type)
 ##TODO check for low data!!
 table(CS$type, CS$month)
 table(CS$type, CS$month) == min(table(CS$type, CS$month))
-
 
 ##TODO check for low data!!
 table(CS$type, CS$sza)
@@ -91,34 +90,36 @@ LKUO[, atmosphere_file := date_to_standard_atmosphere_file(Date)]
 LKUO[, month           := month(Date)]
 
 
-
-
-# ## another approach
-# # https://stackoverflow.com/a/77875400/1591737
-#
-# library(dplyr)
-# library(tidyr)
-#
-# CS %>% filter(type == "Low B")
-#
-# look <- CS
-# data <- LKUO
-#
-# new <- look %>%
-#     filter(type == "Low B") %>%
-#     group_by(month, atmosphere_file) %>%
-#     summarise(fun = list(approxfun(SZA, glo)), .groups = 'keep') %>%
-#     right_join(nest(data, .by = c(month, atmosphere_file)), by = join_by(month, atmosphere_file))  %>%
-#     reframe(SZA = data[[1]]$SZA, glo = fun[[1]](SZA))
-#
-# data_M1 <- cbind(data, glo1 = new$glo)
-# data_M1[, glo1 := glo1 / sun_dist^2]
-
-
-
-
-
 ##  Data table approach  -------------------------------------------------------
+
+
+
+## _ Do if for all types and variables  ----------------------------------
+
+types <- unique(CS[, type])
+vars  <- c("edir", "edn", "eup")
+
+for (aty in types) {
+    for (avr in vars) {
+
+        nnm <- sub(" ", "_", paste0(aty, "-", avr))
+
+        ## One family of functions for each variable
+        fns <- CS[type == aty,   .(f = list(approxfun(SZA + 0, get(avr) + 0))), .(month, atmosphere_file)]
+
+        ## Do the interpolation
+        LKUO[fns,  CS_low_v2   := unlist(Map(\(f, x) f(x), f, SZA)), on = .(month, atmosphere_file)]
+
+LKUO[, ]
+
+    }
+}
+
+
+
+stop()
+
+
 
 # https://stackoverflow.com/a/77878676/1591737
 
@@ -126,6 +127,7 @@ LKUO[, month           := month(Date)]
 
 ## The + 0 trick is necessary b/c otherwise data.table does not evaluate C, D
 ## while creation and thus keeps just the last chunk of it
+##
 
 
 fnsLB  <- CS[type == "Low B",   .(f = list(approxfun(SZA + 0, glo + 0))), .(month, atmosphere_file)]
@@ -141,10 +143,14 @@ LKUO[fnsLB,  CS_low_v2   := Map(\(f, x) f(x), f, SZA), on = .(month, atmosphere_
 LKUO[fnsL2B, CS_2_low_v2 := Map(\(f, x) f(x), f, SZA), on = .(month, atmosphere_file)]
 LKUO[fnsEX,  CS_exact_v2 := Map(\(f, x) f(x), f, SZA), on = .(month, atmosphere_file)]
 
-## Unlist and apply sun distance
-LKUO[, CS_low_v2   := unlist(CS_low_v2)   / sun_dist^2]
-LKUO[, CS_2_low_v2 := unlist(CS_2_low_v2) / sun_dist^2]
-LKUO[, CS_exact_v2 := unlist(CS_exact_v2) / sun_dist^2]
+
+## ## Unlist and apply sun distance
+## ## This will be done elsewhere
+## LKUO[, CS_low_v2   := unlist(CS_low_v2)   / sun_dist^2]
+## LKUO[, CS_2_low_v2 := unlist(CS_2_low_v2) / sun_dist^2]
+## LKUO[, CS_exact_v2 := unlist(CS_exact_v2) / sun_dist^2]
+
+
 
 
 
@@ -176,6 +182,27 @@ LKUO[, CS_exact_v2 := unlist(CS_exact_v2) / sun_dist^2]
 
 
 
+
+# ## This run but maybe wrhong
+# # https://stackoverflow.com/a/77875400/1591737
+#
+# library(dplyr)
+# library(tidyr)
+#
+# CS %>% filter(type == "Low B")
+#
+# look <- CS
+# data <- LKUO
+#
+# new <- look %>%
+#     filter(type == "Low B") %>%
+#     group_by(month, atmosphere_file) %>%
+#     summarise(fun = list(approxfun(SZA, glo)), .groups = 'keep') %>%
+#     right_join(nest(data, .by = c(month, atmosphere_file)), by = join_by(month, atmosphere_file))  %>%
+#     reframe(SZA = data[[1]]$SZA, glo = fun[[1]](SZA))
+#
+# data_M1 <- cbind(data, glo1 = new$glo)
+# data_M1[, glo1 := glo1 / sun_dist^2]
 
 
 
@@ -261,7 +288,8 @@ res2 <-
 
 
 LKUO[, wattGLB := NULL ]
-saveRDS(LKUO, "./CS_LoolUpTable2.Rds")
+saveRDS(LKUO, sub(".R", ".Rds", basename(Script.Name)))
+
 
 
 
