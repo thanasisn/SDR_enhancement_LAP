@@ -348,11 +348,11 @@ if (havetorun) {
     DATA[, ETH := cosde(SZA) * TSIextEARTH_comb ]  ## TSI at ground
     DATA[, ClearnessIndex_kt := wattGLB / ETH ]
 
-    ## _ Move measurements to mean earth distance  -----------------------------
-    cat("\n  Sun Earth distance correction\n")
-    DATA[, wattDIR_1au := wattDIR * (sun_dist ^ 2)]
-    DATA[, wattGLB_1au := wattGLB * (sun_dist ^ 2)]
-    DATA[, wattHOR_1au := wattHOR * (sun_dist ^ 2)]
+    # ## _ Move measurements to mean earth distance  -----------------------------
+    # cat("\n  Sun Earth distance correction\n")
+    # DATA[, wattDIR_1au := wattDIR * (sun_dist ^ 2)]
+    # DATA[, wattGLB_1au := wattGLB * (sun_dist ^ 2)]
+    # DATA[, wattHOR_1au := wattHOR * (sun_dist ^ 2)]
 
     ## fix noon just in case
     DATA[Azimuth <= 180 , preNoon := TRUE ]
