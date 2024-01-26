@@ -14,6 +14,13 @@ Run for monthly climatology from AERONET.
 
 Create a reference value of radiation for clear sky condition.
 To be used a base for a better approximation or Clearness Index.
+This should only create the irradiance components, all other
+process will be elsewhere.
+
+This should be done:
+
+ - scale Kurudz to TSI.
+ - adjust for day of year / sun distance
 
 ### Perturbations of:
 
