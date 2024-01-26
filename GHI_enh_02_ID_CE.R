@@ -137,11 +137,11 @@ DATA <- merge(DATA, readRDS("./data/CS_LoolUpTable.Rds"))
 
 ##  Get Kurudz  --------
 
-DATA$
+
 
 Kurudz <- read.table("~/LibRadTranG/libRadtran-2.0.5/data/solar_flux/kurudz_0.1nm.dat")
 
-Kurudz[ ]
+Kurudz[ vec_days  ]
 
 
 
