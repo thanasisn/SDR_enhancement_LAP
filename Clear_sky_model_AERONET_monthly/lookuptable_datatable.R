@@ -20,7 +20,8 @@
 #' This creates only global and it is intended
 #' of building the look up table.
 #'
-#' This is fast.
+#' - This is fast.
+#' - This creates edir, edn and eup
 #'
 #+ echo=F, include=T
 rm(list = (ls()[ls() != ""]))
@@ -50,29 +51,34 @@ source("~/FUNCTIONS/R/data.R")
 source("~/Aerosols/RlibRadtran/R/date_to_standard_atmosphere_file.R")
 
 
+##  Prepare data  --------------------------------------------------------------
+
 ## all runs are stored here
 model_cs     <- "./Model_CS.Rds"
 
-
-##  Get raw data we want to create reference for  ------------------------------
+## _ Get raw data we want to create reference for  -----------------------------
 DATA <- data.table(readRDS("~/MANUSCRIPTS/02_enhancement/data/CE_ID_Input.Rds"))
 
-## Fill with CS approximation model
+
+## _ Fill with CS approximation model  -----------------------------------------
 CS <- data.table(readRDS("./Model_CS.Rds"))
 CS[, SZA := sza]
 
-## Create global irradiance mW/m^2
-CS[, glo := edir + edn ]
-
-
+## drop some not used data
 CS <- janitor::remove_constant(CS)
 
 ## Keep only relevant input
 LKUO <- DATA[, .(Date, SZA, sun_dist, wattGLB)]
 
+## Fill data with CS variables
+LKUO[, atmosphere_file := date_to_standard_atmosphere_file(Date)]
+LKUO[, month           := month(Date)]
+
+## clean memory
 rm(DATA); dummy <- gc()
 
 
+##  Inspect data  --------------------------------------------------------------
 
 table(CS$type)
 
@@ -85,67 +91,61 @@ table(CS$type, CS$sza)
 table(CS$type, CS$sza) == min(table(CS$type, CS$sza))
 
 
-## Fill data with CS variables
-LKUO[, atmosphere_file := date_to_standard_atmosphere_file(Date)]
-LKUO[, month           := month(Date)]
 
 
 ##  Data table approach  -------------------------------------------------------
 
+## https://stackoverflow.com/a/77878676/1591737
 
-
-## _ Do if for all types and variables  ----------------------------------
+## _ Do it for all types and variables  ----------------------------------------
 
 types <- unique(CS[, type])
 vars  <- c("edir", "edn", "eup")
 
 for (aty in types) {
     for (avr in vars) {
+        cat("Interpolation for: ", aty, avr, "\n")
 
-        nnm <- sub(" ", "_", paste0(aty, "-", avr))
+        ## create a combination name
+        nnm <- sub(" ", "_", paste0(aty, ".", avr))
 
         ## One family of functions for each variable
         fns <- CS[type == aty,   .(f = list(approxfun(SZA + 0, get(avr) + 0))), .(month, atmosphere_file)]
 
         ## Do the interpolation
-        LKUO[fns,  CS_low_v2   := unlist(Map(\(f, x) f(x), f, SZA)), on = .(month, atmosphere_file)]
-
-LKUO[, ]
-
+        LKUO[fns,  (nnm)   := unlist(Map(\(f, x) f(x), f, SZA)), on = .(month, atmosphere_file)]
     }
 }
 
+##  store final lookup table  --------------------------------------------------
+LKUO[, wattGLB := NULL ]
+saveRDS(LKUO, sub(".R", ".Rds", basename(Script.Name)))
 
 
-stop()
 
-
-
-# https://stackoverflow.com/a/77878676/1591737
-
-## 1. Create an `approxfun` for each `A/B` combination
-
-## The + 0 trick is necessary b/c otherwise data.table does not evaluate C, D
-## while creation and thus keeps just the last chunk of it
+## ## This was successful
+## ## 1. Create an `approxfun` for each `A/B` combination
 ##
+## ## The + 0 trick is necessary b/c otherwise data.table does not evaluate C, D
+## ## while creation and thus keeps just the last chunk of it
+##
+## fnsLB  <- CS[type == "Low B",   .(f = list(approxfun(SZA + 0, glo + 0))), .(month, atmosphere_file)]
+## fnsL2B <- CS[type == "Low 2 B", .(f = list(approxfun(SZA + 0, glo + 0))), .(month, atmosphere_file)]
+## fnsEX  <- CS[type == "Exact B", .(f = list(approxfun(SZA + 0, glo + 0))), .(month, atmosphere_file)]
+##
+## ## 2. Join it to data and apply the function
+## # data[fns, .(month, atmosphere_file, SZA, glo = Map(\(f, x) f(x), f, SZA)), on = .(month, atmosphere_file)]
+##
+## LKUO[fnsLB,  CS_low_v2   := Map(\(f, x) f(x), f, SZA), on = .(month, atmosphere_file)]
+## LKUO[fnsL2B, CS_2_low_v2 := Map(\(f, x) f(x), f, SZA), on = .(month, atmosphere_file)]
+## LKUO[fnsEX,  CS_exact_v2 := Map(\(f, x) f(x), f, SZA), on = .(month, atmosphere_file)]
 
 
-fnsLB  <- CS[type == "Low B",   .(f = list(approxfun(SZA + 0, glo + 0))), .(month, atmosphere_file)]
-fnsL2B <- CS[type == "Low 2 B", .(f = list(approxfun(SZA + 0, glo + 0))), .(month, atmosphere_file)]
-fnsEX  <- CS[type == "Exact B", .(f = list(approxfun(SZA + 0, glo + 0))), .(month, atmosphere_file)]
 
-
-## 2. Join it to data and apply the function
-# data[fns, .(month, atmosphere_file, SZA, glo = Map(\(f, x) f(x), f, SZA)), on = .(month, atmosphere_file)]
-
-## Do the interpolation
-LKUO[fnsLB,  CS_low_v2   := Map(\(f, x) f(x), f, SZA), on = .(month, atmosphere_file)]
-LKUO[fnsL2B, CS_2_low_v2 := Map(\(f, x) f(x), f, SZA), on = .(month, atmosphere_file)]
-LKUO[fnsEX,  CS_exact_v2 := Map(\(f, x) f(x), f, SZA), on = .(month, atmosphere_file)]
 
 
 ## ## Unlist and apply sun distance
-## ## This will be done elsewhere
+## ## This will be done elsewhere!!!
 ## LKUO[, CS_low_v2   := unlist(CS_low_v2)   / sun_dist^2]
 ## LKUO[, CS_2_low_v2 := unlist(CS_2_low_v2) / sun_dist^2]
 ## LKUO[, CS_exact_v2 := unlist(CS_exact_v2) / sun_dist^2]
@@ -157,7 +157,6 @@ LKUO[fnsEX,  CS_exact_v2 := Map(\(f, x) f(x), f, SZA), on = .(month, atmosphere_
 # # ## compare with dplyr method
 # # test1 <- merge(data_M1, LKUO)
 # # plot(test1[1:10000, glo1/CS_low_v2])
-#
 #
 # ## compare with analytic solution
 # data_M0 <- readRDS("./CS_LoolUpTable.Rds")
@@ -183,9 +182,13 @@ LKUO[fnsEX,  CS_exact_v2 := Map(\(f, x) f(x), f, SZA), on = .(month, atmosphere_
 
 
 
-# ## This run but maybe wrhong
-# # https://stackoverflow.com/a/77875400/1591737
-#
+
+
+
+##  Dplyr approach  ------------------------------------------------------------
+##  This run but maybe wrong
+##  https://stackoverflow.com/a/77875400/1591737
+
 # library(dplyr)
 # library(tidyr)
 #
@@ -209,87 +212,78 @@ LKUO[fnsEX,  CS_exact_v2 := Map(\(f, x) f(x), f, SZA), on = .(month, atmosphere_
 
 
 
-# An alternative using DuckDB
-# https://stackoverflow.com/a/77875532/1591737
+##  Dplyr on DuckDB ------------------------------------------------------------
+##  https://stackoverflow.com/a/77875532/1591737
+##  can not put loukup table in duckdb
 
-library(dplyr, warn.conflicts = FALSE)
-library(DBI)
-
-db2 <- dbConnect(duckdb::duckdb())
-
-data2 <- tibble(A = c("A","A","A","B","B","B","C","C","C"),
-               B = c(1,1,1,1,1,1,2,2,2),
-               C = rep(c(0.15, 0.22, 0.3), 3)) |>
-    copy_to(db2, df = _, name = "data", overwrite = TRUE)
-
-look2 <- tibble(A = c("A","A","A","B","B","B","C","C","C"),
-               B = c(1,1,1,1,1,1,2,2,2),
-               C = rep(c(0.1, 0.2, 0.3),3),
-               D = c(10, 20, 30, 11,22,33,12,24,36)) |>
-    copy_to(db2, df = _, name = "look", overwrite = TRUE)
-
-
-
-db <- dbConnect(duckdb::duckdb())
-
-data <- LKUO |>
-    copy_to(db, df = _, name = "data", overwrite = TRUE)
-
-look <- CS[type == "Low B"] |>
-    copy_to(db, df = _, name = "look", overwrite = TRUE)
-
-
-
-# below <-
-#     LKUO |>
-#     left_join(CS[type == "Low B"], join_by("month", "atmosphere_file", x$SZA >= y$SZA),
+# library(dplyr, warn.conflicts = FALSE)
+# library(DBI)
+#
+# db2 <- dbConnect(duckdb::duckdb())
+#
+# data2 <- tibble(A = c("A","A","A","B","B","B","C","C","C"),
+#                B = c(1,1,1,1,1,1,2,2,2),
+#                C = rep(c(0.15, 0.22, 0.3), 3)) |>
+#     copy_to(db2, df = _, name = "data", overwrite = TRUE)
+#
+# look2 <- tibble(A = c("A","A","A","B","B","B","C","C","C"),
+#                B = c(1,1,1,1,1,1,2,2,2),
+#                C = rep(c(0.1, 0.2, 0.3),3),
+#                D = c(10, 20, 30, 11,22,33,12,24,36)) |>
+#     copy_to(db2, df = _, name = "look", overwrite = TRUE)
+#
+#
+#
+# db <- dbConnect(duckdb::duckdb())
+#
+# data <- LKUO |>
+#     copy_to(db, df = _, name = "data", overwrite = TRUE)
+#
+# look <- CS[type == "Low B"] |>
+#     copy_to(db, df = _, name = "look", overwrite = TRUE)
+#
+#
+#
+# # below <-
+# #     LKUO |>
+# #     left_join(CS[type == "Low B"], join_by("month", "atmosphere_file", x$SZA >= y$SZA),
+# #               suffix = c("", "_below"),
+# #               relationship = "many-to-many") |>
+# #     group_by(month, atmosphere_file, SZA) |>
+# #     filter(C_below == max(C_below)) |>
+# #     rename(D_below = D) |>
+# #     ungroup()
+#
+#
+#
+# below2 <-
+#     data2 |>
+#     left_join(look2, join_by("A", "B", x$C >= y$C),
 #               suffix = c("", "_below"),
 #               relationship = "many-to-many") |>
-#     group_by(month, atmosphere_file, SZA) |>
-#     filter(C_below == max(C_below)) |>
+#     group_by(A, B, C) |>
+#     filter(C_below == max(C_below, na.rm = TRUE)) |>
 #     rename(D_below = D) |>
 #     ungroup()
-
-
-
-
-below2 <-
-    data2 |>
-    left_join(look2, join_by("A", "B", x$C >= y$C),
-              suffix = c("", "_below"),
-              relationship = "many-to-many") |>
-    group_by(A, B, C) |>
-    filter(C_below == max(C_below, na.rm = TRUE)) |>
-    rename(D_below = D) |>
-    ungroup()
-
-above2 <-
-    data2 |>
-    left_join(look2, join_by("A", "B", x$C <= y$C),
-              suffix = c("", "_above"),
-              relationship = "many-to-many") |>
-    group_by(A, B, C) |>
-    filter(C_above == min(C_above, na.rm = TRUE)) |>
-    rename(D_above = D) |>
-    ungroup()
-
-res2 <-
-    below2 |>
-    inner_join(above2, by = join_by(A, B, C)) |>
-    mutate(D = case_when(C_below == C_above ~ D_below,
-                         .default = D_below +
-                             (D_above - D_below)/(C_above - C_below) *
-                             (C - C_below))) |>
-    collect()
-
-
-
-
-
-
-LKUO[, wattGLB := NULL ]
-saveRDS(LKUO, sub(".R", ".Rds", basename(Script.Name)))
-
+#
+# above2 <-
+#     data2 |>
+#     left_join(look2, join_by("A", "B", x$C <= y$C),
+#               suffix = c("", "_above"),
+#               relationship = "many-to-many") |>
+#     group_by(A, B, C) |>
+#     filter(C_above == min(C_above, na.rm = TRUE)) |>
+#     rename(D_above = D) |>
+#     ungroup()
+#
+# res2 <-
+#     below2 |>
+#     inner_join(above2, by = join_by(A, B, C)) |>
+#     mutate(D = case_when(C_below == C_above ~ D_below,
+#                          .default = D_below +
+#                              (D_above - D_below)/(C_above - C_below) *
+#                              (C - C_below))) |>
+#     collect()
 
 
 
