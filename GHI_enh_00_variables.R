@@ -4,7 +4,7 @@
 
 #### Data range ####
 ## will not include the last/first day
-LAST_DAY                 <- as.POSIXct("2023-04-13 11:59:30") ## set the date of last NOAA TSI data
+LAST_DAY                 <- as.POSIXct("2023-09-30 11:59:30") ## set the date of last NOAA TSI data
 FIRST_DAY                <- as.POSIXct("1900-07-01") ## include all available
 
 
