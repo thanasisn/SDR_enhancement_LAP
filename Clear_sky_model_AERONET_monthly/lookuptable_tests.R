@@ -17,15 +17,10 @@
 
 
 #'
-#' This creates only global and it is intended
-#' of building the look up table.
-#'
-#' - This is fast.
-#' - This creates edir, edn and eup
 #'
 #+ echo=F, include=T
 rm(list = (ls()[ls() != ""]))
-Script.Name <- "./lookuptable_datatable.R"
+Script.Name <- "./lookuptable_tests.R"
 dir.create("./runtime/", showWarnings = FALSE)
 d <- filelock::lock(paste0("./runtime/", basename(sub("\\.R$",".lock", Script.Name))), timeout = 0)
 Sys.setenv(TZ = "UTC")
@@ -93,94 +88,20 @@ table(CS$type, CS$sza) == min(table(CS$type, CS$sza))
 
 
 
-##  Data table approach  -------------------------------------------------------
 
-## https://stackoverflow.com/a/77878676/1591737
+##  Compare methods  -----------------------------------------------------------
 
-## _ Do it for all types and variables  ----------------------------------------
+DT <- readRDS("./lookuptable_datatable.Rds")
+IT <- readRDS("./lookuptable_iteration.Rds")
 
-types <- unique(CS[, type])
-vars  <- c("edir", "edn", "eup")
-
-for (aty in types) {
-    for (avr in vars) {
-        cat("Interpolation for: ", aty, avr, "\n")
-
-        ## create a combination name
-        nnm <- gsub(" ", "_", paste0(aty, ".", avr))
-
-        ## One family of functions for each variable
-        fns <- CS[type == aty,   .(f = list(approxfun(SZA + 0, get(avr) + 0))), .(month, atmosphere_file)]
-
-        ## Do the interpolation
-        LKUO[fns,  (nnm)   := unlist(Map(\(f, x) f(x), f, SZA)), on = .(month, atmosphere_file)]
-    }
-}
-
-##  store final lookup table  --------------------------------------------------
-LKUO[, wattGLB := NULL ]
-saveRDS(LKUO, sub(".R", ".Rds", basename(Script.Name)))
+TEST <- data.table(merge(DT, IT))
+rm(DT, IT); dummy <- gc()
 
 
+plot(TEST[sample(1:nrow(TEST), 100000), (Low_B.edir + Low_B.edn)/1000 / CS_low ])
 
-## ## This was successful
-## ## 1. Create an `approxfun` for each `A/B` combination
-##
-## ## The + 0 trick is necessary b/c otherwise data.table does not evaluate C, D
-## ## while creation and thus keeps just the last chunk of it
-##
-## fnsLB  <- CS[type == "Low B",   .(f = list(approxfun(SZA + 0, glo + 0))), .(month, atmosphere_file)]
-## fnsL2B <- CS[type == "Low 2 B", .(f = list(approxfun(SZA + 0, glo + 0))), .(month, atmosphere_file)]
-## fnsEX  <- CS[type == "Exact B", .(f = list(approxfun(SZA + 0, glo + 0))), .(month, atmosphere_file)]
-##
-## ## 2. Join it to data and apply the function
-## # data[fns, .(month, atmosphere_file, SZA, glo = Map(\(f, x) f(x), f, SZA)), on = .(month, atmosphere_file)]
-##
-## LKUO[fnsLB,  CS_low_v2   := Map(\(f, x) f(x), f, SZA), on = .(month, atmosphere_file)]
-## LKUO[fnsL2B, CS_2_low_v2 := Map(\(f, x) f(x), f, SZA), on = .(month, atmosphere_file)]
-## LKUO[fnsEX,  CS_exact_v2 := Map(\(f, x) f(x), f, SZA), on = .(month, atmosphere_file)]
-
-
-
-
-
-## ## Unlist and apply sun distance
-## ## This will be done elsewhere!!!
-## LKUO[, CS_low_v2   := unlist(CS_low_v2)   / sun_dist^2]
-## LKUO[, CS_2_low_v2 := unlist(CS_2_low_v2) / sun_dist^2]
-## LKUO[, CS_exact_v2 := unlist(CS_exact_v2) / sun_dist^2]
-
-
-
-
-
-# # ## compare with dplyr method
-# # test1 <- merge(data_M1, LKUO)
-# # plot(test1[1:10000, glo1/CS_low_v2])
-#
-# ## compare with analytic solution
-# data_M0 <- readRDS("./CS_LoolUpTable.Rds")
-#
-#
-# test2 <- merge(data_M0, LKUO)
-#
-# sample(1:nrow(test2), 100000 )
-#
-# plot(test2[sample(1:nrow(test2), 100000),   CS_low/CS_low_v2  ])
-# plot(test2[sample(1:nrow(test2), 100000), CS_2_low/CS_2_low_v2])
-# plot(test2[sample(1:nrow(test2), 100000), CS_exact/CS_exact_v2])
-#
-#
-# test2[, max(CS_low/CS_low_v2    )]
-# test2[, max(CS_2_low/CS_2_low_v2)]
-# test2[, max(CS_exact/CS_exact_v2)]
-#
-# test2[, max(CS_low   - CS_low_v2  )]
-# test2[, max(CS_2_low - CS_2_low_v2)]
-# test2[, max(CS_exact - CS_exact_v2)]
-
-
-
+TEST[, max(abs( (Low_B.edir + Low_B.edn)/1000 - CS_low ))]
+TEST[, max(abs( (Low_B.edir + Low_B.edn)/1000 / CS_low ))]
 
 
 
