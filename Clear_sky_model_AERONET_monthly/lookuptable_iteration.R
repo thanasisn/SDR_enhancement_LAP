@@ -25,7 +25,7 @@
 #'
 #+ echo=F, include=T
 rm(list = (ls()[ls() != ""]))
-Script.Name <- "./build_lookuptable_iteration.R"
+Script.Name <- "./lookuptable_datatable.R"
 dir.create("./runtime/", showWarnings = FALSE)
 d <- filelock::lock(paste0("./runtime/", basename(sub("\\.R$",".lock", Script.Name))), timeout = 0)
 Sys.setenv(TZ = "UTC")
