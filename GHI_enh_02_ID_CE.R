@@ -113,7 +113,7 @@ if (
 
 ## __ Execution control  -------------------------------------------------------
 TEST <- FALSE
-TEST <- TRUE
+# TEST <- TRUE
 
 if (TEST) {
     warning("\n\n ** Test is active!! ** \n\n")
@@ -190,7 +190,7 @@ DATA[, CEC := SelEnhanc ]
 
 
 
-## __ My criteria  -------------------------------------------------------------
+## __ 1. My criteria  ----------------------------------------------------------
 # C1_GLB_ench_THRES     <-  1.10 ## enchantment relative to HAU
 C1_GLB_diff_THRES     <- 20    ## enchantment absolute diff to HAU
 C1_Clearness_Kt_THRES <-  0.8  ## enchantment threshold
@@ -213,7 +213,7 @@ if (SelEnhanc == "Enhanc_C_1") {
 
 
 
-## __ Gueymard2017 Criteria  ---------------------------------------------------
+## __ 2. Gueymard2017 Criteria  ------------------------------------------------
 ## Clearness index > 0.8 / 1
 C2_Clearness_Kt_THRES <- 0.8
 DATA[, Enhanc_C_2 := FALSE]
@@ -231,7 +231,7 @@ if (SelEnhanc == "Enhanc_C_2") {
 
 
 
-## __ Vamvakas2020  Criteria  --------------------------------------------------
+## __ 3. Vamvakas2020  Criteria  -----------------------------------------------
 ## +5% from model => enhancements above 15 Wm^2 the instrument uncertainty
 C3_cs_ref_ratio <- 1.05
 DATA[, Enhanc_C_3 := FALSE]
@@ -248,15 +248,10 @@ if (SelEnhanc == "Enhanc_C_3") {
 
 
 
-
-
-## __ my  Criteria  ------------------------------------------------------------
-C4_cs_ref_ratio <- 1.05
-C4_GLB_diff_THRES     <- 20
+## __ 4. my  Criteria  ---------------------------------------------------------
+C4_cs_ref_ratio   <-  1.05
+C4_GLB_diff_THRES <- 10
 DATA[, Enhanc_C_4 := FALSE]
-
-## ____ Clearness Index scaled by TSI  -----------------------------------------
-
 
 
 ## ____ Create global irradiance W/m^2  ----------------------------------------
@@ -277,7 +272,7 @@ abline(v = C4_cs_ref_ratio, col = "red" )
 
 
 ## ____ Calculate reference and mark data  -------------------------------------
-DATA[, Enhanc_C_4_ref := get(paste0(csmodel,".glo")) * C4_cs_ref_ratio ]
+DATA[, Enhanc_C_4_ref := (get(paste0(csmodel,".glo")) * C4_cs_ref_ratio) + C4_GLB_diff_THRES ]
 DATA[wattGLB > Enhanc_C_4_ref ,
      Enhanc_C_4 := TRUE]
 ## use threshold to compute values
@@ -497,10 +492,10 @@ for (ii in 1:nrow(vec_days)) {
         title(main = paste(as.Date(aday, origin = "1970-01-01"), temp[get(SelEnhanc) == TRUE, .N], temp[TYPE == "Cloud", .N], vec_days$Descriprion[ii]))
 
         legend("topleft",
-                       c("GHI", "DNI","GHI threshold","TSI on horizontal level","GHI Enhancement event",paste0(csmodel, ".glo")  ),
-               col = c("green","blue",          "red",                  "black",                  "red",              "magenta"  ),
-               pch = c(     NA,    NA,             NA,                       NA,                     1 ,                     NA  ),
-               lty = c(      1,     1,              1,                        1,                    NA ,                      1  ),
+                       c("GHI", "DNI","GHI threshold","TSI on horizontal level","GHI Enhancement event",paste0(csmodel, ".glo"),"CloudsID"),
+               col = c("green","blue",          "red",                  "black",                  "red",              "magenta",    "blue"),
+               pch = c(     NA,    NA,             NA,                       NA,                     1 ,                     NA,         3),
+               lty = c(      1,     1,              1,                        1,                    NA ,                      1,        NA),
                bty = "n"
         )
 
@@ -640,6 +635,10 @@ for (pyear in yearstodo) {
     #     scale_colour_gradient2(low = "black", mid = "yellow", high = "red", na.value = NA)
 
 }
+
+
+
+
 
 
 if (TEST == TRUE) {
