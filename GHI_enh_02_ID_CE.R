@@ -111,7 +111,7 @@ if (
 
 
 
-## __ Execution control  -------------------------------------------------------
+## __ Execution control -------------
 TEST <- FALSE
 TEST <- TRUE
 
@@ -136,9 +136,9 @@ DATA <- merge(DATA, readRDS("./data/lookuptable_datatable.Rds"))
 
 ##  Choose CS data to use ------------------------------------------------------
 
-# csmodel <- "Exact_B"
-# csmodel <- "Low_2_B"
-csmodel <- "Low_B"
+# csmodel <- "Exact_b"
+# csmodel <- "Low_2_b"
+csmodel <- "Low_b"
 
 
 
@@ -250,30 +250,16 @@ if (SelEnhanc == "Enhanc_C_3") {
 
 
 
-## __ my  Criteria  ------------------------------------------------------------
+## __ my  Criteria  --------------------------------------------------
 C4_cs_ref_ratio <- 1.05
 C4_GLB_diff_THRES     <- 20
 DATA[, Enhanc_C_4 := FALSE]
 
-## ____ Clearness Index scaled by TSI  -----------------------------------------
+## ____ Clearness Index scaled by TSI  ----------------------------
+##
 
-
-
-## ____ Create global irradiance W/m^2  ----------------------------------------
-DATA[, paste0(csmodel,".glo") := (get(paste0(csmodel,".edir")) + get(paste0(csmodel,".edn"))) / 1000 ]
-
-## ____ Apply sun-earth distance correction  -----------------------------------
-DATA[, paste0(csmodel,".glo") := get(paste0(csmodel,".glo")) / sun_dist^2 ]
-
-## ____ Apply adjustment to Kurudz spectrum  -----------------------------------
-DATA[, paste0(csmodel,".glo") := get(paste0(csmodel,".glo")) * TSI_Kurudz_factor ]
-
-
-
-plot(DATA[, Low_B.glo, Date])
-
-
-
+paste0(csmodel,"")
+DATA[, ]
 
 stop()
 DATA[, ClearnessIndex_C_4 := wattGLB / (CS_low * TSI_Kurudz_factor) ]
