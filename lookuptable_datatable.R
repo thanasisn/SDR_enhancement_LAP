@@ -25,7 +25,7 @@
 #'
 #+ echo=F, include=T
 rm(list = (ls()[ls() != ""]))
-Script.Name <- "./lookuptable_datatable.R"
+Script.Name <- "~/MANUSCRIPTS/02_enhancement/lookuptable_datatable.R"
 dir.create("./runtime/", showWarnings = FALSE)
 d <- filelock::lock(paste0("./runtime/", basename(sub("\\.R$",".lock", Script.Name))), timeout = 0)
 Sys.setenv(TZ = "UTC")
@@ -54,14 +54,14 @@ source("~/Aerosols/RlibRadtran/R/date_to_standard_atmosphere_file.R")
 ##  Prepare data  --------------------------------------------------------------
 
 ## all runs are stored here
-model_cs     <- "./Model_CS.Rds"
+model_cs     <- "./data/Model_CS.Rds"
 
 ## _ Get raw data we want to create reference for  -----------------------------
 DATA <- data.table(readRDS("~/MANUSCRIPTS/02_enhancement/data/CE_ID_Input.Rds"))
 
 
 ## _ Fill with CS approximation model  -----------------------------------------
-CS <- data.table(readRDS("./Model_CS.Rds"))
+CS <- data.table(readRDS(model_cs))
 CS[, SZA := sza]
 
 ## drop some not used data
@@ -119,7 +119,10 @@ for (aty in types) {
 
 ##  store final lookup table  --------------------------------------------------
 LKUO[, wattGLB := NULL ]
-saveRDS(LKUO, sub(".R", ".Rds", basename(Script.Name)))
+saveRDS(LKUO, paste0("./data/", sub(".R", ".Rds", basename(Script.Name))))
+
+
+summary(LKUO)
 
 
 
