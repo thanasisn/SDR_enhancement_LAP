@@ -111,7 +111,7 @@ if (
 
 
 
-## __ Execution control -------------
+## __ Execution control  -------------------------------------------------------
 TEST <- FALSE
 TEST <- TRUE
 
@@ -136,9 +136,9 @@ DATA <- merge(DATA, readRDS("./data/lookuptable_datatable.Rds"))
 
 ##  Choose CS data to use ------------------------------------------------------
 
-# csmodel <- "Exact_b"
-# csmodel <- "Low_2_b"
-csmodel <- "Low_b"
+# csmodel <- "Exact_B"
+# csmodel <- "Low_2_B"
+csmodel <- "Low_B"
 
 
 
@@ -250,30 +250,35 @@ if (SelEnhanc == "Enhanc_C_3") {
 
 
 
-## __ my  Criteria  --------------------------------------------------
+## __ my  Criteria  ------------------------------------------------------------
 C4_cs_ref_ratio <- 1.05
 C4_GLB_diff_THRES     <- 20
 DATA[, Enhanc_C_4 := FALSE]
 
-## ____ Clearness Index scaled by TSI  ----------------------------
-##
-
-paste0(csmodel,"")
-DATA[, ]
-
-stop()
-DATA[, ClearnessIndex_C_4 := wattGLB / (CS_low * TSI_Kurudz_factor) ]
+## ____ Clearness Index scaled by TSI  -----------------------------------------
 
 
 
+## ____ Create global irradiance W/m^2  ----------------------------------------
+DATA[, paste0(csmodel,".glo") := (get(paste0(csmodel,".edir")) + get(paste0(csmodel,".edn"))) / 1000 ]
+
+## ____ Apply sun-earth distance correction  -----------------------------------
+DATA[, paste0(csmodel,".glo") := get(paste0(csmodel,".glo")) / sun_dist^2 ]
+
+## ____ Apply adjustment to Kurudz spectrum  -----------------------------------
+DATA[, paste0(csmodel,".glo") := get(paste0(csmodel,".glo")) * TSI_Kurudz_factor ]
+
+
+## ____ Caclulate clearness index  ---------------------------------------------
+DATA[, ClearnessIndex_C_4 := wattGLB / get(paste0(csmodel,".glo")) ]
 
 hist(DATA$ClearnessIndex_C_4, breaks = 100)
 abline(v = C4_cs_ref_ratio, col = "red" )
 
-## calculate reference an mark data
-stop("fixtha!!!")
-DATA[, Enhanc_C_4_ref := (CS_low * TSI_Kurudz_factor) * C4_cs_ref_ratio]
-DATA[wattGLB > Enhanc_C_4_ref,
+
+## ____ Calculate reference and mark data  -------------------------------------
+DATA[, Enhanc_C_4_ref := get(paste0(csmodel,".glo")) * C4_cs_ref_ratio ]
+DATA[wattGLB > Enhanc_C_4_ref ,
      Enhanc_C_4 := TRUE]
 ## use threshold to compute values
 if (SelEnhanc == "Enhanc_C_4") {
@@ -315,7 +320,6 @@ print(p)
 
 
 
-stop()
 
 #+ include=TRUE, echo=FALSE
 
@@ -475,10 +479,14 @@ for (ii in 1:nrow(vec_days)) {
         ## Active model reference
         lines(temp[, get(paste0(SelEnhanc,"_ref")), Date], col = "red" )
 
+        names(temp)
+
+        temp[, get(paste0(csmodel, ".glo"))]
+
         ## CS libratran reference
-        lines(temp[, CS_low, Date], col = "magenta" )
+        lines(temp[, get(paste0(csmodel, ".glo")), Date], col = "magenta" )
         ## CS libratran reference
-        lines(temp[, CS_low * TSI_Kurudz_factor , Date], col = "pink" )
+        # lines(temp[, CS_low * TSI_Kurudz_factor , Date], col = "pink" )
 
 
         ## Enchantment cases
@@ -488,10 +496,11 @@ for (ii in 1:nrow(vec_days)) {
 
         title(main = paste(as.Date(aday, origin = "1970-01-01"), temp[get(SelEnhanc) == TRUE, .N], temp[TYPE == "Cloud", .N], vec_days$Descriprion[ii]))
 
-        legend("topleft", c("GHI","DNI",  "GHI threshold", "TSI on horizontal level","GHI Enhancement event", "CS -1σ unadjusted", "CS -1σ adjusted"),
-               col = c("green",   "blue", "red", "black",  "red", "magenta", "pink"),
-               pch = c(     NA,       NA,    NA,      NA,     1 ,        NA,     NA),
-               lty = c(      1,        1,     1,       1,    NA ,         1,      1),
+        legend("topleft",
+                       c("GHI", "DNI","GHI threshold","TSI on horizontal level","GHI Enhancement event",paste0(csmodel, ".glo")  ),
+               col = c("green","blue",          "red",                  "black",                  "red",              "magenta"  ),
+               pch = c(     NA,    NA,             NA,                       NA,                     1 ,                     NA  ),
+               lty = c(      1,     1,              1,                        1,                    NA ,                      1  ),
                bty = "n"
         )
 
