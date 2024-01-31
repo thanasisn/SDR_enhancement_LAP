@@ -113,7 +113,7 @@ if (
 
 ## __ Execution control  -------------------------------------------------------
 TEST <- FALSE
-# TEST <- TRUE
+TEST <- TRUE
 
 if (TEST) {
     warning("\n\n ** Test is active!! ** \n\n")
@@ -189,6 +189,16 @@ SelEnhanc <- "Enhanc_C_4"
 DATA[, CEC := SelEnhanc ]
 
 
+#'
+#' ## Using criteria **`r SelEnhanc`** for final application
+#'
+#+ echo=FALSE, include=TRUE
+
+
+#'
+#' ## 1. Use TSI as reference for Clear sky.
+#'
+#+ echo=TRUE, include=TRUE
 
 ## __ 1. My criteria  ----------------------------------------------------------
 # C1_GLB_ench_THRES     <-  1.10 ## enchantment relative to HAU
@@ -212,6 +222,11 @@ if (SelEnhanc == "Enhanc_C_1") {
 }
 
 
+#'
+#' ## 2. Use TSI as reference for Clear sky.
+#'
+#+ echo=TRUE, include=TRUE
+
 
 ## __ 2. Gueymard2017 Criteria  ------------------------------------------------
 ## Clearness index > 0.8 / 1
@@ -230,6 +245,10 @@ if (SelEnhanc == "Enhanc_C_2") {
 }
 
 
+#'
+#' ## 3. Use Hauwrz as reference for Clear sky.
+#'
+#+ echo=TRUE, include=TRUE
 
 ## __ 3. Vamvakas2020  Criteria  -----------------------------------------------
 ## +5% from model => enhancements above 15 Wm^2 the instrument uncertainty
@@ -246,11 +265,16 @@ if (SelEnhanc == "Enhanc_C_3") {
 }
 
 
+#'
+#' ## 4. Use libratran **`r csmodel`** as reference for Clear sky.
+#'
+#+ echo=TRUE, include=TRUE
+
 
 
 ## __ 4. my  Criteria  ---------------------------------------------------------
-C4_cs_ref_ratio   <-  1.05
-C4_GLB_diff_THRES <- 10
+C4_cs_ref_ratio   <-  1.04
+C4_GLB_diff_THRES <- 20
 DATA[, Enhanc_C_4 := FALSE]
 
 
