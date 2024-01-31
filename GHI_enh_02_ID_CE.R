@@ -65,7 +65,7 @@ if (!interactive()) {
 }
 
 
-#+ echo=FALSE, include=TRUE
+#+ echo=F, include=T
 library(data.table  , quietly = TRUE, warn.conflicts = FALSE)
 require(zoo         , quietly = TRUE, warn.conflicts = FALSE)
 library(pander      , quietly = TRUE, warn.conflicts = FALSE)
@@ -120,19 +120,14 @@ if (TEST) {
 }
 
 
-
-alpha <- 0.9653023236718680788471
-
-
-
 ##  Load Enhancement data  -----------------------------------------------------
 DATA <- readRDS(raw_input_data)
 tic  <- Sys.time()
 
 
-
 ##  Add CS data from Libradtran  -----------------------------------------------
 DATA <- merge(DATA, readRDS("./data/lookuptable_datatable.Rds"))
+
 
 ##  Choose CS data to use ------------------------------------------------------
 
@@ -175,7 +170,7 @@ DATA[, TSI_Kurudz_factor := tsi_1au_comb / Kurudz_SC ]
 #'
 #'  Alpha * HAU is CS_ref
 #'
-#+ echo=TRUE, include=TRUE
+#+ echo=F, include=TRUE
 
 ## __ Enhancement criteria  ----------------------------------------------------
 # SelEnhanc <- "Enhanc_C_1"
@@ -246,7 +241,7 @@ if (SelEnhanc == "Enhanc_C_2") {
 
 
 #'
-#' ## 3. Use Hauwrz as reference for Clear sky.
+#' ## 3. Use Haurwitz as reference for Clear sky.
 #'
 #+ echo=TRUE, include=TRUE
 
@@ -281,14 +276,16 @@ DATA[, Enhanc_C_4 := FALSE]
 ## ____ Create global irradiance W/m^2  ----------------------------------------
 DATA[, paste0(csmodel,".glo") := (get(paste0(csmodel,".edir")) + get(paste0(csmodel,".edn"))) / 1000 ]
 
+
 ## ____ Apply sun-earth distance correction  -----------------------------------
 DATA[, paste0(csmodel,".glo") := get(paste0(csmodel,".glo")) / sun_dist^2 ]
+
 
 ## ____ Apply adjustment to Kurudz spectrum  -----------------------------------
 DATA[, paste0(csmodel,".glo") := get(paste0(csmodel,".glo")) * TSI_Kurudz_factor ]
 
 
-## ____ Caclulate clearness index  ---------------------------------------------
+## ____ Calculate clearness index  ---------------------------------------------
 DATA[, ClearnessIndex_C_4 := wattGLB / get(paste0(csmodel,".glo")) ]
 
 hist(DATA$ClearnessIndex_C_4, breaks = 100)
@@ -307,34 +304,36 @@ if (SelEnhanc == "Enhanc_C_4") {
 }
 
 
-pyear <- c(1994, 2010, 2022 )
-pyear <- c(2018 )
-p <-
-    ggplot(DATA[year(Date) %in% pyear],
-           aes(get(paste0(SelEnhanc,"_ref")), wattGLB)) +
-    geom_point(data   = DATA[year(Date) %in% pyear & get(SelEnhanc) == FALSE,],
-               colour = "black",
-               na.rm  = TRUE,
-               size   = 0.2) +
-    geom_point(data   = DATA[year(Date) %in% pyear & get(SelEnhanc) == TRUE,],
-               na.rm  = TRUE,
-               size   = 0.2,
-               aes(color = GLB_diff)) +
-    scale_colour_gradient(low      = "blue",
-                          high     = "red",
-                          na.value = NA) +
-    xlab(paste0(SelEnhanc, "_ref")) +
-    labs(color = "Over\nreference") +
-    theme(
-        legend.position      = c(.03, .97),
-        legend.justification = c("left", "top"),
-        legend.box.just      = "right",
-        legend.margin        = margin(6, 6, 6, 6)
-    ) +
-    scale_x_continuous(expand = expansion(mult = c(0.03, 0.03))) +
-    scale_y_continuous(breaks = scales::breaks_extended(n = 6),
-                       expand = expansion(mult = c(0.03, 0.03)))
-print(p)
+#+ echo=F, include=T
+
+# pyear <- c(1994, 2010, 2022 )
+# pyear <- c(2018 )
+# p <-
+#     ggplot(DATA[year(Date) %in% pyear],
+#            aes(get(paste0(SelEnhanc,"_ref")), wattGLB)) +
+#     geom_point(data   = DATA[year(Date) %in% pyear & get(SelEnhanc) == FALSE,],
+#                colour = "black",
+#                na.rm  = TRUE,
+#                size   = 0.2) +
+#     geom_point(data   = DATA[year(Date) %in% pyear & get(SelEnhanc) == TRUE,],
+#                na.rm  = TRUE,
+#                size   = 0.2,
+#                aes(color = GLB_diff)) +
+#     scale_colour_gradient(low      = "blue",
+#                           high     = "red",
+#                           na.value = NA) +
+#     xlab(paste0(SelEnhanc, "_ref")) +
+#     labs(color = "Over\nreference") +
+#     theme(
+#         legend.position      = c(.03, .97),
+#         legend.justification = c("left", "top"),
+#         legend.box.just      = "right",
+#         legend.margin        = margin(6, 6, 6, 6)
+#     ) +
+#     scale_x_continuous(expand = expansion(mult = c(0.03, 0.03))) +
+#     scale_y_continuous(breaks = scales::breaks_extended(n = 6),
+#                        expand = expansion(mult = c(0.03, 0.03)))
+# print(p)
 
 
 
@@ -346,7 +345,7 @@ print(p)
 #'
 #' # Using creteria: `r SelEnhanc`
 #'
-#' # Distribution of different criteria
+#' # Distribution of different metrics
 #'
 #+ echo=FALSE, include=TRUE
 
@@ -374,13 +373,17 @@ abline(v = 1, col = "red")
 ## near by values with +0.1 are also accepted
 
 
-pander(table(DATA$Enhanc_C_1))
+pander(table(DATA$Enhanc_C_1),
+       caption = "Enhanc_C_1")
 
-pander(table(DATA$Enhanc_C_2))
+pander(table(DATA$Enhanc_C_2),
+       caption = "Enhanc_C_2")
 
-pander(table(DATA$Enhanc_C_3))
+pander(table(DATA$Enhanc_C_3),
+       caption = "Enhanc_C_3")
 
-pander(table(DATA$Enhanc_C_4))
+pander(table(DATA$Enhanc_C_4),
+       caption = "Enhanc_C_4")
 
 
 
