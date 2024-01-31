@@ -5,7 +5,7 @@ SHELL = /bin/bash
 .DEFAULT_GOAL := render
 
 all:       clean_all pdf rtim
-render:    pdf rtim
+render:    pdf upload
 Ap:        Ap1
 pdf:       p1 p2 p3 p4 p5 Ap
 rtim:      r1 r2 r3
@@ -176,8 +176,8 @@ $(RUNT): $(RMD)
 
 
 
-
-
+upload:
+	-./upload.sh
 
 
 clean_cache:
