@@ -113,7 +113,7 @@ if (
 
 ## __ Execution control  -------------------------------------------------------
 TEST <- FALSE
-TEST <- TRUE
+# TEST <- TRUE
 
 if (TEST) {
     warning("\n\n ** Test is active!! ** \n\n")
@@ -519,7 +519,7 @@ for (ii in 1:nrow(vec_days)) {
         title(main = paste(as.Date(aday, origin = "1970-01-01"), temp[get(SelEnhanc) == TRUE, .N], temp[TYPE == "Cloud", .N], vec_days$Descriprion[ii]))
 
         legend("topleft",
-                       c("GHI", "DNI","GHI threshold","TSI on horizontal level","GHI Enhancement event",paste0(csmodel, ".glo"),"CloudsID"),
+                     c(  "GHI", "DNI","GHI threshold","TSI on horizontal level","GHI Enhancement event",paste0(csmodel, ".glo"),"CloudsID"),
                col = c("green","blue",          "red",                  "black",                  "red",              "magenta",    "blue"),
                pch = c(     NA,    NA,             NA,                       NA,                     1 ,                     NA,         3),
                lty = c(      1,     1,              1,                        1,                    NA ,                      1,        NA),
