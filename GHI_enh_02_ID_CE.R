@@ -131,10 +131,10 @@ DATA <- merge(DATA, readRDS("./data/lookuptable_datatable.Rds"))
 
 ##  Choose CS data to use ------------------------------------------------------
 
-# csmodel <- "Exact_B"
+csmodel <- "Exact_B"
 # csmodel <- "Low_2_B"
-csmodel <- "Low_B"
-
+# csmodel <- "Low_B"
+# csmodel <- "High_B"
 
 
 cat("\n USING CSMODE:", csmodel, "\n\n")
@@ -180,10 +180,9 @@ DATA[, TSI_Kurudz_factor := tsi_1au_comb / Kurudz_SC ]
 SelEnhanc <- "Enhanc_C_4"
 
 
-## mark used criteria for diff rati ench
+## Mark used criteria for diff rati ench
 DATA[, CEC := SelEnhanc ]
 
-range(DATA$SZA)
 
 #'
 #' ## Using criteria **`r SelEnhanc`** for final application
@@ -269,9 +268,16 @@ if (SelEnhanc == "Enhanc_C_3") {
 
 
 ## __ 4. my  Criteria  ---------------------------------------------------------
-C4_cs_ref_ratio   <-  1.04
-C4_GLB_diff_THRES <- 20
 DATA[, Enhanc_C_4 := FALSE]
+
+## set values based on model used
+switch(csmodel,
+       Low_B   = { C4_cs_ref_ratio <- 1.04 ; C4_GLB_diff_THRES <- 20 },
+       Exact_B = { C4_cs_ref_ratio <- 1.10 ; C4_GLB_diff_THRES <- 20 },
+                 { C4_cs_ref_ratio <-   NA ; C4_GLB_diff_THRES <- NA })
+
+
+
 
 
 ## ____ Create global irradiance W/m^2  ----------------------------------------
@@ -389,7 +395,36 @@ pander(table(DATA$Enhanc_C_4),
 
 
 
-## __ Estimate enhancement daily magnitude  ------------------------------------
+
+##  Test for low elevation angles  ---------------------------------------------
+
+DATA[get(SelEnhanc) == TRUE , min(GLB_diff) , by = SZA %/% 1]
+
+testsza <- DATA[GLB_diff > 0,
+                .(
+                    min    = min   (GLB_diff, na.rm = T),
+                    max    = max   (GLB_diff, na.rm = T),
+                    mean   = mean  (GLB_diff, na.rm = T),
+                    median = median(GLB_diff, na.rm = T)
+
+                ) , by = SZA %/% 1]
+
+
+plot(testsza[ , median, SZA ] )
+plot(testsza[ , min,    SZA ] )
+plot(testsza[ , max,    SZA ] )
+plot(testsza[ , mean,   SZA ] )
+
+
+for (aa in 77:60) {
+    hist(DATA[(SZA %/% 1) == aa & GLB_diff > -300, GLB_diff],
+         breaks = 30,
+         main = aa)
+}
+
+# stop()
+
+##  Estimate enhancement daily magnitude  --------------------------------------
 enh_days <- DATA[get(SelEnhanc) == TRUE,
                  .(Enh_sum      = sum(GLB_ench, na.rm = TRUE),
                    Enh_max      = max(GLB_ench, na.rm = TRUE),
@@ -453,7 +488,7 @@ testdays <- data.table(Day =
                              "2007-07-06"))
 
 
-##  Days with strong enhancement cases  ----------------------------------------
+## __  Days with strong enhancement cases  -------------------------------------
 
 #' \FloatBarrier
 #' # Plot some days with strong enhancement cases
