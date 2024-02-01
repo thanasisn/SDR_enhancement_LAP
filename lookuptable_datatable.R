@@ -44,7 +44,6 @@ options(error = function() {
 tic <- Sys.time()
 
 library(data.table)
-# library(RlibRadtran)
 library(ggplot2)
 
 source("~/FUNCTIONS/R/data.R")
