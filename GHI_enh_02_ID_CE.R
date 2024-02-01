@@ -113,7 +113,7 @@ if (
 
 ## __ Execution control  -------------------------------------------------------
 TEST <- FALSE
-# TEST <- TRUE
+TEST <- TRUE
 
 if (TEST) {
     warning("\n\n ** Test is active!! ** \n\n")
@@ -183,6 +183,7 @@ SelEnhanc <- "Enhanc_C_4"
 ## mark used criteria for diff rati ench
 DATA[, CEC := SelEnhanc ]
 
+range(DATA$SZA)
 
 #'
 #' ## Using criteria **`r SelEnhanc`** for final application
