@@ -9,6 +9,12 @@ config="$HOME/Documents/rclone.conf"
 otheropt=" --checkers=20 --delete-before --stats=300s"
 bwlimit="  --bwlimit=${bwlim}k"
 
+
+if [[ "$(hostname)" = "sagan" ]]; then 
+    bwlim=500000
+    bwlimit="  --bwlimit=${bwlim}k"
+    echo "$(hostname)"
+fi
 # if [[ "$(hostname)" = "sagan" ]]; then 
 #     echo "Upload all pdfs"
 #     "${rclone}" ${otheropt} ${bwlimit} --config "$config" --include "*.pdf"  sync "$HOME/MANUSCRIPTS/2022_sdr_trends/" "lapauththanasis:/Trends"
@@ -17,6 +23,6 @@ bwlimit="  --bwlimit=${bwlim}k"
 # fi
 
 echo "Upload all pdfs"
-"${rclone}" ${otheropt} ${bwlimit} --config "$config" --max-depth 1 --include "*.{pdf,odt}" copy "/home/athan/MANUSCRIPTS/02_enhancement/" "lapauththanasis:/Enhance"
+"${rclone}" ${otheropt} ${bwlimit} --verbose --config "$config" --max-depth 1 --include "*.{pdf,odt}" copy "/home/athan/MANUSCRIPTS/02_enhancement/" "lapauththanasis:/Enhance"
 
 exit 0 
