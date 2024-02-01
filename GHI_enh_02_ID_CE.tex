@@ -239,18 +239,36 @@ Alpha * HAU is CS\_ref
 \begin{Shaded}
 \begin{Highlighting}[]
 \DocumentationTok{\#\# \_\_ 4. my  Criteria  {-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}}
-\NormalTok{DATA[, Enhanc\_C\_4 }\SpecialCharTok{:=} \ConstantTok{FALSE}\NormalTok{]}
 
 \DocumentationTok{\#\# set values based on model used}
 \ControlFlowTok{switch}\NormalTok{(csmodel,}
        \AttributeTok{Low\_B   =}\NormalTok{ \{ C4\_cs\_ref\_ratio }\OtherTok{\textless{}{-}} \FloatTok{1.04}\NormalTok{ ; C4\_GLB\_diff\_THRES }\OtherTok{\textless{}{-}} \DecValTok{20}\NormalTok{ \},}
-       \AttributeTok{Exact\_B =}\NormalTok{ \{ C4\_cs\_ref\_ratio }\OtherTok{\textless{}{-}} \FloatTok{1.10}\NormalTok{ ; C4\_GLB\_diff\_THRES }\OtherTok{\textless{}{-}} \DecValTok{20}\NormalTok{ \},}
+       \AttributeTok{Exact\_B =}\NormalTok{ \{ C4\_cs\_ref\_ratio }\OtherTok{\textless{}{-}} \FloatTok{1.02}\NormalTok{ ; C4\_GLB\_diff\_THRES }\OtherTok{\textless{}{-}} \DecValTok{55}\NormalTok{ \},}
 \NormalTok{                 \{ C4\_cs\_ref\_ratio }\OtherTok{\textless{}{-}}   \ConstantTok{NA}\NormalTok{ ; C4\_GLB\_diff\_THRES }\OtherTok{\textless{}{-}} \ConstantTok{NA}\NormalTok{ \})}
 
+\NormalTok{DATA[, Enhanc\_C\_4 }\SpecialCharTok{:=} \ConstantTok{FALSE}\NormalTok{]}
 
 
+\FunctionTok{cat}\NormalTok{(}\StringTok{"C4 factor:"}\NormalTok{, C4\_cs\_ref\_ratio,   }\StringTok{"}\SpecialCharTok{\textbackslash{}n}\StringTok{"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
 
+\begin{verbatim}
+C4 factor: 1.02 
+\end{verbatim}
 
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{cat}\NormalTok{(}\StringTok{"C4 offset:"}\NormalTok{, C4\_GLB\_diff\_THRES, }\StringTok{"}\SpecialCharTok{\textbackslash{}n}\StringTok{"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+C4 offset: 55 
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
 \DocumentationTok{\#\# \_\_\_\_ Create global irradiance W/m\^{}2  {-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}}
 \NormalTok{DATA[, }\FunctionTok{paste0}\NormalTok{(csmodel,}\StringTok{".glo"}\NormalTok{) }\SpecialCharTok{:=}\NormalTok{ (}\FunctionTok{get}\NormalTok{(}\FunctionTok{paste0}\NormalTok{(csmodel,}\StringTok{".edir"}\NormalTok{)) }\SpecialCharTok{+} \FunctionTok{get}\NormalTok{(}\FunctionTok{paste0}\NormalTok{(csmodel,}\StringTok{".edn"}\NormalTok{))) }\SpecialCharTok{/} \DecValTok{1000}\NormalTok{ ]}
 
@@ -399,73 +417,73 @@ TRUE
 \endhead
 \bottomrule\noalign{}
 \endlastfoot
-6074002 & 90089 \\
+6061291 & 102800 \\
 \end{longtable}
 
 \begin{verbatim}
       SZA           V1
     <num>        <num>
- 1:    53 0.0028876049
- 2:    52 0.0113450394
- 3:    49 0.0485052242
- 4:    50 0.0614539310
- 5:    51 0.0091598793
- 6:    21 0.0865354143
- 7:    40 0.0380477603
- 8:    41 0.0028659063
- 9:    42 0.0648211324
-10:    43 0.0811729851
-11:    44 0.0076083963
-12:    45 0.0574597908
-13:    46 0.0021566993
-14:    47 0.0460372214
-15:    48 0.0276524168
-16:    31 0.0483180044
-17:    28 0.1013000223
-18:    27 0.0254186757
-19:    26 0.1342307558
-20:    39 0.1432405665
-21:    54 0.0128766043
-22:    55 0.0204226609
-23:    62 0.0164117756
-24:    61 0.0156292085
-25:    60 0.0290674534
-26:    56 0.0513633124
-27:    57 0.0121418874
-28:    58 0.0509318529
-29:    59 0.0057208325
-30:    63 0.0095325609
-31:    64 0.0176850989
-32:    20 0.0146663420
-33:    17 0.0654442780
-34:    18 0.2440639365
-35:    19 0.0029058081
-36:    22 0.1455023358
-37:    37 0.0004931948
-38:    38 0.0401140170
-39:    32 0.1043675307
-40:    33 0.0431381838
-41:    69 0.0082225583
-42:    70 0.0031877464
-43:    30 0.0729006107
-44:    23 0.0340889390
-45:    71 0.0248551662
-46:    72 0.0007945590
-47:    24 0.0508141469
-48:    25 0.1789238311
-49:    74 0.0036996558
-50:    29 0.1540021259
-51:    65 0.0273935376
-52:    66 0.0183264164
-53:    77 0.0095351496
-54:    75 0.0010114543
-55:    73 0.0002347598
-56:    35 0.0146586233
-57:    76 0.0025155453
-58:    67 0.0170613580
-59:    68 0.0400155026
-60:    34 0.1536102169
-61:    36 0.3046359881
+ 1:    53 0.0631519686
+ 2:    52 0.0173098488
+ 3:    25 0.1765009028
+ 4:    48 0.0009691984
+ 5:    49 0.0235569387
+ 6:    50 0.0387180719
+ 7:    51 0.0010866615
+ 8:    24 0.0778245828
+ 9:    23 0.0722479498
+10:    21 0.0227488455
+11:    55 0.0139716281
+12:    39 0.0299124377
+13:    40 0.0210560089
+14:    41 0.0069370386
+15:    42 0.0127468009
+16:    43 0.1202928770
+17:    44 0.0158169093
+18:    45 0.0129476056
+19:    46 0.0263478131
+20:    47 0.0167804075
+21:    31 0.0003338748
+22:    28 0.0407197735
+23:    27 0.0387177435
+24:    26 0.0146232375
+25:    54 0.0102104624
+26:    62 0.0018424504
+27:    61 0.0005556633
+28:    60 0.0010043478
+29:    20 0.0195873648
+30:    32 0.0294428969
+31:    56 0.0092314958
+32:    57 0.0189850948
+33:    58 0.0354799522
+34:    59 0.0221817527
+35:    63 0.0380399375
+36:    29 0.0037562085
+37:    33 0.1083440549
+38:    17 0.2786366295
+39:    18 0.0533523176
+40:    19 0.0604650235
+41:    22 0.0113705836
+42:    37 0.0659212821
+43:    38 0.0117319184
+44:    35 0.0070234188
+45:    36 0.0071826825
+46:    69 0.0111946149
+47:    70 0.0161667636
+48:    30 0.0161176789
+49:    34 0.0007922881
+50:    65 0.0203169740
+51:    66 0.0180114002
+52:    75 0.0038050349
+53:    73 0.0226973918
+54:    64 0.0074689417
+55:    67 0.0057139095
+56:    74 0.0135481331
+57:    76 0.0035594683
+58:    77 0.0056085113
+59:    68 0.0501600525
+60:    72 0.0052063471
+61:    71 0.0180278283
       SZA           V1
 \end{verbatim}
 
@@ -704,6 +722,11 @@ TRUE
 
 \begin{center}\includegraphics[width=1\linewidth]{GHI_enh_02_ID_CE_files/figure-latex/unnamed-chunk-14-75} \end{center}
 
+\FloatBarrier
+
+\hypertarget{days-with-cloudy-day}{%
+\subsection{Days with cloudy day}\label{days-with-cloudy-day}}
+
 \begin{center}\includegraphics[width=1\linewidth]{GHI_enh_02_ID_CE_files/figure-latex/unnamed-chunk-14-76} \end{center}
 
 \begin{center}\includegraphics[width=1\linewidth]{GHI_enh_02_ID_CE_files/figure-latex/unnamed-chunk-14-77} \end{center}
@@ -743,6 +766,11 @@ TRUE
 \begin{center}\includegraphics[width=1\linewidth]{GHI_enh_02_ID_CE_files/figure-latex/unnamed-chunk-14-94} \end{center}
 
 \begin{center}\includegraphics[width=1\linewidth]{GHI_enh_02_ID_CE_files/figure-latex/unnamed-chunk-14-95} \end{center}
+
+\FloatBarrier
+
+\hypertarget{days-with-random-day}{%
+\subsection{Days with random day}\label{days-with-random-day}}
 
 \begin{center}\includegraphics[width=1\linewidth]{GHI_enh_02_ID_CE_files/figure-latex/unnamed-chunk-14-96} \end{center}
 
@@ -788,11 +816,6 @@ TRUE
 
 \begin{center}\includegraphics[width=1\linewidth]{GHI_enh_02_ID_CE_files/figure-latex/unnamed-chunk-14-117} \end{center}
 
-\FloatBarrier
-
-\hypertarget{days-with-cloudy-day}{%
-\subsection{Days with cloudy day}\label{days-with-cloudy-day}}
-
 \begin{center}\includegraphics[width=1\linewidth]{GHI_enh_02_ID_CE_files/figure-latex/unnamed-chunk-14-118} \end{center}
 
 \begin{center}\includegraphics[width=1\linewidth]{GHI_enh_02_ID_CE_files/figure-latex/unnamed-chunk-14-119} \end{center}
@@ -809,105 +832,16 @@ TRUE
 
 \begin{center}\includegraphics[width=1\linewidth]{GHI_enh_02_ID_CE_files/figure-latex/unnamed-chunk-14-125} \end{center}
 
-\begin{center}\includegraphics[width=1\linewidth]{GHI_enh_02_ID_CE_files/figure-latex/unnamed-chunk-14-126} \end{center}
-
-\begin{center}\includegraphics[width=1\linewidth]{GHI_enh_02_ID_CE_files/figure-latex/unnamed-chunk-14-127} \end{center}
-
-\begin{center}\includegraphics[width=1\linewidth]{GHI_enh_02_ID_CE_files/figure-latex/unnamed-chunk-14-128} \end{center}
-
-\begin{center}\includegraphics[width=1\linewidth]{GHI_enh_02_ID_CE_files/figure-latex/unnamed-chunk-14-129} \end{center}
-
-\begin{center}\includegraphics[width=1\linewidth]{GHI_enh_02_ID_CE_files/figure-latex/unnamed-chunk-14-130} \end{center}
-
-\begin{center}\includegraphics[width=1\linewidth]{GHI_enh_02_ID_CE_files/figure-latex/unnamed-chunk-14-131} \end{center}
-
-\begin{center}\includegraphics[width=1\linewidth]{GHI_enh_02_ID_CE_files/figure-latex/unnamed-chunk-14-132} \end{center}
-
-\begin{center}\includegraphics[width=1\linewidth]{GHI_enh_02_ID_CE_files/figure-latex/unnamed-chunk-14-133} \end{center}
-
-\begin{center}\includegraphics[width=1\linewidth]{GHI_enh_02_ID_CE_files/figure-latex/unnamed-chunk-14-134} \end{center}
-
-\begin{center}\includegraphics[width=1\linewidth]{GHI_enh_02_ID_CE_files/figure-latex/unnamed-chunk-14-135} \end{center}
-
-\begin{center}\includegraphics[width=1\linewidth]{GHI_enh_02_ID_CE_files/figure-latex/unnamed-chunk-14-136} \end{center}
-
-\begin{center}\includegraphics[width=1\linewidth]{GHI_enh_02_ID_CE_files/figure-latex/unnamed-chunk-14-137} \end{center}
-
-\FloatBarrier
-
-\hypertarget{days-with-random-day}{%
-\subsection{Days with random day}\label{days-with-random-day}}
-
-\begin{center}\includegraphics[width=1\linewidth]{GHI_enh_02_ID_CE_files/figure-latex/unnamed-chunk-14-138} \end{center}
-
-\begin{center}\includegraphics[width=1\linewidth]{GHI_enh_02_ID_CE_files/figure-latex/unnamed-chunk-14-139} \end{center}
-
-\begin{center}\includegraphics[width=1\linewidth]{GHI_enh_02_ID_CE_files/figure-latex/unnamed-chunk-14-140} \end{center}
-
-\begin{center}\includegraphics[width=1\linewidth]{GHI_enh_02_ID_CE_files/figure-latex/unnamed-chunk-14-141} \end{center}
-
-\begin{center}\includegraphics[width=1\linewidth]{GHI_enh_02_ID_CE_files/figure-latex/unnamed-chunk-14-142} \end{center}
-
-\begin{center}\includegraphics[width=1\linewidth]{GHI_enh_02_ID_CE_files/figure-latex/unnamed-chunk-14-143} \end{center}
-
-\begin{center}\includegraphics[width=1\linewidth]{GHI_enh_02_ID_CE_files/figure-latex/unnamed-chunk-14-144} \end{center}
-
-\begin{center}\includegraphics[width=1\linewidth]{GHI_enh_02_ID_CE_files/figure-latex/unnamed-chunk-14-145} \end{center}
-
-\begin{center}\includegraphics[width=1\linewidth]{GHI_enh_02_ID_CE_files/figure-latex/unnamed-chunk-14-146} \end{center}
-
-\begin{center}\includegraphics[width=1\linewidth]{GHI_enh_02_ID_CE_files/figure-latex/unnamed-chunk-14-147} \end{center}
-
-\begin{center}\includegraphics[width=1\linewidth]{GHI_enh_02_ID_CE_files/figure-latex/unnamed-chunk-14-148} \end{center}
-
-\begin{center}\includegraphics[width=1\linewidth]{GHI_enh_02_ID_CE_files/figure-latex/unnamed-chunk-14-149} \end{center}
-
-\begin{center}\includegraphics[width=1\linewidth]{GHI_enh_02_ID_CE_files/figure-latex/unnamed-chunk-14-150} \end{center}
-
-\begin{center}\includegraphics[width=1\linewidth]{GHI_enh_02_ID_CE_files/figure-latex/unnamed-chunk-14-151} \end{center}
-
-\begin{center}\includegraphics[width=1\linewidth]{GHI_enh_02_ID_CE_files/figure-latex/unnamed-chunk-14-152} \end{center}
-
-\begin{center}\includegraphics[width=1\linewidth]{GHI_enh_02_ID_CE_files/figure-latex/unnamed-chunk-14-153} \end{center}
-
-\begin{center}\includegraphics[width=1\linewidth]{GHI_enh_02_ID_CE_files/figure-latex/unnamed-chunk-14-154} \end{center}
-
-\begin{center}\includegraphics[width=1\linewidth]{GHI_enh_02_ID_CE_files/figure-latex/unnamed-chunk-14-155} \end{center}
-
-\begin{center}\includegraphics[width=1\linewidth]{GHI_enh_02_ID_CE_files/figure-latex/unnamed-chunk-14-156} \end{center}
-
-\begin{center}\includegraphics[width=1\linewidth]{GHI_enh_02_ID_CE_files/figure-latex/unnamed-chunk-14-157} \end{center}
-
-\begin{center}\includegraphics[width=1\linewidth]{GHI_enh_02_ID_CE_files/figure-latex/unnamed-chunk-14-158} \end{center}
-
-\begin{center}\includegraphics[width=1\linewidth]{GHI_enh_02_ID_CE_files/figure-latex/unnamed-chunk-14-159} \end{center}
-
-\begin{center}\includegraphics[width=1\linewidth]{GHI_enh_02_ID_CE_files/figure-latex/unnamed-chunk-14-160} \end{center}
-
-\begin{center}\includegraphics[width=1\linewidth]{GHI_enh_02_ID_CE_files/figure-latex/unnamed-chunk-14-161} \end{center}
-
-\begin{center}\includegraphics[width=1\linewidth]{GHI_enh_02_ID_CE_files/figure-latex/unnamed-chunk-14-162} \end{center}
-
-\begin{center}\includegraphics[width=1\linewidth]{GHI_enh_02_ID_CE_files/figure-latex/unnamed-chunk-14-163} \end{center}
-
-\begin{center}\includegraphics[width=1\linewidth]{GHI_enh_02_ID_CE_files/figure-latex/unnamed-chunk-14-164} \end{center}
-
-\begin{center}\includegraphics[width=1\linewidth]{GHI_enh_02_ID_CE_files/figure-latex/unnamed-chunk-14-165} \end{center}
-
-\begin{center}\includegraphics[width=1\linewidth]{GHI_enh_02_ID_CE_files/figure-latex/unnamed-chunk-14-166} \end{center}
-
-\begin{center}\includegraphics[width=1\linewidth]{GHI_enh_02_ID_CE_files/figure-latex/unnamed-chunk-14-167} \end{center}
-
 \FloatBarrier
 
 \hypertarget{days-with-manual-test-days}{%
 \subsection{Days with manual test days}\label{days-with-manual-test-days}}
 
-\begin{center}\includegraphics[width=1\linewidth]{GHI_enh_02_ID_CE_files/figure-latex/unnamed-chunk-14-168} \end{center}
+\begin{center}\includegraphics[width=1\linewidth]{GHI_enh_02_ID_CE_files/figure-latex/unnamed-chunk-14-126} \end{center}
 
-\begin{center}\includegraphics[width=1\linewidth]{GHI_enh_02_ID_CE_files/figure-latex/unnamed-chunk-14-169} \end{center}
+\begin{center}\includegraphics[width=1\linewidth]{GHI_enh_02_ID_CE_files/figure-latex/unnamed-chunk-14-127} \end{center}
 
-\begin{center}\includegraphics[width=1\linewidth]{GHI_enh_02_ID_CE_files/figure-latex/unnamed-chunk-14-170} \end{center}
+\begin{center}\includegraphics[width=1\linewidth]{GHI_enh_02_ID_CE_files/figure-latex/unnamed-chunk-14-128} \end{center}
 
 \newpage
 \FloatBarrier
@@ -930,7 +864,7 @@ TEST IS ACTIVE !!
 \textbf{END}
 
 \begin{verbatim}
-2024-02-01 10:14:06.6 athan@sagan GHI_enh_02_ID_CE.R 1.573833 mins
+2024-02-01 10:31:55.0 athan@sagan GHI_enh_02_ID_CE.R 1.436397 mins
 \end{verbatim}
 
 \end{document}

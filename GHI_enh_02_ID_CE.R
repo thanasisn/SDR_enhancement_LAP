@@ -113,7 +113,7 @@ if (
 
 ## __ Execution control  -------------------------------------------------------
 TEST <- FALSE
-TEST <- TRUE
+# TEST <- TRUE
 
 if (TEST) {
     warning("\n\n ** Test is active!! ** \n\n")
@@ -268,16 +268,18 @@ if (SelEnhanc == "Enhanc_C_3") {
 
 
 ## __ 4. my  Criteria  ---------------------------------------------------------
-DATA[, Enhanc_C_4 := FALSE]
 
 ## set values based on model used
 switch(csmodel,
        Low_B   = { C4_cs_ref_ratio <- 1.04 ; C4_GLB_diff_THRES <- 20 },
-       Exact_B = { C4_cs_ref_ratio <- 1.10 ; C4_GLB_diff_THRES <- 20 },
+       Exact_B = { C4_cs_ref_ratio <- 1.02 ; C4_GLB_diff_THRES <- 55 },
                  { C4_cs_ref_ratio <-   NA ; C4_GLB_diff_THRES <- NA })
 
+DATA[, Enhanc_C_4 := FALSE]
 
 
+cat("C4 factor:", C4_cs_ref_ratio,   "\n")
+cat("C4 offset:", C4_GLB_diff_THRES, "\n")
 
 
 ## ____ Create global irradiance W/m^2  ----------------------------------------
@@ -398,7 +400,7 @@ pander(table(DATA$Enhanc_C_4),
 
 ##  Test for low elevation angles  ---------------------------------------------
 
-DATA[get(SelEnhanc) == TRUE , min(GLB_diff) , by = SZA %/% 1]
+# DATA[get(SelEnhanc) == TRUE , min(GLB_diff) , by = SZA %/% 1]
 
 testsza <- DATA[GLB_diff > 0,
                 .(
