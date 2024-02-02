@@ -43,12 +43,13 @@
 #+ echo=F, include=T
 
 
+
 ## __ Document options ---------------------------------------------------------
 
 #+ echo=FALSE, include=TRUE
 knitr::opts_chunk$set(comment    = ""       )
-knitr::opts_chunk$set(dev        = c("pdf", "png")) ## expected option
-# knitr::opts_chunk$set(dev        = "pdf"    )       ## for too much data
+# knitr::opts_chunk$set(dev        = c("pdf", "png")) ## expected option
+knitr::opts_chunk$set(dev        = "png"    )       ## for too much data
 knitr::opts_chunk$set(out.width  = "100%"   )
 knitr::opts_chunk$set(fig.align  = "center" )
 knitr::opts_chunk$set(cache      =  FALSE   )  ## !! breaks calculations
