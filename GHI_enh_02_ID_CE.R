@@ -114,7 +114,7 @@ if (
 
 ## __ Execution control  -------------------------------------------------------
 TEST <- FALSE
-# TEST <- TRUE
+TEST <- TRUE
 
 if (TEST) {
     warning("\n\n ** Test is active!! ** \n\n")
@@ -132,10 +132,16 @@ DATA <- merge(DATA, readRDS("./data/lookuptable_datatable.Rds"))
 
 ##  Choose CS data to use ------------------------------------------------------
 
-csmodel <- "Exact_B"
-# csmodel <- "Low_2_B"
-# csmodel <- "Low_B"
-# csmodel <- "High_B"
+
+DATA$TYPE |> unique()
+grep("Exact_B", names(DATA), value = T)
+
+
+# csmodel <- "Exact_B.Exact_W"
+# csmodel <- "High_B.Exact_W"
+# csmodel <- "Low_2_B.Exact_W"
+# csmodel <- "Low_B.Exact_W"
+csmodel <- "Low_B.High_W"
 
 
 cat("\n USING CSMODE:", csmodel, "\n\n")
@@ -272,9 +278,10 @@ if (SelEnhanc == "Enhanc_C_3") {
 
 ## set values based on model used
 switch(csmodel,
-       Low_B   = { C4_cs_ref_ratio <- 1.04 ; C4_GLB_diff_THRES <- 20 },
-       Exact_B = { C4_cs_ref_ratio <- 1.02 ; C4_GLB_diff_THRES <- 55 },
-                 { C4_cs_ref_ratio <-   NA ; C4_GLB_diff_THRES <- NA })
+       Low_B.Exact_W   = { C4_cs_ref_ratio <- 1.04 ; C4_GLB_diff_THRES <- 20 },
+       Exact_B.Exact_W = { C4_cs_ref_ratio <- 1.02 ; C4_GLB_diff_THRES <- 55 },
+       Low_B.High_W    = { C4_cs_ref_ratio <- 1.05 ; C4_GLB_diff_THRES <-  0 },
+                         { C4_cs_ref_ratio <- 1    ; C4_GLB_diff_THRES <-  0 })
 
 DATA[, Enhanc_C_4 := FALSE]
 
@@ -396,7 +403,7 @@ pander(table(DATA$Enhanc_C_4),
        caption = "Enhanc_C_4")
 
 
-
+stop()
 
 
 ##  Test for low elevation angles  ---------------------------------------------
