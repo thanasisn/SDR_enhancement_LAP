@@ -137,14 +137,8 @@ DATA$TYPE |> unique()
 grep("Exact_B", names(DATA), value = T)
 
 
-# csmodel <- "Exact_B.Exact_W"
-# csmodel <- "High_B.Exact_W"
-# csmodel <- "Low_2_B.Exact_W"
-# csmodel <- "Low_B.Exact_W"
-csmodel <- "Low_B.High_W"
 
 
-cat("\n USING CSMODE:", csmodel, "\n\n")
 
 ##  Get Kurudz Solar constant  -------------------------------------------------
 
@@ -185,6 +179,7 @@ DATA[, TSI_Kurudz_factor := tsi_1au_comb / Kurudz_SC ]
 # SelEnhanc <- "Enhanc_C_3"
 
 SelEnhanc <- "Enhanc_C_4"
+
 
 
 ## Mark used criteria for diff rati ench
@@ -277,10 +272,15 @@ if (SelEnhanc == "Enhanc_C_3") {
 ## __ 4. my  Criteria  ---------------------------------------------------------
 
 ## set values based on model used
+csmodel <- "Low_2_B.Low_2_W"
+
+cat("\n USING CSMODE:", csmodel, "\n\n")
+
 switch(csmodel,
        Low_B.Exact_W   = { C4_cs_ref_ratio <- 1.04 ; C4_GLB_diff_THRES <- 20 },
        Exact_B.Exact_W = { C4_cs_ref_ratio <- 1.02 ; C4_GLB_diff_THRES <- 55 },
        Low_B.High_W    = { C4_cs_ref_ratio <- 1.05 ; C4_GLB_diff_THRES <- 20 },
+       Low_2_B.Low_2_W = { C4_cs_ref_ratio <- 1.04 ; C4_GLB_diff_THRES <-  0 },
                          { C4_cs_ref_ratio <- 1    ; C4_GLB_diff_THRES <-  0 })
 
 DATA[, Enhanc_C_4 := FALSE]
@@ -403,7 +403,7 @@ pander(table(DATA$Enhanc_C_4),
        caption = "Enhanc_C_4")
 
 
-
+# stop()
 
 ##  Test for low elevation angles  ---------------------------------------------
 
@@ -647,7 +647,7 @@ for (ii in 1:nrow(vec_days)) {
 }
 #+ echo=F, include=T
 
-# stop()
+stop()
 
 ##  Yearly plots  --------------------------------------------------------------
 
