@@ -280,7 +280,7 @@ if (SelEnhanc == "Enhanc_C_3") {
 switch(csmodel,
        Low_B.Exact_W   = { C4_cs_ref_ratio <- 1.04 ; C4_GLB_diff_THRES <- 20 },
        Exact_B.Exact_W = { C4_cs_ref_ratio <- 1.02 ; C4_GLB_diff_THRES <- 55 },
-       Low_B.High_W    = { C4_cs_ref_ratio <- 1.05 ; C4_GLB_diff_THRES <-  0 },
+       Low_B.High_W    = { C4_cs_ref_ratio <- 1.05 ; C4_GLB_diff_THRES <- 20 },
                          { C4_cs_ref_ratio <- 1    ; C4_GLB_diff_THRES <-  0 })
 
 DATA[, Enhanc_C_4 := FALSE]
@@ -403,7 +403,6 @@ pander(table(DATA$Enhanc_C_4),
        caption = "Enhanc_C_4")
 
 
-stop()
 
 
 ##  Test for low elevation angles  ---------------------------------------------
@@ -648,7 +647,7 @@ for (ii in 1:nrow(vec_days)) {
 }
 #+ echo=F, include=T
 
-
+# stop()
 
 ##  Yearly plots  --------------------------------------------------------------
 
