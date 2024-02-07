@@ -262,17 +262,17 @@ if (SelEnhanc == "Enhanc_C_3") {
 }
 
 
-#'
-#' ## 4. Use libratran **`r csmodel`** as reference for Clear sky.
-#'
-#+ echo=TRUE, include=TRUE
-
-
 
 ## __ 4. my  Criteria  ---------------------------------------------------------
 
-## set values based on model used
+## set values base
 csmodel <- "Low_2_B.Low_2_W"
+
+#'
+#' ## 4. Use libradtran **`r csmodel`** as reference for Clear sky.
+#'
+#+ echo=TRUE, include=TRUE
+
 
 cat("\n USING CSMODE:", csmodel, "\n\n")
 
@@ -280,7 +280,7 @@ switch(csmodel,
        Low_B.Exact_W   = { C4_cs_ref_ratio <- 1.04 ; C4_GLB_diff_THRES <- 20 },
        Exact_B.Exact_W = { C4_cs_ref_ratio <- 1.02 ; C4_GLB_diff_THRES <- 55 },
        Low_B.High_W    = { C4_cs_ref_ratio <- 1.05 ; C4_GLB_diff_THRES <- 20 },
-       Low_2_B.Low_2_W = { C4_cs_ref_ratio <- 1.04 ; C4_GLB_diff_THRES <-  0 },
+       Low_2_B.Low_2_W = { C4_cs_ref_ratio <- 1.03 ; C4_GLB_diff_THRES <-  5 },
                          { C4_cs_ref_ratio <- 1    ; C4_GLB_diff_THRES <-  0 })
 
 DATA[, Enhanc_C_4 := FALSE]
@@ -647,7 +647,7 @@ for (ii in 1:nrow(vec_days)) {
 }
 #+ echo=F, include=T
 
-stop()
+# stop()
 
 ##  Yearly plots  --------------------------------------------------------------
 
