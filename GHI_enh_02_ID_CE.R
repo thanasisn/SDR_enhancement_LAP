@@ -114,7 +114,7 @@ if (
 
 ## __ Execution control  -------------------------------------------------------
 TEST <- FALSE
-# TEST <- TRUE
+TEST <- TRUE
 
 if (TEST) {
     warning("\n\n ** Test is active!! ** \n\n")
@@ -266,7 +266,7 @@ if (SelEnhanc == "Enhanc_C_3") {
 ## __ 4. my  Criteria  ---------------------------------------------------------
 
 ## set values base
-csmodel <- "Low_2_B.Low_2_W"
+csmodel <- "Low_B.Low_W"
 
 #'
 #' ## 4. Use libradtran **`r csmodel`** as reference for Clear sky.
@@ -277,10 +277,11 @@ csmodel <- "Low_2_B.Low_2_W"
 cat("\n USING CSMODE:", csmodel, "\n\n")
 
 switch(csmodel,
-       Low_B.Exact_W   = { C4_cs_ref_ratio <- 1.04 ; C4_GLB_diff_THRES <- 20 },
        Exact_B.Exact_W = { C4_cs_ref_ratio <- 1.02 ; C4_GLB_diff_THRES <- 55 },
-       Low_B.High_W    = { C4_cs_ref_ratio <- 1.05 ; C4_GLB_diff_THRES <- 20 },
        Low_2_B.Low_2_W = { C4_cs_ref_ratio <- 1.03 ; C4_GLB_diff_THRES <-  5 },
+       Low_B.Exact_W   = { C4_cs_ref_ratio <- 1.04 ; C4_GLB_diff_THRES <- 20 },
+       Low_B.High_W    = { C4_cs_ref_ratio <- 1.05 ; C4_GLB_diff_THRES <- 20 },
+       Low_B.Low_W     = { C4_cs_ref_ratio <- 1.07 ; C4_GLB_diff_THRES <-  0 },
                          { C4_cs_ref_ratio <- 1    ; C4_GLB_diff_THRES <-  0 })
 
 DATA[, Enhanc_C_4 := FALSE]
