@@ -547,14 +547,17 @@ for (ii in 1:nrow(vec_days)) {
         ## Active model reference
         lines(temp[, get(paste0(SelEnhanc,"_ref")), Date], col = "red" )
 
-        names(temp)
 
-        temp[, get(paste0(csmodel, ".glo"))]
-
-        ## CS libratran reference
+        ## CS libradtran reference
         lines(temp[, get(paste0(csmodel, ".glo")), Date], col = "magenta" )
-        ## CS libratran reference
+        ## CS libradtran reference
         # lines(temp[, CS_low * TSI_Kurudz_factor , Date], col = "pink" )
+
+
+        ## add sza axis
+        aaa <- temp[Date %in% c(min(Date), (pretty(Date, 10) + 30), max(Date))  , ]
+        axis(1, at = aaa$Date, labels = round(aaa$SZA,1),
+             line = 1.2, lwd = 0, lwd.ticks = 0, cex.axis = 0.8)
 
 
         ## Enchantment cases
@@ -644,6 +647,8 @@ for (ii in 1:nrow(vec_days)) {
         # plot(temp$Date, temp$GLB_ench)
         # plot(temp$Date, temp$GLB_diff)
         cat(' \n \n')
+
+
     }
 }
 #+ echo=F, include=T
