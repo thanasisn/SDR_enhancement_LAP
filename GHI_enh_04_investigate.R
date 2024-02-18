@@ -414,6 +414,13 @@ plot(ST_E_sza[, get(avar), SZA],
 
 
 
+##TODO check groups for low sun characteristics
+
+
+
+
+
+
 #' **END**
 #+ include=T, echo=F
 tac <- Sys.time()
