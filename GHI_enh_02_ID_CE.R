@@ -728,9 +728,10 @@ if (TEST == FALSE) {
 
 ##  Group continuous values  ---------------------------------------------------
 
+
 ## Init groups logical
-DATA[, C1G1 := Enhanc_C_1]
-DATA[, C1G0 := Enhanc_C_1]
+DATA[, C1G1 := get(SelEnhanc)]
+DATA[, C1G0 := get(SelEnhanc)]
 
 ## __ No gap group  ------------------------------------------------------------
 DATA[, C1Grp0 := rleid(c(NA,diff(cumsum(C1G0))))]
