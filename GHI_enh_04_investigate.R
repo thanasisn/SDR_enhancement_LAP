@@ -417,8 +417,29 @@ plot(ST_E_sza[, get(avar), SZA],
 ##TODO check groups for low sun characteristics
 
 
-ST_G0
+gr_N_min   <- 0
+gr_SZA_min <- 0
 
+test <- ST_G0[ GLB_ench.N > gr_N_min & SZA.min > gr_SZA_min]
+
+
+plot( ST_G0[ GLB_ench.N > gr_N_min & SZA.min > gr_SZA_min, GLB_diff.sum/GLB_ench.N, SZA.mean ])
+
+plot( ST_G0[ GLB_ench.N > gr_N_min & SZA.min > gr_SZA_min, GLB_diff.sum/GLB_ench.N, SZA.max ])
+
+plot( ST_G0[ GLB_ench.N > gr_N_min & SZA.min > gr_SZA_min, GLB_ench.max, SZA.mean ])
+
+
+plot( ST_G0[ GLB_ench.N > gr_N_min & SZA.min > gr_SZA_min, GLB_ench.mean, SZA.mean ])
+plot( ST_G0[ GLB_ench.N > gr_N_min & SZA.min > gr_SZA_min, GLB_diff.mean, SZA.mean ])
+plot( ST_G0[ GLB_ench.N > gr_N_min & SZA.min > gr_SZA_min, GLB_diff.max,  SZA.max ])
+
+ST_G0[as.Date(Date) == "2004-05-25"]
+ST_G0[,as.Date(Date)]
+
+ST_G1[as.Date(Date) == "2004-05-25"]
+
+DATA[as.Date(Date) == "2004-05-25"]
 
 
 #' **END**

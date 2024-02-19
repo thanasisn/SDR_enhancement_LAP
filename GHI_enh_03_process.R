@@ -190,8 +190,6 @@ data.summary <- function(x, na.rm = FALSE)
         SD     = sd    (x,   na.rm = na.rm),
         max    = max   (x,   na.rm = na.rm),
         min    = min   (x,   na.rm = na.rm),
-        maxSZA = max   (SZA, na.rm = na.rm),           ## for groups
-        minSZA = min   (SZA, na.rm = na.rm),           ## for groups
         median = median(x, na.rm = na.rm),
         sum    = sum   (x, na.rm = na.rm),
         sumPOS = sum(x[which(x > 0)], na.rm = na.rm),  ## not meaningful for a subset
@@ -265,11 +263,15 @@ ST_E_daily_seas[, yts := DOY ] ## just for convenient of programming
 
 
 ##  Groups with zero gaps  -----------------------------------------------------
+## Stats for variables
+my.cols.gr <- c(my.cols,
+                "SZA")
+
 ST_G0 <- DATA[!is.na(C1Grp0),
               unlist(c(lapply(.SD, enhanc.summary, na.rm = FALSE),
                        Date = min(Date)),
                      recursive = FALSE),
-              .SDcols = my.cols,
+              .SDcols = my.cols.gr,
               by = .(Group0 = C1Grp0)]
 ST_G0$Date <- as.POSIXct(ST_G0$Date, origin = "1970-01-01")
 
@@ -279,7 +281,7 @@ ST_G1 <- DATA[!is.na(C1Grp1),
               unlist(c(lapply(.SD, enhanc.summary, na.rm = FALSE),
                        Date = min(Date)),
                      recursive = FALSE),
-              .SDcols = my.cols,
+              .SDcols = my.cols.gr,
               by = .(Group1 = C1Grp1)]
 ST_G1$Date <- as.POSIXct(ST_G1$Date, origin = "1970-01-01")
 
