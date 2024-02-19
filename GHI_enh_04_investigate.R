@@ -439,7 +439,15 @@ ST_G0[,as.Date(Date)]
 
 ST_G1[as.Date(Date) == "2004-05-25"]
 
-DATA[as.Date(Date) == "2004-05-25"]
+test <- DATA[as.Date(Date) == "2004-05-25"& GLB_diff>0]
+
+plot(DATA[as.Date(Date) == "2004-05-25", GLB_diff, Date])
+
+
+## group fix
+test <- DATA[as.Date(Date) == "2004-05-25"]
+
+
 
 
 #' **END**
