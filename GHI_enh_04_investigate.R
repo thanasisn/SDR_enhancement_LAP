@@ -417,7 +417,7 @@ plot(ST_E_sza[, get(avar), SZA],
 ##TODO check groups for low sun characteristics
 
 
-
+ST_G0
 
 
 
