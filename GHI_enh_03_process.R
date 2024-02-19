@@ -131,10 +131,7 @@ alpha <- 0.9653023236718680788471
 
 
 ## __ Enhancement criteria  ------------------------------------------------
-SelEnhanc <- "Enhanc_C_1"
-# SelEnhanc <- "Enhanc_C_2"
-# SelEnhanc <- "Enhanc_C_3"
-
+SelEnhanc <- unique(DATA[, CEC])[1]
 
 
 ##;  #
@@ -179,25 +176,22 @@ SelEnhanc <- "Enhanc_C_1"
 ##;  #' \end{equation}
 ##;  #'
 
+
+
+
 ##  Enhancement cases statistics  ----------------------------------------------
-
-
-
-
-##  Stats on enhancement cases  ------------------------------------------------
-# DATA_Enh <- DATA[get(SelEnhanc) == TRUE ]
-
-
 
 ## _ Stats functions  ----------------------------------------------------------
 
 ## stats for all data
 data.summary <- function(x, na.rm = FALSE)
     list(
-        mean   = mean  (x, na.rm = na.rm),
-        SD     = sd    (x, na.rm = na.rm),
-        max    = max   (x, na.rm = na.rm),
-        min    = min   (x, na.rm = na.rm),
+        mean   = mean  (x,   na.rm = na.rm),
+        SD     = sd    (x,   na.rm = na.rm),
+        max    = max   (x,   na.rm = na.rm),
+        min    = min   (x,   na.rm = na.rm),
+        maxSZA = max   (SZA, na.rm = na.rm),           ## for groups
+        minSZA = min   (SZA, na.rm = na.rm),           ## for groups
         median = median(x, na.rm = na.rm),
         sum    = sum   (x, na.rm = na.rm),
         sumPOS = sum(x[which(x > 0)], na.rm = na.rm),  ## not meaningful for a subset
