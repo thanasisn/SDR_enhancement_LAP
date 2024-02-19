@@ -417,15 +417,33 @@ plot(ST_E_sza[, get(avar), SZA],
 ##TODO check groups for low sun characteristics
 
 
-gr_N_min   <- 0
-gr_SZA_min <- 0
+gr_N_min   <- 8
+gr_SZA_min <- 60
 
 test <- ST_G0[ GLB_ench.N > gr_N_min & SZA.min > gr_SZA_min]
 
 
 plot( ST_G0[ GLB_ench.N > gr_N_min & SZA.min > gr_SZA_min, GLB_diff.sum/GLB_ench.N, SZA.mean ])
 
+plot( ST_G0[ GLB_ench.N > gr_N_min & SZA.min > gr_SZA_min, GLB_diff.mean, SZA.mean ])
+
+plot( ST_G0[ GLB_ench.N > gr_N_min & SZA.min > gr_SZA_min, GLB_diff.median, SZA.mean ])
+
+
 plot( ST_G0[ GLB_ench.N > gr_N_min & SZA.min > gr_SZA_min, GLB_diff.sum/GLB_ench.N, SZA.max ])
+
+plot( ST_G0[ GLB_ench.N > gr_N_min & SZA.min > gr_SZA_min, GLB_diff.sum/GLB_ench.N, SZA.min ])
+
+plot( ST_G0[ GLB_ench.N > gr_N_min & SZA.min > gr_SZA_min, GLB_diff.sum/GLB_ench.N, SZA.mean])
+
+plot( ST_G0[ GLB_ench.N > gr_N_min & SZA.min > gr_SZA_min
+             & SZA.min > 72 & GLB_diff.sum/GLB_ench.N < 10 , GLB_diff.sum/GLB_ench.N, SZA.mean])
+
+ST_G0[ GLB_ench.N > gr_N_min & SZA.min > gr_SZA_min
+& SZA.min > 72 & GLB_diff.sum/GLB_ench.N < 10  ]
+
+
+hist( ST_G0[ GLB_ench.N > gr_N_min & SZA.min > gr_SZA_min, GLB_diff.sum/GLB_ench.N])
 
 plot( ST_G0[ GLB_ench.N > gr_N_min & SZA.min > gr_SZA_min, GLB_ench.max, SZA.mean ])
 
@@ -434,18 +452,21 @@ plot( ST_G0[ GLB_ench.N > gr_N_min & SZA.min > gr_SZA_min, GLB_ench.mean, SZA.me
 plot( ST_G0[ GLB_ench.N > gr_N_min & SZA.min > gr_SZA_min, GLB_diff.mean, SZA.mean ])
 plot( ST_G0[ GLB_ench.N > gr_N_min & SZA.min > gr_SZA_min, GLB_diff.max,  SZA.max ])
 
+
 ST_G0[as.Date(Date) == "2004-05-25"]
-ST_G0[,as.Date(Date)]
 
-ST_G1[as.Date(Date) == "2004-05-25"]
+ST_G0[as.Date(Date) == "2003-09-05"]
+ST_G0[as.Date(Date) == "2003-09-05", GLB_diff.sum/GLB_ench.N]
 
-test <- DATA[as.Date(Date) == "2004-05-25"& GLB_diff>0]
 
-plot(DATA[as.Date(Date) == "2004-05-25", GLB_diff, Date])
+
+# test <- DATA[as.Date(Date) == "2004-05-25"& GLB_diff>0]
+#
+# plot(DATA[as.Date(Date) == "2004-05-25", GLB_diff, Date])
 
 
 ## group fix
-test <- DATA[as.Date(Date) == "2004-05-25"]
+# test <- DATA[as.Date(Date) == "2004-05-25"]
 
 
 
