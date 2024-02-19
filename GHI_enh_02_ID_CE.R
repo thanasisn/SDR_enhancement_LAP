@@ -114,7 +114,7 @@ if (
 
 ## __ Execution control  -------------------------------------------------------
 TEST <- FALSE
-TEST <- TRUE
+# TEST <- TRUE
 
 if (TEST) {
     warning("\n\n ** Test is active!! ** \n\n")
@@ -270,18 +270,23 @@ csmodel <- "Low_B.Low_W"
 
 cat("\n USING CSMODE:", csmodel, "\n\n")
 
-C4_lowcut_sza   <-   72
-C4_lowcut_ratio <- 1.10
 
 switch(csmodel,
-       Exact_B.Exact_W = { C4_cs_ref_ratio <- 1.02; C4_GLB_diff_THRES <- 55; C4_lowcut_sza <- 72; C4_lowcut_ratio <- 1.10},
-       Low_2_B.Low_2_W = { C4_cs_ref_ratio <- 1.03; C4_GLB_diff_THRES <-  5; C4_lowcut_sza <- 72; C4_lowcut_ratio <- 1.10},
-       Low_B.Exact_W   = { C4_cs_ref_ratio <- 1.04; C4_GLB_diff_THRES <- 20; C4_lowcut_sza <- 72; C4_lowcut_ratio <- 1.10},
-       Low_B.High_W    = { C4_cs_ref_ratio <- 1.05; C4_GLB_diff_THRES <- 20; C4_lowcut_sza <- 72; C4_lowcut_ratio <- 1.10},
-       Low_B.Low_W     = { C4_cs_ref_ratio <- 1.05; C4_GLB_diff_THRES <-  0; C4_lowcut_sza <- 72; C4_lowcut_ratio <- 1.10},
-                         { C4_cs_ref_ratio <- 1   ; C4_GLB_diff_THRES <-  0; C4_lowcut_sza <- 72; C4_lowcut_ratio <- 1.10})
+       Exact_B.Exact_W = { C4_cs_ref_ratio <- 1.02; C4_GLB_diff_THRES <- 55; C4_lowcut_sza <- 60; C4_lowcut_ratio <- 1.12},
+       Low_2_B.Low_2_W = { C4_cs_ref_ratio <- 1.03; C4_GLB_diff_THRES <-  5; C4_lowcut_sza <- 60; C4_lowcut_ratio <- 1.12},
+       Low_B.Exact_W   = { C4_cs_ref_ratio <- 1.04; C4_GLB_diff_THRES <- 20; C4_lowcut_sza <- 60; C4_lowcut_ratio <- 1.12},
+       Low_B.High_W    = { C4_cs_ref_ratio <- 1.05; C4_GLB_diff_THRES <- 20; C4_lowcut_sza <- 60; C4_lowcut_ratio <- 1.12},
+       Low_B.Low_W     = { C4_cs_ref_ratio <- 1.05; C4_GLB_diff_THRES <-  0; C4_lowcut_sza <- 60; C4_lowcut_ratio <- 1.20},
+                         { C4_cs_ref_ratio <- 1   ; C4_GLB_diff_THRES <-  0; C4_lowcut_sza <-  0; C4_lowcut_ratio <- 1   })
 
 DATA[, Enhanc_C_4 := FALSE]
+
+DATA[, max(SZA)]
+
+smo <- approxfun(x = c(DATA[, max(SZA)], C4_lowcut_sza),
+                 y = c(C4_lowcut_ratio, C4_cs_ref_ratio))
+
+smo(80:70) * (1/cosd(80:70) / max(1/cosd(80:70)))
 
 
 cat("C4 factor:", C4_cs_ref_ratio,   "\n")
@@ -311,7 +316,8 @@ abline(v = C4_cs_ref_ratio, col = "red" )
 ## for most of the data
 DATA[SZA < C4_lowcut_sza, Enhanc_C_4_ref := (get(paste0(csmodel,".glo")) * C4_cs_ref_ratio) + C4_GLB_diff_THRES ]
 ## fol low sun angles
-DATA[SZA > C4_lowcut_sza, Enhanc_C_4_ref := (get(paste0(csmodel,".glo")) * C4_lowcut_ratio) ]
+# DATA[SZA > C4_lowcut_sza, Enhanc_C_4_ref := (get(paste0(csmodel,".glo")) * C4_lowcut_ratio) ]
+DATA[SZA > C4_lowcut_sza, Enhanc_C_4_ref := (get(paste0(csmodel,".glo")) * smo(SZA)) ]
 
 DATA[wattGLB > Enhanc_C_4_ref ,
      Enhanc_C_4 := TRUE]
@@ -805,7 +811,7 @@ save(file = paste0("./data/", basename(sub("\\.R", ".Rda", Script.Name))),
 tac <- Sys.time()
 cat(sprintf("%s %s@%s %s %f mins\n\n", Sys.time(), Sys.info()["login"],
             Sys.info()["nodename"], basename(Script.Name), difftime(tac,tic,units = "mins")))
-if (interactive() & difftime(tac,tic,units = "sec") > 30) {
+if (difftime(tac,tic,units = "sec") > 30) {
     system("mplayer /usr/share/sounds/freedesktop/stereo/dialog-warning.oga", ignore.stdout = T, ignore.stderr = T)
     system(paste("notify-send -u normal -t 30000 ", Script.Name, " 'R script ended'"))
 }
