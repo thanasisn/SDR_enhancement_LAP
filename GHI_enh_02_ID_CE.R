@@ -114,7 +114,7 @@ if (
 
 ## __ Execution control  -------------------------------------------------------
 TEST <- FALSE
-# TEST <- TRUE
+TEST <- TRUE
 
 if (TEST) {
     warning("\n\n ** Test is active!! ** \n\n")
@@ -160,12 +160,6 @@ DATA[, TSI_Kurudz_factor := tsi_1au_comb / Kurudz_SC ]
 # write.csv(export, "exportCS.csv")
 
 
-# TODO -------------------------------------------------------------------------
-# k clustering Vamvakas2020
-# R-R analysis
-# Seasonal occurrence
-# Tapakis2014 plots and stats
-# Different criteria
 
 
 #'
@@ -276,13 +270,16 @@ csmodel <- "Low_B.Low_W"
 
 cat("\n USING CSMODE:", csmodel, "\n\n")
 
+C4_lowcut_sza   <-   72
+C4_lowcut_ratio <- 1.10
+
 switch(csmodel,
-       Exact_B.Exact_W = { C4_cs_ref_ratio <- 1.02 ; C4_GLB_diff_THRES <- 55 },
-       Low_2_B.Low_2_W = { C4_cs_ref_ratio <- 1.03 ; C4_GLB_diff_THRES <-  5 },
-       Low_B.Exact_W   = { C4_cs_ref_ratio <- 1.04 ; C4_GLB_diff_THRES <- 20 },
-       Low_B.High_W    = { C4_cs_ref_ratio <- 1.05 ; C4_GLB_diff_THRES <- 20 },
-       Low_B.Low_W     = { C4_cs_ref_ratio <- 1.05 ; C4_GLB_diff_THRES <-  0 },
-                         { C4_cs_ref_ratio <- 1    ; C4_GLB_diff_THRES <-  0 })
+       Exact_B.Exact_W = { C4_cs_ref_ratio <- 1.02; C4_GLB_diff_THRES <- 55; C4_lowcut_sza <- 72; C4_lowcut_ratio <- 1.10},
+       Low_2_B.Low_2_W = { C4_cs_ref_ratio <- 1.03; C4_GLB_diff_THRES <-  5; C4_lowcut_sza <- 72; C4_lowcut_ratio <- 1.10},
+       Low_B.Exact_W   = { C4_cs_ref_ratio <- 1.04; C4_GLB_diff_THRES <- 20; C4_lowcut_sza <- 72; C4_lowcut_ratio <- 1.10},
+       Low_B.High_W    = { C4_cs_ref_ratio <- 1.05; C4_GLB_diff_THRES <- 20; C4_lowcut_sza <- 72; C4_lowcut_ratio <- 1.10},
+       Low_B.Low_W     = { C4_cs_ref_ratio <- 1.05; C4_GLB_diff_THRES <-  0; C4_lowcut_sza <- 72; C4_lowcut_ratio <- 1.10},
+                         { C4_cs_ref_ratio <- 1   ; C4_GLB_diff_THRES <-  0; C4_lowcut_sza <- 72; C4_lowcut_ratio <- 1.10})
 
 DATA[, Enhanc_C_4 := FALSE]
 
@@ -311,7 +308,11 @@ abline(v = C4_cs_ref_ratio, col = "red" )
 
 
 ## ____ Calculate reference and mark data  -------------------------------------
-DATA[, Enhanc_C_4_ref := (get(paste0(csmodel,".glo")) * C4_cs_ref_ratio) + C4_GLB_diff_THRES ]
+## for most of the data
+DATA[SZA < C4_lowcut_sza, Enhanc_C_4_ref := (get(paste0(csmodel,".glo")) * C4_cs_ref_ratio) + C4_GLB_diff_THRES ]
+## fol low sun angles
+DATA[SZA > C4_lowcut_sza, Enhanc_C_4_ref := (get(paste0(csmodel,".glo")) * C4_lowcut_ratio) ]
+
 DATA[wattGLB > Enhanc_C_4_ref ,
      Enhanc_C_4 := TRUE]
 ## use threshold to compute values
