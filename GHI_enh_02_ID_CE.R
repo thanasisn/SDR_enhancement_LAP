@@ -114,7 +114,7 @@ if (
 
 ## __ Execution control  -------------------------------------------------------
 TEST <- FALSE
-# TEST <- TRUE
+TEST <- TRUE
 
 if (TEST) {
     warning("\n\n ** Test is active!! ** \n\n")
@@ -502,6 +502,7 @@ all_days <- all_days[sample(1:nrow(all_days), 30)]
 testdays <- data.table(Day =
                            c("2013-05-27",
                              "2000-07-14",
+                             "2016-08-29",
                              "2007-07-06"))
 
 
