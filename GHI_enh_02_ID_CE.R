@@ -266,25 +266,24 @@ csmodel <- "Low_B.Low_W"
 #' ## 4. Use libradtran **`r csmodel`** as reference for Clear sky.
 #'
 #+ echo=TRUE, include=TRUE
-
-
 cat("\n USING CSMODE:", csmodel, "\n\n")
-
 
 switch(csmodel,
        Exact_B.Exact_W = { C4_cs_ref_ratio <- 1.02; C4_GLB_diff_THRES <- 55; C4_lowcut_sza <- 60; C4_lowcut_ratio <- 1.12},
        Low_2_B.Low_2_W = { C4_cs_ref_ratio <- 1.03; C4_GLB_diff_THRES <-  5; C4_lowcut_sza <- 60; C4_lowcut_ratio <- 1.12},
        Low_B.Exact_W   = { C4_cs_ref_ratio <- 1.04; C4_GLB_diff_THRES <- 20; C4_lowcut_sza <- 60; C4_lowcut_ratio <- 1.12},
        Low_B.High_W    = { C4_cs_ref_ratio <- 1.05; C4_GLB_diff_THRES <- 20; C4_lowcut_sza <- 60; C4_lowcut_ratio <- 1.12},
-       Low_B.Low_W     = { C4_cs_ref_ratio <- 1.05; C4_GLB_diff_THRES <-  0; C4_lowcut_sza <- 60; C4_lowcut_ratio <- 1.15},
+       Low_B.Low_W     = { C4_cs_ref_ratio <- 1.05; C4_GLB_diff_THRES <-  0; C4_lowcut_sza <- 60; C4_lowcut_ratio <- 1.10},
                          { C4_cs_ref_ratio <- 1   ; C4_GLB_diff_THRES <-  0; C4_lowcut_sza <-  0; C4_lowcut_ratio <- 1   })
-
+## init flag
 DATA[, Enhanc_C_4 := FALSE]
 
-DATA[, max(SZA)]
+# DATA[, max(SZA)]
 
-smo <- approxfun(x = c(DATA[, max(SZA)], C4_lowcut_sza),
-                 y = c(C4_lowcut_ratio, C4_cs_ref_ratio))
+smo <- approxfun(
+    x = c(DATA[, max(SZA)], C4_lowcut_sza  ),
+    y = c(C4_lowcut_ratio,  C4_cs_ref_ratio)
+    )
 
 smo(80:70) * (1/cosd(80:70) / max(1/cosd(80:70)))
 
@@ -499,11 +498,12 @@ all_days <- all_days[!Day %in% sunnyenh$Day & !Day %in% maxenhd$Day & !Day %in% 
 all_days <- all_days[sample(1:nrow(all_days), 30)]
 
 ## manual selection
-testdays <- data.table(Day =
-                           c("2013-05-27",
-                             "2000-07-14",
-                             "2016-08-29",
-                             "2007-07-06"))
+testdays <- data.table(Day = c(
+    "2000-07-14",
+    "2007-07-06",
+    "2013-05-27",
+    "2016-08-29"
+))
 
 
 ## __  Days with strong enhancement cases  -------------------------------------
@@ -580,7 +580,8 @@ for (ii in 1:nrow(vec_days)) {
                col = c("green","blue",          "red",                  "black",                  "red",              "magenta",    "blue"),
                pch = c(     NA,    NA,             NA,                       NA,                     1 ,                     NA,         3),
                lty = c(      1,     1,              1,                        1,                    NA ,                      1,        NA),
-               bty = "n"
+               bty = "n",
+               cex = 0.8
         )
 
 
