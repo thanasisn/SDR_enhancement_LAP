@@ -273,7 +273,7 @@ switch(csmodel,
        Low_2_B.Low_2_W = { C4_cs_ref_ratio <- 1.03; C4_GLB_diff_THRES <-  5; C4_lowcut_sza <- 60; C4_lowcut_ratio <- 1.12},
        Low_B.Exact_W   = { C4_cs_ref_ratio <- 1.04; C4_GLB_diff_THRES <- 20; C4_lowcut_sza <- 60; C4_lowcut_ratio <- 1.12},
        Low_B.High_W    = { C4_cs_ref_ratio <- 1.05; C4_GLB_diff_THRES <- 20; C4_lowcut_sza <- 60; C4_lowcut_ratio <- 1.12},
-       Low_B.Low_W     = { C4_cs_ref_ratio <- 1.05; C4_GLB_diff_THRES <-  0; C4_lowcut_sza <- 60; C4_lowcut_ratio <- 1.15},
+       Low_B.Low_W     = { C4_cs_ref_ratio <- 1.05; C4_GLB_diff_THRES <-  0; C4_lowcut_sza <- 60; C4_lowcut_ratio <- 1.18},
                          { C4_cs_ref_ratio <- 1   ; C4_GLB_diff_THRES <-  0; C4_lowcut_sza <-  0; C4_lowcut_ratio <- 1   })
 ## init flag
 DATA[, Enhanc_C_4 := FALSE]
