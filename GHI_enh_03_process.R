@@ -779,6 +779,11 @@ objects <- c(
 )
 
 
+
+cat(objects, sep = "\n")
+
+
+
 save(file = paste0("./data/", basename(sub("\\.R", ".Rda", Script.Name))),
      list = objects,
      compress = "xz")

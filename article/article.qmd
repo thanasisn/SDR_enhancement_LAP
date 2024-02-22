@@ -3,7 +3,7 @@ title:    SDR enhancement by clouds
 subtitle: A Short Subtitle
 author:
     
-  - name:  Athanasios Natsis
+  - name:  Athanasios N. Natsis
     email: natsisphysicist@gmail.com
     affiliations: 
         - id:          auth
@@ -70,15 +70,11 @@ library(data.table)
 library(kableExtra)
 library(dplyr)
 ## load data from trends analysis
-source("../GHI_enh_00_variables.R")
-# load(common_data)
-# load("./data/Input_1_longterm_trends.Rda")
-## TSI data span info
-TSIinfo <- data.table(read.csv("../figures/tbl_tsi_info.dat",
+source("~/MANUSCRIPTS/02_enhancement/GHI_enh_00_variables.R")
+TSIinfo <- data.table(read.csv("~/MANUSCRIPTS/02_enhancement/figures/tbl_tsi_info.dat",
                     strip.white = TRUE,
                     sep = ";",
                     header = TRUE))
-
 # ## create local citations file and links here
 # source("~/CODE/FUNCTIONS/R/gather_citations.R")
 # suppressMessages(
@@ -90,12 +86,21 @@ TSIinfo <- data.table(read.csv("../figures/tbl_tsi_info.dat",
 #         workingdir   = "./"
 #     )
 # )
-
 ```
+
+CE: cloud enhancement cases one minute
+
+CEG: continuous group of cloud enhancement cases
 
 # Intro
 
 # Data and methodology
+
+The recording of the signal is the one minute average.
+Thus we will refer to this time scale as a cloud enhancement event (CE).
+Due to the instruments response time.
+
+
 
 ## Data quality control
 
@@ -120,8 +125,16 @@ $$
 $$
 
 $$
-\text{GHI} > `r C` \text{ETH}
+\text{GHI} > 999 \text{ETH}
 $$
+
+$$
+f(x)=\begin{cases}
+1, & \text{if $x<0$}.\\
+0, & \text{otherwise}.
+\end{cases}
+$$
+
 
 -   some other were tested
 
