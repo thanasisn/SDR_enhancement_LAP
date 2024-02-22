@@ -313,6 +313,8 @@ write.csv(x = dailytrendsY,
 
 
 
+
+
 hist(ST_G0$GLB_ench.N,
      breaks = 50,
      xlab = "Minutes of enhacement",
@@ -335,6 +337,28 @@ plot(ST_E_daily[, sum(GLB_ench.N), by = yday(Date)],
      ylab = "Enhancement cases",
      xlab = "DOY",
      main = "Enhancement cases Climatology")
+
+
+
+
+
+
+
+## Trends on groups ---------
+
+# ST_G0
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
