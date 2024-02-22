@@ -281,7 +281,7 @@ DATA[, Enhanc_C_4 := FALSE]
 # DATA[, max(SZA)]
 
 smo <- approxfun(
-    x = c(DATA[, max(SZA)], C4_lowcut_sza  ),
+    x = c(90 - BIO_ELEVA, C4_lowcut_sza  ),
     y = c(C4_lowcut_ratio,  C4_cs_ref_ratio)
     )
 
