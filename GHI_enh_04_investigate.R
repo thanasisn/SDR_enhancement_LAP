@@ -61,8 +61,8 @@ Sys.setenv(TZ = "UTC")
 Script.Name <- "./GHI_enh_04_investigate.R"
 
 if (!interactive()) {
-    pdf( file = paste0("./runtime/",  basename(sub("\\.R$",".pdf", Script.Name))))
-    sink(file = paste0("./runtime/",  basename(sub("\\.R$",".out", Script.Name))), split = TRUE)
+    pdf( file = paste0("./runtime/",  basename(sub("\\.R$", ".pdf", Script.Name))))
+    sink(file = paste0("./runtime/",  basename(sub("\\.R$", ".out", Script.Name))), split = TRUE)
 }
 
 
