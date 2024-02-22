@@ -212,7 +212,7 @@
 \urlstyle{same} % disable monospaced font for URLs
 \hypersetup{
   pdftitle={SDR enhancement by clouds},
-  pdfauthor={Athanasios Natsis; Alkiviadis Bais; Charikleia Meleti},
+  pdfauthor={Athanasios N. Natsis; Alkiviadis Bais; Charikleia Meleti},
   pdfkeywords={keyword1, keyword2},
   colorlinks=true,
   linkcolor={blue},
@@ -225,8 +225,8 @@
 \begin{document}
 
 \begin{frontmatter}
-\title{SDR enhancement by clouds \\\large{An analysis} }
-\author[1]{Athanasios Natsis%
+\title{SDR enhancement by clouds \\\large{A Short Subtitle} }
+\author[1]{Athanasios N. Natsis%
 \corref{cor1}%
 \fnref{fn1}}
  \ead{natsisphysicist@gmail.com} 
@@ -267,13 +267,21 @@ rutrum at. Sed at tempus elit.
     keyword2
 \end{keyword}
 \end{frontmatter}
-    \ifdefined\Shaded\renewenvironment{Shaded}{\begin{tcolorbox}[boxrule=0pt, enhanced, sharp corners, interior hidden, borderline west={3pt}{0pt}{shadecolor}, breakable, frame hidden]}{\end{tcolorbox}}\fi
+    \ifdefined\Shaded\renewenvironment{Shaded}{\begin{tcolorbox}[enhanced, borderline west={3pt}{0pt}{shadecolor}, frame hidden, interior hidden, breakable, sharp corners, boxrule=0pt]}{\end{tcolorbox}}\fi
+
+CE: cloud enhancement cases one minute
+
+CEG: continuous group of cloud enhancement cases
 
 \hypertarget{intro}{%
 \section{Intro}\label{intro}}
 
 \hypertarget{data-and-methodology}{%
 \section{Data and methodology}\label{data-and-methodology}}
+
+The recording of the signal is the one minute average. Thus we will
+refer to this time scale as a cloud enhancement event (CE). Due to the
+instruments response time.
 
 \hypertarget{data-quality-control}{%
 \subsection{Data quality control}\label{data-quality-control}}
@@ -311,16 +319,21 @@ We used as reference the \ldots. extraterrestrial horizontal irradiance
 \text{ETH} = \cos(\theta) \times \text{TSI}_\text{TOA}
 \]
 
-\begin{equation}\protect\hypertarget{eq-CEcrit1}{}{
-\text{GHI} > 0.8 \times \text{ETH} + 20\,Wm^{-2}
-}\label{eq-CEcrit1}\end{equation}
+\[
+\text{GHI} > 999 \text{ETH}
+\]
 
-Where GHI sddsfa
+\[
+f(x)=\begin{cases}
+1, & \text{if $x<0$}.\\
+0, & \text{otherwise}.
+\end{cases}
+\]
 
 \begin{itemize}
 \tightlist
 \item
-  some other were tested Equation~\ref{eq-CEcrit1}
+  some other were tested
 \end{itemize}
 
 Thresholds by inspecting a selection of days with some specs
@@ -349,11 +362,57 @@ Thresholds by inspecting a selection of days with some specs
 
 \begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
 
-\begin{tcolorbox}[enhanced jigsaw, toprule=.15mm, leftrule=.75mm, colframe=quarto-callout-important-color-frame, breakable, coltitle=black, rightrule=.15mm, title=\textcolor{quarto-callout-important-color}{\faExclamation}\hspace{0.5em}{gcff}, colbacktitle=quarto-callout-important-color!10!white, arc=.35mm, toptitle=1mm, left=2mm, bottomtitle=1mm, bottomrule=.15mm, titlerule=0mm, opacitybacktitle=0.6, opacityback=0, colback=white]
+\begin{tcolorbox}[enhanced jigsaw, bottomrule=.15mm, title=\textcolor{quarto-callout-important-color}{\faExclamation}\hspace{0.5em}{gcff}, bottomtitle=1mm, colback=white, rightrule=.15mm, breakable, toptitle=1mm, toprule=.15mm, colframe=quarto-callout-important-color-frame, opacityback=0, leftrule=.75mm, opacitybacktitle=0.6, coltitle=black, left=2mm, titlerule=0mm, arc=.35mm, colbacktitle=quarto-callout-important-color!10!white]
 
 This is nice
 
 \end{tcolorbox}
+
+\hypertarget{bibliography-styles}{%
+\section{Bibliography styles}\label{bibliography-styles}}
+
+Here are two sample references: \citet{Feynman1963118}
+\citet{Dirac1953888}.
+
+By default, natbib will be used with the \texttt{authoryear} style, set
+in \texttt{classoption} variable in YAML. You can sets extra options
+with \texttt{natbiboptions} variable in YAML header. Example
+
+\begin{verbatim}
+natbiboptions: longnamesfirst,angle,semicolon
+\end{verbatim}
+
+There are various more specific bibliography styles available at
+\url{https://support.stmdocs.in/wiki/index.php?title=Model-wise_bibliographic_style_files}.
+To use one of these, add it in the header using, for example,
+\texttt{biblio-style:\ model1-num-names}.
+
+\hypertarget{using-csl}{%
+\subsection{Using CSL}\label{using-csl}}
+
+If \texttt{cite-method} is set to \texttt{citeproc} in
+\texttt{elsevier\_article()}, then pandoc is used for citations instead
+of \texttt{natbib}. In this case, the \texttt{csl} option is used to
+format the references. By default, this template will provide an
+appropriate style, but alternative \texttt{csl} files are available from
+\url{https://www.zotero.org/styles?q=elsevier}. These can be downloaded
+and stored locally, or the url can be used as in the example header.
+
+Equation~\ref{eq-lowbap}
+
+\citep{Bais1997}
+
+\hypertarget{equations}{%
+\section{Equations}\label{equations}}
+
+Here is an equation: \begin{equation}\protect\hypertarget{eq-lowbap}{}{ 
+  f_{X}(x) = \left(\frac{\alpha}{\beta}\right)
+  \left(\frac{x}{\beta}\right)^{\alpha-1}
+  e^{-\left(\frac{x}{\beta}\right)^{\alpha}}; 
+  \alpha,\beta,x > 0 .
+}\label{eq-lowbap}\end{equation}
+
+Inline equations work as well: \(\sum_{i = 2}^\infty\{\alpha_i^\beta\}\)
 
 \hypertarget{figures-and-tables}{%
 \section{Figures and tables}\label{figures-and-tables}}
@@ -383,28 +442,25 @@ Table~\ref{tbl-simple} example.
 \end{Shaded}
 
 \hypertarget{tbl-simple}{}
-\begin{table}
-\caption{\label{tbl-simple}Caption centered above table }\tabularnewline
-
-\centering
-\begin{tabular}{l|r|r|r|r}
-\hline
-  & mpg & cyl & disp & hp\\
-\hline
-Mazda RX4 & 21.0 & 6 & 160 & 110\\
-\hline
-Mazda RX4 Wag & 21.0 & 6 & 160 & 110\\
-\hline
-Datsun 710 & 22.8 & 4 & 108 & 93\\
-\hline
-Hornet 4 Drive & 21.4 & 6 & 258 & 110\\
-\hline
-Hornet Sportabout & 18.7 & 8 & 360 & 175\\
-\hline
-Valiant & 18.1 & 6 & 225 & 105\\
-\hline
-\end{tabular}
-\end{table}
+\begin{longtable}[]{@{}lrrrr@{}}
+\caption{\label{tbl-simple}Caption centered above table}\tabularnewline
+\toprule\noalign{}
+& mpg & cyl & disp & hp \\
+\midrule\noalign{}
+\endfirsthead
+\toprule\noalign{}
+& mpg & cyl & disp & hp \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+Mazda RX4 & 21.0 & 6 & 160 & 110 \\
+Mazda RX4 Wag & 21.0 & 6 & 160 & 110 \\
+Datsun 710 & 22.8 & 4 & 108 & 93 \\
+Hornet 4 Drive & 21.4 & 6 & 258 & 110 \\
+Hornet Sportabout & 18.7 & 8 & 360 & 175 \\
+Valiant & 18.1 & 6 & 225 & 105 \\
+\end{longtable}
 
 
 \renewcommand\refname{References}
