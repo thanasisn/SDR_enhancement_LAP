@@ -71,6 +71,7 @@ library(kableExtra)
 library(dplyr)
 ## load data from trends analysis
 source("~/MANUSCRIPTS/02_enhancement/GHI_enh_00_variables.R")
+load("~/MANUSCRIPTS/02_enhancement/data/GHI_enh_03_process.Rda")
 TSIinfo <- data.table(read.csv("~/MANUSCRIPTS/02_enhancement/figures/tbl_tsi_info.dat",
                     strip.white = TRUE,
                     sep = ";",
@@ -129,11 +130,14 @@ $$
 $$
 
 $$
-f(x)=\begin{cases}
-1, & \text{if $x<0$}.\\
-0, & \text{otherwise}.
+\text{CE}_\text{Threshold} = \begin{cases}
+`r C4_cs_ref_ratio`, & \text{if $\theta \leq `r C4_lowcut_sza`^\circ$}.\\
+\frac{`r C4_cs_ref_ratio` - `r C4_lowcut_ratio`}{`r C4_lowcut_sza` - `r 90 - BIO_ELEVA`} \cdot (\theta- `r 90 - BIO_ELEVA`) + `r C4_lowcut_ratio` , & \text{if $ `r 90 - BIO_ELEVA`^\circ > \theta > `r C4_lowcut_sza`^\circ$}.
 \end{cases}
-$$
+$${#eq-test}
+
+
+
 
 
 -   some other were tested
