@@ -127,7 +127,7 @@
 
 \title{Enhancement of SDR in Thessaloniki}
 \author{Natsis Athanasios\footnote{Laboratory of Atmospheric Physics, AUTH, \href{mailto:natsisphysicist@gmail.com}{\nolinkurl{natsisphysicist@gmail.com}}} \and Alkiviadis Bais\footnote{Laboratory of Atmospheric Physics, AUTH}}
-\date{2024-02-19}
+\date{2024-02-22}
 
 \begin{document}
 \maketitle
@@ -352,18 +352,18 @@ stats::lm(formula = .formula, data = df)
 
 Residuals:
     Min      1Q  Median      3Q     Max 
--448.24 -172.37  -59.22  113.90  892.70 
+-382.05 -149.78  -46.64   98.42  770.22 
 
 Coefficients:
                    Estimate Std. Error t value Pr(>|t|)    
-(Intercept)      -1.126e+02  5.761e+01  -1.955   0.0514 .  
-as.numeric(Date)  4.155e-07  4.624e-08   8.985   <2e-16 ***
+(Intercept)      -1.067e+02  5.109e+01  -2.088   0.0375 *  
+as.numeric(Date)  3.393e-07  4.098e-08   8.279  2.5e-15 ***
 ---
 Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 
-Residual standard error: 244.7 on 359 degrees of freedom
-Multiple R-squared:  0.1836,    Adjusted R-squared:  0.1813 
-F-statistic: 80.72 on 1 and 359 DF,  p-value: < 2.2e-16
+Residual standard error: 216.2 on 358 degrees of freedom
+Multiple R-squared:  0.1607,    Adjusted R-squared:  0.1583 
+F-statistic: 68.54 on 1 and 358 DF,  p-value: 2.498e-15
 \end{verbatim}
 
 \begin{center}\includegraphics[width=1\linewidth]{GHI_enh_03_process_files/figure-latex/unnamed-chunk-6-19} \end{center}
@@ -382,18 +382,18 @@ lm(formula = ST_E_monthly$wattGLB.N ~ ST_E_monthly$Date)
 
 Residuals:
     Min      1Q  Median      3Q     Max 
--448.24 -172.37  -59.22  113.90  892.70 
+-382.05 -149.78  -46.64   98.42  770.22 
 
 Coefficients:
                     Estimate Std. Error t value Pr(>|t|)    
-(Intercept)       -1.126e+02  5.761e+01  -1.955   0.0514 .  
-ST_E_monthly$Date  4.155e-07  4.624e-08   8.985   <2e-16 ***
+(Intercept)       -1.067e+02  5.109e+01  -2.088   0.0375 *  
+ST_E_monthly$Date  3.393e-07  4.098e-08   8.279  2.5e-15 ***
 ---
 Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 
-Residual standard error: 244.7 on 359 degrees of freedom
-Multiple R-squared:  0.1836,    Adjusted R-squared:  0.1813 
-F-statistic: 80.72 on 1 and 359 DF,  p-value: < 2.2e-16
+Residual standard error: 216.2 on 358 degrees of freedom
+Multiple R-squared:  0.1607,    Adjusted R-squared:  0.1583 
+F-statistic: 68.54 on 1 and 358 DF,  p-value: 2.498e-15
 \end{verbatim}
 
 \begin{Shaded}
@@ -429,6 +429,88 @@ F-statistic: 80.72 on 1 and 359 DF,  p-value: < 2.2e-16
 \NormalTok{)}
 
 
+
+\FunctionTok{cat}\NormalTok{(objects, }\AttributeTok{sep =} \StringTok{"}\SpecialCharTok{\textbackslash{}n}\StringTok{"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+aa
+aday
+All_daily_ratio_lim
+alpha
+ampl
+avar
+BIO_ELEVA
+C1_Clearness_Kt_THRES
+C1_GLB_diff_THRES
+C2_Clearness_Kt_THRES
+C3_cs_ref_ratio
+C4_cs_ref_ratio
+C4_GLB_diff_THRES
+C4_lowcut_ratio
+C4_lowcut_sza
+Clear_daily_ratio_lim
+CLEARdir
+Cloud_daily_ratio_lim
+cols
+common_data_13
+common_data_14
+common_data_14_2
+CS_file_13
+CS_file_14
+CS_file_14_2
+csmodel
+Daily_aggregation_N_lim
+Daily_confidence_limit
+daylist
+Days_of_year
+I1_longterm
+I2_szatrend
+I3_trendsconsist
+ii
+Input_data_ID
+Kurudz_SC
+MIN_ELEVA
+MIN_N
+Monthly_aggegation_N_lim
+Monthly_confidence_limit
+my.cols
+my.cols.gr
+pyear
+R_COMPILE_PKGS
+raw_input_data
+running_mean_window_days
+running_mean_window_years
+SEAS_MIN_N
+SelEnhanc
+SZA_aggregation_N_lim
+SZA_BIN
+SZA_confidence_limit
+variables_fl
+yearstodo
+ylim
+ST_daily
+ST_E_daily
+ST_E_daily_seas
+ST_E_monthly
+ST_E_monthly_seas
+ST_E_sza
+ST_E_yearly
+ST_extreme_daily
+ST_extreme_monthly
+ST_extreme_SZA
+ST_extreme_yearly
+ST_G0
+ST_G1
+ST_monthly
+ST_sza
+ST_total
+ST_yearly
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
 \FunctionTok{save}\NormalTok{(}\AttributeTok{file =} \FunctionTok{paste0}\NormalTok{(}\StringTok{"./data/"}\NormalTok{, }\FunctionTok{basename}\NormalTok{(}\FunctionTok{sub}\NormalTok{(}\StringTok{"}\SpecialCharTok{\textbackslash{}\textbackslash{}}\StringTok{.R"}\NormalTok{, }\StringTok{".Rda"}\NormalTok{, Script.Name))),}
      \AttributeTok{list =}\NormalTok{ objects,}
      \AttributeTok{compress =} \StringTok{"xz"}\NormalTok{)}
@@ -438,7 +520,7 @@ F-statistic: 80.72 on 1 and 359 DF,  p-value: < 2.2e-16
 \textbf{END}
 
 \begin{verbatim}
-2024-02-19 10:09:06.3 athan@tyler GHI_enh_03_process.R 2.125423 mins
+2024-02-22 12:05:59.3 athan@tyler GHI_enh_03_process.R 2.189978 mins
 \end{verbatim}
 
 \end{document}

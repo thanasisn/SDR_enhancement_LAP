@@ -269,7 +269,7 @@ Alpha * HAU is CS\_ref
 \CommentTok{\# DATA[, max(SZA)]}
 
 \NormalTok{smo }\OtherTok{\textless{}{-}} \FunctionTok{approxfun}\NormalTok{(}
-    \AttributeTok{x =} \FunctionTok{c}\NormalTok{(DATA[, }\FunctionTok{max}\NormalTok{(SZA)], C4\_lowcut\_sza  ),}
+    \AttributeTok{x =} \FunctionTok{c}\NormalTok{(}\DecValTok{90} \SpecialCharTok{{-}}\NormalTok{ BIO\_ELEVA, C4\_lowcut\_sza  ),}
     \AttributeTok{y =} \FunctionTok{c}\NormalTok{(C4\_lowcut\_ratio,  C4\_cs\_ref\_ratio)}
 \NormalTok{    )}
 
@@ -278,8 +278,8 @@ Alpha * HAU is CS\_ref
 \end{Shaded}
 
 \begin{verbatim}
- [1]        NA        NA        NA 0.9053113 0.8366196 0.7771549 0.7251860
- [8] 0.6793894 0.6387354 0.6024114 0.5697672
+ [1]        NA        NA 0.9855379 0.9053113 0.8366196 0.7771548 0.7251860
+ [8] 0.6793893 0.6387354 0.6024114 0.5697672
 \end{verbatim}
 
 \begin{Shaded}
@@ -697,12 +697,12 @@ TRUE
 
 \begin{center}\includegraphics[width=1\linewidth]{GHI_enh_02_ID_CE_files/figure-latex/unnamed-chunk-14-76} \end{center}
 
+\begin{center}\includegraphics[width=1\linewidth]{GHI_enh_02_ID_CE_files/figure-latex/unnamed-chunk-14-77} \end{center}
+
 \FloatBarrier
 
 \hypertarget{days-with-cloudy-day}{%
 \subsection{Days with cloudy day}\label{days-with-cloudy-day}}
-
-\begin{center}\includegraphics[width=1\linewidth]{GHI_enh_02_ID_CE_files/figure-latex/unnamed-chunk-14-77} \end{center}
 
 \begin{center}\includegraphics[width=1\linewidth]{GHI_enh_02_ID_CE_files/figure-latex/unnamed-chunk-14-78} \end{center}
 
@@ -742,12 +742,12 @@ TRUE
 
 \begin{center}\includegraphics[width=1\linewidth]{GHI_enh_02_ID_CE_files/figure-latex/unnamed-chunk-14-96} \end{center}
 
+\begin{center}\includegraphics[width=1\linewidth]{GHI_enh_02_ID_CE_files/figure-latex/unnamed-chunk-14-97} \end{center}
+
 \FloatBarrier
 
 \hypertarget{days-with-random-day}{%
 \subsection{Days with random day}\label{days-with-random-day}}
-
-\begin{center}\includegraphics[width=1\linewidth]{GHI_enh_02_ID_CE_files/figure-latex/unnamed-chunk-14-97} \end{center}
 
 \begin{center}\includegraphics[width=1\linewidth]{GHI_enh_02_ID_CE_files/figure-latex/unnamed-chunk-14-98} \end{center}
 
@@ -807,18 +807,20 @@ TRUE
 
 \begin{center}\includegraphics[width=1\linewidth]{GHI_enh_02_ID_CE_files/figure-latex/unnamed-chunk-14-126} \end{center}
 
+\begin{center}\includegraphics[width=1\linewidth]{GHI_enh_02_ID_CE_files/figure-latex/unnamed-chunk-14-127} \end{center}
+
 \FloatBarrier
 
 \hypertarget{days-with-manual-test-days}{%
 \subsection{Days with manual test days}\label{days-with-manual-test-days}}
-
-\begin{center}\includegraphics[width=1\linewidth]{GHI_enh_02_ID_CE_files/figure-latex/unnamed-chunk-14-127} \end{center}
 
 \begin{center}\includegraphics[width=1\linewidth]{GHI_enh_02_ID_CE_files/figure-latex/unnamed-chunk-14-128} \end{center}
 
 \begin{center}\includegraphics[width=1\linewidth]{GHI_enh_02_ID_CE_files/figure-latex/unnamed-chunk-14-129} \end{center}
 
 \begin{center}\includegraphics[width=1\linewidth]{GHI_enh_02_ID_CE_files/figure-latex/unnamed-chunk-14-130} \end{center}
+
+\begin{center}\includegraphics[width=1\linewidth]{GHI_enh_02_ID_CE_files/figure-latex/unnamed-chunk-14-131} \end{center}
 
 \newpage
 \FloatBarrier
@@ -891,7 +893,7 @@ TRUE
 \textbf{END}
 
 \begin{verbatim}
-2024-02-22 08:34:52.0 athan@sagan GHI_enh_02_ID_CE.R 26.716559 mins
+2024-02-22 11:58:56.9 athan@tyler GHI_enh_02_ID_CE.R 52.860468 mins
 \end{verbatim}
 
 \end{document}
