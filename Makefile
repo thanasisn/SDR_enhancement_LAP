@@ -9,13 +9,11 @@ render:    pdf upload
 Ap:        Ap1
 pdf:       p1 p2 p3 p4 p5 Ap
 rtim:      r1 r2 r3
-clean_all: clean_cache clean_data clean_pdfs
+clean_all: clean_cache clean_pdfs
 
 include .buildver.makefile
 
 LIBRARY      = ~/LIBRARY/REPORTS/
-
-
 
 # ### MDPI Article
 # TARGET = MDPI_submition
@@ -32,11 +30,11 @@ LIBRARY      = ~/LIBRARY/REPORTS/
 # 	@-rsync -a "$@" ${LIBRARY}
 
 
-## simple default pdf
-TARGET = ./article/article
-QMD    = $(TARGET).qmd
-RMD    = $(TARGET).Rmd
-PDF    = $(TARGET).pdf
+###   Default pdf   ###################################
+TARGET := ./article/article
+QMD    := $(TARGET).qmd
+RMD    := $(TARGET).Rmd
+PDF    := $(TARGET).pdf
 Ap1: $(PDF)
 $(PDF): $(RMD)
 	@echo "Building: $? -> $@"
@@ -48,35 +46,31 @@ $(PDF): $(RMD)
 
 
 
+##   Article with build number   ######################
+TARGET := ./article/article
+RMDv   := $(TARGET).Rmd
+BUILD  := B$(shell cat $(BLD_FILE))
+DIR    := ./Article_$(BUILD)
+PDFa   := $(DIR)/Article_$(BUILD)_plain.pdf
+DOC    := $(DIR)/Article_$(BUILD).docx
+RMDn   := $(DIR)/Article_$(BUILD).Rmd
 
-## Article pdf with build number
-TARGET = ./article/article
-RMD    = $(TARGET).Rmd
-DIR    = ./article_B$(shell cat $(BLD_FILE))
-PDF    = $(DIR)/article_B$(shell cat $(BLD_FILE)).pdf
-DOC    = $(DIR)/article_B$(shell cat $(BLD_FILE)).docx
-test: $(PDF)
-$(PDF): $(RMD)
-	@mkdir -p ./article_B$(shell cat $(BLD_FILE))
-	-Rscript -e "rmarkdown::find_pandoc(dir = '/usr/lib/rstudio/resources/app/bin/quarto/bin/tools'); rmarkdown::render('$?', clean = TRUE, output_format='bookdown::word_document2', output_file='$(DOC)', output_dir='$(DIR)')"
-	@echo "Building: $@"
-
-#Apv: $(PDF)
-# $(PDF): $(RMD)
-# 	@echo "Building: $@"
-# 	-Rscript -e "rmarkdown::find_pandoc(dir = '/usr/lib/rstudio/resources/app/bin/quarto/bin/tools'); rmarkdown::render('$?', clean = TRUE, output_format='rticles::mdpi_article', output_file='MDPI_submission_B$(shell echo $$(($$(cat $(BLD_FILE)) + 1))).pdf')"
-# 	-Rscript -e "rmarkdown::find_pandoc(dir = '/usr/lib/rstudio/resources/app/bin/quarto/bin/tools'); rmarkdown::render('$?', clean = TRUE, output_format='bookdown::word_document2', output_file='MDPI_submission_B$(shell echo $$(($$(cat $(BLD_FILE)) + 1))).docx')"
-# 	-mkdir -p "Build_$(shell echo $$(($$(cat $(BLD_FILE)) + 1)))"
-# 	-cp 'MDPI_submission.Rmd' 'MDPI_submission_B$(shell echo $$(($$(cat $(BLD_FILE)) + 1))).Rmd'
-# 	-mv *_B$(shell echo $$(($$(cat $(BLD_FILE)) + 1))).* "Build_$(shell echo $$(($$(cat $(BLD_FILE)) + 1)))"
-# 	-chmod 0444 Build_$(shell echo $$(($$(cat $(BLD_FILE)) + 1)))/*_B$(shell echo $$(($$(cat $(BLD_FILE)) + 1))).*
-# 	## increase counter
-# 	$(call buildver)
+Apv: $(PDFa)
+$(PDFa): $(RMDv)
+	@echo "Building: $(DOC)"
+	@echo "          $(PDFa)"
+	@mkdir -p '$(DIR)'
+	-Rscript -e "rmarkdown::find_pandoc(dir = '/usr/lib/rstudio/resources/app/bin/quarto/bin/tools'); rmarkdown::render('$?', clean = TRUE, output_format='bookdown::word_document2', output_file='$(DOC)',  output_dir='$(DIR)')"
+	-Rscript -e "rmarkdown::find_pandoc(dir = '/usr/lib/rstudio/resources/app/bin/quarto/bin/tools'); rmarkdown::render('$?', clean = TRUE, output_format='bookdown::pdf_document2',  output_file='$(PDFa)', output_dir='$(DIR)')"
+	-cp '$(RMDv)' '$(RMDn)'
+	-chmod 0444 '$(DIR)'/*
+	-git tag $(BUILD)
+	## increase build counter
+	$(call buildver)
 
 
 
 ###   1. raw data  ####################################
-
 TARGET := GHI_enh_01_raw_data
 RMD    := $(TARGET).R
 PDF    := $(TARGET).pdf
@@ -96,7 +90,6 @@ $(RUNT): $(RMD)
 
 
 ###   2. ID CE  ####################################
-
 TARGET := GHI_enh_02_ID_CE
 RMD    := $(TARGET).R
 PDF    := $(TARGET).pdf
@@ -182,22 +175,19 @@ $(RUNT): $(RMD)
 	-Rscript $?
 
 
-
 upload:
 	-./upload.sh
 
-
 clean_cache:
-	rm -f -r ./Article_cache
-	rm -f -r ./GHI_enh_02_ID_CE_files
-	rm -f -r ./GHI_enh_02_process_files
-	rm -f -r ./runtime/GHI*.pdf
+	# trash -f  ./Article_cache
+	trash -f  ./GHI_enh_02_ID_CE_files
+	trash -f  ./GHI_enh_03_process_files
+	trash -f  ./GHI_enh_04_investigate_files
+	trash -f  ./GHI_enh_05_distributions_files
+	trash -f  ./runtime/*.*
 
 clean_pdfs:
-	rm -f    ./GHI_enh_01_raw_data.pdf
-	rm -f    ./GHI_enh_02_ID_CE.pdf
-	rm -f    ./DHI_GHI_3_trends_consistency.pdf
-
-clean_data:
-	rm -f    ./data/*.*
+	trash -f    ./GHI_enh_01_raw_data.pdf
+	trash -f    ./GHI_enh_02_ID_CE.pdf
+	trash -f    ./DHI_GHI_3_trends_consistency.pdf
 
