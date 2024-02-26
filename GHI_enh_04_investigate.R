@@ -341,31 +341,17 @@ plot(ST_E_daily[, sum(GLB_ench.N), by = yday(Date)],
 
 
 
-stop()
-
-# Violin basic
-ST_E_daily[, .(N = sum(GLB_ench.N)), by = .(DOY=yday(Date))]
-
-ST_E_daily[, Week := week(Date) ]
 
 
-ST_E_daily %>%
-    ggplot( aes(x = Week, y = GLB_ench.N), fill=Week) +
-    geom_violin() +
-    # scale_fill_viridis(discrete = TRUE, alpha=0.6, option="A") +
-    # theme_ipsum() +
-    theme(
-        legend.position="none",
-        plot.title = element_text(size=11)
-    ) +
-    ggtitle("Violin chart") +
-    xlab("")
+#+ climCEmonth, echo=F, include=T, results="asis"
+boxplot(ST_E_monthly$GLB_ench.N ~ ST_E_monthly$month )
+title("Climatology of CE cases per month")
 
-ST_E_daily %>%
-    ggplot( aes(x=Week, y=GLB_ench.N, fill =Week) ) +
-    geom_boxplot(fill="#69b3a2") +
-    # theme_ipsum() +
-    xlab("Carat")
+#+ climECEmonth, echo=F, include=T, results="asis"
+boxplot(ST_extreme_monthly$GLB_ench.N ~ ST_extreme_monthly$month )
+title("Climatology of ECE cases per month")
+
+
 
 ## Trends on groups ---------
 

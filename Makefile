@@ -7,7 +7,7 @@ SHELL = /bin/bash
 all:       clean_all pdf rtim
 render:    pdf upload
 Ap:        Ap1
-pdf:       p1 p2 p3 p4 p5 
+pdf:       p1 p2 p3 p4 p5 Ap1
 rtim:      r1 r2 r3
 clean_all: clean_cache clean_data clean_pdfs
 
