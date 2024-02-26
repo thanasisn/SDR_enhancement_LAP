@@ -46,13 +46,9 @@ output:
     biblio-style:     apalike
 ---
 
-```{r setup, echo=F, include=T, warning=FALSE, message=FALSE}
-suppressMessages(
-    res <- rmarkdown::find_pandoc(dir = '/usr/lib/rstudio/resources/app/bin/quarto/bin/tools')
-)
-suppressMessages({
+```{r setup, echo=F, include=FALSE}
+rmarkdown::find_pandoc(dir = '/usr/lib/rstudio/resources/app/bin/quarto/bin/tools')
 renv::load("~/MANUSCRIPTS/02_enhancement/", quiet = TRUE)
-})
 ## document configurations
 knitr::opts_chunk$set(comment    = ""      )
 # knitr::opts_chunk$set(dev        = "pdf"   )
@@ -68,9 +64,9 @@ library(dplyr)
 source("~/MANUSCRIPTS/02_enhancement/GHI_enh_00_variables.R")
 load("~/MANUSCRIPTS/02_enhancement/data/GHI_enh_03_process.Rda")
 TSIinfo <- data.table(read.csv("~/MANUSCRIPTS/02_enhancement/figures/tbl_tsi_info.dat",
-                    strip.white = TRUE,
-                    sep = ";",
-                    header = TRUE))
+                               strip.white = TRUE,
+                               sep = ";",
+                               header = TRUE))
 # ## create local citations file and links here
 # source("~/CODE/FUNCTIONS/R/gather_citations.R")
 # suppressMessages(
@@ -116,7 +112,7 @@ Many have used models or some statistical method to determine then CE thresholds
 
 We used as reference the .... extraterrestrial horizontal irradiance .....
 
- \ref{eq:test}
+\ref{eq:test}
 
 
 
