@@ -343,6 +343,8 @@ plot(ST_E_daily[, sum(GLB_ench.N), by = yday(Date)],
 
 
 
+
+
 #+ climCEmonth, echo=F, include=T, results="asis"
 boxplot(ST_E_monthly$GLB_ench.N ~ ST_E_monthly$month )
 title("Climatology of CE cases per month")
