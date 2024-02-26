@@ -7,7 +7,7 @@ SHELL = /bin/bash
 all:       clean_all pdf rtim
 render:    pdf upload
 Ap:        Ap1
-pdf:       p1 p2 p3 p4 p5 Ap1
+pdf:       p1 p2 p3 p4 p5 Ap
 rtim:      r1 r2 r3
 clean_all: clean_cache clean_data clean_pdfs
 
@@ -35,26 +35,33 @@ LIBRARY      = ~/LIBRARY/REPORTS/
 ## simple default pdf
 TARGET = ./article/article
 QMD    = $(TARGET).qmd
+RMD    = $(TARGET).Rmd
 PDF    = $(TARGET).pdf
 Ap1: $(PDF)
-$(PDF): $(QMD)
+$(PDF): $(RMD)
 	@echo "Building: $? -> $@"
 	@#-Rscript -e "rmarkdown::render('$?', output_format='bookdown::pdf_document2', output_file='$@')"
-	@#-Rscript -e "rmarkdown::find_pandoc(dir = '/usr/lib/rstudio/resources/app/bin/quarto/bin/tools'); rmarkdown::render('$?', output_format='bookdown::pdf_document2', output_file='$@', clean = TRUE)"
-	quarto render '$?' --to elsevier-pdf --log-level warning
+	@-Rscript -e "rmarkdown::find_pandoc(dir = '/usr/lib/rstudio/resources/app/bin/quarto/bin/tools'); rmarkdown::render('$?', output_format='bookdown::pdf_document2', output_file='$@', output_dir='article', clean = TRUE)"
+	@#quarto render '$?' --to elsevier-pdf --log-level warning
 	@#setsid evince    $@ &
 	@-rsync -a "$@" ${LIBRARY}
 
 
 
 
-# ## Article pdf with build number
-# ## using rstudio pandoc
-# TARGET = MDPI_submission
-# RMD    = $(TARGET).Rmd
-# PDF    = $(TARGET)_B$(shell cat $(BLD_FILE)).pdf
-# SLIDY  = $(TARGET).html
-# Apv: $(PDF)
+## Article pdf with build number
+TARGET = ./article/article
+RMD    = $(TARGET).Rmd
+DIR    = ./article_B$(shell cat $(BLD_FILE))
+PDF    = $(DIR)/article_B$(shell cat $(BLD_FILE)).pdf
+DOC    = $(DIR)/article_B$(shell cat $(BLD_FILE)).docx
+test: $(PDF)
+$(PDF): $(RMD)
+	@mkdir -p ./article_B$(shell cat $(BLD_FILE))
+	-Rscript -e "rmarkdown::find_pandoc(dir = '/usr/lib/rstudio/resources/app/bin/quarto/bin/tools'); rmarkdown::render('$?', clean = TRUE, output_format='bookdown::word_document2', output_file='$(DOC)', output_dir='$(DIR)')"
+	@echo "Building: $@"
+
+#Apv: $(PDF)
 # $(PDF): $(RMD)
 # 	@echo "Building: $@"
 # 	-Rscript -e "rmarkdown::find_pandoc(dir = '/usr/lib/rstudio/resources/app/bin/quarto/bin/tools'); rmarkdown::render('$?', clean = TRUE, output_format='rticles::mdpi_article', output_file='MDPI_submission_B$(shell echo $$(($$(cat $(BLD_FILE)) + 1))).pdf')"
