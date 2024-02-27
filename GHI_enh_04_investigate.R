@@ -494,7 +494,7 @@ plot(ST_E_sza[, get(avar), SZA],
      main = paste(varname(avar), staname(avar)))
 
 
-
+##TODO by month
 
 
 
