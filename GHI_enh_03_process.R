@@ -383,8 +383,9 @@ ST_E_yearly$year <- as.POSIXct(strptime(paste(ST_E_yearly$year, "01", "1"),"%Y %
 
 # _ SZA stats  -----------------------------------------------------------------
 
+# __ all data  -----------------------------------------------------------------
 
-## stats on all data
+## stats on all SZA data
 ST_sza <- DATA[, unlist(lapply(.SD, data.summary, na.rm = TRUE),
                         recursive = FALSE),
                .SDcols = my.cols,
@@ -411,6 +412,30 @@ ST_E_sza <- DATA[get(SelEnhanc) == TRUE,
                  .SDcols = my.cols,
                  by = .(SZA = (SZA - SZA_BIN / 2 ) %/% SZA_BIN)]
 
+
+
+# __ by month  -----------------------------------------------------------------
+
+
+## stats on all SZA data
+ST_sza_monthly <- DATA[, unlist(lapply(.SD, data.summary, na.rm = TRUE),
+                                recursive = FALSE),
+                       .SDcols = my.cols,
+                       by = .(SZA = (SZA - SZA_BIN / 2 ) %/% SZA_BIN, Month = month(Date))]
+
+## stats on extreme enhancement cases
+ST_extreme_SZA_monthly <- DATA[wattGLB > ETH,
+                               unlist(lapply(.SD, enhanc.summary, na.rm = TRUE),
+                                      recursive = FALSE),
+                               .SDcols = my.cols,
+                               by = .(SZA = (SZA - SZA_BIN / 2 ) %/% SZA_BIN, Month = month(Date))]
+
+## stats on enhancement cases
+ST_E_sza_monthly <- DATA[get(SelEnhanc) == TRUE,
+                         unlist(lapply(.SD, enhanc.summary, na.rm = FALSE),
+                                recursive = FALSE),
+                         .SDcols = my.cols,
+                         by = .(SZA = (SZA - SZA_BIN / 2 ) %/% SZA_BIN, Month = month(Date))]
 
 
 
