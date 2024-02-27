@@ -385,8 +385,55 @@ title("Climatology of ECE cases per month")
 #+ energy, echo=F, include=T, results="asis"
 
 
-plot(ST_yearly[, GLB_ench.sumPOS, year],
-     ylab = "Sum of enhancement Irradiance")
+{
+  plot(ST_yearly[, GLB_diff.sumPOS, year],
+       ylab = "W/m^2")
+
+  lmD <- lm( ST_yearly[, year, GLB_diff.sumPOS])
+  abline(lmD)
+
+  title("Energy excess each year due to CE")
+
+  ## display trend on graph
+  fit <- lmD[[1]]
+  legend("top", lty = 1, bty = "n", lwd = 2, cex = 1,
+         paste("Trend: ",
+               if (fit[2] > 0) "+" else "-",
+               signif(abs(fit[2]), 2) ,"W/m^2/y" )
+  )
+}
+
+
+
+plot(ST_yearly[, GLB_diff.N_pos, year],
+     ylab = "Total of enhancement minutes")
+title("Number of CE each year")
+
+
+
+{
+  plot(ST_yearly[, GLB_diff.sumPOS/GLB_diff.N_pos, year],
+       ylab = "W/m^2")
+  lmD <- lm( ST_yearly[, year, GLB_diff.sumPOS/GLB_diff.N_pos])
+  abline(lmD)
+
+  title("Energy excess each year due to CE")
+
+  ## display trend on graph
+  fit <- lmD[[1]]
+  legend("top", lty = 1, bty = "n", lwd = 2, cex = 1,
+         paste("Trend: ",
+               if (fit[2] > 0) "+" else "-",
+               signif(abs(fit[2]), 2) ,"W/m^2/y" )
+  )
+}
+
+
+
+
+plot(ST_yearly[, GLB_diff.TotalN, year],
+     ylab = "Total of enhancement minutes")
+
 
 
 plot(ST_yearly[, GLB_ench.N, year],
@@ -402,6 +449,7 @@ plot(ST_yearly[, GLB_ench.sumPOS/GLB_ench.N_pos, year],
 
 
 cat( "@Martins2022" )
+
 plot(ST_yearly[, GLB_diff.sumPOS/wattGLB.sumPOS, year],
      ylab = "Fraction of the aqumulated enchancements over total energy",
      main = paste(varname("GLB_diff.sumPOS"),
@@ -449,51 +497,55 @@ plot(ST_E_sza[, get(avar), SZA],
 
 
 
+
+
+
+
 ##TODO check groups for low sun characteristics
 
-
-gr_N_min   <- 8
-gr_SZA_min <- 60
-
-test <- ST_G0[ GLB_ench.N > gr_N_min & SZA.min > gr_SZA_min]
-
-
-plot( ST_G0[ GLB_ench.N > gr_N_min & SZA.min > gr_SZA_min, GLB_diff.sum/GLB_ench.N, SZA.mean ])
-
-plot( ST_G0[ GLB_ench.N > gr_N_min & SZA.min > gr_SZA_min, GLB_diff.mean, SZA.mean ])
-
-plot( ST_G0[ GLB_ench.N > gr_N_min & SZA.min > gr_SZA_min, GLB_diff.median, SZA.mean ])
-
-
-plot( ST_G0[ GLB_ench.N > gr_N_min & SZA.min > gr_SZA_min, GLB_diff.sum/GLB_ench.N, SZA.max ])
-
-plot( ST_G0[ GLB_ench.N > gr_N_min & SZA.min > gr_SZA_min, GLB_diff.sum/GLB_ench.N, SZA.min ])
-
-plot( ST_G0[ GLB_ench.N > gr_N_min & SZA.min > gr_SZA_min, GLB_diff.sum/GLB_ench.N, SZA.mean])
-
-plot( ST_G0[ GLB_ench.N > gr_N_min & SZA.min > gr_SZA_min
-             & SZA.min > 72 & GLB_diff.sum/GLB_ench.N < 10 , GLB_diff.sum/GLB_ench.N, SZA.mean])
-
-ST_G0[ GLB_ench.N > gr_N_min & SZA.min > gr_SZA_min
-& SZA.min > 72 & GLB_diff.sum/GLB_ench.N < 10  ]
-
-
-hist( ST_G0[ GLB_ench.N > gr_N_min & SZA.min > gr_SZA_min, GLB_diff.sum/GLB_ench.N])
-
-plot( ST_G0[ GLB_ench.N > gr_N_min & SZA.min > gr_SZA_min, GLB_ench.max, SZA.mean ])
-
-
-plot( ST_G0[ GLB_ench.N > gr_N_min & SZA.min > gr_SZA_min, GLB_ench.mean, SZA.mean ])
-plot( ST_G0[ GLB_ench.N > gr_N_min & SZA.min > gr_SZA_min, GLB_diff.mean, SZA.mean ])
-plot( ST_G0[ GLB_ench.N > gr_N_min & SZA.min > gr_SZA_min, GLB_diff.max,  SZA.max ])
-
-
-ST_G0[as.Date(Date) == "2004-05-25"]
-
-ST_G0[as.Date(Date) == "2003-09-05"]
-ST_G0[as.Date(Date) == "2003-09-05", GLB_diff.sum/GLB_ench.N]
-
-
+#
+# gr_N_min   <- 8
+# gr_SZA_min <- 60
+#
+# test <- ST_G0[ GLB_ench.N > gr_N_min & SZA.min > gr_SZA_min]
+#
+#
+# plot( ST_G0[ GLB_ench.N > gr_N_min & SZA.min > gr_SZA_min, GLB_diff.sum/GLB_ench.N, SZA.mean ])
+#
+# plot( ST_G0[ GLB_ench.N > gr_N_min & SZA.min > gr_SZA_min, GLB_diff.mean, SZA.mean ])
+#
+# plot( ST_G0[ GLB_ench.N > gr_N_min & SZA.min > gr_SZA_min, GLB_diff.median, SZA.mean ])
+#
+#
+# plot( ST_G0[ GLB_ench.N > gr_N_min & SZA.min > gr_SZA_min, GLB_diff.sum/GLB_ench.N, SZA.max ])
+#
+# plot( ST_G0[ GLB_ench.N > gr_N_min & SZA.min > gr_SZA_min, GLB_diff.sum/GLB_ench.N, SZA.min ])
+#
+# plot( ST_G0[ GLB_ench.N > gr_N_min & SZA.min > gr_SZA_min, GLB_diff.sum/GLB_ench.N, SZA.mean])
+#
+# plot( ST_G0[ GLB_ench.N > gr_N_min & SZA.min > gr_SZA_min
+#              & SZA.min > 72 & GLB_diff.sum/GLB_ench.N < 10 , GLB_diff.sum/GLB_ench.N, SZA.mean])
+#
+# ST_G0[ GLB_ench.N > gr_N_min & SZA.min > gr_SZA_min
+# & SZA.min > 72 & GLB_diff.sum/GLB_ench.N < 10  ]
+#
+#
+# hist( ST_G0[ GLB_ench.N > gr_N_min & SZA.min > gr_SZA_min, GLB_diff.sum/GLB_ench.N])
+#
+# plot( ST_G0[ GLB_ench.N > gr_N_min & SZA.min > gr_SZA_min, GLB_ench.max, SZA.mean ])
+#
+#
+# plot( ST_G0[ GLB_ench.N > gr_N_min & SZA.min > gr_SZA_min, GLB_ench.mean, SZA.mean ])
+# plot( ST_G0[ GLB_ench.N > gr_N_min & SZA.min > gr_SZA_min, GLB_diff.mean, SZA.mean ])
+# plot( ST_G0[ GLB_ench.N > gr_N_min & SZA.min > gr_SZA_min, GLB_diff.max,  SZA.max ])
+#
+#
+# ST_G0[as.Date(Date) == "2004-05-25"]
+#
+# ST_G0[as.Date(Date) == "2003-09-05"]
+# ST_G0[as.Date(Date) == "2003-09-05", GLB_diff.sum/GLB_ench.N]
+#
+#
 
 # test <- DATA[as.Date(Date) == "2004-05-25"& GLB_diff>0]
 #
