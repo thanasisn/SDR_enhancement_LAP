@@ -1,5 +1,5 @@
-# /* #!/usr/bin/env Rscript */
-# /* Copyright (C) 2022 Athanasios Natsis <natsisphysicist@gmail.com> */
+#!/usr/bin/env Rscript
+# /* Copyright (C) 2024 Athanasios Natsis <natsisphysicist@gmail.com> */
 #' ---
 #' title:         "Enhancement of SDR in Thessaloniki "
 #' author:
