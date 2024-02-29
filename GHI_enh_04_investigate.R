@@ -74,6 +74,8 @@ library(ggplot2       , quietly = TRUE, warn.conflicts = FALSE)
 library(lmtest        , quietly = TRUE, warn.conflicts = FALSE)
 library(viridis       , quietly = TRUE, warn.conflicts = FALSE)
 library(ggpointdensity, quietly = TRUE, warn.conflicts = FALSE)
+library(ggh4x         , quietly = TRUE, warn.conflicts = FALSE)
+
 
 panderOptions("table.alignment.default", "right")
 panderOptions("table.split.table",        120   )
@@ -320,17 +322,47 @@ hist(ST_G0$GLB_ench.N,
      main = "Duration of enhancement cases")
 
 
-
 plot(ST_G0$GLB_ench.N, ST_G0$GLB_diff.sum/ST_G0$GLB_ench.N,
      xlab = "Duration of enhancemnt",
      ylab = "Extra mean Irradiance per mimute")
+
 
 ggplot(data    = ST_G0,
        mapping = aes(x = GLB_ench.N, y = ST_G0$GLB_diff.sum/ST_G0$GLB_ench.N)) +
   xlab("Duration of CE group [minutes]") +
   ylab("Extra mean Irradiance per mimute [W/m^2]") +
-  geom_pointdensity(adjust = 10) +
-  scale_color_viridis()
+  geom_pointdensity(aes(color = after_stat(log(n_neighbors))),
+                    adjust = 1,
+                    size = 1) +
+  scale_color_viridis()  +
+  theme_bw() +
+  theme(legend.position      = c(0.99, 0.99),
+        legend.justification = c(1, 1)) +
+  theme(legend.background    = element_rect(fill = "white", colour = NA)) +
+  labs(color = 'Log(Number) of\nneighbors') +
+  scale_y_continuous(guide        = "axis_minor",
+                     minor_breaks = seq(0, 500, by = 25)) +
+  scale_x_continuous(guide        = "axis_minor",
+                     minor_breaks = seq(0, 500, by = 10))
+
+
+
+ggplot(data    = ST_G0,
+       mapping = aes(x = GLB_ench.N, y = ST_G0$GLB_diff.sum/ST_G0$GLB_ench.N)) +
+  xlab("Duration of CE group [minutes]") +
+  ylab("Extra mean Irradiance per mimute [W/m^2]") +
+  geom_pointdensity(adjust = 10,
+                    size = 1) +
+  scale_color_viridis() +
+  theme_bw() +
+  theme(legend.position      = c(0.99, 0.99),
+        legend.justification = c(1, 1)) +
+  theme(legend.background    = element_rect(fill = "white", colour = NA)) +
+  labs(color = 'Number of\nneighbors') +
+  scale_y_continuous(guide        = "axis_minor",
+                     minor_breaks = seq(0, 500, by = 25)) +
+  scale_x_continuous(guide        = "axis_minor",
+                     minor_breaks = seq(0, 500, by = 10))
 
 
 
@@ -338,13 +370,24 @@ plot(ST_G0$GLB_ench.N, ST_G0$GLB_diff.mean,
      xlab = "Duration of enhancemnt",
      ylab = "Extra mean Irradiance per mimute")
 
-
 ggplot(data    = ST_G0,
        mapping = aes(x = GLB_diff.N, y = GLB_diff.mean)) +
   xlab("Duration of CE group [minutes]") +
   ylab("Mean Over Irradiance [W/m^2]") +
   geom_pointdensity(adjust = 5) +
-  scale_color_viridis()
+  scale_color_viridis()  +
+  theme_bw() +
+  theme(legend.position      = c(0.99, 0.99),
+        legend.justification = c(1, 1)) +
+  theme(legend.background    = element_rect(fill = "white", colour = NA)) +
+  labs(color = 'Number of\nneighbors') +
+  scale_y_continuous(guide        = "axis_minor",
+                     minor_breaks = seq(0, 500, by = 25)) +
+  scale_x_continuous(guide        = "axis_minor",
+                     minor_breaks = seq(0, 500, by = 10))
+
+  # guides(x = "axis_minor", y = "axis_minor")
+
 
 
 
@@ -361,7 +404,16 @@ ggplot(data    = ST_G0,
   xlab("Duration of CE group [minutes]") +
   ylab("Maximun Over Irradiance [W/m^2]") +
   geom_pointdensity(adjust = 4) +
-  scale_color_viridis()
+  scale_color_viridis()  +
+  theme_bw() +
+  theme(legend.position      = c(0.99, 0.99),
+        legend.justification = c(1, 1)) +
+  theme(legend.background    = element_rect(fill = "white", colour = NA)) +
+  labs(color = 'Number of\nneighbors') +
+  scale_y_continuous(guide        = "axis_minor",
+                     minor_breaks = seq(0, 500, by = 25)) +
+  scale_x_continuous(guide        = "axis_minor",
+                     minor_breaks = seq(0, 500, by = 10))
 
 
 
