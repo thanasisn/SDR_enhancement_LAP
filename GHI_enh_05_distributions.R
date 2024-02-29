@@ -119,8 +119,8 @@ tic  <- Sys.time()
 DRAFT <- TRUE
 DRAFT <- FALSE
 
-
-
+cat("Reference mode:      ", csmodel,   "\n\n")
+cat("Enhancemnet criteria:", SelEnhanc, "\n\n")
 
 
 
@@ -136,23 +136,105 @@ DRAFT <- FALSE
 
 
 breaks <- 50
-hist(DATA[get(unique(CEC)) == TRUE, GLB_ench],
+hist(DATA[GLB_diff > 0, GLB_ench],
      breaks = breaks,
      col  = varcol( "GLB_ench"),
      xlab = varname("GLB_ench"),
      main = varname("GLB_ench"))
 
-hist(DATA[get(unique(CEC)) == TRUE, GLB_diff],
+hist(DATA[GLB_diff > 0, GLB_diff],
      breaks = breaks,
      col  = varcol("GLB_diff"),
      xlab = bquote(.(varname("GLB_diff")) ~ group("[", W/m^2,"]")),
      main = bquote(.(varname("GLB_diff")) ~ group("[", W/m^2,"]")))
 
-hist(DATA[get(unique(CEC)) == TRUE, GLB_rati],
+hist(DATA[GLB_diff > 0, GLB_rati],
      breaks = breaks,
      col  = varcol( "GLB_rati"),
      xlab = varname("GLB_rati"),
      main = varname("GLB_rati"))
+
+
+
+
+##  Distributions  -------------------------------------------------------------
+
+#'
+#' \FloatBarrier
+#'
+#' ### Distributions
+#'
+#+ relativedistributions, echo=F, include=T, results="asis"
+
+# hist(DATA[get(unique(CEC)) == TRUE, GLB_ench],
+#      breaks = breaks,
+#      freq   = FALSE,
+#      col    = varcol( "GLB_ench"),
+#      xlab   = varname("GLB_ench"),
+#      main   = varname("GLB_ench"))
+
+hist(DATA[GLB_diff > 0, GLB_ench],
+     breaks = breaks,
+     freq   = FALSE,
+     col    = varcol( "GLB_ench"),
+     xlab   = varname("GLB_ench"),
+     main   = varname("GLB_ench"))
+
+
+hist(DATA[GLB_diff > 0, GLB_diff],
+     breaks = breaks,
+     freq   = FALSE,
+     col    = varcol("GLB_diff"),
+     xlab   = bquote(.(varname("GLB_diff")) ~ group("[", W/m^2,"]")),
+     main   = bquote(.(varname("GLB_diff")) ~ group("[", W/m^2,"]")))
+
+
+hist(DATA[GLB_diff > 0, GLB_rati],
+     breaks = breaks,
+     freq   = FALSE,
+     col    = varcol( "GLB_rati"),
+     xlab   = varname("GLB_rati"),
+     main   = varname("GLB_rati"))
+
+
+
+
+##  Extreme cases Distributions  -----------------------------------------------
+
+#'
+#' \FloatBarrier
+#'
+#' ### Extreme cases Distributions
+#'
+#+ extremedistributions, echo=F, include=T, results="asis"
+
+hist(DATA[wattGLB > ETH, GLB_ench],
+     breaks = breaks,
+     freq   = FALSE,
+     col    = varcol("GLB_ench"),
+     xlab   = varname("GLB_ench"),
+     main   = paste("Extreme cases of", varname("GLB_ench")))
+
+hist(DATA[wattGLB > ETH, GLB_diff],
+     breaks = breaks,
+     col  = varcol("GLB_diff"),
+     xlab = bquote(.(varname("GLB_diff")) ~ group("[", W/m^2,"]")),
+     main = paste("Extreme cases of", varname("GLB_diff")) )
+
+
+hist(DATA[wattGLB > ETH, GLB_rati],
+     breaks = breaks,
+     col  = varcol("GLB_rati"),
+     xlab = varname("GLB_rati"),
+     main = paste("Extreme cases of", varname("GLB_rati")))
+
+
+
+
+
+
+table(DATA$CEC, useNA = "ifany")
+
 
 
 
@@ -177,80 +259,6 @@ hist(DATA[get(unique(CEC)) == TRUE & year(Date) == ayear, GLB_rati],
      col  = varcol( "GLB_rati"),
      xlab = varname("GLB_rati"),
      main = varname("GLB_rati"))
-
-
-
-
-
-##  Distributions  -------------------------------------------------------------
-
-#'
-#' \FloatBarrier
-#'
-#' ### Distributions
-#'
-#+ relativedistributions, echo=F, include=T, results="asis"
-
-hist(DATA[get(unique(CEC)) == TRUE, GLB_ench],
-     breaks = breaks,
-     freq   = FALSE,
-     col    = varcol( "GLB_ench"),
-     xlab   = varname("GLB_ench"),
-     main   = varname("GLB_ench"))
-
-
-hist(DATA[get(unique(CEC)) == TRUE, GLB_diff],
-     breaks = breaks,
-     freq   = FALSE,
-     col    = varcol("GLB_diff"),
-     xlab   = bquote(.(varname("GLB_diff")) ~ group("[", W/m^2,"]")),
-     main   = bquote(.(varname("GLB_diff")) ~ group("[", W/m^2,"]")))
-
-
-stop()
-
-hist(DATA[get(unique(CEC)) == TRUE, GLB_rati],
-     breaks = breaks,
-     freq   = FALSE,
-     col    = varcol( "GLB_rati"),
-     xlab   = varname("GLB_rati"),
-     main   = varname("GLB_rati"))
-
-
-
-
-
-
-##  Extreme cases Distributions  -----------------------------------------------
-
-#'
-#' \FloatBarrier
-#'
-#' ### Extreme cases Distributions
-#'
-#+ extremedistributions, echo=F, include=T, results="asis"
-
-
-hist(DATA[wattGLB > ETH, GLB_diff],
-     breaks = breaks,
-     col  = varcol("GLB_diff"),
-     xlab = bquote(.(varname("GLB_diff")) ~ group("[", W/m^2,"]")),
-     main = paste("Extreme cases of", varname("GLB_diff")) )
-
-
-hist(DATA[wattGLB > ETH, GLB_rati],
-     breaks = breaks,
-     col  = varcol("GLB_rati"),
-     xlab = varname("GLB_rati"),
-     main = paste("Extreme cases of", varname("GLB_rati")))
-
-
-hist(DATA[wattGLB > ETH, GLB_ench],
-     breaks = breaks,
-     freq   = FALSE,
-     col    = varcol("GLB_ench"),
-     xlab   = varname("GLB_ench"),
-     main   = paste("Extreme cases of", varname("GLB_ench")))
 
 
 
