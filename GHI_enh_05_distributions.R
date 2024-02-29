@@ -155,6 +155,8 @@ hist(DATA[get(unique(CEC)) == TRUE, GLB_rati],
      main = varname("GLB_rati"))
 
 
+
+
 ## test for one year
 ayear <- 2020
 
@@ -204,6 +206,8 @@ hist(DATA[get(unique(CEC)) == TRUE, GLB_diff],
      xlab   = bquote(.(varname("GLB_diff")) ~ group("[", W/m^2,"]")),
      main   = bquote(.(varname("GLB_diff")) ~ group("[", W/m^2,"]")))
 
+
+stop()
 
 hist(DATA[get(unique(CEC)) == TRUE, GLB_rati],
      breaks = breaks,
