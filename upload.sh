@@ -23,6 +23,7 @@ fi
 # fi
 
 echo "Upload all pdfs"
-"${rclone}" ${otheropt} ${bwlimit} --verbose --config "$config" --max-depth 1 --include "*.{pdf,odt}" copy "/home/athan/MANUSCRIPTS/02_enhancement/" "lapauththanasis:/Enhance"
+"${rclone}" ${otheropt} ${bwlimit} --verbose --config "$config" --max-depth 1 --include "*.{pdf}"          copy "/home/athan/MANUSCRIPTS/02_enhancement/"        "lapauththanasis:/Enhance"
+"${rclone}" ${otheropt} ${bwlimit} --verbose --config "$config" --max-depth 1 --include "*.{pdf,odt,docx}" copy "/home/athan/MANUSCRIPTS/02_enhancement/article" "lapauththanasis:/Enhance"
 
 exit 0 

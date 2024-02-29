@@ -316,7 +316,7 @@ write.csv(x = dailytrendsY,
 
 hist(ST_G0$GLB_ench.N,
      breaks = 50,
-     xlab = "Minutes of enhacement per CE group",
+     xlab = "Minutes of enhacement of each CE group",
      main = "Duration of enhancement cases groups")
 
 
@@ -368,11 +368,12 @@ plot(ST_G0$GLB_ench.N, ST_G0$GLB_diff.mean,
      xlab = "Duration of enhancemnt cases groups",
      ylab = "Extra mean Irradiance per mimute")
 
+
 ggplot(data    = ST_G0,
        mapping = aes(x = GLB_diff.N, y = GLB_diff.mean)) +
   xlab("Duration of CE groups [minutes]") +
   ylab("Mean Over Irradiance [W/m^2]") +
-  geom_pointdensity(adjust = 5) +
+  geom_pointdensity(adjust = 10) +
   scale_color_viridis()  +
   theme_bw() +
   theme(legend.position      = c(0.99, 0.99),
@@ -401,7 +402,7 @@ ggplot(data    = ST_G0,
        mapping = aes(x = GLB_diff.N, y = GLB_diff.max)) +
   xlab("Duration of CE groups [minutes]") +
   ylab("Maximun Over Irradiance [W/m^2]") +
-  geom_pointdensity(adjust = 4) +
+  geom_pointdensity(adjust = 10) +
   scale_color_viridis()  +
   theme_bw() +
   theme(legend.position      = c(0.99, 0.99),
@@ -629,8 +630,6 @@ for (am in 1:12) {
 
 
 
-
-
 ##TODO check groups for low sun characteristics
 
 #
@@ -639,13 +638,11 @@ for (am in 1:12) {
 #
 # test <- ST_G0[ GLB_ench.N > gr_N_min & SZA.min > gr_SZA_min]
 #
-#
 # plot( ST_G0[ GLB_ench.N > gr_N_min & SZA.min > gr_SZA_min, GLB_diff.sum/GLB_ench.N, SZA.mean ])
 #
 # plot( ST_G0[ GLB_ench.N > gr_N_min & SZA.min > gr_SZA_min, GLB_diff.mean, SZA.mean ])
 #
 # plot( ST_G0[ GLB_ench.N > gr_N_min & SZA.min > gr_SZA_min, GLB_diff.median, SZA.mean ])
-#
 #
 # plot( ST_G0[ GLB_ench.N > gr_N_min & SZA.min > gr_SZA_min, GLB_diff.sum/GLB_ench.N, SZA.max ])
 #
@@ -655,10 +652,8 @@ for (am in 1:12) {
 #
 # plot( ST_G0[ GLB_ench.N > gr_N_min & SZA.min > gr_SZA_min
 #              & SZA.min > 72 & GLB_diff.sum/GLB_ench.N < 10 , GLB_diff.sum/GLB_ench.N, SZA.mean])
-#
 # ST_G0[ GLB_ench.N > gr_N_min & SZA.min > gr_SZA_min
 # & SZA.min > 72 & GLB_diff.sum/GLB_ench.N < 10  ]
-#
 #
 # hist( ST_G0[ GLB_ench.N > gr_N_min & SZA.min > gr_SZA_min, GLB_diff.sum/GLB_ench.N])
 #
@@ -667,15 +662,13 @@ for (am in 1:12) {
 #
 # plot( ST_G0[ GLB_ench.N > gr_N_min & SZA.min > gr_SZA_min, GLB_ench.mean, SZA.mean ])
 # plot( ST_G0[ GLB_ench.N > gr_N_min & SZA.min > gr_SZA_min, GLB_diff.mean, SZA.mean ])
-# plot( ST_G0[ GLB_ench.N > gr_N_min & SZA.min > gr_SZA_min, GLB_diff.max,  SZA.max ])
-#
+# plot( ST_G0[ GLB_ench.N > gr_N_min & SZA.min > gr_SZA_min, GLB_diff.max,  SZA.max  ])
 #
 # ST_G0[as.Date(Date) == "2004-05-25"]
 #
 # ST_G0[as.Date(Date) == "2003-09-05"]
 # ST_G0[as.Date(Date) == "2003-09-05", GLB_diff.sum/GLB_ench.N]
-#
-#
+
 
 # test <- DATA[as.Date(Date) == "2004-05-25"& GLB_diff>0]
 #
@@ -684,7 +677,6 @@ for (am in 1:12) {
 
 ## group fix
 # test <- DATA[as.Date(Date) == "2004-05-25"]
-
 
 
 
@@ -697,4 +689,3 @@ if (interactive() & difftime(tac,tic,units = "sec") > 30) {
     system("mplayer /usr/share/sounds/freedesktop/stereo/dialog-warning.oga", ignore.stdout = T, ignore.stderr = T)
     system(paste("notify-send -u normal -t 30000 ", Script.Name, " 'R script ended'"))
 }
-
