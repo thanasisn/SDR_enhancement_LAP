@@ -494,7 +494,54 @@ plot(ST_E_sza[, get(avar), SZA],
      main = paste(varname(avar), staname(avar)))
 
 
-##TODO by month
+#'
+#' \newpage
+#' \FloatBarrier
+#'
+#' ### SZA enhancements by month
+#'
+#+ sza, echo=F, include=T, results="asis"
+
+for (am in 1:12) {
+  temp <- ST_E_sza_monthly[Month == am, ]
+  xlim <- range(ST_E_sza_monthly[,SZA])
+
+  avar <- "GLB_ench.sum"
+  plot(temp[, get(avar), SZA],
+       xlim = xlim,
+       ylab = paste(varname(avar), staname(avar)),
+       main = paste(month.name[am], varname(avar), staname(avar)))
+
+}
+
+
+
+for (am in 1:12) {
+  temp <- ST_E_sza_monthly[Month == am, ]
+  xlim <- range(ST_E_sza_monthly[,SZA])
+
+  avar <- "GLB_diff.sum"
+  plot(temp[, get(avar), SZA],
+       xlim = xlim,
+       ylab = paste(varname(avar), staname(avar)),
+       main = paste(month.name[am], varname(avar), staname(avar)))
+
+}
+
+
+
+for (am in 1:12) {
+  temp <- ST_E_sza_monthly[Month == am, ]
+  xlim <- range(ST_E_sza_monthly[,SZA])
+
+  avar <- "GLB_ench.N"
+  plot(temp[, get(avar), SZA],
+       xlim = xlim,
+       ylab = paste(varname(avar), staname(avar)),
+       main = paste(month.name[am], varname(avar), staname(avar)))
+
+}
+
 
 
 
