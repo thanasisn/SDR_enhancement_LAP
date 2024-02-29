@@ -68,10 +68,12 @@ if (!interactive()) {
 
 
 #+ echo=F, include=T
-library(data.table, quietly = TRUE, warn.conflicts = FALSE)
-library(pander    , quietly = TRUE, warn.conflicts = FALSE)
-library(ggplot2   , quietly = TRUE, warn.conflicts = FALSE)
-library(lmtest    , quietly = TRUE, warn.conflicts = FALSE)
+library(data.table    , quietly = TRUE, warn.conflicts = FALSE)
+library(pander        , quietly = TRUE, warn.conflicts = FALSE)
+library(ggplot2       , quietly = TRUE, warn.conflicts = FALSE)
+library(lmtest        , quietly = TRUE, warn.conflicts = FALSE)
+library(viridis       , quietly = TRUE, warn.conflicts = FALSE)
+library(ggpointdensity, quietly = TRUE, warn.conflicts = FALSE)
 
 panderOptions("table.alignment.default", "right")
 panderOptions("table.split.table",        120   )
@@ -323,10 +325,26 @@ plot(ST_G0$GLB_ench.N, ST_G0$GLB_diff.sum/ST_G0$GLB_ench.N,
      xlab = "Duration of enhancemnt",
      ylab = "Extra mean Irradiance per mimute")
 
+ggplot(data    = ST_G0,
+       mapping = aes(x = GLB_ench.N, y = ST_G0$GLB_diff.sum/ST_G0$GLB_ench.N)) +
+  xlab("Duration of CE group [minutes]") +
+  ylab("Extra mean Irradiance per mimute [W/m^2]") +
+  geom_pointdensity(adjust = 10) +
+  scale_color_viridis()
+
+
 
 plot(ST_G0$GLB_ench.N, ST_G0$GLB_diff.mean,
      xlab = "Duration of enhancemnt",
      ylab = "Extra mean Irradiance per mimute")
+
+
+ggplot(data    = ST_G0,
+       mapping = aes(x = GLB_diff.N, y = GLB_diff.mean)) +
+  xlab("Duration of CE group [minutes]") +
+  ylab("Mean Over Irradiance [W/m^2]") +
+  geom_pointdensity(adjust = 5) +
+  scale_color_viridis()
 
 
 
@@ -338,6 +356,16 @@ plot(ST_G0[, GLB_diff.max, GLB_diff.N ],
      ylab = "Maximun Over Irradiance")
 
 
+ggplot(data    = ST_G0,
+       mapping = aes(x = GLB_diff.N, y = GLB_diff.max)) +
+  xlab("Duration of CE group [minutes]") +
+  ylab("Maximun Over Irradiance [W/m^2]") +
+  geom_pointdensity(adjust = 4) +
+  scale_color_viridis()
+
+
+
+
 plot(ST_E_daily[, sum(GLB_ench.N), by = yday(Date)],
      ylab = "Enhancement cases",
      xlab = "DOY",
@@ -345,22 +373,8 @@ plot(ST_E_daily[, sum(GLB_ench.N), by = yday(Date)],
 
 
 
-library(ggplot2)
-library(dplyr)
-library(viridis)
-library(ggpointdensity)
 
-dat <- bind_rows(
-  tibble(x = rnorm(7000, sd = 1),
-         y = rnorm(7000, sd = 10),
-         group = "foo"),
-  tibble(x = rnorm(3000, mean = 1, sd = .5),
-         y = rnorm(3000, mean = 7, sd = 5),
-         group = "bar"))
 
-ggplot(data = dat, mapping = aes(x = x, y = y)) +
-  geom_pointdensity() +
-  scale_color_viridis()
 
 
 
