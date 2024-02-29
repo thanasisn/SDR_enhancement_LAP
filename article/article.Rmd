@@ -2,11 +2,7 @@
 title:    SDR enhancement by clouds
 subtitle: A Short Subtitle
 author:
-  - name:         Athanasios N. Natsis 
-    email:        natsisphysicist@gmail.com
-    affiliation:  Laboratory of Atmospheric Physics
-    footnote:     footnote one
-    correspondingauthor: true
+  - Athanasios N. Natsis^[Laboratory of Atmospheric Physics natsisphysicist@gmail.com] 
   - name:         Alkiviadis Bais
     email:        abais@auth.gr 
     affiliation:  Laboratory of Atmospheric Physics
@@ -19,14 +15,20 @@ abstract: |
 keywords: 
   - keyword1
   - keyword2
-date:          last-modified
+
 bibliography:  [bibliography.bib]
+
+date: "`r format(Sys.time(), '%F')`"
+
+header-includes:
+  - \usepackage{caption}
+  - \usepackage{placeins}
+  - \captionsetup{font=small}
 
 output: 
  #  rticles::mdpi_article:
  #    extra_dependencies:  longtable
  #    keep_tex:            yes
-  bookdown::word_document2: default
   bookdown::pdf_document2:
     number_sections:  no
     fig_caption:      yes
@@ -44,6 +46,7 @@ output:
     colorlinks:       yes
     urlcolor:         blue
     biblio-style:     apalike
+    bookdown::word_document2: default
 ---
 
 ```{r setup, echo=F, include=FALSE}
@@ -82,7 +85,9 @@ TSIinfo <- data.table(read.csv("~/MANUSCRIPTS/02_enhancement/figures/tbl_tsi_inf
 
 CE: cloud enhancement cases one minute
 
-CEG: continuous group of cloud enhancement cases
+ECE: extreme cloud enhancement cases one minute over TSI on horizontal plane
+
+CEG: cloud enhancement groups, cases events with consecutive CE
 
 # Intro
 
@@ -90,98 +95,149 @@ CEG: continuous group of cloud enhancement cases
 
 The recording of the signal is the one minute average.
 Thus we will refer to this time scale as a cloud enhancement event (CE).
-Due to the instruments response time.
-
+Due to the instruments response time.....
 
 
 ## Data quality control
+
+.......
 
 ## Data selection
 
 To preserve an unbiased representation of the data we applied a constrain similar the one used by @CastillejoCuberos2020. Where, for each valid hour of day, there must exist at list 45 minutes of valid measurements, including night time near sunrise and sunset. Days with less than 5 valid hours are rejected completely. <!--# CastillejoCuberos2020 There must be at least 5 h of valid data (Tests 1–7), otherwise all data for this day is flagged as invalid. There must be at least This work valid data 45 min of valid data (Tests 1–7) for an hour to be flagged as valid, otherwise all minute data for this hour is flagged as invalid. --> Furthermore, due to a systematic obstruction of the horizon and the significant measurement uncertainty on large SZAs, we excluded all data with $SZA > `r 90 - BIO_ELEVA`^\circ$.
 
-## Clear sky identification
 
-Use it to find some interesting days to manual check the CE thresholds. No other usage of clear/cloud characterization in CE.
+## Criteria for enhancement identification
 
-## Criteria for enhancement based on TSI
+
+-   some others were tested
+
 
 Many have used models or some statistical method to determine then CE thresholds.
 
 ....... cite ...... Descriptions
 
-We used as reference the .... extraterrestrial horizontal irradiance .....
+We used as reference a modelled clear sky approximation,
 
-\ref{eq:test}
-
-
-
-$$
-\text{ETH} = \cos(\theta) \times \text{TSI}_\text{TOA}
-$$
-
-$$
-\text{GHI} > 999 \text{ETH}
-$$
+criteria for cloud enhancement identification are set acording the Equation \ref{eq:CE4}
 
 \begin{equation}
 \text{CE}_\text{Threshold} = \begin{cases}
 `r C4_cs_ref_ratio`, & \text{if $\theta \leq `r C4_lowcut_sza`^\circ$}.\\
 \frac{`r C4_cs_ref_ratio` - `r C4_lowcut_ratio`}{`r C4_lowcut_sza` - `r 90 - BIO_ELEVA`} \cdot (\theta- `r 90 - BIO_ELEVA`) + `r C4_lowcut_ratio` , & \text{if $ `r 90 - BIO_ELEVA`^\circ > \theta > `r C4_lowcut_sza`^\circ$}.
-\end{cases}\label{eq:test}
+\end{cases}\label{eq:CE4}
+\end{equation}
+where: ..........
+
+
+expand: libradtran calculations and modeling
+
+
+A secondary criteria was used for extreme cloud enhancement cases (ECE) identification, relative to the TSI at horizontal plane Equation \ref{eq:ECE}
+
+\begin{equation}
+\text{GHI} > \cos(\theta) \times \text{TSI}_\text{TOA}
+\label{eq:ECE}
 \end{equation}
 
 
 
-```{r echo=FALSE, fig.cap="Trend of the daily excess energy due to CE", out.width = '100%'}
+## Thresholds
+
+
+Thresholds by inspecting a selection of days with some specs
+
+Reasoning for the selection
+
+Objectivity
+
+Describe set of referce days we used to evalutate
+
+
+
+Example of days plot?
+
+... this is more clear to understand and describe ....
+
+
+
+
+\FloatBarrier
+
+# Results
+
+## Trend
+
+```{r echo=FALSE, fig.cap="Trend of the daily excess energy due to CE"}
 knitr::include_graphics("../images/daily-12.png")
 ```
 
 
-
-```{r echo=FALSE, fig.cap="Distribution of the number of CE cases", out.width = '100%'}
-knitr::include_graphics("../images/climCEmonth-1.png")
-```
-
-
-
-```{r echo=FALSE, fig.cap="Trend of the yearly excess energy", out.width = '100%'}
+```{r echo=FALSE, fig.cap="Trend of the yearly excess energy"}
 knitr::include_graphics("../images/energy-1.png")
 ```
 
 
-```{r echo=FALSE, fig.cap="Trend of the excess energy per CE", out.width = '100%'}
+
+```{r echo=FALSE, fig.cap="Trend of the excess energy per CE"}
 knitr::include_graphics("../images/energy-3.png")
 ```
 
+\FloatBarrier
+
+## Climatology
+
+```{r echo=FALSE, fig.cap="Distribution of the number of CE cases"}
+knitr::include_graphics("../images/climCEmonth-1.png")
+```
+
+
+```{r echo=FALSE, fig.cap="Distribution of CE above reference"}
+knitr::include_graphics("../images/distributions-5.png")
+```
+
+\FloatBarrier
 
 ## Groups stats
 
-```{r echo=FALSE, fig.cap="Distribution of CE groups", out.width = '100%'}
+```{r echo=FALSE, fig.cap="Distribution of CE groups"}
 knitr::include_graphics("../images/groups-1.png")
 ```
 
 
-```{r echo=FALSE, fig.cap="Relation of mean over irradiance and CE group duration", out.width = '100%'}
-knitr::include_graphics("../images/groups-2.png")
+```{r echo=FALSE, fig.cap="Relation of mean over irradiance and CE group duration"}
+knitr::include_graphics("../images/groups-4.png")
 ```
 
-```{r echo=FALSE, fig.cap="Relation of maximun over irradiance and CE group duration", out.width = '100%'}
-knitr::include_graphics("../images/groups-2.png")
+```{r echo=FALSE, fig.cap="Relation of maximun over irradiance and CE group duration"}
+knitr::include_graphics("../images/groups-6.png")
 ```
 
 
-## CE above TSI
+```{r echo=FALSE, fig.cap="Relation of maximun over irradiance and CE group duration"}
+knitr::include_graphics("../images/groups-8.png")
+```
 
 
+\FloatBarrier
+
+## Extrene CE above TSI
+
+```{r echo=FALSE, fig.cap="Distribution of the number of ECE cases"}
+knitr::include_graphics("../images/climECEmonth-1.png")
+```
 
 
+```{r echo=FALSE, fig.cap="Distribution of ECE above 'clear sky' reference"}
+knitr::include_graphics("../images/extremedistributions-2.png")
+```
 
--   some others were tested
 
-Thresholds by inspecting a selection of days with some specs
+```{r echo=FALSE, fig.cap="Distribution of ECE Irradiance above 'TSI'"}
+knitr::include_graphics("../images/extremedistributions-4.png")
+```
 
-# Results
+
 
 -   max
 -   seasonal
@@ -190,15 +246,21 @@ Thresholds by inspecting a selection of days with some specs
 -   occurrence
 -   SZA
 
+
+\FloatBarrier
+
+
 # Discussion and conclusions
 
-------------------------------------------------------------------------
+
+Compare to other location stats.
+max, ECE, distributions ....
 
 
-## render test
+Climatology results
 
 
-[@Bais1997]
+
 
 
 

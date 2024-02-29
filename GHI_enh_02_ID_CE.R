@@ -130,9 +130,15 @@ tic  <- Sys.time()
 DATA <- merge(DATA, readRDS("./data/lookuptable_datatable.Rds"))
 
 
+
+
+##  Reset Randomness  ----------------------------------------------------------
+RANDOM_SEED <- 333
+set.seed(RANDOM_SEED)
+## may need to reset seed in each randomness generation below
+
+
 ##  Choose CS data to use ------------------------------------------------------
-
-
 DATA$TYPE |> unique()
 grep("Exact_B", names(DATA), value = T)
 

@@ -231,6 +231,13 @@ hist(DATA[wattGLB > ETH, GLB_rati],
 
 
 
+hist(DATA[wattGLB > ETH, wattGLB - ETH],
+     breaks = breaks,
+     col  = varcol("GLB_diff"),
+     xlab = bquote(.(varname("GLB_diff")) ~ group("[", W/m^2,"]")),
+     main = paste("Extreme cases of CE above TSI") )
+
+
 
 
 table(DATA$CEC, useNA = "ifany")
