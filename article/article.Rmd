@@ -132,9 +132,49 @@ $$
 \end{equation}
 
 
-```{r echo=FALSE, fig.cap="", out.width = '100%'}
+
+```{r echo=FALSE, fig.cap="Trend of the daily excess energy due to CE", out.width = '100%'}
+knitr::include_graphics("../images/daily-12.png")
+```
+
+
+
+```{r echo=FALSE, fig.cap="Distribution of the number of CE cases", out.width = '100%'}
 knitr::include_graphics("../images/climCEmonth-1.png")
 ```
+
+
+
+```{r echo=FALSE, fig.cap="Trend of the yearly excess energy", out.width = '100%'}
+knitr::include_graphics("../images/energy-1.png")
+```
+
+
+```{r echo=FALSE, fig.cap="Trend of the excess energy per CE", out.width = '100%'}
+knitr::include_graphics("../images/energy-3.png")
+```
+
+
+## Groups stats
+
+```{r echo=FALSE, fig.cap="Distribution of CE groups", out.width = '100%'}
+knitr::include_graphics("../images/groups-1.png")
+```
+
+
+```{r echo=FALSE, fig.cap="Relation of mean over irradiance and CE group duration", out.width = '100%'}
+knitr::include_graphics("../images/groups-2.png")
+```
+
+```{r echo=FALSE, fig.cap="Relation of maximun over irradiance and CE group duration", out.width = '100%'}
+knitr::include_graphics("../images/groups-2.png")
+```
+
+
+## CE above TSI
+
+
+
 
 
 -   some others were tested

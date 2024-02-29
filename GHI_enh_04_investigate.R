@@ -312,19 +312,23 @@ write.csv(x = dailytrendsY,
 #+ groups, echo=F, include=T, results="asis"
 
 
-
-
-
 hist(ST_G0$GLB_ench.N,
      breaks = 50,
-     xlab = "Minutes of enhacement",
+     xlab = "Minutes of enhacement per CE group",
      main = "Duration of enhancement cases")
 
 
 
 plot(ST_G0$GLB_ench.N, ST_G0$GLB_diff.sum/ST_G0$GLB_ench.N,
      xlab = "Duration of enhancemnt",
-     ylab = "Extra Irradiance per mimute")
+     ylab = "Extra mean Irradiance per mimute")
+
+
+plot(ST_G0$GLB_ench.N, ST_G0$GLB_diff.mean,
+     xlab = "Duration of enhancemnt",
+     ylab = "Extra mean Irradiance per mimute")
+
+
 
 
 cat( "## @Zhang2018 \n" )
@@ -392,7 +396,7 @@ title("Climatology of ECE cases per month")
   lmD <- lm( ST_yearly[, year, GLB_diff.sumPOS])
   abline(lmD)
 
-  title("Energy excess each year due to CE")
+  title("Total energy excess each year due to CE")
 
   ## display trend on graph
   fit <- lmD[[1]]
@@ -417,7 +421,7 @@ title("Number of CE each year")
   lmD <- lm( ST_yearly[, year, GLB_diff.sumPOS/GLB_diff.N_pos])
   abline(lmD)
 
-  title("Energy excess each year due to CE")
+  title("Mean Energy excess per CE")
 
   ## display trend on graph
   fit <- lmD[[1]]
@@ -500,7 +504,7 @@ plot(ST_E_sza[, get(avar), SZA],
 #'
 #' ### SZA enhancements by month
 #'
-#+ sza, echo=F, include=T, results="asis"
+#+ sza_month, echo=F, include=T, results="asis"
 
 for (am in 1:12) {
   temp <- ST_E_sza_monthly[Month == am, ]
