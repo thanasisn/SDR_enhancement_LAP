@@ -6,7 +6,7 @@
 bwlim=500
 rclone="$HOME/PROGRAMS/rclone"
 config="$HOME/Documents/rclone.conf"
-otheropt=" --checkers=20 --delete-before --stats=300s"
+otheropt=" --checkers=20 --delete-before --stats=30s"
 bwlimit="  --bwlimit=${bwlim}k"
 
 
@@ -25,5 +25,6 @@ fi
 echo "Upload all pdfs"
 "${rclone}" ${otheropt} ${bwlimit} --verbose --config "$config" --max-depth 1 --include "*.{pdf}"          copy "/home/athan/MANUSCRIPTS/02_enhancement/"        "lapauththanasis:/Enhance"
 "${rclone}" ${otheropt} ${bwlimit} --verbose --config "$config" --max-depth 1 --include "*.{pdf,odt,docx}" copy "/home/athan/MANUSCRIPTS/02_enhancement/article" "lapauththanasis:/Enhance"
+"${rclone}" ${otheropt} ${bwlimit} --verbose --config "$config" --max-depth 1 --include "Article*/*.{pdf,odt,docx}" copy "/home/athan/MANUSCRIPTS/02_enhancement/"        "lapauththanasis:/Enhance"
 
 exit 0 
