@@ -116,9 +116,9 @@ Many have used models or some statistical method to determine then CE thresholds
 
 ....... cite ...... Descriptions
 
-We used as reference a modelled clear sky approximation,
+We used as reference a modeled clear sky approximation,
 
-criteria for cloud enhancement identification are set acording the Equation \ref{eq:CE4}
+criteria for cloud enhancement identification are set according the Equation \ref{eq:CE4}
 
 \begin{equation}
 \text{CE}_\text{Threshold} = \begin{cases}
@@ -148,9 +148,11 @@ Thresholds by inspecting a selection of days with some specs
 
 Reasoning for the selection
 
+Sky Camera for some cases
+
 Objectivity
 
-Describe set of referce days we used to evalutate
+Describe set of reference days we used to evaluate
 
 
 
