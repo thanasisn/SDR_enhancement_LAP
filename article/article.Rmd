@@ -1,17 +1,16 @@
 ---
 title:    SDR enhancement by clouds
+
 subtitle: A Short Subtitle
+
 author:
-  - Athanasios N. Natsis^[Laboratory of Atmospheric Physics natsisphysicist@gmail.com] 
-  - name:         Alkiviadis Bais
-    email:        abais@auth.gr 
-    affiliation:  Laboratory of Atmospheric Physics
-    correspondingauthor: false
-  - name:         Charikleia Meleti
-    email:        meleti@auth.gr
-    affiliation:  Laboratory of Atmospheric Physics
+  - Athanasios N. Natsis^[Laboratory of Atmospheric Physics _natsisphysicist@gmail.com_] 
+  - Alkiviadis Bais^[Laboratory of Atmospheric Physics _abais@auth.gr_] 
+  - Charikleia Meleti^[Laboratory of Atmospheric Physics _meleti@auth.gr_]
+
 abstract: |
   This is the abstract. Lorem ipsum dolor sit amet, eu efficitur justo rutrum at. Sed at tempus elit.
+
 keywords: 
   - keyword1
   - keyword2
@@ -209,10 +208,6 @@ knitr::include_graphics("../images/groups-1.png")
 knitr::include_graphics("../images/groups-4.png")
 ```
 
-```{r echo=FALSE, fig.cap="Relation of maximun over irradiance and CE group duration"}
-knitr::include_graphics("../images/groups-6.png")
-```
-
 
 ```{r echo=FALSE, fig.cap="Relation of maximun over irradiance and CE group duration"}
 knitr::include_graphics("../images/groups-8.png")
@@ -237,9 +232,7 @@ knitr::include_graphics("../images/extremedistributions-2.png")
 knitr::include_graphics("../images/extremedistributions-4.png")
 ```
 
-
-
--   max
+-   max value ECE
 -   seasonal
 -   trends
 -   duration
