@@ -345,7 +345,22 @@ plot(ST_E_daily[, sum(GLB_ench.N), by = yday(Date)],
 
 
 
+library(ggplot2)
+library(dplyr)
+library(viridis)
+library(ggpointdensity)
 
+dat <- bind_rows(
+  tibble(x = rnorm(7000, sd = 1),
+         y = rnorm(7000, sd = 10),
+         group = "foo"),
+  tibble(x = rnorm(3000, mean = 1, sd = .5),
+         y = rnorm(3000, mean = 7, sd = 5),
+         group = "bar"))
+
+ggplot(data = dat, mapping = aes(x = x, y = y)) +
+  geom_pointdensity() +
+  scale_color_viridis()
 
 
 
