@@ -87,7 +87,7 @@
 
 \title{Enhancement of SDR in Thessaloniki}
 \author{Natsis Athanasios\footnote{Laboratory of Atmospheric Physics, AUTH, \href{mailto:natsisphysicist@gmail.com}{\nolinkurl{natsisphysicist@gmail.com}}} \and Alkiviadis Bais\footnote{Laboratory of Atmospheric Physics, AUTH}}
-\date{2024-02-29}
+\date{2024-03-01}
 
 \begin{document}
 \maketitle
@@ -127,6 +127,11 @@ ST_daily ST_E_daily ST_E_daily_seas ST_extreme_daily
 \hypertarget{daily-trends}{%
 \subsubsection{Daily Trends}\label{daily-trends}}
 
+\begin{verbatim}
+Warning in ans * length(l) + if1: longer object length is not a multiple of
+shorter object length
+\end{verbatim}
+
 \newpage
 
 \begin{verbatim}
@@ -143,6 +148,14 @@ lmY: 1.566038 +/- 0.1083224
 Arima: 1.5664 0.1467 10.6787 0
 
 \begin{center}\includegraphics[width=1\linewidth]{GHI_enh_04_investigate_files/figure-latex/daily-1} \end{center}
+
+lmD: 0.9508227 +/- 0.1552488
+
+lmY: 0.9508465 +/- 0.1552515
+
+Arima: 1.0223 0.2369 4.315 0
+
+\begin{center}\includegraphics[width=1\linewidth]{GHI_enh_04_investigate_files/figure-latex/daily-2} \end{center}
 
 lmD: 1.087008 +/- 0.1678713
 
@@ -165,11 +178,11 @@ Warning in sqrt(diag(se)): NaNs produced
 Warning in sqrt(diag(se)): NaNs produced
 \end{verbatim}
 
-\begin{center}\includegraphics[width=1\linewidth]{GHI_enh_04_investigate_files/figure-latex/daily-2} \end{center}
+\begin{center}\includegraphics[width=1\linewidth]{GHI_enh_04_investigate_files/figure-latex/daily-3} \end{center}
 
 Arima: -0.0132 6.9042 -0.0019 0.9985
 
-\begin{center}\includegraphics[width=1\linewidth]{GHI_enh_04_investigate_files/figure-latex/daily-3} \end{center}
+\begin{center}\includegraphics[width=1\linewidth]{GHI_enh_04_investigate_files/figure-latex/daily-4} \end{center}
 
 lmD: 561.0124 +/- 94.87888
 
@@ -177,7 +190,7 @@ lmY: 561.0217 +/- 94.88053
 
 Arima: 562.031 148.2404 3.7913 1e-04
 
-\begin{center}\includegraphics[width=1\linewidth]{GHI_enh_04_investigate_files/figure-latex/daily-4} \end{center}
+\begin{center}\includegraphics[width=1\linewidth]{GHI_enh_04_investigate_files/figure-latex/daily-5} \end{center}
 
 lmD: 0.003266094 +/- 0.0002706818
 
@@ -185,7 +198,15 @@ lmY: 0.003266127 +/- 0.0002706866
 
 Arima: 0.0033 4e-04 9.0498 0
 
-\begin{center}\includegraphics[width=1\linewidth]{GHI_enh_04_investigate_files/figure-latex/daily-5} \end{center}
+\begin{center}\includegraphics[width=1\linewidth]{GHI_enh_04_investigate_files/figure-latex/daily-6} \end{center}
+
+lmD: 0.001714795 +/- 0.0002777698
+
+lmY: 0.001714851 +/- 0.0002777746
+
+Arima: 0.0019 5e-04 4.0604 0
+
+\begin{center}\includegraphics[width=1\linewidth]{GHI_enh_04_investigate_files/figure-latex/daily-7} \end{center}
 
 lmD: 0.001677055 +/- 0.00031363
 
@@ -208,11 +229,11 @@ Warning in arima(x = dataset[[avar]], order = c(1, 0, 0), xreg = dataset$yts, :
 NaNs produced
 \end{verbatim}
 
-\begin{center}\includegraphics[width=1\linewidth]{GHI_enh_04_investigate_files/figure-latex/daily-6} \end{center}
+\begin{center}\includegraphics[width=1\linewidth]{GHI_enh_04_investigate_files/figure-latex/daily-8} \end{center}
 
 Arima: -0.0132 6.9042 -0.0019 0.9985
 
-\begin{center}\includegraphics[width=1\linewidth]{GHI_enh_04_investigate_files/figure-latex/daily-7} \end{center}
+\begin{center}\includegraphics[width=1\linewidth]{GHI_enh_04_investigate_files/figure-latex/daily-9} \end{center}
 
 lmD: 0.9770213 +/- 0.1439346
 
@@ -220,7 +241,7 @@ lmY: 0.9770437 +/- 0.1439371
 
 Arima: 1.041 0.2186 4.7612 0
 
-\begin{center}\includegraphics[width=1\linewidth]{GHI_enh_04_investigate_files/figure-latex/daily-8} \end{center}
+\begin{center}\includegraphics[width=1\linewidth]{GHI_enh_04_investigate_files/figure-latex/daily-10} \end{center}
 
 \newpage
 
@@ -233,7 +254,15 @@ lmY: 0.8175255 +/- 0.1034336
 
 Arima: 0.8175 0.12 6.8104 0
 
-\begin{center}\includegraphics[width=1\linewidth]{GHI_enh_04_investigate_files/figure-latex/daily-9} \end{center}
+\begin{center}\includegraphics[width=1\linewidth]{GHI_enh_04_investigate_files/figure-latex/daily-11} \end{center}
+
+lmD: 0.2160878 +/- 0.03807227
+
+lmY: 0.2160919 +/- 0.03807295
+
+Arima: 0.2161 0.0414 5.2173 0
+
+\begin{center}\includegraphics[width=1\linewidth]{GHI_enh_04_investigate_files/figure-latex/daily-12} \end{center}
 
 lmD: 0.1909484 +/- 0.03787569
 
@@ -241,7 +270,7 @@ lmY: 0.190953 +/- 0.03787636
 
 Arima: 0.191 0.0401 4.7635 0
 
-\begin{center}\includegraphics[width=1\linewidth]{GHI_enh_04_investigate_files/figure-latex/daily-10} \end{center}
+\begin{center}\includegraphics[width=1\linewidth]{GHI_enh_04_investigate_files/figure-latex/daily-13} \end{center}
 
 lmD: 0.4856759 +/- 0.04638817
 
@@ -249,7 +278,7 @@ lmY: 0.4856822 +/- 0.046389
 
 Arima: 0.4857 0.0552 8.802 0
 
-\begin{center}\includegraphics[width=1\linewidth]{GHI_enh_04_investigate_files/figure-latex/daily-11} \end{center}
+\begin{center}\includegraphics[width=1\linewidth]{GHI_enh_04_investigate_files/figure-latex/daily-14} \end{center}
 
 lmD: 24.46426 +/- 2.544261
 
@@ -257,7 +286,7 @@ lmY: 24.46465 +/- 2.544306
 
 Arima: 24.4646 3.0718 7.9642 0
 
-\begin{center}\includegraphics[width=1\linewidth]{GHI_enh_04_investigate_files/figure-latex/daily-12} \end{center}
+\begin{center}\includegraphics[width=1\linewidth]{GHI_enh_04_investigate_files/figure-latex/daily-15} \end{center}
 
 lmD: 0.001335923 +/- 0.0001367163
 
@@ -265,7 +294,15 @@ lmY: 0.001335939 +/- 0.0001367188
 
 Arima: 0.0013 2e-04 8.5092 0
 
-\begin{center}\includegraphics[width=1\linewidth]{GHI_enh_04_investigate_files/figure-latex/daily-13} \end{center}
+\begin{center}\includegraphics[width=1\linewidth]{GHI_enh_04_investigate_files/figure-latex/daily-16} \end{center}
+
+lmD: 0.000422753 +/- 5.903214e-05
+
+lmY: 0.0004227591 +/- 5.903319e-05
+
+Arima: 4e-04 1e-04 6.291 0
+
+\begin{center}\includegraphics[width=1\linewidth]{GHI_enh_04_investigate_files/figure-latex/daily-17} \end{center}
 
 lmD: 0.000372438 +/- 6.132797e-05
 
@@ -273,7 +310,7 @@ lmY: 0.0003724446 +/- 6.132906e-05
 
 Arima: 4e-04 1e-04 5.4467 0
 
-\begin{center}\includegraphics[width=1\linewidth]{GHI_enh_04_investigate_files/figure-latex/daily-14} \end{center}
+\begin{center}\includegraphics[width=1\linewidth]{GHI_enh_04_investigate_files/figure-latex/daily-18} \end{center}
 
 lmD: 0.4856759 +/- 0.04638817
 
@@ -281,7 +318,7 @@ lmY: 0.4856822 +/- 0.046389
 
 Arima: 0.4857 0.0552 8.802 0
 
-\begin{center}\includegraphics[width=1\linewidth]{GHI_enh_04_investigate_files/figure-latex/daily-15} \end{center}
+\begin{center}\includegraphics[width=1\linewidth]{GHI_enh_04_investigate_files/figure-latex/daily-19} \end{center}
 
 lmD: 0.03656094 +/- 0.003621568
 
@@ -289,7 +326,7 @@ lmY: 0.03656157 +/- 0.003621632
 
 Arima: 0.0366 0.0042 8.6966 0
 
-\begin{center}\includegraphics[width=1\linewidth]{GHI_enh_04_investigate_files/figure-latex/daily-16} \end{center}
+\begin{center}\includegraphics[width=1\linewidth]{GHI_enh_04_investigate_files/figure-latex/daily-20} \end{center}
 
 \newpage
 
@@ -302,7 +339,15 @@ lmY: 0.1872803 +/- 0.2494792
 
 Arima: 0.1718 0.3646 0.4712 0.6375
 
-\begin{center}\includegraphics[width=1\linewidth]{GHI_enh_04_investigate_files/figure-latex/daily-17} \end{center}
+\begin{center}\includegraphics[width=1\linewidth]{GHI_enh_04_investigate_files/figure-latex/daily-21} \end{center}
+
+lmD: 0.0498083 +/- 0.192504
+
+lmY: 0.04983275 +/- 0.1925071
+
+Arima: 0.0086 0.3464 0.0248 0.9802
+
+\begin{center}\includegraphics[width=1\linewidth]{GHI_enh_04_investigate_files/figure-latex/daily-22} \end{center}
 
 lmD: 0.0912832 +/- 0.1914519
 
@@ -310,7 +355,7 @@ lmY: 0.09130632 +/- 0.191455
 
 Arima: 0.05 0.3354 0.1491 0.8815
 
-\begin{center}\includegraphics[width=1\linewidth]{GHI_enh_04_investigate_files/figure-latex/daily-18} \end{center}
+\begin{center}\includegraphics[width=1\linewidth]{GHI_enh_04_investigate_files/figure-latex/daily-23} \end{center}
 
 lmD: 0.03034705 +/- 0.02124537
 
@@ -318,7 +363,7 @@ lmY: 0.03034902 +/- 0.02124571
 
 Arima: 0.0304 0.022 1.3788 0.1679
 
-\begin{center}\includegraphics[width=1\linewidth]{GHI_enh_04_investigate_files/figure-latex/daily-19} \end{center}
+\begin{center}\includegraphics[width=1\linewidth]{GHI_enh_04_investigate_files/figure-latex/daily-24} \end{center}
 
 lmD: 6.13936 +/- 4.224962
 
@@ -326,7 +371,7 @@ lmY: 6.139801 +/- 4.22503
 
 Arima: 6.1407 4.3045 1.4266 0.1537
 
-\begin{center}\includegraphics[width=1\linewidth]{GHI_enh_04_investigate_files/figure-latex/daily-20} \end{center}
+\begin{center}\includegraphics[width=1\linewidth]{GHI_enh_04_investigate_files/figure-latex/daily-25} \end{center}
 
 lmD: 0.0005085756 +/- 0.0002811408
 
@@ -334,7 +379,15 @@ lmY: 0.0005085833 +/- 0.0002811453
 
 Arima: 5e-04 3e-04 1.598 0.11
 
-\begin{center}\includegraphics[width=1\linewidth]{GHI_enh_04_investigate_files/figure-latex/daily-21} \end{center}
+\begin{center}\includegraphics[width=1\linewidth]{GHI_enh_04_investigate_files/figure-latex/daily-26} \end{center}
+
+lmD: 0.0003565528 +/- 0.0002141263
+
+lmY: 0.0003565519 +/- 0.0002141297
+
+Arima: 3e-04 3e-04 1.3206 0.1866
+
+\begin{center}\includegraphics[width=1\linewidth]{GHI_enh_04_investigate_files/figure-latex/daily-27} \end{center}
 
 lmD: 0.000398809 +/- 0.0002210804
 
@@ -342,7 +395,7 @@ lmY: 0.0003988093 +/- 0.0002210839
 
 Arima: 4e-04 3e-04 1.4507 0.1469
 
-\begin{center}\includegraphics[width=1\linewidth]{GHI_enh_04_investigate_files/figure-latex/daily-22} \end{center}
+\begin{center}\includegraphics[width=1\linewidth]{GHI_enh_04_investigate_files/figure-latex/daily-28} \end{center}
 
 lmD: 0.03034705 +/- 0.02124537
 
@@ -350,7 +403,7 @@ lmY: 0.03034902 +/- 0.02124571
 
 Arima: 0.0304 0.022 1.3788 0.1679
 
-\begin{center}\includegraphics[width=1\linewidth]{GHI_enh_04_investigate_files/figure-latex/daily-23} \end{center}
+\begin{center}\includegraphics[width=1\linewidth]{GHI_enh_04_investigate_files/figure-latex/daily-29} \end{center}
 
 lmD: 0.008776506 +/- 0.00550671
 
@@ -358,7 +411,7 @@ lmY: 0.008777009 +/- 0.005506798
 
 Arima: 0.0088 0.0057 1.5378 0.1241
 
-\begin{center}\includegraphics[width=1\linewidth]{GHI_enh_04_investigate_files/figure-latex/daily-24} \end{center}
+\begin{center}\includegraphics[width=1\linewidth]{GHI_enh_04_investigate_files/figure-latex/daily-30} \end{center}
 
 \newpage
 \FloatBarrier
@@ -371,17 +424,20 @@ Arima: 0.0088 0.0057 1.5378 0.1241
 \begin{center}\includegraphics[width=1\linewidth]{GHI_enh_04_investigate_files/figure-latex/groups-2} \end{center}
 
 \begin{verbatim}
-Warning: A numeric `legend.position` argument in `theme()` was deprecated in ggplot2 3.5.0.
+Warning: A numeric `legend.position` argument in `theme()` was deprecated in ggplot2
+3.5.0.
 i Please use the `legend.position.inside` argument of `theme()` instead.
 This warning is displayed once every 8 hours.
-Call `lifecycle::last_lifecycle_warnings()` to see where this warning was generated.
+Call `lifecycle::last_lifecycle_warnings()` to see where this warning was
+generated.
 \end{verbatim}
 
 \begin{verbatim}
 Warning: The S3 guide system was deprecated in ggplot2 3.5.0.
 i It has been replaced by a ggproto system that can be extended.
 This warning is displayed once every 8 hours.
-Call `lifecycle::last_lifecycle_warnings()` to see where this warning was generated.
+Call `lifecycle::last_lifecycle_warnings()` to see where this warning was
+generated.
 \end{verbatim}
 
 \begin{center}\includegraphics[width=1\linewidth]{GHI_enh_04_investigate_files/figure-latex/groups-3} \end{center}
@@ -522,7 +578,7 @@ Call `lifecycle::last_lifecycle_warnings()` to see where this warning was genera
 \textbf{END}
 
 \begin{verbatim}
-2024-02-29 17:56:29.1 athan@tyler GHI_enh_04_investigate.R 1.157761 mins
+2024-03-01 16:24:25.3 athan@tyler GHI_enh_04_investigate.R 1.012841 mins
 \end{verbatim}
 
 \end{document}
