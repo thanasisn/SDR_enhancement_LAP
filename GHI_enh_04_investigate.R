@@ -140,11 +140,11 @@ cat(ls(pattern = "^ST.*daily"))
 
 ## variables to plot
 prefix <- c("GLB_ench", "GLB_diff")
-sufix  <- c("max", "median", "sum", "N" )
+sufix  <- c("max", "median", "sum", "N", "mean" )
 vars   <- sort(levels(interaction(prefix,sufix, sep = ".")))
 
 ## data set to plot
-dbs         <- c("ST_daily", "ST_E_daily", "ST_E_daily_seas", "ST_extreme_daily")
+# dbs         <- c("ST_daily", "ST_E_daily", "ST_E_daily_seas", "ST_extreme_daily")
 dbs         <- c("ST_daily", "ST_E_daily", "ST_extreme_daily")
 
 
