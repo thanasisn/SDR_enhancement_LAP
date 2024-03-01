@@ -77,7 +77,7 @@ staname <- function(avar) {
            min    = "minimum",
            max    = "maximun",
            median = "median",
-           meαn   = "mean",
+           mean   = "mean",
            sumPOS = "total of positives",
            sumNEG = "total of negatives",
            N_pos  = "number of positive cases",
@@ -86,7 +86,6 @@ staname <- function(avar) {
            TotalN = "number of observations",
            avar
     )
-
 }
 
 

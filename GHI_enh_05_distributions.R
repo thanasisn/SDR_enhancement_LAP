@@ -126,7 +126,6 @@ cat("Enhancemnet criteria:", SelEnhanc, "\n\n")
 
 ##  Daily  ---------------------------------------------------------------------
 
-
 #'
 #' \FloatBarrier
 #'

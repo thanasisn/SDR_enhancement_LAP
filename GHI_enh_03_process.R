@@ -344,7 +344,6 @@ ST_monthly[, GLB_diff.sum    := GLB_diff.sum    * 60]
 ST_monthly[, GLB_diff.sumPOS := GLB_diff.sumPOS * 60]
 ST_monthly[, GLB_diff.sumNEG := GLB_diff.sumNEG * 60]
 
-stop()
 
 ## stats on extreme enhancement cases
 ST_extreme_monthly <- DATA[wattGLB > ETH,
@@ -354,6 +353,13 @@ ST_extreme_monthly <- DATA[wattGLB > ETH,
                            by = .(year(Date), month(Date))]
 ST_extreme_monthly$Date <- as.POSIXct(strptime(paste(ST_extreme_monthly$year, ST_extreme_monthly$month, "1"),"%Y %m %d"))
 ST_extreme_monthly[, yts := (year(Date) - min(year(Date))) + ( yday(Date) - 1 ) / Hmisc::yearDays(Date)]
+
+
+## convert sum Irradiance to energy
+## Σ(W/m^2) * 60 s = J/m^2
+ST_extreme_monthly[, GLB_diff.sum    := GLB_diff.sum    * 60]
+ST_extreme_monthly[, GLB_diff.sumPOS := GLB_diff.sumPOS * 60]
+ST_extreme_monthly[, GLB_diff.sumNEG := GLB_diff.sumNEG * 60]
 
 
 
@@ -366,6 +372,11 @@ ST_E_monthly <- DATA[get(SelEnhanc) == TRUE,
 ST_E_monthly$Date <- as.POSIXct(strptime(paste(ST_E_monthly$year, ST_E_monthly$month, "1"),"%Y %m %d"))
 ST_E_monthly[, yts := (year(Date) - min(year(Date))) + ( yday(Date) - 1 ) / Hmisc::yearDays(Date)]
 
+## convert sum Irradiance to energy
+## Σ(W/m^2) * 60 s = J/m^2
+ST_E_monthly[, GLB_diff.sum    := GLB_diff.sum    * 60]
+
+
 
 ## monthly climatology
 ST_E_monthly_seas <- DATA[get(SelEnhanc) == TRUE,
@@ -373,6 +384,10 @@ ST_E_monthly_seas <- DATA[get(SelEnhanc) == TRUE,
                             recursive = FALSE),
                      .SDcols = my.cols,
                      by = .(month(Date))]
+
+## convert sum Irradiance to energy
+## Σ(W/m^2) * 60 s = J/m^2
+ST_E_monthly_seas[, GLB_diff.sum    := GLB_diff.sum    * 60]
 
 
 for (avar in grep("^month$", names(ST_E_monthly_seas), value = T, invert = T) ) {
@@ -394,6 +409,14 @@ ST_yearly <- DATA[, unlist(lapply(.SD, data.summary, na.rm = TRUE),
 ST_yearly$Date <- as.POSIXct(strptime(paste(ST_yearly$year, "01", "1"),"%Y %m %d"))
 
 
+## convert sum Irradiance to energy
+## Σ(W/m^2) * 60 s = J/m^2
+ST_yearly[, GLB_diff.sum    := GLB_diff.sum    * 60]
+ST_yearly[, GLB_diff.sumPOS := GLB_diff.sumPOS * 60]
+ST_yearly[, GLB_diff.sumNEG := GLB_diff.sumNEG * 60]
+
+
+
 ## stats on extreme enhancement cases
 ST_extreme_yearly <- DATA[wattGLB > ETH,
                            unlist(lapply(.SD, data.summary, na.rm = TRUE),
@@ -403,6 +426,16 @@ ST_extreme_yearly <- DATA[wattGLB > ETH,
 ST_extreme_yearly$Date <- as.POSIXct(strptime(paste(ST_extreme_yearly$year, "01", "1"),"%Y %m %d"))
 
 
+## convert sum Irradiance to energy
+## Σ(W/m^2) * 60 s = J/m^2
+ST_extreme_yearly[, GLB_diff.sum    := GLB_diff.sum    * 60]
+ST_extreme_yearly[, GLB_diff.sumPOS := GLB_diff.sumPOS * 60]
+ST_extreme_yearly[, GLB_diff.sumNEG := GLB_diff.sumNEG * 60]
+
+
+
+
+
 ## stats on enhancement cases
 ST_E_yearly <- DATA[get(SelEnhanc) == TRUE,
                      unlist(lapply(.SD, enhanc.summary, na.rm = TRUE),
@@ -410,6 +443,12 @@ ST_E_yearly <- DATA[get(SelEnhanc) == TRUE,
                      .SDcols = my.cols,
                      by = .(year(Date), month(Date))]
 ST_E_yearly$year <- as.POSIXct(strptime(paste(ST_E_yearly$year, "01", "1"),"%Y %m %d"))
+
+
+
+## convert sum Irradiance to energy
+## Σ(W/m^2) * 60 s = J/m^2
+ST_E_yearly[, GLB_diff.sum    := GLB_diff.sum    * 60]
 
 
 
@@ -434,6 +473,12 @@ for (avar in grep("^SZA$", names(ST_sza), value = T, invert = T) ) {
     title(paste("ST_sza", avar))
 }
 
+## convert sum Irradiance to energy
+## Σ(W/m^2) * 60 s = J/m^2
+ST_sza[, GLB_diff.sum    := GLB_diff.sum    * 60]
+ST_sza[, GLB_diff.sumPOS := GLB_diff.sumPOS * 60]
+ST_sza[, GLB_diff.sumNEG := GLB_diff.sumNEG * 60]
+
 ## stats on extreme enhancement cases
 ST_extreme_SZA <- DATA[wattGLB > ETH,
                            unlist(lapply(.SD, enhanc.summary, na.rm = TRUE),
@@ -442,12 +487,21 @@ ST_extreme_SZA <- DATA[wattGLB > ETH,
                            by = .(SZA = (SZA - SZA_BIN / 2 ) %/% SZA_BIN)]
 
 
+## convert sum Irradiance to energy
+## Σ(W/m^2) * 60 s = J/m^2
+ST_extreme_SZA[, GLB_diff.sum    := GLB_diff.sum    * 60]
+
 ## stats on enhancement cases
 ST_E_sza <- DATA[get(SelEnhanc) == TRUE,
                  unlist(lapply(.SD, enhanc.summary, na.rm = FALSE),
                         recursive = FALSE),
                  .SDcols = my.cols,
                  by = .(SZA = (SZA - SZA_BIN / 2 ) %/% SZA_BIN)]
+
+## convert sum Irradiance to energy
+## Σ(W/m^2) * 60 s = J/m^2
+ST_E_sza[, GLB_diff.sum    := GLB_diff.sum    * 60]
+
 
 
 
@@ -460,6 +514,14 @@ ST_sza_monthly <- DATA[, unlist(lapply(.SD, data.summary, na.rm = TRUE),
                        .SDcols = my.cols,
                        by = .(SZA = (SZA - SZA_BIN / 2 ) %/% SZA_BIN, Month = month(Date))]
 
+
+## convert sum Irradiance to energy
+## Σ(W/m^2) * 60 s = J/m^2
+ST_sza_monthly[, GLB_diff.sum    := GLB_diff.sum    * 60]
+ST_sza_monthly[, GLB_diff.sumPOS := GLB_diff.sumPOS * 60]
+ST_sza_monthly[, GLB_diff.sumNEG := GLB_diff.sumNEG * 60]
+
+
 ## stats on extreme enhancement cases
 ST_extreme_SZA_monthly <- DATA[wattGLB > ETH,
                                unlist(lapply(.SD, enhanc.summary, na.rm = TRUE),
@@ -467,12 +529,23 @@ ST_extreme_SZA_monthly <- DATA[wattGLB > ETH,
                                .SDcols = my.cols,
                                by = .(SZA = (SZA - SZA_BIN / 2 ) %/% SZA_BIN, Month = month(Date))]
 
+## convert sum Irradiance to energy
+## Σ(W/m^2) * 60 s = J/m^2
+ST_extreme_SZA_monthly[, GLB_diff.sum    := GLB_diff.sum    * 60]
+
+
+
+
 ## stats on enhancement cases
 ST_E_sza_monthly <- DATA[get(SelEnhanc) == TRUE,
                          unlist(lapply(.SD, enhanc.summary, na.rm = FALSE),
                                 recursive = FALSE),
                          .SDcols = my.cols,
                          by = .(SZA = (SZA - SZA_BIN / 2 ) %/% SZA_BIN, Month = month(Date))]
+
+## convert sum Irradiance to energy
+## Σ(W/m^2) * 60 s = J/m^2
+ST_E_sza_monthly[, GLB_diff.sum    := GLB_diff.sum    * 60]
 
 
 
@@ -483,27 +556,25 @@ ST_daily[,   season_Yqrt := as.yearqtr(as.yearmon(paste(year(Date), month(Date),
 ST_monthly[, season_Yqrt := as.yearqtr(as.yearmon(paste(year(Date), month(Date), sep = "-")) + 1/12)]
 
 ## Flag seasons using quarters
-DATA[season_Yqrt %% 1 == 0   , Season := "Winter"]
-DATA[season_Yqrt %% 1 == 0.25, Season := "Spring"]
-DATA[season_Yqrt %% 1 == 0.50, Season := "Summer"]
-DATA[season_Yqrt %% 1 == 0.75, Season := "Autumn"]
-ST_daily[season_Yqrt %% 1 == 0   , Season := "Winter"]
-ST_daily[season_Yqrt %% 1 == 0.25, Season := "Spring"]
-ST_daily[season_Yqrt %% 1 == 0.50, Season := "Summer"]
-ST_daily[season_Yqrt %% 1 == 0.75, Season := "Autumn"]
+DATA[      season_Yqrt %% 1 == 0   , Season := "Winter"]
+DATA[      season_Yqrt %% 1 == 0.25, Season := "Spring"]
+DATA[      season_Yqrt %% 1 == 0.50, Season := "Summer"]
+DATA[      season_Yqrt %% 1 == 0.75, Season := "Autumn"]
+ST_daily[  season_Yqrt %% 1 == 0   , Season := "Winter"]
+ST_daily[  season_Yqrt %% 1 == 0.25, Season := "Spring"]
+ST_daily[  season_Yqrt %% 1 == 0.50, Season := "Summer"]
+ST_daily[  season_Yqrt %% 1 == 0.75, Season := "Autumn"]
 ST_monthly[season_Yqrt %% 1 == 0   , Season := "Winter"]
 ST_monthly[season_Yqrt %% 1 == 0.25, Season := "Spring"]
 ST_monthly[season_Yqrt %% 1 == 0.50, Season := "Summer"]
 ST_monthly[season_Yqrt %% 1 == 0.75, Season := "Autumn"]
 
 
-# - by season
-# - by season_yqrt
 
-##TODO create deseasonal data
+##TODO create deseasonal data ?
 
-#
-#
+
+
 # CONF_INTERV <- .95
 # conf_param  <- 1 - (1 - CONF_INTERV) / 2
 # suppressWarnings({
@@ -539,9 +610,6 @@ ST_monthly[season_Yqrt %% 1 == 0.75, Season := "Autumn"]
 # fit1 <- lm(Enh_yearly$N_att ~ Enh_yearly$year)[[1]]
 # fit2 <- lm(Enh_yearly$Ench_intesit ~ Enh_yearly$year)[[1]]
 
-
-##  PLOTS  ---------------------------------------------------------------------
-
 ##;
 ##;  #'
 ##;  #' ## Results
@@ -561,9 +629,7 @@ ST_monthly[season_Yqrt %% 1 == 0.75, Season := "Autumn"]
 ##;
 ##;
 
-
 ## _ Cases per year  -----------------------------------------------------------
-
 
 # #+ enchtrendyear, include=T, echo=F, fig.cap="Trend of the total of enhancement cases per year."
 # plot(Enh_yearly$year, Enh_yearly$N_att ,
@@ -578,10 +644,7 @@ ST_monthly[season_Yqrt %% 1 == 0.75, Season := "Autumn"]
 #        paste('Y =', signif(fit[1],2),if(fit[2]>0)'+'else'-',signif(abs(fit[2]*1),3),'* year'))
 # #'
 
-
 ## _ Cases per month  ----------------------------------------------------------
-
-
 
 # plot(Enh_monthly$Date, Enh_monthly$N_att ,
 #      ylab = bquote("Difference from mean [%]" )
@@ -609,9 +672,6 @@ ST_monthly[season_Yqrt %% 1 == 0.75, Season := "Autumn"]
 #        paste('Y =', signif(fit[1],2),if(fit[2]>0)'+'else'-',signif(abs(fit[2]*1),3),'* year'))
 # #'
 
-
-
-
 # #+ enchNtrendday, include=T, echo=F, fig.cap="Trend of the total of enhancement cases per year."
 # plot(Enh_daily$Day, Enh_daily$N ,
 #       # xlab = "Year",
@@ -624,12 +684,6 @@ ST_monthly[season_Yqrt %% 1 == 0.75, Season := "Autumn"]
 # legend('topleft', lty = 1, bty = "n",
 #        paste('Y =', signif(fit[1],2),if(fit[2]>0)'+'else'-',signif(abs(fit[2]*Days_of_year),3),'* year'))
 # #'
-
-
-
-
-
-
 
 
 
@@ -709,8 +763,6 @@ ST_monthly[season_Yqrt %% 1 == 0.75, Season := "Autumn"]
 ##;  #'
 
 
-
-
 ## consecutive data id
 # test <- c(F,T,F, rep(T,5),F,F,T,F,F,F, rep(T,5))
 #
@@ -723,8 +775,8 @@ ST_monthly[season_Yqrt %% 1 == 0.75, Season := "Autumn"]
 #
 # DT[, G1  := test]
 # DT[, G0  := test]
-#
-#
+
+
 # allow <- 1
 # for (i in 1:nrow(DT)) {
 #     p1 <- i - 1
@@ -743,8 +795,7 @@ ST_monthly[season_Yqrt %% 1 == 0.75, Season := "Autumn"]
 #
 # DT[, Grp0 := rleid(c(NA,diff(cumsum(G0))))]
 # DT[G0 == FALSE, Grp0 := NA]
-#
-# DT
+
 
 
 
@@ -758,13 +809,10 @@ isinter <- (isTRUE(getOption('knitr.in.progress')) == F & interactive())
 #' interactive `r as.character(isinter)`
 #'
 
-
-
 plot_time_series(ST_daily, Date, wattGLB.mean, .interactive = isinter)
 plot_time_series(ST_daily, Date, wattGLB.sum , .interactive = isinter)
 plot_time_series(ST_daily, Date, wattGLB.max , .interactive = isinter)
 plot_time_series(ST_daily, Date, wattGLB.N   , .interactive = isinter)
-
 
 plot_time_series(ST_E_daily, Date, wattGLB.mean, .interactive = isinter)
 plot_time_series(ST_E_daily, Date, wattGLB.sum , .interactive = isinter)
@@ -777,11 +825,7 @@ plot_time_series(ST_E_monthly, Date, wattGLB.max , .interactive = isinter)
 plot_time_series(ST_E_monthly, Date, wattGLB.N   , .interactive = isinter)
 plot_time_series(ST_E_monthly, Date, wattGLB.N   , .interactive = isinter, .smooth = T, .smooth_span = 0.3 )
 
-
-
 plot_acf_diagnostics(ST_E_daily, Date, wattGLB.N, .lags = 1:60, .interactive = isinter)
-
-
 
 plot_stl_diagnostics(ST_E_daily, Date, wattGLB.N,
                      .feature_set = c("observed","season", "trend", "remainder"),
@@ -796,7 +840,6 @@ plot_stl_diagnostics(ST_E_monthly, Date, wattGLB.N,
                      .frequency = 30,
                      .interactive = isinter
                      )
-
 
 plot_seasonal_diagnostics(ST_E_daily, Date, wattGLB.N, .interactive = isinter,
                           .feature_set = c("week", "month.lbl", "quarter", "year"))
@@ -827,7 +870,8 @@ plot_time_series_regression(
 
 
 
-#  Save from environment  ------------------------------------------------------
+#  Save environment  -----------------------------------------------------------
+
 ## Variables
 objects <- grep("^tic$|^tac$|^Script.Name$|^tag$", ls(), value = T, invert = T)
 objects <- objects[sapply(objects, function(x)
@@ -841,18 +885,13 @@ objects <- c(
     objects,
     grep("^ST_", ls(), value = TRUE)
 )
-
-
-
+## list saved
 cat(objects, sep = "\n")
 
-
-
+## Save
 save(file = paste0("./data/", basename(sub("\\.R", ".Rda", Script.Name))),
      list = objects,
      compress = "xz")
-
-
 
 
 #' **END**
@@ -864,4 +903,3 @@ if (interactive() & difftime(tac,tic,units = "sec") > 30) {
     system("mplayer /usr/share/sounds/freedesktop/stereo/dialog-warning.oga", ignore.stdout = T, ignore.stderr = T)
     system(paste("notify-send -u normal -t 30000 ", Script.Name, " 'R script ended'"))
 }
-

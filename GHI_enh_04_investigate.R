@@ -168,7 +168,7 @@ for (DBn in dbs) {
         ## convert sum Irradiance to energy
         if (grepl("_diff\\.sum$", avar)) {
 
-
+          ## set units
 
           stop()
         }
