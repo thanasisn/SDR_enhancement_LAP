@@ -161,7 +161,17 @@ for (DBn in dbs) {
     for (avar in vars) {
         dataset <- DB
 
+
         if (all(is.na(dataset[[avar]]))) next()
+
+        ## TODO move to 03
+        ## convert sum Irradiance to energy
+        if (grepl("_diff\\.sum$", avar)) {
+
+
+
+          stop()
+        }
 
         ## linear model by day step
         lmD <- lm(dataset[[avar]] ~ dataset$Date)

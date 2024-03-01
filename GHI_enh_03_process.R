@@ -234,6 +234,13 @@ ST_daily <- DATA[, unlist(lapply(.SD, data.summary, na.rm = FALSE),
 ST_daily[, yts := (year(Date) - min(year(Date))) + ( yday(Date) - 1 ) / Hmisc::yearDays(Date)]
 
 
+## convert sum Irradiance to energy
+## Σ(W/m^2) * 60 s = J/m^2
+ST_daily[, GLB_diff.sum    := GLB_diff.sum    * 60 ]
+ST_daily[, GLB_diff.sumPOS := GLB_diff.sumPOS * 60 ]
+ST_daily[, GLB_diff.sumNEG := GLB_diff.sumNEG * 60 ]
+
+
 ## stats on extreme enhancement cases
 ST_extreme_daily <- DATA[wattGLB > ETH,
                          unlist(lapply(.SD, data.summary, na.rm = TRUE),
@@ -241,6 +248,13 @@ ST_extreme_daily <- DATA[wattGLB > ETH,
                          .SDcols = my.cols,
                          by = .(Date = Day)]
 ST_extreme_daily[, yts := (year(Date) - min(year(Date))) + ( yday(Date) - 1 ) / Hmisc::yearDays(Date)]
+
+## convert sum Irradiance to energy
+## Σ(W/m^2) * 60 s = J/m^2
+ST_extreme_daily[, GLB_diff.sum    := GLB_diff.sum    * 60]
+ST_extreme_daily[, GLB_diff.sumPOS := GLB_diff.sumPOS * 60]
+ST_extreme_daily[, GLB_diff.sumNEG := GLB_diff.sumNEG * 60]
+
 
 
 ## stats on enhancement cases
@@ -251,6 +265,12 @@ ST_E_daily <- DATA[get(SelEnhanc) == TRUE,
                    by = .(Date = Day)]
 ST_E_daily[, yts := (year(Date) - min(year(Date))) + ( yday(Date) - 1 ) / Hmisc::yearDays(Date)]
 
+## convert sum Irradiance to energy
+## Σ(W/m^2) * 60 s = J/m^2
+ST_E_daily[, GLB_diff.sum := GLB_diff.sum * 60]
+
+
+
 
 ## climatology daily
 ST_E_daily_seas <- DATA[get(SelEnhanc) == TRUE,
@@ -260,8 +280,9 @@ ST_E_daily_seas <- DATA[get(SelEnhanc) == TRUE,
                    by = DOY]
 ST_E_daily_seas[, yts := DOY ] ## just for convenient of programming
 
-
-
+## convert sum Irradiance to energy
+## Σ(W/m^2) * 60 s = J/m^2
+ST_E_daily_seas[, GLB_diff.sum := GLB_diff.sum * 60]
 
 
 ##  Groups with zero gaps  -----------------------------------------------------
@@ -278,6 +299,12 @@ ST_G0 <- DATA[!is.na(C1Grp0),
 ST_G0$Date <- as.POSIXct(ST_G0$Date, origin = "1970-01-01")
 
 
+## convert sum Irradiance to energy
+## Σ(W/m^2) * 60 s = J/m^2
+ST_G0[, GLB_diff.sum    := GLB_diff.sum    * 60]
+
+
+
 ##  Groups with one gap  -------------------------------------------------------
 ST_G1 <- DATA[!is.na(C1Grp1),
               unlist(c(lapply(.SD, enhanc.summary, na.rm = FALSE),
@@ -287,6 +314,9 @@ ST_G1 <- DATA[!is.na(C1Grp1),
               by = .(Group1 = C1Grp1)]
 ST_G1$Date <- as.POSIXct(ST_G1$Date, origin = "1970-01-01")
 
+## convert sum Irradiance to energy
+## Σ(W/m^2) * 60 s = J/m^2
+ST_G1[, GLB_diff.sum    := GLB_diff.sum    * 60]
 
 
 
@@ -308,6 +338,13 @@ ST_monthly          <- DATA[, unlist(lapply(.SD, data.summary, na.rm = FALSE),
 ST_monthly$Date     <- as.POSIXct(strptime(paste(ST_monthly$year, ST_monthly$month, "1"),"%Y %m %d"))
 ST_monthly[, yts := (year(Date) - min(year(Date))) + ( yday(Date) - 1 ) / Hmisc::yearDays(Date)]
 
+## convert sum Irradiance to energy
+## Σ(W/m^2) * 60 s = J/m^2
+ST_monthly[, GLB_diff.sum    := GLB_diff.sum    * 60]
+ST_monthly[, GLB_diff.sumPOS := GLB_diff.sumPOS * 60]
+ST_monthly[, GLB_diff.sumNEG := GLB_diff.sumNEG * 60]
+
+stop()
 
 ## stats on extreme enhancement cases
 ST_extreme_monthly <- DATA[wattGLB > ETH,
