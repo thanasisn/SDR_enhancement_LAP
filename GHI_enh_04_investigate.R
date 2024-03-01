@@ -61,8 +61,8 @@ Sys.setenv(TZ = "UTC")
 Script.Name <- "./GHI_enh_04_investigate.R"
 
 if (!interactive()) {
-    pdf( file = paste0("./runtime/",  basename(sub("\\.R$", ".pdf", Script.Name))))
-    sink(file = paste0("./runtime/",  basename(sub("\\.R$", ".out", Script.Name))), split = TRUE)
+  pdf( file = paste0("./runtime/",  basename(sub("\\.R$", ".pdf", Script.Name))))
+  sink(file = paste0("./runtime/",  basename(sub("\\.R$", ".out", Script.Name))), split = TRUE)
 }
 
 
@@ -154,154 +154,162 @@ dailytrendsY <- data.frame()
 
 
 for (DBn in dbs) {
-    DB <- get(DBn)
-    cat("\n\\newpage\n")
-    cat("\n#### Trends on", tr_var(DBn), "data\n\n" )
+  DB <- get(DBn)
+  cat("\n\\newpage\n")
+  cat("\n#### Trends on", tr_var(DBn), "data\n\n" )
 
-    for (avar in vars) {
-        dataset <- DB
-
-
-        if (all(is.na(dataset[[avar]]))) next()
-
-        ## TODO move to 03
-        ## convert sum Irradiance to energy
-        if (grepl("_diff\\.sum$", avar)) {
-
-          ## set units
-
-          stop()
-        }
-
-        ## linear model by day step
-        lmD <- lm(dataset[[avar]] ~ dataset$Date)
-        d   <- summary(lmD)$coefficients
-        cat("lmD:     ", lmD$coefficients[2] * Days_of_year, "+/-", d[2,2] * Days_of_year,"\n\n")
-
-        ## correlation test by day step
-        corD <- cor.test(x = dataset[[avar]], y = as.numeric(dataset$Date), method = 'pearson')
+  for (avar in vars) {
+    dataset <- DB
 
 
-        ## linear model by year step
-        lmY <- lm(dataset[[avar]] ~ dataset$yts)
-        d2   <- summary(lmY)$coefficients
-        cat("lmY:     ", lmY$coefficients[2] , "+/-", d2[2,2] ,"\n\n")
+    if (all(is.na(dataset[[avar]]))) next()
 
-        ## correlation test by day step
-        corY <- cor.test(x = dataset[[avar]], y = as.numeric(dataset$yts), method = 'pearson')
-
-        #         lmY[[1]] / Days_of_year
-        #         coef(lmY) / Days_of_year
-        #         summary(lmY)
-        #         summary(lmD)
-        #         coef(lmD)
-        #         coef(lmY) /Days_of_year
-
-        ## _ auto reggression arima Tourpali -------------------------------
-        ## create a time variable (with lag of 1 day ?)
-        tmodelo <- arima(x = dataset[[avar]], order = c(1,0,0), xreg = dataset$yts, method = "ML")
-
-        ## trend per year with auto correlation
-        Tres <- data.frame(t(lmtest::coeftest(tmodelo)[3,]))
-        Tint <- data.frame(t(lmtest::coeftest(tmodelo)[2,]))
-        names(Tres) <- paste0("Tmod_", names(Tres))
-        cat("Arima:", paste(round(Tres, 4)), "\n\n")
-
-
-        # capture lm for table
-        dailytrends <- rbind(dailytrends,
-                             data.frame(
-                                 linear_fit_stats(lmD, confidence_interval = 0.99),
-                                 cor_test_stats(corD),
-                                 DATA       = DBn,
-                                 var        = avar,
-                                 N          = sum(!is.na(dataset[[avar]])),
-                                 # N_eff      = N_eff,
-                                 # t_eff      = t_eff,
-                                 # t_eff_cri  = t_eff_cri,
-                                 # conf_2.5   = conf_2.5,
-                                 # conf_97.5  = conf_97.5,
-                                 # mean_clima = mean(dclima$V1, na.rm = T),
-                                 Tres
-                             )
-        )
-
-        dailytrendsY <- rbind(dailytrendsY,
-                              data.frame(
-                                  linear_fit_stats(lmY, confidence_interval = 0.99),
-                                  cor_test_stats(corY),
-                                  DATA       = DBn,
-                                  var        = avar,
-                                  N          = sum(!is.na(dataset[[avar]])),
-                                  # N_eff      = N_eff,
-                                  # t_eff      = t_eff,
-                                  # t_eff_cri  = t_eff_cri,
-                                  # conf_2.5   = conf_2.5,
-                                  # conf_97.5  = conf_97.5,
-                                  # mean_clima = mean(dclima$V1, na.rm = T),
-                                  Tres
-                              )
-        )
-
-        # if (grepl("near_tcc", avar)) {
-        #     acol <- "cyan"
-        # } else {
-        #     acol <- get(paste0(c("col", unlist(strsplit(avar, split = "_"))[1:2]),
-        #                        collapse = "_"))
-        # }
-
-
-        ## plot data
-        plot(dataset$Date, dataset[[avar]],
-             pch      = 16,
-             col      = varcol(avar),
-             cex      = 0.5,
-             # main     = paste(tr_var(DBn), tr_var(avar)),
-             cex.main = 0.8,
-             yaxt     = "n",
-             xlab     = "",
-             ylab     = varname(avar)
-        )
-
-        ## plot fit line lm
-        abline(lmD, lwd = 2, col = "red")
-
-
-        # y axis
-        axis(2, pretty(dataset[[avar]]), las = 2 )
-
-        # x axis
-        axis.Date(1,
-                  at = seq(as.Date("1993-01-01"), max(dataset$Date), by = "year"),
-                  format = "%Y",
-                  labels = NA,
-                  tcl = -0.25)
-
-
-        if (DRAFT == TRUE) {
-            title(main = paste(tr_var(DBn), varname(avar), staname(avar), avar),
-                  cex.main = 0.8 )
-        }
-
-
-        ## display trend on graph
-        fit <- lmD[[1]]
-        legend("top", lty = 1, bty = "n", lwd = 2, cex = 1,
-               paste("Trend: ",
-                     if (fit[2] > 0) "+" else "-",
-                     signif(abs(fit[2]) * Days_of_year, 2) ,"/y" )
-        )
-
-        # fit <- lmD[[1]]
-        # legend("top", lty = 1, bty = "n", lwd = 2, cex = 1,
-        #        paste("Trend: ",
-        #              if (fit[2] > 0) "+" else "-",
-        #              signif(abs(fit[2]) * Days_of_year, 2),
-        #              "±", signif(2 * Tres[2], 2) ,"%/y" )
-        # )
-        cat(" \n \n")
+    ## Set units
+    if (grepl("_diff\\.sum$", avar)) {
+      units <- bquote( J/m^2)
+    } else if (grepl("\\.N$", avar)) {
+      units <- ""
+    } else {
+      units <- bquote( Watt/m^2)
+      ## set units
+      # ylab = bquote("Deseas." ~ .(translate(avar)) ~ "[" ~ Watt/m^2 ~ "]" )
     }
+
+
+    cat("Units for", avar, ": ", paste(units))
+
+
+
+
+    ## linear model by day step
+    lmD <- lm(dataset[[avar]] ~ dataset$Date)
+    d   <- summary(lmD)$coefficients
+    cat("lmD:     ", lmD$coefficients[2] * Days_of_year, "+/-", d[2,2] * Days_of_year,"\n\n")
+
+    ## correlation test by day step
+    corD <- cor.test(x = dataset[[avar]], y = as.numeric(dataset$Date), method = 'pearson')
+
+
+    ## linear model by year step
+    lmY <- lm(dataset[[avar]] ~ dataset$yts)
+    d2   <- summary(lmY)$coefficients
+    cat("lmY:     ", lmY$coefficients[2] , "+/-", d2[2,2] ,"\n\n")
+
+    ## correlation test by day step
+    corY <- cor.test(x = dataset[[avar]], y = as.numeric(dataset$yts), method = 'pearson')
+
+    #         lmY[[1]] / Days_of_year
+    #         coef(lmY) / Days_of_year
+    #         summary(lmY)
+    #         summary(lmD)
+    #         coef(lmD)
+    #         coef(lmY) /Days_of_year
+
+    ## _ auto reggression arima Tourpali -------------------------------
+    ## create a time variable (with lag of 1 day ?)
+    tmodelo <- arima(x = dataset[[avar]], order = c(1,0,0), xreg = dataset$yts, method = "ML")
+
+    ## trend per year with auto correlation
+    Tres <- data.frame(t(lmtest::coeftest(tmodelo)[3,]))
+    Tint <- data.frame(t(lmtest::coeftest(tmodelo)[2,]))
+    names(Tres) <- paste0("Tmod_", names(Tres))
+    cat("Arima:", paste(round(Tres, 4)), "\n\n")
+
+
+    # capture lm for table
+    dailytrends <- rbind(dailytrends,
+                         data.frame(
+                           linear_fit_stats(lmD, confidence_interval = 0.99),
+                           cor_test_stats(corD),
+                           DATA       = DBn,
+                           var        = avar,
+                           N          = sum(!is.na(dataset[[avar]])),
+                           # N_eff      = N_eff,
+                           # t_eff      = t_eff,
+                           # t_eff_cri  = t_eff_cri,
+                           # conf_2.5   = conf_2.5,
+                           # conf_97.5  = conf_97.5,
+                           # mean_clima = mean(dclima$V1, na.rm = T),
+                           Tres
+                         )
+    )
+
+    dailytrendsY <- rbind(dailytrendsY,
+                          data.frame(
+                            linear_fit_stats(lmY, confidence_interval = 0.99),
+                            cor_test_stats(corY),
+                            DATA       = DBn,
+                            var        = avar,
+                            N          = sum(!is.na(dataset[[avar]])),
+                            # N_eff      = N_eff,
+                            # t_eff      = t_eff,
+                            # t_eff_cri  = t_eff_cri,
+                            # conf_2.5   = conf_2.5,
+                            # conf_97.5  = conf_97.5,
+                            # mean_clima = mean(dclima$V1, na.rm = T),
+                            Tres
+                          )
+    )
+
+    # if (grepl("near_tcc", avar)) {
+    #     acol <- "cyan"
+    # } else {
+    #     acol <- get(paste0(c("col", unlist(strsplit(avar, split = "_"))[1:2]),
+    #                        collapse = "_"))
+    # }
+
+
+    ## plot data
+    plot(dataset$Date, dataset[[avar]],
+         pch      = 16,
+         col      = varcol(avar),
+         cex      = 0.5,
+         # main     = paste(tr_var(DBn), tr_var(avar)),
+         cex.main = 0.8,
+         yaxt     = "n",
+         xlab     = "",
+         ylab     = varname(avar)
+    )
+
+    ## plot fit line lm
+    abline(lmD, lwd = 2, col = "red")
+
+
+    # y axis
+    axis(2, pretty(dataset[[avar]]), las = 2 )
+
+    # x axis
+    axis.Date(1,
+              at = seq(as.Date("1993-01-01"), max(dataset$Date), by = "year"),
+              format = "%Y",
+              labels = NA,
+              tcl = -0.25)
+
+
+    if (DRAFT == TRUE) {
+      title(main = paste(tr_var(DBn), varname(avar), staname(avar), avar),
+            cex.main = 0.8 )
+    }
+
+
+    ## display trend on graph
+    fit <- lmD[[1]]
+    legend("top", lty = 1, bty = "n", lwd = 2, cex = 1,
+           paste("Trend: ",
+                 if (fit[2] > 0) "+" else "-",
+                 signif(abs(fit[2]) * Days_of_year, 2) , units, "/y" )
+    )
+
+    # fit <- lmD[[1]]
+    # legend("top", lty = 1, bty = "n", lwd = 2, cex = 1,
+    #        paste("Trend: ",
+    #              if (fit[2] > 0) "+" else "-",
+    #              signif(abs(fit[2]) * Days_of_year, 2),
+    #              "±", signif(2 * Tres[2], 2) ,"%/y" )
+    # )
+    cat(" \n \n")
 }
+  }
 #+ echo=F, include=F
 
 row.names(dailytrends ) <- NULL
@@ -395,7 +403,7 @@ ggplot(data    = ST_G0,
   scale_x_continuous(guide        = "axis_minor",
                      minor_breaks = seq(0, 500, by = 10))
 
-  # guides(x = "axis_minor", y = "axis_minor")
+# guides(x = "axis_minor", y = "axis_minor")
 
 
 
@@ -696,6 +704,6 @@ tac <- Sys.time()
 cat(sprintf("%s %s@%s %s %f mins\n\n", Sys.time(), Sys.info()["login"],
             Sys.info()["nodename"], basename(Script.Name), difftime(tac,tic,units = "mins")))
 if (interactive() & difftime(tac,tic,units = "sec") > 30) {
-    system("mplayer /usr/share/sounds/freedesktop/stereo/dialog-warning.oga", ignore.stdout = T, ignore.stderr = T)
-    system(paste("notify-send -u normal -t 30000 ", Script.Name, " 'R script ended'"))
+  system("mplayer /usr/share/sounds/freedesktop/stereo/dialog-warning.oga", ignore.stdout = T, ignore.stderr = T)
+  system(paste("notify-send -u normal -t 30000 ", Script.Name, " 'R script ended'"))
 }
