@@ -127,7 +127,7 @@
 
 \title{Enhancement of SDR in Thessaloniki}
 \author{Natsis Athanasios\footnote{Laboratory of Atmospheric Physics, AUTH, \href{mailto:natsisphysicist@gmail.com}{\nolinkurl{natsisphysicist@gmail.com}}} \and Alkiviadis Bais\footnote{Laboratory of Atmospheric Physics, AUTH}}
-\date{2024-02-28}
+\date{2024-03-01}
 
 \begin{document}
 \maketitle
@@ -413,7 +413,8 @@ F-statistic: 63.86 on 1 and 361 DF,  p-value: 1.815e-14
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\CommentTok{\#  Save from environment  {-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}}
+\CommentTok{\#  Save environment  {-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}}
+
 \DocumentationTok{\#\# Variables}
 \NormalTok{objects }\OtherTok{\textless{}{-}} \FunctionTok{grep}\NormalTok{(}\StringTok{"\^{}tic$|\^{}tac$|\^{}Script.Name$|\^{}tag$"}\NormalTok{, }\FunctionTok{ls}\NormalTok{(), }\AttributeTok{value =}\NormalTok{ T, }\AttributeTok{invert =}\NormalTok{ T)}
 \NormalTok{objects }\OtherTok{\textless{}{-}}\NormalTok{ objects[}\FunctionTok{sapply}\NormalTok{(objects, }\ControlFlowTok{function}\NormalTok{(x)}
@@ -427,9 +428,7 @@ F-statistic: 63.86 on 1 and 361 DF,  p-value: 1.815e-14
 \NormalTok{    objects,}
     \FunctionTok{grep}\NormalTok{(}\StringTok{"\^{}ST\_"}\NormalTok{, }\FunctionTok{ls}\NormalTok{(), }\AttributeTok{value =} \ConstantTok{TRUE}\NormalTok{)}
 \NormalTok{)}
-
-
-
+\DocumentationTok{\#\# list saved}
 \FunctionTok{cat}\NormalTok{(objects, }\AttributeTok{sep =} \StringTok{"}\SpecialCharTok{\textbackslash{}n}\StringTok{"}\NormalTok{)}
 \end{Highlighting}
 \end{Shaded}
@@ -479,6 +478,7 @@ my.cols
 my.cols.gr
 pyear
 R_COMPILE_PKGS
+RANDOM_SEED
 raw_input_data
 running_mean_window_days
 running_mean_window_years
@@ -514,6 +514,7 @@ ST_yearly
 
 \begin{Shaded}
 \begin{Highlighting}[]
+\DocumentationTok{\#\# Save}
 \FunctionTok{save}\NormalTok{(}\AttributeTok{file =} \FunctionTok{paste0}\NormalTok{(}\StringTok{"./data/"}\NormalTok{, }\FunctionTok{basename}\NormalTok{(}\FunctionTok{sub}\NormalTok{(}\StringTok{"}\SpecialCharTok{\textbackslash{}\textbackslash{}}\StringTok{.R"}\NormalTok{, }\StringTok{".Rda"}\NormalTok{, Script.Name))),}
      \AttributeTok{list =}\NormalTok{ objects,}
      \AttributeTok{compress =} \StringTok{"xz"}\NormalTok{)}
@@ -523,7 +524,7 @@ ST_yearly
 \textbf{END}
 
 \begin{verbatim}
-2024-02-28 13:08:22.6 athan@sagan GHI_enh_03_process.R 1.133646 mins
+2024-03-01 17:32:55.6 athan@tyler GHI_enh_03_process.R 2.076944 mins
 \end{verbatim}
 
 \end{document}
