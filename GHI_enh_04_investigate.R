@@ -167,7 +167,7 @@ for (DBn in dbs) {
     ## Set units
     if (grepl("_diff\\.sum$", avar)) {
       units <- bquote(J/m^2)
-      units <- "J/m^2"
+      units <- "kJ/m^2"
     } else if (grepl("\\.N$", avar)) {
       units <- ""
     } else {
@@ -260,7 +260,6 @@ for (DBn in dbs) {
     #                        collapse = "_"))
     # }
 
-
     ## plot data
     plot(dataset$Date, dataset[[avar]],
          pch      = 16,
@@ -275,7 +274,6 @@ for (DBn in dbs) {
 
     ## plot fit line lm
     abline(lmD, lwd = 2, col = "red")
-
 
     # y axis
     axis(2, pretty(dataset[[avar]]), las = 2 )
@@ -295,14 +293,13 @@ for (DBn in dbs) {
 
 
     ## display trend on graph
-
+    fit <- lmD[[1]]
     legend("top", lty = 1, bty = "n", lwd = 2, cex = 1,
            paste("Trend: ",
                  if (fit[2] > 0) "+" else "-",
                  signif(abs(fit[2]) * Days_of_year, 2) , bquote(.(units)), "/y" )
     )
 
-stop()
     # fit <- lmD[[1]]
     # legend("top", lty = 1, bty = "n", lwd = 2, cex = 1,
     #        paste("Trend: ",
@@ -311,8 +308,8 @@ stop()
     #              "±", signif(2 * Tres[2], 2) ,"%/y" )
     # )
     cat(" \n \n")
-}
   }
+}
 #+ echo=F, include=F
 
 row.names(dailytrends ) <- NULL
