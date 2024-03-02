@@ -178,9 +178,7 @@ for (DBn in dbs) {
     }
 
 
-    cat("Units for", avar, ": ", paste(units))
-
-
+    cat("Units for", avar, ": ", paste(units), "\n\n")
 
 
     ## linear model by day step
