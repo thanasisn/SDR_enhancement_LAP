@@ -166,11 +166,13 @@ for (DBn in dbs) {
 
     ## Set units
     if (grepl("_diff\\.sum$", avar)) {
-      units <- bquote( J/m^2)
+      units <- bquote(J/m^2)
+      units <- "J/m^2"
     } else if (grepl("\\.N$", avar)) {
       units <- ""
     } else {
-      units <- bquote( Watt/m^2)
+      units <- bquote(Watt/m^2)
+      units <- "Watt/m^2"
       ## set units
       # ylab = bquote("Deseas." ~ .(translate(avar)) ~ "[" ~ Watt/m^2 ~ "]" )
     }
@@ -293,13 +295,14 @@ for (DBn in dbs) {
 
 
     ## display trend on graph
-    fit <- lmD[[1]]
+
     legend("top", lty = 1, bty = "n", lwd = 2, cex = 1,
            paste("Trend: ",
                  if (fit[2] > 0) "+" else "-",
-                 signif(abs(fit[2]) * Days_of_year, 2) , units, "/y" )
+                 signif(abs(fit[2]) * Days_of_year, 2) , bquote(.(units)), "/y" )
     )
 
+stop()
     # fit <- lmD[[1]]
     # legend("top", lty = 1, bty = "n", lwd = 2, cex = 1,
     #        paste("Trend: ",
