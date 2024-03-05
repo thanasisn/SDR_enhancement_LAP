@@ -119,7 +119,8 @@ Many have used models or some statistical method to determine then CE thresholds
 
 ....... cite ...... Descriptions
 
-We used as reference the .... extraterrestrial horizontal irradiance .....
+We used as reference for the extreme cloud enhancement cases the extraterrestrial horizontal irradiance Equation
+
 
 $$
 \text{ETH} = \cos(\theta) \times \text{TSI}_\text{TOA}
