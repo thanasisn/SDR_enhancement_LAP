@@ -193,10 +193,13 @@ knitr::include_graphics("../images/climCEmonth-1.png")
 ```
 
 
-```{r echo=FALSE, fig.cap="Distribution of CE above reference"}
-knitr::include_graphics("../images/distributions-5.png")
-```
+<!-- ```{r echo=FALSE, fig.cap="Distribution of CE above reference"} -->
+<!-- knitr::include_graphics("../images/relative_distributions-2.png") -->
+<!-- ``` -->
 
+```{r echo=FALSE, fig.cap="Distribution of CE above reference"}
+knitr::include_graphics("../images/relative_distributions-4.png")
+```
 
 
 \FloatBarrier

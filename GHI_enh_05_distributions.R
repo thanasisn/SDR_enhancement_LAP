@@ -163,7 +163,7 @@ hist(DATA[GLB_diff > 0, GLB_rati],
 #'
 #' ### Distributions
 #'
-#+ relativedistributions, echo=F, include=T, results="asis"
+#+ relative_distributions, echo=F, include=T, results="asis"
 
 # hist(DATA[get(unique(CEC)) == TRUE, GLB_ench],
 #      breaks = breaks,
@@ -180,13 +180,15 @@ h <- hist(DATA[GLB_diff > 0, GLB_ench],
      main   = varname("GLB_ench"),
      plot = FALSE)
 
+## concert to per cent
 h$density = h$counts/sum(h$counts)*100
 plot(h,
      freq   = FALSE,
      col    = varcol( "GLB_ench"),
      xlab   = varname("GLB_ench"),
      ylab   = "Density in %",
-     main   = varname("GLB_ench"))
+     main   = varname("GLB_ench")
+)
 
 
 
@@ -194,12 +196,12 @@ plot(h,
 
 
 h <- hist(DATA[GLB_diff > 0, GLB_diff],
-     breaks = breaks,
-     freq   = FALSE,
-     col    = varcol("GLB_diff"),
-     xlab   = bquote(.(varname("GLB_diff")) ~ group("[", W/m^2,"]")),
-     main   = bquote(.(varname("GLB_diff")) ~ group("[", W/m^2,"]")),
-     plot = FALSE)
+          breaks = breaks,
+          freq   = FALSE,
+          col    = varcol("GLB_diff"),
+          xlab   = bquote(.(varname("GLB_diff")) ~ group("[", W/m^2,"]")),
+          main   = bquote(.(varname("GLB_diff")) ~ group("[", W/m^2,"]")),
+          plot = FALSE)
 
 h$density = h$counts/sum(h$counts)*100
 plot(h,
@@ -208,19 +210,19 @@ plot(h,
      xlab   = bquote(.(varname("GLB_diff")) ~ group("[", W/m^2,"]")),
      ylab   = "Density in %",
      main   = bquote(.(varname("GLB_diff")) ~ group("[", W/m^2,"]")),
-     )
+)
 
 
 
 
 
 h <- hist(DATA[GLB_diff > 0, GLB_rati],
-     breaks = breaks,
-     freq   = FALSE,
-     col    = varcol( "GLB_rati"),
-     xlab   = varname("GLB_rati"),
-     main   = varname("GLB_rati"),
-     plot = FALSE)
+          breaks = breaks,
+          freq   = FALSE,
+          col    = varcol( "GLB_rati"),
+          xlab   = varname("GLB_rati"),
+          main   = varname("GLB_rati"),
+          plot = FALSE)
 
 h$density = h$counts/sum(h$counts)*100
 
@@ -230,9 +232,19 @@ plot(h,
      xlab   = varname("GLB_rati"),
      ylab   = "Density in %",
      main   = varname("GLB_rati"),
-     )
+)
 
 
+
+
+ggplot(data = DATA[GLB_diff > 0,], aes(x = GLB_diff)) +
+  geom_histogram(aes(y = (..count..)/sum(..count..) * 100),
+                 binwidth = 20,
+                 color    = "black",
+                 fill     = varcol("GLB_diff")) +
+  xlab(bquote(.(varname("GLB_diff")) ~ group("[", W/m^2,"]"))) +
+  ylab( "Density [%]") #+
+  # scale_y_continuous(labels = function(x) paste0(x, "%"))
 
 
 
