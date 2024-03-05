@@ -455,6 +455,17 @@ title("Climatology of ECE cases per month")
 
 
 
+#+ climCE_daily, echo=F, include=T, results="asis"
+boxplot(ST_E_daily$GLB_ench.N ~ yday(ST_E_daily$Date) )
+title("Climatology of CE cases per DOY")
+
+
+#+ climCE_week, echo=F, include=T, results="asis"
+boxplot(ST_E_daily$GLB_ench.N ~ week(ST_E_daily$Date) )
+title("Climatology of CE cases per weak")
+
+
+
 ## Trends on groups ---------
 
 # ST_G0
