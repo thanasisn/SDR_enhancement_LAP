@@ -432,16 +432,11 @@ ggplot(data    = ST_G0,
 
 
 
-
+#+ clim_CE_N_doy, echo=F, include=T, results="asis"
 plot(ST_E_daily[, sum(GLB_ench.N), by = yday(Date)],
      ylab = "Enhancement cases",
      xlab = "DOY",
      main = "Enhancement cases Climatology")
-
-
-
-
-
 
 
 

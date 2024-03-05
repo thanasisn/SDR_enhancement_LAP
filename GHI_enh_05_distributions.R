@@ -172,28 +172,69 @@ hist(DATA[GLB_diff > 0, GLB_rati],
 #      xlab   = varname("GLB_ench"),
 #      main   = varname("GLB_ench"))
 
-hist(DATA[GLB_diff > 0, GLB_ench],
+h <- hist(DATA[GLB_diff > 0, GLB_ench],
      breaks = breaks,
      freq   = FALSE,
      col    = varcol( "GLB_ench"),
      xlab   = varname("GLB_ench"),
+     main   = varname("GLB_ench"),
+     plot = FALSE)
+
+h$density = h$counts/sum(h$counts)*100
+plot(h,
+     freq   = FALSE,
+     col    = varcol( "GLB_ench"),
+     xlab   = varname("GLB_ench"),
+     ylab   = "Density in %",
      main   = varname("GLB_ench"))
 
 
-hist(DATA[GLB_diff > 0, GLB_diff],
+
+
+
+
+h <- hist(DATA[GLB_diff > 0, GLB_diff],
      breaks = breaks,
      freq   = FALSE,
      col    = varcol("GLB_diff"),
      xlab   = bquote(.(varname("GLB_diff")) ~ group("[", W/m^2,"]")),
-     main   = bquote(.(varname("GLB_diff")) ~ group("[", W/m^2,"]")))
+     main   = bquote(.(varname("GLB_diff")) ~ group("[", W/m^2,"]")),
+     plot = FALSE)
+
+h$density = h$counts/sum(h$counts)*100
+plot(h,
+     freq   = FALSE,
+     col    = varcol("GLB_diff"),
+     xlab   = bquote(.(varname("GLB_diff")) ~ group("[", W/m^2,"]")),
+     ylab   = "Density in %",
+     main   = bquote(.(varname("GLB_diff")) ~ group("[", W/m^2,"]")),
+     )
 
 
-hist(DATA[GLB_diff > 0, GLB_rati],
+
+
+
+h <- hist(DATA[GLB_diff > 0, GLB_rati],
      breaks = breaks,
      freq   = FALSE,
      col    = varcol( "GLB_rati"),
      xlab   = varname("GLB_rati"),
-     main   = varname("GLB_rati"))
+     main   = varname("GLB_rati"),
+     plot = FALSE)
+
+h$density = h$counts/sum(h$counts)*100
+
+plot(h,
+     freq   = FALSE,
+     col    = varcol( "GLB_rati"),
+     xlab   = varname("GLB_rati"),
+     ylab   = "Density in %",
+     main   = varname("GLB_rati"),
+     )
+
+
+
+
 
 
 

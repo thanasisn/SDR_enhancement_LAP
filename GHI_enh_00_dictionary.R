@@ -60,7 +60,7 @@ varcol <- function(avar) {
 ## Name for each variable
 varname <- function(avar) {
     switch(gsub("\\..*$", "", gsub(".*_", "", avar)),
-           diff    = "Irradiance above reference",
+           diff    = "Over Irradiance",
            ench    = "Relative Enchancement",
            rati    = "Enchancement ratio",
            wattGLB = "GHI",
