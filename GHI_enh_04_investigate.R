@@ -330,21 +330,34 @@ write.csv(x = dailytrendsY,
 #+ groups, echo=F, include=T, results="asis"
 
 
-hist(ST_G0$GLB_ench.N,
-     breaks = 50,
-     xlab = "Minutes of enhacement of each CE group",
-     main = "Duration of enhancement cases groups")
+# hist(ST_G0$GLB_ench.N,
+#      breaks = 50,
+#      xlab = "Duration of enhancement [min]",
+#      main = "Duration of enhancement of CE groups cases groups")
+
+
+ggplot(data = ST_G0, aes(x = GLB_ench.N)) +
+  geom_histogram(aes(y = (..count..)/sum(..count..) * 100),
+                 binwidth = 5,
+                 color    = "black") +
+  # xlab(bquote(.(varname("GLB_diff")) ~ group("[", W/m^2,"]"))) +
+  xlab("Duration of enhancement [min]") +
+  ylab("Density [%]")
+# +
+#   theme_bw(base_size = 14) +
+#   theme(axis.text = element_text(face="bold"))
+
 
 
 plot(ST_G0$GLB_ench.N, ST_G0$GLB_diff.sum/ST_G0$GLB_ench.N,
-     xlab = "Duration of enhancemnt cases groups",
+     xlab = "Duration of enhancement [min]",
      ylab = "Extra mean Irradiance per mimute")
 
 
 ggplot(data    = ST_G0,
        mapping = aes(x = GLB_ench.N, y = ST_G0$GLB_diff.sum/ST_G0$GLB_ench.N)) +
-  xlab("Duration of CE groups [minutes]") +
-  ylab("Extra mean Irradiance per mimute [W/m^2]") +
+  xlab("Duration of enhancement [min]") +
+  ylab("Mean Over Irradiance per mimute [W/m^2]") +
   geom_pointdensity(aes(color = after_stat(log(n_neighbors))),
                     adjust = 1,
                     size = 1) +
@@ -363,8 +376,8 @@ ggplot(data    = ST_G0,
 
 ggplot(data    = ST_G0,
        mapping = aes(x = GLB_ench.N, y = ST_G0$GLB_diff.sum/ST_G0$GLB_ench.N)) +
-  xlab("Duration of CE groups [minutes]") +
-  ylab("Extra mean Irradiance per mimute [W/m^2]") +
+  xlab("Duration of enhancement [min]") +
+  ylab("Mean Over Irradiance per mimute [W/m^2]") +
   geom_pointdensity(adjust = 10,
                     size = 1) +
   scale_color_viridis() +
@@ -381,13 +394,13 @@ ggplot(data    = ST_G0,
 
 
 plot(ST_G0$GLB_ench.N, ST_G0$GLB_diff.mean,
-     xlab = "Duration of enhancemnt cases groups",
-     ylab = "Extra mean Irradiance per mimute")
+     xlab = "Duration of enhancement [min]",
+     ylab = "Mean over Irradiance per mimute")
 
 
 ggplot(data    = ST_G0,
        mapping = aes(x = GLB_diff.N, y = GLB_diff.mean)) +
-  xlab("Duration of CE groups [minutes]") +
+  xlab("Duration of enhancement [min]") +
   ylab("Mean Over Irradiance [W/m^2]") +
   geom_pointdensity(adjust = 10) +
   scale_color_viridis()  +
@@ -410,13 +423,13 @@ ggplot(data    = ST_G0,
 cat( "## @Zhang2018 \n" )
 
 plot(ST_G0[, GLB_diff.max, GLB_diff.N ],
-     xlab = "Duration of enhancemnt cases groups",
+     xlab = "Duration of enhancement [min]",
      ylab = "Maximun Over Irradiance")
 
 
 ggplot(data    = ST_G0,
        mapping = aes(x = GLB_diff.N, y = GLB_diff.max)) +
-  xlab("Duration of CE groups [minutes]") +
+  xlab("Duration of enhancement [min]") +
   ylab("Maximun Over Irradiance [W/m^2]") +
   geom_pointdensity(adjust = 10) +
   scale_color_viridis()  +
