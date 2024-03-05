@@ -360,9 +360,8 @@ ggplot(data    = ST_G0,
   ylab("Mean Over Irradiance per mimute [W/m^2]") +
   geom_pointdensity(aes(color = after_stat(log(n_neighbors))),
                     adjust = 1,
-                    size = 1) +
+                    size   = 0.7) +
   scale_color_viridis()  +
-  theme_bw() +
   theme(legend.position      = c(0.99, 0.99),
         legend.justification = c(1, 1)) +
   theme(legend.background    = element_rect(fill = "white", colour = NA)) +
@@ -379,9 +378,8 @@ ggplot(data    = ST_G0,
   xlab("Duration of enhancement [min]") +
   ylab("Mean Over Irradiance per mimute [W/m^2]") +
   geom_pointdensity(adjust = 10,
-                    size = 1) +
+                    size   = 0.7) +
   scale_color_viridis() +
-  theme_bw() +
   theme(legend.position      = c(0.99, 0.99),
         legend.justification = c(1, 1)) +
   theme(legend.background    = element_rect(fill = "white", colour = NA)) +
@@ -402,9 +400,9 @@ ggplot(data    = ST_G0,
        mapping = aes(x = GLB_diff.N, y = GLB_diff.mean)) +
   xlab("Duration of enhancement [min]") +
   ylab("Mean Over Irradiance [W/m^2]") +
-  geom_pointdensity(adjust = 10) +
+  geom_pointdensity(adjust = 10,
+                    size   = 0.7) +
   scale_color_viridis()  +
-  theme_bw() +
   theme(legend.position      = c(0.99, 0.99),
         legend.justification = c(1, 1)) +
   theme(legend.background    = element_rect(fill = "white", colour = NA)) +
@@ -431,9 +429,9 @@ ggplot(data    = ST_G0,
        mapping = aes(x = GLB_diff.N, y = GLB_diff.max)) +
   xlab("Duration of enhancement [min]") +
   ylab("Maximun Over Irradiance [W/m^2]") +
-  geom_pointdensity(adjust = 10) +
+  geom_pointdensity(adjust = 10,
+                    size   = 0.7) +
   scale_color_viridis()  +
-  theme_bw() +
   theme(legend.position      = c(0.99, 0.99),
         legend.justification = c(1, 1)) +
   theme(legend.background    = element_rect(fill = "white", colour = NA)) +
@@ -506,6 +504,7 @@ title("Climatology of CE cases per weak")
 
 {
   plot(ST_yearly[, GLB_diff.sumPOS, year],
+       col = varcol("GLB_diff.sumPOS"),
        ylab = "W/m^2")
 
   lmD <- lm( ST_yearly[, year, GLB_diff.sumPOS])
@@ -524,14 +523,29 @@ title("Climatology of CE cases per weak")
 
 
 
-plot(ST_yearly[, GLB_diff.N_pos, year],
-     ylab = "Total of enhancement minutes")
-title("Number of CE each year")
 
+{
+  plot(ST_yearly[, GLB_diff.N_pos, year],
+       col = varcol("GLB_diff.sumPOS"),
+       ylab = "Total of enhancements")
+  title("Number of CE each year")
+
+  lmD <- lm( ST_yearly[, year, GLB_diff.N_pos])
+  abline(lmD)
+
+  ## display trend on graph
+  fit <- lmD[[1]]
+  legend("top", lty = 1, bty = "n", lwd = 2, cex = 1,
+         paste("Trend: ",
+               if (fit[2] > 0) "+" else "-",
+               signif(abs(fit[2]), 2) ,"/y" )
+  )
+}
 
 
 {
   plot(ST_yearly[, GLB_diff.sumPOS/GLB_diff.N_pos, year],
+       col = varcol("GLB_diff.sumPOS"),
        ylab = "W/m^2")
   lmD <- lm( ST_yearly[, year, GLB_diff.sumPOS/GLB_diff.N_pos])
   abline(lmD)

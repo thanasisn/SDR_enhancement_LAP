@@ -251,8 +251,6 @@ knitr::include_graphics("../images/extremedistributions-4.png")
 ## New plots for discusion
 
 
-### Climatology
-
 ```{r echo=FALSE, fig.cap="Distribution of the number of CE cases per week"}
 knitr::include_graphics("../images/climCE_week-1.png")
 ```
@@ -265,6 +263,10 @@ knitr::include_graphics("../images/climCE_daily-1.png")
 knitr::include_graphics("../images/clim_CE_N_doy-1.png")
 ```
 
+
+```{r echo=FALSE, fig.cap="Trend of the excess energy per CE"}
+knitr::include_graphics("../images/energy-2.png")
+```
 
 
 \FloatBarrier
