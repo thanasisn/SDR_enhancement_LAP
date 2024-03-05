@@ -492,14 +492,14 @@ title("Climatology of ECE cases per month")
   lmD <- lm( ST_yearly[, year, GLB_diff.sumPOS])
   abline(lmD)
 
-  title("Total energy excess each year due to CE")
+  title("Over Irradiance each year due to CE")
 
   ## display trend on graph
   fit <- lmD[[1]]
   legend("top", lty = 1, bty = "n", lwd = 2, cex = 1,
          paste("Trend: ",
                if (fit[2] > 0) "+" else "-",
-               signif(abs(fit[2]), 2) ,"W/m^2/y" )
+               signif(abs(fit[2]), 2) ,"kJ/m^2/y" )
   )
 }
 
@@ -517,7 +517,7 @@ title("Number of CE each year")
   lmD <- lm( ST_yearly[, year, GLB_diff.sumPOS/GLB_diff.N_pos])
   abline(lmD)
 
-  title("Mean Energy excess per CE")
+  title("Annual mean Energy excess per CE")
 
   ## display trend on graph
   fit <- lmD[[1]]

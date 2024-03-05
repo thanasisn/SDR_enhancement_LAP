@@ -82,7 +82,8 @@ $(PDF): $(RMD)
 	-Rscript -e "rmarkdown::find_pandoc(dir = '/usr/lib/rstudio/resources/app/bin/quarto/bin/tools'); rmarkdown::render('$?', output_format='bookdown::pdf_document2', output_file='$@')"
 	@-rsync -a --prune-empty-dirs --exclude 'unnamed-chunk*' --include '*.pdf' --include '*.png' ./GHI_*/figure-latex/ ./images
 	@-rsync -a "$@" ${LIBRARY}
-	@-touch article/article.qmd
+	@#-touch article/article.qmd
+	@-touch article/article.Rmd
 
 r1: $(RUNT)
 $(RUNT): $(RMD)
@@ -101,7 +102,8 @@ $(PDF): $(RMD)
 	-Rscript -e "rmarkdown::find_pandoc(dir = '/usr/lib/rstudio/resources/app/bin/quarto/bin/tools'); rmarkdown::render('$?', output_format='bookdown::pdf_document2', output_file='$@')"
 	@-rsync -a --prune-empty-dirs --exclude 'unnamed-chunk*' --include '*.pdf' --include '*.png' ./GHI_*/figure-latex/ ./images
 	@-rsync -a "$@" ${LIBRARY}
-	@-touch article/article.qmd
+	@#-touch article/article.qmd
+	@-touch article/article.Rmd
 
 r2: $(RUNT)
 $(RUNT): $(RMD)
@@ -123,7 +125,8 @@ $(PDF): $(RMD)
 	@-rsync -a --prune-empty-dirs --exclude 'unnamed-chunk*' --include '*.pdf' --include '*.png' ./GHI_*/figure-latex/ ./images
 	@#setsid evince    $@ &
 	@-rsync -a "$@" ${LIBRARY}
-	@-touch article/article.qmd
+	@#-touch article/article.qmd
+	@-touch article/article.Rmd
 
 r3: $(RUNT)
 $(RUNT): $(RMD)
@@ -144,7 +147,8 @@ $(PDF): $(RMD)
 	@-rsync -a --prune-empty-dirs --exclude 'unnamed-chunk*' --include '*.pdf' --include '*.png' ./GHI_*/figure-latex/ ./images
 	@#setsid evince    $@ &
 	@-rsync -a "$@" ${LIBRARY}
-	@-touch article/article.qmd
+	@#-touch article/article.qmd
+	@-touch article/article.Rmd
 
 
 r4: $(RUNT)
@@ -167,7 +171,8 @@ $(PDF): $(RMD)
 	@-rsync -a --prune-empty-dirs --exclude 'unnamed-chunk*' --include '*.pdf' --include '*.png' ./GHI_*/figure-latex/ ./images
 	@#setsid evince    $@ &
 	@-rsync -a "$@" ${LIBRARY}
-	@-touch article/article.qmd
+	@#-touch article/article.qmd
+	@-touch article/article.Rmd
 
 
 r5: $(RUNT)

@@ -116,7 +116,7 @@ Many have used models or some statistical method to determine then CE thresholds
 
 ....... cite ...... Descriptions
 
-We used as reference a modeled clear sky approximation,
+We used as reference a modelled clear sky approximation,
 
 criteria for cloud enhancement identification are set according the Equation \ref{eq:CE4}
 
@@ -132,7 +132,7 @@ where: ..........
 expand: libradtran calculations and modeling
 
 
-A secondary criteria was used for extreme cloud enhancement cases (ECE) identification, relative to the TSI at horizontal plane Equation \ref{eq:ECE}
+A secondary criteria was used for extreme cloud enhancement cases (ECE) identification, relative to the TSI at horizontal plane (Equation \ref{eq:ECE})
 
 \begin{equation}
 \text{GHI} > \cos(\theta) \times \text{TSI}_\text{TOA}
