@@ -243,11 +243,15 @@ ggplot(data = DATA[GLB_diff > 0,], aes(x = GLB_diff)) +
                  color    = "black",
                  fill     = varcol("GLB_diff")) +
   xlab(bquote(.(varname("GLB_diff")) ~ group("[", W/m^2,"]"))) +
-  ylab( "Density [%]") #+
+  ylab( "Density [%]") +
+  theme_bw(base_size = 14) +
+  theme(axis.text = element_text(face="bold"))
+
+#+
   # scale_y_continuous(labels = function(x) paste0(x, "%"))
 
-
-
+# print(p, vp = grid::viewport(gp=grid::gpar(cex=1.5)))
+# theme_gray(base_size = 18)
 
 
 
