@@ -517,7 +517,7 @@ testdays <- data.table(Day = c(
 #' \FloatBarrier
 #' # Plot some days with strong enhancement cases
 #'
-#+ echo=F, include=T, results="asis"
+#+ example_days, echo=F, include=T, results="asis"
 
 vec_days <- matrix(
     ##   Data      Description
@@ -676,7 +676,7 @@ for (ii in 1:nrow(vec_days)) {
 #' \FloatBarrier
 #' # Plot years with enhancement cases
 #'
-#+ echo=F, include=T, results="asis"
+#+ example_years, echo=F, include=T, results="asis"
 
 ## TODO plot only enhancement cases
 ## DO it with base plot

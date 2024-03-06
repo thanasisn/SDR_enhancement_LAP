@@ -167,24 +167,20 @@ six criteria in order to evaluate random multiples of 25 days with some characte
 - 20 days with the largest over irradiance CE events
 - 30 days with largest total over irradiance
 - 20 days without clouds (CSid)
-- days without clouds and EC events
-- days with    clouds and EC events
-- random days
-- manual selected days
+- any day without clouds and EC events
+- 20 days with at least 60% of day length without clouds and some EC events
+- 30 random days
+- some manual selected days that were included during the manual inspection
+
+For some of this edge cases we further use images from a skycam, in order to evaluate our selection of the thresholds.
 
 Thresholds by inspecting a selection of days with some specs
 
 Reasoning for the selection
 
-Sky Camera for some cases
-
-Objectivity
-
-Describe set of reference days we used to evaluate
 
 
-
-Example of days plot?
+Include Example of days plot?
 
 ... this is more clear to understand and describe ....
 
