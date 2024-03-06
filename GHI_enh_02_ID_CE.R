@@ -416,7 +416,6 @@ pander(table(DATA$Enhanc_C_4),
        caption = "Enhanc_C_4")
 
 
-# stop()
 
 ##  Test for low elevation angles  ---------------------------------------------
 
@@ -444,7 +443,7 @@ for (aa in 77:60) {
          main = aa)
 }
 
-# stop()
+
 
 ##  Estimate enhancement daily magnitude  --------------------------------------
 enh_days <- DATA[get(SelEnhanc) == TRUE,
@@ -515,6 +514,7 @@ testdays <- data.table(Day = c(
 ## __  Days with strong enhancement cases  -------------------------------------
 
 #' \FloatBarrier
+#'
 #' # Plot some days with strong enhancement cases
 #'
 #+ example_days, echo=F, include=T, results="asis"
