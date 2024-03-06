@@ -140,6 +140,11 @@ A secondary criteria was used for extreme cloud enhancement cases (ECE) identifi
 \end{equation}
 
 
+## Clear Sky Irradiance
+
+In order to set a threshold for the CE we had to create a "clear sky" radiation approximation.
+For that reason we decided to use the Libradtran model with climatological data from AERONET, Sun's total solar irradiance from NOAA and Earth - Sun distance calculated by Astropy.
+We simulated radiation on multiple SZA's, for AOD at 500nm +/- 1 and 2 sigma, for watter column +/1 1 and 2 sigma, and for 
 
 ## Thresholds
 
