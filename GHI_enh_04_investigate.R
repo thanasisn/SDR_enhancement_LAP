@@ -205,7 +205,7 @@ for (DBn in dbs) {
     #         coef(lmD)
     #         coef(lmY) /Days_of_year
 
-    ## _ auto reggression arima Tourpali -------------------------------
+    ## _ auto regression arima Tourpali -------------------------------
     ## create a time variable (with lag of 1 day ?)
     tmodelo <- arima(x = dataset[[avar]], order = c(1,0,0), xreg = dataset$yts, method = "ML")
 
@@ -351,13 +351,13 @@ ggplot(data = ST_G0, aes(x = GLB_ench.N)) +
 
 plot(ST_G0$GLB_ench.N, ST_G0$GLB_diff.sum/ST_G0$GLB_ench.N,
      xlab = "Duration of enhancement [min]",
-     ylab = "Extra mean Irradiance per mimute")
+     ylab = "Extra mean Irradiance per minute")
 
 
 ggplot(data    = ST_G0,
        mapping = aes(x = GLB_ench.N, y = ST_G0$GLB_diff.sum/ST_G0$GLB_ench.N)) +
   xlab("Duration of enhancement [min]") +
-  ylab("Mean Over Irradiance per mimute [W/m^2]") +
+  ylab("Mean Over Irradiance per minute [W/m^2]") +
   geom_pointdensity(aes(color = after_stat(log(n_neighbors))),
                     adjust = 1,
                     size   = 0.7) +
@@ -376,7 +376,7 @@ ggplot(data    = ST_G0,
 ggplot(data    = ST_G0,
        mapping = aes(x = GLB_ench.N, y = ST_G0$GLB_diff.sum/ST_G0$GLB_ench.N)) +
   xlab("Duration of enhancement [min]") +
-  ylab("Mean Over Irradiance per mimute [W/m^2]") +
+  ylab("Mean Over Irradiance per minute [W/m^2]") +
   geom_pointdensity(adjust = 10,
                     size   = 0.7) +
   scale_color_viridis() +
@@ -393,7 +393,7 @@ ggplot(data    = ST_G0,
 
 plot(ST_G0$GLB_ench.N, ST_G0$GLB_diff.mean,
      xlab = "Duration of enhancement [min]",
-     ylab = "Mean over Irradiance per mimute")
+     ylab = "Mean over Irradiance per minute")
 
 
 ggplot(data    = ST_G0,
@@ -422,13 +422,13 @@ cat( "## @Zhang2018 \n" )
 
 plot(ST_G0[, GLB_diff.max, GLB_diff.N ],
      xlab = "Duration of enhancement [min]",
-     ylab = "Maximun Over Irradiance")
+     ylab = "Maximum Over Irradiance")
 
 
 ggplot(data    = ST_G0,
        mapping = aes(x = GLB_diff.N, y = GLB_diff.max)) +
   xlab("Duration of enhancement [min]") +
-  ylab("Maximun Over Irradiance [W/m^2]") +
+  ylab("Maximum Over Irradiance [W/m^2]") +
   geom_pointdensity(adjust = 10,
                     size   = 0.7) +
   scale_color_viridis()  +
@@ -584,7 +584,7 @@ plot(ST_yearly[, GLB_ench.sumPOS/GLB_ench.N_pos, year],
 cat( "@Martins2022" )
 
 plot(ST_yearly[, GLB_diff.sumPOS/wattGLB.sumPOS, year],
-     ylab = "Fraction of the aqumulated enchancements over total energy",
+     ylab = "Fraction of the accumulated enhancements over total energy",
      main = paste(varname("GLB_diff.sumPOS"),
                   staname("GLB_diff.sumPOS"),
                   "/",
@@ -600,10 +600,75 @@ plot(ST_yearly[, GLB_diff.sumPOS/wattGLB.sumPOS, year],
 
 
 
+#+ rel_energy, echo=F, include=T, results="asis"
+
+{
+  plot(ST_yearly[, 100 * (GLB_diff.sumPOS/wattGLB.sum), year],
+       col = varcol("GLB_diff.sumPOS"),
+       ylab = "Over Irradiance fraction %")
+  lmD <- lm( ST_yearly[, year, 100 * (GLB_diff.sumPOS/wattGLB.sum)])
+  abline(lmD)
+
+  title("CE Over Irradiance % of total energy")
+
+  ## display trend on graph
+  fit <- lmD[[1]]
+  legend("top", lty = 1, bty = "n", lwd = 2, cex = 1,
+         paste("Trend: ",
+               if (fit[2] > 0) "+" else "-",
+               signif(abs(fit[2]), 2) ,"%/y" )
+  )
+}
 
 
 
-stop()
+{
+  plot(ST_yearly[, 100 * GLB_diff.N_pos/wattGLB.N, year],
+       col = varcol("GLB_diff.sumPOS"),
+       ylab = "CE cases %")
+  title("CE cases % in all measurments")
+
+  lmD <- lm( ST_yearly[, year, 100 * GLB_diff.N_pos/wattGLB.N])
+  abline(lmD)
+
+  ## display trend on graph
+  fit <- lmD[[1]]
+  legend("top", lty = 1, bty = "n", lwd = 2, cex = 1,
+         paste("Trend: ",
+               if (fit[2] > 0) "+" else "-",
+               signif(abs(fit[2]), 2) ,"%/y" )
+  )
+}
+
+
+
+{
+  plot(ST_yearly[, 100 * (GLB_diff.sumPOS/GLB_diff.N_pos) / (wattGLB.sumPOS/wattGLB.N_pos), year],
+       col = varcol("GLB_diff.sumPOS"),
+       ylab = "Mean CE / Mean GHI [%]")
+
+  lmD <- lm( ST_yearly[, year, 100 * (GLB_diff.sumPOS/GLB_diff.N_pos) / (wattGLB.sumPOS/wattGLB.N_pos)])
+  abline(lmD)
+
+  title("Mean Over iradiance % on mean Global Radiation")
+
+  ## display trend on graph
+  fit <- lmD[[1]]
+  legend("top", lty = 1, bty = "n", lwd = 2, cex = 1,
+         paste("Trend: ",
+               if (fit[2] > 0) "+" else "-",
+               signif(abs(fit[2]), 2) ,"%/y" )
+  )
+}
+
+
+
+
+
+
+
+
+
 
 
 

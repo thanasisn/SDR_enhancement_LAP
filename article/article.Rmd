@@ -295,6 +295,22 @@ knitr::include_graphics("../images/energy-2.png")
 ```
 
 
+### Yearly plots realive to GHI data.
+
+
+```{r echo=FALSE, fig.cap=""}
+knitr::include_graphics("../images/rel_energy-1.png")
+```
+
+```{r echo=FALSE, fig.cap=""}
+knitr::include_graphics("../images/rel_energy-2.png")
+```
+
+```{r echo=FALSE, fig.cap=""}
+knitr::include_graphics("../images/rel_energy-3.png")
+```
+
+
 \FloatBarrier
 
 
