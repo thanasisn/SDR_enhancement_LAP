@@ -69,17 +69,6 @@ TSIinfo <- data.table(read.csv("~/MANUSCRIPTS/02_enhancement/figures/tbl_tsi_inf
                                strip.white = TRUE,
                                sep = ";",
                                header = TRUE))
-# ## create local citations file and links here
-# source("~/CODE/FUNCTIONS/R/gather_citations.R")
-# suppressMessages(
-#     gather_citations(
-#         sourcefile   = "./Article.Rmd",
-#         mainreposit  = "./Mainreferences.bib",
-#         localreposit = "./references.bib",
-#         folderlink   = "./References_links",
-#         workingdir   = "./"
-#     )
-# )
 ```
 
 CE: cloud enhancement cases one minute
@@ -88,9 +77,61 @@ ECE: extreme cloud enhancement cases one minute over TSI on horizontal plane
 
 CEG: cloud enhancement groups, cases events with consecutive CE
 
+
 # Intro
 
+
+CE and ECE usefulness 
+
+
+
+Identify CE cases 
+
+Characteristics of CE
+
+Climatology and impact on the GHI
+
+
+Effects of clouds
+
+- enhancement physics
+- conditions
+- other interferences
+
+
+
+
+....identification methods from bib....
+
+- clearness index
+- modeled approaches
+- algorithmic id
+- AI
+- Visual
+
+
+
+
+.....constrains of the site.....
+
+- data
+- instrument
+- location
+
+
+
+
+
 # Data and methodology
+
+- measured data
+- available data
+  - sky cam
+  - chp1
+  - cm21
+  - cimel
+- CSid tool
+
 
 The recording of the signal is the one minute average.
 Thus we will refer to this time scale as a cloud enhancement event (CE).
@@ -99,45 +140,15 @@ Due to the instruments response time.....
 
 ## Data quality control
 
-.......
+..  todo ...
+
+
 
 ## Data selection
 
 To preserve an unbiased representation of the data we applied a constrain similar the one used by @CastillejoCuberos2020. Where, for each valid hour of day, there must exist at list 45 minutes of valid measurements, including night time near sunrise and sunset. Days with less than 5 valid hours are rejected completely. <!--# CastillejoCuberos2020 There must be at least 5 h of valid data (Tests 1–7), otherwise all data for this day is flagged as invalid. There must be at least This work valid data 45 min of valid data (Tests 1–7) for an hour to be flagged as valid, otherwise all minute data for this hour is flagged as invalid. --> Furthermore, due to a systematic obstruction of the horizon and the significant measurement uncertainty on large SZAs, we excluded all data with $SZA > `r 90 - BIO_ELEVA`^\circ$.
 
 
-## Criteria for enhancement identification
-
-
--   some others were tested
-
-
-Many have used models or some statistical method to determine then CE thresholds.
-
-....... cite ...... Descriptions
-
-We used as reference a modelled clear sky approximation,
-
-criteria for cloud enhancement identification are set according the Equation \ref{eq:CE4}
-
-\begin{equation}
-\text{CE}_\text{Threshold} = \begin{cases}
-`r C4_cs_ref_ratio`, & \text{if $\theta \leq `r C4_lowcut_sza`^\circ$}.\\
-\frac{`r C4_cs_ref_ratio` - `r C4_lowcut_ratio`}{`r C4_lowcut_sza` - `r 90 - BIO_ELEVA`} \cdot (\theta- `r 90 - BIO_ELEVA`) + `r C4_lowcut_ratio` , & \text{if $ `r 90 - BIO_ELEVA`^\circ > \theta > `r C4_lowcut_sza`^\circ$}.
-\end{cases}\label{eq:CE4}
-\end{equation}
-where: ..........
-
-
-expand: libradtran calculations and modeling
-
-
-A secondary criteria was used for extreme cloud enhancement cases (ECE) identification, relative to the TSI at horizontal plane (Equation \ref{eq:ECE})
-
-\begin{equation}
-\text{GHI} > \cos(\theta) \times \text{TSI}_\text{TOA}
-\label{eq:ECE}
-\end{equation}
 
 
 
@@ -146,19 +157,24 @@ A secondary criteria was used for extreme cloud enhancement cases (ECE) identifi
 In order to set a threshold for the CE we had to create an approximation of "clear sky" radiation for the whole period.
 For this reason, we decided to use the Libradtran model [@Emde2016], with monthly climatological data for AOD and water column from AERONET [@Giles2019; @Buis1998]. Our site is part of AERONET monitoring network and operates a Cimel photometer since 2003.
 We also use the Sun's total solar irradiance from NOAA [@Coddington2005] and Earth - Sun distance calculated by Astropy [@AstropyCollaboration2022].
-We have simulated the solar radiation on $0.2^\circ$ SZA's step, for AOD at $500\,\text{nm}$ and offsets of $\pm1$ and $\pm2\sigma$, for water column $\pm1$ and $\pm2\sigma$, and for two atmospheric profiles "AFGL atmospheric constituent profile, midlatitude summer" (afglms) and "AFGL atmospheric constituent profile, midlatitude winter" (afglmw) [@Anderson1986]. 
-We used the solar spectra of 
-
-- Kurudz wavelength
-- solver
-
-After some evaluation of the modelled conditions, in relation to the GHI data, we choose as more representative of the clear sky radiation, the case with $t_{500} - 1\sigma$ and $wc - 1\sigma$. 
-
-Lookup table creation ......
+We have simulated the solar radiation spectrum of @Kurucz1994 in the range $280$ to $2500\,\text{nm}$, on $0.2^\circ$ SZA's step. 
+With combinations of AOD at $500\,\text{nm}$ ($t_{500\text{nm}}$) and additional offsets of $\pm1$ and $\pm2\sigma$, water column ($w_h$) with offsets of $\pm1$ and $\pm2\sigma$, and for two atmospheric profiles "AFGL atmospheric constituent profile, midlatitude summer" (afglms) and "AFGL atmospheric constituent profile, midlatitude winter" (afglmw) [@Anderson1986]. 
 
 
+<!-- - rte_solver  disort -->
+<!-- - geometry   pseudospherical -->
+<!-- - mol_abs LOWTRAN -->
 
-## Thresholds
+After some evaluation of the modelled radiation in different atmospheric conditions, in relation to the GHI data, we choose as representative of the clear sky radiation, the case with $t_{\text{cs}} = t_{500\text{nm}} - 1\sigma$ and $w_{h\text{cs}} = w_h - 1\sigma$.
+
+For each GHI measurement in our data we calculated a reference clear sky value, by adjusting the integral of the Kurudz spectrum to the interpolated TSI from NOAA. We applied the effect of Sun - Earth distance, and calculated it's value to the horizontal plane by using the cosine of the corresponding interpolated SZA. 
+For each period of the year, we used the appropriate atmospheric profile (afglms or afglmw).
+Thus, we can directly compare each measured one minute value of GHI, with the expected clear sky radiation.
+
+
+
+
+## Thresholds investigation
 
 To select the exact values of the threshold used (Equation \ref{eq:CE4}), we implemented manual inspection of the CE indemnification, on specially selected days from the whole dataset. 
 We used seven sets of random selected days, with characteristics relevant to the efficiency of the threshold.
@@ -173,20 +189,59 @@ six criteria in order to evaluate random multiples of 25 days with some characte
 - 30 random days
 - some manual selected days that were included during the manual inspection
 
-For some of this edge cases we further use images from a skycam, in order to evaluate our selection of the thresholds.
+For some of this edge cases we further use images from a sky-cam, in order to evaluate our selection of the thresholds.
 
-Thresholds by inspecting a selection of days with some specs
+Thresholds by inspecting a selection of days with some specs......
 
-Reasoning for the selection
+Reasoning for the selection...........
 
 
 
-Include Example of days plot?
+## Criteria for enhancement identification
+
+
+
+
+Many have used models or some statistical method to determine then CE thresholds.
+
+....... cite ...... Descriptions
+
+We used as reference a modeled clear sky approximation,
+
+Criteria for cloud enhancement identification are set according the Equation \ref{eq:CE4}
+
+\begin{equation}
+\text{CE}_\text{Threshold} = \begin{cases}
+`r C4_cs_ref_ratio`, & \text{$\theta \leq `r C4_lowcut_sza`^\circ$}\\
+\frac{`r C4_cs_ref_ratio` - `r C4_lowcut_ratio`}{`r C4_lowcut_sza` - `r 90 - BIO_ELEVA`} \cdot (\theta- `r 90 - BIO_ELEVA`) + `r C4_lowcut_ratio` , & \text{$ `r 90 - BIO_ELEVA`^\circ > \theta > `r C4_lowcut_sza`^\circ$}\\
+\text{Excluded measurements}, & \theta > `r 90 - BIO_ELEVA`^\circ
+\end{cases}\label{eq:CE4}
+\end{equation}
+where: $\theta$ solar zenith angle.
+
+
+
+
+
+A secondary criteria was used for extreme cloud enhancement cases (ECE) identification, relative to the TSI at horizontal plane (Equation \ref{eq:ECE})
+
+\begin{equation}
+\text{GHI} > \cos(\theta) \times \text{TSI}_\text{TOA}
+\label{eq:ECE}
+\end{equation}
+
+
+
+Include Example of days plot? Appendix?
 
 ... this is more clear to understand and describe ....
 
 
+
+
 ## Other method used and rejected
+
+-   some other criteria were tested
 
 
 
@@ -250,7 +305,7 @@ knitr::include_graphics("../images/groups-8.png")
 
 \FloatBarrier
 
-## Extrene CE above TSI
+## Extreme CE above TSI
 
 ```{r echo=FALSE, fig.cap="Distribution of the number of ECE cases"}
 knitr::include_graphics("../images/climECEmonth-1.png")
@@ -275,7 +330,7 @@ knitr::include_graphics("../images/extremedistributions-4.png")
 
 \FloatBarrier
 
-## New plots for discusion
+## New plots for discussion
 
 
 ```{r echo=FALSE, fig.cap="Distribution of the number of CE cases per week"}
