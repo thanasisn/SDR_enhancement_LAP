@@ -144,7 +144,7 @@ A secondary criteria was used for extreme cloud enhancement cases (ECE) identifi
 ## Clear Sky Irradiance
 
 In order to set a threshold for the CE we had to create an approximation of "clear sky" radiation for the whole period.
-For this reason, we decided to use the Libradtran....cite..... model with monthly climatological data from AERONET, as our site is part of this network and operates a Cimel photometer since 2003.
+For this reason, we decided to use the Libradtran model [@Emde2016], with monthly climatological data from AERONET, as our site is part of this network and operates a Cimel photometer since 2003.
 We also use the Sun's total solar irradiance from NOAA ....cite..... and Earth - Sun distance calculated by Astropy....cite......
 We simulated the solar radiation on $0.2^\circ$ SZA's step, for AOD at $500\,\text{nm}$ and offsets of $\pm1$ and $\pm2\sigma$, for water column $\pm1$ and $\pm2\sigma$, and for two atmospheric profiles "AFGL atmospheric constituent profile, midlatitude summer (afglms)" and "AFGL atmospheric constituent profile, midlatitude winter (afglmw)"....cite...... .
 
