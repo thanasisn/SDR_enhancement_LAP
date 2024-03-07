@@ -599,6 +599,15 @@ plot(ST_yearly[, GLB_diff.sumPOS/wattGLB.sumPOS, year],
 
 
 
+
+
+
+
+stop()
+
+
+
+
 ##  SZA enhancements  ---------------------------------------
 
 #'
