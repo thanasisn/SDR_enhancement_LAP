@@ -240,6 +240,9 @@ ST_daily[, yts := (year(Date) - min(year(Date))) + ( yday(Date) - 1 ) / Hmisc::y
 ST_daily[, GLB_diff.sum    := GLB_diff.sum    * 60 / Energy_Div]
 ST_daily[, GLB_diff.sumPOS := GLB_diff.sumPOS * 60 / Energy_Div]
 ST_daily[, GLB_diff.sumNEG := GLB_diff.sumNEG * 60 / Energy_Div]
+ST_daily[, wattGLB.sum     := wattGLB.sum     * 60 / Energy_Div]
+ST_daily[, wattGLB.sumPOS  := wattGLB.sumPOS  * 60 / Energy_Div]
+ST_daily[, wattGLB.sumNEG  := wattGLB.sumNEG  * 60 / Energy_Div]
 
 
 ## stats on extreme enhancement cases
@@ -255,7 +258,9 @@ ST_extreme_daily[, yts := (year(Date) - min(year(Date))) + ( yday(Date) - 1 ) / 
 ST_extreme_daily[, GLB_diff.sum    := GLB_diff.sum    * 60 / Energy_Div]
 ST_extreme_daily[, GLB_diff.sumPOS := GLB_diff.sumPOS * 60 / Energy_Div]
 ST_extreme_daily[, GLB_diff.sumNEG := GLB_diff.sumNEG * 60 / Energy_Div]
-
+ST_extreme_daily[, wattGLB.sum     := wattGLB.sum     * 60 / Energy_Div]
+ST_extreme_daily[, wattGLB.sumPOS  := wattGLB.sumPOS  * 60 / Energy_Div]
+ST_extreme_daily[, wattGLB.sumNEG  := wattGLB.sumNEG  * 60 / Energy_Div]
 
 
 ## stats on enhancement cases
@@ -268,8 +273,8 @@ ST_E_daily[, yts := (year(Date) - min(year(Date))) + ( yday(Date) - 1 ) / Hmisc:
 
 ## convert sum Irradiance to energy
 ## Σ(W/m^2) * 60 s = J/m^2
-ST_E_daily[, GLB_diff.sum := GLB_diff.sum * 60]
-
+ST_E_daily[, GLB_diff.sum := GLB_diff.sum * 60 / Energy_Div]
+ST_E_daily[, wattGLB.sum  := wattGLB.sum  * 60 / Energy_Div]
 
 
 
@@ -284,6 +289,9 @@ ST_E_daily_seas[, yts := DOY ] ## just for convenient of programming
 ## convert sum Irradiance to energy
 ## Σ(W/m^2) * 60 s = J/m^2
 ST_E_daily_seas[, GLB_diff.sum := GLB_diff.sum * 60 / Energy_Div]
+ST_E_daily_seas[, wattGLB.sum  := wattGLB.sum  * 60 / Energy_Div]
+
+
 
 
 ##  Groups with zero gaps  -----------------------------------------------------
@@ -302,8 +310,8 @@ ST_G0$Date <- as.POSIXct(ST_G0$Date, origin = "1970-01-01")
 
 ## convert sum Irradiance to energy
 ## Σ(W/m^2) * 60 s = J/m^2
-ST_G0[, GLB_diff.sum    := GLB_diff.sum * 60 / Energy_Div]
-
+ST_G0[, GLB_diff.sum  := GLB_diff.sum * 60 / Energy_Div]
+ST_G0[, wattGLB.sum   := wattGLB.sum  * 60 / Energy_Div]
 
 
 ##  Groups with one gap  -------------------------------------------------------
@@ -317,7 +325,8 @@ ST_G1$Date <- as.POSIXct(ST_G1$Date, origin = "1970-01-01")
 
 ## convert sum Irradiance to energy
 ## Σ(W/m^2) * 60 s = J/m^2
-ST_G1[, GLB_diff.sum    := GLB_diff.sum * 60 / Energy_Div]
+ST_G1[, GLB_diff.sum  := GLB_diff.sum * 60 / Energy_Div]
+ST_G1[, wattGLB.sum   := wattGLB.sum  * 60 / Energy_Div]
 
 
 
@@ -344,6 +353,10 @@ ST_monthly[, yts := (year(Date) - min(year(Date))) + ( yday(Date) - 1 ) / Hmisc:
 ST_monthly[, GLB_diff.sum    := GLB_diff.sum    * 60 / Energy_Div]
 ST_monthly[, GLB_diff.sumPOS := GLB_diff.sumPOS * 60 / Energy_Div]
 ST_monthly[, GLB_diff.sumNEG := GLB_diff.sumNEG * 60 / Energy_Div]
+ST_monthly[, wattGLB.sum     := wattGLB.sum     * 60 / Energy_Div]
+ST_monthly[, wattGLB.sumPOS  := wattGLB.sumPOS  * 60 / Energy_Div]
+ST_monthly[, wattGLB.sumNEG  := wattGLB.sumNEG  * 60 / Energy_Div]
+
 
 
 ## stats on extreme enhancement cases
@@ -361,7 +374,9 @@ ST_extreme_monthly[, yts := (year(Date) - min(year(Date))) + ( yday(Date) - 1 ) 
 ST_extreme_monthly[, GLB_diff.sum    := GLB_diff.sum    * 60 / Energy_Div]
 ST_extreme_monthly[, GLB_diff.sumPOS := GLB_diff.sumPOS * 60 / Energy_Div]
 ST_extreme_monthly[, GLB_diff.sumNEG := GLB_diff.sumNEG * 60 / Energy_Div]
-
+ST_extreme_monthly[, wattGLB.sum     := wattGLB.sum     * 60 / Energy_Div]
+ST_extreme_monthly[, wattGLB.sumPOS  := wattGLB.sumPOS  * 60 / Energy_Div]
+ST_extreme_monthly[, wattGLB.sumNEG  := wattGLB.sumNEG  * 60 / Energy_Div]
 
 
 ## stats on enhancement cases
@@ -375,8 +390,8 @@ ST_E_monthly[, yts := (year(Date) - min(year(Date))) + ( yday(Date) - 1 ) / Hmis
 
 ## convert sum Irradiance to energy
 ## Σ(W/m^2) * 60 s = J/m^2
-ST_E_monthly[, GLB_diff.sum    := GLB_diff.sum  * 60 / Energy_Div]
-
+ST_E_monthly[, GLB_diff.sum := GLB_diff.sum * 60 / Energy_Div]
+ST_E_monthly[, wattGLB.sum  := wattGLB.sum  * 60 / Energy_Div]
 
 
 ## monthly climatology
@@ -388,7 +403,8 @@ ST_E_monthly_seas <- DATA[get(SelEnhanc) == TRUE,
 
 ## convert sum Irradiance to energy
 ## Σ(W/m^2) * 60 s = J/m^2
-ST_E_monthly_seas[, GLB_diff.sum    := GLB_diff.sum    * 60 / Energy_Div]
+ST_E_monthly_seas[, GLB_diff.sum := GLB_diff.sum * 60 / Energy_Div]
+ST_E_monthly_seas[, wattGLB.sum  := wattGLB.sum  * 60 / Energy_Div]
 
 
 for (avar in grep("^month$", names(ST_E_monthly_seas), value = T, invert = T) ) {
@@ -415,6 +431,9 @@ ST_yearly$Date <- as.POSIXct(strptime(paste(ST_yearly$year, "01", "1"),"%Y %m %d
 ST_yearly[, GLB_diff.sum    := GLB_diff.sum    * 60 / Energy_Div]
 ST_yearly[, GLB_diff.sumPOS := GLB_diff.sumPOS * 60 / Energy_Div]
 ST_yearly[, GLB_diff.sumNEG := GLB_diff.sumNEG * 60 / Energy_Div]
+ST_yearly[, wattGLB.sum     := wattGLB.sum     * 60 / Energy_Div]
+ST_yearly[, wattGLB.sumPOS  := wattGLB.sumPOS  * 60 / Energy_Div]
+ST_yearly[, wattGLB.sumNEG  := wattGLB.sumNEG  * 60 / Energy_Div]
 
 
 
@@ -432,9 +451,9 @@ ST_extreme_yearly$Date <- as.POSIXct(strptime(paste(ST_extreme_yearly$year, "01"
 ST_extreme_yearly[, GLB_diff.sum    := GLB_diff.sum    * 60 / Energy_Div]
 ST_extreme_yearly[, GLB_diff.sumPOS := GLB_diff.sumPOS * 60 / Energy_Div]
 ST_extreme_yearly[, GLB_diff.sumNEG := GLB_diff.sumNEG * 60 / Energy_Div]
-
-
-
+ST_extreme_yearly[, wattGLB.sum     := wattGLB.sum     * 60 / Energy_Div]
+ST_extreme_yearly[, wattGLB.sumPOS  := wattGLB.sumPOS  * 60 / Energy_Div]
+ST_extreme_yearly[, wattGLB.sumNEG  := wattGLB.sumNEG  * 60 / Energy_Div]
 
 
 ## stats on enhancement cases
@@ -449,11 +468,8 @@ ST_E_yearly$year <- as.POSIXct(strptime(paste(ST_E_yearly$year, "01", "1"),"%Y %
 
 ## convert sum Irradiance to energy
 ## Σ(W/m^2) * 60 s = J/m^2
-ST_E_yearly[, GLB_diff.sum    := GLB_diff.sum    * 60 / Energy_Div]
-
-
-
-
+ST_E_yearly[, GLB_diff.sum := GLB_diff.sum * 60 / Energy_Div]
+ST_E_yearly[, wattGLB.sum  := wattGLB.sum  * 60 / Energy_Div]
 
 
 
@@ -479,6 +495,10 @@ for (avar in grep("^SZA$", names(ST_sza), value = T, invert = T) ) {
 ST_sza[, GLB_diff.sum    := GLB_diff.sum    * 60 / Energy_Div]
 ST_sza[, GLB_diff.sumPOS := GLB_diff.sumPOS * 60 / Energy_Div]
 ST_sza[, GLB_diff.sumNEG := GLB_diff.sumNEG * 60 / Energy_Div]
+ST_sza[, wattGLB.sum     := wattGLB.sum     * 60 / Energy_Div]
+ST_sza[, wattGLB.sumPOS  := wattGLB.sumPOS  * 60 / Energy_Div]
+ST_sza[, wattGLB.sumNEG  := wattGLB.sumNEG  * 60 / Energy_Div]
+
 
 ## stats on extreme enhancement cases
 ST_extreme_SZA <- DATA[wattGLB > ETH,
@@ -501,7 +521,8 @@ ST_E_sza <- DATA[get(SelEnhanc) == TRUE,
 
 ## convert sum Irradiance to energy
 ## Σ(W/m^2) * 60 s = J/m^2
-ST_E_sza[, GLB_diff.sum    := GLB_diff.sum    * 60 / Energy_Div]
+ST_E_sza[, GLB_diff.sum := GLB_diff.sum * 60 / Energy_Div]
+ST_E_sza[, wattGLB.sum  := wattGLB.sum  * 60 / Energy_Div]
 
 
 
@@ -521,6 +542,10 @@ ST_sza_monthly <- DATA[, unlist(lapply(.SD, data.summary, na.rm = TRUE),
 ST_sza_monthly[, GLB_diff.sum    := GLB_diff.sum    * 60 / Energy_Div]
 ST_sza_monthly[, GLB_diff.sumPOS := GLB_diff.sumPOS * 60 / Energy_Div]
 ST_sza_monthly[, GLB_diff.sumNEG := GLB_diff.sumNEG * 60 / Energy_Div]
+ST_sza_monthly[, wattGLB.sum     := wattGLB.sum     * 60 / Energy_Div]
+ST_sza_monthly[, wattGLB.sumPOS  := wattGLB.sumPOS  * 60 / Energy_Div]
+ST_sza_monthly[, wattGLB.sumNEG  := wattGLB.sumNEG  * 60 / Energy_Div]
+
 
 
 ## stats on extreme enhancement cases
@@ -532,8 +557,8 @@ ST_extreme_SZA_monthly <- DATA[wattGLB > ETH,
 
 ## convert sum Irradiance to energy
 ## Σ(W/m^2) * 60 s = J/m^2
-ST_extreme_SZA_monthly[, GLB_diff.sum    := GLB_diff.sum    * 60 / Energy_Div]
-
+ST_extreme_SZA_monthly[, GLB_diff.sum := GLB_diff.sum * 60 / Energy_Div]
+ST_extreme_SZA_monthly[, wattGLB.sum  := wattGLB.sum  * 60 / Energy_Div]
 
 
 
@@ -546,7 +571,8 @@ ST_E_sza_monthly <- DATA[get(SelEnhanc) == TRUE,
 
 ## convert sum Irradiance to energy
 ## Σ(W/m^2) * 60 s = J/m^2
-ST_E_sza_monthly[, GLB_diff.sum    := GLB_diff.sum    * 60 / Energy_Div]
+ST_E_sza_monthly[, GLB_diff.sum := GLB_diff.sum * 60 / Energy_Div]
+ST_E_sza_monthly[, wattGLB.sum  := wattGLB.sum  * 60 / Energy_Div]
 
 
 

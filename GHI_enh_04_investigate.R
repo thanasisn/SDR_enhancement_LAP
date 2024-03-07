@@ -550,7 +550,7 @@ title("Climatology of CE cases per weak")
   lmD <- lm( ST_yearly[, year, GLB_diff.sumPOS/GLB_diff.N_pos])
   abline(lmD)
 
-  title("Annual mean Energy excess per CE")
+  title("Mean Energy of over irradiance per CE")
 
   ## display trend on graph
   fit <- lmD[[1]]
