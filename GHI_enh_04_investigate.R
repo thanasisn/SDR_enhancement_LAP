@@ -750,10 +750,42 @@ for (am in 1:12) {
 }
 
 
-stop()
+
 # Heatmap
-ggplot(data, aes(X, Y, fill= Z)) +
-  geom_tile()
+ggplot(ST_E_sza_doy, aes(Doy, SZA, fill = GLB_diff.N)) +
+  geom_tile() +
+  # scale_fill_viridis_c()
+  scale_fill_gradient(low = "yellow", high = "red", na.value = "black") +
+  theme(legend.position      = c(0.99, 0.01),
+        legend.justification = c(1, 0)) +
+  theme(legend.background    = element_rect(fill = "white", colour = NA))
+
+
+ggplot(ST_E_sza_doy, aes(Doy, SZA, fill = GLB_diff.max)) +
+  geom_tile() +
+  # scale_fill_viridis_c()
+  scale_fill_gradient(low = "yellow", high = "red", na.value = "black") +
+  theme(legend.position      = c(0.99, 0.01),
+        legend.justification = c(1, 0)) +
+  theme(legend.background    = element_rect(fill = "white", colour = NA))
+
+
+ggplot(ST_E_sza_doy, aes(Doy, SZA, fill = GLB_diff.sum)) +
+  geom_tile() +
+  # scale_fill_viridis_c()
+  scale_fill_gradient(low = "yellow", high = "red", na.value = "black") +
+  theme(legend.position      = c(0.99, 0.01),
+        legend.justification = c(1, 0)) +
+  theme(legend.background    = element_rect(fill = "white", colour = NA))
+
+
+ggplot(ST_E_sza_doy, aes(Doy, SZA, fill = GLB_diff.mean)) +
+  geom_tile() +
+  # scale_fill_viridis_c()
+  scale_fill_gradient(low = "yellow", high = "red", na.value = "black") +
+  theme(legend.position      = c(0.99, 0.01),
+        legend.justification = c(1, 0)) +
+  theme(legend.background    = element_rect(fill = "white", colour = NA))
 
 
 
