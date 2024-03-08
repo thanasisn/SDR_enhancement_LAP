@@ -29,11 +29,11 @@ output:
  #    extra_dependencies:  longtable
  #    keep_tex:            yes
   bookdown::pdf_document2:
-    number_sections:  no
+    number_sections:  yes
     fig_caption:      yes
     keep_tex:         no
     latex_engine:     xelatex
-    toc:              no
+    toc:              yes
     toc_depth:        4
     fig_width:        7
     fig_height:       4.5
@@ -284,6 +284,16 @@ knitr::include_graphics("../images/relative_distributions-4.png")
 ```
 
 
+<!-- todo stop long tails on hist -->
+<!-- hist retative frequency label -->
+
+<!-- Whisky plot relative between months -->
+<!-- weight (Nmonth / Nmaxmonth) -->
+
+<!-- whisky plots relative to GLB -->
+
+<!-- set of yearly plots -->
+
 \FloatBarrier
 
 ## Groups stats
@@ -383,6 +393,7 @@ Climatology results
 
 
 
+# Appendix {.unnumbered}
 
 
 # References {.unnumbered}
