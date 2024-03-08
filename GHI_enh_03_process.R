@@ -588,43 +588,43 @@ ST_sza_doy <- DATA[, unlist(lapply(.SD, data.summary, na.rm = TRUE),
                        .SDcols = my.cols,
                        by = .(SZA = (SZA - SZA_BIN / 2 ) %/% SZA_BIN, Doy = yday(Date))]
 
-stop()
+
 ## convert sum Irradiance to energy
 ## Σ(W/m^2) * 60 s = J/m^2
-ST_sza_monthly[, GLB_diff.sum    := GLB_diff.sum    * 60 / Energy_Div]
-ST_sza_monthly[, GLB_diff.sumPOS := GLB_diff.sumPOS * 60 / Energy_Div]
-ST_sza_monthly[, GLB_diff.sumNEG := GLB_diff.sumNEG * 60 / Energy_Div]
-ST_sza_monthly[, wattGLB.sum     := wattGLB.sum     * 60 / Energy_Div]
-ST_sza_monthly[, wattGLB.sumPOS  := wattGLB.sumPOS  * 60 / Energy_Div]
-ST_sza_monthly[, wattGLB.sumNEG  := wattGLB.sumNEG  * 60 / Energy_Div]
+ST_sza_doy[, GLB_diff.sum    := GLB_diff.sum    * 60 / Energy_Div]
+ST_sza_doy[, GLB_diff.sumPOS := GLB_diff.sumPOS * 60 / Energy_Div]
+ST_sza_doy[, GLB_diff.sumNEG := GLB_diff.sumNEG * 60 / Energy_Div]
+ST_sza_doy[, wattGLB.sum     := wattGLB.sum     * 60 / Energy_Div]
+ST_sza_doy[, wattGLB.sumPOS  := wattGLB.sumPOS  * 60 / Energy_Div]
+ST_sza_doy[, wattGLB.sumNEG  := wattGLB.sumNEG  * 60 / Energy_Div]
 
 
 
 ## stats on extreme enhancement cases
-ST_extreme_SZA_monthly <- DATA[wattGLB > ETH,
+ST_extreme_SZA_doy <- DATA[wattGLB > ETH,
                                unlist(lapply(.SD, enhanc.summary, na.rm = TRUE),
                                       recursive = FALSE),
                                .SDcols = my.cols,
-                               by = .(SZA = (SZA - SZA_BIN / 2 ) %/% SZA_BIN, Month = month(Date))]
+                               by = .(SZA = (SZA - SZA_BIN / 2 ) %/% SZA_BIN, Doy = yday(Date))]
 
 ## convert sum Irradiance to energy
 ## Σ(W/m^2) * 60 s = J/m^2
-ST_extreme_SZA_monthly[, GLB_diff.sum := GLB_diff.sum * 60 / Energy_Div]
-ST_extreme_SZA_monthly[, wattGLB.sum  := wattGLB.sum  * 60 / Energy_Div]
+ST_extreme_SZA_doy[, GLB_diff.sum := GLB_diff.sum * 60 / Energy_Div]
+ST_extreme_SZA_doy[, wattGLB.sum  := wattGLB.sum  * 60 / Energy_Div]
 
 
 
 ## stats on enhancement cases
-ST_E_sza_monthly <- DATA[get(SelEnhanc) == TRUE,
+ST_E_sza_doy <- DATA[get(SelEnhanc) == TRUE,
                          unlist(lapply(.SD, enhanc.summary, na.rm = FALSE),
                                 recursive = FALSE),
                          .SDcols = my.cols,
-                         by = .(SZA = (SZA - SZA_BIN / 2 ) %/% SZA_BIN, Month = month(Date))]
+                         by = .(SZA = (SZA - SZA_BIN / 2 ) %/% SZA_BIN, Doy = yday(Date))]
 
 ## convert sum Irradiance to energy
 ## Σ(W/m^2) * 60 s = J/m^2
-ST_E_sza_monthly[, GLB_diff.sum := GLB_diff.sum * 60 / Energy_Div]
-ST_E_sza_monthly[, wattGLB.sum  := wattGLB.sum  * 60 / Energy_Div]
+ST_E_sza_doy[, GLB_diff.sum := GLB_diff.sum * 60 / Energy_Div]
+ST_E_sza_doy[, wattGLB.sum  := wattGLB.sum  * 60 / Energy_Div]
 
 
 
