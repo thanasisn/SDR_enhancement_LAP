@@ -749,7 +749,9 @@ for (am in 1:12) {
 
 }
 
-
+# Heatmap
+ggplot(data, aes(X, Y, fill= Z)) +
+  geom_tile()
 
 
 
