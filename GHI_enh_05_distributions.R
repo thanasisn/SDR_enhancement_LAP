@@ -186,7 +186,7 @@ plot(h,
      freq   = FALSE,
      col    = varcol( "GLB_ench"),
      xlab   = varname("GLB_ench"),
-     ylab   = "Density in %",
+     ylab   = "Relative frequency [%]",
      main   = varname("GLB_ench")
 )
 
@@ -208,7 +208,7 @@ plot(h,
      freq   = FALSE,
      col    = varcol("GLB_diff"),
      xlab   = bquote(.(varname("GLB_diff")) ~ group("[", W/m^2,"]")),
-     ylab   = "Density in %",
+     ylab   = "Relative frequency [%]",
      main   = bquote(.(varname("GLB_diff")) ~ group("[", W/m^2,"]")),
 )
 
@@ -230,7 +230,7 @@ plot(h,
      freq   = FALSE,
      col    = varcol( "GLB_rati"),
      xlab   = varname("GLB_rati"),
-     ylab   = "Density in %",
+     ylab   = "Relative frequency [%]",
      main   = varname("GLB_rati"),
 )
 
@@ -243,7 +243,7 @@ ggplot(data = DATA[GLB_diff > 0,], aes(x = GLB_diff)) +
                  color    = "black",
                  fill     = varcol("GLB_diff")) +
   xlab(bquote(.(varname("GLB_diff")) ~ group("[", W/m^2,"]"))) +
-  ylab( "Density [%]") +
+  ylab( "Relative frequency [%]") +
   theme_bw(base_size = 14) +
   theme(axis.text = element_text(face="bold"))
 
