@@ -74,7 +74,6 @@ library(ggplot2       , quietly = TRUE, warn.conflicts = FALSE)
 library(lmtest        , quietly = TRUE, warn.conflicts = FALSE)
 library(viridis       , quietly = TRUE, warn.conflicts = FALSE)
 library(ggpointdensity, quietly = TRUE, warn.conflicts = FALSE)
-library(patchwork     , quietly = TRUE, warn.conflicts = FALSE)
 library(ggh4x         , quietly = TRUE, warn.conflicts = FALSE)
 
 
@@ -337,29 +336,8 @@ write.csv(x = dailytrendsY,
 #      main = "Duration of enhancement of CE groups cases groups")
 
 binwidth <- 2.5
-split <- 23.5
-
-p1 <- ggplot(data = ST_G0, aes(x = GLB_ench.N)) +
-  geom_histogram(aes(y = (after_stat(count))/sum(after_stat(count)) * 100),
-                 binwidth = binwidth,
-                 boundary = 0,
-                 color    = "black") +
-  # scale_y_log10() +
-  # xlab(bquote(.(varname("GLB_diff")) ~ group("[", W/m^2,"]"))) +
-  xlab("[min]") +
-  ylab("[%]") +
-  coord_cartesian(xlim = c(split, max(ST_G0$GLB_ench.N)),
-                  ylim = c(0, .8)) +
-  theme(
-    axis.title = element_text(size = 9),
-    axis.text  = element_text(size = 9),
-    panel.grid = element_line(linetype = 2)
-  )
-
-
-
 ggplot(data = ST_G0, aes(x = GLB_ench.N)) +
-  geom_histogram(aes(y = (after_stat(count))/sum(after_stat(count)) * 100),
+  geom_histogram(aes(y = (..count..)/sum(..count..) * 100),
                  binwidth = binwidth,
                  boundary = 0,
                  color    = "black") +
@@ -367,18 +345,7 @@ ggplot(data = ST_G0, aes(x = GLB_ench.N)) +
   # xlab(bquote(.(varname("GLB_diff")) ~ group("[", W/m^2,"]"))) +
   xlab("Duration of enhancement [min]") +
   ylab("Relative frequency [%]") +
-  labs(caption = paste("Bin width:", binwidth, "min")) +
-  inset_element(p1, left = 0.3, bottom = 0.3, right = 1, top = 1,
-                align_to = "plot")
-
-
-
-
-
-
-
-
-
+  labs(caption = paste("Bin width:", binwidth, "min"))
 
 
 ggplot(data = ST_G0, aes(x = GLB_ench.N)) +
@@ -417,11 +384,6 @@ ggplot(data    = ST_G0,
                      minor_breaks = seq(0, 500, by = 25)) +
   scale_x_continuous(guide        = "axis_minor",
                      minor_breaks = seq(0, 500, by = 10))
-
-
-
-
-
 
 
 
@@ -582,11 +544,7 @@ ggplot(ST_E_monthly, aes(y = GLB_ench.N/max_median,
   geom_boxplot() +
   xlab("") +
   ylab("Relative monthly occurances") +
-  stat_summary(fun.y = mean, geom = "point", shape = 23, size = 3) +
-  theme(
-    panel.grid.major.x = element_blank(),
-    panel.grid.minor.x = element_blank()
-  )
+  stat_summary(fun.y = mean, geom = "point", shape = 23, size = 3)
   # geom_dotplot(binaxis='y', stackdir='center', dotsize=.3) +
   # geom_jitter(shape=16, position=position_jitter(0.2))
 
@@ -615,11 +573,7 @@ ggplot(ST_extreme_monthly, aes(y = GLB_ench.N/max_median,
   geom_boxplot() +
   xlab("") +
   ylab("Relative monthly occurances") +
-  stat_summary(fun.y = mean, geom = "point", shape = 23, size = 3) +
-  theme(
-    panel.grid.major.x = element_blank(),
-    panel.grid.minor.x = element_blank()
-  )
+  stat_summary(fun.y = mean, geom = "point", shape = 23, size = 3)
   # geom_dotplot(binaxis='y', stackdir='center', dotsize=.3) +
   # geom_jitter(shape=16, position=position_jitter(0.2))
 
