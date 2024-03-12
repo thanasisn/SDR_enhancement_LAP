@@ -74,6 +74,7 @@ library(ggplot2       , quietly = TRUE, warn.conflicts = FALSE)
 library(lmtest        , quietly = TRUE, warn.conflicts = FALSE)
 library(viridis       , quietly = TRUE, warn.conflicts = FALSE)
 library(ggpointdensity, quietly = TRUE, warn.conflicts = FALSE)
+library(patchwork     , quietly = TRUE, warn.conflicts = FALSE)
 library(ggh4x         , quietly = TRUE, warn.conflicts = FALSE)
 
 
@@ -336,16 +337,38 @@ write.csv(x = dailytrendsY,
 #      main = "Duration of enhancement of CE groups cases groups")
 
 binwidth <- 2.5
-ggplot(data = ST_G0, aes(x = GLB_ench.N)) +
-  geom_histogram(aes(y = (..count..)/sum(..count..) * 100),
+split <- 23.5
+
+p1 <- ggplot(data = ST_G0, aes(x = GLB_ench.N)) +
+  geom_histogram(aes(y = (after_stat(count))/sum(after_stat(count)) * 100),
                  binwidth = binwidth,
                  boundary = 0,
                  color    = "black") +
-  # scale_y_log10() +
+  xlab("[min]") +
+  ylab("[%]") +
+  coord_cartesian(xlim = c(split, max(ST_G0$GLB_ench.N)),
+                  ylim = c(0, .8)) +
+  theme(
+    axis.title = element_text(size = 9),
+    axis.text  = element_text(size = 9),
+    panel.grid = element_line(linetype = 2)
+  )
+
+
+
+ggplot(data = ST_G0, aes(x = GLB_ench.N)) +
+  geom_histogram(aes(y = (after_stat(count))/sum(after_stat(count)) * 100),
+                 binwidth = binwidth,
+                 boundary = 0,
+                 color    = "black") +
   # xlab(bquote(.(varname("GLB_diff")) ~ group("[", W/m^2,"]"))) +
   xlab("Duration of enhancement [min]") +
   ylab("Relative frequency [%]") +
-  labs(caption = paste("Bin width:", binwidth, "min"))
+  labs(caption = paste("Bin width:", binwidth, "min")) +
+  inset_element(p1, left = 0.3, bottom = 0.3, right = 1, top = 1,
+                align_to = "plot")
+
+
 
 
 ggplot(data = ST_G0, aes(x = GLB_ench.N)) +
@@ -359,19 +382,16 @@ ggplot(data = ST_G0, aes(x = GLB_ench.N)) +
 
 
 
-# plot(ST_G0$GLB_ench.N, ST_G0$GLB_diff.sum/ST_G0$GLB_ench.N,
-#      xlab = "Duration of enhancement [min]",
-#      ylab = "Extra mean Irradiance per minute")
 
 
 
 
-## _ Use point denxity  --------------------------
+## _ Use point density  --------------------------
 
 ggplot(data    = ST_G0,
        mapping = aes(x = GLB_ench.N, y = ST_G0$GLB_diff.sum/ST_G0$GLB_ench.N)) +
   xlab("Duration of enhancement [min]") +
-  ylab("Mean Over Irradiance per minute [W/m^2]") +
+  ylab(bquote("Mean Over Irradiance per minute" ~ group("[", W/m^2,"]"))) +
   geom_pointdensity(aes(color = after_stat(log(n_neighbors))),
                     adjust = 1,
                     size   = 0.7) +
@@ -387,10 +407,15 @@ ggplot(data    = ST_G0,
 
 
 
+
+
+
+
+
 ggplot(data    = ST_G0,
        mapping = aes(x = GLB_ench.N, y = ST_G0$GLB_diff.sum/ST_G0$GLB_ench.N)) +
   xlab("Duration of enhancement [min]") +
-  ylab("Mean Over Irradiance per minute [W/m^2]") +
+  ylab(bquote("Mean Over Irradiance per minute" ~ group("[", W/m^2,"]"))) +
   geom_pointdensity(adjust = 10,
                     size   = 0.7) +
   scale_color_viridis() +
@@ -413,7 +438,7 @@ plot(ST_G0$GLB_ench.N, ST_G0$GLB_diff.mean,
 ggplot(data    = ST_G0,
        mapping = aes(x = GLB_diff.N, y = GLB_diff.mean)) +
   xlab("Duration of enhancement [min]") +
-  ylab("Mean Over Irradiance [W/m^2]") +
+  ylab(bquote("Mean Over Irradiance" ~ group("[", W/m^2,"]"))) +
   geom_pointdensity(adjust = 10,
                     size   = 0.7) +
   scale_color_viridis()  +
@@ -440,7 +465,7 @@ plot(ST_G0[, GLB_diff.max, GLB_diff.N ],
 ggplot(data    = ST_G0,
        mapping = aes(x = GLB_diff.N, y = GLB_diff.max)) +
   xlab("Duration of enhancement [min]") +
-  ylab("Maximum Over Irradiance [W/m^2]") +
+  ylab(bquote("Maximum Over Irradiance" ~ group("[", W/m^2,"]"))) +
   geom_pointdensity(adjust = 10,
                     size   = 0.7) +
   scale_color_viridis()  +
@@ -464,7 +489,7 @@ lim_dur <- 80
 ggplot(data    = ST_G0,
        mapping = aes(x = GLB_ench.N, y = ST_G0$GLB_diff.sum/ST_G0$GLB_ench.N)) +
   xlab("Duration of enhancement [min]") +
-  ylab("Mean Over Irradiance per minute [W/m^2]") +
+  ylab(bquote("Mean Over Irradiance per minute" ~ group("[", W/m^2,"]"))) +
   geom_bin_2d(bins = 80) +
   scale_fill_continuous(type = "viridis", transform = "log",
                         breaks = my_breaks, labels = my_breaks) +
@@ -483,7 +508,7 @@ ggplot(data    = ST_G0,
 ggplot(data    = ST_G0,
        mapping = aes(x = GLB_ench.N, y = ST_G0$GLB_diff.sum/ST_G0$GLB_ench.N)) +
   xlab("Duration of enhancement [min]") +
-  ylab("Mean Over Irradiance per minute [W/m^2]") +
+  ylab(bquote("Mean Over Irradiance per minute" ~ group("[", W/m^2,"]"))) +
   geom_bin_2d(bins = 30) +
   scale_fill_viridis()  +
   # scale_fill_continuous(type = "viridis", transform = "log",
@@ -544,7 +569,11 @@ ggplot(ST_E_monthly, aes(y = GLB_ench.N/max_median,
   geom_boxplot() +
   xlab("") +
   ylab("Relative monthly occurances") +
-  stat_summary(fun.y = mean, geom = "point", shape = 23, size = 3)
+  stat_summary(fun.y = mean, geom = "point", shape = 23, size = 3) +
+  theme(
+    panel.grid.major.x = element_blank(),
+    panel.grid.minor.x = element_blank()
+  )
   # geom_dotplot(binaxis='y', stackdir='center', dotsize=.3) +
   # geom_jitter(shape=16, position=position_jitter(0.2))
 
@@ -573,7 +602,11 @@ ggplot(ST_extreme_monthly, aes(y = GLB_ench.N/max_median,
   geom_boxplot() +
   xlab("") +
   ylab("Relative monthly occurances") +
-  stat_summary(fun.y = mean, geom = "point", shape = 23, size = 3)
+  stat_summary(fun.y = mean, geom = "point", shape = 23, size = 3) +
+  theme(
+    panel.grid.major.x = element_blank(),
+    panel.grid.minor.x = element_blank()
+  )
   # geom_dotplot(binaxis='y', stackdir='center', dotsize=.3) +
   # geom_jitter(shape=16, position=position_jitter(0.2))
 
@@ -867,7 +900,6 @@ for (am in 1:12) {
        xlim = xlim,
        ylab = paste(varname(avar), staname(avar)),
        main = paste(month.name[am], varname(avar), staname(avar)))
-
 }
 
 
