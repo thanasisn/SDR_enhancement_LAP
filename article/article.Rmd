@@ -256,15 +256,21 @@ knitr::include_graphics("../images/daily-12.png")
 ```
 
 
-```{r echo=FALSE, fig.cap="Trend of the yearly excess energy"}
+```{r echo=FALSE, fig.cap="Treds of the mean over irradiance per CE"}
+knitr::include_graphics("../images/energy-3.png")
+```
+
+```{r echo=FALSE, fig.cap="Trend of number of CE cases"}
+knitr::include_graphics("../images/energy-2.png")
+```
+
+
+```{r echo=FALSE, fig.cap="Trend of the yearly excess energy due to CE over irradiance"}
 knitr::include_graphics("../images/energy-1.png")
 ```
 
 
 
-```{r echo=FALSE, fig.cap="Trend of the excess energy per CE"}
-knitr::include_graphics("../images/energy-3.png")
-```
 
 \FloatBarrier
 
@@ -343,39 +349,35 @@ knitr::include_graphics("../images/extremedistributions-4.png")
 ## New plots for discussion
 
 
-```{r echo=FALSE, fig.cap="Distribution of the number of CE cases per week"}
-knitr::include_graphics("../images/climCE_week-1.png")
-```
+<!-- ```{r echo=FALSE, fig.cap="Distribution of the number of CE cases per week"} -->
+<!-- knitr::include_graphics("../images/climCE_week-1.png") -->
+<!-- ``` -->
 
-```{r echo=FALSE, fig.cap="Distribution of the number of CE cases per doy"}
-knitr::include_graphics("../images/climCE_daily-1.png")
-```
+<!-- ```{r echo=FALSE, fig.cap="Distribution of the number of CE cases per doy"} -->
+<!-- knitr::include_graphics("../images/climCE_daily-1.png") -->
+<!-- ``` -->
 
-```{r echo=FALSE, fig.cap="Distribution of the number of CE cases per doy"}
-knitr::include_graphics("../images/clim_CE_N_doy-1.png")
-```
-
-
-```{r echo=FALSE, fig.cap="Trend of the excess energy per CE"}
-knitr::include_graphics("../images/energy-2.png")
-```
-
-\FloatBarrier
-
-### Yearly plots relative to all GHI data.
+<!-- ```{r echo=FALSE, fig.cap="Distribution of the number of CE cases per doy"} -->
+<!-- knitr::include_graphics("../images/clim_CE_N_doy-1.png") -->
+<!-- ``` -->
 
 
-```{r echo=FALSE, fig.cap=""}
-knitr::include_graphics("../images/rel_energy-1.png")
-```
 
-```{r echo=FALSE, fig.cap=""}
-knitr::include_graphics("../images/rel_energy-2.png")
-```
 
-```{r echo=FALSE, fig.cap=""}
-knitr::include_graphics("../images/rel_energy-3.png")
-```
+
+<!-- ### Yearly plots relative to all GHI data. -->
+
+<!-- ```{r echo=FALSE, fig.cap=""} -->
+<!-- knitr::include_graphics("../images/rel_energy-1.png") -->
+<!-- ``` -->
+
+<!-- ```{r echo=FALSE, fig.cap=""} -->
+<!-- knitr::include_graphics("../images/rel_energy-2.png") -->
+<!-- ``` -->
+
+<!-- ```{r echo=FALSE, fig.cap=""} -->
+<!-- knitr::include_graphics("../images/rel_energy-3.png") -->
+<!-- ``` -->
 
 
 \FloatBarrier
