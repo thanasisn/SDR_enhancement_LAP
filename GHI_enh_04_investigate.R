@@ -455,9 +455,62 @@ plot(ST_E_daily[, sum(GLB_ench.N), by = yday(Date)],
 boxplot(ST_E_monthly$GLB_ench.N ~ ST_E_monthly$month )
 title("Climatology of CE cases per month")
 
+
+# normalize with max value
+#+ clim_CE_month_norm_MAX_N, echo=F, include=T, results="asis"
+boxplot(ST_E_monthly[, GLB_ench.N/max(GLB_ench.N, na.rm = T) ~ month ])
+title("Climatology of CE cases per month Norm by max N")
+
+# normalize with max monthly median
+#+ clim_CE_month_norm_MAX_median_N, echo=F, include=T, results="asis"
+temp <- ST_E_monthly[, median(GLB_ench.N, na.rm = T), by = month]
+max_median <- max(temp$V1)
+max_month  <- month.name[temp[which.max(temp$V1), month]]
+boxplot(ST_E_monthly[, GLB_ench.N/max_median ~ month ])
+title(paste("Climatology of CE cases per month Norm the median of", max_month))
+
+ggplot(ST_E_monthly, aes(y = GLB_ench.N/max_median,
+                         x = factor(month,
+                                    levels = 1:12,
+                                    labels = month.abb[1:12]))) +
+  geom_boxplot() +
+  xlab("") +
+  ylab("Relative monthly occurances") +
+  stat_summary(fun.y = mean, geom = "point", shape = 23, size = 3)
+  # geom_dotplot(binaxis='y', stackdir='center', dotsize=.3) +
+  # geom_jitter(shape=16, position=position_jitter(0.2))
+
+
+
+# dd <- boxplot(ST_E_monthly$GLB_ench.N ~ ST_E_monthly$month)
+# bxp(dd)
+
+
 #+ climECEmonth, echo=F, include=T, results="asis"
 boxplot(ST_extreme_monthly$GLB_ench.N ~ ST_extreme_monthly$month )
 title("Climatology of ECE cases per month")
+
+# normalize with max monthly median
+#+ clim_ECE_month_norm_MAX_median_N, echo=F, include=T, results="asis"
+temp <- ST_extreme_monthly[, median(GLB_ench.N, na.rm = T), by = month]
+max_median <- max(temp$V1)
+max_month  <- month.name[temp[which.max(temp$V1), month]]
+boxplot(ST_extreme_monthly[, GLB_ench.N/max_median ~ month ])
+title(paste("Climatology of ECE cases per month Norm the median of", max_month))
+
+ggplot(ST_extreme_monthly, aes(y = GLB_ench.N/max_median,
+                         x = factor(month,
+                                    levels = 1:12,
+                                    labels = month.abb[1:12]))) +
+  geom_boxplot() +
+  xlab("") +
+  ylab("Relative monthly occurances") +
+  stat_summary(fun.y = mean, geom = "point", shape = 23, size = 3)
+  # geom_dotplot(binaxis='y', stackdir='center', dotsize=.3) +
+  # geom_jitter(shape=16, position=position_jitter(0.2))
+
+
+
 
 
 

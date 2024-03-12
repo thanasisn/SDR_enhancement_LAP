@@ -237,6 +237,7 @@ plot(h,
 
 
 
+
 ggplot(data = DATA[GLB_diff > 0,], aes(x = GLB_diff)) +
   geom_histogram(aes(y = (..count..)/sum(..count..) * 100),
                  binwidth = 20,
