@@ -455,21 +455,9 @@ plot(ST_E_daily[, sum(GLB_ench.N), by = yday(Date)],
 boxplot(ST_E_monthly$GLB_ench.N ~ ST_E_monthly$month )
 title("Climatology of CE cases per month")
 
-
-
-
-
-
-
-
 #+ climECEmonth, echo=F, include=T, results="asis"
 boxplot(ST_extreme_monthly$GLB_ench.N ~ ST_extreme_monthly$month )
 title("Climatology of ECE cases per month")
-
-
-
-
-
 
 
 
