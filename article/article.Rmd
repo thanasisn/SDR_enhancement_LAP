@@ -362,6 +362,14 @@ knitr::include_graphics("../images/extremedistributions-4.png")
 <!-- ``` -->
 
 
+```{r echo=FALSE, fig.cap="Distribution of "}
+knitr::include_graphics("../images/clim_CE_month_norm_MAX_median_N-2.png")
+```
+
+
+```{r echo=FALSE, fig.cap="Distribution of "}
+knitr::include_graphics("../images/clim_ECE_month_norm_MAX_median_N-2.png")
+```
 
 
 
