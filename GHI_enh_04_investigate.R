@@ -74,6 +74,7 @@ library(ggplot2       , quietly = TRUE, warn.conflicts = FALSE)
 library(lmtest        , quietly = TRUE, warn.conflicts = FALSE)
 library(viridis       , quietly = TRUE, warn.conflicts = FALSE)
 library(ggpointdensity, quietly = TRUE, warn.conflicts = FALSE)
+library(patchwork     , quietly = TRUE, warn.conflicts = FALSE)
 library(ggh4x         , quietly = TRUE, warn.conflicts = FALSE)
 
 
@@ -335,24 +336,70 @@ write.csv(x = dailytrendsY,
 #      xlab = "Duration of enhancement [min]",
 #      main = "Duration of enhancement of CE groups cases groups")
 
+binwidth <- 2.5
+split <- 23.5
+
+p1 <- ggplot(data = ST_G0, aes(x = GLB_ench.N)) +
+  geom_histogram(aes(y = (after_stat(count))/sum(after_stat(count)) * 100),
+                 binwidth = binwidth,
+                 boundary = 0,
+                 color    = "black") +
+  # scale_y_log10() +
+  # xlab(bquote(.(varname("GLB_diff")) ~ group("[", W/m^2,"]"))) +
+  xlab("[min]") +
+  ylab("[%]") +
+  coord_cartesian(xlim = c(split, max(ST_G0$GLB_ench.N)),
+                  ylim = c(0, .8)) +
+  theme(
+    axis.title = element_text(size = 9),
+    axis.text  = element_text(size = 9),
+    panel.grid = element_line(linetype = 2)
+  )
+
+
 
 ggplot(data = ST_G0, aes(x = GLB_ench.N)) +
-  geom_histogram(aes(y = (..count..)/sum(..count..) * 100),
-                 binwidth = 5,
+  geom_histogram(aes(y = (after_stat(count))/sum(after_stat(count)) * 100),
+                 binwidth = binwidth,
+                 boundary = 0,
                  color    = "black") +
+  # scale_y_log10() +
   # xlab(bquote(.(varname("GLB_diff")) ~ group("[", W/m^2,"]"))) +
   xlab("Duration of enhancement [min]") +
-  ylab("Density [%]")
-# +
-#   theme_bw(base_size = 14) +
-#   theme(axis.text = element_text(face="bold"))
+  ylab("Relative frequency [%]") +
+  labs(caption = paste("Bin width:", binwidth, "min")) +
+  inset_element(p1, left = 0.3, bottom = 0.3, right = 1, top = 1,
+                align_to = "plot")
 
 
 
-plot(ST_G0$GLB_ench.N, ST_G0$GLB_diff.sum/ST_G0$GLB_ench.N,
-     xlab = "Duration of enhancement [min]",
-     ylab = "Extra mean Irradiance per minute")
 
+
+
+
+
+
+
+
+ggplot(data = ST_G0, aes(x = GLB_ench.N)) +
+  geom_histogram(binwidth = binwidth,
+                 color    = "black") +
+  scale_y_log10() +
+  # xlab(bquote(.(varname("GLB_diff")) ~ group("[", W/m^2,"]"))) +
+  xlab("Duration of enhancement [min]") +
+  ylab("Frequency") +
+  labs(caption = paste("Bin width:", binwidth, "min"))
+
+
+
+# plot(ST_G0$GLB_ench.N, ST_G0$GLB_diff.sum/ST_G0$GLB_ench.N,
+#      xlab = "Duration of enhancement [min]",
+#      ylab = "Extra mean Irradiance per minute")
+
+
+
+
+## _ Use point denxity  --------------------------
 
 ggplot(data    = ST_G0,
        mapping = aes(x = GLB_ench.N, y = ST_G0$GLB_diff.sum/ST_G0$GLB_ench.N)) +
@@ -370,6 +417,11 @@ ggplot(data    = ST_G0,
                      minor_breaks = seq(0, 500, by = 25)) +
   scale_x_continuous(guide        = "axis_minor",
                      minor_breaks = seq(0, 500, by = 10))
+
+
+
+
+
 
 
 
@@ -416,8 +468,6 @@ ggplot(data    = ST_G0,
 
 
 
-
-
 cat( "## @Zhang2018 \n" )
 
 plot(ST_G0[, GLB_diff.max, GLB_diff.N ],
@@ -442,10 +492,59 @@ ggplot(data    = ST_G0,
                      minor_breaks = seq(0, 500, by = 10))
 
 
+## _ Use bin2d -------------
+my_breaks <- c(2, 10, 50, 250, 1250, 6000)
+my_breaks <- 1 * 2^seq(0, 20, by = 2)
+
+
+lim_dur <- 80
+
+ggplot(data    = ST_G0,
+       mapping = aes(x = GLB_ench.N, y = ST_G0$GLB_diff.sum/ST_G0$GLB_ench.N)) +
+  xlab("Duration of enhancement [min]") +
+  ylab("Mean Over Irradiance per minute [W/m^2]") +
+  geom_bin_2d(bins = 80) +
+  scale_fill_continuous(type = "viridis", transform = "log",
+                        breaks = my_breaks, labels = my_breaks) +
+  theme(legend.position      = c(0.99, 0.99),
+        legend.justification = c(1, 1)) +
+  theme(legend.background    = element_rect(fill = "white", colour = NA)) +
+  labs(color = 'Count') +
+  scale_y_continuous(guide        = "axis_minor",
+                     minor_breaks = seq(0, 500, by = 25)) +
+  scale_x_continuous(guide        = "axis_minor",
+                     minor_breaks = seq(0, 500, by = 10)) +
+  labs(caption = paste("Removed", ST_G0[GLB_ench.N > lim_dur, .N], "points with duration >",lim_dur, "minutes.")) +
+  xlim(-1, lim_dur)
+
+
+ggplot(data    = ST_G0,
+       mapping = aes(x = GLB_ench.N, y = ST_G0$GLB_diff.sum/ST_G0$GLB_ench.N)) +
+  xlab("Duration of enhancement [min]") +
+  ylab("Mean Over Irradiance per minute [W/m^2]") +
+  geom_bin_2d(bins = 30) +
+  scale_fill_viridis()  +
+  # scale_fill_continuous(type = "viridis", transform = "log",
+  #                       breaks = my_breaks, labels = my_breaks) +
+  theme(legend.position      = c(0.99, 0.99),
+        legend.justification = c(1, 1)) +
+  theme(legend.background    = element_rect(fill = "white", colour = NA)) +
+  labs(color = 'Count') +
+  scale_y_continuous(guide        = "axis_minor",
+                     minor_breaks = seq(0, 500, by = 25)) +
+  scale_x_continuous(guide        = "axis_minor",
+                     minor_breaks = seq(0, 500, by = 10)) +
+  labs(caption = paste("Removed", ST_G0[GLB_ench.N > lim_dur, .N], "points with duration >",lim_dur, "minutes.")) +
+  xlim(-1, lim_dur)
 
 
 
-stop()
+
+
+
+
+
+
 
 
 
@@ -483,7 +582,11 @@ ggplot(ST_E_monthly, aes(y = GLB_ench.N/max_median,
   geom_boxplot() +
   xlab("") +
   ylab("Relative monthly occurances") +
-  stat_summary(fun.y = mean, geom = "point", shape = 23, size = 3)
+  stat_summary(fun.y = mean, geom = "point", shape = 23, size = 3) +
+  theme(
+    panel.grid.major.x = element_blank(),
+    panel.grid.minor.x = element_blank()
+  )
   # geom_dotplot(binaxis='y', stackdir='center', dotsize=.3) +
   # geom_jitter(shape=16, position=position_jitter(0.2))
 
@@ -512,7 +615,11 @@ ggplot(ST_extreme_monthly, aes(y = GLB_ench.N/max_median,
   geom_boxplot() +
   xlab("") +
   ylab("Relative monthly occurances") +
-  stat_summary(fun.y = mean, geom = "point", shape = 23, size = 3)
+  stat_summary(fun.y = mean, geom = "point", shape = 23, size = 3) +
+  theme(
+    panel.grid.major.x = element_blank(),
+    panel.grid.minor.x = element_blank()
+  )
   # geom_dotplot(binaxis='y', stackdir='center', dotsize=.3) +
   # geom_jitter(shape=16, position=position_jitter(0.2))
 

@@ -479,14 +479,16 @@ Arima: 0.0088 0.0057 1.5378 0.1241
 \hypertarget{group-stats}{%
 \subsubsection{Group stats}\label{group-stats}}
 
+\begin{center}\includegraphics[width=1\linewidth]{GHI_enh_04_investigate_files/figure-latex/groups-1} \end{center}
+
 \begin{verbatim}
-Warning: The dot-dot notation (`..count..`) was deprecated in ggplot2 3.4.0.
-i Please use `after_stat(count)` instead.
-This warning is displayed once every 8 hours.
-Call `lifecycle::last_lifecycle_warnings()` to see where this warning was generated.
+Warning in scale_y_log10(): log-10 transformation introduced infinite values.
 \end{verbatim}
 
-\begin{center}\includegraphics[width=1\linewidth]{GHI_enh_04_investigate_files/figure-latex/groups-1} \end{center}
+\begin{verbatim}
+Warning: Removed 25 rows containing missing values or values outside the scale
+range (`geom_bar()`).
+\end{verbatim}
 
 \begin{center}\includegraphics[width=1\linewidth]{GHI_enh_04_investigate_files/figure-latex/groups-2} \end{center}
 
@@ -518,6 +520,30 @@ Call `lifecycle::last_lifecycle_warnings()` to see where this warning was genera
 \begin{center}\includegraphics[width=1\linewidth]{GHI_enh_04_investigate_files/figure-latex/groups-7} \end{center}
 
 \begin{center}\includegraphics[width=1\linewidth]{GHI_enh_04_investigate_files/figure-latex/groups-8} \end{center}
+
+\begin{verbatim}
+Scale for x is already present.
+Adding another scale for x, which will replace the existing scale.
+\end{verbatim}
+
+\begin{verbatim}
+Warning: Removed 5 rows containing non-finite outside the scale range
+(`stat_bin2d()`).
+\end{verbatim}
+
+\begin{center}\includegraphics[width=1\linewidth]{GHI_enh_04_investigate_files/figure-latex/groups-9} \end{center}
+
+\begin{verbatim}
+Scale for x is already present.
+Adding another scale for x, which will replace the existing scale.
+\end{verbatim}
+
+\begin{verbatim}
+Warning: Removed 5 rows containing non-finite outside the scale range
+(`stat_bin2d()`).
+\end{verbatim}
+
+\begin{center}\includegraphics[width=1\linewidth]{GHI_enh_04_investigate_files/figure-latex/groups-10} \end{center}
 
 \begin{center}\includegraphics[width=1\linewidth]{GHI_enh_04_investigate_files/figure-latex/clim_CE_N_doy-1} \end{center}
 
@@ -677,7 +703,7 @@ Call `lifecycle::last_lifecycle_warnings()` to see where this warning was genera
 \textbf{END}
 
 \begin{verbatim}
-2024-03-12 10:27:22.9 athan@tyler GHI_enh_04_investigate.R 1.200812 mins
+2024-03-12 15:10:56.3 athan@tyler GHI_enh_04_investigate.R 2.333127 mins
 \end{verbatim}
 
 \end{document}

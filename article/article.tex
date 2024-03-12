@@ -1,0 +1,543 @@
+% Options for packages loaded elsewhere
+\PassOptionsToPackage{unicode}{hyperref}
+\PassOptionsToPackage{hyphens}{url}
+%
+\documentclass[
+]{article}
+\usepackage{amsmath,amssymb}
+\usepackage{iftex}
+\ifPDFTeX
+  \usepackage[T1]{fontenc}
+  \usepackage[utf8]{inputenc}
+  \usepackage{textcomp} % provide euro and other symbols
+\else % if luatex or xetex
+  \usepackage{unicode-math} % this also loads fontspec
+  \defaultfontfeatures{Scale=MatchLowercase}
+  \defaultfontfeatures[\rmfamily]{Ligatures=TeX,Scale=1}
+\fi
+\usepackage{lmodern}
+\ifPDFTeX\else
+  % xetex/luatex font selection
+\fi
+% Use upquote if available, for straight quotes in verbatim environments
+\IfFileExists{upquote.sty}{\usepackage{upquote}}{}
+\IfFileExists{microtype.sty}{% use microtype if available
+  \usepackage[]{microtype}
+  \UseMicrotypeSet[protrusion]{basicmath} % disable protrusion for tt fonts
+}{}
+\makeatletter
+\@ifundefined{KOMAClassName}{% if non-KOMA class
+  \IfFileExists{parskip.sty}{%
+    \usepackage{parskip}
+  }{% else
+    \setlength{\parindent}{0pt}
+    \setlength{\parskip}{6pt plus 2pt minus 1pt}}
+}{% if KOMA class
+  \KOMAoptions{parskip=half}}
+\makeatother
+\usepackage{xcolor}
+\usepackage[margin=1in]{geometry}
+\usepackage{longtable,booktabs,array}
+\usepackage{calc} % for calculating minipage widths
+% Correct order of tables after \paragraph or \subparagraph
+\usepackage{etoolbox}
+\makeatletter
+\patchcmd\longtable{\par}{\if@noskipsec\mbox{}\fi\par}{}{}
+\makeatother
+% Allow footnotes in longtable head/foot
+\IfFileExists{footnotehyper.sty}{\usepackage{footnotehyper}}{\usepackage{footnote}}
+\makesavenoteenv{longtable}
+\usepackage{graphicx}
+\makeatletter
+\def\maxwidth{\ifdim\Gin@nat@width>\linewidth\linewidth\else\Gin@nat@width\fi}
+\def\maxheight{\ifdim\Gin@nat@height>\textheight\textheight\else\Gin@nat@height\fi}
+\makeatother
+% Scale images if necessary, so that they will not overflow the page
+% margins by default, and it is still possible to overwrite the defaults
+% using explicit options in \includegraphics[width, height, ...]{}
+\setkeys{Gin}{width=\maxwidth,height=\maxheight,keepaspectratio}
+% Set default figure placement to htbp
+\makeatletter
+\def\fps@figure{htbp}
+\makeatother
+\setlength{\emergencystretch}{3em} % prevent overfull lines
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+\setcounter{secnumdepth}{5}
+\newlength{\cslhangindent}
+\setlength{\cslhangindent}{1.5em}
+\newlength{\csllabelwidth}
+\setlength{\csllabelwidth}{3em}
+\newlength{\cslentryspacingunit} % times entry-spacing
+\setlength{\cslentryspacingunit}{\parskip}
+\newenvironment{CSLReferences}[2] % #1 hanging-ident, #2 entry spacing
+ {% don't indent paragraphs
+  \setlength{\parindent}{0pt}
+  % turn on hanging indent if param 1 is 1
+  \ifodd #1
+  \let\oldpar\par
+  \def\par{\hangindent=\cslhangindent\oldpar}
+  \fi
+  % set entry spacing
+  \setlength{\parskip}{#2\cslentryspacingunit}
+ }%
+ {}
+\usepackage{calc}
+\newcommand{\CSLBlock}[1]{#1\hfill\break}
+\newcommand{\CSLLeftMargin}[1]{\parbox[t]{\csllabelwidth}{#1}}
+\newcommand{\CSLRightInline}[1]{\parbox[t]{\linewidth - \csllabelwidth}{#1}\break}
+\newcommand{\CSLIndent}[1]{\hspace{\cslhangindent}#1}
+\usepackage{caption}
+\usepackage{placeins}
+\captionsetup{font=small}
+\usepackage{booktabs}
+\usepackage{longtable}
+\usepackage{array}
+\usepackage{multirow}
+\usepackage{wrapfig}
+\usepackage{float}
+\usepackage{colortbl}
+\usepackage{pdflscape}
+\usepackage{tabu}
+\usepackage{threeparttable}
+\usepackage{threeparttablex}
+\usepackage[normalem]{ulem}
+\usepackage{makecell}
+\usepackage{xcolor}
+\ifLuaTeX
+  \usepackage{selnolig}  % disable illegal ligatures
+\fi
+\IfFileExists{bookmark.sty}{\usepackage{bookmark}}{\usepackage{hyperref}}
+\IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
+\urlstyle{same}
+\hypersetup{
+  pdftitle={SDR enhancement by clouds},
+  pdfauthor={Athanasios N. Natsis; Alkiviadis Bais; Charikleia Meleti},
+  pdfkeywords={keyword1, keyword2},
+  hidelinks,
+  pdfcreator={LaTeX via pandoc}}
+
+\title{SDR enhancement by clouds}
+\usepackage{etoolbox}
+\makeatletter
+\providecommand{\subtitle}[1]{% add subtitle to \maketitle
+  \apptocmd{\@title}{\par {\large #1 \par}}{}{}
+}
+\makeatother
+\subtitle{A Short Subtitle}
+\author{Athanasios N. Natsis\footnote{Laboratory of Atmospheric Physics \emph{\href{mailto:natsisphysicist@gmail.com}{\nolinkurl{natsisphysicist@gmail.com}}}} \and Alkiviadis Bais\footnote{Laboratory of Atmospheric Physics \emph{\href{mailto:abais@auth.gr}{\nolinkurl{abais@auth.gr}}}} \and Charikleia Meleti\footnote{Laboratory of Atmospheric Physics \emph{\href{mailto:meleti@auth.gr}{\nolinkurl{meleti@auth.gr}}}}}
+\date{2024-03-12}
+
+\begin{document}
+\maketitle
+\begin{abstract}
+This is the abstract. Lorem ipsum dolor sit amet, eu efficitur justo rutrum at. Sed at tempus elit.
+\end{abstract}
+
+{
+\setcounter{tocdepth}{4}
+\tableofcontents
+}
+CE: cloud enhancement cases one minute
+
+ECE: extreme cloud enhancement cases one minute over TSI on horizontal plane
+
+CEG: cloud enhancement groups, cases events with consecutive CE
+
+\hypertarget{intro}{%
+\section{Intro}\label{intro}}
+
+CE and ECE usefulness
+
+Identify CE cases
+
+Characteristics of CE
+
+Climatology and impact on the GHI
+
+Effects of clouds
+
+\begin{itemize}
+\tightlist
+\item
+  enhancement physics
+\item
+  conditions
+\item
+  other interferences
+\end{itemize}
+
+\ldots.identification methods from bib\ldots.
+
+\begin{itemize}
+\tightlist
+\item
+  clearness index
+\item
+  modeled approaches
+\item
+  algorithmic id
+\item
+  AI
+\item
+  Visual
+\end{itemize}
+
+\ldots..constrains of the site\ldots..
+
+\begin{itemize}
+\tightlist
+\item
+  data
+\item
+  instrument
+\item
+  location
+\end{itemize}
+
+\hypertarget{data-and-methodology}{%
+\section{Data and methodology}\label{data-and-methodology}}
+
+\begin{itemize}
+\tightlist
+\item
+  measured data
+\item
+  available data
+
+  \begin{itemize}
+  \tightlist
+  \item
+    sky cam
+  \item
+    chp1
+  \item
+    cm21
+  \item
+    cimel
+  \end{itemize}
+\item
+  CSid tool
+\end{itemize}
+
+The recording of the signal is the one minute average.
+Thus we will refer to this time scale as a cloud enhancement event (CE).
+Due to the instruments response time\ldots..
+
+\hypertarget{data-quality-control}{%
+\subsection{Data quality control}\label{data-quality-control}}
+
+.. todo \ldots{}
+
+\hypertarget{data-selection}{%
+\subsection{Data selection}\label{data-selection}}
+
+To preserve an unbiased representation of the data we applied a constrain similar the one used by Castillejo-Cuberos and Escobar (2020). Where, for each valid hour of day, there must exist at list 45 minutes of valid measurements, including night time near sunrise and sunset. Days with less than 5 valid hours are rejected completely. Furthermore, due to a systematic obstruction of the horizon and the significant measurement uncertainty on large SZAs, we excluded all data with \(SZA > 78^\circ\).
+
+\hypertarget{clear-sky-irradiance}{%
+\subsection{Clear Sky Irradiance}\label{clear-sky-irradiance}}
+
+In order to set a threshold for the CE we had to create an approximation of ``clear sky'' radiation for the whole period.
+For this reason, we decided to use the Libradtran model (Emde et al. 2016), with monthly climatological data for AOD and water column from AERONET (Giles et al. 2019; Buis et al. 1998). Our site is part of AERONET monitoring network and operates a Cimel photometer since 2003.
+We also use the Sun's total solar irradiance from NOAA (Coddington et al. 2005) and Earth - Sun distance calculated by Astropy (Astropy Collaboration et al. 2022).
+We have simulated the solar radiation spectrum of Kurucz (1994) in the range \(280\) to \(2500\,\text{nm}\), on \(0.2^\circ\) SZA's step.
+With combinations of AOD at \(500\,\text{nm}\) (\(t_{500\text{nm}}\)) and additional offsets of \(\pm1\) and \(\pm2\sigma\), water column (\(w_h\)) with offsets of \(\pm1\) and \(\pm2\sigma\), and for two atmospheric profiles ``AFGL atmospheric constituent profile, midlatitude summer'' (afglms) and ``AFGL atmospheric constituent profile, midlatitude winter'' (afglmw) (Anderson et al. 1986).
+
+After some evaluation of the modelled radiation in different atmospheric conditions, in relation to the GHI data, we choose as representative of the clear sky radiation, the case with \(t_{\text{cs}} = t_{500\text{nm}} - 1\sigma\) and \(w_{h\text{cs}} = w_h - 1\sigma\).
+
+For each GHI measurement in our data we calculated a reference clear sky value, by adjusting the integral of the Kurudz spectrum to the interpolated TSI from NOAA. We applied the effect of Sun - Earth distance, and calculated it's value to the horizontal plane by using the cosine of the corresponding interpolated SZA.
+For each period of the year, we used the appropriate atmospheric profile (afglms or afglmw).
+Thus, we can directly compare each measured one minute value of GHI, with the expected clear sky radiation.
+
+\hypertarget{thresholds-investigation}{%
+\subsection{Thresholds investigation}\label{thresholds-investigation}}
+
+To select the exact values of the threshold used (Equation \ref{eq:CE4}), we implemented manual inspection of the CE indemnification, on specially selected days from the whole dataset.
+We used seven sets of random selected days, with characteristics relevant to the efficiency of the threshold.
+
+six criteria in order to evaluate random multiples of 25 days with some characteristics
+
+\begin{itemize}
+\tightlist
+\item
+  20 days with the largest over irradiance CE events
+\item
+  30 days with largest total over irradiance
+\item
+  20 days without clouds (CSid) Natsis, Bais, and Meleti (2023)
+\item
+  any day without clouds and EC events
+\item
+  20 days with at least 60\% of day length without clouds and some EC events
+\item
+  30 random days
+\item
+  some manual selected days that were included during the manual inspection
+\end{itemize}
+
+For some of this edge cases we further use images from a sky-cam, in order to evaluate our selection of the thresholds.
+
+Thresholds by inspecting a selection of days with some specs\ldots\ldots{}
+
+Reasoning for the selection\ldots\ldots\ldots..
+
+\hypertarget{criteria-for-enhancement-identification}{%
+\subsection{Criteria for enhancement identification}\label{criteria-for-enhancement-identification}}
+
+Many have used models or some statistical method to determine then CE thresholds.
+
+\ldots\ldots. cite \ldots\ldots{} Descriptions
+
+We used as reference a modeled clear sky approximation,
+
+Criteria for cloud enhancement identification are set according the Equation \ref{eq:CE4}
+
+\begin{equation}
+\text{CE}_\text{Threshold} = \begin{cases}
+1.05, & \text{$\theta \leq 60^\circ$}\\
+\frac{1.05 - 1.18}{60 - 78} \cdot (\theta- 78) + 1.18 , & \text{$ 78^\circ > \theta > 60^\circ$}\\
+\text{Excluded measurements}, & \theta > 78^\circ
+\end{cases}\label{eq:CE4}
+\end{equation}
+where: \(\theta\) solar zenith angle.
+
+A secondary criteria was used for extreme cloud enhancement cases (ECE) identification, relative to the TSI at horizontal plane (Equation \ref{eq:ECE})
+
+\begin{equation}
+\text{GHI} > \cos(\theta) \times \text{TSI}_\text{TOA}
+\label{eq:ECE}
+\end{equation}
+
+Include Example of days plot? Appendix?
+
+\ldots{} this is more clear to understand and describe \ldots.
+
+\hypertarget{other-method-used-and-rejected}{%
+\subsection{Other method used and rejected}\label{other-method-used-and-rejected}}
+
+\begin{itemize}
+\tightlist
+\item
+  some other criteria were tested
+\end{itemize}
+
+\FloatBarrier
+
+\hypertarget{results}{%
+\section{Results}\label{results}}
+
+\hypertarget{trend}{%
+\subsection{Trend}\label{trend}}
+
+\begin{figure}[h!]
+
+{\centering \includegraphics[width=0.7\linewidth]{../images/daily-12} 
+
+}
+
+\caption{Trend of the daily excess energy due to CE}(\#fig:unnamed-chunk-1)
+\end{figure}
+
+\begin{figure}[h!]
+
+{\centering \includegraphics[width=0.7\linewidth]{../images/energy-3} 
+
+}
+
+\caption{Treds of the mean over irradiance per CE}(\#fig:unnamed-chunk-2)
+\end{figure}
+
+\begin{figure}[h!]
+
+{\centering \includegraphics[width=0.7\linewidth]{../images/energy-2} 
+
+}
+
+\caption{Trend of number of CE cases}(\#fig:unnamed-chunk-3)
+\end{figure}
+
+\begin{figure}[h!]
+
+{\centering \includegraphics[width=0.7\linewidth]{../images/energy-1} 
+
+}
+
+\caption{Trend of the yearly excess energy due to CE over irradiance}(\#fig:unnamed-chunk-4)
+\end{figure}
+
+\FloatBarrier
+
+\hypertarget{climatology}{%
+\subsection{Climatology}\label{climatology}}
+
+\begin{figure}[h!]
+
+{\centering \includegraphics[width=0.7\linewidth]{../images/climCEmonth-1} 
+
+}
+
+\caption{Distribution of the number of CE cases}(\#fig:unnamed-chunk-5)
+\end{figure}
+
+\begin{figure}[h!]
+
+{\centering \includegraphics[width=0.7\linewidth]{../images/relative_distributions-4} 
+
+}
+
+\caption{Distribution of CE above reference}(\#fig:unnamed-chunk-6)
+\end{figure}
+
+\FloatBarrier
+
+\hypertarget{groups-stats}{%
+\subsection{Groups stats}\label{groups-stats}}
+
+\begin{figure}[h!]
+
+{\centering \includegraphics[width=0.7\linewidth]{../images/groups-1} 
+
+}
+
+\caption{Distribution of CE groups}(\#fig:unnamed-chunk-7)
+\end{figure}
+
+\begin{figure}[h!]
+
+{\centering \includegraphics[width=0.7\linewidth]{../images/groups-4} 
+
+}
+
+\caption{Relation of mean over irradiance and CE group duration}(\#fig:unnamed-chunk-8)
+\end{figure}
+
+\begin{figure}[h!]
+
+{\centering \includegraphics[width=0.7\linewidth]{../images/groups-8} 
+
+}
+
+\caption{Relation of maximun over irradiance and CE group duration}(\#fig:unnamed-chunk-9)
+\end{figure}
+
+\FloatBarrier
+
+\hypertarget{extreme-ce-above-tsi}{%
+\subsection{Extreme CE above TSI}\label{extreme-ce-above-tsi}}
+
+\begin{figure}[h!]
+
+{\centering \includegraphics[width=0.7\linewidth]{../images/climECEmonth-1} 
+
+}
+
+\caption{Distribution of the number of ECE cases}(\#fig:unnamed-chunk-10)
+\end{figure}
+
+\begin{figure}[h!]
+
+{\centering \includegraphics[width=0.7\linewidth]{../images/extremedistributions-2} 
+
+}
+
+\caption{Distribution of ECE above 'clear sky' reference}(\#fig:unnamed-chunk-11)
+\end{figure}
+
+\begin{figure}[h!]
+
+{\centering \includegraphics[width=0.7\linewidth]{../images/extremedistributions-4} 
+
+}
+
+\caption{Distribution of ECE Irradiance above 'TSI'}(\#fig:unnamed-chunk-12)
+\end{figure}
+
+\begin{itemize}
+\tightlist
+\item
+  max value ECE
+\item
+  seasonal
+\item
+  trends
+\item
+  duration
+\item
+  occurrence
+\item
+  SZA
+\end{itemize}
+
+\FloatBarrier
+
+\hypertarget{new-plots-for-discussion}{%
+\subsection{New plots for discussion}\label{new-plots-for-discussion}}
+
+\begin{figure}[h!]
+
+{\centering \includegraphics[width=0.7\linewidth]{../images/clim_CE_month_norm_MAX_median_N-2} 
+
+}
+
+\caption{Distribution of }(\#fig:unnamed-chunk-13)
+\end{figure}
+
+\begin{figure}[h!]
+
+{\centering \includegraphics[width=0.7\linewidth]{../images/clim_ECE_month_norm_MAX_median_N-2} 
+
+}
+
+\caption{Distribution of }(\#fig:unnamed-chunk-14)
+\end{figure}
+
+\FloatBarrier
+
+\hypertarget{discussion-and-conclusions}{%
+\section{Discussion and conclusions}\label{discussion-and-conclusions}}
+
+Compare to other location stats.
+max, ECE, distributions \ldots.
+
+Climatology results
+
+\hypertarget{appendix}{%
+\section*{Appendix}\label{appendix}}
+\addcontentsline{toc}{section}{Appendix}
+
+\hypertarget{references}{%
+\section*{References}\label{references}}
+\addcontentsline{toc}{section}{References}
+
+\hypertarget{refs}{}
+\begin{CSLReferences}{1}{0}
+\leavevmode\vadjust pre{\hypertarget{ref-Anderson1986}{}}%
+Anderson, G. P., J. H. Chetwynd, S. A. Clough, E. P. Shettle, and F. X. Kneizys. 1986. {``{AFGL} Atmospheric Constituent Profiles (0-120km).''} Air Force Geophysics Laboratory, Optical Physics Division.
+
+\leavevmode\vadjust pre{\hypertarget{ref-AstropyCollaboration2022}{}}%
+Astropy Collaboration, Adrian M. Price-Whelan, Pey Lian Lim, Nicholas Earl, Nathaniel Starkman, Larry Bradley, David L. Shupe, et al. 2022. {``{The Astropy Project: Sustaining and Growing a Community-oriented Open-source Project and the Latest Major Release (v5.0) of the Core Package}''} 935 (2): 167. \url{https://doi.org/10.3847/1538-4357/ac7c74}.
+
+\leavevmode\vadjust pre{\hypertarget{ref-Buis1998}{}}%
+Buis, J. P. P., A. Setzer, B. N. N. Holben, T. F. F. Eck, I. Slutsker, D. Tanre, E. Vermote, et al. 1998. {``AERONET---a Federated Instrument Network and Data Archive for Aerosol Characterization.''} \emph{Remote Sensing of Environment} 66 (1): 1--16.
+
+\leavevmode\vadjust pre{\hypertarget{ref-CastillejoCuberos2020}{}}%
+Castillejo-Cuberos, Armando, and Rodrigo Escobar. 2020. {``Detection and Characterization of Cloud Enhancement Events for Solar Irradiance Using a Model-Independent, Statistically-Driven Approach.''} \emph{Solar Energy} 209 (October): 547--67. \url{https://doi.org/10.1016/j.solener.2020.09.046}.
+
+\leavevmode\vadjust pre{\hypertarget{ref-Coddington2005}{}}%
+Coddington, Odele, Judith L. Lean, Doug Lindholm, Peter Pilewskie, Martin Snow, and NOAA CDR Program. 2005. {``{NOAA} Climate Data Record ({CDR}) of Total Solar Irradiance ({TSI}), {NRLTSI} Version 2. {D}aily.''} \url{https://doi.org/10.7289/V55B00C1}.
+
+\leavevmode\vadjust pre{\hypertarget{ref-Emde2016}{}}%
+Emde, Claudia, Robert Buras-Schnell, Arve Kylling, Bernhard Mayer, Josef Gasteiger, Ulrich Hamann, Jonas Kylling, et al. 2016. {``The {libRadtran} Software Package for Radiative Transfer Calculations (Version 2.0.1).''} \emph{Geoscientific Model Development} 9 (5): 1647--72. \url{https://doi.org/10.5194/gmd-9-1647-2016}.
+
+\leavevmode\vadjust pre{\hypertarget{ref-Giles2019}{}}%
+Giles, David M., Alexander Sinyuk, Mikhail G. Sorokin, Joel S. Schafer, Alexander Smirnov, Ilya Slutsker, Thomas F. Eck, et al. 2019. {``Advancements in the Aerosol Robotic Network ({AERONET}) Version 3 Database -- Automated Near-Real-Time Quality Control Algorithm with Improved Cloud Screening for Sun Photometer Aerosol Optical Depth ({AOD}) Measurements.''} \emph{Atmospheric Measurement Techniques} 12 (1): 169--209. \url{https://doi.org/10.5194/amt-12-169-2019}.
+
+\leavevmode\vadjust pre{\hypertarget{ref-Kurucz1994}{}}%
+Kurucz, Robert L. 1994. {``Synthetic Infrared Spectra.''} In \emph{Infrared Solar Physics}, edited by D. M. Rabin, J. T. Jefferies, and C. Lindsey, 523--31. Dordrecht: Springer Netherlands.
+
+\leavevmode\vadjust pre{\hypertarget{ref-Natsis2023}{}}%
+Natsis, Athanasios, Alkiviadis Bais, and Charikleia Meleti. 2023. {``Trends from 30-Year Observations of Downward Solar Irradiance in Thessaloniki, Greece.''} \emph{Applied Sciences} 14 (1): 252. \url{https://doi.org/10.3390/app14010252}.
+
+\end{CSLReferences}
+
+\end{document}
