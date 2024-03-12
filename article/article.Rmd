@@ -77,6 +77,11 @@ ECE: extreme cloud enhancement cases one minute over TSI on horizontal plane
 
 CEG: cloud enhancement groups, cases events with consecutive CE
 
+$\text{GHI}_\text{i}$: measured one minute global horizontal irradiance 
+
+$\text{GHI}_\text{CSi}$: modelled clear sky one minute global horizontal irradiance 
+
+$\text{GHI}_\text{CSi}$: modelled clear sky one minute global horizontal irradiance 
 
 # Intro
 
@@ -154,11 +159,18 @@ To preserve an unbiased representation of the data we applied a constrain simila
 
 ## Clear Sky Irradiance
 
-In order to set a threshold for the CE we had to create an approximation of "clear sky" radiation for the whole period.
-For this reason, we decided to use the Libradtran model [@Emde2016], with monthly climatological data for AOD and water column from AERONET [@Giles2019; @Buis1998]. Our site is part of AERONET monitoring network and operates a Cimel photometer since 2003.
-We also use the Sun's total solar irradiance from NOAA [@Coddington2005] and Earth - Sun distance calculated by Astropy [@AstropyCollaboration2022].
-We have simulated the solar radiation spectrum of @Kurucz1994 in the range $280$ to $2500\,\text{nm}$, on $0.2^\circ$ SZA's step. 
-With combinations of AOD at $500\,\text{nm}$ ($t_{500\text{nm}}$) and additional offsets of $\pm1$ and $\pm2\sigma$, water column ($w_h$) with offsets of $\pm1$ and $\pm2\sigma$, and for two atmospheric profiles "AFGL atmospheric constituent profile, midlatitude summer" (afglms) and "AFGL atmospheric constituent profile, midlatitude winter" (afglmw) [@Anderson1986]. 
+In order to set a threshold for the CE we had to create an approximation of "clear sky" radiation for the whole period, to be used as reference.
+For this reason, we decided to use the Libradtran model [@Emde2016], with monthly climatological data of AOD and water column from the AERONET monitoring network [@Giles2019; @Buis1998].
+Our site participate in AERONET, where we operate a Cimel photometer since 2003.
+We also used the Sun's total solar irradiance from NOAA [@Coddington2005] and the Earth - Sun distance calculated by Astropy [@AstropyCollaboration2022].
+We simulated the clear sky radiation, using the solar radiation spectrum of @Kurucz1994 in the range $280$ to $2500\,\text{nm}$, with a SZA step of $0.2^\circ$.
+For the atmospheric characteristics, we used combinations of AOD at $500\,\text{nm}$ ($t_{500\text{nm}}$) and additional offsets of $\pm1$ and $\pm2\sigma$, water column ($w_h$) with offsets of $\pm1$ and $\pm2\sigma$, and applied it to two atmospheric profiles "AFGL atmospheric constituent profile, midlatitude summer" (afglms) and "AFGL atmospheric constituent profile, midlatitude winter" (afglmw) [@Anderson1986].
+Thus, we were able to emulate different atmospheric condition and level of atmospheric clearness for the climatological conditions of the site.
+
+Furthermore, to account for the Sun's variability in our one-minute GHI measurements, we adjusted the model's input spectrum integral to the one of the the TSI provided by NOAA.
+Finally, we adjusted for the effect of Sun - Earth distance, and calculated the clear sky irradiance value at the horizontal plane by using the cosine of the corresponding interpolated SZA. 
+For each period of the year, we used the appropriate atmospheric profile (afglms or afglmw).
+Thus, the modeled GHI_modeld we can directly compare each measured one minute value of GHI, with the expected clear sky radiation.
 
 
 <!-- - rte_solver  disort -->
@@ -167,9 +179,7 @@ With combinations of AOD at $500\,\text{nm}$ ($t_{500\text{nm}}$) and additional
 
 After some evaluation of the modelled radiation in different atmospheric conditions, in relation to the GHI data, we choose as representative of the clear sky radiation, the case with $t_{\text{cs}} = t_{500\text{nm}} - 1\sigma$ and $w_{h\text{cs}} = w_h - 1\sigma$.
 
-For each GHI measurement in our data we calculated a reference clear sky value, by adjusting the integral of the Kurudz spectrum to the interpolated TSI from NOAA. We applied the effect of Sun - Earth distance, and calculated it's value to the horizontal plane by using the cosine of the corresponding interpolated SZA. 
-For each period of the year, we used the appropriate atmospheric profile (afglms or afglmw).
-Thus, we can directly compare each measured one minute value of GHI, with the expected clear sky radiation.
+ We applied the effect of 
 
 
 
@@ -179,7 +189,8 @@ Thus, we can directly compare each measured one minute value of GHI, with the ex
 To select the exact values of the threshold used (Equation \ref{eq:CE4}), we implemented manual inspection of the CE indemnification, on specially selected days from the whole dataset. 
 We used seven sets of random selected days, with characteristics relevant to the efficiency of the threshold.
 
-six criteria in order to evaluate random multiples of 25 days with some characteristics
+six criteria 
+in order to evaluate random groups of about 20 to 30 days with some characteristics
 
 - 20 days with the largest over irradiance CE events
 - 30 days with largest total over irradiance
