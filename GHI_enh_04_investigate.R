@@ -342,7 +342,10 @@ ggplot(data = ST_G0, aes(x = GLB_ench.N)) +
                  color    = "black") +
   # xlab(bquote(.(varname("GLB_diff")) ~ group("[", W/m^2,"]"))) +
   xlab("Duration of enhancement [min]") +
-  ylab("Relative frequency [%]")
+  ylab("Density [%]")
+# +
+#   theme_bw(base_size = 14) +
+#   theme(axis.text = element_text(face="bold"))
 
 
 
@@ -437,27 +440,6 @@ ggplot(data    = ST_G0,
                      minor_breaks = seq(0, 500, by = 25)) +
   scale_x_continuous(guide        = "axis_minor",
                      minor_breaks = seq(0, 500, by = 10))
-
-
-## Use bin2d
-
-
-ggplot(data    = ST_G0,
-       mapping = aes(x = GLB_ench.N, y = ST_G0$GLB_diff.sum/ST_G0$GLB_ench.N)) +
-  xlab("Duration of enhancement [min]") +
-  ylab("Mean Over Irradiance per minute [W/m^2]") +
-  geom_bin_2d(bins = 70) +
-  scale_fill_continuous(type = "viridis") +
-  theme(legend.position      = c(0.99, 0.99),
-        legend.justification = c(1, 1)) +
-  theme(legend.background    = element_rect(fill = "white", colour = NA)) +
-  labs(color = 'Count') +
-  scale_y_continuous(guide        = "axis_minor",
-                     minor_breaks = seq(0, 500, by = 25)) +
-  scale_x_continuous(guide        = "axis_minor",
-                     minor_breaks = seq(0, 500, by = 10))
-
-
 
 
 
