@@ -141,8 +141,8 @@ cat(ls(pattern = "^ST.*daily"))
 
 ## variables to plot
 prefix <- c("GLB_ench", "GLB_diff")
-sufix  <- c("max", "median", "sum", "N", "mean" )
-vars   <- sort(levels(interaction(prefix,sufix, sep = ".")))
+sufix  <- c("max", "median", "sum", "N", "mean")
+vars   <- sort(levels(interaction(prefix, sufix, sep = ".")))
 
 ## data set to plot
 # dbs         <- c("ST_daily", "ST_E_daily", "ST_E_daily_seas", "ST_extreme_daily")
@@ -157,7 +157,7 @@ dailytrendsY <- data.frame()
 for (DBn in dbs) {
   DB <- get(DBn)
   cat("\n\\newpage\n")
-  cat("\n#### Trends on", tr_var(DBn), "data\n\n" )
+  cat("\n#### Trends on", tr_var(DBn), "data\n\n")
 
   for (avar in vars) {
     dataset <- DB
@@ -501,7 +501,8 @@ ggplot(data    = ST_G0,
                      minor_breaks = seq(0, 500, by = 25)) +
   scale_x_continuous(guide        = "axis_minor",
                      minor_breaks = seq(0, 500, by = 10)) +
-  labs(caption = paste("Removed", ST_G0[GLB_ench.N > lim_dur, .N], "points with duration >",lim_dur, "minutes.")) +
+  labs(caption = paste("Removed", ST_G0[GLB_ench.N > lim_dur, .N],
+                       "points with duration >", lim_dur, "minutes.")) +
   xlim(-1, lim_dur)
 
 
@@ -521,12 +522,9 @@ ggplot(data    = ST_G0,
                      minor_breaks = seq(0, 500, by = 25)) +
   scale_x_continuous(guide        = "axis_minor",
                      minor_breaks = seq(0, 500, by = 10)) +
-  labs(caption = paste("Removed", ST_G0[GLB_ench.N > lim_dur, .N], "points with duration >",lim_dur, "minutes.")) +
+  labs(caption = paste("Removed", ST_G0[GLB_ench.N > lim_dur, .N],
+                       "points with duration >", lim_dur, "minutes.")) +
   xlim(-1, lim_dur)
-
-
-
-
 
 
 
@@ -634,17 +632,6 @@ title("Climatology of CE cases per weak")
 
 
 
-
-
-
-
-
-
-
-
-
-
-
 ##  Energy contribution of enhancements  ---------------------------------------
 
 #'
@@ -654,7 +641,6 @@ title("Climatology of CE cases per weak")
 #' ### Energy contribution of enhancements
 #'
 #+ energy, echo=F, include=T, results="asis"
-
 
 {
   plot(ST_yearly[, GLB_diff.sumPOS, year],
