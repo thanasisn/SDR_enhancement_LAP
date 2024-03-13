@@ -88,6 +88,18 @@ CE and ECE usefulness
 
 
 
+<!-- Define CE and ECE -->
+In this study, we define as cloud enhancement events (CE) the cases when the measured
+global horizontal irradiance (GHI) at ground level exceeds the expected value under
+sky, unobscured by clouds.
+Similar, we define the extreme cloud enhancement events (ECE), the cases when GHI,
+exceeds the Total Solar Irradiance on horizontal plane at ground level.
+
+
+
+
+
+
 Identify CE cases 
 
 Characteristics of CE
@@ -100,8 +112,6 @@ Effects of clouds
 - enhancement physics
 - conditions
 - other interferences
-
-
 
 
 Identification methods from bib
@@ -126,6 +136,8 @@ Constrains of the site
 
 
 # Data and methodology
+
+## GHI data
 
 Our monitoring site is operating in the Laboratory of Atmospheric Physics of the
 Aristotle University of Thessaloniki (\(40^\circ\,38'\,\)N,
@@ -176,8 +188,9 @@ Furthermore, due to the significant measurement uncertainty when the Sun is near
 horizon, and to some systematic obstructions by nearby buildings, we have excluded
 all measurements with solar zenith angle (SZA) greater than $`r 90-BIO_ELEVA`^\circ$.
 
+In this study, we evaluate the effects 
 
-- measured data
+
 - available data
   - sky cam
   - chp1
@@ -188,16 +201,7 @@ all measurements with solar zenith angle (SZA) greater than $`r 90-BIO_ELEVA`^\c
 
 The recording of the signal is the one minute average.
 Thus we will refer to this time scale as a cloud enhancement event (CE).
-Due to the instruments response time.....
 
-
-## Data quality control
-
-..  todo ...
-
-
-
-## Data selection
 
 
 
