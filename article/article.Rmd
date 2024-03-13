@@ -8,8 +8,8 @@ author:
   - Alkiviadis Bais^[Laboratory of Atmospheric Physics _abais@auth.gr_] 
   - Charikleia Meleti^[Laboratory of Atmospheric Physics _meleti@auth.gr_]
 
-abstract: |
-  This is the abstract. Lorem ipsum dolor sit amet, eu efficitur justo rutrum at. Sed at tempus elit.
+# abstract: |
+#   This is the abstract. Lorem ipsum dolor sit amet, eu efficitur justo rutrum at. Sed at tempus elit.
 
 keywords: 
   - keyword1
@@ -71,6 +71,20 @@ TSIinfo <- data.table(read.csv("~/MANUSCRIPTS/02_enhancement/figures/tbl_tsi_inf
                                header = TRUE))
 ```
 
+# Abstract {.unnumbered}
+
+- Phenomenon
+- Effects
+- bibliography
+- our approach
+- our results
+
+
+
+
+
+
+
 CE: cloud enhancement cases one minute
 
 ECE: extreme cloud enhancement cases one minute over TSI on horizontal plane
@@ -81,12 +95,18 @@ $\text{GHI}_\text{i}$: measured one minute global horizontal irradiance
 
 $\text{GHI}_\text{mCSi}$: modeled clear sky one minute global horizontal irradiance 
 
+
+
 # Intro
 
 
 CE and ECE usefulness 
+importance
+problems
 
+reported trends
 
+CE mechanism
 
 <!-- Define CE and ECE -->
 In this study, we define as cloud enhancement events (CE) the cases when the measured
@@ -94,8 +114,6 @@ global horizontal irradiance (GHI) at ground level exceeds the expected value un
 sky, unobscured by clouds.
 Similar, we define the extreme cloud enhancement events (ECE), the cases when GHI,
 exceeds the Total Solar Irradiance on horizontal plane at ground level.
-
-
 
 
 
@@ -113,7 +131,6 @@ Effects of clouds
 - conditions
 - other interferences
 
-
 Identification methods from bib
 
 - clearness index
@@ -121,8 +138,6 @@ Identification methods from bib
 - algorithmic id
 - AI
 - Visual
-
-
 
 
 Constrains of the site
@@ -265,28 +280,38 @@ Which is an expected result as these values represent an typical atmosphere in T
 ## Thresholds investigation
 
 The use of the actual modeled values of clear sky GHI can not provide us with a
-robust method to distinguish the CE cases.
+robust method to distinguish the CE cases, due to the limited accuracy of the input
+data. Our main focus was to positively identify over irradiance events from CEs,
+thus we used a relative factor, to create an upper envelope of the clear sky
+irradiance, above which, any GHI value can safely attributed to CE.
+
+To select the exact values of the thresholds (Equation \ref{eq:CE4}), we implemented
+manual inspection of the CE identification, on specially selected days from the whole
+dataset.  We used seven sets of selected days, with characteristics relevant to the
+efficiency of the identification threshold.  These sets were  random groups of about
+20 to 30 days with the following characteristics:
+(a) the largest over irradiance CE events,
+(b) the largest daily total over irradiance,
+(c) without clouds (by implementing a clear sky identification algorithm as discussed in @Natsis2023),
+(d) without clouds and without EC events,
+(e) with at least $60\%$ of the day length without clouds and some EC events,
+(h) random days and
+(i) some manual selected days that were included during the manual inspection.
+
+<!-- - some manual selected days that were included during the manual inspection -->
+<!-- - 20 days with the largest over irradiance CE events -->
+<!-- - 30 days with largest total over irradiance -->
+<!-- - 20 days without clouds (CSid) @Natsis2023 -->
+<!-- - any day without clouds and EC events -->
+<!-- - 20 days with at least 60% of day length without clouds and some EC events -->
+<!-- - 30 random days -->
+<!-- - some manual selected days that were included during the manual inspection -->
+
+Where it was needed, for some of edge cases, we also used images from a sky-cam,
+along with the manual inspection.
 
 
-To select the exact values of the threshold used (Equation \ref{eq:CE4}), we implemented manual inspection of the CE indemnification, on specially selected days from the whole dataset. 
-We used seven sets of random selected days, with characteristics relevant to the efficiency of the threshold.
-
-six criteria 
-in order to evaluate random groups of about 20 to 30 days with some characteristics
-
-- 20 days with the largest over irradiance CE events
-- 30 days with largest total over irradiance
-- 20 days without clouds (CSid) @Natsis2023
-- any day without clouds and EC events
-- 20 days with at least 60% of day length without clouds and some EC events
-- 30 random days
-- some manual selected days that were included during the manual inspection
-
-For some of this edge cases we further use images from a sky-cam, in order to evaluate our selection of the thresholds.
-
-Thresholds by inspecting a selection of days with some specs......
-
-Reasoning for the selection...........
+Reasoning for the  final selection...........
 
 
 
