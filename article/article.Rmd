@@ -79,9 +79,7 @@ CEG: cloud enhancement groups, cases events with consecutive CE
 
 $\text{GHI}_\text{i}$: measured one minute global horizontal irradiance 
 
-$\text{GHI}_\text{CSi}$: modelled clear sky one minute global horizontal irradiance 
-
-$\text{GHI}_\text{CSi}$: modelled clear sky one minute global horizontal irradiance 
+$\text{GHI}_\text{mCSi}$: modelled clear sky one minute global horizontal irradiance 
 
 # Intro
 
@@ -168,19 +166,22 @@ For the atmospheric characteristics, we used combinations of AOD at $500\,\text{
 Thus, we were able to emulate different atmospheric condition and level of atmospheric clearness for the climatological conditions of the site.
 
 Furthermore, to account for the Sun's variability in our one-minute GHI measurements, we adjusted the model's input spectrum integral to the one of the the TSI provided by NOAA.
-Finally, we adjusted for the effect of Sun - Earth distance, and calculated the clear sky irradiance value at the horizontal plane by using the cosine of the corresponding interpolated SZA. 
+Finally, we adjusted for the effect of the Sun - Earth distance, and calculated the clear sky irradiance value at the horizontal plane by using the cosine of the corresponding interpolated SZA. 
 For each period of the year, we used the appropriate atmospheric profile (afglms or afglmw).
-Thus, the modeled GHI_modeld we can directly compare each measured one minute value of GHI, with the expected clear sky radiation.
+Thus, the modelled GHI_modeld we can directly compare each measured one minute value of GHI, with the expected clear sky radiation.
+
 
 
 <!-- - rte_solver  disort -->
 <!-- - geometry   pseudospherical -->
 <!-- - mol_abs LOWTRAN -->
 
+Of course, have to choose which atmospheric conditions qualify as a good clear sky analogous radiation.
+
+
 After some evaluation of the modelled radiation in different atmospheric conditions, in relation to the GHI data, we choose as representative of the clear sky radiation, the case with $t_{\text{cs}} = t_{500\text{nm}} - 1\sigma$ and $w_{h\text{cs}} = w_h - 1\sigma$.
 
- We applied the effect of 
-
+Which is an expected result as these values represent an typical atmosphere in Thessaloniki with low load of aerosols and humidity, which are the main factor that atternuate the GHI, execluding clouds.
 
 
 
