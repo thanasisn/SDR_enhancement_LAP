@@ -141,7 +141,7 @@ Constrains of the site
 
 Our monitoring site is operating in the Laboratory of Atmospheric Physics of the
 Aristotle University of Thessaloniki (\(40^\circ\,38'\,\)N,
-\(22^\circ\,57'\,\)E, \(80\,\)m~a.s.l.).
+\(22^\circ\,57'\,\)E, \(80\,\)m\ a.s.l.).
 In this study we present data from the period
 `r strftime(min(ST_daily$Date), "%d\\ %B %Y")` to
 `r strftime(max(ST_daily$Date), "%d\\ %B %Y")`.
@@ -188,7 +188,9 @@ Furthermore, due to the significant measurement uncertainty when the Sun is near
 horizon, and to some systematic obstructions by nearby buildings, we have excluded
 all measurements with solar zenith angle (SZA) greater than $`r 90-BIO_ELEVA`^\circ$.
 
-In this study, we evaluate the effects 
+
+
+In this study, we evaluated the effects of the clouds on th
 
 
 - available data
@@ -206,26 +208,50 @@ Thus we will refer to this time scale as a cloud enhancement event (CE).
 
 
 
+
+
+
 ## Clear Sky Irradiance
 
-In order to set a threshold for the CE we had to create an approximation of "clear sky" radiation for the whole period, to be used as reference.
-For this reason, we decided to use the Libradtran model [@Emde2016], with monthly climatological data of AOD and water column from the AERONET monitoring network [@Giles2019; @Buis1998].
-Our site participate in AERONET, where we operate a Cimel photometer since 2003.
-We also used the Sun's total solar irradiance from NOAA [@Coddington2005] and the Earth - Sun distance calculated by Astropy [@AstropyCollaboration2022].
-We simulated the clear sky radiation, using the solar radiation spectrum of @Kurucz1994 in the range $280$ to $2500\,\text{nm}$, with a SZA step of $0.2^\circ$.
-For the atmospheric characteristics, we used combinations of AOD at $500\,\text{nm}$ ($t_{500\text{nm}}$) and additional offsets of $\pm1$ and $\pm2\sigma$, water column ($w_h$) with offsets of $\pm1$ and $\pm2\sigma$, and applied it to two atmospheric profiles "AFGL atmospheric constituent profile, midlatitude summer" (afglms) and "AFGL atmospheric constituent profile, midlatitude winter" (afglmw) [@Anderson1986].
-Thus, we were able to emulate different atmospheric condition and level of atmospheric clearness for the climatological conditions of the site.
+In order to identify CE cases, we need an approximation of the expected clear sky GHI
+for the whole period of the study, with a temporal resolution of one minute.  Because
+of the lack of exact data about atmospheric factors, responsible for the attenuation
+of the solar radiation in the atmosphere, we can not recreate a minute by minute
+representation of the reference radiation. Thus, we used some climatological data
+with a radiation transfer model.
 
-Furthermore, to account for the Sun's variability in our one-minute GHI measurements, we adjusted the model's input spectrum integral to the one of the the TSI provided by NOAA.
-Finally, we adjusted for the effect of the Sun - Earth distance, and calculated the clear sky irradiance value at the horizontal plane by using the cosine of the corresponding interpolated SZA. 
-For each period of the year, we used the appropriate atmospheric profile (afglms or afglmw).
-Thus, the modelled GHI_modeld we can directly compare each measured one minute value of GHI, with the expected clear sky radiation.
+We decided to use the Libradtran [@Emde2016] radiation transfer model, to modeled
+the clear sky equivalent of GHI, with monthly climatological data of AOD and water
+column from the AERONET monitoring network [@Giles2019; @Buis1998].  Our site
+participates in AERONET, where we operate a Cimel photometer, colocated to
+the CM-21 pyranometer, since 2003
 
+For the production of .....
 
+We also used the Sun's total solar irradiance from NOAA [@Coddington2005] and the
+Earth - Sun distance calculated by Astropy [@AstropyCollaboration2022].  We simulated
+the clear sky radiation, using the solar radiation spectrum of @Kurucz1994 in the
+range $280$ to $2500\,\text{nm}$, with a SZA step of $0.2^\circ$.  For the
+atmospheric characteristics, we used combinations of AOD at $500\,\text{nm}$
+($t_{500\text{nm}}$) and additional offsets of $\pm1$ and $\pm2\sigma$, water column
+($w_h$) with offsets of $\pm1$ and $\pm2\sigma$, and applied it to two atmospheric
+profiles "AFGL atmospheric constituent profile, midlatitude summer" (afglms) and
+"AFGL atmospheric constituent profile, midlatitude winter" (afglmw) [@Anderson1986].
+Thus, we were able to emulate different atmospheric condition and level of
+atmospheric clearness for the climatological conditions of the site.
 
-<!-- - rte_solver  disort -->
-<!-- - geometry   pseudospherical -->
-<!-- - mol_abs LOWTRAN -->
+Furthermore, to account for the Sun's variability in our one-minute GHI measurements,
+we adjusted the model's input spectrum integral to the one of the the TSI provided by
+NOAA.  Finally, we adjusted for the effect of the Sun - Earth distance, and
+calculated the clear sky irradiance value at the horizontal plane by using the cosine
+of the corresponding interpolated SZA.  For each period of the year, we used the
+appropriate atmospheric profile (afglms or afglmw).  Thus, the modelled GHI_modeld we
+can directly compare each measured one minute value of GHI, with the expected clear
+sky radiation.
+
+- rte_solver  disort
+- geometry   pseudospherical
+- mol_abs LOWTRAN
 
 Of course, have to choose which atmospheric conditions qualify as a good clear sky analogous radiation.
 
@@ -237,6 +263,10 @@ Which is an expected result as these values represent an typical atmosphere in T
 
 
 ## Thresholds investigation
+
+The use of the actual modeled values of clear sky GHI can not provide us with a
+robust method to distinguish the CE cases.
+
 
 To select the exact values of the threshold used (Equation \ref{eq:CE4}), we implemented manual inspection of the CE indemnification, on specially selected days from the whole dataset. 
 We used seven sets of random selected days, with characteristics relevant to the efficiency of the threshold.
