@@ -127,6 +127,9 @@ Effects of clouds
 
 # Data and methodology
 
+Our monitoring site is operated by the Laboratory of Atmospheric Physics of the Aristotle University of Thessaloniki ()
+
+
 - measured data
 - available data
   - sky cam
@@ -181,7 +184,7 @@ Of course, have to choose which atmospheric conditions qualify as a good clear s
 
 After some evaluation of the modelled radiation in different atmospheric conditions, in relation to the GHI data, we choose as representative of the clear sky radiation, the case with $t_{\text{cs}} = t_{500\text{nm}} - 1\sigma$ and $w_{h\text{cs}} = w_h - 1\sigma$.
 
-Which is an expected result as these values represent an typical atmosphere in Thessaloniki with low load of aerosols and humidity, which are the main factor that atternuate the GHI, execluding clouds.
+Which is an expected result as these values represent an typical atmosphere in Thessaloniki with low load of aerosols and humidity, which are the main factor that attenuate the GHI, excluding clouds.
 
 
 
