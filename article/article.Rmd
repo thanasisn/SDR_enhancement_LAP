@@ -79,7 +79,7 @@ CEG: cloud enhancement groups, cases events with consecutive CE
 
 $\text{GHI}_\text{i}$: measured one minute global horizontal irradiance 
 
-$\text{GHI}_\text{mCSi}$: modelled clear sky one minute global horizontal irradiance 
+$\text{GHI}_\text{mCSi}$: modeled clear sky one minute global horizontal irradiance 
 
 # Intro
 
@@ -134,12 +134,14 @@ In this study we present data from the period
 `r strftime(min(ST_daily$Date), "%d\\ %B %Y")` to
 `r strftime(max(ST_daily$Date), "%d\\ %B %Y")`.
 
+<!-- Instrument -->
 The GHI data were measured with a Kipp\ & Zonen CM-21 pyranometer.
 During the study period, the pyranometer was independently calibrated three times at
 the Meteorologisches Observatorium Lindenberg, DWD, verifying that the stability of
 the instrument’s sensitivity was better than $0.7\%$ relative to the initial
 calibration by the manufacturer.
 
+<!-- Measurements -->
 For the acquisition of radiometric data, the signal of the pyranometer was sampled
 at a rate of $1\,\text{Hz}$.
 The mean and the standard deviation of these samples were calculated and recorded
@@ -162,11 +164,17 @@ data, and the aggregation scheme we used, ensures the quality of the radiation
 measurements used in this study.
 
 <!-- Data selection -->
-Due to the significant measurement uncertainty when the Sun is near the horizon, we
-have excluded all measurements with solar zenith angle (SZA) greater than $`r 90-MIN_ELEVA`^\circ$.
-Moreover, due to obstructions around the site (hills and buildings) that block the direct irradiance, we excluded data with azimuth angle in the range
-$`r FIBais_Az_1`^{\circ}$--$`r FIBais_Az_2`^{\circ}$ and with SZA greater than $`r 90 - FIBais_Elev`^{\circ}$.
-
+To preserve an unbiased representation of the data we applied a constrain similar
+the one used by @CastillejoCuberos2020. Where, for each valid hour of day, there
+must exist at list 45 minutes of valid measurements, including night time near
+sunrise and sunset. Days with less than 5 valid hours are rejected completely.
+<!--# CastillejoCuberos2020 There must be at least 5 h of valid data (Tests 1–7),
+otherwise all data for this day is flagged as invalid. There must be at least This
+work valid data 45 min of valid data (Tests 1–7) for an hour to be flagged as valid,
+otherwise all minute data for this hour is flagged as invalid. -->
+Furthermore, due to the significant measurement uncertainty when the Sun is near the
+horizon, and to some systematic obstructions by nearby buildings, we have excluded
+all measurements with solar zenith angle (SZA) greater than $`r 90-BIO_ELEVA`^\circ$.
 
 
 - measured data
@@ -190,9 +198,6 @@ Due to the instruments response time.....
 
 
 ## Data selection
-
-To preserve an unbiased representation of the data we applied a constrain similar the one used by @CastillejoCuberos2020. Where, for each valid hour of day, there must exist at list 45 minutes of valid measurements, including night time near sunrise and sunset. Days with less than 5 valid hours are rejected completely. <!--# CastillejoCuberos2020 There must be at least 5 h of valid data (Tests 1–7), otherwise all data for this day is flagged as invalid. There must be at least This work valid data 45 min of valid data (Tests 1–7) for an hour to be flagged as valid, otherwise all minute data for this hour is flagged as invalid. --> Furthermore, due to a systematic obstruction of the horizon and the significant measurement uncertainty on large SZAs, we excluded all data with $SZA > `r 90 - BIO_ELEVA`^\circ$.
-
 
 
 
