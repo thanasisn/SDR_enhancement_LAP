@@ -220,9 +220,35 @@ my.cols <- c("wattGLB",
              "GLB_ench",
              "GLB_diff")
 
+
+
+# _ All data stats  ------------------------------------------------------------
 ST_total <- DATA[, unlist(lapply(.SD, data.summary, na.rm = TRUE),
-                        recursive = FALSE),
-               .SDcols = my.cols]
+                          recursive = FALSE),
+                 .SDcols = my.cols]
+
+ST_extreme_total <- DATA[wattGLB > ETH,
+                         unlist(lapply(.SD, data.summary, na.rm = TRUE),
+                                recursive = FALSE),
+                         .SDcols = my.cols]
+
+## convert sum Irradiance to energy
+## Σ(W/m^2) * 60 s = J/m^2
+ST_total[, GLB_diff.sum    := GLB_diff.sum    * 60 / Energy_Div]
+ST_total[, GLB_diff.sumPOS := GLB_diff.sumPOS * 60 / Energy_Div]
+ST_total[, GLB_diff.sumNEG := GLB_diff.sumNEG * 60 / Energy_Div]
+ST_total[, wattGLB.sum     := wattGLB.sum     * 60 / Energy_Div]
+ST_total[, wattGLB.sumPOS  := wattGLB.sumPOS  * 60 / Energy_Div]
+ST_total[, wattGLB.sumNEG  := wattGLB.sumNEG  * 60 / Energy_Div]
+
+ST_extreme_total[, GLB_diff.sum    := GLB_diff.sum    * 60 / Energy_Div]
+ST_extreme_total[, GLB_diff.sumPOS := GLB_diff.sumPOS * 60 / Energy_Div]
+ST_extreme_total[, GLB_diff.sumNEG := GLB_diff.sumNEG * 60 / Energy_Div]
+ST_extreme_total[, wattGLB.sum     := wattGLB.sum     * 60 / Energy_Div]
+ST_extreme_total[, wattGLB.sumPOS  := wattGLB.sumPOS  * 60 / Energy_Div]
+ST_extreme_total[, wattGLB.sumNEG  := wattGLB.sumNEG  * 60 / Energy_Div]
+
+
 
 
 # _ Daily stats  ---------------------------------------------------------------
@@ -331,9 +357,9 @@ ST_G1[, wattGLB.sum   := wattGLB.sum  * 60 / Energy_Div]
 
 
 for (avar in grep("^DOY$", names(ST_E_daily_seas), value = T, invert = T) ) {
-    plot(ST_E_daily_seas[, get(avar), DOY],
-         ylab = avar)
-    title(paste("ST_E_daily_seas", avar))
+  plot(ST_E_daily_seas[, get(avar), DOY],
+       ylab = avar)
+  title(paste("ST_E_daily_seas", avar))
 }
 
 
@@ -408,9 +434,9 @@ ST_E_monthly_seas[, wattGLB.sum  := wattGLB.sum  * 60 / Energy_Div]
 
 
 for (avar in grep("^month$", names(ST_E_monthly_seas), value = T, invert = T) ) {
-    plot(ST_E_monthly_seas[, get(avar), month],
-         ylab = avar)
-    title(paste("ST_E_monthly_seas", avar))
+  plot(ST_E_monthly_seas[, get(avar), month],
+       ylab = avar)
+  title(paste("ST_E_monthly_seas", avar))
 }
 
 
@@ -485,9 +511,9 @@ ST_sza <- DATA[, unlist(lapply(.SD, data.summary, na.rm = TRUE),
                by = .(SZA = (SZA - SZA_BIN / 2 ) %/% SZA_BIN)]
 
 for (avar in grep("^SZA$", names(ST_sza), value = T, invert = T) ) {
-    plot(ST_sza[, get(avar), SZA],
-         ylab = avar)
-    title(paste("ST_sza", avar))
+  plot(ST_sza[, get(avar), SZA],
+       ylab = avar)
+  title(paste("ST_sza", avar))
 }
 
 ## convert sum Irradiance to energy
