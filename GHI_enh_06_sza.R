@@ -65,8 +65,6 @@ if (!interactive()) {
   sink(file = paste0("./runtime/",  basename(sub("\\.R$", ".out", Script.Name))), split = TRUE)
 }
 
-
-
 #+ echo=F, include=T
 library(data.table    , quietly = TRUE, warn.conflicts = FALSE)
 library(pander        , quietly = TRUE, warn.conflicts = FALSE)
@@ -85,7 +83,6 @@ panderOptions("table.split.table",        120   )
 ## Functions from `https://github.com/thanasisn/IStillBreakStuff/tree/main/FUNCTIONS/R`
 source("~/CODE/FUNCTIONS/R/data.R")
 source("~/CODE/FUNCTIONS/R/trig_deg.R")
-source("~/CODE/FUNCTIONS/R/make_tools.R")
 
 
 ## __ Source initial scripts ---------------------------------------------------
@@ -102,18 +99,6 @@ options(error = function() {
     system("notify-send -u normal -t 30000 'R session' 'An error occurred!'")
   }
 })
-
-
-## test new logic
-Rmk_check_dependencies(
-  depend.source = c(Script.Name,
-                    "./GHI_enh_00_variables.R",
-                    "./GHI_enh_03_process.R"),
-  depend.data   = c("./data/GHI_enh_03_process.Rda"),
-  targets = basename(sub("\\.R$", ".pdf", Script.Name))
-)
-## move to end for successful builed
-Rmk_store_dependencies()
 
 
 ##  Prepare raw data if needed  ------------------------------------------------
