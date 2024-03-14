@@ -1,32 +1,37 @@
 #!/usr/bin/env Rscript
-# /* Copyright (C) 2019 Athanasios Natsis <natsisthanasis@gmail.com> */
+# /* Copyright (C) 2024 Athanasios Natsis <natsisthanasis@gmail.com> */
+
+#### Make file logic for R project
 
 rm(list = (ls()[ls() != ""]))
 Sys.setenv(TZ = "UTC")
 tic <- Sys.time()
-Script.Name <- tryCatch({ funr::sys.script() },
-                        error = function(e) { cat(paste("\nUnresolved script name: ", e),"\n")
-                            return("RAD_QC_") })
 
-library(rmarkdown)
-library(knitr)
+
+PROJECT <- "~/MANUSCRIPTS/02_enhancement/"
+
+
+
+
+# library(rmarkdown)
+# library(knitr)
 
 ## Work in this dir only
-setwd("~/RAD_QC/")
+setwd(PROJECT)
 
 
 
 ####  render scripts  ####
 
-
-render("./QCRad_LongShi_v8_id_CM21_CHP1.R",
-       clean                = TRUE,
-       output_dir           = "./REPORTS/")
-
-
-render("./QCRad_LongShi_v8_apply_CM21_CHP1.R",
-       clean                = TRUE,
-       output_dir           = "./REPORTS/")
+#
+# render("./QCRad_LongShi_v8_id_CM21_CHP1.R",
+#        clean                = TRUE,
+#        output_dir           = "./REPORTS/")
+#
+#
+# render("./QCRad_LongShi_v8_apply_CM21_CHP1.R",
+#        clean                = TRUE,
+#        output_dir           = "./REPORTS/")
 
 
 
