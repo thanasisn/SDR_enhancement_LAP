@@ -367,8 +367,22 @@ Include Example of days plot? Appendix?
 Our dataset after the proccesing consists of
 
 total data points `r ST_total$wattGLB.N`
+
 of which CE are `r ST_total$GLB_diff.N_pos`
-and `r ST_total$GLB_diff.N_pos`
+
+and `r ST_extreme_total$GLB_diff.N_pos` are ECE
+
+
+
+```{r echo=F, include=T, warning=FALSE, message=FALSE}
+ST_total
+
+cat("\n - - - \n")
+
+ST_extreme_total
+
+
+```
 
 
 
