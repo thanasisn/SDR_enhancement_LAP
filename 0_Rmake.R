@@ -32,6 +32,9 @@ cat("Mode:", paste(args), "\n")
 cat("UKNOWN MODE:", paste(args[!args %in% MODES]), "\n")
 
 
+glo_source <- c("GHI_enh_00_variables.R")
+glo_data   <- c()
+glo_target <- c()
 
 
 
@@ -42,9 +45,6 @@ if ("pdf" %in% args) {
   library(knitr)
 
 
-  glo_source <- c("GHI_enh_00_variables.R")
-  glo_data   <- c()
-  glo_target <- c()
 
 
 
@@ -57,15 +57,16 @@ if ("pdf" %in% args) {
   glo_source <- c(glo_source, l_source)
   glo_data   <- c(glo_data,   l_data)
 
-
+  cat("PDF:", l_source, "\n\n")
   if (Rmk_check_dependencies(
     depend.source = glo_source,
     depend.data   = glo_data,
-    targets       = l_target
+    targets       = l_target,
+    path          = PROJECT
   )) {
     render(l_source, output_dir = "./")
+    Rmk_store_dependencies(path = PROJECT)
   }
-  Rmk_store_dependencies()
 
 
 
@@ -74,6 +75,25 @@ if ("pdf" %in% args) {
 
 if ("run" %in% args) {
   cat("\n~ ~ DOING RUN ~ ~\n\n")
+
+
+  l_source   <- "GHI_enh_06_sza.R"
+  l_target   <- c()
+  l_data     <- "./data/GHI_enh_03_process.Rda"
+  glo_source <- c(glo_source, l_source)
+  glo_data   <- c(glo_data,   l_data)
+
+  cat("RUN:", l_source, "\n\n")
+  if (Rmk_check_dependencies(
+    depend.source = glo_source,
+    depend.data   = glo_data,
+    targets       = l_target,
+    path          = PROJECT
+  )) {
+    source(l_source)
+    Rmk_store_dependencies(path = PROJECT)
+  }
+
 }
 
 
