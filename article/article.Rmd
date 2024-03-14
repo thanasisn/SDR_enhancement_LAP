@@ -110,11 +110,12 @@ CE mechanism
 
 <!-- Define CE and ECE -->
 In this study, we define as cloud enhancement events (CE) the cases when the measured
-global horizontal irradiance (GHI) at ground level exceeds the expected value under
-sky, unobscured by clouds.
+global horizontal irradiance (GHI) at ground level, exceeds the expected value under
+clear-sky conditions.
 Similar, we define the extreme cloud enhancement events (ECE), the cases when GHI,
 exceeds the Total Solar Irradiance on horizontal plane at ground level.
-
+Although the duration of these bursts varies form instantaneous to several minutes,
+here we are constrained by the recorded data, to one-minute steps. 
 
 
 
@@ -237,7 +238,7 @@ with a radiation transfer model.
 
 We decided to use the Libradtran [@Emde2016] radiation transfer model, to modeled
 the clear sky equivalent of GHI, with monthly climatological data of AOD and water
-column from the AERONET monitoring network [@Giles2019; @Buis1998].  Our site
+column from the Aerosol Robotic Network (AERONET) [@Giles2019; @Buis1998].  Our site
 participates in AERONET, where we operate a Cimel photometer, colocated to
 the CM-21 pyranometer, since 2003
 
