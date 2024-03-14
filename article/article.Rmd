@@ -364,13 +364,37 @@ Include Example of days plot? Appendix?
 
 
 
+Our dataset after the proccesing consists of
+
+total data points `r ST_total$wattGLB.N`
+of which CE are `r ST_total$GLB_diff.N_pos`
+and `r ST_total$GLB_diff.N_pos`
+
+
+
 \FloatBarrier
 
 # Results
 
+
+
+
+```{r loadtrends, echo=F, include=T, warning=FALSE, message=FALSE}
+dailytrends <- data.table(
+  read.csv("~/MANUSCRIPTS/02_enhancement/figures/Daily_trends_byYear.csv"))
+dailytrends[DATA == "ST_E_daily"]
+
+
+```
+
+By computing the mean daily over irradiance for all the CE case, we were able to dirive a trend on the mean CE intensity of .....
+
+
+Figures\ \ref{fig:CEmeanDaily}
+
 ## Trend
 
-```{r echo=FALSE, fig.cap="Trend of the daily excess energy due to CE"}
+```{r CEmeanDaily, echo=FALSE, fig.cap="Trend of the daily excess energy due to CE"}
 knitr::include_graphics("../images/daily-12.png")
 ```
 
