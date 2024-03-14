@@ -85,6 +85,7 @@ panderOptions("table.split.table",        120   )
 ## Functions from `https://github.com/thanasisn/IStillBreakStuff/tree/main/FUNCTIONS/R`
 source("~/CODE/FUNCTIONS/R/data.R")
 source("~/CODE/FUNCTIONS/R/trig_deg.R")
+source("~/CODE/FUNCTIONS/R/make_tools.R")
 
 
 ## __ Source initial scripts ---------------------------------------------------
@@ -96,23 +97,35 @@ source("~/CODE/FUNCTIONS/R/cor_test_stats.R")
 
 ## Override notification function
 options(error = function() {
-    if (interactive()) {
-        system("mplayer /usr/share/sounds/freedesktop/stereo/dialog-warning.oga", ignore.stdout = T, ignore.stderr = T)
-        system("notify-send -u normal -t 30000 'R session' 'An error occurred!'")
-    }
+  if (interactive()) {
+    system("mplayer /usr/share/sounds/freedesktop/stereo/dialog-warning.oga", ignore.stdout = T, ignore.stderr = T)
+    system("notify-send -u normal -t 30000 'R session' 'An error occurred!'")
+  }
 })
+
+
+## test new logic
+Rmk_check_dependencies(
+  depend.source = c(Script.Name,
+                    "./GHI_enh_00_variables.R",
+                    "./GHI_enh_03_process.R"),
+  depend.data   = c("./data/GHI_enh_03_process.Rda"),
+  targets = basename(sub("\\.R$", ".pdf", Script.Name))
+)
+## move to end for successful builed
+Rmk_store_dependencies()
 
 
 ##  Prepare raw data if needed  ------------------------------------------------
 if (
-    file.exists("./data/GHI_enh_03_process.Rda") == FALSE |
-    file.mtime("./data/GHI_enh_03_process.Rda") < file.mtime("./GHI_enh_00_variables.R") |
-    file.mtime("./data/GHI_enh_03_process.Rda") < file.mtime("./GHI_enh_03_process.R")
+  file.exists("./data/GHI_enh_03_process.Rda") == FALSE |
+  file.mtime("./data/GHI_enh_03_process.Rda") < file.mtime("./GHI_enh_00_variables.R") |
+  file.mtime("./data/GHI_enh_03_process.Rda") < file.mtime("./GHI_enh_03_process.R")
 ) {
-    torun <- "./GHI_enh_03_process.R"
-    cat(paste("Run previous step:", torun))
-    source(torun)
-    dummy <- gc()
+  torun <- "./GHI_enh_03_process.R"
+  cat(paste("Run previous step:", torun))
+  source(torun)
+  dummy <- gc()
 }
 
 
@@ -123,14 +136,6 @@ load("./data/GHI_enh_03_process.Rda")
 tic  <- Sys.time()
 
 DRAFT <- TRUE
-
-
-
-
-
-
-
-
 
 
 
@@ -155,7 +160,6 @@ plot(ST_E_sza[, get(avar), SZA],
      ylab = paste(varname(avar), staname(avar)),
      main = paste(varname(avar), staname(avar)))
 
-
 avar <- "GLB_ench.N"
 plot(ST_E_sza[, get(avar), SZA],
      ylab = paste(varname(avar), staname(avar)),
@@ -179,7 +183,6 @@ for (am in 1:12) {
        xlim = xlim,
        ylab = paste(varname(avar), staname(avar)),
        main = paste(month.name[am], varname(avar), staname(avar)))
-
 }
 
 
@@ -193,7 +196,6 @@ for (am in 1:12) {
        xlim = xlim,
        ylab = paste(varname(avar), staname(avar)),
        main = paste(month.name[am], varname(avar), staname(avar)))
-
 }
 
 
@@ -211,95 +213,69 @@ for (am in 1:12) {
 
 
 
-# Heatmap
-ggplot(ST_E_sza_doy, aes(Doy, SZA, fill = GLB_diff.N)) +
+#'
+#' \newpage
+#' \FloatBarrier
+#'
+#' ### SZA heatmaps of DOY and SZA
+#'
+#+ sza_doy, echo=F, include=T, results="asis"
+
+lim <- 10
+ST_E_sza_doy[ GLB_diff.N > lim] |>
+  ggplot(aes(Doy, SZA, fill = GLB_diff.N)) +
   geom_tile() +
-  # scale_fill_viridis_c()
   scale_fill_gradient(low = "yellow", high = "red", na.value = "black",
-                      trans = "log") +
+                      # trans = "log"
+  ) +
   theme(legend.position      = c(0.99, 0.01),
         legend.justification = c(1, 0)) +
   theme(legend.background    = element_rect(fill = "white", colour = NA)) +
-  labs(title = "Number of CE")
+  labs(title = "Number of CE") +
+  if(lim > 0) labs(caption = paste("Values under", lim, "are excluded for clarity"))
 
 
 
-ggplot(ST_E_sza_doy, aes(Doy, SZA, fill = GLB_diff.max)) +
+
+lim <- 100
+ST_E_sza_doy[ GLB_diff.max > lim] |>
+  ggplot(aes(Doy, SZA, fill = GLB_diff.max)) +
   geom_tile() +
   scale_fill_gradient(low = "yellow", high = "red", na.value = "black") +
   theme(legend.position      = c(0.99, 0.01),
         legend.justification = c(1, 0)) +
   theme(legend.background    = element_rect(fill = "white", colour = NA)) +
-  labs(title = "Maximum over irradiance")
+  labs(title = "Maximum over irradiance") +
+  if(lim > 0) labs(caption = paste("Values under", lim, "are excluded for clarity"))
 
 
-ggplot(ST_E_sza_doy, aes(Doy, SZA, fill = GLB_diff.sum)) +
+
+
+lim <- 50
+ST_E_sza_doy[ GLB_diff.sum > lim] |>
+  ggplot(aes(Doy, SZA, fill = GLB_diff.sum)) +
   geom_tile() +
   # scale_fill_viridis_c()
   scale_fill_gradient(low = "yellow", high = "red", na.value = "black") +
   theme(legend.position      = c(0.99, 0.01),
         legend.justification = c(1, 0)) +
   theme(legend.background    = element_rect(fill = "white", colour = NA)) +
-  labs(title = "Total over irradiance energy")
+  labs(title = "Total over irradiance energy") +
+  if(lim > 0) labs(caption = paste("Values under", lim, "are excluded for clarity"))
 
 
-ggplot(ST_E_sza_doy, aes(Doy, SZA, fill = GLB_diff.mean)) +
+
+
+lim <- 80
+ST_E_sza_doy[ GLB_diff.mean > lim] |>
+  ggplot( aes(Doy, SZA, fill = GLB_diff.mean)) +
   geom_tile() +
   scale_fill_gradient(low = "yellow", high = "red", na.value = "black") +
   theme(legend.position      = c(0.99, 0.01),
         legend.justification = c(1, 0)) +
   theme(legend.background    = element_rect(fill = "white", colour = NA)) +
-  labs(title = "Mean over irradiance")
-
-
-
-##TODO check groups for low sun characteristics
-
-#
-# gr_N_min   <- 8
-# gr_SZA_min <- 60
-#
-# test <- ST_G0[ GLB_ench.N > gr_N_min & SZA.min > gr_SZA_min]
-#
-# plot( ST_G0[ GLB_ench.N > gr_N_min & SZA.min > gr_SZA_min, GLB_diff.sum/GLB_ench.N, SZA.mean ])
-#
-# plot( ST_G0[ GLB_ench.N > gr_N_min & SZA.min > gr_SZA_min, GLB_diff.mean, SZA.mean ])
-#
-# plot( ST_G0[ GLB_ench.N > gr_N_min & SZA.min > gr_SZA_min, GLB_diff.median, SZA.mean ])
-#
-# plot( ST_G0[ GLB_ench.N > gr_N_min & SZA.min > gr_SZA_min, GLB_diff.sum/GLB_ench.N, SZA.max ])
-#
-# plot( ST_G0[ GLB_ench.N > gr_N_min & SZA.min > gr_SZA_min, GLB_diff.sum/GLB_ench.N, SZA.min ])
-#
-# plot( ST_G0[ GLB_ench.N > gr_N_min & SZA.min > gr_SZA_min, GLB_diff.sum/GLB_ench.N, SZA.mean])
-#
-# plot( ST_G0[ GLB_ench.N > gr_N_min & SZA.min > gr_SZA_min
-#              & SZA.min > 72 & GLB_diff.sum/GLB_ench.N < 10 , GLB_diff.sum/GLB_ench.N, SZA.mean])
-# ST_G0[ GLB_ench.N > gr_N_min & SZA.min > gr_SZA_min
-# & SZA.min > 72 & GLB_diff.sum/GLB_ench.N < 10  ]
-#
-# hist( ST_G0[ GLB_ench.N > gr_N_min & SZA.min > gr_SZA_min, GLB_diff.sum/GLB_ench.N])
-#
-# plot( ST_G0[ GLB_ench.N > gr_N_min & SZA.min > gr_SZA_min, GLB_ench.max, SZA.mean ])
-#
-#
-# plot( ST_G0[ GLB_ench.N > gr_N_min & SZA.min > gr_SZA_min, GLB_ench.mean, SZA.mean ])
-# plot( ST_G0[ GLB_ench.N > gr_N_min & SZA.min > gr_SZA_min, GLB_diff.mean, SZA.mean ])
-# plot( ST_G0[ GLB_ench.N > gr_N_min & SZA.min > gr_SZA_min, GLB_diff.max,  SZA.max  ])
-#
-# ST_G0[as.Date(Date) == "2004-05-25"]
-#
-# ST_G0[as.Date(Date) == "2003-09-05"]
-# ST_G0[as.Date(Date) == "2003-09-05", GLB_diff.sum/GLB_ench.N]
-
-
-# test <- DATA[as.Date(Date) == "2004-05-25"& GLB_diff>0]
-#
-# plot(DATA[as.Date(Date) == "2004-05-25", GLB_diff, Date])
-
-
-## group fix
-# test <- DATA[as.Date(Date) == "2004-05-25"]
+  labs(title = "Mean over irradiance") +
+  if(lim > 0) labs(caption = paste("Values under", lim, "are excluded for clarity"))
 
 
 
