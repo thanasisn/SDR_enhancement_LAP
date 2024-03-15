@@ -364,13 +364,11 @@ Include Example of days plot? Appendix?
 
 
 
-Our dataset after the proccesing consists of
-
-total data points `r ST_total$wattGLB.N`
-
-of which CE are `r ST_total$GLB_diff.N_pos`
-
-and `r ST_extreme_total$GLB_diff.N_pos` are ECE
+Our dataset, after the data selection processing, consists of
+`r ST_total$wattGLB.N` records of GHI, of which  
+$`r round(100*ST_total$GLB_diff.N_pos/ST_total$wattGLB.N, 3)`\%$ are CE and
+$`r round(100*ST_extreme_total$GLB_diff.N_pos/ST_total$wattGLB.N, 3)`\%$ are ECE.
+The stronger highest 
 
 
 
@@ -379,7 +377,9 @@ ST_total
 
 cat("\n - - - \n")
 
-ST_extreme_total
+ST_daily[max(wattGLB.max,na.rm = T), ]
+
+ST_daily[max(GLB_diff.max,na.rm = T), ]
 
 
 ```
