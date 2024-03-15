@@ -488,7 +488,7 @@ ST_E_yearly <- DATA[get(SelEnhanc) == TRUE,
                             recursive = FALSE),
                      .SDcols = my.cols,
                      by = .(year(Date))]
-ST_E_yearly$year <- as.POSIXct(strptime(paste(ST_E_yearly$year, "01", "1"),"%Y %m %d"))
+ST_E_yearly$Date <- as.POSIXct(strptime(paste(ST_E_yearly$year, "01", "1"),"%Y %m %d"))
 
 
 

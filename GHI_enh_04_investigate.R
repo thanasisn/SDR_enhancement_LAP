@@ -361,7 +361,8 @@ dataset |>
                        min(floor(dataset[,yts])),
                        pretty(dataset[,yts], n = 4),
                        max(ceiling(dataset[,yts]))),
-                     minor_breaks = seq(1990, 2050, by = 1) )
+                     minor_breaks = seq(1990, 2050, by = 1)) +
+  theme(plot.margin = margin(t = 0, r = 0.5 , b = 0.5, l = 0, "cm"))
 
 
 
@@ -740,10 +741,10 @@ title("Climatology of CE cases per weak")
 
 
 {
-  plot(ST_E_yearly[, GLB_diff.sum/GLB_diff.N, year],
-       col = varcol("GLB_diff.sum"),
+  plot(ST_E_yearly[, GLB_diff.mean, year],
+       col = varcol("GLB_diff.mean"),
        ylab = "W/m^2")
-  lmD <- lm( ST_E_yearly[, year, GLB_diff.sum/GLB_diff.N])
+  lmD <- lm( ST_E_yearly[, year, GLB_diff.mean])
   abline(lmD)
 
   title("Mean Energy of over irradiance per CE")
@@ -803,7 +804,6 @@ yeartrends <- data.table()
 
 pvar    <- "GLB_diff.sum"
 dataset <- copy(ST_E_yearly)
-dataset[, year := year(year)]
 # partial year sum is not valid
 dataset <- dataset[year > 1993]
 
@@ -839,7 +839,7 @@ dataset |>
              y = get(pvar))) +
   geom_point(color = varcol(pvar),
              shape = 15,
-             size  = 2) +
+             size  = 3) +
   geom_abline(intercept = lmY$coefficients[1], slope = lmY$coefficients[2]) +
   ylab(bquote("CE" ~ .(varname(pvar)) ~ .(staname(pvar)) ~ group("[", MJ/m^2,"]"))) +
   xlab("Date") +
@@ -859,7 +859,6 @@ dataset |>
 
 pvar    <- "GLB_diff.N"
 dataset <- copy(ST_E_yearly)
-dataset[, year := year(year)]
 # partial year N is not valid
 dataset <- dataset[year > 1993]
 
@@ -895,7 +894,7 @@ dataset |>
              y = get(pvar))) +
   geom_point(color = varcol(pvar),
              shape = 17,
-             size  = 2) +
+             size  = 3) +
   geom_abline(intercept = lmY$coefficients[1], slope = lmY$coefficients[2]) +
   ylab(bquote("CE" ~ .(varname(pvar)) ~ .(staname(pvar)))) +
   xlab("Date") +
@@ -915,8 +914,9 @@ dataset |>
 
 
 pvar    <- "GLB_diff.mean"
+# pvar    <- "GLB_diff.median"
+
 dataset <- copy(ST_E_yearly)
-dataset[, year := year(year)]
 
 ## linear model by year step
 lmY <- lm(dataset[[pvar]] ~ dataset$year)
@@ -948,9 +948,11 @@ grob <- grobTree(
 dataset |>
   ggplot(aes(x = year,
              y = get(pvar))) +
+  # geom_errorbar(aes(ymin = get(pvar) - GLB_diff.SD,
+  #                   ymax = get(pvar) + GLB_diff.SD)) +
   geom_point(color = varcol(pvar),
              shape = 16,
-             size  = 2) +
+             size  = 3) +
   geom_abline(intercept = lmY$coefficients[1], slope = lmY$coefficients[2]) +
   ylab(bquote("CE" ~ .(varname(pvar)) ~ .(staname(pvar)) ~ group("[", W/m^2,"]"))) +
   xlab("Date") +
@@ -967,6 +969,8 @@ dataset |>
 
 
 
+
+write.csv(yeartrends, "./figures/Daily_trends_byYear_Proper.csv")
 
 
 
