@@ -718,7 +718,7 @@ title("Climatology of CE cases per weak")
 }
 
 
-
+stop()
 
 {
   plot(ST_E_yearly[, GLB_diff.N, year],
@@ -973,18 +973,18 @@ dataset |>
 #'
 #+ energy_monthly, echo=F, include=T, results="asis"
 
-viridis()
+mcol <- viridis(n = 12)
+
 
 {
   plot(ST_E_monthly[, GLB_diff.sum, Date],
        # col = varcol("GLB_diff.sum"),
-       col = ST_E_monthly$month,
+       col = mcol[ST_E_monthly$month],
        ylab = "W/m^2")
+  title("Over Irradiance Energy to CE")
 
   lmD <- lm( ST_E_monthly[, Date, GLB_diff.sum])
   abline(lmD)
-
-  title("Over Irradiance due to CE")
 
   ## display trend on graph
   fit <- lmD[[1]]
@@ -999,12 +999,13 @@ viridis()
 
 
 {
-  plot(ST_E_yearly[, GLB_diff.N, year],
-       col = varcol("GLB_diff.N"),
+  plot(ST_E_monthly[, GLB_diff.N, Date],
+       # col = varcol("GLB_diff.sum"),
+       col = mcol[ST_E_monthly$month],
        ylab = "Number of enhancements")
   title("Number of CE each year")
 
-  lmD <- lm( ST_yearly[, year, GLB_diff.N_pos])
+  lmD <- lm( ST_E_monthly[, Date, GLB_diff.N])
   abline(lmD)
 
   ## display trend on graph
@@ -1018,8 +1019,8 @@ viridis()
 
 
 {
-  plot(ST_yearly[, GLB_diff.sumPOS/GLB_diff.N_pos, year],
-       col = varcol("GLB_diff.sumPOS"),
+  plot(ST_E_monthly[, GLB_diff.sum/GLB_diff.N, Date],
+       col = mcol[ST_E_monthly$month],
        ylab = "W/m^2")
   lmD <- lm( ST_yearly[, year, GLB_diff.sumPOS/GLB_diff.N_pos])
   abline(lmD)
@@ -1038,26 +1039,26 @@ viridis()
 
 
 
-plot(ST_yearly[, GLB_diff.mean, year],
+plot(ST_E_monthly[, GLB_diff.mean, year],
      ylab = "Total of enhancement minutes")
 
 
 
-plot(ST_yearly[, GLB_ench.N, year],
+plot(ST_E_monthly[, GLB_ench.N, year],
      ylab = "Total of enhancement minutes")
 
 
-plot(ST_yearly[, GLB_ench.N_pos/GLB_ench.TotalN, year],
-     ylab = "Total of enhancement minutes ratio")
+# plot(ST_E_monthly[, GLB_ench.N/GLB_ench., year],
+#      ylab = "Total of enhancement minutes ratio")
 
 
-plot(ST_yearly[, GLB_ench.sumPOS/GLB_ench.N_pos, year],
+plot(ST_E_monthly[, GLB_ench.sum/GLB_ench.N, year],
      ylab = "Enhancement energy per minute")
 
 
 cat( "@Martins2022" )
 
-plot(ST_yearly[, GLB_diff.sumPOS/wattGLB.sumPOS, year],
+plot(ST_E_monthly[, GLB_diff.sum/wattGLB.sum, year],
      ylab = "Fraction of the accumulated enhancements over total energy",
      main = paste(varname("GLB_diff.sumPOS"),
                   staname("GLB_diff.sumPOS"),
