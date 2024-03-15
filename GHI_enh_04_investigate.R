@@ -76,6 +76,7 @@ library(viridis       , quietly = TRUE, warn.conflicts = FALSE)
 library(ggpointdensity, quietly = TRUE, warn.conflicts = FALSE)
 library(patchwork     , quietly = TRUE, warn.conflicts = FALSE)
 library(ggh4x         , quietly = TRUE, warn.conflicts = FALSE)
+library(grid          , quietly = TRUE, warn.conflicts = FALSE)
 
 
 panderOptions("table.alignment.default", "right")
@@ -316,13 +317,45 @@ write.csv(x = dailytrendsY,
 
 
 
-
-ST_E_daily |>
-  ggplot(aes(x = Date, y = GLB_diff.mean)) +
-  geom_point(color = varcol("GLB_diff.mean")
-
+pvar    <- "GLB_diff.mean"
+dataset <- copy(ST_E_daily)
+dataset[, yts := yts + min(year(Date))]
 
 
+## _ auto regression arima Tourpali -------------------------------
+## create a time variable (with lag of 1 day ?)
+tmodelo <- arima(x = dataset[[pvar]], order = c(1,0,0), xreg = dataset$yts, method = "ML")
+
+## trend per year with auto correlation
+Tres <- data.frame(t(lmtest::coeftest(tmodelo)[3,]))
+Tint <- data.frame(t(lmtest::coeftest(tmodelo)[2,]))
+names(Tres) <- paste0("Tmod_", names(Tres))
+cat("Arima:   ", paste(round(Tres[1], 6), "+/-", round(Tres[2], 6)), "\n\n")
+
+grob <- grobTree(
+  textGrob(
+    label = paste("Trend:", round(Tres[1], 3), "+/-", round(Tres[2], 3)),
+    x = 0.5,  y = 0.95, hjust = 0.5,
+    gp = gpar(col = "black", fontsize = 13, fontface= "bold")
+  ))
+
+dataset |>
+  ggplot(aes(x = yts,
+             y = get(pvar))) +
+  geom_point(color = varcol(pvar),
+             size  = 1) +
+  geom_abline(intercept = unlist(Tint[1]), slope = unlist(Tres[1])) +
+  ylab(bquote("CE" ~ .(varname(pvar)) ~ group("[", W/m^2,"]"))) +
+  xlab("Date") +
+  scale_y_continuous(guide        = "axis_minor",
+                     minor_breaks = seq(0, 500, by = 25)) +
+  annotation_custom(grob)
+  # scale_x_continuous(guide        = "axis_minor",
+  #                    minor_breaks = seq.Date(as.Date("1993-01-01"),
+  #                                            by = "year", length.out = 50) )
+
+
+unlist(Tres[1])
 
 stop()
 
