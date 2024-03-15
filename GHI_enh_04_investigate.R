@@ -178,23 +178,21 @@ for (DBn in dbs) {
       # ylab = bquote("Deseas." ~ .(translate(avar)) ~ "[" ~ Watt/m^2 ~ "]" )
     }
 
-
     cat("Units for", avar, ": ", paste(units), "\n\n")
-
 
     ## linear model by day step
     lmD <- lm(dataset[[avar]] ~ dataset$Date)
     d   <- summary(lmD)$coefficients
-    cat("lmD:     ", lmD$coefficients[2] * Days_of_year, "+/-", d[2,2] * Days_of_year,"\n\n")
+    cat("lmD:     ", round(lmD$coefficients[2] * Days_of_year, 6), "+/-", round(d[2,2] * Days_of_year, 6), "\n\n")
+
 
     ## correlation test by day step
     corD <- cor.test(x = dataset[[avar]], y = as.numeric(dataset$Date), method = 'pearson')
 
-
     ## linear model by year step
     lmY <- lm(dataset[[avar]] ~ dataset$yts)
     d2   <- summary(lmY)$coefficients
-    cat("lmY:     ", lmY$coefficients[2] , "+/-", d2[2,2] ,"\n\n")
+    cat("lmY:     ", round(lmY$coefficients[2], 6) , "+/-", round(d2[2,2], 6) ,"\n\n")
 
     ## correlation test by day step
     corY <- cor.test(x = dataset[[avar]], y = as.numeric(dataset$yts), method = 'pearson')
@@ -214,7 +212,9 @@ for (DBn in dbs) {
     Tres <- data.frame(t(lmtest::coeftest(tmodelo)[3,]))
     Tint <- data.frame(t(lmtest::coeftest(tmodelo)[2,]))
     names(Tres) <- paste0("Tmod_", names(Tres))
-    cat("Arima:", paste(round(Tres, 4)), "\n\n")
+    # cat("Arima:  ", paste(round(Tres, 4)), "\n\n")
+
+    cat("Arima:   ", paste(round(Tres[1], 6), "+/-", round(Tres[2], 6)), "\n\n")
 
 
     # capture lm for table
@@ -252,13 +252,6 @@ for (DBn in dbs) {
                           )
     )
 
-    # if (grepl("near_tcc", avar)) {
-    #     acol <- "cyan"
-    # } else {
-    #     acol <- get(paste0(c("col", unlist(strsplit(avar, split = "_"))[1:2]),
-    #                        collapse = "_"))
-    # }
-
     ## plot data
     plot(dataset$Date, dataset[[avar]],
          pch      = 16,
@@ -290,7 +283,6 @@ for (DBn in dbs) {
             cex.main = 0.8 )
     }
 
-
     ## display trend on graph
     fit <- lmD[[1]]
     legend("top", lty = 1, bty = "n", lwd = 2, cex = 1,
@@ -318,6 +310,32 @@ write.csv(x = dailytrends,
 
 write.csv(x = dailytrendsY,
           file = "./figures/Daily_trends_byYear.csv")
+
+
+
+
+
+
+
+ST_E_daily |>
+  ggplot(aes(x = Date, y = GLB_diff.mean)) +
+  geom_point(color = varcol("GLB_diff.mean")
+
+
+
+
+stop()
+
+
+
+
+
+
+
+
+
+
+
 
 
 ##  Group stats  ---------------------------------------------------------------

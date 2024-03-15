@@ -364,25 +364,15 @@ Include Example of days plot? Appendix?
 
 
 
-Our dataset, after the data selection processing, consists of
-`r ST_total$wattGLB.N` records of GHI, of which  
-$`r round(100*ST_total$GLB_diff.N_pos/ST_total$wattGLB.N, 3)`\%$ are CE and
-$`r round(100*ST_extreme_total$GLB_diff.N_pos/ST_total$wattGLB.N, 3)`\%$ are ECE.
-The stronger highest 
 
-
-
-```{r echo=F, include=T, warning=FALSE, message=FALSE}
-ST_total
-
-cat("\n - - - \n")
-
-ST_daily[max(wattGLB.max,na.rm = T), ]
-
-ST_daily[max(GLB_diff.max,na.rm = T), ]
-
-
-```
+<!-- ```{r echo=F, include=T, warning=FALSE, message=FALSE} -->
+<!-- ST_total -->
+<!-- cat("\n - - - \n") -->
+<!-- ST_daily[which.max(wattGLB.max), wattGLB.max] -->
+<!-- round(ST_E_daily[which.max(GLB_diff.max), GLB_diff.max], 2) -->
+<!-- round(100*ST_daily[which.max(GLB_ench.max), GLB_ench.max],1) -->
+<!-- plot(ST_daily$Date, ST_daily$GLB_diff.max) -->
+<!-- ``` -->
 
 
 
@@ -390,6 +380,21 @@ ST_daily[max(GLB_diff.max,na.rm = T), ]
 
 # Results
 
+
+Our dataset, after the data selection processing, consists of
+`r ST_total$wattGLB.N` records of GHI, of which
+$`r round(100*ST_total$GLB_diff.N_pos/ST_total$wattGLB.N, 3)`\,\%$ are CE and
+$`r round(100*ST_extreme_total$GLB_diff.N_pos/ST_total$wattGLB.N, 3)`\,\%$ are ECE events.
+The highest GHI recorder was 
+$`r round(ST_daily[which.max(wattGLB.max), wattGLB.max],1)`\,W/m^2$
+on `r strftime(ST_daily[which.max(wattGLB.max), Date], "%d\\ %B %Y")`.
+The absolute stronger CE event had an over irradiance of 
+$`r round(ST_daily[which.max(GLB_diff.max), GLB_diff.max], 2)`\,W/m^2$ on
+`r strftime(ST_daily[which.max(GLB_diff.max), Date], "%d\\ %B %Y")`.
+The relative stronger CE event was 
+$`r round(100*ST_daily[which.max(GLB_ench.max), GLB_ench.max],1)`\,\%$ above the 
+clear sky threshold, on 
+`r strftime(ST_daily[which.max(GLB_ench.max), Date], "%d\\ %B %Y")`.
 
 
 
