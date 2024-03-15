@@ -339,7 +339,7 @@ grob <- grobTree(
     label = TeX(
       paste("Trend: $", round(Tres[1], 2),
             "\\pm",     round(Tres[2], 2),
-            "\\,W/m^2$")),
+            "\\,W/m^2/day$")),
     x = 0.5,  y = 0.95, hjust = 0.5,
     gp = gpar(col = "black", fontsize = 13, fontface= "bold")
   ))
@@ -688,7 +688,7 @@ title("Climatology of CE cases per weak")
 
 
 
-##  Energy contribution of enhancements  ---------------------------------------
+## Yearly Energy contribution of enhancements  ---------------------------------------
 
 #'
 #' \newpage
@@ -699,11 +699,11 @@ title("Climatology of CE cases per weak")
 #+ energy, echo=F, include=T, results="asis"
 
 {
-  plot(ST_yearly[, GLB_diff.sumPOS, year],
-       col = varcol("GLB_diff.sumPOS"),
+  plot(ST_E_yearly[, GLB_diff.sum, year],
+       col = varcol("GLB_diff.sum"),
        ylab = "W/m^2")
 
-  lmD <- lm( ST_yearly[, year, GLB_diff.sumPOS])
+  lmD <- lm( ST_E_yearly[, year, GLB_diff.sum])
   abline(lmD)
 
   title("Over Irradiance each year due to CE")
@@ -721,9 +721,9 @@ title("Climatology of CE cases per weak")
 
 
 {
-  plot(ST_yearly[, GLB_diff.N_pos, year],
-       col = varcol("GLB_diff.sumPOS"),
-       ylab = "Total of enhancements")
+  plot(ST_E_yearly[, GLB_diff.N, year],
+       col = varcol("GLB_diff.N"),
+       ylab = "Number of enhancements")
   title("Number of CE each year")
 
   lmD <- lm( ST_yearly[, year, GLB_diff.N_pos])
@@ -760,7 +760,7 @@ title("Climatology of CE cases per weak")
 
 
 
-plot(ST_yearly[, GLB_diff.TotalN, year],
+plot(ST_yearly[, GLB_diff.mean, year],
      ylab = "Total of enhancement minutes")
 
 
@@ -788,6 +788,108 @@ plot(ST_yearly[, GLB_diff.sumPOS/wattGLB.sumPOS, year],
                   staname("wattGLB.sumPOS")
      )
 )
+
+
+
+
+
+
+
+## P_energy ---------------------------------------------------------------
+#+ P_energy, echo=F, include=T, results="asis"
+
+pvar    <- "GLB_diff.sumPOS"
+dataset <- copy(ST_E_yearly)
+
+## auto regression arima Tourpali
+## create a time variable (with lag of 1 day ?)
+tmodelo <- arima(x = dataset[[pvar]], order = c(1,0,0), xreg = dataset$year, method = "ML")
+
+## trend per year with auto correlation
+Tres <- data.frame(t(lmtest::coeftest(tmodelo)[3,]))
+Tint <- data.frame(t(lmtest::coeftest(tmodelo)[2,]))
+names(Tres) <- paste0("Tmod_", names(Tres))
+cat("Arima:   ", paste(round(Tres[1], 6), "+/-", round(Tres[2], 6)), "\n\n")
+
+grob <- grobTree(
+  textGrob(
+    label = TeX(
+      paste("Trend: $", round(Tres[1], 1),
+            "\\pm",     round(Tres[2], 1),
+            "\\,kJ/m^2/year$")),
+    x = 0.5,  y = 0.05, hjust = 0.5,
+    gp = gpar(col = "black", fontsize = 13, fontface= "bold")
+  ))
+
+dataset |>
+  ggplot(aes(x = year,
+             y = get(pvar))) +
+  geom_point(color = varcol(pvar),
+             size  = 2) +
+  geom_abline(intercept = unlist(Tint[1]), slope = unlist(Tres[1])) +
+  ylab(bquote("CE" ~ .(varname(pvar)) ~ .(staname(pvar)) ~ group("[", MJ/m^2,"]"))) +
+  xlab("Date") +
+  annotation_custom(grob) +
+  scale_y_continuous(guide        = "axis_minor",
+                     labels = function(x) x / 1000,
+                     minor_breaks = seq(0, 500, by = 25)) +
+  scale_x_continuous(guide        = "axis_minor",
+                     breaks = c(
+                       min(floor(dataset[,year])),
+                       pretty(dataset[,year], n = 4),
+                       max(ceiling(dataset[,year]))),
+                     minor_breaks = seq(1990, 2050, by = 1) )
+
+
+
+
+
+
+pvar    <- "GLB_diff.N_pos"
+dataset <- copy(ST_E_yearly)
+
+## auto regression arima Tourpali
+## create a time variable (with lag of 1 day ?)
+tmodelo <- arima(x = dataset[[pvar]], order = c(1,0,0), xreg = dataset$year, method = "ML")
+
+## trend per year with auto correlation
+Tres <- data.frame(t(lmtest::coeftest(tmodelo)[3,]))
+Tint <- data.frame(t(lmtest::coeftest(tmodelo)[2,]))
+names(Tres) <- paste0("Tmod_", names(Tres))
+cat("Arima:   ", paste(round(Tres[1], 6), "+/-", round(Tres[2], 6)), "\n\n")
+
+grob <- grobTree(
+  textGrob(
+    label = TeX(
+      paste("Trend: $", round(Tres[1], 1),
+            "\\pm",     round(Tres[2], 1),
+            "\\,/year$")),
+    x = 0.5,  y = 0.05, hjust = 0.5,
+    gp = gpar(col = "black", fontsize = 13, fontface= "bold")
+  ))
+
+dataset |>
+  ggplot(aes(x = year,
+             y = get(pvar))) +
+  geom_point(color = varcol(pvar),
+             size  = 2) +
+  geom_abline(intercept = unlist(Tint[1]), slope = unlist(Tres[1])) +
+  ylab(bquote("CE" ~ .(varname(pvar)) ~ .(staname(pvar)) ~ group("[", MJ/m^2,"]"))) +
+  xlab("Date") +
+  annotation_custom(grob) +
+  scale_y_continuous(guide        = "axis_minor",
+                     minor_breaks = seq(0, 500, by = 25)) +
+  scale_x_continuous(guide        = "axis_minor",
+                     breaks = c(
+                       min(floor(dataset[,year])),
+                       pretty(dataset[,year], n = 4),
+                       max(ceiling(dataset[,year]))),
+                     minor_breaks = seq(1990, 2050, by = 1) )
+
+
+
+
+
 
 
 
@@ -860,6 +962,110 @@ plot(ST_yearly[, GLB_diff.sumPOS/wattGLB.sumPOS, year],
 
 
 
+
+## Monthly Energy contribution of enhancements  ---------------------------------------
+
+#'
+#' \newpage
+#' \FloatBarrier
+#'
+#' ### Monthly Energy contribution of enhancements
+#'
+#+ energy_monthly, echo=F, include=T, results="asis"
+
+viridis()
+
+{
+  plot(ST_E_monthly[, GLB_diff.sum, Date],
+       # col = varcol("GLB_diff.sum"),
+       col = ST_E_monthly$month,
+       ylab = "W/m^2")
+
+  lmD <- lm( ST_E_monthly[, Date, GLB_diff.sum])
+  abline(lmD)
+
+  title("Over Irradiance due to CE")
+
+  ## display trend on graph
+  fit <- lmD[[1]]
+  legend("top", lty = 1, bty = "n", lwd = 2, cex = 1,
+         paste("Trend: ",
+               if (fit[2] > 0) "+" else "-",
+               signif(abs(fit[2]), 2) ,"kJ/m^2/y" )
+  )
+}
+
+
+
+
+{
+  plot(ST_E_yearly[, GLB_diff.N, year],
+       col = varcol("GLB_diff.N"),
+       ylab = "Number of enhancements")
+  title("Number of CE each year")
+
+  lmD <- lm( ST_yearly[, year, GLB_diff.N_pos])
+  abline(lmD)
+
+  ## display trend on graph
+  fit <- lmD[[1]]
+  legend("top", lty = 1, bty = "n", lwd = 2, cex = 1,
+         paste("Trend: ",
+               if (fit[2] > 0) "+" else "-",
+               signif(abs(fit[2]), 2) ,"/y" )
+  )
+}
+
+
+{
+  plot(ST_yearly[, GLB_diff.sumPOS/GLB_diff.N_pos, year],
+       col = varcol("GLB_diff.sumPOS"),
+       ylab = "W/m^2")
+  lmD <- lm( ST_yearly[, year, GLB_diff.sumPOS/GLB_diff.N_pos])
+  abline(lmD)
+
+  title("Mean Energy of over irradiance per CE")
+
+  ## display trend on graph
+  fit <- lmD[[1]]
+  legend("top", lty = 1, bty = "n", lwd = 2, cex = 1,
+         paste("Trend: ",
+               if (fit[2] > 0) "+" else "-",
+               signif(abs(fit[2]), 2) ,"W/m^2/y" )
+  )
+}
+
+
+
+
+plot(ST_yearly[, GLB_diff.mean, year],
+     ylab = "Total of enhancement minutes")
+
+
+
+plot(ST_yearly[, GLB_ench.N, year],
+     ylab = "Total of enhancement minutes")
+
+
+plot(ST_yearly[, GLB_ench.N_pos/GLB_ench.TotalN, year],
+     ylab = "Total of enhancement minutes ratio")
+
+
+plot(ST_yearly[, GLB_ench.sumPOS/GLB_ench.N_pos, year],
+     ylab = "Enhancement energy per minute")
+
+
+cat( "@Martins2022" )
+
+plot(ST_yearly[, GLB_diff.sumPOS/wattGLB.sumPOS, year],
+     ylab = "Fraction of the accumulated enhancements over total energy",
+     main = paste(varname("GLB_diff.sumPOS"),
+                  staname("GLB_diff.sumPOS"),
+                  "/",
+                  varname("wattGLB.sumPOS"),
+                  staname("wattGLB.sumPOS")
+     )
+)
 
 
 

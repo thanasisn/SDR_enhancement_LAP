@@ -397,14 +397,31 @@ clear sky threshold, on
 `r strftime(ST_daily[which.max(GLB_ench.max), Date], "%d\\ %B %Y")`.
 
 
+## Trends
 
 ```{r loadtrends, echo=F, include=T, warning=FALSE, message=FALSE}
 dailytrends <- data.table(
   read.csv("~/MANUSCRIPTS/02_enhancement/figures/Daily_trends_byYear.csv"))
-dailytrends[DATA == "ST_E_daily"]
-
+dailyCE <- dailytrends[DATA == "ST_E_daily"]
 
 ```
+
+We have computed the daily trend of the mean over irradiance of CE (Figure\ \ref{fig:CEmeanDaily}), using
+
+.... cite arima lag ....
+
+
+```{r CEmeanDaily, echo=FALSE, fig.cap="Daily mean values and trend of the CE over irradiance."}
+knitr::include_graphics("../images/P_daily_trend-1.png")
+```
+
+We observe an increase of
+$`r round(dailyCE[var == "GLB_diff.mean", Tmod_Estimate],3)`\pm
+`r round(dailyCE[var == "GLB_diff.mean", Tmod_Std..Error],3)`\,W/m^2$
+on the mean over irradiance.
+
+
+
 
 By computing the mean daily over irradiance for all the CE case, we were able to dirive a trend on the mean CE intensity of .....
 
@@ -413,13 +430,9 @@ Figures\ \ref{fig:CEmeanDaily}
 
 ## Trend
 
-```{r CEmeanDaily, echo=FALSE, fig.cap="Daily mean trend of CE over irradiance."}
-knitr::include_graphics("../images/P_daily_trend-1.png")
-```
-
-# ```{r CEmeanDaily2, echo=FALSE, fig.cap="Trend of the daily excess energy due to CE"}
-# knitr::include_graphics("../images/daily-12.png")
-# ```
+<!-- ```{r CEmeanDaily2, echo=FALSE, fig.cap="Trend of the daily excess energy due to CE"} -->
+<!-- knitr::include_graphics("../images/daily-12.png") -->
+<!-- ``` -->
 
 
 ```{r echo=FALSE, fig.cap="Treds of the mean over irradiance per CE"}
