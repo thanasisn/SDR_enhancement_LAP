@@ -118,6 +118,36 @@ The following objects are masked from 'package:base':
 \end{verbatim}
 
 \begin{verbatim}
+Registered S3 methods overwritten by 'ggpp':
+  method                  from   
+  heightDetails.titleGrob ggplot2
+  widthDetails.titleGrob  ggplot2
+\end{verbatim}
+
+\begin{verbatim}
+
+Attaching package: 'ggpp'
+\end{verbatim}
+
+\begin{verbatim}
+The following object is masked from 'package:ggh4x':
+
+    stat_centroid
+\end{verbatim}
+
+\begin{verbatim}
+The following object is masked from 'package:ggplot2':
+
+    annotate
+\end{verbatim}
+
+\begin{verbatim}
+Registered S3 method overwritten by 'ggpmisc':
+  method                  from   
+  as.character.polynomial polynom
+\end{verbatim}
+
+\begin{verbatim}
 ST_daily ST_E_daily ST_E_daily_seas ST_extreme_daily
 \end{verbatim}
 
@@ -600,13 +630,18 @@ Call `lifecycle::last_lifecycle_warnings()` to see where this warning was genera
 
 \begin{center}\includegraphics[width=1\linewidth]{GHI_enh_04_investigate_files/figure-latex/energy-8} \end{center}
 
-Arima: 354.314467 +/- 35.576408
+lmY: 8.781482 +/- 0.831715
+
+{[}1{]} -17410.99
+{[}1{]} 8.781482
+(Intercept) dataset\$year
+-17410.988738 8.781482
+
+\begin{verbatim}
+`geom_smooth()` using formula = 'y ~ x'
+\end{verbatim}
 
 \begin{center}\includegraphics[width=1\linewidth]{GHI_enh_04_investigate_files/figure-latex/P_energy-1} \end{center}
-
-Arima: 127.193673 +/- 11.405953
-
-\begin{center}\includegraphics[width=1\linewidth]{GHI_enh_04_investigate_files/figure-latex/P_energy-2} \end{center}
 
 \begin{center}\includegraphics[width=1\linewidth]{GHI_enh_04_investigate_files/figure-latex/rel_energy-1} \end{center}
 
@@ -614,10 +649,32 @@ Arima: 127.193673 +/- 11.405953
 
 \begin{center}\includegraphics[width=1\linewidth]{GHI_enh_04_investigate_files/figure-latex/rel_energy-3} \end{center}
 
+\newpage
+\FloatBarrier
+
+\hypertarget{monthly-energy-contribution-of-enhancements}{%
+\subsubsection{Monthly Energy contribution of enhancements}\label{monthly-energy-contribution-of-enhancements}}
+
+\begin{center}\includegraphics[width=1\linewidth]{GHI_enh_04_investigate_files/figure-latex/energy_monthly-1} \end{center}
+
+\begin{center}\includegraphics[width=1\linewidth]{GHI_enh_04_investigate_files/figure-latex/energy_monthly-2} \end{center}
+
+\begin{center}\includegraphics[width=1\linewidth]{GHI_enh_04_investigate_files/figure-latex/energy_monthly-3} \end{center}
+
+\begin{center}\includegraphics[width=1\linewidth]{GHI_enh_04_investigate_files/figure-latex/energy_monthly-4} \end{center}
+
+\begin{center}\includegraphics[width=1\linewidth]{GHI_enh_04_investigate_files/figure-latex/energy_monthly-5} \end{center}
+
+\begin{center}\includegraphics[width=1\linewidth]{GHI_enh_04_investigate_files/figure-latex/energy_monthly-6} \end{center}
+
+@Martins2022
+
+\begin{center}\includegraphics[width=1\linewidth]{GHI_enh_04_investigate_files/figure-latex/energy_monthly-7} \end{center}
+
 \textbf{END}
 
 \begin{verbatim}
-2024-03-15 10:49:24.4 athan@tyler GHI_enh_04_investigate.R 1.189463 mins
+2024-03-15 17:07:40.1 athan@tyler GHI_enh_04_investigate.R 1.283610 mins
 \end{verbatim}
 
 \end{document}

@@ -77,7 +77,8 @@ library(ggpointdensity, quietly = TRUE, warn.conflicts = FALSE)
 library(patchwork     , quietly = TRUE, warn.conflicts = FALSE)
 library(ggh4x         , quietly = TRUE, warn.conflicts = FALSE)
 library(grid          , quietly = TRUE, warn.conflicts = FALSE)
-library(latex2exp    , quietly = TRUE, warn.conflicts = FALSE)
+library(latex2exp     , quietly = TRUE, warn.conflicts = FALSE)
+library(ggpmisc       , quietly = TRUE, warn.conflicts = FALSE)
 
 
 panderOptions("table.alignment.default", "right")
@@ -797,24 +798,25 @@ plot(ST_yearly[, GLB_diff.sumPOS/wattGLB.sumPOS, year],
 ## P_energy ---------------------------------------------------------------
 #+ P_energy, echo=F, include=T, results="asis"
 
-pvar    <- "GLB_diff.sumPOS"
-dataset <- copy(ST_E_yearly)
+pvar    <- "GLB_diff.sum"
+dataset <- ST_E_yearly
+dataset[, year := year(year)]
 
-## auto regression arima Tourpali
-## create a time variable (with lag of 1 day ?)
-tmodelo <- arima(x = dataset[[pvar]], order = c(1,0,0), xreg = dataset$year, method = "ML")
+## linear model by year step
+lmY <- lm(dataset[[avar]] ~ dataset$year)
+d2  <- summary(lmY)$coefficients
+cat("lmY:     ", round(lmY$coefficients[2], 6) , "+/-", round(d2[2,2], 6) ,"\n\n")
 
-## trend per year with auto correlation
-Tres <- data.frame(t(lmtest::coeftest(tmodelo)[3,]))
-Tint <- data.frame(t(lmtest::coeftest(tmodelo)[2,]))
-names(Tres) <- paste0("Tmod_", names(Tres))
-cat("Arima:   ", paste(round(Tres[1], 6), "+/-", round(Tres[2], 6)), "\n\n")
+d2[1,1]
+d2[2,1]
+
+d2[,"Estimate"]
 
 grob <- grobTree(
   textGrob(
     label = TeX(
-      paste("Trend: $", round(Tres[1], 1),
-            "\\pm",     round(Tres[2], 1),
+      paste("Trend: $", round(lmY$coefficients[2], 1),
+            "\\pm",     round(d2[2,2], 1),
             "\\,kJ/m^2/year$")),
     x = 0.5,  y = 0.05, hjust = 0.5,
     gp = gpar(col = "black", fontsize = 13, fontface= "bold")
@@ -823,9 +825,11 @@ grob <- grobTree(
 dataset |>
   ggplot(aes(x = year,
              y = get(pvar))) +
+  geom_smooth(method = 'lm', se = F) +
   geom_point(color = varcol(pvar),
              size  = 2) +
-  geom_abline(intercept = unlist(Tint[1]), slope = unlist(Tres[1])) +
+  #geom_abline(intercept = d2[1,1], slope = d2[2,1]) +
+  geom_abline() +
   ylab(bquote("CE" ~ .(varname(pvar)) ~ .(staname(pvar)) ~ group("[", MJ/m^2,"]"))) +
   xlab("Date") +
   annotation_custom(grob) +
@@ -843,49 +847,49 @@ dataset |>
 
 
 
-
-pvar    <- "GLB_diff.N_pos"
-dataset <- copy(ST_E_yearly)
-
-## auto regression arima Tourpali
-## create a time variable (with lag of 1 day ?)
-tmodelo <- arima(x = dataset[[pvar]], order = c(1,0,0), xreg = dataset$year, method = "ML")
-
-## trend per year with auto correlation
-Tres <- data.frame(t(lmtest::coeftest(tmodelo)[3,]))
-Tint <- data.frame(t(lmtest::coeftest(tmodelo)[2,]))
-names(Tres) <- paste0("Tmod_", names(Tres))
-cat("Arima:   ", paste(round(Tres[1], 6), "+/-", round(Tres[2], 6)), "\n\n")
-
-grob <- grobTree(
-  textGrob(
-    label = TeX(
-      paste("Trend: $", round(Tres[1], 1),
-            "\\pm",     round(Tres[2], 1),
-            "\\,/year$")),
-    x = 0.5,  y = 0.05, hjust = 0.5,
-    gp = gpar(col = "black", fontsize = 13, fontface= "bold")
-  ))
-
-dataset |>
-  ggplot(aes(x = year,
-             y = get(pvar))) +
-  geom_point(color = varcol(pvar),
-             size  = 2) +
-  geom_abline(intercept = unlist(Tint[1]), slope = unlist(Tres[1])) +
-  ylab(bquote("CE" ~ .(varname(pvar)) ~ .(staname(pvar)) ~ group("[", MJ/m^2,"]"))) +
-  xlab("Date") +
-  annotation_custom(grob) +
-  scale_y_continuous(guide        = "axis_minor",
-                     minor_breaks = seq(0, 500, by = 25)) +
-  scale_x_continuous(guide        = "axis_minor",
-                     breaks = c(
-                       min(floor(dataset[,year])),
-                       pretty(dataset[,year], n = 4),
-                       max(ceiling(dataset[,year]))),
-                     minor_breaks = seq(1990, 2050, by = 1) )
-
-
+#
+# pvar    <- "GLB_diff.N_pos"
+# dataset <- copy(ST_E_yearly)
+#
+# ## auto regression arima Tourpali
+# ## create a time variable (with lag of 1 day ?)
+# tmodelo <- arima(x = dataset[[pvar]], order = c(1,0,0), xreg = dataset$year, method = "ML")
+#
+# ## trend per year with auto correlation
+# Tres <- data.frame(t(lmtest::coeftest(tmodelo)[3,]))
+# Tint <- data.frame(t(lmtest::coeftest(tmodelo)[2,]))
+# names(Tres) <- paste0("Tmod_", names(Tres))
+# cat("Arima:   ", paste(round(Tres[1], 6), "+/-", round(Tres[2], 6)), "\n\n")
+#
+# grob <- grobTree(
+#   textGrob(
+#     label = TeX(
+#       paste("Trend: $", round(Tres[1], 1),
+#             "\\pm",     round(Tres[2], 1),
+#             "\\,/year$")),
+#     x = 0.5,  y = 0.05, hjust = 0.5,
+#     gp = gpar(col = "black", fontsize = 13, fontface= "bold")
+#   ))
+#
+# dataset |>
+#   ggplot(aes(x = year,
+#              y = get(pvar))) +
+#   geom_point(color = varcol(pvar),
+#              size  = 2) +
+#   geom_abline(intercept = unlist(Tint[1]), slope = unlist(Tres[1])) +
+#   ylab(bquote("CE" ~ .(varname(pvar)) ~ .(staname(pvar)) ~ group("[", MJ/m^2,"]"))) +
+#   xlab("Date") +
+#   annotation_custom(grob) +
+#   scale_y_continuous(guide        = "axis_minor",
+#                      minor_breaks = seq(0, 500, by = 25)) +
+#   scale_x_continuous(guide        = "axis_minor",
+#                      breaks = c(
+#                        min(floor(dataset[,year])),
+#                        pretty(dataset[,year], n = 4),
+#                        max(ceiling(dataset[,year]))),
+#                      minor_breaks = seq(1990, 2050, by = 1) )
+#
+#
 
 
 
