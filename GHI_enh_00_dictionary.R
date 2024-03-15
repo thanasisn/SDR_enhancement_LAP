@@ -73,13 +73,13 @@ varname <- function(avar) {
 ## Stats name
 staname <- function(avar) {
   switch(gsub(".*\\.", "", avar),
-         sum    = "totals",
+         sum    = "energy",
          min    = "minimum",
          max    = "maximun",
          median = "median",
          mean   = "mean",
-         sumPOS = "total of positives",
-         sumNEG = "total of negatives",
+         sumPOS = "energy",
+         sumNEG = "energy",
          N_pos  = "number of positive cases",
          N_neg  = "number of negative cases",
          N      = "number of cases",
