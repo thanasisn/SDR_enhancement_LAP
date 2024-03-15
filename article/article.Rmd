@@ -439,8 +439,18 @@ Figures\ \ref{fig:CEmeanDaily}
 knitr::include_graphics("../images/energy-3.png")
 ```
 
+```{r echo=FALSE, fig.cap="Treds of the mean over irradiance per CE"}
+knitr::include_graphics("../images/P_energy-3.pdf")
+```
+
+
+
 ```{r echo=FALSE, fig.cap="Trend of number of CE cases"}
 knitr::include_graphics("../images/energy-2.png")
+```
+
+```{r echo=FALSE, fig.cap="Trend of number of CE cases"}
+knitr::include_graphics("../images/P_energy-2.pdf")
 ```
 
 
@@ -448,6 +458,9 @@ knitr::include_graphics("../images/energy-2.png")
 knitr::include_graphics("../images/energy-1.png")
 ```
 
+```{r echo=FALSE, fig.cap="Trend of the yearly excess energy due to CE over irradiance"}
+knitr::include_graphics("../images/P_energy-1.png")
+```
 
 
 
