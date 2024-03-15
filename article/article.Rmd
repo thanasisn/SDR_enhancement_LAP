@@ -413,9 +413,13 @@ Figures\ \ref{fig:CEmeanDaily}
 
 ## Trend
 
-```{r CEmeanDaily, echo=FALSE, fig.cap="Trend of the daily excess energy due to CE"}
-knitr::include_graphics("../images/daily-12.png")
+```{r CEmeanDaily, echo=FALSE, fig.cap="Daily mean trend of CE over irradiance."}
+knitr::include_graphics("../images/P_daily_trend-1.png")
 ```
+
+# ```{r CEmeanDaily2, echo=FALSE, fig.cap="Trend of the daily excess energy due to CE"}
+# knitr::include_graphics("../images/daily-12.png")
+# ```
 
 
 ```{r echo=FALSE, fig.cap="Treds of the mean over irradiance per CE"}
