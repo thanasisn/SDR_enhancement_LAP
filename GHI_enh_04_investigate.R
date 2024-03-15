@@ -718,7 +718,6 @@ title("Climatology of CE cases per weak")
 }
 
 
-stop()
 
 {
   plot(ST_E_yearly[, GLB_diff.N, year],
@@ -726,7 +725,7 @@ stop()
        ylab = "Number of enhancements")
   title("Number of CE each year")
 
-  lmD <- lm( ST_yearly[, year, GLB_diff.N_pos])
+  lmD <- lm( ST_E_yearly[, year, GLB_diff.N])
   abline(lmD)
 
   ## display trend on graph
@@ -740,10 +739,10 @@ stop()
 
 
 {
-  plot(ST_yearly[, GLB_diff.sumPOS/GLB_diff.N_pos, year],
-       col = varcol("GLB_diff.sumPOS"),
+  plot(ST_E_yearly[, GLB_diff.sum/GLB_diff.N, year],
+       col = varcol("GLB_diff.sum"),
        ylab = "W/m^2")
-  lmD <- lm( ST_yearly[, year, GLB_diff.sumPOS/GLB_diff.N_pos])
+  lmD <- lm( ST_E_yearly[, year, GLB_diff.sum/GLB_diff.N])
   abline(lmD)
 
   title("Mean Energy of over irradiance per CE")
