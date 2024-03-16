@@ -810,15 +810,15 @@ dataset <- copy(ST_E_yearly)
 dataset <- dataset[year > 1993]
 
 ## linear model by year step
-lmY <- lm(dataset[[pvar]] ~ dataset$year)
-d2  <- summary(lmY)$coefficients
-cat("lmY:     ", round(lmY$coefficients[2], 6) , "+/-", round(d2[2,2], 6) ,"\n\n")
+lmY1 <- lm(dataset[[pvar]] ~ dataset$year)
+d2  <- summary(lmY1)$coefficients
+cat("lmY:     ", round(lmY1$coefficients[2], 6) , "+/-", round(d2[2,2], 6) ,"\n\n")
 ## correlation test by day step
 corY <- cor.test(x = dataset[[pvar]], y = as.numeric(dataset$year), method = 'pearson')
 # capture lm for table
 yeartrends <- rbind(yeartrends,
                     data.frame(
-                      linear_fit_stats(lmY, confidence_interval = 0.99),
+                      linear_fit_stats(lmY1, confidence_interval = 0.99),
                       cor_test_stats(corY),
                       DATA       = "ST_E_yearly",
                       var        = pvar,
@@ -829,7 +829,7 @@ yeartrends <- rbind(yeartrends,
 grob <- grobTree(
   textGrob(
     label = TeX(
-      paste("Trend:  $", round(lmY$coefficients[2], 1),
+      paste("Trend:  $", round(lmY1$coefficients[2], 1),
             "\\pm",     round(d2[2,2], 1),
             "\\,kJ/m^2/year$")),
     x = 0.95,  y = 0.05, hjust = 1,
@@ -842,7 +842,7 @@ p1 <- ggplot(dataset,
   geom_point(color = varcol(pvar),
              shape = 15,
              size  = 3) +
-  geom_abline(intercept = lmY$coefficients[1], slope = lmY$coefficients[2]) +
+  geom_abline(intercept = lmY1$coefficients[1], slope = lmY1$coefficients[2]) +
   ylab(bquote("CE" ~ .(varname(pvar)) ~ .(staname(pvar)) ~ group("[", MJ/m^2,"]"))) +
   xlab("Date") +
   annotation_custom(grob) +
@@ -865,15 +865,15 @@ dataset <- copy(ST_E_yearly)
 dataset <- dataset[year > 1993]
 
 ## linear model by year step
-lmY <- lm(dataset[[pvar]] ~ dataset$year)
-d2  <- summary(lmY)$coefficients
-cat("lmY:     ", round(lmY$coefficients[2], 6) , "+/-", round(d2[2,2], 6) ,"\n\n")
+lmY2 <- lm(dataset[[pvar]] ~ dataset$year)
+d2   <- summary(lmY2)$coefficients
+cat("lmY:     ", round(lmY2$coefficients[2], 6) , "+/-", round(d2[2,2], 6) ,"\n\n")
 ## correlation test by day step
 corY <- cor.test(x = dataset[[pvar]], y = as.numeric(dataset$year), method = 'pearson')
 # capture lm for table
 yeartrends <- rbind(yeartrends,
                     data.frame(
-                      linear_fit_stats(lmY, confidence_interval = 0.99),
+                      linear_fit_stats(lmY2, confidence_interval = 0.99),
                       cor_test_stats(corY),
                       DATA       = "ST_E_yearly",
                       var        = pvar,
@@ -884,20 +884,20 @@ yeartrends <- rbind(yeartrends,
 grob <- grobTree(
   textGrob(
     label = TeX(
-      paste("Trend:  $", round(lmY$coefficients[2], 1),
+      paste("Trend:  $", round(lmY2$coefficients[2], 1),
             "\\pm",     round(d2[2,2], 1),
             "\\,/year$")),
     x = 0.95,  y = 0.05, hjust = 1,
     gp = gpar(col = "black", fontsize = 13, fontface= "bold")
   ))
 
-p2 <- dataset |>
-  ggplot(aes(x = year,
-             y = get(pvar))) +
+p2 <- ggplot(dataset,
+             aes(x = year,
+                 y = get(pvar))) +
   geom_point(color = varcol(pvar),
              shape = 17,
              size  = 3) +
-  geom_abline(intercept = lmY$coefficients[1], slope = lmY$coefficients[2]) +
+  geom_abline(intercept = lmY2$coefficients[1], slope = lmY2$coefficients[2]) +
   ylab(bquote("CE" ~ .(varname(pvar)) ~ .(staname(pvar)))) +
   xlab("Date") +
   annotation_custom(grob) +
@@ -919,15 +919,15 @@ pvar    <- "GLB_diff.mean"
 dataset <- copy(ST_E_yearly)
 
 ## linear model by year step
-lmY <- lm(dataset[[pvar]] ~ dataset$year)
-d2  <- summary(lmY)$coefficients
-cat("lmY:     ", round(lmY$coefficients[2], 6) , "+/-", round(d2[2,2], 6) ,"\n\n")
+lmY3 <- lm(dataset[[pvar]] ~ dataset$year)
+d2  <- summary(lmY3)$coefficients
+cat("lmY:     ", round(lmY3$coefficients[2], 6) , "+/-", round(d2[2,2], 6) ,"\n\n")
 ## correlation test by day step
 corY <- cor.test(x = dataset[[pvar]], y = as.numeric(dataset$year), method = 'pearson')
 # capture lm for table
 yeartrends <- rbind(yeartrends,
                     data.frame(
-                      linear_fit_stats(lmY, confidence_interval = 0.99),
+                      linear_fit_stats(lmY3, confidence_interval = 0.99),
                       cor_test_stats(corY),
                       DATA       = "ST_E_yearly",
                       var        = pvar,
@@ -938,22 +938,22 @@ yeartrends <- rbind(yeartrends,
 grob <- grobTree(
   textGrob(
     label = TeX(
-      paste("Trend:  $", round(lmY$coefficients[2], 1),
+      paste("Trend:  $", round(lmY3$coefficients[2], 1),
             "\\pm",     round(d2[2,2], 1),
             "\\,W/m^2/year$")),
     x = 0.95,  y = 0.05, hjust = 1,
     gp = gpar(col = "black", fontsize = 13, fontface= "bold")
   ))
 
-p3 <- dataset |>
-  ggplot(aes(x = year,
-             y = get(pvar))) +
+p3 <- ggplot(dataset,
+             aes(x = year,
+                 y = get(pvar))) +
   # geom_errorbar(aes(ymin = get(pvar) - GLB_diff.SD,
   #                   ymax = get(pvar) + GLB_diff.SD)) +
   geom_point(color = varcol(pvar),
              shape = 16,
              size  = 3) +
-  geom_abline(intercept = lmY$coefficients[1], slope = lmY$coefficients[2]) +
+  geom_abline(intercept = lmY3$coefficients[1], slope = lmY3$coefficients[2]) +
   ylab(bquote("CE" ~ .(varname(pvar)) ~ .(staname(pvar)) ~ group("[", W/m^2,"]"))) +
   xlab("Date") +
   annotation_custom(grob) +
@@ -968,7 +968,7 @@ p3 <- dataset |>
                      minor_breaks = seq(1990, 2050, by = 1) )
 
 
-
+## FIXME breaks abline
 ## align plots
 aligned <- align_plots(p1, p2, p3, align = "v")
 
