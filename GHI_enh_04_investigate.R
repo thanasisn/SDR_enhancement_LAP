@@ -889,7 +889,7 @@ grob <- grobTree(
     gp = gpar(col = "black", fontsize = 13, fontface= "bold")
   ))
 
-dataset |>
+p <- dataset |>
   ggplot(aes(x = year,
              y = get(pvar))) +
   geom_point(color = varcol(pvar),
@@ -908,8 +908,9 @@ dataset |>
                        pretty(dataset[,year], n = 4),
                        max(ceiling(dataset[,year]))),
                      minor_breaks = seq(1990, 2050, by = 1) )
+p
 
-
+theme_get(p)
 
 
 
