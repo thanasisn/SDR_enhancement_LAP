@@ -79,6 +79,8 @@ library(ggh4x         , quietly = TRUE, warn.conflicts = FALSE)
 library(grid          , quietly = TRUE, warn.conflicts = FALSE)
 library(latex2exp     , quietly = TRUE, warn.conflicts = FALSE)
 library(ggpmisc       , quietly = TRUE, warn.conflicts = FALSE)
+library(cowplot       , quietly = TRUE, warn.conflicts = FALSE)
+
 
 
 panderOptions("table.alignment.default", "right")
@@ -834,9 +836,9 @@ grob <- grobTree(
     gp = gpar(col = "black", fontsize = 13, fontface= "bold")
   ))
 
-dataset |>
-  ggplot(aes(x = year,
-             y = get(pvar))) +
+p1 <- ggplot(dataset,
+             aes(x = year,
+                 y = get(pvar))) +
   geom_point(color = varcol(pvar),
              shape = 15,
              size  = 3) +
@@ -889,7 +891,7 @@ grob <- grobTree(
     gp = gpar(col = "black", fontsize = 13, fontface= "bold")
   ))
 
-p <- dataset |>
+p2 <- dataset |>
   ggplot(aes(x = year,
              y = get(pvar))) +
   geom_point(color = varcol(pvar),
@@ -908,9 +910,6 @@ p <- dataset |>
                        pretty(dataset[,year], n = 4),
                        max(ceiling(dataset[,year]))),
                      minor_breaks = seq(1990, 2050, by = 1) )
-p
-
-theme_get(p)
 
 
 
@@ -946,7 +945,7 @@ grob <- grobTree(
     gp = gpar(col = "black", fontsize = 13, fontface= "bold")
   ))
 
-dataset |>
+p3 <- dataset |>
   ggplot(aes(x = year,
              y = get(pvar))) +
   # geom_errorbar(aes(ymin = get(pvar) - GLB_diff.SD,
@@ -969,6 +968,17 @@ dataset |>
                      minor_breaks = seq(1990, 2050, by = 1) )
 
 
+
+## align plots
+aligned <- align_plots(p1, p2, p3, align = "v")
+
+## plot one by one
+ggdraw(aligned[[1]])
+ggdraw(aligned[[2]])
+ggdraw(aligned[[3]])
+
+## plot together
+plot_grid(p1, p2, p3, labels = c('A', 'B', "(C)"), ncol = 1, align = "v")
 
 
 write.csv(yeartrends, "./figures/Daily_trends_byYear_Proper.csv")
