@@ -80,7 +80,7 @@ library(grid          , quietly = TRUE, warn.conflicts = FALSE)
 library(latex2exp     , quietly = TRUE, warn.conflicts = FALSE)
 library(ggpmisc       , quietly = TRUE, warn.conflicts = FALSE)
 library(cowplot       , quietly = TRUE, warn.conflicts = FALSE)
-
+library(ggpubr        , quietly = TRUE, warn.conflicts = FALSE)
 
 
 panderOptions("table.alignment.default", "right")
@@ -856,7 +856,7 @@ p1 <- ggplot(dataset,
                        pretty(dataset[,year], n = 4),
                        max(ceiling(dataset[,year]))),
                      minor_breaks = seq(1990, 2050, by = 1) )
-
+p1
 
 
 pvar    <- "GLB_diff.N"
@@ -910,7 +910,7 @@ p2 <- ggplot(dataset,
                        pretty(dataset[,year], n = 4),
                        max(ceiling(dataset[,year]))),
                      minor_breaks = seq(1990, 2050, by = 1) )
-
+p2
 
 
 pvar    <- "GLB_diff.mean"
@@ -967,8 +967,76 @@ p3 <- ggplot(dataset,
                        max(ceiling(dataset[,year]))),
                      minor_breaks = seq(1990, 2050, by = 1) )
 
+p3
 
-## FIXME breaks abline
+
+
+
+
+pvar    <- "GLB_diff.median"
+dataset <- copy(ST_E_yearly)
+
+## linear model by year step
+lmY4 <- lm(dataset[[pvar]] ~ dataset$year)
+d2  <- summary(lmY4)$coefficients
+cat("lmY:     ", round(lmY4$coefficients[2], 6) , "+/-", round(d2[2,2], 6) ,"\n\n")
+## correlation test by day step
+corY <- cor.test(x = dataset[[pvar]], y = as.numeric(dataset$year), method = 'pearson')
+# capture lm for table
+yeartrends <- rbind(yeartrends,
+                    data.frame(
+                      linear_fit_stats(lmY4, confidence_interval = 0.99),
+                      cor_test_stats(corY),
+                      DATA       = "ST_E_yearly",
+                      var        = pvar,
+                      N          = sum(!is.na(dataset[[pvar]]))
+                    )
+)
+
+grob <- grobTree(
+  textGrob(
+    label = TeX(
+      paste("Trend:  $", round(lmY4$coefficients[2], 1),
+            "\\pm",     round(d2[2,2], 1),
+            "\\,W/m^2/year$")),
+    x = 0.95,  y = 0.05, hjust = 1,
+    gp = gpar(col = "black", fontsize = 13, fontface= "bold")
+  ))
+
+p4 <- ggplot(dataset,
+             aes(x = year,
+                 y = get(pvar))) +
+  # geom_errorbar(aes(ymin = get(pvar) - GLB_diff.SD,
+  #                   ymax = get(pvar) + GLB_diff.SD)) +
+  geom_point(color = varcol(pvar),
+             shape = 16,
+             size  = 3) +
+  geom_abline(intercept = lmY4$coefficients[1], slope = lmY4$coefficients[2]) +
+  ylab(bquote("CE" ~ .(varname(pvar)) ~ .(staname(pvar)) ~ group("[", W/m^2,"]"))) +
+  xlab("Date") +
+  annotation_custom(grob) +
+  scale_y_continuous(guide        = "axis_minor",
+                     minor_breaks = seq(0, 500, by = 25)) +
+  scale_x_continuous(guide        = "axis_minor",
+                     limits = c(1993, NA),
+                     breaks = c(
+                       1993,
+                       pretty(dataset[,year], n = 4),
+                       max(ceiling(dataset[,year]))),
+                     minor_breaks = seq(1990, 2050, by = 1) )
+
+p4
+
+
+
+
+ggarrange(p1, p2, p3,
+          labels = c("A", "B", "C"),
+          ncol = 1, nrow = 3)
+
+stop()
+
+## FIXME cowplot breaks abline
 ## align plots
 aligned <- align_plots(p1, p2, p3, align = "v")
 
@@ -982,7 +1050,7 @@ plot_grid(p1, p2, p3, labels = c('A', 'B', "(C)"), ncol = 1, align = "v")
 
 
 write.csv(yeartrends, "./figures/Daily_trends_byYear_Proper.csv")
-
+stop()
 
 
 
