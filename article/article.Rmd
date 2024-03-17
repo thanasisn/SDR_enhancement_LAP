@@ -239,7 +239,7 @@ with a radiation transfer model.
 We decided to use the Libradtran [@Emde2016] radiation transfer model, to modeled
 the clear sky equivalent of GHI, with monthly climatological data of AOD and water
 column from the Aerosol Robotic Network (AERONET) [@Giles2019; @Buis1998].  Our site
-participates in AERONET, where we operate a Cimel photometer, colocated to
+participates in AERONET, where we operate a Cimel photometer, collocated to
 the CM-21 pyranometer, since 2003
 
 For the production of .....
@@ -435,12 +435,12 @@ Figures\ \ref{fig:CEmeanDaily}
 <!-- ``` -->
 
 
-```{r echo=FALSE, fig.cap="Treds of the mean over irradiance per CE"}
-knitr::include_graphics("../images/energy-3.png")
-```
+<!-- ```{r echo=FALSE, fig.cap="Treds of the mean over irradiance per CE"} -->
+<!-- knitr::include_graphics("../images/energy-3.png") -->
+<!-- ``` -->
 
 ```{r echo=FALSE, fig.cap="Treds of the mean over irradiance per CE"}
-knitr::include_graphics("../images/P_energy-3.pdf")
+knitr::include_graphics("../images/P_energy-7.png")
 ```
 
 
