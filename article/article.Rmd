@@ -444,23 +444,28 @@ knitr::include_graphics("../images/P_energy-7.png")
 ```
 
 
+<!-- ```{r echo=FALSE, fig.cap="Trend of number of CE cases"} -->
+<!-- knitr::include_graphics("../images/energy-2.png") -->
+<!-- ``` -->
 
 ```{r echo=FALSE, fig.cap="Trend of number of CE cases"}
-knitr::include_graphics("../images/energy-2.png")
-```
-
-```{r echo=FALSE, fig.cap="Trend of number of CE cases"}
-knitr::include_graphics("../images/P_energy-2.pdf")
+knitr::include_graphics("../images/P_energy-6.png")
 ```
 
 
-```{r echo=FALSE, fig.cap="Trend of the yearly excess energy due to CE over irradiance"}
-knitr::include_graphics("../images/energy-1.png")
-```
+<!-- ```{r echo=FALSE, fig.cap="Trend of the yearly excess energy due to CE over irradiance"} -->
+<!-- knitr::include_graphics("../images/energy-1.png") -->
+<!-- ``` -->
 
 ```{r echo=FALSE, fig.cap="Trend of the yearly excess energy due to CE over irradiance"}
-knitr::include_graphics("../images/P_energy-1.png")
+knitr::include_graphics("../images/P_energy-5.png")
 ```
+
+
+```{r echo=FALSE, fig.cap="Trend of the yearly median over irradiance due to CE over irradiance"}
+knitr::include_graphics("../images/P_energy-8.png")
+```
+
 
 
 
