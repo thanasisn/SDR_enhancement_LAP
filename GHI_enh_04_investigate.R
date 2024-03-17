@@ -812,7 +812,7 @@ dataset <- dataset[year > 1993]
 
 ## linear model by year step
 lmY1 <- lm(dataset[[pvar1]] ~ dataset$year)
-d2  <- summary(lmY1)$coefficients
+d2   <- summary(lmY1)$coefficients
 cat("lmY:     ", round(lmY1$coefficients[2], 6) , "+/-", round(d2[2,2], 6) ,"\n\n")
 ## correlation test by day step
 corY <- cor.test(x = dataset[[pvar1]], y = as.numeric(dataset$year), method = 'pearson')
