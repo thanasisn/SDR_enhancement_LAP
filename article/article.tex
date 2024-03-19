@@ -445,7 +445,7 @@ clear sky threshold, on
 \hypertarget{trends}{%
 \subsection{Trends}\label{trends}}
 
-We computed the daily trend of the mean over irradiance of CE (Figure\\
+We computed the daily trend of the mean over irradiance of CE (Figure~
 \ref{fig:CEmeanDaily}), using a first-order autoregressive model with lag of 1 day,
 using the `maximum likelihood' fitting method (Gardner, Harvey, and Phillips 1980; Jones 1980) by
 implementing the function `arima' from the library `stats' of the R programming
@@ -466,13 +466,11 @@ on the mean over irradiance.
 Although, the previous result is closer to the raw data, we preferred to present the
 annual statistics, that give a more clear picture about the long term CE trends.
 Hence, we calculated the annual values from the one minute measurements.
-
-By computing the mean daily over irradiance for all the CE case, we were able to dirive a trend on the mean CE intensity of \ldots..
-
-Figures~\ref{fig:CEmeanDaily}
-
-\hypertarget{trend}{%
-\subsection{Trend}\label{trend}}
+The annual mean over irradiance is
+\(0.23\pm 0.11\,W/m^2\)
+(Figure~\ref{fig:P-energy-mean}),
+but this value is not very useful due the high
+variability of this metric.
 
 \begin{figure}[h!]
 
@@ -480,8 +478,14 @@ Figures~\ref{fig:CEmeanDaily}
 
 }
 
-\caption{Treds of the mean over irradiance per CE}\label{fig:unnamed-chunk-1}
+\caption{Trends of the mean over irradiance per CE.}\label{fig:P-energy-mean}
 \end{figure}
+
+A better indicator of changes on the characteristic of CE would be the number of CE
+occurrences and the total energy of the CE over irradiance. The annual number of CE
+occurrences, shows a steady increase of
+\(122.2\pm 22.8\,/y\)
+(Figure~\ref{fig:P-energy-N}).
 
 \begin{figure}[h!]
 
@@ -489,8 +493,12 @@ Figures~\ref{fig:CEmeanDaily}
 
 }
 
-\caption{Trend of number of CE cases}\label{fig:unnamed-chunk-2}
+\caption{Trend of yearly CE number of occurancies.}\label{fig:P-energy-N}
 \end{figure}
+
+Subsequently, the annual energy observed during CE events shows a annual increase of
+\(341.6\pm 73.1\,kJ/y\)
+(Figure~\ref{fig:P-energy-sum}).
 
 \begin{figure}[h!]
 
@@ -498,7 +506,7 @@ Figures~\ref{fig:CEmeanDaily}
 
 }
 
-\caption{Trend of the yearly excess energy due to CE over irradiance}\label{fig:unnamed-chunk-3}
+\caption{Trend of the yearly excess energy due to CE over irradiance}\label{fig:P-energy-sum}
 \end{figure}
 
 \begin{figure}[h!]
@@ -507,7 +515,7 @@ Figures~\ref{fig:CEmeanDaily}
 
 }
 
-\caption{Trend of the yearly median over irradiance due to CE over irradiance}\label{fig:unnamed-chunk-4}
+\caption{Trend of the yearly median over irradiance due to CE over irradiance}\label{fig:P-energy-median}
 \end{figure}
 
 \FloatBarrier
@@ -521,7 +529,7 @@ Figures~\ref{fig:CEmeanDaily}
 
 }
 
-\caption{Distribution of the number of CE cases}\label{fig:unnamed-chunk-5}
+\caption{Distribution of the number of CE cases}\label{fig:unnamed-chunk-1}
 \end{figure}
 
 \begin{figure}[h!]
@@ -530,7 +538,7 @@ Figures~\ref{fig:CEmeanDaily}
 
 }
 
-\caption{Distribution of CE above reference}\label{fig:unnamed-chunk-6}
+\caption{Distribution of CE above reference}\label{fig:unnamed-chunk-2}
 \end{figure}
 
 \FloatBarrier
@@ -544,7 +552,7 @@ Figures~\ref{fig:CEmeanDaily}
 
 }
 
-\caption{Distribution of CE groups}\label{fig:unnamed-chunk-7}
+\caption{Distribution of CE groups}\label{fig:unnamed-chunk-3}
 \end{figure}
 
 \begin{figure}[h!]
@@ -553,7 +561,7 @@ Figures~\ref{fig:CEmeanDaily}
 
 }
 
-\caption{Relation of mean over irradiance and CE group duration}\label{fig:unnamed-chunk-8}
+\caption{Relation of mean over irradiance and CE group duration}\label{fig:unnamed-chunk-4}
 \end{figure}
 
 \begin{figure}[h!]
@@ -562,7 +570,7 @@ Figures~\ref{fig:CEmeanDaily}
 
 }
 
-\caption{Relation of maximun over irradiance and CE group duration}\label{fig:unnamed-chunk-9}
+\caption{Relation of maximun over irradiance and CE group duration}\label{fig:unnamed-chunk-5}
 \end{figure}
 
 \FloatBarrier
@@ -576,7 +584,7 @@ Figures~\ref{fig:CEmeanDaily}
 
 }
 
-\caption{Distribution of the number of ECE cases}\label{fig:unnamed-chunk-10}
+\caption{Distribution of the number of ECE cases}\label{fig:unnamed-chunk-6}
 \end{figure}
 
 \begin{figure}[h!]
@@ -585,7 +593,7 @@ Figures~\ref{fig:CEmeanDaily}
 
 }
 
-\caption{Distribution of ECE above 'clear sky' reference}\label{fig:unnamed-chunk-11}
+\caption{Distribution of ECE above 'clear sky' reference}\label{fig:unnamed-chunk-7}
 \end{figure}
 
 \begin{figure}[h!]
@@ -594,7 +602,7 @@ Figures~\ref{fig:CEmeanDaily}
 
 }
 
-\caption{Distribution of ECE Irradiance above 'TSI'}\label{fig:unnamed-chunk-12}
+\caption{Distribution of ECE Irradiance above 'TSI'}\label{fig:unnamed-chunk-8}
 \end{figure}
 
 \begin{itemize}
@@ -624,7 +632,7 @@ Figures~\ref{fig:CEmeanDaily}
 
 }
 
-\caption{Distribution of }\label{fig:unnamed-chunk-13}
+\caption{Distribution of }\label{fig:unnamed-chunk-9}
 \end{figure}
 
 \begin{figure}[h!]
@@ -633,7 +641,7 @@ Figures~\ref{fig:CEmeanDaily}
 
 }
 
-\caption{Distribution of }\label{fig:unnamed-chunk-14}
+\caption{Distribution of }\label{fig:unnamed-chunk-10}
 \end{figure}
 
 \FloatBarrier

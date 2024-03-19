@@ -403,17 +403,21 @@ clear sky threshold, on
 dailytrends <- data.table(
   read.csv("~/MANUSCRIPTS/02_enhancement/figures/Daily_trends_byYear.csv"))
 dailyCE <- dailytrends[DATA == "ST_E_daily"]
+yearlytrends <- data.table(
+  read.csv("~/MANUSCRIPTS/02_enhancement/figures/Daily_trends_byYear_Proper.csv"))
+yearlyCE <- yearlytrends[DATA == "ST_E_yearly"]
+
 
 ```
 
-We computed the daily trend of the mean over irradiance of CE (Figure\
+We computed the daily trend of the mean over irradiance of CE (Figure\ 
 \ref{fig:CEmeanDaily}), using a first-order autoregressive model with lag of 1 day,
 using the 'maximum likelihood' fitting method [@Gardner1980; @Jones1980] by
 implementing the function 'arima' from the library 'stats' of the R programming
 language [@RCT2023]. The trends were reported together with the $2\sigma$ error.
 We observe an increase of
-$`r round(dailyCE[var == "GLB_diff.mean", Tmod_Estimate],3)`\pm
-`r round(2 * dailyCE[var == "GLB_diff.mean", Tmod_Std..Error],3)`\,W/m^2$
+$`r round(dailyCE[var == "GLB_diff.mean", Tmod_Estimate], 3)`\pm
+`r round(2 * dailyCE[var == "GLB_diff.mean", Tmod_Std..Error], 3)`\,W/m^2$
 on the mean over irradiance.
 
 ```{r CEmeanDaily, echo=FALSE, fig.cap="Daily mean values and trend of the CE over irradiance."}
@@ -423,51 +427,54 @@ knitr::include_graphics("../images/P_daily_trend-1.png")
 Although, the previous result is closer to the raw data, we preferred to present the
 annual statistics, that give a more clear picture about the long term CE trends.
 Hence, we calculated the annual values from the one minute measurements.
-
-
-
-
-
-By computing the mean daily over irradiance for all the CE case, we were able to dirive a trend on the mean CE intensity of .....
-
-
-Figures\ \ref{fig:CEmeanDaily}
-
-## Trend
+The annual mean over irradiance is
+$`r round(yearlyCE[var == "GLB_diff.mean", slope], 2)`\pm
+`r round(2 * yearlyCE[var == "GLB_diff.mean", slope.sd], 2)`\,W/m^2$
+(Figure\ \ref{fig:P-energy-mean}),
+but this value is not very useful due the high
+variability of this metric.
 
 <!-- ```{r CEmeanDaily2, echo=FALSE, fig.cap="Trend of the daily excess energy due to CE"} -->
 <!-- knitr::include_graphics("../images/daily-12.png") -->
 <!-- ``` -->
 
-
 <!-- ```{r echo=FALSE, fig.cap="Treds of the mean over irradiance per CE"} -->
 <!-- knitr::include_graphics("../images/energy-3.png") -->
 <!-- ``` -->
 
-```{r echo=FALSE, fig.cap="Treds of the mean over irradiance per CE"}
+```{r P-energy-mean, echo=FALSE, fig.cap="Trends of the mean over irradiance per CE."}
 knitr::include_graphics("../images/P_energy-7.png")
 ```
 
+A better indicator of changes on the characteristic of CE would be the number of CE
+occurrences and the total energy of the CE over irradiance. The annual number of CE
+occurrences, shows a steady increase of
+$`r round(yearlyCE[var == "GLB_diff.N", slope], 1)`\pm
+`r round(2 * yearlyCE[var == "GLB_diff.N", slope.sd], 1)`\,/y$
+(Figure\ \ref{fig:P-energy-N}).
 
 <!-- ```{r echo=FALSE, fig.cap="Trend of number of CE cases"} -->
 <!-- knitr::include_graphics("../images/energy-2.png") -->
 <!-- ``` -->
 
-```{r echo=FALSE, fig.cap="Trend of number of CE cases"}
+```{r P-energy-N, echo=FALSE, fig.cap="Trend of yearly CE number of occurancies."}
 knitr::include_graphics("../images/P_energy-6.png")
 ```
-
+Subsequently, the annual energy observed during CE events shows a annual increase of
+$`r round(yearlyCE[var == "GLB_diff.sum", slope], 1)`\pm
+`r round(2 * yearlyCE[var == "GLB_diff.sum", slope.sd], 1)`\,kJ/y$
+(Figure\ \ref{fig:P-energy-sum}).
 
 <!-- ```{r echo=FALSE, fig.cap="Trend of the yearly excess energy due to CE over irradiance"} -->
 <!-- knitr::include_graphics("../images/energy-1.png") -->
 <!-- ``` -->
 
-```{r echo=FALSE, fig.cap="Trend of the yearly excess energy due to CE over irradiance"}
+```{r P-energy-sum, echo=FALSE, fig.cap="Trend of the yearly excess energy due to CE over irradiance"}
 knitr::include_graphics("../images/P_energy-5.png")
 ```
 
 
-```{r echo=FALSE, fig.cap="Trend of the yearly median over irradiance due to CE over irradiance"}
+```{r P-energy-median, echo=FALSE, fig.cap="Trend of the yearly median over irradiance due to CE over irradiance"}
 knitr::include_graphics("../images/P_energy-8.png")
 ```
 
