@@ -297,7 +297,7 @@ In this study, we evaluated the effects of the clouds on th
   CSid tool
 \end{itemize}
 
-The recording of the signal is the one minute average.
+The recording of the signal is the one-minute average.
 Thus we will refer to this time scale as a cloud enhancement event (CE).
 
 \hypertarget{clear-sky-irradiance}{%
@@ -335,7 +335,7 @@ we adjusted the model's input spectrum integral to the one of the the TSI provid
 NOAA. Finally, we adjusted for the effect of the Sun - Earth distance, and
 calculated the clear sky irradiance value at the horizontal plane by using the cosine
 of the corresponding interpolated SZA. For each period of the year, we used the
-appropriate atmospheric profile (afglms or afglmw). Thus, the modelled GHI\_modeld we
+appropriate atmospheric profile (afglms or afglmw). Thus, the modeled GHI\_modeled we
 can directly compare each measured one minute value of GHI, with the expected clear
 sky radiation.
 
@@ -351,9 +351,14 @@ sky radiation.
 
 Of course, have to choose which atmospheric conditions qualify as a good clear sky analogous radiation.
 
-After some evaluation of the modelled radiation in different atmospheric conditions, in relation to the GHI data, we choose as representative of the clear sky radiation, the case with \(t_{\text{cs}} = t_{500\text{nm}} - 1\sigma\) and \(w_{h\text{cs}} = w_h - 1\sigma\).
+After some evaluation of the modeled radiation in different atmospheric conditions,
+in relation to the GHI data, we choose as representative of the clear sky radiation,
+the case with
+\(t_{\text{cs}} = t_{500\text{nm}} - 1\sigma\) and \(w_{h\text{cs}} = w_h - 1\sigma\).
 
-Which is an expected result as these values represent an typical atmosphere in Thessaloniki with low load of aerosols and humidity, which are the main factor that attenuate the GHI, excluding clouds.
+Which is an expected result as these values represent an typical atmosphere in
+Thessaloniki with low load of aerosols and humidity, which are the main factor that
+attenuate the GHI, excluding clouds.
 
 \hypertarget{thresholds-investigation}{%
 \subsection{Thresholds investigation}\label{thresholds-investigation}}
@@ -498,7 +503,8 @@ occurrences, shows a steady increase of
 
 Subsequently, the annual energy observed during CE events shows a annual increase of
 \(341.6\pm 73.1\,kJ/y\)
-(Figure~\ref{fig:P-energy-sum}).
+(Figure~\ref{fig:P-energy-sum}), witch follows the trend of the number of
+occurrences.
 
 \begin{figure}[h!]
 
@@ -523,13 +529,21 @@ Subsequently, the annual energy observed during CE events shows a annual increas
 \hypertarget{climatology}{%
 \subsection{Climatology}\label{climatology}}
 
+Another interesting aspect of the CE cases, is the seasonal cycle. In Figure~
+\ref{fig:relative-month-occurancies}, we have the box plot (whisker plot), where the
+values have been normalized by the highest median value, that occurs in May.
+Although the number of occurrences has a wide spread throughout the study period,
+the most active period of CE occurrences is during May and June. During the Winter
+(December -- February) the CE cases are about 25\% of the maximum. The rest of the
+months the occurrences seems to ramp between the maximum and minimum.
+
 \begin{figure}[h!]
 
-{\centering \includegraphics[width=0.7\linewidth]{../images/climCEmonth-1} 
+{\centering \includegraphics[width=0.7\linewidth]{../images/clim_CE_month_norm_MAX_median_N-2} 
 
 }
 
-\caption{Distribution of the number of CE cases}\label{fig:unnamed-chunk-1}
+\caption{Statistics of the number of CE occurancies for each month. The box represents the values of the low 25\% percentile to 75\% percentile, where the thick horizontal line inside is the mean, the verical lines extend to the macimum and minimum vales, the dots are outlier values, and the rhombus is the mean.}\label{fig:relative-month-occurancies}
 \end{figure}
 
 \begin{figure}[h!]
@@ -628,20 +642,11 @@ Subsequently, the annual energy observed during CE events shows a annual increas
 
 \begin{figure}[h!]
 
-{\centering \includegraphics[width=0.7\linewidth]{../images/clim_CE_month_norm_MAX_median_N-2} 
-
-}
-
-\caption{Distribution of }\label{fig:unnamed-chunk-9}
-\end{figure}
-
-\begin{figure}[h!]
-
 {\centering \includegraphics[width=0.7\linewidth]{../images/clim_ECE_month_norm_MAX_median_N-2} 
 
 }
 
-\caption{Distribution of }\label{fig:unnamed-chunk-10}
+\caption{Distribution of }\label{fig:unnamed-chunk-9}
 \end{figure}
 
 \FloatBarrier

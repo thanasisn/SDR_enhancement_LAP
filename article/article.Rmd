@@ -412,7 +412,6 @@ yearlytrends <- data.table(
   read.csv("~/MANUSCRIPTS/02_enhancement/figures/Daily_trends_byYear_Proper.csv"))
 yearlyCE <- yearlytrends[DATA == "ST_E_yearly"]
 
-
 ```
 
 We computed the daily trend of the mean over irradiance of CE (Figure\ 
@@ -498,14 +497,9 @@ the most active period of CE occurrences is during May and June. During the Wint
 (December -- February) the CE cases are about 25% of the maximum. The rest of the
 months the occurrences seems to ramp between the maximum and minimum.
 
-
-
 ```{r relative-month-occurancies, echo=FALSE, fig.cap="Statistics of the number of CE occurancies for each month. The box represents the values of the low 25% percentile to 75% percentile, where the thick horizontal line inside is the mean, the verical lines extend to the macimum and minimum vales, the dots are outlier values, and the rhombus is the mean."}
 knitr::include_graphics("../images/clim_CE_month_norm_MAX_median_N-2.png")
 ```
-
-mean rhombus
-
 <!--
 ```{r echo=FALSE, fig.cap="Distribution of the number of CE cases"}
 knitr::include_graphics("../images/climCEmonth-1.png")
@@ -555,6 +549,8 @@ knitr::include_graphics("../images/groups-8.png")
 
 ## Extreme CE above TSI
 
+<!-- Change color -->
+
 ```{r echo=FALSE, fig.cap="Distribution of the number of ECE cases"}
 knitr::include_graphics("../images/climECEmonth-1.png")
 ```
@@ -581,20 +577,6 @@ knitr::include_graphics("../images/extremedistributions-4.png")
 ## New plots for discussion
 
 
-<!-- ```{r echo=FALSE, fig.cap="Distribution of the number of CE cases per week"} -->
-<!-- knitr::include_graphics("../images/climCE_week-1.png") -->
-<!-- ``` -->
-
-<!-- ```{r echo=FALSE, fig.cap="Distribution of the number of CE cases per doy"} -->
-<!-- knitr::include_graphics("../images/climCE_daily-1.png") -->
-<!-- ``` -->
-
-<!-- ```{r echo=FALSE, fig.cap="Distribution of the number of CE cases per doy"} -->
-<!-- knitr::include_graphics("../images/clim_CE_N_doy-1.png") -->
-<!-- ``` -->
-
-
-
 ```{r echo=FALSE, fig.cap="Distribution of "}
 knitr::include_graphics("../images/clim_ECE_month_norm_MAX_median_N-2.png")
 ```
@@ -602,15 +584,12 @@ knitr::include_graphics("../images/clim_ECE_month_norm_MAX_median_N-2.png")
 
 
 <!-- ### Yearly plots relative to all GHI data. -->
-
 <!-- ```{r echo=FALSE, fig.cap=""} -->
 <!-- knitr::include_graphics("../images/rel_energy-1.png") -->
 <!-- ``` -->
-
 <!-- ```{r echo=FALSE, fig.cap=""} -->
 <!-- knitr::include_graphics("../images/rel_energy-2.png") -->
 <!-- ``` -->
-
 <!-- ```{r echo=FALSE, fig.cap=""} -->
 <!-- knitr::include_graphics("../images/rel_energy-3.png") -->
 <!-- ``` -->
