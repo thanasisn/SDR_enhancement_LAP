@@ -342,7 +342,7 @@ grob <- grobTree(
   textGrob(
     label = TeX(
       paste("Trend: $", round(Tres[1], 2),
-            "\\pm",     round(Tres[2], 2),
+            "\\pm",     round(2 * Tres[2], 2),   ## showing 2 sigma!
             "\\,W/m^2/day$")),
     x = 0.5,  y = 0.95, hjust = 0.5,
     gp = gpar(col = "black", fontsize = 13, fontface= "bold")
@@ -831,7 +831,7 @@ grob <- grobTree(
   textGrob(
     label = TeX(
       paste("Trend:  $", round(lmY1$coefficients[2], 1),
-            "\\pm",     round(d2[2,2], 1),
+            "\\pm",      round(2 * d2[2,2], 1),       ## show 2 sigma
             "\\,kJ/m^2/year$")),
     x = 0.95,  y = 0.05, hjust = 1,
     gp = gpar(col = "black", fontsize = 13, fontface = "bold")
@@ -886,7 +886,7 @@ grob <- grobTree(
   textGrob(
     label = TeX(
       paste("Trend:  $", round(lmY2$coefficients[2], 1),
-            "\\pm",     round(d2[2,2], 1),
+            "\\pm",      round(2 * d2[2,2], 1),          ## show 2 sigma
             "\\,/year$")),
     x = 0.95,  y = 0.05, hjust = 1,
     gp = gpar(col = "black", fontsize = 13, fontface= "bold")
@@ -939,7 +939,7 @@ grob <- grobTree(
   textGrob(
     label = TeX(
       paste("Trend:  $", round(lmY3$coefficients[2], 1),
-            "\\pm",     round(d2[2,2], 1),
+            "\\pm",      round(2 * d2[2,2], 1),          ## show 2 sigma
             "\\,W/m^2/year$")),
     x = 0.95,  y = 0.05, hjust = 1,
     gp = gpar(col = "black", fontsize = 13, fontface= "bold")
@@ -994,7 +994,7 @@ grob <- grobTree(
   textGrob(
     label = TeX(
       paste("Trend:  $", round(lmY4$coefficients[2], 1),
-            "\\pm",     round(d2[2,2], 1),
+            "\\pm",      round(2 * d2[2,2], 1),          ## show 2 sigma
             "\\,W/m^2/year$")),
     x = 0.95,  y = 0.05, hjust = 1,
     gp = gpar(col = "black", fontsize = 13, fontface= "bold")

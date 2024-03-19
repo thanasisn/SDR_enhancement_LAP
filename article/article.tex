@@ -126,7 +126,7 @@
 \makeatother
 \subtitle{A Short Subtitle}
 \author{Athanasios N. Natsis\footnote{Laboratory of Atmospheric Physics \emph{\href{mailto:natsisphysicist@gmail.com}{\nolinkurl{natsisphysicist@gmail.com}}}} \and Alkiviadis Bais\footnote{Laboratory of Atmospheric Physics \emph{\href{mailto:abais@auth.gr}{\nolinkurl{abais@auth.gr}}}} \and Charikleia Meleti\footnote{Laboratory of Atmospheric Physics \emph{\href{mailto:meleti@auth.gr}{\nolinkurl{meleti@auth.gr}}}}}
-\date{2024-03-17}
+\date{2024-03-19}
 
 \begin{document}
 \maketitle
@@ -445,9 +445,14 @@ clear sky threshold, on
 \hypertarget{trends}{%
 \subsection{Trends}\label{trends}}
 
-We have computed the daily trend of the mean over irradiance of CE (Figure~\ref{fig:CEmeanDaily}), using
-
-\ldots. cite arima lag \ldots.
+We computed the daily trend of the mean over irradiance of CE (Figure\\
+\ref{fig:CEmeanDaily}), using a first-order autoregressive model with lag of 1 day,
+using the `maximum likelihood' fitting method (Gardner, Harvey, and Phillips 1980; Jones 1980) by
+implementing the function `arima' from the library `stats' of the R programming
+language (R Core Team 2023). The trends were reported together with the \(2\sigma\) error.
+We observe an increase of
+\(0.216\pm 0.083\,W/m^2\)
+on the mean over irradiance.
 
 \begin{figure}[h!]
 
@@ -458,9 +463,9 @@ We have computed the daily trend of the mean over irradiance of CE (Figure~\ref{
 \caption{Daily mean values and trend of the CE over irradiance.}\label{fig:CEmeanDaily}
 \end{figure}
 
-We observe an increase of
-\(0.216\pm 0.041\,W/m^2\)
-on the mean over irradiance.
+Although, the previous result is closer to the raw data, we preferred to present the
+annual statistics, that give a more clear picture about the long term CE trends.
+Hence, we calculated the annual values from the one minute measurements.
 
 By computing the mean daily over irradiance for all the CE case, we were able to dirive a trend on the mean CE intensity of \ldots..
 
@@ -669,8 +674,14 @@ Coddington, Odele, Judith L. Lean, Doug Lindholm, Peter Pilewskie, Martin Snow, 
 \leavevmode\vadjust pre{\hypertarget{ref-Emde2016}{}}%
 Emde, Claudia, Robert Buras-Schnell, Arve Kylling, Bernhard Mayer, Josef Gasteiger, Ulrich Hamann, Jonas Kylling, et al. 2016. {``The {libRadtran} Software Package for Radiative Transfer Calculations (Version 2.0.1).''} \emph{Geoscientific Model Development} 9 (5): 1647--72. \url{https://doi.org/10.5194/gmd-9-1647-2016}.
 
+\leavevmode\vadjust pre{\hypertarget{ref-Gardner1980}{}}%
+Gardner, G., A. C. Harvey, and G. D. A. Phillips. 1980. {``Algorithm {AS} 154: An Algorithm for Exact Maximum Likelihood Estimation of Autoregressive-Moving Average Models by Means of Kalman Filtering.''} \emph{Applied Statistics} 29 (3): 311. \url{https://doi.org/10.2307/2346910}.
+
 \leavevmode\vadjust pre{\hypertarget{ref-Giles2019}{}}%
 Giles, David M., Alexander Sinyuk, Mikhail G. Sorokin, Joel S. Schafer, Alexander Smirnov, Ilya Slutsker, Thomas F. Eck, et al. 2019. {``Advancements in the Aerosol Robotic Network ({AERONET}) Version 3 Database -- Automated Near-Real-Time Quality Control Algorithm with Improved Cloud Screening for Sun Photometer Aerosol Optical Depth ({AOD}) Measurements.''} \emph{Atmospheric Measurement Techniques} 12 (1): 169--209. \url{https://doi.org/10.5194/amt-12-169-2019}.
+
+\leavevmode\vadjust pre{\hypertarget{ref-Jones1980}{}}%
+Jones, Richard H. 1980. {``Maximum Likelihood Fitting of {ARMA} Models to Time Series with Missing Observations.''} \emph{Technometrics} 22 (3): 389--95. \url{https://doi.org/10.1080/00401706.1980.10486171}.
 
 \leavevmode\vadjust pre{\hypertarget{ref-Kurucz1994}{}}%
 Kurucz, Robert L. 1994. {``Synthetic Infrared Spectra.''} In \emph{Infrared Solar Physics}, edited by D. M. Rabin, J. T. Jefferies, and C. Lindsey, 523--31. Dordrecht: Springer Netherlands.
@@ -683,6 +694,9 @@ Long, Charles N., and Y. Shi. 2006. {``The QCRad Value Added Product: Surface Ra
 
 \leavevmode\vadjust pre{\hypertarget{ref-Natsis2023}{}}%
 Natsis, Athanasios, Alkiviadis Bais, and Charikleia Meleti. 2023. {``Trends from 30-Year Observations of Downward Solar Irradiance in Thessaloniki, Greece.''} \emph{Applied Sciences} 14 (1): 252. \url{https://doi.org/10.3390/app14010252}.
+
+\leavevmode\vadjust pre{\hypertarget{ref-RCT2023}{}}%
+R Core Team. 2023. \emph{R: A Language and Environment for Statistical Computing}. Vienna, Austria: R Foundation for Statistical Computing. \url{https://www.R-project.org/}.
 
 \end{CSLReferences}
 
