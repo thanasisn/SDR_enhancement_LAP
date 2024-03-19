@@ -327,11 +327,12 @@ hist(DATA[get(unique(CEC)) == TRUE & year(Date) == ayear, GLB_rati],
 
 
 
-######################
+## P-relative-distribution-diff replot for paper  -------
 
-
+#+ P-relative-distribution-diff, echo=F, include=T, results="asis"
 binwidth <- 20
-split <- 23.5
+split    <- 170
+split    <- binwidth/2 + (split %/% binwidth) * binwidth
 
 p1 <- ggplot(data = DATA[GLB_diff > 0], aes(x = GLB_diff)) +
   geom_histogram(aes(y = (after_stat(count))/sum(after_stat(count)) * 100),
@@ -339,7 +340,7 @@ p1 <- ggplot(data = DATA[GLB_diff > 0], aes(x = GLB_diff)) +
                  fill = varcol( "GLB_diff"),
                  boundary = 0,
                  color    = "black") +
-  xlab("[min]") +
+  xlab(bquote(group("[", W/m^2,"]"))) +
   ylab("[%]") +
   coord_cartesian(xlim = c(split, max(DATA$GLB_diff)),
                   ylim = c(0, .8)) +
@@ -357,12 +358,12 @@ ggplot(data = DATA[GLB_diff > 0], aes(x = GLB_diff)) +
                  boundary = 0,
                  fill = varcol( "GLB_diff"),
                  color    = "black") +
-  # xlab(bquote(.(varname("GLB_diff")) ~ group("[", W/m^2,"]"))) +
   xlab(bquote("Over Irradiance" ~ group("[", W/m^2,"]"))) +
   ylab("Relative frequency [%]") +
-  labs(caption = paste("Bin width:", binwidth, "W/m^2")) # +
-  inset_element(p1, left = 0.3, bottom = 0.3, right = 1, top = 1,
+  labs(caption = paste("Bin width:", binwidth, "W/m^2"))  +
+  inset_element(p1, left = 0.4, bottom = 0.4, right = 1, top = 1,
                 align_to = "plot")
+
 
 
 

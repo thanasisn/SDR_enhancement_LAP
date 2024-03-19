@@ -179,7 +179,7 @@ global horizontal irradiance (GHI) at ground level, exceeds the expected value u
 clear-sky conditions.
 Similar, we define the extreme cloud enhancement events (ECE), the cases when GHI,
 exceeds the Total Solar Irradiance on horizontal plane at ground level.
-Although the duration of these bursts varies form instantaneous to several minutes,
+Although the duration of these bursts varies from instantaneous to several minutes,
 here we are constrained by the recorded data, to one-minute steps.
 
 Identify CE cases
@@ -267,9 +267,9 @@ Although it is impossible to detect all false data, the large number of availabl
 data, and the aggregation scheme we used, ensures the quality of the radiation
 measurements used in this study.
 
-To preserve an unbiased representation of the data we applied a constrain similar
+To preserve an unbiased representation of the data we applied a constraint similar
 the one used by Castillejo-Cuberos and Escobar (2020). Where, for each valid hour of day, there
-must exist at list 45 minutes of valid measurements, including night time near
+must exist at list 45 minutes of valid measurements, including nighttime near
 sunrise and sunset. Days with less than 5 valid hours are rejected completely.
 Furthermore, due to the significant measurement uncertainty when the Sun is near the
 horizon, and to some systematic obstructions by nearby buildings, we have excluded
@@ -298,7 +298,7 @@ In this study, we evaluated the effects of the clouds on th
 \end{itemize}
 
 The recording of the signal is the one-minute average.
-Thus we will refer to this time scale as a cloud enhancement event (CE).
+Thus, we will refer to this timescale as a cloud enhancement event (CE).
 
 \hypertarget{clear-sky-irradiance}{%
 \subsection{Clear Sky Irradiance}\label{clear-sky-irradiance}}
@@ -310,7 +310,7 @@ of the solar radiation in the atmosphere, we can not recreate a minute by minute
 representation of the reference radiation. Thus, we used some climatological data
 with a radiation transfer model.
 
-We decided to use the Libradtran (Emde et al. 2016) radiation transfer model, to modeled
+We decided to use the Libradtran (Emde et al. 2016) radiation transfer model, to model
 the clear sky equivalent of GHI, with monthly climatological data of AOD and water
 column from the Aerosol Robotic Network (AERONET) (Giles et al. 2019; Buis et al. 1998). Our site
 participates in AERONET, where we operate a Cimel photometer, collocated to
@@ -331,7 +331,7 @@ Thus, we were able to emulate different atmospheric condition and level of
 atmospheric clearness for the climatological conditions of the site.
 
 Furthermore, to account for the Sun's variability in our one-minute GHI measurements,
-we adjusted the model's input spectrum integral to the one of the the TSI provided by
+we adjusted the model's input spectrum integral to the one of the TSI provided by
 NOAA. Finally, we adjusted for the effect of the Sun - Earth distance, and
 calculated the clear sky irradiance value at the horizontal plane by using the cosine
 of the corresponding interpolated SZA. For each period of the year, we used the
@@ -356,7 +356,7 @@ in relation to the GHI data, we choose as representative of the clear sky radiat
 the case with
 \(t_{\text{cs}} = t_{500\text{nm}} - 1\sigma\) and \(w_{h\text{cs}} = w_h - 1\sigma\).
 
-Which is an expected result as these values represent an typical atmosphere in
+Which is an expected result as these values represent a typical atmosphere in
 Thessaloniki with low load of aerosols and humidity, which are the main factor that
 attenuate the GHI, excluding clouds.
 
@@ -382,7 +382,7 @@ efficiency of the identification threshold. These sets were random groups of abo
 (h) random days and
 (i) some manual selected days that were included during the manual inspection.
 
-Where it was needed, for some of edge cases, we also used images from a sky-cam,
+Where it was needed, for some of the edge cases, we also used images from a sky-cam,
 along with the manual inspection.
 
 Reasoning for the final selection\ldots\ldots\ldots..
@@ -407,7 +407,7 @@ Criteria for cloud enhancement identification are set according the Equation \re
 \end{equation}
 where: \(\theta\) solar zenith angle.
 
-A secondary criteria was used for extreme cloud enhancement cases (ECE) identification, relative to the TSI at horizontal plane (Equation \ref{eq:ECE})
+A secondary criterion was used for extreme cloud enhancement cases (ECE) identification, relative to the TSI at horizontal plane (Equation \ref{eq:ECE})
 
 \begin{equation}
 \text{GHI} > \cos(\theta) \times \text{TSI}_\text{TOA}
@@ -548,11 +548,11 @@ months the occurrences seems to ramp between the maximum and minimum.
 
 \begin{figure}[h!]
 
-{\centering \includegraphics[width=0.7\linewidth]{../images/relative_distributions-4} 
+{\centering \includegraphics[width=0.7\linewidth]{../images/P-relative-distribution-diff-1} 
 
 }
 
-\caption{Distribution of CE above reference}\label{fig:unnamed-chunk-2}
+\caption{Distribution of CE over irradiance}\label{fig:unnamed-chunk-3}
 \end{figure}
 
 \FloatBarrier
@@ -566,7 +566,7 @@ months the occurrences seems to ramp between the maximum and minimum.
 
 }
 
-\caption{Distribution of CE groups}\label{fig:unnamed-chunk-3}
+\caption{Distribution of CE groups}\label{fig:unnamed-chunk-4}
 \end{figure}
 
 \begin{figure}[h!]
@@ -575,7 +575,7 @@ months the occurrences seems to ramp between the maximum and minimum.
 
 }
 
-\caption{Relation of mean over irradiance and CE group duration}\label{fig:unnamed-chunk-4}
+\caption{Relation of mean over irradiance and CE group duration}\label{fig:unnamed-chunk-5}
 \end{figure}
 
 \begin{figure}[h!]
@@ -584,7 +584,7 @@ months the occurrences seems to ramp between the maximum and minimum.
 
 }
 
-\caption{Relation of maximun over irradiance and CE group duration}\label{fig:unnamed-chunk-5}
+\caption{Relation of maximun over irradiance and CE group duration}\label{fig:unnamed-chunk-6}
 \end{figure}
 
 \FloatBarrier
@@ -598,7 +598,7 @@ months the occurrences seems to ramp between the maximum and minimum.
 
 }
 
-\caption{Distribution of the number of ECE cases}\label{fig:unnamed-chunk-6}
+\caption{Distribution of the number of ECE cases}\label{fig:unnamed-chunk-7}
 \end{figure}
 
 \begin{figure}[h!]
@@ -607,7 +607,7 @@ months the occurrences seems to ramp between the maximum and minimum.
 
 }
 
-\caption{Distribution of ECE above 'clear sky' reference}\label{fig:unnamed-chunk-7}
+\caption{Distribution of ECE above 'clear sky' reference}\label{fig:unnamed-chunk-8}
 \end{figure}
 
 \begin{figure}[h!]
@@ -616,7 +616,7 @@ months the occurrences seems to ramp between the maximum and minimum.
 
 }
 
-\caption{Distribution of ECE Irradiance above 'TSI'}\label{fig:unnamed-chunk-8}
+\caption{Distribution of ECE Irradiance above 'TSI'}\label{fig:unnamed-chunk-9}
 \end{figure}
 
 \begin{itemize}
@@ -646,7 +646,7 @@ months the occurrences seems to ramp between the maximum and minimum.
 
 }
 
-\caption{Distribution of }\label{fig:unnamed-chunk-9}
+\caption{Distribution of }\label{fig:unnamed-chunk-10}
 \end{figure}
 
 \FloatBarrier
