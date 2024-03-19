@@ -822,7 +822,7 @@ yeartrends <- rbind(yeartrends,
                       linear_fit_stats(lmY1, confidence_interval = 0.99),
                       cor_test_stats(corY),
                       DATA       = "ST_E_yearly",
-                      var        = pvar,
+                      var        = pvar1,
                       N          = sum(!is.na(dataset[[pvar1]]))
                     )
 )
@@ -878,7 +878,7 @@ yeartrends <- rbind(yeartrends,
                       cor_test_stats(corY),
                       DATA       = "ST_E_yearly",
                       var        = pvar2,
-                      N          = sum(!is.na(dataset[[pvar]]))
+                      N          = sum(!is.na(dataset[[pvar2]]))
                     )
 )
 
