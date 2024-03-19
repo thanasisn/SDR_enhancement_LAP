@@ -510,11 +510,15 @@ knitr::include_graphics("../images/climCEmonth-1.png")
 <!-- ```{r echo=FALSE, fig.cap="Distribution of CE above reference"} -->
 <!-- knitr::include_graphics("../images/relative_distributions-2.png") -->
 <!-- ``` -->
-
+<!--
 ```{r echo=FALSE, fig.cap="Distribution of CE above reference"}
 knitr::include_graphics("../images/relative_distributions-4.png")
 ```
+-->
 
+```{r echo=FALSE, fig.cap="Distribution of CE over irradiance"}
+knitr::include_graphics("../images/P-relative-distribution-diff-1.png")
+```
 
 <!-- todo stop long tails on hist -->
 <!-- hist retative frequency label -->
@@ -533,6 +537,7 @@ knitr::include_graphics("../images/relative_distributions-4.png")
 ```{r echo=FALSE, fig.cap="Distribution of CE groups"}
 knitr::include_graphics("../images/groups-1.png")
 ```
+
 
 
 ```{r echo=FALSE, fig.cap="Relation of mean over irradiance and CE group duration"}
