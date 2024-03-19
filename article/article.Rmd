@@ -430,7 +430,7 @@ knitr::include_graphics("../images/P_daily_trend-1.png")
 
 Although, the previous result is closer to the raw data, we preferred to present the
 annual statistics, that give a more clear picture about the long term CE trends.
-Hence, we calculated the annual values from the one minute measurements.
+Hence, we calculated the annual values from the one-minute measurements.
 The annual mean over irradiance is
 $`r round(yearlyCE[var == "GLB_diff.mean", slope], 2)`\pm
 `r round(2 * yearlyCE[var == "GLB_diff.mean", slope.sd], 2)`\,W/m^2$
