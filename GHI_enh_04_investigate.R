@@ -831,7 +831,7 @@ grob <- grobTree(
   textGrob(
     label = TeX(
       paste("Trend:  $", round(lmY1$coefficients[2], 1),
-            "\\pm",      round(2 * d2[2,2], 1),       ## show 2 sigma
+            "\\pm",      round(2 * d2[2,2],          1),       ## show 2 sigma
             "\\,kJ/m^2/year$")),
     x = 0.95,  y = 0.05, hjust = 1,
     gp = gpar(col = "black", fontsize = 13, fontface = "bold")
@@ -886,7 +886,7 @@ grob <- grobTree(
   textGrob(
     label = TeX(
       paste("Trend:  $", round(lmY2$coefficients[2], 1),
-            "\\pm",      round(2 * d2[2,2], 1),          ## show 2 sigma
+            "\\pm",      round(2 * d2[2,2],          1),   ## show 2 sigma
             "\\,/year$")),
     x = 0.95,  y = 0.05, hjust = 1,
     gp = gpar(col = "black", fontsize = 13, fontface= "bold")
@@ -920,7 +920,7 @@ dataset <- copy(ST_E_yearly)
 
 ## linear model by year step
 lmY3 <- lm(dataset[[pvar3]] ~ dataset$year)
-d2  <- summary(lmY3)$coefficients
+d2   <- summary(lmY3)$coefficients
 cat("lmY:     ", round(lmY3$coefficients[2], 6) , "+/-", round(d2[2,2], 6) ,"\n\n")
 ## correlation test by day step
 corY <- cor.test(x = dataset[[pvar3]], y = as.numeric(dataset$year), method = 'pearson')
@@ -939,7 +939,7 @@ grob <- grobTree(
   textGrob(
     label = TeX(
       paste("Trend:  $", round(lmY3$coefficients[2], 1),
-            "\\pm",      round(2 * d2[2,2], 1),          ## show 2 sigma
+            "\\pm",      round(2 * d2[2,2],          2),      ## show 2 sigma
             "\\,W/m^2/year$")),
     x = 0.95,  y = 0.05, hjust = 1,
     gp = gpar(col = "black", fontsize = 13, fontface= "bold")
@@ -975,7 +975,7 @@ dataset <- copy(ST_E_yearly)
 
 ## linear model by year step
 lmY4 <- lm(dataset[[pvar4]] ~ dataset$year)
-d2  <- summary(lmY4)$coefficients
+d2   <- summary(lmY4)$coefficients
 cat("lmY:     ", round(lmY4$coefficients[2], 6) , "+/-", round(d2[2,2], 6) ,"\n\n")
 ## correlation test by day step
 corY <- cor.test(x = dataset[[pvar4]], y = as.numeric(dataset$year), method = 'pearson')
@@ -997,13 +997,13 @@ grob <- grobTree(
             "\\pm",      round(2 * d2[2,2], 1),          ## show 2 sigma
             "\\,W/m^2/year$")),
     x = 0.95,  y = 0.05, hjust = 1,
-    gp = gpar(col = "black", fontsize = 13, fontface= "bold")
+    gp = gpar(col = "black", fontsize = 13, fontface = "bold")
   ))
 
 p4 <- ggplot(dataset,
              aes(x = year,
                  y = get(pvar4))) +
-  # geom_errorbar(aes(ymin = get(pvar4) - GLB_diff.SD,
+  # geom_errorbar(aes(ymin = get(pvar4) - GLB_diff.SD,     ## error bars too big
   #                   ymax = get(pvar4) + GLB_diff.SD)) +
   geom_point(color = varcol(pvar4),
              shape = 16,
@@ -1037,10 +1037,7 @@ ggdraw(aligned[[4]])
 
 #+ energy_multi, echo=F, include=T, out.heigth="100%"
 plot_grid(p1, p2, p3, labels = c('A', 'B', "(C)"), ncol = 1, align = "v")
-
 #+ echo=F, include=T
-
-
 
 write.csv(yeartrends, "./figures/Daily_trends_byYear_Proper.csv")
 
