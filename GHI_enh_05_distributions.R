@@ -71,6 +71,7 @@ if (!interactive()) {
 library(data.table, quietly = TRUE, warn.conflicts = FALSE)
 library(pander    , quietly = TRUE, warn.conflicts = FALSE)
 library(ggplot2   , quietly = TRUE, warn.conflicts = FALSE)
+library(patchwork , quietly = TRUE, warn.conflicts = FALSE)
 
 panderOptions("table.alignment.default", "right")
 panderOptions("table.split.table",        120   )
@@ -268,31 +269,31 @@ ggplot(data = DATA[GLB_diff > 0,], aes(x = GLB_diff)) +
 hist(DATA[wattGLB > ETH, GLB_ench],
      breaks = breaks,
      freq   = FALSE,
-     col    = varcol("GLB_ench"),
+     col    = "blue",
      xlab   = varname("GLB_ench"),
      main   = paste("Extreme cases of", varname("GLB_ench")))
 
 hist(DATA[wattGLB > ETH, GLB_diff],
      breaks = breaks,
-     col  = varcol("GLB_diff"),
-     xlab = bquote(.(varname("GLB_diff")) ~ group("[", W/m^2,"]")),
-     main = paste("Extreme cases of", varname("GLB_diff")) )
+     col    = "blue",
+     xlab   = bquote(.(varname("GLB_diff")) ~ group("[", W/m^2,"]")),
+     main   = paste("Extreme cases of", varname("GLB_diff")) )
 
 
 hist(DATA[wattGLB > ETH, GLB_rati],
      breaks = breaks,
-     col  = varcol("GLB_rati"),
-     xlab = varname("GLB_rati"),
-     main = paste("Extreme cases of", varname("GLB_rati")))
+     col    = "blue",
+     xlab   = varname("GLB_rati"),
+     main   = paste("Extreme cases of", varname("GLB_rati")))
 
 
 
 
 hist(DATA[wattGLB > ETH, wattGLB - ETH],
      breaks = breaks,
-     col  = varcol("GLB_diff"),
-     xlab = bquote(.(varname("GLB_diff")) ~ group("[", W/m^2,"]")),
-     main = paste("Extreme cases of CE above TSI") )
+     col    = "blue",
+     xlab   = bquote(.(varname("GLB_diff")) ~ group("[", W/m^2,"]")),
+     main   = paste("Extreme cases of CE above TSI") )
 
 
 
@@ -303,7 +304,7 @@ table(DATA$CEC, useNA = "ifany")
 
 
 
-## test for one year
+## test distribution for one year
 ayear <- 2020
 
 hist(DATA[get(unique(CEC)) == TRUE & year(Date) == ayear, GLB_ench],
@@ -326,15 +327,42 @@ hist(DATA[get(unique(CEC)) == TRUE & year(Date) == ayear, GLB_rati],
 
 
 
+######################
 
-##  Energy calculations  -------------------------------------------------------
 
-#'
-#' \FloatBarrier
-#'
-#' ### Energy calculations
-#'
-#+ energy, echo=F, include=T, results="asis"
+binwidth <- 20
+split <- 23.5
+
+p1 <- ggplot(data = DATA[GLB_diff > 0], aes(x = GLB_diff)) +
+  geom_histogram(aes(y = (after_stat(count))/sum(after_stat(count)) * 100),
+                 binwidth = binwidth,
+                 fill = varcol( "GLB_diff"),
+                 boundary = 0,
+                 color    = "black") +
+  xlab("[min]") +
+  ylab("[%]") +
+  coord_cartesian(xlim = c(split, max(DATA$GLB_diff)),
+                  ylim = c(0, .8)) +
+  theme(
+    axis.title = element_text(size = 9),
+    axis.text  = element_text(size = 9),
+    panel.grid = element_line(linetype = 2)
+  )
+
+
+
+ggplot(data = DATA[GLB_diff > 0], aes(x = GLB_diff)) +
+  geom_histogram(aes(y = (after_stat(count))/sum(after_stat(count)) * 100),
+                 binwidth = binwidth,
+                 boundary = 0,
+                 fill = varcol( "GLB_diff"),
+                 color    = "black") +
+  # xlab(bquote(.(varname("GLB_diff")) ~ group("[", W/m^2,"]"))) +
+  xlab(bquote("Over Irradiance" ~ group("[", W/m^2,"]"))) +
+  ylab("Relative frequency [%]") +
+  labs(caption = paste("Bin width:", binwidth, "W/m^2")) # +
+  inset_element(p1, left = 0.3, bottom = 0.3, right = 1, top = 1,
+                align_to = "plot")
 
 
 
