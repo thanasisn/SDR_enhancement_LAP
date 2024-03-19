@@ -217,7 +217,7 @@ In this study, we evaluated the effects of the clouds on th
 - CSid tool
 
 
-The recording of the signal is the one minute average.
+The recording of the signal is the one-minute average.
 Thus we will refer to this time scale as a cloud enhancement event (CE).
 
 
@@ -261,7 +261,7 @@ we adjusted the model's input spectrum integral to the one of the the TSI provid
 NOAA.  Finally, we adjusted for the effect of the Sun - Earth distance, and
 calculated the clear sky irradiance value at the horizontal plane by using the cosine
 of the corresponding interpolated SZA.  For each period of the year, we used the
-appropriate atmospheric profile (afglms or afglmw).  Thus, the modelled GHI_modeld we
+appropriate atmospheric profile (afglms or afglmw).  Thus, the modeled GHI_modeled we
 can directly compare each measured one minute value of GHI, with the expected clear
 sky radiation.
 
@@ -272,9 +272,14 @@ sky radiation.
 Of course, have to choose which atmospheric conditions qualify as a good clear sky analogous radiation.
 
 
-After some evaluation of the modelled radiation in different atmospheric conditions, in relation to the GHI data, we choose as representative of the clear sky radiation, the case with $t_{\text{cs}} = t_{500\text{nm}} - 1\sigma$ and $w_{h\text{cs}} = w_h - 1\sigma$.
+After some evaluation of the modeled radiation in different atmospheric conditions,
+in relation to the GHI data, we choose as representative of the clear sky radiation,
+the case with
+$t_{\text{cs}} = t_{500\text{nm}} - 1\sigma$ and $w_{h\text{cs}} = w_h - 1\sigma$.
 
-Which is an expected result as these values represent an typical atmosphere in Thessaloniki with low load of aerosols and humidity, which are the main factor that attenuate the GHI, excluding clouds.
+Which is an expected result as these values represent an typical atmosphere in
+Thessaloniki with low load of aerosols and humidity, which are the main factor that
+attenuate the GHI, excluding clouds.
 
 
 
@@ -463,7 +468,8 @@ knitr::include_graphics("../images/P_energy-6.png")
 Subsequently, the annual energy observed during CE events shows a annual increase of
 $`r round(yearlyCE[var == "GLB_diff.sum", slope], 1)`\pm
 `r round(2 * yearlyCE[var == "GLB_diff.sum", slope.sd], 1)`\,kJ/y$
-(Figure\ \ref{fig:P-energy-sum}).
+(Figure\ \ref{fig:P-energy-sum}), witch follows the trend of the number of
+occurrences.
 
 <!-- ```{r echo=FALSE, fig.cap="Trend of the yearly excess energy due to CE over irradiance"} -->
 <!-- knitr::include_graphics("../images/energy-1.png") -->
@@ -472,7 +478,6 @@ $`r round(yearlyCE[var == "GLB_diff.sum", slope], 1)`\pm
 ```{r P-energy-sum, echo=FALSE, fig.cap="Trend of the yearly excess energy due to CE over irradiance"}
 knitr::include_graphics("../images/P_energy-5.png")
 ```
-
 
 ```{r P-energy-median, echo=FALSE, fig.cap="Trend of the yearly median over irradiance due to CE over irradiance"}
 knitr::include_graphics("../images/P_energy-8.png")
@@ -485,9 +490,27 @@ knitr::include_graphics("../images/P_energy-8.png")
 
 ## Climatology
 
+Another interesting aspect of the CE cases, is the seasonal cycle. In Figure\ 
+\ref{fig:relative-month-occurancies}, we have the box plot (whisker plot), where the
+values have been normalized by the highest median value, that occurs in May.
+Although the number of occurrences has a wide spread throughout the study period,
+the most active period of CE occurrences is during May and June. During the Winter
+(December -- February) the CE cases are about 25% of the maximum. The rest of the
+months the occurrences seems to ramp between the maximum and minimum.
+
+
+
+```{r relative-month-occurancies, echo=FALSE, fig.cap="Statistics of the number of CE occurancies for each month. The box represents the values of the low 25% percentile to 75% percentile, where the thick horizontal line inside is the mean, the verical lines extend to the macimum and minimum vales, the dots are outlier values, and the rhombus is the mean."}
+knitr::include_graphics("../images/clim_CE_month_norm_MAX_median_N-2.png")
+```
+
+mean rhombus
+
+<!--
 ```{r echo=FALSE, fig.cap="Distribution of the number of CE cases"}
 knitr::include_graphics("../images/climCEmonth-1.png")
 ```
+--->
 
 
 <!-- ```{r echo=FALSE, fig.cap="Distribution of CE above reference"} -->
@@ -570,10 +593,6 @@ knitr::include_graphics("../images/extremedistributions-4.png")
 <!-- knitr::include_graphics("../images/clim_CE_N_doy-1.png") -->
 <!-- ``` -->
 
-
-```{r echo=FALSE, fig.cap="Distribution of "}
-knitr::include_graphics("../images/clim_CE_month_norm_MAX_median_N-2.png")
-```
 
 
 ```{r echo=FALSE, fig.cap="Distribution of "}
