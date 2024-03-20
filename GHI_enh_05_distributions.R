@@ -360,7 +360,7 @@ ggplot(data = DATA[GLB_diff > 0], aes(x = GLB_diff)) +
                  color    = "black") +
   xlab(bquote("Over Irradiance" ~ group("[", W/m^2,"]"))) +
   ylab("Relative frequency [%]") +
-  labs(caption = paste("Bin width:", binwidth, "W/m^2"))  +
+  # labs(caption = paste("Bin width:", binwidth, "W/m^2"))  +
   inset_element(p1, left = 0.4, bottom = 0.4, right = 1, top = 1,
                 align_to = "plot")
 
