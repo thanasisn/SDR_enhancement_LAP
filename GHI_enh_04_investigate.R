@@ -537,23 +537,23 @@ ggplot(data    = ST_G0,
 
 
 ## _ Use bin2d -------------
-
-#+ P-groups-bin2d, echo=F, include=T, results="asis"
 my_breaks <- c(2, 10, 50, 250, 1250, 6000)
 my_breaks <- 1 * 2^seq(0, 20, by = 2)
-lim_dur   <- 80
+
+
+lim_dur <- 80
 
 ggplot(data    = ST_G0,
        mapping = aes(x = GLB_ench.N, y = ST_G0$GLB_diff.sum/ST_G0$GLB_ench.N)) +
-  xlab("Duration of enhancement group [min]") +
-  ylab(bquote("Mean group over irradiance" ~ group("[", kJ/m^2,"]"))) +
+  xlab("Duration of enhancement [min]") +
+  ylab(bquote("Mean Over Irradiance per minute" ~ group("[", W/m^2,"]"))) +
   geom_bin_2d(bins = 80) +
   scale_fill_continuous(type = "viridis", transform = "log",
                         breaks = my_breaks, labels = my_breaks) +
   theme(legend.position      = c(0.99, 0.99),
         legend.justification = c(1, 1)) +
   theme(legend.background    = element_rect(fill = "white", colour = NA)) +
-  labs(fill = 'Count\n(log scale)') +
+  labs(color = 'Count') +
   scale_y_continuous(guide        = "axis_minor",
                      minor_breaks = seq(0, 500, by = 25)) +
   scale_x_continuous(guide        = "axis_minor",
@@ -565,8 +565,8 @@ ggplot(data    = ST_G0,
 
 ggplot(data    = ST_G0,
        mapping = aes(x = GLB_ench.N, y = ST_G0$GLB_diff.sum/ST_G0$GLB_ench.N)) +
-  xlab("Duration of enhancement group [min]") +
-  ylab(bquote("Mean group over irradiance" ~ group("[", kJ/m^2,"]"))) +
+  xlab("Duration of enhancement [min]") +
+  ylab(bquote("Mean Over Irradiance per minute" ~ group("[", W/m^2,"]"))) +
   geom_bin_2d(bins = 30) +
   scale_fill_viridis()  +
   # scale_fill_continuous(type = "viridis", transform = "log",
@@ -582,6 +582,7 @@ ggplot(data    = ST_G0,
   labs(caption = paste("Removed", ST_G0[GLB_ench.N > lim_dur, .N],
                        "points with duration >", lim_dur, "minutes.")) +
   xlim(-1, lim_dur)
+
 
 
 
