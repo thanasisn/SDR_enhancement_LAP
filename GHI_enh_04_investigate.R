@@ -537,23 +537,24 @@ ggplot(data    = ST_G0,
 
 
 ## _ Use bin2d -------------
+
+#+ P-groups-bin2d, echo=F, include=T, results="asis"
 my_breaks <- c(2, 10, 50, 250, 1250, 6000)
 my_breaks <- 1 * 2^seq(0, 20, by = 2)
-
-
-lim_dur <- 80
+lim_dur   <- 60
+bins      <- 60
 
 ggplot(data    = ST_G0,
-       mapping = aes(x = GLB_ench.N, y = ST_G0$GLB_diff.sum/ST_G0$GLB_ench.N)) +
-  xlab("Duration of enhancement [min]") +
-  ylab(bquote("Mean Over Irradiance per minute" ~ group("[", W/m^2,"]"))) +
-  geom_bin_2d(bins = 80) +
+       mapping = aes(x = GLB_ench.N, y = GLB_diff.sum/GLB_ench.N)) +
+  xlab("Duration of enhancement group [min]") +
+  ylab(bquote("Mean group over irradiance" ~ group("[", kJ/m^2,"]"))) +
+  geom_bin_2d(bins = bins) +
   scale_fill_continuous(type = "viridis", transform = "log",
                         breaks = my_breaks, labels = my_breaks) +
   theme(legend.position      = c(0.99, 0.99),
         legend.justification = c(1, 1)) +
   theme(legend.background    = element_rect(fill = "white", colour = NA)) +
-  labs(color = 'Count') +
+  labs(fill = 'Count\n(log scale)') +
   scale_y_continuous(guide        = "axis_minor",
                      minor_breaks = seq(0, 500, by = 25)) +
   scale_x_continuous(guide        = "axis_minor",
@@ -564,9 +565,9 @@ ggplot(data    = ST_G0,
 
 
 ggplot(data    = ST_G0,
-       mapping = aes(x = GLB_ench.N, y = ST_G0$GLB_diff.sum/ST_G0$GLB_ench.N)) +
-  xlab("Duration of enhancement [min]") +
-  ylab(bquote("Mean Over Irradiance per minute" ~ group("[", W/m^2,"]"))) +
+       mapping = aes(x = GLB_ench.N, y = GLB_diff.sum/GLB_ench.N)) +
+  xlab("Duration of enhancement group [min]") +
+  ylab(bquote("Mean group over irradiance" ~ group("[", kJ/m^2,"]"))) +
   geom_bin_2d(bins = 30) +
   scale_fill_viridis()  +
   # scale_fill_continuous(type = "viridis", transform = "log",
@@ -585,7 +586,26 @@ ggplot(data    = ST_G0,
 
 
 
-
+ggplot(data    = ST_G0[GLB_ench.N > 1,],
+       mapping = aes(x = GLB_ench.N, y = GLB_diff.sum/GLB_ench.N)) +
+  xlab("Duration of enhancement group [min]") +
+  ylab(bquote("Mean group over irradiance" ~ group("[", kJ/m^2,"]"))) +
+  geom_bin_2d(bins = 60) +
+  scale_fill_continuous(type = "viridis",
+                        transform = "log",
+                        breaks = my_breaks,
+                        labels = my_breaks) +
+  theme(legend.position      = c(0.99, 0.99),
+        legend.justification = c(1, 1)) +
+  theme(legend.background    = element_rect(fill = "white", colour = NA)) +
+  labs(fill = 'Count\n(log scale)') +
+  scale_y_continuous(guide        = "axis_minor",
+                     minor_breaks = seq(0, 500, by = 25)) +
+  scale_x_continuous(guide        = "axis_minor",
+                     minor_breaks = seq(0, 500, by = 10)) +
+  labs(caption = paste("Removed", ST_G0[GLB_ench.N > lim_dur, .N],
+                       "points with duration >", lim_dur, "minutes.")) +
+  xlim(-1, lim_dur)
 
 
 
@@ -611,7 +631,7 @@ title("Climatology of CE cases per month Norm by max N")
 
 # normalize with max monthly median
 #+ clim_CE_month_norm_MAX_median_N, echo=F, include=T, results="asis"
-temp <- ST_E_monthly[, median(GLB_ench.N, na.rm = T), by = month]
+temp       <- ST_E_monthly[, median(GLB_ench.N, na.rm = T), by = month]
 max_median <- max(temp$V1)
 max_month  <- month.name[temp[which.max(temp$V1), month]]
 boxplot(ST_E_monthly[, GLB_ench.N/max_median ~ month ])
@@ -621,7 +641,7 @@ ggplot(ST_E_monthly, aes(y = GLB_ench.N/max_median,
                          x = factor(month,
                                     levels = 1:12,
                                     labels = month.abb[1:12]))) +
-  geom_boxplot() +
+  geom_boxplot(fill = varcol("GLB_diff")) +
   xlab("") +
   ylab("Relative monthly occurances") +
   stat_summary(fun.y = mean, geom = "point", shape = 23, size = 3) +
@@ -644,9 +664,10 @@ title("Climatology of ECE cases per month")
 
 # normalize with max monthly median
 #+ clim_ECE_month_norm_MAX_median_N, echo=F, include=T, results="asis"
-temp <- ST_extreme_monthly[, median(GLB_ench.N, na.rm = T), by = month]
+temp       <- ST_extreme_monthly[, median(GLB_ench.N, na.rm = T), by = month]
 max_median <- max(temp$V1)
 max_month  <- month.name[temp[which.max(temp$V1), month]]
+
 boxplot(ST_extreme_monthly[, GLB_ench.N/max_median ~ month ])
 title(paste("Climatology of ECE cases per month Norm the median of", max_month))
 
@@ -654,7 +675,7 @@ ggplot(ST_extreme_monthly, aes(y = GLB_ench.N/max_median,
                          x = factor(month,
                                     levels = 1:12,
                                     labels = month.abb[1:12]))) +
-  geom_boxplot() +
+  geom_boxplot(fill = "lightblue") +
   xlab("") +
   ylab("Relative monthly occurances") +
   stat_summary(fun.y = mean, geom = "point", shape = 23, size = 3) +
@@ -662,8 +683,6 @@ ggplot(ST_extreme_monthly, aes(y = GLB_ench.N/max_median,
     panel.grid.major.x = element_blank(),
     panel.grid.minor.x = element_blank()
   )
-  # geom_dotplot(binaxis='y', stackdir='center', dotsize=.3) +
-  # geom_jitter(shape=16, position=position_jitter(0.2))
 
 
 

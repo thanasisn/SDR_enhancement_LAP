@@ -269,20 +269,20 @@ ggplot(data = DATA[GLB_diff > 0,], aes(x = GLB_diff)) +
 hist(DATA[wattGLB > ETH, GLB_ench],
      breaks = breaks,
      freq   = FALSE,
-     col    = "blue",
+     col    = "lightblue",
      xlab   = varname("GLB_ench"),
      main   = paste("Extreme cases of", varname("GLB_ench")))
 
 hist(DATA[wattGLB > ETH, GLB_diff],
      breaks = breaks,
-     col    = "blue",
+     col    = "lightblue",
      xlab   = bquote(.(varname("GLB_diff")) ~ group("[", W/m^2,"]")),
      main   = paste("Extreme cases of", varname("GLB_diff")) )
 
 
 hist(DATA[wattGLB > ETH, GLB_rati],
      breaks = breaks,
-     col    = "blue",
+     col    = "lightblue",
      xlab   = varname("GLB_rati"),
      main   = paste("Extreme cases of", varname("GLB_rati")))
 
@@ -291,7 +291,7 @@ hist(DATA[wattGLB > ETH, GLB_rati],
 
 hist(DATA[wattGLB > ETH, wattGLB - ETH],
      breaks = breaks,
-     col    = "blue",
+     col    = "lightblue",
      xlab   = bquote(.(varname("GLB_diff")) ~ group("[", W/m^2,"]")),
      main   = paste("Extreme cases of CE above TSI") )
 
