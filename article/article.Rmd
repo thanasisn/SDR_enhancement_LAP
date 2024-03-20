@@ -181,7 +181,7 @@ The signal was converted to irradiance using a ramped value of the instrument’
 sensitivity between subsequent calibrations.
 
 <!-- Radiation data quality check -->
-To  further improve the quality of the irradiance data, a manual screening was
+To further improve the quality of the irradiance data, a manual screening was
 performed to remove inconsistent and erroneous recordings that can occur
 stochastically or systematically during the continuous operation of the instruments.
 The manual screening was aided by a radiation data quality assurance procedure,
@@ -414,12 +414,12 @@ yearlyCE <- yearlytrends[DATA == "ST_E_yearly"]
 
 ```
 
-We computed the daily trend of the mean over irradiance of CE (Figure\nobreakspace{}
-\ref{fig:CEmeanDaily}), using a first-order autoregressive model with lag of 1 day,
-using the 'maximum likelihood' fitting method [@Gardner1980; @Jones1980] by
-implementing the function 'arima' from the library 'stats' of the R programming
-language [@RCT2023]. The trends were reported together with the $2\sigma$ error.
-We observe an increase of
+We computed the daily trend of the mean over irradiance of CE
+(Figure\nobreakspace{}\ref{fig:CEmeanDaily}), using a first-order autoregressive
+model with lag of 1 day, using the 'maximum likelihood' fitting method [@Gardner1980;
+@Jones1980] by implementing the function 'arima' from the library 'stats' of the R
+programming language [@RCT2023]. The trends were reported together with the $2\sigma$
+error.  We observe an increase of
 $`r round(dailyCE[var == "GLB_diff.mean", Tmod_Estimate], 3)`\pm
 `r round(2 * dailyCE[var == "GLB_diff.mean", Tmod_Std..Error], 3)`\,W/m^2$
 on the mean over irradiance.
@@ -490,7 +490,7 @@ knitr::include_graphics("../images/P_energy-8.png")
 ## Climatology
 
 Another interesting aspect of the CE cases, is the seasonal cycle. In
-Figure\nobreakspace{} \ref{fig:relative-month-occurancies}, we have the box plot
+Figure\nobreakspace{}\ref{fig:relative-month-occurancies}, we have the box plot
 (whisker plot), where the values have been normalized by the highest median value,
 that occurs in May.  Although the number of occurrences has a wide spread throughout
 the study period, the most active period of CE occurrences is during May and June.
@@ -516,10 +516,11 @@ knitr::include_graphics("../images/relative_distributions-4.png")
 ```
 -->
 
-The distribution of the CE over irradiance spreads uniformly Figure\nobreakspace{}
-\ref{fig:ovir-distribution}. Where there is an inverse relation  between the events
-frequency and events intensity . This is expected as, the stronger the CE events
-become, the more rare is the atmospheric and sun conditions to occur.
+The distribution of the CE over irradiance spreads uniformly
+Figure\nobreakspace{}\ref{fig:ovir-distribution}. Where there is an inverse relation
+between the events frequency and events intensity. This is expected as, the stronger
+the CE events become, the more rare are the particular atmospheric and sun conditions
+to occur.
 
 ```{r ovir-distribution, echo=FALSE, fig.cap="Distribution of CE over irradiance"}
 knitr::include_graphics("../images/P-relative-distribution-diff-1.png")
@@ -540,33 +541,53 @@ knitr::include_graphics("../images/P-relative-distribution-diff-1.png")
 ## Groups stats
 
 In order to further study the characteristics of the CE events, we grouped the singe
-minute CE events, to continuous CE.
+minute CE events, to continuous CE groups (CEG). Thus, a CEG consists of one or more
+successive CE cases, and can have a duration of multiple of minutes.  We have
+identified `r ST_G0[, .N]` groups, where the group with the longest duration lasted
+`r ST_G0[, max(GLB_diff.N)]` minutes on 
+`r strftime(ST_G0[which.max(GLB_diff.N), Date], "%d\\ %B %Y")`.
+By examining the frequency distribution of the CEG durations
+(Figure\nobreakspace{}\ref{fig:ceg-duration-distribution}), we can conclude that longer durations are getting increasingly rare, with durations above 10 minutes very rare.
 
-```{r echo=FALSE, fig.cap="Distribution of CE groups"}
+```{r ceg-duration-distribution, echo=FALSE, fig.cap="Distribution of CE groups"}
 knitr::include_graphics("../images/groups-1.png")
 ```
 
 
+... @Zhang2018 ....
 
 ```{r echo=FALSE, fig.cap="Relation of mean over irradiance and CE group duration"}
-knitr::include_graphics("../images/groups-4.png")
+knitr::include_graphics("../images/P-groups-bin2d-1.png")
 ```
 
 
-```{r echo=FALSE, fig.cap="Relation of maximun over irradiance and CE group duration"}
-knitr::include_graphics("../images/groups-8.png")
-```
+
+<!-- ```{r echo=FALSE, fig.cap="Relation of mean over irradiance and CE group duration"} -->
+<!-- knitr::include_graphics("../images/groups-4.png") -->
+<!-- ``` -->
+
+<!-- ```{r echo=FALSE, fig.cap="Relation of maximun over irradiance and CE group duration"} -->
+<!-- knitr::include_graphics("../images/groups-8.png") -->
+<!-- ``` -->
 
 
 \FloatBarrier
 
 ## Extreme CE above TSI
 
-<!-- Change color -->
+Another aspect of the CE events are the cases where the irradiance is above the expected irradiance on top of the atmosphere, we have defined this 
 
-```{r echo=FALSE, fig.cap="Distribution of the number of ECE cases"}
-knitr::include_graphics("../images/climECEmonth-1.png")
+
+```{r echo=FALSE, fig.cap="Distribution of "}
+knitr::include_graphics("../images/clim_ECE_month_norm_MAX_median_N-2.png")
 ```
+
+
+
+
+<!-- ```{r echo=FALSE, fig.cap="Distribution of the number of ECE cases"} -->
+<!-- knitr::include_graphics("../images/climECEmonth-1.png") -->
+<!-- ``` -->
 
 
 ```{r echo=FALSE, fig.cap="Distribution of ECE above 'clear sky' reference"}
@@ -574,9 +595,9 @@ knitr::include_graphics("../images/extremedistributions-2.png")
 ```
 
 
-```{r echo=FALSE, fig.cap="Distribution of ECE Irradiance above 'TSI'"}
-knitr::include_graphics("../images/extremedistributions-4.png")
-```
+<!-- ```{r echo=FALSE, fig.cap="Distribution of ECE Irradiance above 'TSI'"} -->
+<!-- knitr::include_graphics("../images/extremedistributions-4.png") -->
+<!-- ``` -->
 
 -   max value ECE
 -   seasonal
@@ -589,10 +610,6 @@ knitr::include_graphics("../images/extremedistributions-4.png")
 
 ## New plots for discussion
 
-
-```{r echo=FALSE, fig.cap="Distribution of "}
-knitr::include_graphics("../images/clim_ECE_month_norm_MAX_median_N-2.png")
-```
 
 
 
