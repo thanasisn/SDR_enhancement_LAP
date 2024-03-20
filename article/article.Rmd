@@ -516,6 +516,9 @@ knitr::include_graphics("../images/relative_distributions-4.png")
 ```
 -->
 
+The distribution of the CE over irradiance spreads uniformly with the over iradiance intensity 
+
+
 ```{r echo=FALSE, fig.cap="Distribution of CE over irradiance"}
 knitr::include_graphics("../images/P-relative-distribution-diff-1.png")
 ```
