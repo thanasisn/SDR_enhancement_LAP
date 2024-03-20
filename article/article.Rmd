@@ -206,8 +206,11 @@ horizon, and to some systematic obstructions by nearby buildings, we have exclud
 all measurements with solar zenith angle (SZA) greater than $`r 90-BIO_ELEVA`^\circ$.
 
 
+In this study, we evaluated the effects of the clouds on the total downward radiation
+by studding the occurrences of the cloud enhancement cases, their intensity and their
+duration.  The recording of the radiation signal is the one-minute average.  Thus, we
+will refer to this time step as a cloud enhancement event (CE).
 
-In this study, we evaluated the effects of the clouds on th
 
 
 - available data
@@ -216,12 +219,6 @@ In this study, we evaluated the effects of the clouds on th
   - cm21
   - cimel
 - CSid tool
-
-
-The recording of the signal is the one-minute average.
-Thus, we will refer to this timescale as a cloud enhancement event (CE).
-
-
 
 
 
@@ -274,14 +271,14 @@ Of course, have to choose which atmospheric conditions qualify as a good clear s
 
 
 After some evaluation of the modeled radiation in different atmospheric conditions,
-in relation to the GHI data, we choose as representative of the clear sky radiation,
+in relation to the GHI data, we choose as a representative of the clear sky radiation,
 the case with
 $t_{\text{cs}} = t_{500\text{nm}} - 1\sigma$ and $w_{h\text{cs}} = w_h - 1\sigma$.
 
-Which is an expected result as these values represent a typical atmosphere in
+These values will represent a typical atmosphere in
 Thessaloniki with low load of aerosols and humidity, which are the main factor that
 attenuate the GHI, excluding clouds.
-
+We will refer to this irradiance as $\text{GHI}_\text{mCSi}$.
 
 
 ## Thresholds investigation
@@ -318,6 +315,8 @@ Where it was needed, for some of the edge cases, we also used images from a sky-
 along with the manual inspection.
 
 
+
+
 Reasoning for the  final selection...........
 
 
@@ -333,8 +332,9 @@ Many have used models or some statistical method to determine then CE thresholds
 
 We used as reference a modeled clear sky approximation,
 
-Criteria for cloud enhancement identification are set according the Equation \ref{eq:CE4}
+Criteria for cloud enhancement identification are set according the Equation\nobreakspace\ref{eq:CE4}
 
+<!--
 \begin{equation}
 \text{CE}_\text{Threshold} = \begin{cases}
 `r C4_cs_ref_ratio`, & \text{$\theta \leq `r C4_lowcut_sza`^\circ$}\\
@@ -343,15 +343,26 @@ Criteria for cloud enhancement identification are set according the Equation \re
 \end{cases}\label{eq:CE4}
 \end{equation}
 where: $\theta$ solar zenith angle.
-
-
-
-
-
-A secondary criterion was used for extreme cloud enhancement cases (ECE) identification, relative to the TSI at horizontal plane (Equation \ref{eq:ECE})
+-->
 
 \begin{equation}
-\text{GHI} > \cos(\theta) \times \text{TSI}_\text{TOA}
+\text{CE} : \begin{cases}
+ \text{GHI}_\text{i} > `r C4_cs_ref_ratio` \cdot \text{GHI}_\text{mCSi}, & \text{$\theta \leq `r C4_lowcut_sza`^\circ$}\\
+\text{GHI}_\text{i} > \left ({ `r C4_lowcut_ratio` + \frac{`r C4_cs_ref_ratio` - `r C4_lowcut_ratio`}{`r C4_lowcut_sza` - `r 90 - BIO_ELEVA`} \cdot (\theta- `r 90 - BIO_ELEVA`) } \right ) \cdot \text{GHI}_\text{mCSi}, & \text{$ `r 90 - BIO_ELEVA`^\circ > \theta > `r C4_lowcut_sza`^\circ$}\\
+\text{Excluded measurements}, & \theta > `r 90 - BIO_ELEVA`^\circ
+\end{cases}\label{eq:CE4b}
+\end{equation}
+where: $\theta$ solar zenith angle.
+
+
+
+
+A secondary criterion was used for extreme cloud enhancement cases (ECE)
+identification, relative to the TSI at horizontal plane
+(Equation\nobreakspace{}\ref{eq:ECE})
+
+\begin{equation}
+\text{ECE}: \text{GHI} > \cos(\theta) \times \text{TSI}_\text{TOA}
 \label{eq:ECE}
 \end{equation}
 
@@ -527,12 +538,6 @@ to occur.
 knitr::include_graphics("../images/P-relative-distribution-diff-1.png")
 ```
 
-<!-- todo stop long tails on hist -->
-<!-- hist retative frequency label -->
-
-<!-- Whisky plot relative between months -->
-<!-- weight (Nmonth / Nmaxmonth) -->
-
 <!-- whisky plots relative to GLB -->
 
 <!-- set of yearly plots -->
@@ -576,14 +581,24 @@ knitr::include_graphics("../images/P-groups-bin2d-1.png")
 
 ## Extreme CE above TSI
 
-Another aspect of the CE events are the cases where the irradiance is above the expected irradiance on top of the atmosphere, we have defined this 
+Another aspect of the CE events are the cases when the irradiance is above the
+expected irradiance on top of the atmosphere, we have defined this as ECE
+(Equation\nobreakspace{}\ref{eq:ECE}).
 
+-  max value ECE
+  relative to other works max values
 
-```{r echo=FALSE, fig.cap="Distribution of "}
+Analogous to Figure\nobreakspace{}\ref{fig:relative-month-occurancies} we have
+computed the distribution of the number of occurrences of ECE events by month in
+Figure\nobreakspace{}\ref{fig:relative-month-occurancies-ECE}. Here the most active
+period is in the spring (March -- May), followed by the months of June, September and
+October.
+
+.......
+
+```{r relative-month-occurancies-ECE, echo=FALSE, fig.cap="Distribution of "}
 knitr::include_graphics("../images/clim_ECE_month_norm_MAX_median_N-2.png")
 ```
-
-
 
 
 <!-- ```{r echo=FALSE, fig.cap="Distribution of the number of ECE cases"} -->
@@ -600,16 +615,7 @@ knitr::include_graphics("../images/extremedistributions-2.png")
 <!-- knitr::include_graphics("../images/extremedistributions-4.png") -->
 <!-- ``` -->
 
--   max value ECE
--   seasonal
--   trends
--   duration
--   occurrence
 -   SZA
-
-\FloatBarrier
-
-## New plots for discussion
 
 
 
