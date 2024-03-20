@@ -25,6 +25,7 @@ header-includes:
   - \captionsetup{font=small}
 
 output: 
+  # redoc::redoc: default
  #  rticles::mdpi_article:
  #    extra_dependencies:  longtable
  #    keep_tex:            yes
