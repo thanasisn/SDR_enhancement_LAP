@@ -288,37 +288,34 @@ photometer since 2003, collocated with the CM-21 pyranometer. The mean monthly
 aerosol optical depth (AOD) on different wavelengths is provided by AERONET along
 with the equivalent water column height in the atmosphere. The simulation of the
 clear sky radiation was performed by the well established radiation transfer model
-Libradtran (Emde et al. 2016).
+Libradtran (Emde et al. 2016), a similar modeling approach was also used by Vamvakas, Salamalikis, and Kazantzidis (2020).
 
 For completeness, we will describe here the main points of the radiation simulation
 procedure. We used as input the spectrum of Kurucz (1994) in the range \(280\) to
-\(2500\,\text{nm}\), with the radiation transfer solver ``disort'' on a ``pseudospherical''
-geometry and the ``LOWTRAN'' gas parameterization.
+\(2500\,\text{nm}\), with the Libradtran radiation transfer solver ``disort'' on a ``pseudospherical''
+geometry and the ``LOWTRAN'' gas parameterization. For each combination of conditions
+we use a SZA step of \(0.2^\circ\).
+For the atmospheric characteristics, we iterated for combinations of AOD at
+\(500\,\text{nm}\) (\(t_{500\text{nm}}\)) with additional offsets of \(\pm1\) and
+\(\pm2\sigma\), and water column (\(w_h\)), also with offsets of \(\pm1\) and \(\pm2\sigma\).
+We applied them on two atmospheric profiles, from the Air Force Geophysics
+Laboratory (AFGL). The ``AFGL atmospheric constituent profile, midlatitude summer''
+(afglms) and the ``AFG Latmospheric constituent profile, midlatitude winter'' (afglmw)
+(Anderson et al. 1986).
 
-We also used the Sun's total solar irradiance from NOAA (Coddington et al. 2005) and the
-Earth - Sun distance calculated by Astropy (Astropy Collaboration et al. 2022).
-
-We simulated
-the clear sky radiation, using the solar radiation , with a SZA step of \(0.2^\circ\).
-
-For the
-atmospheric characteristics, we iterated combinations of AOD at \(500\,\text{nm}\)
-(\(t_{500\text{nm}}\)) and additional offsets of \(\pm1\) and \(\pm2\sigma\), and water column
-(\(w_h\)) with offsets of \(\pm1\) and \(\pm2\sigma\), and applied it to two atmospheric
-profiles ``AFGL atmospheric constituent profile, midlatitude summer'' (afglms) and
-``AFGL atmospheric constituent profile, midlatitude winter'' (afglmw) (Anderson et al. 1986).
-
-Thus, we were able to emulate different atmospheric condition and level of
-atmospheric clearness for the climatological conditions of the site.
-
-Furthermore, to account for the Sun's variability in our one-minute GHI measurements,
-we adjusted the model's input spectrum integral to the one of the TSI provided by
-NOAA. Finally, we adjusted for the effect of the Sun - Earth distance, and
-calculated the clear sky irradiance value at the horizontal plane by using the cosine
-of the corresponding interpolated SZA. For each period of the year, we used the
-appropriate atmospheric profile (afglms or afglmw). Thus, the modeled GHI\_modeled we
-can directly compare each measured one minute value of GHI, with the expected clear
-sky radiation.
+To create a look up table that aligns with our dataset we applied some adjustments.
+To account for the Sun's variability in our one-minute GHI measurements, we corrected
+the model's input spectrum integral to the one of the value of total solar irradiance
+(TSI) provided by NOAA (Coddington et al. 2005). Also, we applied the effect of the Earth
+-- Sun distance on the irradiance, by using the distance calculated by the Astropy
+(Astropy Collaboration et al. 2022) software library. As needed, we interpolate the
+irradiances to the exact SZA of our measurements. For each period of the year, we
+used the appropriate atmospheric profile (afglms or afglmw). Finally, we calculated
+the clear sky irradiance value at the horizontal plane. Thus, we were able to
+emulate different atmospheric condition and level of atmospheric clearness for the
+climatological conditions of the site. Thus, the modeled clear sky irradiances,
+based on the climatological conditions of the site, can be directly compared to each
+measured one-minute value of GHI, for different conditions of atmospheric clearness.
 
 Of course, have to choose which atmospheric conditions qualify as a good clear sky analogous radiation.
 
@@ -361,6 +358,8 @@ Reasoning for the final selection\ldots\ldots\ldots..
 
 \hypertarget{criteria-for-enhancement-identification}{%
 \subsection{Criteria for enhancement identification}\label{criteria-for-enhancement-identification}}
+
+Initially, we try to implement criteria of CE identification similar to .
 
 Many have used models or some statistical method to determine then CE thresholds.
 
@@ -680,6 +679,9 @@ Natsis, Athanasios, Alkiviadis Bais, and Charikleia Meleti. 2023. {``Trends from
 
 \leavevmode\vadjust pre{\hypertarget{ref-RCT2023}{}}%
 R Core Team. 2023. \emph{R: A Language and Environment for Statistical Computing}. Vienna, Austria: R Foundation for Statistical Computing. \url{https://www.R-project.org/}.
+
+\leavevmode\vadjust pre{\hypertarget{ref-Vamvakas2020}{}}%
+Vamvakas, Ioannis, Vasileios Salamalikis, and Andreas Kazantzidis. 2020. {``Evaluation of Enhancement Events of Global Horizontal Irradiance Due to Clouds at Patras, South-West Greece.''} \emph{Renewable Energy} 151 (xxxx): 764--71. \url{https://doi.org/gq3sbh}.
 
 \end{CSLReferences}
 
