@@ -290,21 +290,24 @@ with the equivalent water column height in the atmosphere. The simulation of the
 clear sky radiation was performed by the well established radiation transfer model
 Libradtran (Emde et al. 2016).
 
-For completeness we will describe the main points of the radiation simulation
-procedure here. We used as input the spectrum of Kurucz (1994) in the range \(280\) to
-\(2500\,\text{nm}\).
+For completeness, we will describe here the main points of the radiation simulation
+procedure. We used as input the spectrum of Kurucz (1994) in the range \(280\) to
+\(2500\,\text{nm}\), with the radiation transfer solver ``disort'' on a ``pseudospherical''
+geometry and the ``LOWTRAN'' gas parameterization.
 
 We also used the Sun's total solar irradiance from NOAA (Coddington et al. 2005) and the
 Earth - Sun distance calculated by Astropy (Astropy Collaboration et al. 2022).
 
 We simulated
 the clear sky radiation, using the solar radiation , with a SZA step of \(0.2^\circ\).
+
 For the
-atmospheric characteristics, we used combinations of AOD at \(500\,\text{nm}\)
-(\(t_{500\text{nm}}\)) and additional offsets of \(\pm1\) and \(\pm2\sigma\), water column
+atmospheric characteristics, we iterated combinations of AOD at \(500\,\text{nm}\)
+(\(t_{500\text{nm}}\)) and additional offsets of \(\pm1\) and \(\pm2\sigma\), and water column
 (\(w_h\)) with offsets of \(\pm1\) and \(\pm2\sigma\), and applied it to two atmospheric
 profiles ``AFGL atmospheric constituent profile, midlatitude summer'' (afglms) and
 ``AFGL atmospheric constituent profile, midlatitude winter'' (afglmw) (Anderson et al. 1986).
+
 Thus, we were able to emulate different atmospheric condition and level of
 atmospheric clearness for the climatological conditions of the site.
 
@@ -316,16 +319,6 @@ of the corresponding interpolated SZA. For each period of the year, we used the
 appropriate atmospheric profile (afglms or afglmw). Thus, the modeled GHI\_modeled we
 can directly compare each measured one minute value of GHI, with the expected clear
 sky radiation.
-
-\begin{itemize}
-\tightlist
-\item
-  rte\_solver disort
-\item
-  geometry pseudospherical
-\item
-  mol\_abs LOWTRAN
-\end{itemize}
 
 Of course, have to choose which atmospheric conditions qualify as a good clear sky analogous radiation.
 
