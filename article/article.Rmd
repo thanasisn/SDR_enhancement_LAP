@@ -207,22 +207,19 @@ all measurements with solar zenith angle (SZA) greater than $`r 90-BIO_ELEVA`^\c
 
 
 In this study, we evaluated the effects of the clouds on the total downward radiation
-by studding the occurrences of the cloud enhancement cases, their intensity and their
-duration.  The recording of the radiation signal is the one-minute average.  Thus, we
+by studding the occurrences of the cloud enhancement cases, their intensity, and their
+duration.  The recording of the radiation signal is the mean of one-minute. Thus, we
 will refer to this time step as a cloud enhancement event (CE).
 
 
-
+<!--
 - available data
   - sky cam
   - chp1
   - cm21
   - cimel
 - CSid tool
-
-
-
-
+-->
 
 
 ## Clear Sky Irradiance
