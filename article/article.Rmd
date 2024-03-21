@@ -206,6 +206,26 @@ horizon, and to some systematic obstructions by nearby buildings, we have exclud
 all measurements with solar zenith angle (SZA) greater than $`r 90-BIO_ELEVA`^\circ$.
 
 
+
+## Cloud enhancement detection
+
+To be able to detect the CE cases, we had establish a baseline, above which we can
+characterize each data point as enhancement event, by estimating the occurring over
+irradiance.  To have an estimation and a first insight on the phenomenon, we
+experimented with two simpler approaches as the reference.  The Haurwitz's model
+[@Haurwitz1945], which is as simple clear sky we have previous adjusted and had good
+fit with our data [@Natsis2023], and the TSI at the top of the atmosphere.  For both
+cases we tested using an appropriate relative threshold and/or an constant offset.
+The initial results, showed that we can detect a big portion of the CE events. But it
+was evident, by inspecting the daily plot of irradiance, that changes on the
+atmospheric conditions introduced numerous false positive and false negative results. 
+
+
+Initially, we try to implement a simpler approach for the clear sky reference,
+without the use of a radiation transfer model. We experimented with a 
+
+
+
 ## Clear Sky Irradiance
 
 In order to identify CE cases, we used a modeled approximation of the expected clear
@@ -218,7 +238,7 @@ photometer since 2003, collocated with the CM-21 pyranometer.  The mean monthly
 aerosol optical depth (AOD) on different wavelengths is provided by AERONET along
 with the equivalent water column height in the atmosphere.  The simulation of the
 clear sky radiation was performed by the well established radiation transfer model
-Libradtran [@Emde2016], a similar modeling approach was also used by @Vamvakas2020.
+Libradtran [@Emde2016], a similar modeling approach, was also used by @Vamvakas2020.
 
 <!-- Libradtran options -->
 For completeness, we will describe here the main points of the radiation simulation
@@ -266,9 +286,9 @@ attenuate the GHI, excluding clouds.
 We will refer to this irradiance as $\text{GHI}_\text{mCSi}$.
 
 
+
+
 ## Thresholds investigation
-
-
 
 
 The use of the actual modeled values of clear sky GHI can not provide us with a
@@ -305,13 +325,15 @@ along with the manual inspection.
 
 
 
+
+
+
+## Criteria for cloud enhancement identification
+
+
+
 Reasoning for the  final selection...........
 
-
-
-## Criteria for enhancement identification
-
-Initially, we try to implement criteria of CE identification similar to  .
 
 
 Many have used models or some statistical method to determine then CE thresholds.

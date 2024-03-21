@@ -275,6 +275,23 @@ Furthermore, due to the significant measurement uncertainty when the Sun is near
 horizon, and to some systematic obstructions by nearby buildings, we have excluded
 all measurements with solar zenith angle (SZA) greater than \(78^\circ\).
 
+\hypertarget{cloud-enhancement-detection}{%
+\subsection{Cloud enhancement detection}\label{cloud-enhancement-detection}}
+
+To be able to detect the CE cases, we had establish a baseline, above which we can
+characterize each data point as enhancement event, by estimating the occurring over
+irradiance. To have an estimation and a first insight on the phenomenon, we
+experimented with two simpler approaches as the reference. The Haurwitz's model
+(Haurwitz 1945), which is as simple clear sky we have previous adjusted and had good
+fit with our data (Natsis, Bais, and Meleti 2023), and the TSI at the top of the atmosphere. For both
+cases we tested using an appropriate relative threshold and/or an constant offset.
+The initial results, showed that we can detect a big portion of the CE events. But it
+was evident, by inspecting the daily plot of irradiance, that changes on the
+atmospheric conditions introduced numerous false positive and false negative results.
+
+Initially, we try to implement a simpler approach for the clear sky reference,
+without the use of a radiation transfer model. We experimented with a
+
 \hypertarget{clear-sky-irradiance}{%
 \subsection{Clear Sky Irradiance}\label{clear-sky-irradiance}}
 
@@ -288,7 +305,7 @@ photometer since 2003, collocated with the CM-21 pyranometer. The mean monthly
 aerosol optical depth (AOD) on different wavelengths is provided by AERONET along
 with the equivalent water column height in the atmosphere. The simulation of the
 clear sky radiation was performed by the well established radiation transfer model
-Libradtran (Emde et al. 2016), a similar modeling approach was also used by Vamvakas, Salamalikis, and Kazantzidis (2020).
+Libradtran (Emde et al. 2016), a similar modeling approach, was also used by Vamvakas, Salamalikis, and Kazantzidis (2020).
 
 For completeness, we will describe here the main points of the radiation simulation
 procedure. We used as input the spectrum of Kurucz (1994) in the range \(280\) to
@@ -354,12 +371,10 @@ efficiency of the identification threshold. These sets were random groups of abo
 Where it was needed, for some of the edge cases, we also used images from a sky-cam,
 along with the manual inspection.
 
+\hypertarget{criteria-for-cloud-enhancement-identification}{%
+\subsection{Criteria for cloud enhancement identification}\label{criteria-for-cloud-enhancement-identification}}
+
 Reasoning for the final selection\ldots\ldots\ldots..
-
-\hypertarget{criteria-for-enhancement-identification}{%
-\subsection{Criteria for enhancement identification}\label{criteria-for-enhancement-identification}}
-
-Initially, we try to implement criteria of CE identification similar to .
 
 Many have used models or some statistical method to determine then CE thresholds.
 
@@ -661,6 +676,9 @@ Gardner, G., A. C. Harvey, and G. D. A. Phillips. 1980. {``Algorithm {AS} 154: A
 
 \leavevmode\vadjust pre{\hypertarget{ref-Giles2019}{}}%
 Giles, David M., Alexander Sinyuk, Mikhail G. Sorokin, Joel S. Schafer, Alexander Smirnov, Ilya Slutsker, Thomas F. Eck, et al. 2019. {``Advancements in the Aerosol Robotic Network ({AERONET}) Version 3 Database -- Automated Near-Real-Time Quality Control Algorithm with Improved Cloud Screening for Sun Photometer Aerosol Optical Depth ({AOD}) Measurements.''} \emph{Atmospheric Measurement Techniques} 12 (1): 169--209. \url{https://doi.org/10.5194/amt-12-169-2019}.
+
+\leavevmode\vadjust pre{\hypertarget{ref-Haurwitz1945}{}}%
+Haurwitz, Bernhard. 1945. {``Insolation in {Relation} to {Cloudiness} and {Cloud} {Density}.''} \emph{Journal of Meteorology} 2 (September): 154--66.
 
 \leavevmode\vadjust pre{\hypertarget{ref-Jones1980}{}}%
 Jones, Richard H. 1980. {``Maximum Likelihood Fitting of {ARMA} Models to Time Series with Missing Observations.''} \emph{Technometrics} 22 (3): 389--95. \url{https://doi.org/10.1080/00401706.1980.10486171}.
