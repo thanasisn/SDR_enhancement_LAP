@@ -212,33 +212,30 @@ all measurements with solar zenith angle (SZA) greater than $`r 90-BIO_ELEVA`^\c
 To be able to detect the CE cases, we had establish a baseline, above which we can
 characterize each data point as enhancement event, by estimating the occurring over
 irradiance.  To have an estimation and a first insight on the phenomenon, we
-experimented with two simpler approaches as the reference.  The Haurwitz's model
+experimented with two simple approaches as reference.  The Haurwitz's model
 [@Haurwitz1945], which is as simple clear sky we have previous adjusted and had good
 fit with our data [@Natsis2023], and the TSI at the top of the atmosphere.  For both
 cases we tested using an appropriate relative threshold and/or an constant offset.
 The initial results, showed that we can detect a big portion of the CE events. But it
 was evident, by inspecting the daily plot of irradiance, that changes on the
-atmospheric conditions introduced numerous false positive and false negative results. 
+atmospheric conditions introduced numerous false positive and false negative
+results.  To produce a more accurate reference, we had to take into account more
+factors that effect the clear sky radiation and used a radiation transfer model.
 
 
-Initially, we try to implement a simpler approach for the clear sky reference,
-without the use of a radiation transfer model. We experimented with a 
+## Modeled clear Sky Irradiance
 
-
-
-## Clear Sky Irradiance
-
-In order to identify CE cases, we used a modeled approximation of the expected clear
-sky GHI.  Because of the lack of observational data for the whole period, we used
-some long term climatological data for the main factors responsible for the
-attenuation of the broadband downward solar radiation in the atmosphere, which are
-mainly the aerosols and the water vapors. Fortunately, our site participates in the
-Aerosol Robotic Network (AERONET) [@Giles2019; @Buis1998], as we operate a Cimel
-photometer since 2003, collocated with the CM-21 pyranometer.  The mean monthly
-aerosol optical depth (AOD) on different wavelengths is provided by AERONET along
-with the equivalent water column height in the atmosphere.  The simulation of the
-clear sky radiation was performed by the well established radiation transfer model
-Libradtran [@Emde2016], a similar modeling approach, was also used by @Vamvakas2020.
+We approximated the expected clear sky GHI by using a model.  Because of the lack of
+observational data for the whole period, we used some long term climatological data
+for the main factors responsible for the attenuation of the broadband downward solar
+radiation in the atmosphere. Which are mainly the aerosols and the water vapors.
+Fortunately, our site participates in the Aerosol Robotic Network (AERONET)
+[@Giles2019; @Buis1998], as we operate a Cimel photometer since 2003, collocated with
+the CM-21 pyranometer.  The mean monthly aerosol optical depth (AOD) on different
+wavelengths is provided by AERONET, along with the equivalent water column height in
+the atmosphere.  The simulation of the clear sky radiation was performed by the well
+established radiation transfer model Libradtran [@Emde2016], a similar
+approach, was also used by @Vamvakas2020.
 
 <!-- Libradtran options -->
 For completeness, we will describe here the main points of the radiation simulation
@@ -272,6 +269,9 @@ measured one-minute value of GHI, for different conditions of atmospheric clearn
 
 
 
+
+## CE Criteria investigation
+
 Of course, have to choose which atmospheric conditions qualify as a good clear sky analogous radiation.
 
 
@@ -288,7 +288,12 @@ We will refer to this irradiance as $\text{GHI}_\text{mCSi}$.
 
 
 
-## Thresholds investigation
+<!---
+Many have used models or some statistical method to determine then CE thresholds.
+-->
+
+
+
 
 
 The use of the actual modeled values of clear sky GHI can not provide us with a
@@ -328,20 +333,6 @@ along with the manual inspection.
 
 
 
-## Criteria for cloud enhancement identification
-
-
-
-Reasoning for the  final selection...........
-
-
-
-Many have used models or some statistical method to determine then CE thresholds.
-
-....... cite ...... Descriptions
-
-We used as reference a modeled clear sky approximation,
-
 Criteria for cloud enhancement identification are set according the Equation\nobreakspace\ref{eq:CE4}
 
 <!--
@@ -360,7 +351,7 @@ where: $\theta$ solar zenith angle.
  \text{GHI}_\text{i} > `r C4_cs_ref_ratio` \cdot \text{GHI}_\text{mCSi}, & \text{$\theta \leq `r C4_lowcut_sza`^\circ$}\\
 \text{GHI}_\text{i} > \left ({ `r C4_lowcut_ratio` + \frac{`r C4_cs_ref_ratio` - `r C4_lowcut_ratio`}{`r C4_lowcut_sza` - `r 90 - BIO_ELEVA`} \cdot (\theta- `r 90 - BIO_ELEVA`) } \right ) \cdot \text{GHI}_\text{mCSi}, & \text{$ `r 90 - BIO_ELEVA`^\circ > \theta > `r C4_lowcut_sza`^\circ$}\\
 \text{Excluded measurements}, & \theta > `r 90 - BIO_ELEVA`^\circ
-\end{cases}\label{eq:CE4b}
+\end{cases}\label{eq:CE4}
 \end{equation}
 where: $\theta$ solar zenith angle.
 
@@ -378,16 +369,10 @@ identification, relative to the TSI at horizontal plane
 
 
 
-Include Example of days plot? Appendix?
+- Include Example of days plot? Appendix?
 
 ... this is more clear to understand and describe ....
 
-
-
-
-## Other method used and rejected
-
--   some other criteria were tested
 
 
 

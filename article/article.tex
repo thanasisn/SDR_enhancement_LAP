@@ -281,31 +281,30 @@ all measurements with solar zenith angle (SZA) greater than \(78^\circ\).
 To be able to detect the CE cases, we had establish a baseline, above which we can
 characterize each data point as enhancement event, by estimating the occurring over
 irradiance. To have an estimation and a first insight on the phenomenon, we
-experimented with two simpler approaches as the reference. The Haurwitz's model
+experimented with two simple approaches as reference. The Haurwitz's model
 (Haurwitz 1945), which is as simple clear sky we have previous adjusted and had good
 fit with our data (Natsis, Bais, and Meleti 2023), and the TSI at the top of the atmosphere. For both
 cases we tested using an appropriate relative threshold and/or an constant offset.
 The initial results, showed that we can detect a big portion of the CE events. But it
 was evident, by inspecting the daily plot of irradiance, that changes on the
-atmospheric conditions introduced numerous false positive and false negative results.
+atmospheric conditions introduced numerous false positive and false negative
+results. To produce a more accurate reference, we had to take into account more
+factors that effect the clear sky radiation and used a radiation transfer model.
 
-Initially, we try to implement a simpler approach for the clear sky reference,
-without the use of a radiation transfer model. We experimented with a
+\hypertarget{modeled-clear-sky-irradiance}{%
+\subsection{Modeled clear Sky Irradiance}\label{modeled-clear-sky-irradiance}}
 
-\hypertarget{clear-sky-irradiance}{%
-\subsection{Clear Sky Irradiance}\label{clear-sky-irradiance}}
-
-In order to identify CE cases, we used a modeled approximation of the expected clear
-sky GHI. Because of the lack of observational data for the whole period, we used
-some long term climatological data for the main factors responsible for the
-attenuation of the broadband downward solar radiation in the atmosphere, which are
-mainly the aerosols and the water vapors. Fortunately, our site participates in the
-Aerosol Robotic Network (AERONET) (Giles et al. 2019; Buis et al. 1998), as we operate a Cimel
-photometer since 2003, collocated with the CM-21 pyranometer. The mean monthly
-aerosol optical depth (AOD) on different wavelengths is provided by AERONET along
-with the equivalent water column height in the atmosphere. The simulation of the
-clear sky radiation was performed by the well established radiation transfer model
-Libradtran (Emde et al. 2016), a similar modeling approach, was also used by Vamvakas, Salamalikis, and Kazantzidis (2020).
+We approximated the expected clear sky GHI by using a model. Because of the lack of
+observational data for the whole period, we used some long term climatological data
+for the main factors responsible for the attenuation of the broadband downward solar
+radiation in the atmosphere. Which are mainly the aerosols and the water vapors.
+Fortunately, our site participates in the Aerosol Robotic Network (AERONET)
+(Giles et al. 2019; Buis et al. 1998), as we operate a Cimel photometer since 2003, collocated with
+the CM-21 pyranometer. The mean monthly aerosol optical depth (AOD) on different
+wavelengths is provided by AERONET, along with the equivalent water column height in
+the atmosphere. The simulation of the clear sky radiation was performed by the well
+established radiation transfer model Libradtran (Emde et al. 2016), a similar
+approach, was also used by Vamvakas, Salamalikis, and Kazantzidis (2020).
 
 For completeness, we will describe here the main points of the radiation simulation
 procedure. We used as input the spectrum of Kurucz (1994) in the range \(280\) to
@@ -334,6 +333,9 @@ climatological conditions of the site. Thus, the modeled clear sky irradiances,
 based on the climatological conditions of the site, can be directly compared to each
 measured one-minute value of GHI, for different conditions of atmospheric clearness.
 
+\hypertarget{ce-criteria-investigation}{%
+\subsection{CE Criteria investigation}\label{ce-criteria-investigation}}
+
 Of course, have to choose which atmospheric conditions qualify as a good clear sky analogous radiation.
 
 After some evaluation of the modeled radiation in different atmospheric conditions,
@@ -345,9 +347,6 @@ These values will represent a typical atmosphere in
 Thessaloniki with low load of aerosols and humidity, which are the main factor that
 attenuate the GHI, excluding clouds.
 We will refer to this irradiance as \(\text{GHI}_\text{mCSi}\).
-
-\hypertarget{thresholds-investigation}{%
-\subsection{Thresholds investigation}\label{thresholds-investigation}}
 
 The use of the actual modeled values of clear sky GHI can not provide us with a
 robust method to distinguish the CE cases, due to the limited accuracy of the input
@@ -371,17 +370,6 @@ efficiency of the identification threshold. These sets were random groups of abo
 Where it was needed, for some of the edge cases, we also used images from a sky-cam,
 along with the manual inspection.
 
-\hypertarget{criteria-for-cloud-enhancement-identification}{%
-\subsection{Criteria for cloud enhancement identification}\label{criteria-for-cloud-enhancement-identification}}
-
-Reasoning for the final selection\ldots\ldots\ldots..
-
-Many have used models or some statistical method to determine then CE thresholds.
-
-\ldots\ldots. cite \ldots\ldots{} Descriptions
-
-We used as reference a modeled clear sky approximation,
-
 Criteria for cloud enhancement identification are set according the Equation\nobreakspace\ref{eq:CE4}
 
 \begin{equation}
@@ -389,7 +377,7 @@ Criteria for cloud enhancement identification are set according the Equation\nob
  \text{GHI}_\text{i} > 1.05 \cdot \text{GHI}_\text{mCSi}, & \text{$\theta \leq 60^\circ$}\\
 \text{GHI}_\text{i} > \left ({ 1.18 + \frac{1.05 - 1.18}{60 - 78} \cdot (\theta- 78) } \right ) \cdot \text{GHI}_\text{mCSi}, & \text{$ 78^\circ > \theta > 60^\circ$}\\
 \text{Excluded measurements}, & \theta > 78^\circ
-\end{cases}\label{eq:CE4b}
+\end{cases}\label{eq:CE4}
 \end{equation}
 where: \(\theta\) solar zenith angle.
 
@@ -402,18 +390,13 @@ identification, relative to the TSI at horizontal plane
 \label{eq:ECE}
 \end{equation}
 
-Include Example of days plot? Appendix?
-
-\ldots{} this is more clear to understand and describe \ldots.
-
-\hypertarget{other-method-used-and-rejected}{%
-\subsection{Other method used and rejected}\label{other-method-used-and-rejected}}
-
 \begin{itemize}
 \tightlist
 \item
-  some other criteria were tested
+  Include Example of days plot? Appendix?
 \end{itemize}
+
+\ldots{} this is more clear to understand and describe \ldots.
 
 \FloatBarrier
 
