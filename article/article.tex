@@ -228,6 +228,11 @@ Constrains of the site
   location
 \end{itemize}
 
+In this study, we evaluated the effects of the clouds on the total downward radiation
+by studding the occurrences of the cloud enhancement cases, their intensity, and their
+duration. The recording of the radiation signal is the mean of one-minute. Thus, we
+will refer to this time step as a cloud enhancement event (CE).
+
 \hypertarget{data-and-methodology}{%
 \section{Data and methodology}\label{data-and-methodology}}
 
@@ -240,32 +245,28 @@ Aristotle University of Thessaloniki (\(40^\circ\,38'\,\)N,
 In this study we present data from the period
 13~April 1993 to
 31~December 2023.
-The GHI data were measured with a Kipp~\& Zonen CM-21 pyranometer.
-During the study period, the pyranometer was independently calibrated three times at
-the Meteorologisches Observatorium Lindenberg, DWD, verifying that the stability of
-the instrument's sensitivity was better than \(0.7\%\) relative to the initial
-calibration by the manufacturer.
-
-For the acquisition of radiometric data, the signal of the pyranometer was sampled
-at a rate of \(1\,\text{Hz}\).
-The mean and the standard deviation of these samples were calculated and recorded
-every minute.
-The measurements were corrected for the zero offset (``dark signal'' in volts), which
-was calculated by averaging all measurements recorded for a period of \(3\,\text{h}\),
-before (morning) or after (evening) the Sun reaches an elevation angle of \(-10^\circ\).
-The signal was converted to irradiance using a ramped value of the instrument's
-sensitivity between subsequent calibrations.
+The GHI data were measured with a Kipp~\& Zonen CM-21 pyranometer. During the study
+period, the pyranometer was independently calibrated three times at the
+Meteorologisches Observatorium Lindenberg, DWD, verifying that the stability of the
+instrument's sensitivity was better than \(0.7\%\) relative to the initial calibration
+by the manufacturer.
+For the acquisition of radiometric data, the signal of the pyranometer was sampled at
+a rate of \(1\,\text{Hz}\). The mean and the standard deviation of these samples were
+calculated and recorded every minute. The measurements were corrected for the zero
+offset (``dark signal'' in volts), which was calculated by averaging all measurements
+recorded for a period of \(3\,\text{h}\), before (morning) or after (evening) the Sun
+reaches an elevation angle of \(-10^\circ\). The signal was converted to irradiance
+using the ramped value of the instrument's sensitivity between subsequent
+calibrations.
 
 To further improve the quality of the irradiance data, a manual screening was
 performed to remove inconsistent and erroneous recordings that can occur
 stochastically or systematically during the continuous operation of the instruments.
 The manual screening was aided by a radiation data quality assurance procedure,
-adjusted for the site, which was based on the methods of Long and Shi~(Long and Shi 2006, 2008).
-Thus, problematic recordings have been excluded from further processing.
-Although it is impossible to detect all false data, the large number of available
-data, and the aggregation scheme we used, ensures the quality of the radiation
-measurements used in this study.
-
+adjusted for the site, which was based on the methods of Long and Shi~(Long and Shi 2006, 2008). Thus, problematic recordings have been excluded from further
+processing. Although it is impossible to detect all false data, the large number of
+available data, and the aggregation scheme we used, ensures the quality of the
+radiation measurements used in this study.
 To preserve an unbiased representation of the data we applied a constraint similar
 the one used by Castillejo-Cuberos and Escobar (2020). Where, for each valid hour of day, there
 must exist at list 45 minutes of valid measurements, including nighttime near
@@ -274,33 +275,31 @@ Furthermore, due to the significant measurement uncertainty when the Sun is near
 horizon, and to some systematic obstructions by nearby buildings, we have excluded
 all measurements with solar zenith angle (SZA) greater than \(78^\circ\).
 
-In this study, we evaluated the effects of the clouds on the total downward radiation
-by studding the occurrences of the cloud enhancement cases, their intensity, and their
-duration. The recording of the radiation signal is the mean of one-minute. Thus, we
-will refer to this time step as a cloud enhancement event (CE).
-
 \hypertarget{clear-sky-irradiance}{%
 \subsection{Clear Sky Irradiance}\label{clear-sky-irradiance}}
 
-In order to identify CE cases, we need an approximation of the expected clear sky GHI
-for the whole period of the study, with a temporal resolution of one minute. Because
-of the lack of exact data about atmospheric factors, responsible for the attenuation
-of the solar radiation in the atmosphere, we can not recreate a minute by minute
-representation of the reference radiation. Thus, we used some climatological data
-with a radiation transfer model.
+In order to identify CE cases, we used a modeled approximation of the expected clear
+sky GHI. Because of the lack of observational data for the whole period, we used
+some long term climatological data for the main factors responsible for the
+attenuation of the broadband downward solar radiation in the atmosphere, which are
+mainly the aerosols and the water vapors. Fortunately, our site participates in the
+Aerosol Robotic Network (AERONET) (Giles et al. 2019; Buis et al. 1998), as we operate a Cimel
+photometer since 2003, collocated with the CM-21 pyranometer. The mean monthly
+aerosol optical depth (AOD) on different wavelengths is provided by AERONET along
+with the equivalent water column height in the atmosphere. The simulation of the
+clear sky radiation was performed by the well established radiation transfer model
+Libradtran (Emde et al. 2016).
 
-We decided to use the Libradtran (Emde et al. 2016) radiation transfer model, to model
-the clear sky equivalent of GHI, with monthly climatological data of AOD and water
-column from the Aerosol Robotic Network (AERONET) (Giles et al. 2019; Buis et al. 1998). Our site
-participates in AERONET, where we operate a Cimel photometer, collocated to
-the CM-21 pyranometer, since 2003
-
-For the production of \ldots..
+For completeness we will describe the main points of the radiation simulation
+procedure here. We used as input the spectrum of Kurucz (1994) in the range \(280\) to
+\(2500\,\text{nm}\).
 
 We also used the Sun's total solar irradiance from NOAA (Coddington et al. 2005) and the
-Earth - Sun distance calculated by Astropy (Astropy Collaboration et al. 2022). We simulated
-the clear sky radiation, using the solar radiation spectrum of Kurucz (1994) in the
-range \(280\) to \(2500\,\text{nm}\), with a SZA step of \(0.2^\circ\). For the
+Earth - Sun distance calculated by Astropy (Astropy Collaboration et al. 2022).
+
+We simulated
+the clear sky radiation, using the solar radiation , with a SZA step of \(0.2^\circ\).
+For the
 atmospheric characteristics, we used combinations of AOD at \(500\,\text{nm}\)
 (\(t_{500\text{nm}}\)) and additional offsets of \(\pm1\) and \(\pm2\sigma\), water column
 (\(w_h\)) with offsets of \(\pm1\) and \(\pm2\sigma\), and applied it to two atmospheric
