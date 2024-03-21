@@ -156,13 +156,12 @@ Constrains of the site
 
 ## GHI data
 
-Our monitoring site is operating in the Laboratory of Atmospheric Physics of the
+The monitoring site is operating in the Laboratory of Atmospheric Physics of the
 Aristotle University of Thessaloniki (\(40^\circ\,38'\,\)N,
 \(22^\circ\,57'\,\)E, \(80\,\)m\ a.s.l.).
 In this study we present data from the period
 `r strftime(min(ST_daily$Date), "%d\\ %B %Y")` to
 `r strftime(max(ST_daily$Date), "%d\\ %B %Y")`.
-
 <!-- Instrument -->
 The GHI data were measured with a Kipp\ & Zonen CM-21 pyranometer.
 During the study period, the pyranometer was independently calibrated three times at
