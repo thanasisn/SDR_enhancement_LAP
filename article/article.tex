@@ -126,7 +126,7 @@
 \makeatother
 \subtitle{A Short Subtitle}
 \author{Athanasios N. Natsis\footnote{Laboratory of Atmospheric Physics \emph{\href{mailto:natsisphysicist@gmail.com}{\nolinkurl{natsisphysicist@gmail.com}}}} \and Alkiviadis Bais\footnote{Laboratory of Atmospheric Physics \emph{\href{mailto:abais@auth.gr}{\nolinkurl{abais@auth.gr}}}} \and Charikleia Meleti\footnote{Laboratory of Atmospheric Physics \emph{\href{mailto:meleti@auth.gr}{\nolinkurl{meleti@auth.gr}}}}}
-\date{2024-03-21}
+\date{2024-03-23}
 
 \begin{document}
 \maketitle
@@ -252,12 +252,12 @@ instrument's sensitivity was better than \(0.7\%\) relative to the initial calib
 by the manufacturer.
 For the acquisition of radiometric data, the signal of the pyranometer was sampled at
 a rate of \(1\,\text{Hz}\). The mean and the standard deviation of these samples were
-calculated and recorded every minute. The measurements were corrected for the zero
-offset (``dark signal'' in volts), which was calculated by averaging all measurements
-recorded for a period of \(3\,\text{h}\), before (morning) or after (evening) the Sun
-reaches an elevation angle of \(-10^\circ\). The signal was converted to irradiance
-using the ramped value of the instrument's sensitivity between subsequent
-calibrations.
+calculated and recorded for every minute. The measurements were corrected for the
+zero offset (``dark signal'' in volts), which was calculated by averaging all
+measurements recorded for a period of \(3\,\text{h}\), before (morning) or after
+(evening) the Sun reaches an elevation angle of \(-10^\circ\). The signal was
+converted to irradiance using the ramped value of the instrument's sensitivity
+between subsequent calibrations.
 
 To further improve the quality of the irradiance data, a manual screening was
 performed to remove inconsistent and erroneous recordings that can occur
@@ -267,29 +267,32 @@ adjusted for the site, which was based on the methods of Long and Shi~(Long and 
 processing. Although it is impossible to detect all false data, the large number of
 available data, and the aggregation scheme we used, ensures the quality of the
 radiation measurements used in this study.
-To preserve an unbiased representation of the data we applied a constraint similar
-the one used by Castillejo-Cuberos and Escobar (2020). Where, for each valid hour of day, there
-must exist at list 45 minutes of valid measurements, including nighttime near
-sunrise and sunset. Days with less than 5 valid hours are rejected completely.
+To preserve an unbiased representation of the data we applied a constraint, similar
+the one used by Castillejo-Cuberos and Escobar (2020). Where, for each valid hour of day, there must
+exist at least 45 minutes of valid measurements, including nighttime near sunrise and
+sunset. Days with less than 5 valid hours are rejected completely.
 Furthermore, due to the significant measurement uncertainty when the Sun is near the
-horizon, and to some systematic obstructions by nearby buildings, we have excluded
-all measurements with solar zenith angle (SZA) greater than \(78^\circ\).
+horizon, and due to some systematic obstructions by nearby buildings, we have
+excluded all measurements with solar zenith angle (SZA) greater than
+\(78^\circ\).
 
 \hypertarget{cloud-enhancement-detection}{%
 \subsection{Cloud enhancement detection}\label{cloud-enhancement-detection}}
 
-To be able to detect the CE cases, we had establish a baseline, above which we can
-characterize each data point as enhancement event, by estimating the occurring over
-irradiance. To have an estimation and a first insight on the phenomenon, we
-experimented with two simple approaches as reference. The Haurwitz's model
-(Haurwitz 1945), which is as simple clear sky we have previous adjusted and had good
-fit with our data (Natsis, Bais, and Meleti 2023), and the TSI at the top of the atmosphere. For both
-cases we tested using an appropriate relative threshold and/or an constant offset.
-The initial results, showed that we can detect a big portion of the CE events. But it
-was evident, by inspecting the daily plot of irradiance, that changes on the
-atmospheric conditions introduced numerous false positive and false negative
-results. To produce a more accurate reference, we had to take into account more
-factors that effect the clear sky radiation and used a radiation transfer model.
+To be able to detect the CE cases, we had to establish a baseline, above which we can
+characterize each data point as an enhancement event, by estimating the occurring
+over irradiance (OI). To have an estimation and a first insight on the phenomenon,
+we experimented with two simple approaches for the reference. The Haurwitz's model
+(Haurwitz 1945), which is as simple clear sky model, and we had already adjusted and
+had good fit with our data (Natsis, Bais, and Meleti 2023), and the TSI at the top of the atmosphere.
+We have tested both cases by using an appropriate relative threshold and/or an
+additional constant offset. The initial results, showed that we can detect a big
+portion of the CE events. These results were helpful, and helped to establish some
+criteria to further improve the CE identification. It was evident, by inspecting the
+daily plot of irradiance, that changes on the atmospheric conditions introduced
+numerous false positive and false negative results. To produce a more accurate
+reference, we had to take into account more factors that effect the clear sky
+radiation. So we used a radiation transfer model.
 
 \hypertarget{modeled-clear-sky-irradiance}{%
 \subsection{Modeled clear Sky Irradiance}\label{modeled-clear-sky-irradiance}}
@@ -297,20 +300,20 @@ factors that effect the clear sky radiation and used a radiation transfer model.
 We approximated the expected clear sky GHI by using a model. Because of the lack of
 observational data for the whole period, we used some long term climatological data
 for the main factors responsible for the attenuation of the broadband downward solar
-radiation in the atmosphere. Which are mainly the aerosols and the water vapors.
+radiation in the atmosphere. Which are mainly, the aerosols and the water vapors.
 Fortunately, our site participates in the Aerosol Robotic Network (AERONET)
 (Giles et al. 2019; Buis et al. 1998), as we operate a Cimel photometer since 2003, collocated with
 the CM-21 pyranometer. The mean monthly aerosol optical depth (AOD) on different
 wavelengths is provided by AERONET, along with the equivalent water column height in
 the atmosphere. The simulation of the clear sky radiation was performed by the well
 established radiation transfer model Libradtran (Emde et al. 2016), a similar
-approach, was also used by Vamvakas, Salamalikis, and Kazantzidis (2020).
+approach, was also used by Vamvakas, Salamalikis, and Kazantzidis (2020) for creating a clear sky reference.
 
 For completeness, we will describe here the main points of the radiation simulation
 procedure. We used as input the spectrum of Kurucz (1994) in the range \(280\) to
-\(2500\,\text{nm}\), with the Libradtran radiation transfer solver ``disort'' on a ``pseudospherical''
-geometry and the ``LOWTRAN'' gas parameterization. For each combination of conditions
-we use a SZA step of \(0.2^\circ\).
+\(2500\,\text{nm}\), with the Libradtran radiation transfer solver ``disort'' on a
+``pseudospherical'' geometry and the ``LOWTRAN'' gas parameterization. For each
+combination of conditions we use a SZA step of \(0.2^\circ\).
 For the atmospheric characteristics, we iterated for combinations of AOD at
 \(500\,\text{nm}\) (\(t_{500\text{nm}}\)) with additional offsets of \(\pm1\) and
 \(\pm2\sigma\), and water column (\(w_h\)), also with offsets of \(\pm1\) and \(\pm2\sigma\).
@@ -319,22 +322,24 @@ Laboratory (AFGL). The ``AFGL atmospheric constituent profile, midlatitude summe
 (afglms) and the ``AFG Latmospheric constituent profile, midlatitude winter'' (afglmw)
 (Anderson et al. 1986).
 
-To create a look up table that aligns with our dataset we applied some adjustments.
+To create a look up table that aligns with our dataset, we applied some adjustments.
 To account for the Sun's variability in our one-minute GHI measurements, we corrected
-the model's input spectrum integral to the one of the value of total solar irradiance
-(TSI) provided by NOAA (Coddington et al. 2005). Also, we applied the effect of the Earth
--- Sun distance on the irradiance, by using the distance calculated by the Astropy
-(Astropy Collaboration et al. 2022) software library. As needed, we interpolate the
+the model's input spectrum integral, to the one of the total solar irradiance (TSI)
+provided by NOAA (Coddington et al. 2005). Also, we applied the effect of the Earth -- Sun
+distance on the irradiance, by using the distance calculated by the Astropy
+(Astropy Collaboration et al. 2022) software library. As needed, we interpolate the resulting
 irradiances to the exact SZA of our measurements. For each period of the year, we
 used the appropriate atmospheric profile (afglms or afglmw). Finally, we calculated
 the clear sky irradiance value at the horizontal plane. Thus, we were able to
-emulate different atmospheric condition and level of atmospheric clearness for the
-climatological conditions of the site. Thus, the modeled clear sky irradiances,
-based on the climatological conditions of the site, can be directly compared to each
-measured one-minute value of GHI, for different conditions of atmospheric clearness.
+emulate different atmospheric condition and levels of atmospheric clearness for the
+climatological conditions of the site. With this method, the modeled clear sky
+irradiances can be directly compared to each measured one-minute value of GHI, for
+different conditions of atmospheric clearness.
 
 \hypertarget{ce-criteria-investigation}{%
 \subsection{CE Criteria investigation}\label{ce-criteria-investigation}}
+
+\ldots\ldots.here\ldots..
 
 Of course, have to choose which atmospheric conditions qualify as a good clear sky analogous radiation.
 
