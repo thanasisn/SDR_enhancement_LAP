@@ -299,67 +299,24 @@ characteristics:
 (e) with at least $60\%$ of the day length without clouds and some EC events,
 (h) random days and
 (i) some manual selected days that were included during the manual inspection.
-
-
-
-
-
-
-
-
-
-
-After evaluating the modeled clear radiation for the different atmospheric conditions,
-in relation to the measured GHI data, we choose as a representative of the clear sky radiation,
-the case with
-$t_{\text{cs}} = t_{500\text{nm}} - 1\sigma$ and $w_{h\text{cs}} = w_h - 1\sigma$.
-
-
-- can folleo for clear days
-- this selection has some subjectivity
-- the most importand are the thresholds
-
-
-Of course, have to choose which atmospheric conditions qualify as a good clear sky analogous radiation.
-This selection has some subjectivity, as the definition of clear sky, is in relation
-of the intended usage. Our main focus is to be able to identify the OI created by the
-clouds. Although, the aerosols and water vapor are always present and can not be
-completely removed. The effect of the different clearness lavels
-
-model have to be uniform on clear days
-
-the level is adjusted by the threshold 
-
-the effect of the sza uniform
-
-
-
-These values will represent a typical atmosphere in
-Thessaloniki with low load of aerosols and humidity, which are the main factor that
-attenuate the GHI, excluding clouds.
-We will refer to this irradiance as $\text{GHI}_\text{mCSi}$.
-
-
-
-
-
-
-
-
-
-
-
 Where it was needed, for some of the edge cases, we also used images from a sky-cam,
-along with the manual inspection.
+to further aid the decisions of the manual inspection.
 
 
 
 
+After evaluating the modeled clear radiation for the different atmospheric
+conditions, in relation to the measured GHI data, we choose as a representative of
+the clear sky radiation, the case where
+$t_{\text{cs}} = t_{500\text{nm}} - 1\sigma$ and $w_{h\text{cs}} = w_h - 1\sigma$
+($\text{GHI}_\text{mCSi}$).
 
 
+With a two branched threshold, as a function of SZA. A constant factor for low SZAs,
+and a higher ramped factor for higher SZAs (Equation\nobreakspace\ref{eq:CE4}).
 
-Criteria for cloud enhancement identification are set according the Equation\nobreakspace\ref{eq:CE4}
 
+This is the criterion of our CE identification.
 <!--
 \begin{equation}
 \text{CE}_\text{Threshold} = \begin{cases}
@@ -370,7 +327,6 @@ Criteria for cloud enhancement identification are set according the Equation\nob
 \end{equation}
 where: $\theta$ solar zenith angle.
 -->
-
 \begin{equation}
 \text{CE} : \begin{cases}
  \text{GHI}_\text{i} > `r C4_cs_ref_ratio` \cdot \text{GHI}_\text{mCSi}, & \text{$\theta \leq `r C4_lowcut_sza`^\circ$}\\
@@ -378,7 +334,52 @@ where: $\theta$ solar zenith angle.
 \text{Excluded measurements}, & \theta > `r 90 - BIO_ELEVA`^\circ
 \end{cases}\label{eq:CE4}
 \end{equation}
-where: $\theta$ solar zenith angle.
+where: $\theta$ is the solar zenith angle, $\text{GHI}_\text{i}$ the measured
+irradiance, and $\text{GHI}_\text{mCSi}$ the selected modeled clear sky irradiance.
+
+<!-- reasoning for cretria -->
+We have to note, that the differentiation of the threshold factor was needed, because
+of the high irradiance values we observed, early in the morning and late on the
+afternoon. We have confirmed, by inspecting images from the sky cam, that we have
+duration of elevated irradiance, either due the clearness of the atmosphere, or some
+interferences by reflections on nearby bright surfaces. Although, these cases may
+mask some of the CE events. The actual CE events, produce higher irradiance and thus
+are identified as such. As a side effect, the reported OI will be slight
+underestimated for those SZAs, but the overall contribution of those cases to the
+total daily energy, is minimal due the low occurrences and the lower irradiances.
+
+<!--
+- can follow for clear days
+- this selection has some subjectivity
+- the most important are the thresholds
+- model have to be uniform on clear days
+- the level is adjusted by the threshold 
+- the effect of the sza uniform
+-->
+
+
+
+These selections has some subjectivity, as the definition of clear sky, is in relation
+of the intended usage. Our main focus is to be able to identify the OI created by the
+clouds. Although, the aerosols and water vapor are always present and can not be
+completely removed. The effect of the different clearness levels
+
+
+
+These values will represent a typical atmosphere in
+Thessaloniki with low load of aerosols and humidity, which are the main factor that
+attenuate the GHI, excluding clouds.
+
+
+
+
+
+
+
+
+
+
+
 
 
 
