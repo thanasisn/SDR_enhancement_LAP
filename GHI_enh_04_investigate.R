@@ -586,6 +586,29 @@ ggplot(data    = ST_G0,
 
 
 
+
+ggplot(data    = ST_G0,
+       mapping = aes(x = GLB_ench.N, y = GLB_diff.sum)) +
+  xlab("Duration of enhancement group [min]") +
+  ylab(bquote("Total group over irradiance" ~ group("[", kJ/m^2,"]"))) +
+  geom_bin_2d(bins = 60) +
+  # scale_fill_viridis()  +
+  scale_fill_continuous(type = "viridis", transform = "log",
+                        breaks = my_breaks, labels = my_breaks) +
+  theme(legend.position      = c(0.01, 0.99),
+        legend.justification = c(0, 1)) +
+  theme(legend.background    = element_rect(fill = "white", colour = NA)) +
+  labs(color = 'Count') +
+  scale_y_continuous(guide        = "axis_minor",
+                     minor_breaks = seq(0, 500, by = 25)) +
+  scale_x_continuous(guide        = "axis_minor",
+                     minor_breaks = seq(0, 500, by = 10)) +
+  labs(caption = paste("Removed", ST_G0[GLB_ench.N > lim_dur, .N],
+                       "points with duration >", lim_dur, "minutes.")) +
+  xlim(-1, lim_dur)
+
+
+
 ggplot(data    = ST_G0[GLB_ench.N > 1,],
        mapping = aes(x = GLB_ench.N, y = GLB_diff.sum/GLB_ench.N)) +
   xlab("Duration of enhancement group [min]") +
