@@ -546,14 +546,16 @@ knitr::include_graphics("../images/P-relative-distribution-diff-1.png")
 
 ## Groups stats
 
-In order to further study the characteristics of the CE events, we grouped the singe
+In order to further study the characteristics of the CE events, we grouped the single
 minute CE events, to continuous CE groups (CEG). Thus, a CEG consists of one or more
 successive CE cases, and can have a duration of multiple of minutes.  We have
 identified `r ST_G0[, .N]` groups, where the group with the longest duration lasted
-`r ST_G0[, max(GLB_diff.N)]` minutes on 
+`r ST_G0[, max(GLB_diff.N)]` minutes on
 `r strftime(ST_G0[which.max(GLB_diff.N), Date], "%d\\ %B %Y")`.
 By examining the frequency distribution of the CEG durations
-(Figure\nobreakspace{}\ref{fig:ceg-duration-distribution}), we can conclude that longer durations are getting increasingly rare, with durations above 10 minutes very rare.
+(Figure\nobreakspace{}\ref{fig:ceg-duration-distribution}), we can conclude that
+longer durations are getting increasingly rare, with durations above 10 minutes very
+rare.
 
 ```{r ceg-duration-distribution, echo=FALSE, fig.cap="Distribution of CE groups"}
 knitr::include_graphics("../images/groups-1.png")
