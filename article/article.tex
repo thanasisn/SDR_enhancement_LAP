@@ -370,10 +370,11 @@ conditions, in relation to the measured GHI data, we choose as a representative 
 the clear sky radiation, the case where
 \(t_{\text{cs}} = t_{500\text{nm}} - 1\sigma\) and \(w_{h\text{cs}} = w_h - 1\sigma\)
 (\(\text{GHI}_\text{mCSi}\)).
-
-With a two branched threshold, as a function of SZA. A constant factor for low SZAs,
-and a higher ramped factor for higher SZAs (Equation\nobreakspace\ref{eq:CE4}).
-
+These values represent a typical atmosphere in Thessaloniki with low load of aerosols
+and humidity, which are the main factor that attenuate the GHI, excluding clouds. To
+create the limit of CE identification, we created a two branched threshold, as a
+function of SZA. A constant factor for low SZAs, and a higher ramped factor for
+higher SZAs (Equation\nobreakspace\ref{eq:CE4}).
 This is the criterion of our CE identification.
 \begin{equation}
 \text{CE} : \begin{cases}
@@ -395,31 +396,35 @@ are identified as such. As a side effect, the reported OI will be slight
 underestimated for those SZAs, but the overall contribution of those cases to the
 total daily energy, is minimal due the low occurrences and the lower irradiances.
 
-These selections has some subjectivity, as the definition of clear sky, is in relation
-of the intended usage. Our main focus is to be able to identify the OI created by the
+\ldots\ldots\ldots\ldots.
+
+These selections has some subjectivity, as the definition of clear sky, is depended
+on the intended usage. Our main focus is to be able to identify the OI created by the
 clouds. Although, the aerosols and water vapor are always present and can not be
-completely removed. The effect of the different clearness levels
+completely removed.
+The effect of the different clearness levels
 
-These values will represent a typical atmosphere in
-Thessaloniki with low load of aerosols and humidity, which are the main factor that
-attenuate the GHI, excluding clouds.
+\ldots\ldots\ldots\ldots.
 
-A secondary criterion was used for extreme cloud enhancement cases (ECE)
-identification, relative to the TSI at horizontal plane
-(Equation\nobreakspace{}\ref{eq:ECE})
-
+Another aspect of the CE events, that is often reported in the relative bibliography,
+are cases of extreme cloud enhancement (ECE). These are cases of CE where the
+measured intensity of the irradiance, exceeds the equivalent TSI on the top of the
+atmosphere, and satisfy the Equation\nobreakspace{}\ref{eq:ECE}.
 \begin{equation}
-\text{ECE}: \text{GHI} > \cos(\theta) \times \text{TSI}_\text{TOA}
+\text{ECE}: \text{GHI}_\text{i} > \cos(\theta) \times \text{TSI}_\text{iTOA}
 \label{eq:ECE}
 \end{equation}
+
+\ldots\ldots.
 
 \begin{itemize}
 \tightlist
 \item
-  Include Example of days plot? Appendix?
+  Include Example of days plot in the Appendix?
+  \ldots{} this is more clear to understand and describe \ldots.
 \end{itemize}
 
-\ldots{} this is more clear to understand and describe \ldots.
+\ldots\ldots.
 
 \FloatBarrier
 
@@ -447,7 +452,7 @@ clear sky threshold, on
 We computed the daily trend of the mean over irradiance of CE
 (Figure\nobreakspace{}\ref{fig:CEmeanDaily}), using a first-order autoregressive
 model with lag of 1 day, using the `maximum likelihood' fitting method (Gardner, Harvey, and Phillips 1980; Jones 1980) by implementing the function `arima' from the library `stats' of the R
-programming language (R Core Team 2023). The trends were reported together with the \(2\sigma\)
+programming language (R Core Team 2023). The trends are reported together with the \(2\sigma\)
 error. We observe an increase of
 \(0.216\pm 0.083\,W/m^2\)
 on the mean over irradiance.
@@ -463,12 +468,12 @@ on the mean over irradiance.
 
 Although, the previous result is closer to the raw data, we preferred to present the
 annual statistics, that give a more clear picture about the long term CE trends.
-Hence, we calculated the annual values from the one-minute measurements.
-The annual mean over irradiance is
+Hence, we calculated the annual values from the one-minute measurements. The annual
+mean over irradiance is
 \(0.23\pm 0.11\,W/m^2\)
 (Figure\nobreakspace{}\ref{fig:P-energy-mean}),
-but this value is not very useful due the high
-variability of this metric.
+but this value alone is not very useful due the intrinsic high variability of this
+metric.
 
 \begin{figure}[h!]
 
@@ -486,7 +491,9 @@ occurrences, shows a steady increase of
 (Figure\nobreakspace{}\ref{fig:P-energy-N}).
 We have to note that the energy related to the CE events can not be directly linked
 with the total energy balance on the atmosphere. The net sun radiation of the region
-is not increased, but rather redistributed through the CE.
+is not increased, but rather redistributed through the CE. Although, the
+instantaneous values, can exceed the equivalent clear sky irradiance to a
+considerable level.
 
 \begin{figure}[h!]
 
@@ -497,7 +504,7 @@ is not increased, but rather redistributed through the CE.
 \caption{Trend of yearly CE number of occurancies.}\label{fig:P-energy-N}
 \end{figure}
 
-Subsequently, the annual energy observed during CE events shows a annual increase of
+Subsequently, the total annual energy observed during CE events shows an increase of
 \(341.6\pm 73.1\,kJ/y\)
 (Figure~\ref{fig:P-energy-sum}), witch follows the trend of the number of
 occurrences.
@@ -525,13 +532,13 @@ occurrences.
 \hypertarget{climatology}{%
 \subsection{Climatology}\label{climatology}}
 
-Another interesting aspect of the CE cases, is the seasonal cycle. In
+Another interesting aspect of the CE cases, is their seasonal cycle. In
 Figure\nobreakspace{}\ref{fig:relative-month-occurancies}, we have the box plot
 (whisker plot), where the values have been normalized by the highest median value,
 that occurs in May. Although the number of occurrences has a wide spread throughout
 the study period, the most active period of CE occurrences is during May and June.
 During the Winter (December -- February) the CE cases are about 25\% of the maximum.
-The rest of the months the occurrences seems to ramp between the maximum and minimum.
+The rest of the months the occurrences ramp between the maximum and minimum.
 
 \begin{figure}[h!]
 
