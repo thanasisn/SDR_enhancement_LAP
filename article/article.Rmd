@@ -274,9 +274,7 @@ different conditions of atmospheric clearness.
 
 
 
-
 ## CE Criteria investigation
-
 
 The use of the actual modeled values of clear sky GHI alone, can not provide us with
 a robust method to distinguish the CE cases, due to the limited accuracy of the input
@@ -302,20 +300,16 @@ characteristics:
 Where it was needed, for some of the edge cases, we also used images from a sky-cam,
 to further aid the decisions of the manual inspection.
 
-
-
-
 After evaluating the modeled clear radiation for the different atmospheric
 conditions, in relation to the measured GHI data, we choose as a representative of
 the clear sky radiation, the case where
 $t_{\text{cs}} = t_{500\text{nm}} - 1\sigma$ and $w_{h\text{cs}} = w_h - 1\sigma$
 ($\text{GHI}_\text{mCSi}$).
-
-
-With a two branched threshold, as a function of SZA. A constant factor for low SZAs,
-and a higher ramped factor for higher SZAs (Equation\nobreakspace\ref{eq:CE4}).
-
-
+These values represent a typical atmosphere in Thessaloniki with low load of aerosols
+and humidity, which are the main factor that attenuate the GHI, excluding clouds.  To
+create the limit of CE identification, we created a two branched threshold, as a
+function of SZA. A constant factor for low SZAs, and a higher ramped factor for
+higher SZAs (Equation\nobreakspace\ref{eq:CE4}).
 This is the criterion of our CE identification.
 <!--
 \begin{equation}
@@ -358,50 +352,34 @@ total daily energy, is minimal due the low occurrences and the lower irradiances
 -->
 
 
+.............
 
-These selections has some subjectivity, as the definition of clear sky, is in relation
-of the intended usage. Our main focus is to be able to identify the OI created by the
+These selections has some subjectivity, as the definition of clear sky, is depended
+on the intended usage. Our main focus is to be able to identify the OI created by the
 clouds. Although, the aerosols and water vapor are always present and can not be
-completely removed. The effect of the different clearness levels
+completely removed. 
+The effect of the different clearness levels
+
+.............
 
 
-
-These values will represent a typical atmosphere in
-Thessaloniki with low load of aerosols and humidity, which are the main factor that
-attenuate the GHI, excluding clouds.
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-A secondary criterion was used for extreme cloud enhancement cases (ECE)
-identification, relative to the TSI at horizontal plane
-(Equation\nobreakspace{}\ref{eq:ECE})
-
+<!-- extreme cases criterion -->
+Another aspect of the CE events, that is often reported in the relative bibliography,
+are cases of extreme cloud enhancement (ECE). These are cases of CE where the
+measured intensity of the irradiance, exceeds the equivalent TSI on the top of the
+atmosphere, and satisfy the Equation\nobreakspace{}\ref{eq:ECE}.
 \begin{equation}
-\text{ECE}: \text{GHI} > \cos(\theta) \times \text{TSI}_\text{TOA}
+\text{ECE}: \text{GHI}_\text{i} > \cos(\theta) \times \text{TSI}_\text{iTOA}
 \label{eq:ECE}
 \end{equation}
 
 
+.......
 
-- Include Example of days plot? Appendix?
-
+- Include Example of days plot in the Appendix?
 ... this is more clear to understand and describe ....
 
-
-
-
+.......
 
 <!-- ```{r echo=F, include=T, warning=FALSE, message=FALSE} -->
 <!-- ST_total -->
@@ -451,7 +429,7 @@ We computed the daily trend of the mean over irradiance of CE
 (Figure\nobreakspace{}\ref{fig:CEmeanDaily}), using a first-order autoregressive
 model with lag of 1 day, using the 'maximum likelihood' fitting method [@Gardner1980;
 @Jones1980] by implementing the function 'arima' from the library 'stats' of the R
-programming language [@RCT2023]. The trends were reported together with the $2\sigma$
+programming language [@RCT2023]. The trends are reported together with the $2\sigma$
 error.  We observe an increase of
 $`r round(dailyCE[var == "GLB_diff.mean", Tmod_Estimate], 3)`\pm
 `r round(2 * dailyCE[var == "GLB_diff.mean", Tmod_Std..Error], 3)`\,W/m^2$
@@ -463,13 +441,13 @@ knitr::include_graphics("../images/P_daily_trend-1.png")
 
 Although, the previous result is closer to the raw data, we preferred to present the
 annual statistics, that give a more clear picture about the long term CE trends.
-Hence, we calculated the annual values from the one-minute measurements.
-The annual mean over irradiance is
+Hence, we calculated the annual values from the one-minute measurements.  The annual
+mean over irradiance is
 $`r round(yearlyCE[var == "GLB_diff.mean", slope], 2)`\pm
 `r round(2 * yearlyCE[var == "GLB_diff.mean", slope.sd], 2)`\,W/m^2$
 (Figure\nobreakspace{}\ref{fig:P-energy-mean}),
-but this value is not very useful due the high
-variability of this metric.
+but this value alone is not very useful due the intrinsic high variability of this
+metric.
 
 <!-- ```{r CEmeanDaily2, echo=FALSE, fig.cap="Trend of the daily excess energy due to CE"} -->
 <!-- knitr::include_graphics("../images/daily-12.png") -->
@@ -491,7 +469,9 @@ $`r round(yearlyCE[var == "GLB_diff.N", slope], 1)`\pm
 (Figure\nobreakspace{}\ref{fig:P-energy-N}).
 We have to note that the energy related to the CE events can not be directly linked
 with the total energy balance on the atmosphere. The net sun radiation of the region
-is not increased, but rather redistributed through the CE.
+is not increased, but rather redistributed through the CE. Although, the
+instantaneous values, can exceed the equivalent clear sky irradiance to a
+considerable level.
 
 <!-- ```{r echo=FALSE, fig.cap="Trend of number of CE cases"} -->
 <!-- knitr::include_graphics("../images/energy-2.png") -->
@@ -500,7 +480,7 @@ is not increased, but rather redistributed through the CE.
 ```{r P-energy-N, echo=FALSE, fig.cap="Trend of yearly CE number of occurancies."}
 knitr::include_graphics("../images/P_energy-6.png")
 ```
-Subsequently, the annual energy observed during CE events shows a annual increase of
+Subsequently, the total annual energy observed during CE events shows an increase of
 $`r round(yearlyCE[var == "GLB_diff.sum", slope], 1)`\pm
 `r round(2 * yearlyCE[var == "GLB_diff.sum", slope.sd], 1)`\,kJ/y$
 (Figure\ \ref{fig:P-energy-sum}), witch follows the trend of the number of
@@ -522,13 +502,13 @@ knitr::include_graphics("../images/P_energy-8.png")
 
 ## Climatology
 
-Another interesting aspect of the CE cases, is the seasonal cycle. In
+Another interesting aspect of the CE cases, is their seasonal cycle. In
 Figure\nobreakspace{}\ref{fig:relative-month-occurancies}, we have the box plot
 (whisker plot), where the values have been normalized by the highest median value,
 that occurs in May.  Although the number of occurrences has a wide spread throughout
 the study period, the most active period of CE occurrences is during May and June.
 During the Winter (December -- February) the CE cases are about 25% of the maximum.
-The rest of the months the occurrences seems to ramp between the maximum and minimum.
+The rest of the months the occurrences ramp between the maximum and minimum.
 
 ```{r relative-month-occurancies, echo=FALSE, fig.cap="Statistics of the number of CE occurancies for each month. The box represents the values of the low 25% percentile to 75% percentile, where the thick horizontal line inside is the mean, the verical lines extend to the macimum and minimum vales, the dots are outlier values, and the rhombus is the mean."}
 knitr::include_graphics("../images/clim_CE_month_norm_MAX_median_N-2.png")
@@ -538,7 +518,6 @@ knitr::include_graphics("../images/clim_CE_month_norm_MAX_median_N-2.png")
 knitr::include_graphics("../images/climCEmonth-1.png")
 ```
 --->
-
 
 <!-- ```{r echo=FALSE, fig.cap="Distribution of CE above reference"} -->
 <!-- knitr::include_graphics("../images/relative_distributions-2.png") -->
