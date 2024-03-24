@@ -277,11 +277,37 @@ different conditions of atmospheric clearness.
 
 ## CE Criteria investigation
 
-We evaluasted the performanse of the modeled clear radiation for the different atmospheric conditions,
-as reference. 
-by an empirica approach by inspecting a set of chosen days.
 
-we adjusted teh threshold for each and chek then results
+The use of the actual modeled values of clear sky GHI alone, can not provide us with
+a robust method to distinguish the CE cases, due to the limited accuracy of the input
+data. Our main focus was to positively identify over irradiance events from CEs, thus
+we used a relative factor, to create an upper envelope of the clear sky irradiance,
+above which, any GHI value can safely attributed to CE.  We evaluated the performance
+of the modeled clear radiation for each of atmospheric level of clearness, as
+reference, in order to conclude which is the most appropriate.
+
+To select the exact values of these thresholds factors (Equation \ref{eq:CE4}), we
+implemented an empirical method, by manual inspection of the CE identification, on
+specially selected days from the whole dataset.  We used seven sets of selected days,
+with characteristics relevant to the efficiency of the identification threshold.
+These sets were random groups of about 20 to 30 days with the following
+characteristics:
+(a) the largest over irradiance CE events,
+(b) the largest daily total over irradiance,
+(c) without clouds (by implementing a clear sky identification algorithm as discussed in @Natsis2023),
+(d) without clouds and without EC events,
+(e) with at least $60\%$ of the day length without clouds and some EC events,
+(h) random days and
+(i) some manual selected days that were included during the manual inspection.
+
+
+
+
+
+
+
+
+
 
 After evaluating the modeled clear radiation for the different atmospheric conditions,
 in relation to the measured GHI data, we choose as a representative of the clear sky radiation,
@@ -317,33 +343,11 @@ We will refer to this irradiance as $\text{GHI}_\text{mCSi}$.
 
 
 
-The use of the actual modeled values of clear sky GHI can not provide us with a
-robust method to distinguish the CE cases, due to the limited accuracy of the input
-data. Our main focus was to positively identify over irradiance events from CEs,
-thus we used a relative factor, to create an upper envelope of the clear sky
-irradiance, above which, any GHI value can safely attributed to CE.
 
-To select the exact values of the thresholds (Equation \ref{eq:CE4}), we implemented
-manual inspection of the CE identification, on specially selected days from the whole
-dataset.  We used seven sets of selected days, with characteristics relevant to the
-efficiency of the identification threshold.  These sets were random groups of about
-20 to 30 days with the following characteristics:
-(a) the largest over irradiance CE events,
-(b) the largest daily total over irradiance,
-(c) without clouds (by implementing a clear sky identification algorithm as discussed in @Natsis2023),
-(d) without clouds and without EC events,
-(e) with at least $60\%$ of the day length without clouds and some EC events,
-(h) random days and
-(i) some manual selected days that were included during the manual inspection.
 
-<!-- - some manual selected days that were included during the manual inspection -->
-<!-- - 20 days with the largest over irradiance CE events -->
-<!-- - 30 days with largest total over irradiance -->
-<!-- - 20 days without clouds (CSid) @Natsis2023 -->
-<!-- - any day without clouds and EC events -->
-<!-- - 20 days with at least 60% of day length without clouds and some EC events -->
-<!-- - 30 random days -->
-<!-- - some manual selected days that were included during the manual inspection -->
+
+
+
 
 Where it was needed, for some of the edge cases, we also used images from a sky-cam,
 along with the manual inspection.
