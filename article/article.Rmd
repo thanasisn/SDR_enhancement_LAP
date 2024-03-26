@@ -116,9 +116,15 @@ Those enhancements have been reported to be able to exceed .... and duration.
 
 
 The underling mechanism of those events have been studied, with the main factor to be
-.... cite ....
+.... cite ...
+The forward scattering of clouds near the sun has been observed to produce cases of
+extreme enhancement irradiances [@Yordanov2015].
 
-Methods of identification used
+
+Gueymard, 2017; Veerman et al., 2022)
+Methods of identification in the literature include the use of a clear sky radiation
+modelel
+
 .... cite ....
 
 
@@ -133,7 +139,9 @@ phenomenon, it's Climatology, and some other statistical characteristics.
 
 
 <!-- Define CE and ECE -->
-here, we defined as cloud enhancement events (CE) the cases when the measured
+In the relative bibliography different definition have been used for these events, some of
+the are summarized by @Gueymard2017.
+Here, we defined as cloud enhancement events (CE) the cases when the measured
 global horizontal irradiance (GHI) at ground level, exceeds the expected value under
 clear-sky conditions.
 Similar, we defined as extreme cloud enhancement events (ECE), the cases when GHI,
@@ -235,18 +243,22 @@ $`r 90 - BIO_ELEVA`^\circ$.
 
 To be able to detect the CE cases, we had to establish a baseline, above which we can
 characterize each data point as an enhancement event, by estimating the occurring
-over irradiance (OIR).  To have an estimation and a first insight on the phenomenon,
-we experimented with two simple approaches for the reference.  The Haurwitz's model
-[@Haurwitz1945], which is as simple clear sky model, and we had already adjusted and
-had good fit with our data [@Natsis2023], and the TSI at the top of the atmosphere.
-We have tested both cases by using an appropriate relative threshold and/or an
-additional constant offset.  The initial results, showed that we can detect a big
-portion of the CE events. These results were helpful, and helped to establish some
-criteria to further improve the CE identification. It was evident, by inspecting the
-daily plot of irradiance, that changes on the atmospheric conditions introduced
-numerous false positive and false negative results.  To produce a more accurate
-reference, we had to take into account more factors that effect the clear sky
-radiation. So we used a radiation transfer model.
+over irradiance (OIR). The OIR, here is defined as the irradiance difference of the
+measured one-minute $\text{GHI}_i$ from the CE identification criterion in
+Equation\nobreakspace\ref{eq:CE4}
+($\text{OIR}_i = \text{GHI}_i - \text{GHI}_\text{CSlim}$).
+To have an estimation and a first insight on the phenomenon, we experimented with two
+simple approaches for the reference.  The Haurwitz's model [@Haurwitz1945], which is
+as simple clear sky model, and we had already adjusted and had good fit with our data
+[@Natsis2023], and the TSI at the top of the atmosphere.  We have tested both cases
+by using an appropriate relative threshold and/or an additional constant offset.  The
+initial results, showed that we can detect a big portion of the CE events. These
+results were helpful, and helped to establish some criteria to further improve the CE
+identification. It was evident, by inspecting the daily plot of irradiance, that
+changes on the atmospheric conditions introduced numerous false positive and false
+negative results.  To produce a more accurate reference, we had to take into account
+more factors that effect the clear sky radiation. So we used a radiation transfer
+model.
 
 
 ## Modeled clear Sky Irradiance
@@ -338,14 +350,25 @@ This is the criterion of our CE identification.
 `r C4_cs_ref_ratio`, & \text{$\theta \leq `r C4_lowcut_sza`^\circ$}\\
 \frac{`r C4_cs_ref_ratio` - `r C4_lowcut_ratio`}{`r C4_lowcut_sza` - `r 90 - BIO_ELEVA`} \cdot (\theta- `r 90 - BIO_ELEVA`) + `r C4_lowcut_ratio` , & \text{$ `r 90 - BIO_ELEVA`^\circ > \theta > `r C4_lowcut_sza`^\circ$}\\
 \text{Excluded measurements}, & \theta > `r 90 - BIO_ELEVA`^\circ
-\end{cases}\label{eq:CE4}
+\end{cases}\label{eq:CE4a}
 \end{equation}
 where: $\theta$ solar zenith angle.
 -->
+<!--
 \begin{equation}
 \text{CE} : \begin{cases}
  \text{GHI}_\text{i} > `r C4_cs_ref_ratio` \cdot \text{GHI}_\text{mCSi}, & \text{$\theta \leq `r C4_lowcut_sza`^\circ$}\\
 \text{GHI}_\text{i} > \left ({ `r C4_lowcut_ratio` + \frac{`r C4_cs_ref_ratio` - `r C4_lowcut_ratio`}{`r C4_lowcut_sza` - `r 90 - BIO_ELEVA`} \cdot (\theta- `r 90 - BIO_ELEVA`) } \right ) \cdot \text{GHI}_\text{mCSi}, & \text{$ `r 90 - BIO_ELEVA`^\circ > \theta > `r C4_lowcut_sza`^\circ$}\\
+\text{Excluded measurements}, & \theta > `r 90 - BIO_ELEVA`^\circ
+\end{cases}\label{eq:CE4b}
+\end{equation}
+where: $\theta$ is the solar zenith angle, $\text{GHI}_\text{i}$ the measured
+irradiance, and $\text{GHI}_\text{mCSi}$ the selected modeled clear sky irradiance.
+-->
+\begin{equation}
+\text{CE} : \text{GHI}_\text{i} > \text{GHI}_\text{CSlim,i}, \text{where} \begin{cases}
+ \text{GHI}_\text{CSlim,i} = `r C4_cs_ref_ratio` \cdot \text{GHI}_\text{mCSi}, & \text{$\theta \leq `r C4_lowcut_sza`^\circ$}\\
+\text{GHI}_\text{CSlim,i} = \left ({ `r C4_lowcut_ratio` + \frac{`r C4_cs_ref_ratio` - `r C4_lowcut_ratio`}{`r C4_lowcut_sza` - `r 90 - BIO_ELEVA`} \cdot (\theta- `r 90 - BIO_ELEVA`) } \right ) \cdot \text{GHI}_\text{mCSi}, & \text{$ `r 90 - BIO_ELEVA`^\circ > \theta > `r C4_lowcut_sza`^\circ$}\\
 \text{Excluded measurements}, & \theta > `r 90 - BIO_ELEVA`^\circ
 \end{cases}\label{eq:CE4}
 \end{equation}
