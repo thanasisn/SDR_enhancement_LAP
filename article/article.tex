@@ -126,7 +126,7 @@
 \makeatother
 \subtitle{A Short Subtitle}
 \author{Athanasios N. Natsis\footnote{Laboratory of Atmospheric Physics \emph{\href{mailto:natsisphysicist@gmail.com}{\nolinkurl{natsisphysicist@gmail.com}}}} \and Alkiviadis Bais\footnote{Laboratory of Atmospheric Physics \emph{\href{mailto:abais@auth.gr}{\nolinkurl{abais@auth.gr}}}} \and Charikleia Meleti\footnote{Laboratory of Atmospheric Physics \emph{\href{mailto:meleti@auth.gr}{\nolinkurl{meleti@auth.gr}}}}}
-\date{2024-03-24}
+\date{2024-03-26}
 
 \begin{document}
 \maketitle
@@ -166,27 +166,50 @@ CEG: cloud enhancement groups, cases events with consecutive CE
 \hypertarget{intro}{%
 \section{Intro}\label{intro}}
 
-CE and ECE usefulness
-importance
-problems
+The shortwave solar irradiance, reaches the Earth's surface, is the main energy
+source of the planet. It drives and governs the climate.
+It has direct practical application, in different energy production method.
+\ldots. cite \ldots.
+The variability of its intensity, can cause difficulties in predicting the yield and
+designing the appropriate equipment.
+\ldots. cite \ldots.
+An aspect of this variability are the interaction with the clouds, where locally, under some
+conditions the total shortwave irradiance reaching the ground can be higher than the
+expected clear sky irradiance.
+\ldots. cite \ldots.
+Those enhancements have been reported to be able to exceed \ldots. and duration.
+\ldots. cite \ldots.
 
-reported trends
+The underling mechanism of those events have been studied, with the main factor to be
+\ldots. cite \ldots{}
+The forward scattering of clouds near the sun has been observed to produce cases of
+extreme enhancement irradiances (Yordanov, Saetre, and Midtgård 2015).
 
-CE mechanism
+Gueymard, 2017; Veerman et al., 2022)
+Methods of identification in the literature include the use of a clear sky radiation
+modelel
 
-In this study, we define as cloud enhancement events (CE) the cases when the measured
+\ldots. cite \ldots.
+
+\ldots{} reported trends ?\ldots{}
+\ldots. cite \ldots.
+
+In this study, we used modeled clear sky irradiance, in order to identify cloud
+enhancement. We studied their occurrences, intensity and duration, in a thirty year
+period at the city of Thessaloniki. We were able to determine some trends of the
+phenomenon, it's Climatology, and some other statistical characteristics.
+
+In the relative bibliography different definition have been used for these events, some of
+the are summarized by (\textbf{Gueymard2017?}).
+Here, we defined as cloud enhancement events (CE) the cases when the measured
 global horizontal irradiance (GHI) at ground level, exceeds the expected value under
 clear-sky conditions.
-Similar, we define the extreme cloud enhancement events (ECE), the cases when GHI,
+Similar, we defined as extreme cloud enhancement events (ECE), the cases when GHI,
 exceeds the Total Solar Irradiance on horizontal plane at ground level.
-Although the duration of these bursts varies from instantaneous to several minutes,
+Although the duration of these bursts varies, from instantaneous to several minutes,
 here we are constrained by the recorded data, to one-minute steps.
 
-Identify CE cases
-
 Characteristics of CE
-
-Climatology and impact on the GHI
 
 Effects of clouds
 
@@ -283,18 +306,22 @@ excluded all measurements with solar zenith angle (SZA) greater than
 
 To be able to detect the CE cases, we had to establish a baseline, above which we can
 characterize each data point as an enhancement event, by estimating the occurring
-over irradiance (OI). To have an estimation and a first insight on the phenomenon,
-we experimented with two simple approaches for the reference. The Haurwitz's model
-(Haurwitz 1945), which is as simple clear sky model, and we had already adjusted and
-had good fit with our data (Natsis, Bais, and Meleti 2023), and the TSI at the top of the atmosphere.
-We have tested both cases by using an appropriate relative threshold and/or an
-additional constant offset. The initial results, showed that we can detect a big
-portion of the CE events. These results were helpful, and helped to establish some
-criteria to further improve the CE identification. It was evident, by inspecting the
-daily plot of irradiance, that changes on the atmospheric conditions introduced
-numerous false positive and false negative results. To produce a more accurate
-reference, we had to take into account more factors that effect the clear sky
-radiation. So we used a radiation transfer model.
+over irradiance (OIR). The OIR, here is defined as the irradiance difference of the
+measured one-minute \(\text{GHI}_i\) from the CE identification criterion in
+Equation\nobreakspace\ref{eq:CE4}
+(\(\text{OIR}_i = \text{GHI}_i - \text{GHI}_\text{CSlim}\)).
+To have an estimation and a first insight on the phenomenon, we experimented with two
+simple approaches for the reference. The Haurwitz's model (Haurwitz 1945), which is
+as simple clear sky model, and we had already adjusted and had good fit with our data
+(Natsis, Bais, and Meleti 2023), and the TSI at the top of the atmosphere. We have tested both cases
+by using an appropriate relative threshold and/or an additional constant offset. The
+initial results, showed that we can detect a big portion of the CE events. These
+results were helpful, and helped to establish some criteria to further improve the CE
+identification. It was evident, by inspecting the daily plot of irradiance, that
+changes on the atmospheric conditions introduced numerous false positive and false
+negative results. To produce a more accurate reference, we had to take into account
+more factors that effect the clear sky radiation. So we used a radiation transfer
+model.
 
 \hypertarget{modeled-clear-sky-irradiance}{%
 \subsection{Modeled clear Sky Irradiance}\label{modeled-clear-sky-irradiance}}
@@ -377,9 +404,9 @@ function of SZA. A constant factor for low SZAs, and a higher ramped factor for
 higher SZAs (Equation\nobreakspace\ref{eq:CE4}).
 This is the criterion of our CE identification.
 \begin{equation}
-\text{CE} : \begin{cases}
- \text{GHI}_\text{i} > 1.05 \cdot \text{GHI}_\text{mCSi}, & \text{$\theta \leq 60^\circ$}\\
-\text{GHI}_\text{i} > \left ({ 1.18 + \frac{1.05 - 1.18}{60 - 78} \cdot (\theta- 78) } \right ) \cdot \text{GHI}_\text{mCSi}, & \text{$ 78^\circ > \theta > 60^\circ$}\\
+\text{CE} : \text{GHI}_\text{i} > \text{GHI}_\text{CSlim,i}, \text{where} \begin{cases}
+ \text{GHI}_\text{CSlim,i} = 1.05 \cdot \text{GHI}_\text{mCSi}, & \text{$\theta \leq 60^\circ$}\\
+\text{GHI}_\text{CSlim,i} = \left ({ 1.18 + \frac{1.05 - 1.18}{60 - 78} \cdot (\theta- 78) } \right ) \cdot \text{GHI}_\text{mCSi}, & \text{$ 78^\circ > \theta > 60^\circ$}\\
 \text{Excluded measurements}, & \theta > 78^\circ
 \end{cases}\label{eq:CE4}
 \end{equation}
@@ -392,14 +419,14 @@ afternoon. We have confirmed, by inspecting images from the sky cam, that we hav
 duration of elevated irradiance, either due the clearness of the atmosphere, or some
 interferences by reflections on nearby bright surfaces. Although, these cases may
 mask some of the CE events. The actual CE events, produce higher irradiance and thus
-are identified as such. As a side effect, the reported OI will be slight
+are identified as such. As a side effect, the reported OIR will be slight
 underestimated for those SZAs, but the overall contribution of those cases to the
 total daily energy, is minimal due the low occurrences and the lower irradiances.
 
 \ldots\ldots\ldots\ldots.
 
 These selections has some subjectivity, as the definition of clear sky, is depended
-on the intended usage. Our main focus is to be able to identify the OI created by the
+on the intended usage. Our main focus is to be able to identify the OIR created by the
 clouds. Although, the aerosols and water vapor are always present and can not be
 completely removed.
 The effect of the different clearness levels
@@ -438,7 +465,7 @@ Our dataset, after the data selection processing, consists of
 The highest GHI recorder was
 \(1416.6\,W/m^2\)
 on 24~May 2007.
-The absolute stronger CE event had an over irradiance of
+The absolute stronger CE event had an OIR of
 \(341.79\,W/m^2\) on
 15~May 2014.
 The relative stronger CE event was
@@ -449,13 +476,13 @@ clear sky threshold, on
 \hypertarget{trends}{%
 \subsection{Trends}\label{trends}}
 
-We computed the daily trend of the mean over irradiance of CE
+We computed the daily trend of the mean OIR of CE
 (Figure\nobreakspace{}\ref{fig:CEmeanDaily}), using a first-order autoregressive
 model with lag of 1 day, using the `maximum likelihood' fitting method (Gardner, Harvey, and Phillips 1980; Jones 1980) by implementing the function `arima' from the library `stats' of the R
 programming language (R Core Team 2023). The trends are reported together with the \(2\sigma\)
 error. We observe an increase of
 \(0.216\pm 0.083\,W/m^2\)
-on the mean over irradiance.
+on the mean OIR.
 
 \begin{figure}[h!]
 
@@ -469,7 +496,7 @@ on the mean over irradiance.
 Although, the previous result is closer to the raw data, we preferred to present the
 annual statistics, that give a more clear picture about the long term CE trends.
 Hence, we calculated the annual values from the one-minute measurements. The annual
-mean over irradiance is
+mean OIR is
 \(0.23\pm 0.11\,W/m^2\)
 (Figure\nobreakspace{}\ref{fig:P-energy-mean}),
 but this value alone is not very useful due the intrinsic high variability of this
@@ -481,7 +508,7 @@ metric.
 
 }
 
-\caption{Trends of the mean over irradiance per CE.}\label{fig:P-energy-mean}
+\caption{Trends of the mean OIR per CE.}\label{fig:P-energy-mean}
 \end{figure}
 
 A better indicator of changes on the characteristic of CE would be the number of CE
@@ -715,6 +742,9 @@ R Core Team. 2023. \emph{R: A Language and Environment for Statistical Computing
 
 \leavevmode\vadjust pre{\hypertarget{ref-Vamvakas2020}{}}%
 Vamvakas, Ioannis, Vasileios Salamalikis, and Andreas Kazantzidis. 2020. {``Evaluation of Enhancement Events of Global Horizontal Irradiance Due to Clouds at Patras, South-West Greece.''} \emph{Renewable Energy} 151 (xxxx): 764--71. \url{https://doi.org/gq3sbh}.
+
+\leavevmode\vadjust pre{\hypertarget{ref-Yordanov2015}{}}%
+Yordanov, Georgi Hristov, Tor Oskar Saetre, and Ole-Morten Midtgård. 2015. {``Extreme Overirradiance Events in Norway: 1.6 Suns Measured Close to 60°n.''} \emph{Solar Energy} 115 (May): 68--73. \url{https://doi.org/10.1016/j.solener.2015.02.020}.
 
 \end{CSLReferences}
 
