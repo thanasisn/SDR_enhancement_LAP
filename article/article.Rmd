@@ -102,39 +102,50 @@ $\text{GHI}_\text{mCSi}$: modeled clear sky one minute global horizontal irradia
 
 The shortwave solar irradiance, reaches the Earth's surface, is the main energy
 source of the planet. It drives and governs the climate.
-It has direct practical application, in different energy production method.  The
-variability of its intensity, can cause difficulties in predicting the yield and
-designing the appropriate equipment. An aspect of this variability are the
-interaction 
+It has direct practical application, in different energy production method.
+.... cite ....
+The variability of its intensity, can cause difficulties in predicting the yield and
+designing the appropriate equipment.
+.... cite ....
+An aspect of this variability are the interaction with the clouds, where locally, under some
+conditions the total shortwave irradiance reaching the ground can be higher than the
+expected clear sky irradiance.
+.... cite ....
+Those enhancements have been reported to be able to exceed .... and duration.
+.... cite ....
 
 
+The underling mechanism of those events have been studied, with the main factor to be
+.... cite ....
+
+Methods of identification used
+.... cite ....
 
 
+...  reported trends ?...
+.... cite ....
 
-CE and ECE usefulness 
-importance
-problems
+<!-- our work -->
+In this study, we used modeled clear sky irradiance, in order to identify cloud
+enhancement. We studied their occurrences, intensity and duration, in a thirty year
+period at the city of Thessaloniki. We were able to determine some trends of the
+phenomenon, it's Climatology, and some other statistical characteristics.
 
-reported trends
-
-CE mechanism
 
 <!-- Define CE and ECE -->
-In this study, we define as cloud enhancement events (CE) the cases when the measured
+here, we defined as cloud enhancement events (CE) the cases when the measured
 global horizontal irradiance (GHI) at ground level, exceeds the expected value under
 clear-sky conditions.
-Similar, we define the extreme cloud enhancement events (ECE), the cases when GHI,
+Similar, we defined as extreme cloud enhancement events (ECE), the cases when GHI,
 exceeds the Total Solar Irradiance on horizontal plane at ground level.
-Although the duration of these bursts varies from instantaneous to several minutes,
-here we are constrained by the recorded data, to one-minute steps. 
+Although the duration of these bursts varies, from instantaneous to several minutes,
+here we are constrained by the recorded data, to one-minute steps.
 
 
 
-Identify CE cases 
 
 Characteristics of CE
 
-Climatology and impact on the GHI
 
 
 Effects of clouds
