@@ -100,6 +100,16 @@ $\text{GHI}_\text{mCSi}$: modeled clear sky one minute global horizontal irradia
 
 # Intro
 
+The shortwave solar irradiance, reaches the Earth's surface, is the main energy
+source of the planet. It drives and governs the climate.
+It has direct practical application, in different energy production method.  The
+variability of its intensity, can cause difficulties in predicting the yield and
+designing the appropriate equipment. An aspect of this variability are the
+interaction 
+
+
+
+
 
 CE and ECE usefulness 
 importance
@@ -214,7 +224,7 @@ $`r 90 - BIO_ELEVA`^\circ$.
 
 To be able to detect the CE cases, we had to establish a baseline, above which we can
 characterize each data point as an enhancement event, by estimating the occurring
-over irradiance (OI).  To have an estimation and a first insight on the phenomenon,
+over irradiance (OIR).  To have an estimation and a first insight on the phenomenon,
 we experimented with two simple approaches for the reference.  The Haurwitz's model
 [@Haurwitz1945], which is as simple clear sky model, and we had already adjusted and
 had good fit with our data [@Natsis2023], and the TSI at the top of the atmosphere.
@@ -338,7 +348,7 @@ afternoon. We have confirmed, by inspecting images from the sky cam, that we hav
 duration of elevated irradiance, either due the clearness of the atmosphere, or some
 interferences by reflections on nearby bright surfaces. Although, these cases may
 mask some of the CE events. The actual CE events, produce higher irradiance and thus
-are identified as such. As a side effect, the reported OI will be slight
+are identified as such. As a side effect, the reported OIR will be slight
 underestimated for those SZAs, but the overall contribution of those cases to the
 total daily energy, is minimal due the low occurrences and the lower irradiances.
 
@@ -355,7 +365,7 @@ total daily energy, is minimal due the low occurrences and the lower irradiances
 .............
 
 These selections has some subjectivity, as the definition of clear sky, is depended
-on the intended usage. Our main focus is to be able to identify the OI created by the
+on the intended usage. Our main focus is to be able to identify the OIR created by the
 clouds. Although, the aerosols and water vapor are always present and can not be
 completely removed. 
 The effect of the different clearness levels
@@ -404,7 +414,7 @@ $`r round(100*ST_extreme_total$GLB_diff.N_pos/ST_total$wattGLB.N, 3)`\,\%$ are E
 The highest GHI recorder was 
 $`r round(ST_daily[which.max(wattGLB.max), wattGLB.max],1)`\,W/m^2$
 on `r strftime(ST_daily[which.max(wattGLB.max), Date], "%d\\ %B %Y")`.
-The absolute stronger CE event had an over irradiance of 
+The absolute stronger CE event had an OIR of 
 $`r round(ST_daily[which.max(GLB_diff.max), GLB_diff.max], 2)`\,W/m^2$ on
 `r strftime(ST_daily[which.max(GLB_diff.max), Date], "%d\\ %B %Y")`.
 The relative stronger CE event was 
@@ -425,7 +435,7 @@ yearlyCE <- yearlytrends[DATA == "ST_E_yearly"]
 
 ```
 
-We computed the daily trend of the mean over irradiance of CE
+We computed the daily trend of the mean OIR of CE
 (Figure\nobreakspace{}\ref{fig:CEmeanDaily}), using a first-order autoregressive
 model with lag of 1 day, using the 'maximum likelihood' fitting method [@Gardner1980;
 @Jones1980] by implementing the function 'arima' from the library 'stats' of the R
@@ -433,7 +443,7 @@ programming language [@RCT2023]. The trends are reported together with the $2\si
 error.  We observe an increase of
 $`r round(dailyCE[var == "GLB_diff.mean", Tmod_Estimate], 3)`\pm
 `r round(2 * dailyCE[var == "GLB_diff.mean", Tmod_Std..Error], 3)`\,W/m^2$
-on the mean over irradiance.
+on the mean OIR.
 
 ```{r CEmeanDaily, echo=FALSE, fig.cap="Daily mean values and trend of the CE over irradiance."}
 knitr::include_graphics("../images/P_daily_trend-1.png")
@@ -442,7 +452,7 @@ knitr::include_graphics("../images/P_daily_trend-1.png")
 Although, the previous result is closer to the raw data, we preferred to present the
 annual statistics, that give a more clear picture about the long term CE trends.
 Hence, we calculated the annual values from the one-minute measurements.  The annual
-mean over irradiance is
+mean OIR is
 $`r round(yearlyCE[var == "GLB_diff.mean", slope], 2)`\pm
 `r round(2 * yearlyCE[var == "GLB_diff.mean", slope.sd], 2)`\,W/m^2$
 (Figure\nobreakspace{}\ref{fig:P-energy-mean}),
@@ -457,7 +467,7 @@ metric.
 <!-- knitr::include_graphics("../images/energy-3.png") -->
 <!-- ``` -->
 
-```{r P-energy-mean, echo=FALSE, fig.cap="Trends of the mean over irradiance per CE."}
+```{r P-energy-mean, echo=FALSE, fig.cap="Trends of the mean OIR per CE."}
 knitr::include_graphics("../images/P_energy-7.png")
 ```
 
