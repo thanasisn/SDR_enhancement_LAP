@@ -107,33 +107,43 @@ It has direct practical application, in different energy production method.
 The variability of its intensity, can cause difficulties in predicting the yield and
 designing the appropriate equipment.
 .... cite ....
-An aspect of this variability are the interaction with the clouds, where locally, under some
-conditions the total shortwave irradiance reaching the ground can be higher than the
-expected clear sky irradiance.
+A big aspect of this variability are the interaction with the clouds. In general
+clouds, absorb part of the solar irradiance, but under certain conditions, can
+enhance the total shortwave irradiance reaching the ground. This effect can locally
+increase the observed total shortwave irradiance higher than the expected clear sky
+irradiance [see references therein].
 .... cite ....
 Those enhancements have been reported to be able to exceed .... and duration.
 .... cite ....
+@Martins2022
 
-
-There are some propositions of the underling mechanism of those events as summarized
+Some of the proposed underling mechanisms of those events have been summarized
 by @Gueymard2017, and include scattering on the edge of cumulus clouds or through
 thin cirrus.  Further investigation with radiation transfer modeling methods and
-observations have pointed as the prevailing explanation, the forward Mie scattering
-[@Pecenak2016; @Thuillier2013; @Yordanov2013; @Yordanov2015].
+observations have pointed as the prevailing mechanism, the forward Mie scattering
+[@Pecenak2016; @Thuillier2013; @Yordanov2013; @Yordanov2015], through the clouds.
 The overall phenomenon depends on different interactive factors, that include cloud
-thickness and constitution, and the relative position of the sun, the clouds and the
-observer.  As such, there can be multiple contributing mechanism that create the
-observed enhancements.
+thickness and constitution, and the relative position of the sun, the clouds, and the
+observer.  As such, there multiple contributing mechanism can  create the
+observed irradiance enhancements.
+
 
 The forward scattering of clouds near the sun has been observed to produce cases of
 extreme enhancement irradiances [@Yordanov2015].
 
+It has been reported than enhancements events can interfere in the comparison of
+ground data and satellite observe ovations [@Damiani2018]
 
+Instruments respose ....
+@Martins2022
 
+Study of the mechanism has also been done with modeling of different cloud types and
+atmospheric conditions.
+@Gueymard2017; @Veerman2022
 
-Gueymard, 2017; Veerman et al., 2022)
-Methods of identification in the literature include the use of a clear sky radiation
-modelel
+Methods of identification in the literature usually include the use of a simulated clear sky radiation
+@Vamvakas2020; @Mol2023; 
+
 
 .... cite ....
 
