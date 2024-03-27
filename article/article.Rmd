@@ -120,9 +120,10 @@ by @Gueymard2017, and include scattering on the edge of cumulus clouds or throug
 thin cirrus.  Further investigation with radiation transfer modeling methods and
 observations have pointed as the prevailing explanation, the forward Mie scattering
 [@Pecenak2016; @Thuillier2013; @Yordanov2013; @Yordanov2015].
-The overall phenomenon can depend on different interactive factors, that include cloud
-thickness and constitution, and the relative position of the sun, the clouds and the observer.
-As such, th
+The overall phenomenon depends on different interactive factors, that include cloud
+thickness and constitution, and the relative position of the sun, the clouds and the
+observer.  As such, there can be multiple contributing mechanism that create the
+observed enhancements.
 
 The forward scattering of clouds near the sun has been observed to produce cases of
 extreme enhancement irradiances [@Yordanov2015].
@@ -144,7 +145,7 @@ modelel
 In this study, we used modeled clear sky irradiance, in order to identify cloud
 enhancement. We studied their occurrences, intensity and duration, in a thirty year
 period at the city of Thessaloniki. We were able to determine some trends of the
-phenomenon, it's Climatology, and some other statistical characteristics.
+phenomenon, it's Climatology, and some of its general characteristics.
 
 
 <!-- Define CE and ECE -->
