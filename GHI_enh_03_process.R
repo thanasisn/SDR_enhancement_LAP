@@ -189,16 +189,16 @@ Energy_Div <- 1000
 ## stats for all data
 data.summary <- function(x, na.rm = FALSE)
     list(
-        mean   = mean  (x,   na.rm = na.rm),
-        SD     = sd    (x,   na.rm = na.rm),
-        max    = max   (x,   na.rm = na.rm),
-        min    = min   (x,   na.rm = na.rm),
-        p_5    = quantile(x, 0.05),
-        p_10   = quantile(x, 0.10),
-        p_90   = quantile(x, 0.90),
-        p_95   = quantile(x, 0.95),
-        median = median(x, na.rm = na.rm),
-        sum    = sum   (x, na.rm = na.rm),
+        mean   = mean  (x,         na.rm = na.rm),
+        SD     = sd    (x,         na.rm = na.rm),
+        max    = max   (x,         na.rm = na.rm),
+        min    = min   (x,         na.rm = na.rm),
+        p_5    = quantile(x, 0.05, na.rm = TRUE),
+        p_10   = quantile(x, 0.10, na.rm = TRUE),
+        p_90   = quantile(x, 0.90, na.rm = TRUE),
+        p_95   = quantile(x, 0.95, na.rm = TRUE),
+        median = median(x,         na.rm = na.rm),
+        sum    = sum   (x,         na.rm = na.rm),
         sumPOS = sum(x[which(x > 0)], na.rm = na.rm),  ## not meaningful for a subset
         sumNEG = sum(x[which(x < 0)], na.rm = na.rm),  ## not meaningful for a subset
         N_pos  = sum(x > 0, na.rm = na.rm),            ## not meaningful for a subset of data
@@ -210,16 +210,16 @@ data.summary <- function(x, na.rm = FALSE)
 ## stats for a subset of data
 enhanc.summary <- function(x, na.rm = FALSE)
     list(
-        mean   = mean  (x, na.rm = na.rm),
-        SD     = sd    (x, na.rm = na.rm),
-        max    = max   (x, na.rm = na.rm),
-        min    = min   (x, na.rm = na.rm),
-        p_5    = quantile(x, 0.05),
-        p_10   = quantile(x, 0.10),
-        p_90   = quantile(x, 0.90),
-        p_95   = quantile(x, 0.95),
-        median = median(x, na.rm = na.rm),
-        sum    = sum   (x, na.rm = na.rm),
+        mean   = mean  (x,         na.rm = na.rm),
+        SD     = sd    (x,         na.rm = na.rm),
+        max    = max   (x,         na.rm = na.rm),
+        min    = min   (x,         na.rm = na.rm),
+        p_5    = quantile(x, 0.05, na.rm = TRUE),
+        p_10   = quantile(x, 0.10, na.rm = TRUE),
+        p_90   = quantile(x, 0.90, na.rm = TRUE),
+        p_95   = quantile(x, 0.95, na.rm = TRUE),
+        median = median(x,         na.rm = na.rm),
+        sum    = sum   (x,         na.rm = na.rm),
         N      = sum(!is.na(x))
     )
 
@@ -285,7 +285,7 @@ ST_extreme_daily <- DATA[wattGLB > ETH,
                                 recursive = FALSE),
                          .SDcols = my.cols,
                          by = .(Date = Day)]
-ST_extreme_daily[, yts := (year(Date) - min(year(Date))) + ( yday(Date) - 1 ) / Hmisc::yearDays(Date)]
+ST_extreme_daily[, yts := (year(Date) - min(year(Date))) + (yday(Date) - 1) / Hmisc::yearDays(Date)]
 
 ## convert sum Irradiance to energy
 ## Σ(W/m^2) * 60 s = J/m^2
