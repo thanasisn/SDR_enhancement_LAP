@@ -789,7 +789,105 @@ title("Climatology of CE cases per weak")
   lmD <- lm( ST_E_yearly[, year, GLB_diff.mean])
   abline(lmD)
 
-  title("Mean Energy of over irradiance per CE")
+  title("Mean  of over irradiance per CE")
+
+  ## display trend on graph
+  fit <- lmD[[1]]
+  legend("top", lty = 1, bty = "n", lwd = 2, cex = 1,
+         paste("Trend: ",
+               if (fit[2] > 0) "+" else "-",
+               signif(abs(fit[2]), 2) ,"W/m^2/y" )
+  )
+}
+
+
+
+{
+  plot(ST_E_yearly[, GLB_diff.median, year],
+       col = varcol("GLB_diff.median"),
+       ylab = "W/m^2")
+  lmD <- lm( ST_E_yearly[, year, GLB_diff.median])
+  abline(lmD)
+
+  title("Median  of over irradiance per CE")
+
+  ## display trend on graph
+  fit <- lmD[[1]]
+  legend("top", lty = 1, bty = "n", lwd = 2, cex = 1,
+         paste("Trend: ",
+               if (fit[2] > 0) "+" else "-",
+               signif(abs(fit[2]), 2) ,"W/m^2/y" )
+  )
+}
+
+
+{
+  plot(ST_E_yearly[, GLB_diff.p_5, year],
+       col = varcol("GLB_diff.p_5"),
+       ylab = "W/m^2")
+  lmD <- lm( ST_E_yearly[, year, GLB_diff.p_5])
+  abline(lmD)
+
+  title("p_5 of over irradiance per CE")
+
+  ## display trend on graph
+  fit <- lmD[[1]]
+  legend("top", lty = 1, bty = "n", lwd = 2, cex = 1,
+         paste("Trend: ",
+               if (fit[2] > 0) "+" else "-",
+               signif(abs(fit[2]), 2) ,"W/m^2/y" )
+  )
+}
+
+
+{
+  plot(ST_E_yearly[, GLB_diff.p_10, year],
+       col = varcol("GLB_diff.p_10"),
+       ylab = "W/m^2")
+  lmD <- lm( ST_E_yearly[, year, GLB_diff.p_10])
+  abline(lmD)
+
+  title("p_10 of over irradiance per CE")
+
+  ## display trend on graph
+  fit <- lmD[[1]]
+  legend("top", lty = 1, bty = "n", lwd = 2, cex = 1,
+         paste("Trend: ",
+               if (fit[2] > 0) "+" else "-",
+               signif(abs(fit[2]), 2) ,"W/m^2/y" )
+  )
+}
+
+
+
+{
+  plot(ST_E_yearly[, GLB_diff.p_90, year],
+       col = varcol("GLB_diff.p_90"),
+       ylab = "W/m^2")
+  lmD <- lm( ST_E_yearly[, year, GLB_diff.p_90])
+  abline(lmD)
+
+  title("p_90 of over irradiance per CE")
+
+  ## display trend on graph
+  fit <- lmD[[1]]
+  legend("top", lty = 1, bty = "n", lwd = 2, cex = 1,
+         paste("Trend: ",
+               if (fit[2] > 0) "+" else "-",
+               signif(abs(fit[2]), 2) ,"W/m^2/y" )
+  )
+}
+
+
+
+{
+  plot(ST_E_yearly[, GLB_diff.p_95, year],
+       col = varcol("GLB_diff.p_95"),
+       ylab = "W/m^2")
+  lmD <- lm( ST_E_yearly[, year, GLB_diff.p_95])
+  abline(lmD)
+
+  title("p_95 of over irradiance per CE")
 
   ## display trend on graph
   fit <- lmD[[1]]
@@ -803,21 +901,25 @@ title("Climatology of CE cases per weak")
 
 
 
-plot(ST_yearly[, GLB_diff.mean, year],
-     ylab = "Total of enhancement minutes")
 
 
 
-plot(ST_yearly[, GLB_ench.N, year],
-     ylab = "Total of enhancement minutes")
 
-
-plot(ST_yearly[, GLB_ench.N_pos/GLB_ench.TotalN, year],
-     ylab = "Total of enhancement minutes ratio")
-
-
-plot(ST_yearly[, GLB_ench.sumPOS/GLB_ench.N_pos, year],
-     ylab = "Enhancement energy per minute")
+# plot(ST_yearly[, GLB_diff.mean, year],
+#      ylab = "Total of enhancement minutes")
+#
+#
+#
+# plot(ST_yearly[, GLB_ench.N, year],
+#      ylab = "Total of enhancement minutes")
+#
+#
+# plot(ST_yearly[, GLB_ench.N_pos/GLB_ench.TotalN, year],
+#      ylab = "Total of enhancement minutes ratio")
+#
+#
+# plot(ST_yearly[, GLB_ench.sumPOS/GLB_ench.N_pos, year],
+#      ylab = "Enhancement energy per minute")
 
 
 cat( "@Martins2022" )
@@ -831,7 +933,6 @@ plot(ST_yearly[, GLB_diff.sumPOS/wattGLB.sumPOS, year],
                   staname("wattGLB.sumPOS")
      )
 )
-
 
 
 
