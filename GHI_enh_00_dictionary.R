@@ -48,13 +48,18 @@ tr_var <- function(x, type = "short") {
 
 ## color for each variable type
 varcol <- function(avar) {
-  switch(gsub("\\..*$", "", gsub(".*_", "", avar)),
+  # switch(gsub("\\..*$", "", gsub(".*_", "", avar)),
+  switch(gsub("^.*_", "", gsub("\\..*", "", "GLB_diff.p_95")),
          diff = "green",
          ench = "blue",
          rati = "magenta",
          "black"
   )
 }
+
+# varcol("GLB_diff.p_95")
+# gsub("^.*_", "", gsub("\\..*", "", "GLB_diff.p_95"))
+
 
 
 ## Name for each variable
@@ -68,8 +73,6 @@ varname <- function(avar) {
   )
 }
 
-
-
 ## Stats name
 staname <- function(avar) {
   switch(gsub(".*\\.", "", avar),
@@ -79,6 +82,10 @@ staname <- function(avar) {
          median = "median",
          mean   = "mean",
          sumPOS = "energy",
+         p_5    = "5% percentile",
+         p_10   = "10% percentile",
+         p_90   = "90% percentile",
+         p_95   = "95% percentile",
          sumNEG = "energy",
          N_pos  = "number of positive cases",
          N_neg  = "number of negative cases",
@@ -89,10 +96,7 @@ staname <- function(avar) {
 }
 
 
-
-# varcol("GLB_rati")
-# varcol("GLB_rati.max")
-
+staname("GLB_diff.p_95")
 
 
 
