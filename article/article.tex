@@ -126,7 +126,7 @@
 \makeatother
 \subtitle{A Short Subtitle}
 \author{Athanasios N. Natsis\footnote{Laboratory of Atmospheric Physics \emph{\href{mailto:natsisphysicist@gmail.com}{\nolinkurl{natsisphysicist@gmail.com}}}} \and Alkiviadis Bais\footnote{Laboratory of Atmospheric Physics \emph{\href{mailto:abais@auth.gr}{\nolinkurl{abais@auth.gr}}}} \and Charikleia Meleti\footnote{Laboratory of Atmospheric Physics \emph{\href{mailto:meleti@auth.gr}{\nolinkurl{meleti@auth.gr}}}}}
-\date{2024-03-28}
+\date{2024-04-01}
 
 \begin{document}
 \maketitle
@@ -167,19 +167,21 @@ CEG: cloud enhancement groups, cases events with consecutive CE
 \section{Intro}\label{intro}}
 
 The shortwave solar irradiance, reaches the Earth's surface, is the main energy
-source of the planet. It drives and governs the climate.
-It has direct practical application, in different energy production method.
-\ldots. cite \ldots.
-The variability of its intensity, can cause difficulties in predicting the yield and
-designing the appropriate equipment.
-\ldots. cite \ldots.
-A big aspect of this variability are the interaction with the clouds. In general
-clouds, absorb part of the solar irradiance, but under certain conditions, can
+source of the atmosphere and biosphere. It drives and governs the climate
+(Gray et al. 2010). It has direct practical application, in different industries, like
+energy production and agriculture method. The variability of its intensity, can
+cause difficulties in predicting the yield and designing the appropriate equipment.
+A lot of research focus on predicting the renewable energy production in a very fine
+timescale and in near real-time (for a review see Inman, Pedro, and Coimbra (2013); Graabak and Korpås (2016)).
+
+A big aspect of this variability are the interaction with the clouds. In general,
+clouds absorb part of the solar irradiance, but under certain conditions, can
 enhance the total shortwave irradiance reaching the ground. This effect can locally
 increase the observed total shortwave irradiance higher than the expected clear sky
 irradiance {[}see references therein{]}.
 \ldots. cite \ldots.
 Those enhancements have been reported to be able to exceed \ldots. and duration.
+And in extreme cases can compromise the integrity of the infrastructure.
 \ldots. cite \ldots.
 Martins, Mantelli, and Rüther (2022)
 
@@ -215,7 +217,7 @@ Vamvakas, Salamalikis, and Kazantzidis (2020); Mol, Knap, and Van Heerwaarden (2
 \ldots. cite \ldots.
 
 In this study, we used modeled clear sky irradiance, in order to identify cloud
-enhancement. We studied their occurrences, intensity and duration, in a thirty year
+enhancement. We studied their occurrences, intensity and duration, in a thirty-year
 period at the city of Thessaloniki. We were able to determine some trends of the
 phenomenon, it's Climatology, and some of its general characteristics.
 
@@ -368,10 +370,10 @@ For the atmospheric characteristics, we iterated for combinations of AOD at
 \(\pm2\sigma\), and water column (\(w_h\)), also with offsets of \(\pm1\) and \(\pm2\sigma\).
 We applied them on two atmospheric profiles, from the Air Force Geophysics
 Laboratory (AFGL). The ``AFGL atmospheric constituent profile, midlatitude summer''
-(afglms) and the ``AFG Latmospheric constituent profile, midlatitude winter'' (afglmw)
+(afglms) and the ``AFGL atmospheric constituent profile, midlatitude winter'' (afglmw)
 (Anderson et al. 1986).
 
-To create a look up table that aligns with our dataset, we applied some adjustments.
+To create a look-up table that aligns with our dataset, we applied some adjustments.
 To account for the Sun's variability in our one-minute GHI measurements, we corrected
 the model's input spectrum integral, to the one of the total solar irradiance (TSI)
 provided by NOAA (Coddington et al. 2005). Also, we applied the effect of the Earth -- Sun
@@ -434,9 +436,9 @@ where: \(\theta\) is the solar zenith angle, \(\text{GHI}_\text{i}\) the measure
 irradiance, and \(\text{GHI}_\text{mCSi}\) the selected modeled clear sky irradiance.
 
 We have to note, that the differentiation of the threshold factor was needed, because
-of the high irradiance values we observed, early in the morning and late on the
+of the high irradiance values we observed, early in the morning and late in the
 afternoon. We have confirmed, by inspecting images from the sky cam, that we have
-duration of elevated irradiance, either due the clearness of the atmosphere, or some
+duration of elevated irradiance, either due to the clearness of the atmosphere, or some
 interferences by reflections on nearby bright surfaces. Although, these cases may
 mask some of the CE events. The actual CE events, produce higher irradiance and thus
 are identified as such. As a side effect, the reported OIR will be slight
@@ -445,7 +447,7 @@ total daily energy, is minimal due the low occurrences and the lower irradiances
 
 \ldots\ldots\ldots\ldots.
 
-These selections has some subjectivity, as the definition of clear sky, is depended
+These selections have some subjectivity, as the definition of clear sky, is depended
 on the intended usage. Our main focus is to be able to identify the OIR created by the
 clouds. Although, the aerosols and water vapor are always present and can not be
 completely removed.
@@ -468,7 +470,7 @@ atmosphere, and satisfy the Equation\nobreakspace{}\ref{eq:ECE}.
 \tightlist
 \item
   Include Example of days plot in the Appendix?
-  \ldots{} this is more clear to understand and describe \ldots.
+  \ldots{} this is clearer to understand and describe \ldots.
 \end{itemize}
 
 \ldots\ldots.
@@ -599,8 +601,8 @@ The rest of the months the occurrences ramp between the maximum and minimum.
 The distribution of the CE over irradiance spreads uniformly
 Figure\nobreakspace{}\ref{fig:ovir-distribution}. Where there is an inverse relation
 between the events frequency and events intensity. This is expected as, the stronger
-the CE events become, the more rare are the particular atmospheric and sun conditions
-to occur.
+the CE events become, the rarer the particular atmospheric and sun conditions
+occur.
 
 \begin{figure}[h!]
 
@@ -742,11 +744,20 @@ Gardner, G., A. C. Harvey, and G. D. A. Phillips. 1980. {``Algorithm {AS} 154: A
 \leavevmode\vadjust pre{\hypertarget{ref-Giles2019}{}}%
 Giles, David M., Alexander Sinyuk, Mikhail G. Sorokin, Joel S. Schafer, Alexander Smirnov, Ilya Slutsker, Thomas F. Eck, et al. 2019. {``Advancements in the Aerosol Robotic Network ({AERONET}) Version 3 Database -- Automated Near-Real-Time Quality Control Algorithm with Improved Cloud Screening for Sun Photometer Aerosol Optical Depth ({AOD}) Measurements.''} \emph{Atmospheric Measurement Techniques} 12 (1): 169--209. \url{https://doi.org/10.5194/amt-12-169-2019}.
 
+\leavevmode\vadjust pre{\hypertarget{ref-Graabak2016}{}}%
+Graabak, Ingeborg, and Magnus Korpås. 2016. {``Variability Characteristics of European Wind and Solar Power Resources---a Review.''} \emph{Energies} 9 (6): 449. \url{https://doi.org/10.3390/en9060449}.
+
+\leavevmode\vadjust pre{\hypertarget{ref-Gray2010}{}}%
+Gray, L. J., J. Beer, M. Geller, J. D. Haigh, M. Lockwood, K. Matthes, U. Cubasch, et al. 2010. {``{SOLAR} {INFLUENCES} {ON} {CLIMATE}.''} \emph{Reviews of Geophysics} 48 (4): RG4001. \url{https://doi.org/10.1029/2009RG000282}.
+
 \leavevmode\vadjust pre{\hypertarget{ref-Gueymard2017}{}}%
 Gueymard, Christian A. 2017. {``Cloud and Albedo Enhancement Impacts on Solar Irradiance Using High-Frequency Measurements from Thermopile and Photodiode Radiometers. Part 1: Impacts on Global Horizontal Irradiance.''} \emph{Solar Energy} 153: 755--65. \url{https://doi.org/gb283c}.
 
 \leavevmode\vadjust pre{\hypertarget{ref-Haurwitz1945}{}}%
 Haurwitz, Bernhard. 1945. {``Insolation in {Relation} to {Cloudiness} and {Cloud} {Density}.''} \emph{Journal of Meteorology} 2 (September): 154--66.
+
+\leavevmode\vadjust pre{\hypertarget{ref-Inman2013}{}}%
+Inman, Rich H., Hugo T. C. Pedro, and Carlos F. M. Coimbra. 2013. {``Solar Forecasting Methods for Renewable Energy Integration.''} \emph{Progress in Energy and Combustion Science} 39 (6): 535--76. \url{https://doi.org/10.1016/j.pecs.2013.06.002}.
 
 \leavevmode\vadjust pre{\hypertarget{ref-Jones1980}{}}%
 Jones, Richard H. 1980. {``Maximum Likelihood Fitting of {ARMA} Models to Time Series with Missing Observations.''} \emph{Technometrics} 22 (3): 389--95. \url{https://doi.org/10.1080/00401706.1980.10486171}.
