@@ -105,7 +105,7 @@ source of the atmosphere and biosphere. It drives and governs the climate
 [@Gray2010].  It has direct practical application, in different industries, like
 energy production and agriculture method.  The variability of its intensity, can
 cause difficulties in predicting the yield and designing the appropriate equipment.
-A lot of research focus on predicting the renewable energy production in a  very fine
+A lot of research has been focuces on predicting the renewable energy production in a fine
 timescale and in near real-time (for a review see @Inman2013; @Graabak2016).
 
 A big aspect of this variability are the interaction with the clouds. In general,
@@ -113,10 +113,16 @@ clouds absorb part of the solar irradiance, but under certain conditions, can
 enhance the total shortwave irradiance reaching the ground. This effect can locally
 increase the observed total shortwave irradiance higher than the expected clear sky
 irradiance [see references therein].
-.... cite ....
+
+The enhancements can effect the efficiency and stability of photovoltaic power
+production [@Lappalainen2020; @Jaervelae2020].
+
+
+And extreme enhancements cases have the potential to  compromise the integrity of the
+infrastructure  [@DoNascimento2019].
+
 Those enhancements have been reported to be able to exceed .... and duration.
-And in extreme cases can compromise the integrity of the infrastructure.
-.... cite ....
+For a list of recorded extreme cases
 @Martins2022
 
 Some of the proposed underling mechanisms of those events have been summarized
