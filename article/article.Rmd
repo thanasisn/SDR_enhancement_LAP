@@ -522,7 +522,8 @@ considerable level.
 ```{r P-energy-N, echo=FALSE, fig.cap="Trend of yearly CE number of occurancies."}
 knitr::include_graphics("../images/P_energy-6.png")
 ```
-Subsequently, the total annual energy observed during CE events shows an increase of
+
+Subsequently, the mean annual increase of energy due to CE events is
 $`r round(yearlyCE[var == "GLB_diff.sum", slope], 1)`\pm
 `r round(2 * yearlyCE[var == "GLB_diff.sum", slope.sd], 1)`\,kJ/y$
 (Figure\ \ref{fig:P-energy-sum}), witch follows the trend of the number of
