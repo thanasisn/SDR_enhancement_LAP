@@ -126,7 +126,7 @@
 \makeatother
 \subtitle{A Short Subtitle}
 \author{Athanasios N. Natsis\footnote{Laboratory of Atmospheric Physics \emph{\href{mailto:natsisphysicist@gmail.com}{\nolinkurl{natsisphysicist@gmail.com}}}} \and Alkiviadis Bais\footnote{Laboratory of Atmospheric Physics \emph{\href{mailto:abais@auth.gr}{\nolinkurl{abais@auth.gr}}}} \and Charikleia Meleti\footnote{Laboratory of Atmospheric Physics \emph{\href{mailto:meleti@auth.gr}{\nolinkurl{meleti@auth.gr}}}}}
-\date{2024-04-02}
+\date{2024-04-06}
 
 \begin{document}
 \maketitle
@@ -292,17 +292,17 @@ model.
 \hypertarget{modeled-clear-sky-irradiance}{%
 \subsection{Modeled clear Sky Irradiance}\label{modeled-clear-sky-irradiance}}
 
-We approximated the expected clear sky GHI by using a model. Because of the lack of
-observational data for the whole period, we used some long term climatological data
-for the main factors responsible for the attenuation of the broadband downward solar
-radiation in the atmosphere. Which are mainly, the aerosols and the water vapors.
-Fortunately, our site participates in the Aerosol Robotic Network (AERONET)
-(Giles et al. 2019; Buis et al. 1998), as we operate a Cimel photometer since 2003, collocated with
-the CM-21 pyranometer. The mean monthly aerosol optical depth (AOD) on different
-wavelengths is provided by AERONET, along with the equivalent water column height in
-the atmosphere. The simulation of the clear sky radiation was performed by the well
-established radiation transfer model Libradtran (Emde et al. 2016), a similar
-approach, was also used by Vamvakas, Salamalikis, and Kazantzidis (2020) for creating a clear sky reference.
+We approximated the expected clear sky GHI by using a radiation transfer model. The
+simulations was performed by the well established model Libradtran (Emde et al. 2016), a
+similar approach, was also used by Vamvakas, Salamalikis, and Kazantzidis (2020) for creating a clear sky reference.
+Because of the lack of observational data for the whole period, we used some long
+term climatological data for the main factors responsible for the attenuation of the
+broadband downward solar radiation in the atmosphere. Which are mainly, the aerosols
+and the water vapors. Fortunately, our site participates in the Aerosol Robotic
+Network (AERONET) (Giles et al. 2019; Buis et al. 1998), as we operate a Cimel photometer since
+2003, collocated with the CM-21 pyranometer. The mean monthly aerosol optical depth
+(AOD) on different wavelengths is provided by AERONET, along with the equivalent
+water column height in the atmosphere.
 
 For completeness, we will describe here the main points of the radiation simulation
 procedure. We used as input the spectrum of Kurucz (1994) in the range \(280\) to
@@ -310,7 +310,7 @@ procedure. We used as input the spectrum of Kurucz (1994) in the range \(280\) t
 ``pseudospherical'' geometry and the ``LOWTRAN'' gas parameterization. For each
 combination of conditions we use a SZA step of \(0.2^\circ\).
 For the atmospheric characteristics, we iterated for combinations of AOD at
-\(500\,\text{nm}\) (\(t_{500\text{nm}}\)) with additional offsets of \(\pm1\) and
+\(500\,\text{nm}\) (\(\tau_{500\text{nm}}\)) with additional offsets of \(\pm1\) and
 \(\pm2\sigma\), and water column (\(w_h\)), also with offsets of \(\pm1\) and \(\pm2\sigma\).
 We applied them on two atmospheric profiles, from the Air Force Geophysics
 Laboratory (AFGL). The ``AFGL atmospheric constituent profile, midlatitude summer''
@@ -361,7 +361,7 @@ to further aid the decisions of the manual inspection.
 After evaluating the modeled clear radiation for the different atmospheric
 conditions, in relation to the measured GHI data, we choose as a representative of
 the clear sky radiation, the case where
-\(t_{\text{cs}} = t_{500\text{nm}} - 1\sigma\) and \(w_{h\text{cs}} = w_h - 1\sigma\)
+\(\tau_{\text{cs}} = \tau_{500\text{nm}} - 1\sigma\) and \(w_{h\text{cs}} = w_h - 1\sigma\)
 (\(\text{GHI}_\text{mCSi}\)).
 These values represent a typical atmosphere in Thessaloniki with low load of aerosols
 and humidity, which are the main factor that attenuate the GHI, excluding clouds. To
@@ -404,9 +404,10 @@ are cases of extreme cloud enhancement (ECE). These are cases of CE where the
 measured intensity of the irradiance, exceeds the equivalent TSI on the top of the
 atmosphere, and satisfy the Equation\nobreakspace{}\ref{eq:ECE}.
 \begin{equation}
-\text{ECE}: \text{GHI}_\text{i} > \cos(\theta) \times \text{TSI}_\text{iTOA}
+\text{ECE}: \text{GHI}_\text{i} > \cos(\theta) \times E_{i\odot} / r_{i}^2
 \label{eq:ECE}
 \end{equation}
+where: \(\theta\) the solar zenith angle, \(E_{\odot}\) the solar constant, \(r\) the Sun -- Earth distance, \(i\) each of the one-minute observation
 
 \ldots\ldots.
 
@@ -447,7 +448,7 @@ We computed the daily trend of the mean OIR of CE
 model with lag of 1 day, using the `maximum likelihood' fitting method (Gardner, Harvey, and Phillips 1980; Jones 1980) by implementing the function `arima' from the library `stats' of the R
 programming language (R Core Team 2023). The trends are reported together with the \(2\sigma\)
 error. We observe an increase of
-\(0.216\pm 0.083\,W/m^2\)
+\(0.216\pm 0.083\,W/m^2/y\)
 on the mean OIR.
 
 \begin{figure}[h!]
@@ -463,7 +464,7 @@ Although, the previous result is closer to the raw data, we preferred to present
 annual statistics, that give a more clear picture about the long term CE trends.
 Hence, we calculated the annual values from the one-minute measurements. The annual
 mean OIR is
-\(0.23\pm 0.11\,W/m^2\)
+\(0.23\pm 0.11\,W/m^2/y\)
 (Figure\nobreakspace{}\ref{fig:P-energy-mean}),
 but this value alone is not very useful due the intrinsic high variability of this
 metric.
@@ -480,7 +481,7 @@ metric.
 A better indicator of changes on the characteristic of CE would be the number of CE
 occurrences and the total energy of the CE over irradiance. The annual number of CE
 occurrences, shows a steady increase of
-\(122.2\pm 22.8\,/y\)
+\(122.2\pm 22.8\,\text{cases}/y\)
 (Figure\nobreakspace{}\ref{fig:P-energy-N}).
 We have to note that the energy related to the CE events can not be directly linked
 with the total energy balance on the atmosphere. The net sun radiation of the region
