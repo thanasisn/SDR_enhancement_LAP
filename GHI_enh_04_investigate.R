@@ -344,9 +344,9 @@ grob <- grobTree(
     label = TeX(
       paste("Trend: $", round(Tres[1], 2),
             "\\pm",     round(2 * Tres[2], 2),   ## showing 2 sigma!
-            "\\,W/m^2/day$")),
+            "\\,W/m^2/year$")),
     x = 0.5,  y = 0.95, hjust = 0.5,
-    gp = gpar(col = "black", fontsize = 13, fontface= "bold")
+    gp = gpar(col = "black", fontsize = 13, fontface = "bold")
   ))
 
 dataset |>
@@ -367,8 +367,6 @@ dataset |>
                        max(ceiling(dataset[,yts]))),
                      minor_breaks = seq(1990, 2050, by = 1)) +
   theme(plot.margin = margin(t = 0, r = 0.5 , b = 0.5, l = 0, "cm"))
-
-
 
 
 

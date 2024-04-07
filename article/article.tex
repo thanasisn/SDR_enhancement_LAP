@@ -126,7 +126,7 @@
 \makeatother
 \subtitle{A Short Subtitle}
 \author{Athanasios N. Natsis\footnote{Laboratory of Atmospheric Physics \emph{\href{mailto:natsisphysicist@gmail.com}{\nolinkurl{natsisphysicist@gmail.com}}}} \and Alkiviadis Bais\footnote{Laboratory of Atmospheric Physics \emph{\href{mailto:abais@auth.gr}{\nolinkurl{abais@auth.gr}}}} \and Charikleia Meleti\footnote{Laboratory of Atmospheric Physics \emph{\href{mailto:meleti@auth.gr}{\nolinkurl{meleti@auth.gr}}}}}
-\date{2024-04-06}
+\date{2024-04-07}
 
 \begin{document}
 \maketitle
@@ -161,7 +161,7 @@ CEG: cloud enhancement groups, cases events with consecutive CE
 
 \(\text{GHI}_\text{i}\): measured one minute global horizontal irradiance
 
-\(\text{GHI}_\text{mCSi}\): modeled clear sky one minute global horizontal irradiance
+\(\text{GHI}_\text{CSm}\): modeled clear sky one minute global horizontal irradiance
 
 \hypertarget{intro}{%
 \section{Intro}\label{intro}}
@@ -311,16 +311,18 @@ procedure. We used as input the spectrum of Kurucz (1994) in the range \(280\) t
 combination of conditions we use a SZA step of \(0.2^\circ\).
 For the atmospheric characteristics, we iterated for combinations of AOD at
 \(500\,\text{nm}\) (\(\tau_{500\text{nm}}\)) with additional offsets of \(\pm1\) and
-\(\pm2\sigma\), and water column (\(w_h\)), also with offsets of \(\pm1\) and \(\pm2\sigma\).
+\(\pm2\sigma\), and water column (\(wc\)), also with offsets of \(\pm1\) and \(\pm2\sigma\).
 We applied them on two atmospheric profiles, from the Air Force Geophysics
 Laboratory (AFGL). The ``AFGL atmospheric constituent profile, midlatitude summer''
 (afglms) and the ``AFGL atmospheric constituent profile, midlatitude winter'' (afglmw)
 (Anderson et al. 1986).
 
 To create a look-up table that aligns with our dataset, we applied some adjustments.
-To account for the Sun's variability in our one-minute GHI measurements, we corrected
-the model's input spectrum integral, to the one of the total solar irradiance (TSI)
-provided by NOAA (Coddington et al. 2005). Also, we applied the effect of the Earth -- Sun
+To account for the Sun's variability, in our one-minute GHI measurements,
+we adapted each modeled value by scaling the\\
+model's input spectrum integral, to the corresponding total solar irradiance (TSI)
+provided by NOAA (Coddington et al. 2005).\\
+Also, we applied the effect of the Earth -- Sun
 distance on the irradiance, by using the distance calculated by the Astropy
 (Astropy Collaboration et al. 2022) software library. As needed, we interpolate the resulting
 irradiances to the exact SZA of our measurements. For each period of the year, we
@@ -362,7 +364,7 @@ After evaluating the modeled clear radiation for the different atmospheric
 conditions, in relation to the measured GHI data, we choose as a representative of
 the clear sky radiation, the case where
 \(\tau_{\text{cs}} = \tau_{500\text{nm}} - 1\sigma\) and \(w_{h\text{cs}} = w_h - 1\sigma\)
-(\(\text{GHI}_\text{mCSi}\)).
+(\(\text{GHI}_\text{CSm}\)).
 These values represent a typical atmosphere in Thessaloniki with low load of aerosols
 and humidity, which are the main factor that attenuate the GHI, excluding clouds. To
 create the limit of CE identification, we created a two branched threshold, as a
@@ -370,14 +372,14 @@ function of SZA. A constant factor for low SZAs, and a higher ramped factor for
 higher SZAs (Equation\nobreakspace\ref{eq:CE4}).
 This is the criterion of our CE identification.
 \begin{equation}
-\text{CE} : \text{GHI}_\text{i} > \text{GHI}_\text{CSlim,i}, \text{where} \begin{cases}
- \text{GHI}_\text{CSlim,i} = 1.05 \cdot \text{GHI}_\text{mCSi}, & \text{$\theta \leq 60^\circ$}\\
-\text{GHI}_\text{CSlim,i} = \left ({ 1.18 + \frac{1.05 - 1.18}{60 - 78} \cdot (\theta- 78) } \right ) \cdot \text{GHI}_\text{mCSi}, & \text{$ 78^\circ > \theta > 60^\circ$}\\
+\text{CE} : \text{E}_\text{i} > \text{E}_\text{CSlim,i}, \text{where} \begin{cases}
+ \text{E}_\text{CSlim,i} = 1.05 \cdot \text{E}_\text{CSm,i}, & \text{$\theta \leq 60^\circ$}\\
+\text{E}_\text{CSlim,i} = \left ({ 1.18 + \frac{1.05 - 1.18}{60 - 78} \cdot (\theta- 78) } \right ) \cdot \text{E}_\text{CSm,i}, & \text{$ 78^\circ > \theta > 60^\circ$}\\
 \text{Excluded measurements}, & \theta > 78^\circ
 \end{cases}\label{eq:CE4}
 \end{equation}
-where: \(\theta\) is the solar zenith angle, \(\text{GHI}_\text{i}\) the measured
-irradiance, and \(\text{GHI}_\text{mCSi}\) the selected modeled clear sky irradiance.
+where: \(\theta\) is the solar zenith angle, \(\text{E}\) the measured
+irradiance, \(\text{E}_\text{CSm}\) the selected modeled clear sky irradiance, and \(i\) each of the one-minute observation.
 
 We have to note, that the differentiation of the threshold factor was needed, because
 of the high irradiance values we observed, early in the morning and late in the
@@ -407,14 +409,14 @@ atmosphere, and satisfy the Equation\nobreakspace{}\ref{eq:ECE}.
 \text{ECE}: \text{GHI}_\text{i} > \cos(\theta) \times E_{i\odot} / r_{i}^2
 \label{eq:ECE}
 \end{equation}
-where: \(\theta\) the solar zenith angle, \(E_{\odot}\) the solar constant, \(r\) the Sun -- Earth distance, \(i\) each of the one-minute observation
+where: \(\theta\) the solar zenith angle, \(E_{\odot}\) the solar constant, \(r\) the Sun -- Earth distance, and \(i\) each of the one-minute observation.
 
 \ldots\ldots.
 
 \begin{itemize}
 \tightlist
 \item
-  Include Example of days plot in the Appendix?
+  Include Example of days plot in the Appendix!
   \ldots{} this is clearer to understand and describe \ldots.
 \end{itemize}
 
@@ -462,8 +464,8 @@ on the mean OIR.
 
 Although, the previous result is closer to the raw data, we preferred to present the
 annual statistics, that give a more clear picture about the long term CE trends.
-Hence, we calculated the annual values from the one-minute measurements. The annual
-mean OIR is
+Hence, we calculated the annual values from the one-minute measurements. The trend of
+OIR is
 \(0.23\pm 0.11\,W/m^2/y\)
 (Figure\nobreakspace{}\ref{fig:P-energy-mean}),
 but this value alone is not very useful due the intrinsic high variability of this
