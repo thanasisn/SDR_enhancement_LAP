@@ -281,7 +281,7 @@ combination of conditions we use a SZA step of $0.2^\circ$.
 <!-- Atmospheric options -->
 For the atmospheric characteristics, we iterated for combinations of AOD at
 $500\,\text{nm}$ ($\tau_{500\text{nm}}$) with additional offsets of $\pm1$ and
-$\pm2\sigma$, and water column ($w_h$), also with offsets of $\pm1$ and $\pm2\sigma$.
+$\pm2\sigma$, and water column ($wc$), also with offsets of $\pm1$ and $\pm2\sigma$.
 We applied them on two atmospheric profiles, from the Air Force Geophysics
 Laboratory (AFGL). The "AFGL atmospheric constituent profile, midlatitude summer"
 (afglms) and the "AFGL atmospheric constituent profile, midlatitude winter" (afglmw)
@@ -289,13 +289,10 @@ Laboratory (AFGL). The "AFGL atmospheric constituent profile, midlatitude summer
 
 <!-- Lookup table -->
 To create a look-up table that aligns with our dataset, we applied some adjustments.
-To account for the Sun's variability in our one-minute GHI measurements, 
-
-we corrected each modeled value 
-the model's input spectrum integral, to the one of the total solar irradiance (TSI)
+To account for the Sun's variability, in our one-minute GHI measurements, 
+we adapted each modeled value by scaling the  
+model's input spectrum integral, to the corresponding total solar irradiance (TSI)
 provided by NOAA [@Coddington2005].  
-
-
 Also, we applied the effect of the Earth -- Sun
 distance on the irradiance, by using the distance calculated by the Astropy
 [@AstropyCollaboration2022] software library. As needed, we interpolate the resulting
@@ -368,14 +365,14 @@ where: $\theta$ is the solar zenith angle, $\text{GHI}_\text{i}$ the measured
 irradiance, and $\text{GHI}_\text{mCSi}$ the selected modeled clear sky irradiance.
 -->
 \begin{equation}
-\text{CE} : \text{GHI}_\text{i} > \text{GHI}_\text{CSlim,i}, \text{where} \begin{cases}
- \text{GHI}_\text{CSlim,i} = `r C4_cs_ref_ratio` \cdot \text{GHI}_\text{CSm,i}, & \text{$\theta \leq `r C4_lowcut_sza`^\circ$}\\
-\text{GHI}_\text{CSlim,i} = \left ({ `r C4_lowcut_ratio` + \frac{`r C4_cs_ref_ratio` - `r C4_lowcut_ratio`}{`r C4_lowcut_sza` - `r 90 - BIO_ELEVA`} \cdot (\theta- `r 90 - BIO_ELEVA`) } \right ) \cdot \text{GHI}_\text{CSm,i}, & \text{$ `r 90 - BIO_ELEVA`^\circ > \theta > `r C4_lowcut_sza`^\circ$}\\
+\text{CE} : \text{E}_\text{i} > \text{E}_\text{CSlim,i}, \text{where} \begin{cases}
+ \text{E}_\text{CSlim,i} = `r C4_cs_ref_ratio` \cdot \text{E}_\text{CSm,i}, & \text{$\theta \leq `r C4_lowcut_sza`^\circ$}\\
+\text{E}_\text{CSlim,i} = \left ({ `r C4_lowcut_ratio` + \frac{`r C4_cs_ref_ratio` - `r C4_lowcut_ratio`}{`r C4_lowcut_sza` - `r 90 - BIO_ELEVA`} \cdot (\theta- `r 90 - BIO_ELEVA`) } \right ) \cdot \text{E}_\text{CSm,i}, & \text{$ `r 90 - BIO_ELEVA`^\circ > \theta > `r C4_lowcut_sza`^\circ$}\\
 \text{Excluded measurements}, & \theta > `r 90 - BIO_ELEVA`^\circ
 \end{cases}\label{eq:CE4}
 \end{equation}
-where: $\theta$ is the solar zenith angle, $\text{GHI}_\text{i}$ the measured
-irradiance, and $\text{GHI}_\text{CSm}$ the selected modeled clear sky irradiance, and $i$ each of the one-minute observation.
+where: $\theta$ is the solar zenith angle, $\text{E}$ the measured
+irradiance, $\text{E}_\text{CSm}$ the selected modeled clear sky irradiance, and $i$ each of the one-minute observation.
 
 <!-- reasoning for cretria -->
 We have to note, that the differentiation of the threshold factor was needed, because
@@ -423,7 +420,7 @@ where: $\theta$ the solar zenith angle, $E_{\odot}$ the solar constant, $r$ the 
 
 .......
 
-- Include Example of days plot in the Appendix?
+- Include Example of days plot in the Appendix!
 ... this is clearer to understand and describe ....
 
 .......
