@@ -90,7 +90,7 @@ CEG: cloud enhancement groups, cases events with consecutive CE
 
 $\text{GHI}_\text{i}$: measured one minute global horizontal irradiance 
 
-$\text{GHI}_\text{mCSi}$: modeled clear sky one minute global horizontal irradiance 
+$\text{GHI}_\text{CSm}$: modeled clear sky one minute global horizontal irradiance 
 
 
 
@@ -289,9 +289,14 @@ Laboratory (AFGL). The "AFGL atmospheric constituent profile, midlatitude summer
 
 <!-- Lookup table -->
 To create a look-up table that aligns with our dataset, we applied some adjustments.
-To account for the Sun's variability in our one-minute GHI measurements, we corrected
+To account for the Sun's variability in our one-minute GHI measurements, 
+
+we corrected each modeled value 
 the model's input spectrum integral, to the one of the total solar irradiance (TSI)
-provided by NOAA [@Coddington2005].  Also, we applied the effect of the Earth -- Sun
+provided by NOAA [@Coddington2005].  
+
+
+Also, we applied the effect of the Earth -- Sun
 distance on the irradiance, by using the distance calculated by the Astropy
 [@AstropyCollaboration2022] software library. As needed, we interpolate the resulting
 irradiances to the exact SZA of our measurements.  For each period of the year, we
@@ -334,7 +339,7 @@ After evaluating the modeled clear radiation for the different atmospheric
 conditions, in relation to the measured GHI data, we choose as a representative of
 the clear sky radiation, the case where
 $\tau_{\text{cs}} = \tau_{500\text{nm}} - 1\sigma$ and $w_{h\text{cs}} = w_h - 1\sigma$
-($\text{GHI}_\text{mCSi}$).
+($\text{GHI}_\text{CSm}$).
 These values represent a typical atmosphere in Thessaloniki with low load of aerosols
 and humidity, which are the main factor that attenuate the GHI, excluding clouds.  To
 create the limit of CE identification, we created a two branched threshold, as a
@@ -364,13 +369,13 @@ irradiance, and $\text{GHI}_\text{mCSi}$ the selected modeled clear sky irradian
 -->
 \begin{equation}
 \text{CE} : \text{GHI}_\text{i} > \text{GHI}_\text{CSlim,i}, \text{where} \begin{cases}
- \text{GHI}_\text{CSlim,i} = `r C4_cs_ref_ratio` \cdot \text{GHI}_\text{mCSi}, & \text{$\theta \leq `r C4_lowcut_sza`^\circ$}\\
-\text{GHI}_\text{CSlim,i} = \left ({ `r C4_lowcut_ratio` + \frac{`r C4_cs_ref_ratio` - `r C4_lowcut_ratio`}{`r C4_lowcut_sza` - `r 90 - BIO_ELEVA`} \cdot (\theta- `r 90 - BIO_ELEVA`) } \right ) \cdot \text{GHI}_\text{mCSi}, & \text{$ `r 90 - BIO_ELEVA`^\circ > \theta > `r C4_lowcut_sza`^\circ$}\\
+ \text{GHI}_\text{CSlim,i} = `r C4_cs_ref_ratio` \cdot \text{GHI}_\text{CSm,i}, & \text{$\theta \leq `r C4_lowcut_sza`^\circ$}\\
+\text{GHI}_\text{CSlim,i} = \left ({ `r C4_lowcut_ratio` + \frac{`r C4_cs_ref_ratio` - `r C4_lowcut_ratio`}{`r C4_lowcut_sza` - `r 90 - BIO_ELEVA`} \cdot (\theta- `r 90 - BIO_ELEVA`) } \right ) \cdot \text{GHI}_\text{CSm,i}, & \text{$ `r 90 - BIO_ELEVA`^\circ > \theta > `r C4_lowcut_sza`^\circ$}\\
 \text{Excluded measurements}, & \theta > `r 90 - BIO_ELEVA`^\circ
 \end{cases}\label{eq:CE4}
 \end{equation}
 where: $\theta$ is the solar zenith angle, $\text{GHI}_\text{i}$ the measured
-irradiance, and $\text{GHI}_\text{mCSi}$ the selected modeled clear sky irradiance.
+irradiance, and $\text{GHI}_\text{CSm}$ the selected modeled clear sky irradiance, and $i$ each of the one-minute observation.
 
 <!-- reasoning for cretria -->
 We have to note, that the differentiation of the threshold factor was needed, because
@@ -413,7 +418,7 @@ atmosphere, and satisfy the Equation\nobreakspace{}\ref{eq:ECE}.
 \text{ECE}: \text{GHI}_\text{i} > \cos(\theta) \times E_{i\odot} / r_{i}^2
 \label{eq:ECE}
 \end{equation}
-where: $\theta$ the solar zenith angle, $E_{\odot}$ the solar constant, $r$ the Sun -- Earth distance, $i$ each of the one-minute observation
+where: $\theta$ the solar zenith angle, $E_{\odot}$ the solar constant, $r$ the Sun -- Earth distance, and $i$ each of the one-minute observation.
 
 
 .......
@@ -483,8 +488,8 @@ knitr::include_graphics("../images/P_daily_trend-1.png")
 
 Although, the previous result is closer to the raw data, we preferred to present the
 annual statistics, that give a more clear picture about the long term CE trends.
-Hence, we calculated the annual values from the one-minute measurements.  The annual
-mean OIR is
+Hence, we calculated the annual values from the one-minute measurements.  The trend of
+OIR is
 $`r round(yearlyCE[var == "GLB_diff.mean", slope], 2)`\pm
 `r round(2 * yearlyCE[var == "GLB_diff.mean", slope.sd], 2)`\,W/m^2/y$
 (Figure\nobreakspace{}\ref{fig:P-energy-mean}),
