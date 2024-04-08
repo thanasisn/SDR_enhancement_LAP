@@ -56,11 +56,10 @@ knitr::opts_chunk$set(cache      =  FALSE   )  ## !! breaks calculations
 knitr::opts_chunk$set(fig.pos    = '!h'     )
 
 #+ echo=FALSE, include=TRUE
-## __ Set environment ----------------------------------------------------------
+## __ Set environment  ---------------------------------------------------------
 Sys.setenv(TZ = "UTC")
 Script.Name <- "./GHI_enh_02_ID_CE.R"
 
-setwd("~/MANUSCRIPTS/02_enhancement/high_aod/")
 
 if (!interactive()) {
     pdf( file = paste0("./runtime/", basename(sub("\\.R$",".pdf", Script.Name))))
@@ -85,7 +84,7 @@ source("~/CODE/FUNCTIONS/R/data.R")
 source("~/CODE/FUNCTIONS/R/trig_deg.R")
 
 
-## __ Source initial scripts ---------------------------------------------------
+## __ Source initial scripts  --------------------------------------------------
 source("./GHI_enh_00_variables.R")
 source("./GHI_enh_00_dictionary.R")
 
@@ -98,19 +97,16 @@ options(error = function() {
     }
 })
 
-raw_input_data           <- "./data/CE_ID_Input.Rds"
-path.expand(raw_input_data)
-getwd()
 
 ##  Prepare raw data if needed  ------------------------------------------------
-# if (
-#     file.exists(raw_input_data) == FALSE |
-#     file.mtime(raw_input_data) < file.mtime("./GHI_enh_00_variables.R") |
-#     file.mtime(raw_input_data) < file.mtime("./GHI_enh_01_raw_data.R")
-# ) {
-#     source("./GHI_enh_01_raw_data.R")
-#     dummy <- gc()
-# }
+if (
+    file.exists(raw_input_data) == FALSE |
+    file.mtime(raw_input_data) < file.mtime("./GHI_enh_00_variables.R") |
+    file.mtime(raw_input_data) < file.mtime("./GHI_enh_01_raw_data.R")
+) {
+    source("./GHI_enh_01_raw_data.R")
+    dummy <- gc()
+}
 
 
 
@@ -268,7 +264,6 @@ if (SelEnhanc == "Enhanc_C_3") {
 ## set values base
 csmodel <- "Low_B.Low_W"
 
-
 #'
 #' ## 4. Use libradtran **`r csmodel`** as reference for Clear sky.
 #'
@@ -281,7 +276,6 @@ switch(csmodel,
        Low_B.Exact_W   = { C4_cs_ref_ratio <- 1.04; C4_GLB_diff_THRES <- 20; C4_lowcut_sza <- 60; C4_lowcut_ratio <- 1.12},
        Low_B.High_W    = { C4_cs_ref_ratio <- 1.05; C4_GLB_diff_THRES <- 20; C4_lowcut_sza <- 60; C4_lowcut_ratio <- 1.12},
        Low_B.Low_W     = { C4_cs_ref_ratio <- 1.05; C4_GLB_diff_THRES <-  0; C4_lowcut_sza <- 60; C4_lowcut_ratio <- 1.18},
-       High_B.Low_W    = { C4_cs_ref_ratio <- 1.05; C4_GLB_diff_THRES <-  0; C4_lowcut_sza <- 60; C4_lowcut_ratio <- 1.18},
                          { C4_cs_ref_ratio <- 1   ; C4_GLB_diff_THRES <-  0; C4_lowcut_sza <-  0; C4_lowcut_ratio <- 1   })
 ## init flag
 DATA[, Enhanc_C_4 := FALSE]
