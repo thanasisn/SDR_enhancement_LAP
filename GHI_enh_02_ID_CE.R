@@ -60,11 +60,12 @@ knitr::opts_chunk$set(fig.pos    = '!h'     )
 Sys.setenv(TZ = "UTC")
 Script.Name <- "./GHI_enh_02_ID_CE.R"
 
-if (!interactive()) {
-    pdf( file = paste0("./runtime/",  basename(sub("\\.R$",".pdf", Script.Name))))
-    sink(file = paste0("./runtime/",  basename(sub("\\.R$",".out", Script.Name))), split = TRUE)
-}
+setwd("~/MANUSCRIPTS/02_enhancement/high_aod/")
 
+if (!interactive()) {
+    pdf( file = paste0("./runtime/", basename(sub("\\.R$",".pdf", Script.Name))))
+    sink(file = paste0("./runtime/", basename(sub("\\.R$",".out", Script.Name))), split = TRUE)
+}
 
 #+ echo=F, include=T
 library(data.table  , quietly = TRUE, warn.conflicts = FALSE)
@@ -97,17 +98,19 @@ options(error = function() {
     }
 })
 
+raw_input_data           <- "./data/CE_ID_Input.Rds"
+path.expand(raw_input_data)
+getwd()
 
 ##  Prepare raw data if needed  ------------------------------------------------
-if (
-    file.exists(raw_input_data) == FALSE |
-    file.mtime(raw_input_data) < file.mtime("./GHI_enh_00_variables.R") |
-    file.mtime(raw_input_data) < file.mtime("./GHI_enh_01_raw_data.R")
-) {
-    source("./GHI_enh_01_raw_data.R")
-    dummy <- gc()
-}
-
+# if (
+#     file.exists(raw_input_data) == FALSE |
+#     file.mtime(raw_input_data) < file.mtime("./GHI_enh_00_variables.R") |
+#     file.mtime(raw_input_data) < file.mtime("./GHI_enh_01_raw_data.R")
+# ) {
+#     source("./GHI_enh_01_raw_data.R")
+#     dummy <- gc()
+# }
 
 
 
@@ -130,8 +133,6 @@ tic  <- Sys.time()
 DATA <- merge(DATA, readRDS("./data/lookuptable_datatable.Rds"))
 
 
-
-
 ##  Reset Randomness  ----------------------------------------------------------
 RANDOM_SEED <- 333
 set.seed(RANDOM_SEED)
@@ -141,7 +142,6 @@ set.seed(RANDOM_SEED)
 ##  Choose CS data to use ------------------------------------------------------
 DATA$TYPE |> unique()
 grep("Exact_B", names(DATA), value = T)
-
 
 
 
@@ -268,6 +268,7 @@ if (SelEnhanc == "Enhanc_C_3") {
 ## set values base
 csmodel <- "Low_B.Low_W"
 
+
 #'
 #' ## 4. Use libradtran **`r csmodel`** as reference for Clear sky.
 #'
@@ -280,6 +281,7 @@ switch(csmodel,
        Low_B.Exact_W   = { C4_cs_ref_ratio <- 1.04; C4_GLB_diff_THRES <- 20; C4_lowcut_sza <- 60; C4_lowcut_ratio <- 1.12},
        Low_B.High_W    = { C4_cs_ref_ratio <- 1.05; C4_GLB_diff_THRES <- 20; C4_lowcut_sza <- 60; C4_lowcut_ratio <- 1.12},
        Low_B.Low_W     = { C4_cs_ref_ratio <- 1.05; C4_GLB_diff_THRES <-  0; C4_lowcut_sza <- 60; C4_lowcut_ratio <- 1.18},
+       High_B.Low_W    = { C4_cs_ref_ratio <- 1.05; C4_GLB_diff_THRES <-  0; C4_lowcut_sza <- 60; C4_lowcut_ratio <- 1.18},
                          { C4_cs_ref_ratio <- 1   ; C4_GLB_diff_THRES <-  0; C4_lowcut_sza <-  0; C4_lowcut_ratio <- 1   })
 ## init flag
 DATA[, Enhanc_C_4 := FALSE]
