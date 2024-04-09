@@ -20,6 +20,8 @@
 #' - \usepackage{placeins}
 #' - \captionsetup{font=small}
 #'
+#' knit: rmarkdown::render
+#'
 #' output:
 #'   bookdown::pdf_document2:
 #'     number_sections: no
@@ -158,12 +160,6 @@ DATA[, TSI_Kurudz_factor := tsi_1au_comb / Kurudz_SC ]
 
 
 
-# export <- DATA[year(Date) %in% c(2022,2023), ]
-# write.csv(export, "exportCS.csv")
-
-
-
-
 #'
 #'  Alpha * HAU is CS_ref
 #'
@@ -175,7 +171,6 @@ DATA[, TSI_Kurudz_factor := tsi_1au_comb / Kurudz_SC ]
 # SelEnhanc <- "Enhanc_C_3"
 
 SelEnhanc <- "Enhanc_C_4"
-
 
 
 ## Mark used criteria for diff rati ench
@@ -664,7 +659,7 @@ for (ii in 1:nrow(vec_days)) {
 }
 #+ echo=F, include=T
 
-# stop()
+
 
 ##  Yearly plots  --------------------------------------------------------------
 
