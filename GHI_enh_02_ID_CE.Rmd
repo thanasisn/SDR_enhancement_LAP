@@ -1,46 +1,44 @@
-# /* #!/usr/bin/env Rscript */
-# /* Copyright (C) 2022 Athanasios Natsis <natsisphysicist@gmail.com> */
-#' ---
-#' title:         "Enhancement of SDR in Thessaloniki "
-#' author:
-#'   - Natsis Athanasios^[Laboratory of Atmospheric Physics, AUTH, natsisphysicist@gmail.com]
-#'   - Alkiviadis Bais^[Laboratory of Atmospheric Physics, AUTH]
-#' abstract:
-#'   "Study of GHI enchantment."
-#'
-#' documentclass:  article
-#' classoption:    a4paper,oneside
-#' fontsize:       10pt
-#' geometry:       "left=0.5in,right=0.5in,top=0.5in,bottom=0.5in"
-#' link-citations: yes
-#' colorlinks:     yes
-#'
-#' header-includes:
-#' - \usepackage{caption}
-#' - \usepackage{placeins}
-#' - \captionsetup{font=small}
-#'
-#' output:
-#'   bookdown::pdf_document2:
-#'     number_sections: no
-#'     fig_caption:     no
-#'     keep_tex:        yes
-#'     latex_engine:    xelatex
-#'     toc:             yes
-#'     toc_depth:       4
-#'     fig_width:       7
-#'     fig_height:      4.5
-#'   html_document:
-#'     toc:             true
-#'     keep_md:         yes
-#'     fig_width:       7
-#'     fig_height:      4.5
-#'
-#' date: "`r format(Sys.time(), '%F')`"
-#'
-#' ---
+---
+title:         "Enhancement of SDR in Thessaloniki "
+author:
+  - Natsis Athanasios^[Laboratory of Atmospheric Physics, AUTH, natsisphysicist@gmail.com]
+  - Alkiviadis Bais^[Laboratory of Atmospheric Physics, AUTH]
+abstract:
+  "Study of GHI enchantment."
 
-#+ echo=F, include=T
+documentclass:  article
+classoption:    a4paper,oneside
+fontsize:       10pt
+geometry:       "left=0.5in,right=0.5in,top=0.5in,bottom=0.5in"
+link-citations: yes
+colorlinks:     yes
+
+header-includes:
+- \usepackage{caption}
+- \usepackage{placeins}
+- \captionsetup{font=small}
+
+output:
+  bookdown::pdf_document2:
+    number_sections: no
+    fig_caption:     no
+    keep_tex:        yes
+    latex_engine:    xelatex
+    toc:             yes
+    toc_depth:       4
+    fig_width:       7
+    fig_height:      4.5
+  html_document:
+    toc:             true
+    keep_md:         yes
+    fig_width:       7
+    fig_height:      4.5
+
+date: "`r format(Sys.time(), '%F')`"
+
+---
+
+```{r echo=F, include=T}
 
 
 
@@ -64,7 +62,8 @@ if (!interactive()) {
     sink(file = paste0("./runtime/", basename(sub("\\.R$",".out", Script.Name))), split = TRUE)
 }
 
-#+ echo=F, include=T
+```
+```{r echo=F, include=T}
 library(data.table  , quietly = TRUE, warn.conflicts = FALSE)
 require(zoo         , quietly = TRUE, warn.conflicts = FALSE)
 library(pander      , quietly = TRUE, warn.conflicts = FALSE)
@@ -153,13 +152,13 @@ summary(DATA[, tsi_1au_comb / Kurudz_SC ])
 # plot(DATA[, tsi_1au_comb / Kurudz_SC ])
 
 DATA[, TSI_Kurudz_factor := tsi_1au_comb / Kurudz_SC ]
+```
 
 
+ Alpha * HAU is CS_ref
 
-#'
-#'  Alpha * HAU is CS_ref
-#'
-#+ echo=F, include=TRUE
+
+```{r echo=F, include=TRUE}
 
 ## __ Enhancement criteria  ----------------------------------------------------
 # SelEnhanc <- "Enhanc_C_1"
@@ -171,18 +170,20 @@ SelEnhanc <- "Enhanc_C_4"
 
 ## Mark used criteria for diff rati ench
 DATA[, CEC := SelEnhanc ]
+```
 
 
-#'
-#' ## Using criteria **`r SelEnhanc`** for final application
-#'
-#+ echo=FALSE, include=TRUE
+## Using criteria **`r SelEnhanc`** for final application
 
 
-#'
-#' ## 1. Use TSI as reference for Clear sky.
-#'
-#+ echo=TRUE, include=TRUE
+```{r echo=FALSE, include=TRUE}
+```
+
+
+## 1. Use TSI as reference for Clear sky.
+
+
+```{r echo=TRUE, include=TRUE}
 
 ## __ 1. My criteria  ----------------------------------------------------------
 # C1_GLB_ench_THRES     <-  1.10 ## enchantment relative to HAU
@@ -204,12 +205,13 @@ if (SelEnhanc == "Enhanc_C_1") {
     DATA[ , GLB_ench := ( wattGLB - Enhanc_C_1_ref ) / Enhanc_C_1_ref ] ## relative enhancement
     DATA[ , GLB_rati :=   wattGLB / Enhanc_C_1_ref                    ]
 }
+```
 
 
-#'
-#' ## 2. Use TSI as reference for Clear sky.
-#'
-#+ echo=TRUE, include=TRUE
+## 2. Use TSI as reference for Clear sky.
+
+
+```{r echo=TRUE, include=TRUE}
 
 
 ## __ 2. Gueymard2017 Criteria  ------------------------------------------------
@@ -227,12 +229,13 @@ if (SelEnhanc == "Enhanc_C_2") {
     DATA[ , GLB_ench := ( wattGLB - Enhanc_C_2_ref ) / Enhanc_C_2_ref ] ## relative enhancement
     DATA[ , GLB_rati :=   wattGLB / Enhanc_C_2_ref                    ]
 }
+```
 
 
-#'
-#' ## 3. Use Haurwitz as reference for Clear sky.
-#'
-#+ echo=TRUE, include=TRUE
+## 3. Use Haurwitz as reference for Clear sky.
+
+
+```{r echo=TRUE, include=TRUE}
 
 ## __ 3. Vamvakas2020  Criteria  -----------------------------------------------
 ## +5% from model => enhancements above 15 Wm^2 the instrument uncertainty
@@ -254,11 +257,13 @@ if (SelEnhanc == "Enhanc_C_3") {
 
 ## set values base
 csmodel <- "Low_B.Low_W"
+```
 
-#'
-#' ## 4. Use libradtran **`r csmodel`** as reference for Clear sky.
-#'
-#+ echo=TRUE, include=TRUE
+
+## 4. Use libradtran **`r csmodel`** as reference for Clear sky.
+
+
+```{r echo=TRUE, include=TRUE}
 cat("\n USING CSMODE:", csmodel, "\n\n")
 
 switch(csmodel,
@@ -321,7 +326,8 @@ if (SelEnhanc == "Enhanc_C_4") {
 }
 
 
-#+ echo=F, include=T
+```
+```{r echo=F, include=T}
 
 # pyear <- c(1994, 2010, 2022 )
 # pyear <- c(2018 )
@@ -356,15 +362,18 @@ if (SelEnhanc == "Enhanc_C_4") {
 
 
 
-#+ include=TRUE, echo=FALSE
+```
+```{r include=TRUE, echo=FALSE}
+```
 
-#' \FloatBarrier
-#'
-#' # Using creteria: `r SelEnhanc`
-#'
-#' # Distribution of different metrics
-#'
-#+ echo=FALSE, include=TRUE
+\FloatBarrier
+
+# Using creteria: `r SelEnhanc`
+
+# Distribution of different metrics
+
+
+```{r echo=FALSE, include=TRUE}
 
 
 # hist(DATA[GLB_ench > 0, GLB_ench])
@@ -499,12 +508,14 @@ testdays <- data.table(Day = c(
 
 
 ## __  Days with strong enhancement cases  -------------------------------------
+```
 
-#' \FloatBarrier
-#'
-#' # Plot some days with strong enhancement cases
-#'
-#+ example_days, echo=F, include=T, results="asis"
+\FloatBarrier
+
+# Plot some days with strong enhancement cases
+
+
+```{r example_days, echo=F, include=T, results="asis"}
 
 vec_days <- matrix(
     ##   Data      Description
@@ -653,17 +664,20 @@ for (ii in 1:nrow(vec_days)) {
 
     }
 }
-#+ echo=F, include=T
+```
+```{r echo=F, include=T}
 
 
 
 ##  Yearly plots  --------------------------------------------------------------
+```
 
-#' \newpage
-#' \FloatBarrier
-#' # Plot years with enhancement cases
-#'
-#+ example_years, echo=F, include=T, results="asis"
+\newpage
+\FloatBarrier
+# Plot years with enhancement cases
+
+
+```{r example_years, echo=F, include=T, results="asis"}
 
 ## TODO plot only enhancement cases
 ## DO it with base plot
@@ -799,13 +813,11 @@ save(file = paste0("./data/", basename(sub("\\.R", ".Rda", Script.Name))),
      list = objects,
      compress = "xz")
 }
+```
 
+**END**
 
-
-
-
-#' **END**
-#+ include=T, echo=F
+```{r include=T, echo=F}
 tac <- Sys.time()
 cat(sprintf("%s %s@%s %s %f mins\n\n", Sys.time(), Sys.info()["login"],
             Sys.info()["nodename"], basename(Script.Name), difftime(tac,tic,units = "mins")))
@@ -813,3 +825,5 @@ if (difftime(tac,tic,units = "sec") > 30) {
     system("mplayer /usr/share/sounds/freedesktop/stereo/dialog-warning.oga", ignore.stdout = T, ignore.stderr = T)
     system(paste("notify-send -u normal -t 30000 ", Script.Name, " 'R script ended'"))
 }
+```
+
