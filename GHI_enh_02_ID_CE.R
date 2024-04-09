@@ -20,8 +20,6 @@
 #' - \usepackage{placeins}
 #' - \captionsetup{font=small}
 #'
-#' knit: rmarkdown::render
-#'
 #' output:
 #'   bookdown::pdf_document2:
 #'     number_sections: no
@@ -48,20 +46,18 @@
 
 ## __ Document options ---------------------------------------------------------
 
-#+ echo=FALSE, include=TRUE
 knitr::opts_chunk$set(comment    = ""       )
-# knitr::opts_chunk$set(dev        = c("pdf", "png")) ## expected option
-knitr::opts_chunk$set(dev        = "png"    )       ## for too much data
+knitr::opts_chunk$set(dev        = c("pdf", "png")) ## expected option
+# knitr::opts_chunk$set(dev        = "png"    )       ## for too much data
 knitr::opts_chunk$set(out.width  = "100%"   )
 knitr::opts_chunk$set(fig.align  = "center" )
 knitr::opts_chunk$set(cache      =  FALSE   )  ## !! breaks calculations
 knitr::opts_chunk$set(fig.pos    = '!h'     )
 
-#+ echo=FALSE, include=TRUE
 ## __ Set environment  ---------------------------------------------------------
 Sys.setenv(TZ = "UTC")
 Script.Name <- "./GHI_enh_02_ID_CE.R"
-
+tic <- Sys.time()
 
 if (!interactive()) {
     pdf( file = paste0("./runtime/", basename(sub("\\.R$",".pdf", Script.Name))))
