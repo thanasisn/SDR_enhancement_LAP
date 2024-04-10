@@ -1,0 +1,700 @@
+---
+title:    SDR enhancement by clouds
+
+subtitle: A Short Subtitle
+
+author:
+  - Athanasios N. Natsis^[Laboratory of Atmospheric Physics _natsisphysicist@gmail.com_] 
+  - Alkiviadis Bais^[Laboratory of Atmospheric Physics _abais@auth.gr_] 
+  - Charikleia Meleti^[Laboratory of Atmospheric Physics _meleti@auth.gr_]
+
+# abstract: |
+#   This is the abstract. Lorem ipsum dolor sit amet, eu efficitur justo rutrum at. Sed at tempus elit.
+
+keywords:
+  - keyword1
+  - keyword2
+
+bibliography:  [bibliography.bib]
+
+date: "`r format(Sys.time(), '%F')`"
+
+header-includes:
+  - \usepackage{caption}
+  - \usepackage{placeins}
+  - \captionsetup{font=small}
+
+output:
+  # redoc::redoc: default
+ #  rticles::mdpi_article:
+ #    extra_dependencies:  longtable
+ #    keep_tex:            yes
+  bookdown::pdf_document2:
+    number_sections:  yes
+    fig_caption:      yes
+    keep_tex:         yes
+    latex_engine:     xelatex
+    toc:              yes
+    toc_depth:        4
+    fig_width:        7
+    fig_height:       4.5
+    documentclass:    article
+    classoption:      a4paper,oneside
+    fontsize:         12pt
+    geometry:         "left=0.75in,right=0.75in,top=0.75in,bottom=0.75in"
+    link-citations:   yes
+    colorlinks:       yes
+    urlcolor:         blue
+    biblio-style:     apalike
+    bookdown::word_document2: default
+---
+
+```{r setup, echo=F, include=FALSE}
+rmarkdown::find_pandoc(dir = '/usr/lib/rstudio/resources/app/bin/quarto/bin/tools')
+renv::load("~/MANUSCRIPTS/02_enhancement/", quiet = TRUE)
+## document configurations
+knitr::opts_chunk$set(comment    = ""      )
+# knitr::opts_chunk$set(dev        = "pdf"   )
+knitr::opts_chunk$set(out.width  = "60%"   )
+knitr::opts_chunk$set(fig.align  = "center")
+knitr::opts_chunk$set(fig.pos    = 'h!'    )
+options(knitr.graphics.auto_pdf = FALSE)
+library(pander)
+library(data.table)
+library(kableExtra)
+library(dplyr)
+## load data from trends analysis
+source("~/MANUSCRIPTS/02_enhancement/GHI_enh_00_variables.R")
+load("~/MANUSCRIPTS/02_enhancement/data/GHI_enh_03_process.Rda")
+TSIinfo <- data.table(read.csv("~/MANUSCRIPTS/02_enhancement/figures/tbl_tsi_info.dat",
+                               strip.white = TRUE,
+                               sep = ";",
+                               header = TRUE))
+```
+
+# Abstract {.unnumbered}
+
+- Phenomenon
+- Effects
+- bibliography
+- our approach
+- our results
+
+
+
+CE: cloud enhancement cases one minute
+
+ECE: extreme cloud enhancement cases one minute over TSI on horizontal plane
+
+CEG: cloud enhancement groups, cases events with consecutive CE
+
+$\text{GHI}_\text{i}$: measured one minute global horizontal irradiance 
+
+$\text{GHI}_\text{CSm}$: modeled clear sky one minute global horizontal irradiance 
+
+
+
+# Intro
+
+The shortwave solar irradiance, reaching Earth's surface, is the main energy source
+of the atmosphere and biosphere and drives and governs the climate [@Gray2010].  It
+has direct practical application, in different industries, like energy production and
+agriculture method.  The variability of its intensity, can cause difficulties in
+predicting the yield, and designing the specifications of the appropriate equipment.
+A lot of research has been focused on predicting the renewable energy production in a
+fine timescale and in near real-time (for a review see @Inman2013; @Graabak2016).
+
+A big aspect of this variability is the interaction with the clouds. In general,
+clouds absorb part of the solar irradiance, but under certain conditions, can enhance
+the total shortwave irradiance reaching the ground. This effect, can locally increase
+the observed total shortwave irradiance higher than the expected clear sky irradiance
+[see references therein].
+
+Some of the proposed underling mechanisms of those events, have been summarized by
+@Gueymard2017, and include scattering on the edge of cumulus clouds or through thin
+cirrus.  Further investigation with radiation transfer modeling methods and
+observations have pointed as the prevailing mechanism, the forward Mie scattering
+[@Pecenak2016; @Thuillier2013; @Yordanov2013; @Yordanov2015], through the clouds.
+The overall phenomenon depends on different interactive factors, that include cloud
+thickness, constitution and type; and the relative position of the sun, the clouds,
+and the observer [@Gueymard2017; @Veerman2022].  As such, there are multiple
+contributing mechanism that are responsible for the observed irradiance enhancements.
+
+Cloud enhancements have been reported, to be able to exceed in intensity even the
+value of the solar constant, resulting of clear indexes above unit. A summary of
+extreme enchantment cases have been compiled by @Martins2022. There are also some
+practical implication of the cloud enchantments.  The intensity and duration of
+enhancements can effect the efficiency and stability of photovoltaic power production
+[@Lappalainen2020; @Jaervelae2020], and extreme enhancements cases, have the
+potential to compromise the integrity of photovoltaic plants infrastructure
+[@DoNascimento2019].  It has also been demonstrated, that these events can interfere
+in the comparison of ground data and satellite observations [@Damiani2018]
+
+<!--
+Study of the mechanism has also been done with modeling of different cloud types and
+atmospheric conditions.  @Gueymard2017; @Veerman2022
+-->
+
+<!--
+Instruments respose ....
+@Martins2022
+-->
+
+Methods of identification cloud enchantment events in the literature, usually include
+the use of a simulated clear sky radiation as baseline, that is combined with an
+appropriate threshold or some other statistical characteristics, and in some cases,
+with visual methods with a sky cam [@Vamvakas2020; @Mol2023 and references therein].
+
+<!-- our work -->
+In this study, we evaluated the effects cloud enhancements on the total downward
+radiation by studding the occurrences, their intensity, and their duration in a
+thirty-year period at the city of Thessaloniki.  We used modeled clear sky
+irradiance, as a baseline to identify cloud enhancements.  We were able to determine
+some trends of the phenomenon, it's Climatology, and some of their  general
+characteristics. We weren't able to find a comparable study that provides trends for
+similar long term dataset, as ours.  The recording of the radiation signal is the
+mean of one-minute. Thus, the minimum resolution of cloud enhancement events (CE), in
+this study is one minute.
+
+<!-- Define CE and ECE -->
+In the relative bibliography different definition have been used for these events,
+some of the are summarized by @Gueymard2017.  Here, we defined as cloud enhancement
+events (CE) the cases when the measured global horizontal irradiance (GHI) at ground
+level, exceeds the expected value under clear-sky conditions.  Similar, we define as
+extreme cloud enhancement events (ECE), the cases when GHI, exceeds the Total Solar
+Irradiance on horizontal plane at ground level.  Although the duration of these
+bursts varies, from instantaneous to several minutes, here we are constrained by the
+recorded data, to one-minute steps.
+
+<!--
+Identification methods from bib
+
+- clearness index
+- modeled approaches
+- algorithmic id
+- AI
+- Visual
+
+Constrains of the site
+
+- data
+- instrument
+- location
+-->
+
+
+# Data and methodology
+
+
+## GHI data
+
+The monitoring site is operating in the Laboratory of Atmospheric Physics of the
+Aristotle University of Thessaloniki (\(40^\circ\,38'\,\)N,
+\(22^\circ\,57'\,\)E, \(80\,\)m\ a.s.l.).
+In this study we present data from the period
+`r strftime(min(ST_daily$Date), "%d\\ %B %Y")` to
+`r strftime(max(ST_daily$Date), "%d\\ %B %Y")`.
+<!-- Instrument -->
+The GHI data were measured with a Kipp\ & Zonen CM-21 pyranometer.  During the study
+period, the pyranometer was independently calibrated three times at the
+Meteorologisches Observatorium Lindenberg, DWD, verifying that the stability of the
+instrument’s sensitivity was better than $0.7\,\%$ relative to the initial
+calibration by the manufacturer.
+<!-- Measurements -->
+For the acquisition of radiometric data, the signal of the pyranometer was sampled at
+a rate of $1\,\text{Hz}$.  The mean and the standard deviation of these samples were
+calculated and recorded for every minute.  The measurements were corrected for the
+zero offset ("dark signal" in volts), which was calculated by averaging all
+measurements recorded for a period of $3\,\text{h}$, before (morning) or after
+(evening) the Sun reaches an elevation angle of $-10^\circ$.  The signal was
+converted to irradiance using the ramped value of the instrument’s sensitivity
+between subsequent calibrations.
+
+<!-- Radiation data quality check -->
+To further improve the quality of the irradiance data, a manual screening was
+performed to remove inconsistent and erroneous recordings that can occur
+stochastically or systematically during the continuous operation of the instruments.
+The manual screening was aided by a radiation data quality assurance procedure,
+adjusted for the site, which was based on the methods of Long and Shi\ [@Long2006;
+@Long2008a].  Thus, problematic recordings have been excluded from further
+processing.  Although it is impossible to detect all false data, the large number of
+available data, and the aggregation scheme we used, ensures the quality of the
+radiation measurements used in this study.
+<!-- Data selection -->
+To preserve an unbiased representation of the data we applied a constraint, similar
+the one used by @CastillejoCuberos2020. Where, for each valid hour of day, there must
+exist at least 45 minutes of valid measurements, including nighttime near sunrise and
+sunset. Days with less than 5 valid hours are rejected completely.
+<!--# CastillejoCuberos2020 There must be at least 5 h of valid data (Tests 1–7),
+otherwise all data for this day is flagged as invalid. There must be at least This
+work valid data 45 min of valid data (Tests 1–7) for an hour to be flagged as valid,
+otherwise all minute data for this hour is flagged as invalid. -->
+Furthermore, due to the significant measurement uncertainty when the Sun is near the
+horizon, and due to some systematic obstructions by nearby buildings, we have
+excluded all measurements with solar zenith angle (SZA) greater than 
+$`r 90 - BIO_ELEVA`^\circ$.
+
+
+
+## Cloud enhancement detection
+
+To be able to detect the CE cases, we had to establish a baseline, above which we can
+characterize each data point as an enhancement event, by estimating the occurring
+over irradiance (OIR). The OIR, here is defined as the irradiance difference of the
+measured one-minute $\text{GHI}_i$ from the CE identification criterion in
+Equation\nobreakspace\ref{eq:CE4}
+($\text{OIR}_i = \text{GHI}_i - \text{GHI}_\text{CSlim}$).
+To have an estimation, and a first insight on the phenomenon, we experimented with two
+simple approaches for the reference.  The Haurwitz's model [@Haurwitz1945], which is
+as simple clear sky model, and we had already adjusted and had good fit with our data
+[@Natsis2023], and the TSI at the top of the atmosphere.  We have tested both cases
+by using an appropriate relative threshold and/or an additional constant offset.  The
+initial results, showed that we can detect a big portion of the CE events. These
+results were helpful, and helped to establish some criteria to further improve the CE
+identification. It was evident, by inspecting the daily plot of irradiance, that
+changes on the atmospheric conditions introduced numerous false positive and false
+negative results.  To produce a more accurate reference, we had to take into account
+more factors that effect the clear sky radiation. So we used a radiation transfer
+model.
+
+
+## Modeled clear Sky Irradiance
+
+We approximated the expected clear sky GHI by using a radiation transfer model.  The
+simulations was performed by the well established model Libradtran [@Emde2016], a
+similar approach, was also used by @Vamvakas2020 for creating a clear sky reference.
+Because of the lack of observational data for the whole period, we used some long
+term climatological data for the main factors responsible for the attenuation of the
+broadband downward solar radiation in the atmosphere. Which are mainly, the aerosols
+and the water vapors.  Fortunately, our site participates in the Aerosol Robotic
+Network (AERONET) [@Giles2019; @Buis1998], as we operate a Cimel photometer since
+2003, collocated with the CM-21 pyranometer.  The mean monthly aerosol optical depth
+(AOD) on different wavelengths is provided by AERONET, along with the equivalent
+water column height in the atmosphere.
+
+<!-- Libradtran options -->
+For completeness, we will describe here the main points of the radiation simulation
+procedure. We used as input the spectrum of @Kurucz1994 in the range $280$ to
+$2500\,\text{nm}$, with the Libradtran radiation transfer solver "disort" on a
+"pseudospherical" geometry and the "LOWTRAN" gas parameterization. For each
+combination of conditions we use a SZA step of $0.2^\circ$.
+<!-- Atmospheric options -->
+For the atmospheric characteristics, we iterated for combinations of AOD at
+$500\,\text{nm}$ ($\tau_{500\text{nm}}$) with additional offsets of $\pm1$ and
+$\pm2\sigma$, and water column ($wc$), also with offsets of $\pm1$ and $\pm2\sigma$.
+We applied them on two atmospheric profiles, from the Air Force Geophysics
+Laboratory (AFGL). The "AFGL atmospheric constituent profile, midlatitude summer"
+(afglms) and the "AFGL atmospheric constituent profile, midlatitude winter" (afglmw)
+[@Anderson1986].
+
+<!-- Lookup table -->
+To create a look-up table that aligns with our dataset, we applied some adjustments.
+To account for the Sun's variability, in our one-minute GHI measurements, 
+we adapted each modeled value by scaling the  
+model's input spectrum integral, to the corresponding total solar irradiance (TSI)
+provided by NOAA [@Coddington2005].  
+Also, we applied the effect of the Earth -- Sun
+distance on the irradiance, by using the distance calculated by the Astropy
+[@AstropyCollaboration2022] software library. As needed, we interpolate the resulting
+irradiances to the exact SZA of our measurements.  For each period of the year, we
+used the appropriate atmospheric profile (afglms or afglmw).  Finally, we calculated
+the clear sky irradiance value at the horizontal plane.  Thus, we were able to
+emulate different atmospheric condition and levels of atmospheric clearness for the
+climatological conditions of the site.  With this method, the modeled clear sky
+irradiances can be directly compared to each measured one-minute value of GHI, for
+different conditions of atmospheric clearness.
+
+
+
+## CE Criteria investigation
+
+The use of the actual modeled values of clear sky GHI alone, can not provide us with
+a robust method to distinguish the CE cases, due to the limited accuracy of the input
+data. Our main focus was to positively identify over irradiance events from CEs, thus
+we used a relative factor, to create an upper envelope of the clear sky irradiance,
+above which, any GHI value can safely attributed to CE.  We evaluated the performance
+of the modeled clear radiation for each of atmospheric level of clearness, as
+reference, in order to conclude which is the most appropriate.
+
+To select the exact values of these thresholds factors (Equation \ref{eq:CE4}), we
+implemented an empirical method, by manual inspection of the CE identification, on
+specially selected days from the whole dataset.  We used seven sets of selected days,
+with characteristics relevant to the efficiency of the identification threshold.
+These sets were random groups of about 20 to 30 days with the following
+characteristics:
+(a) the largest over irradiance CE events,
+(b) the largest daily total over irradiance,
+(c) without clouds (by implementing a clear sky identification algorithm as discussed in @Natsis2023),
+(d) without clouds and without EC events,
+(e) with at least $60\,\%$ of the day length without clouds and some EC events,
+(h) random days and
+(i) some manual selected days that were included during the manual inspection.
+Where it was needed, for some of the edge cases, we also used images from a sky-cam,
+to further aid the decisions of the manual inspection.
+
+After evaluating the modeled clear radiation for the different atmospheric
+conditions, in relation to the measured GHI data, we choose as a representative of
+the clear sky radiation, the case where
+$\tau_{\text{cs}} = \tau_{500\text{nm}} - 1\sigma$ and $w_{h\text{cs}} = w_h - 1\sigma$
+($\text{GHI}_\text{CSm}$).
+These values represent a typical atmosphere in Thessaloniki with low load of aerosols
+and humidity, which are the main factor that attenuate the GHI, excluding clouds.  To
+create the limit of CE identification, we created a two branched threshold, as a
+function of SZA. A constant factor for low SZAs, and a higher ramped factor for
+higher SZAs (Equation\nobreakspace\ref{eq:CE4}).
+This is the criterion of our CE identification.
+<!--
+\begin{equation}
+\text{CE}_\text{Threshold} = \begin{cases}
+`r C4_cs_ref_ratio`, & \text{$\theta \leq `r C4_lowcut_sza`^\circ$}\\
+\frac{`r C4_cs_ref_ratio` - `r C4_lowcut_ratio`}{`r C4_lowcut_sza` - `r 90 - BIO_ELEVA`} \cdot (\theta- `r 90 - BIO_ELEVA`) + `r C4_lowcut_ratio` , & \text{$ `r 90 - BIO_ELEVA`^\circ > \theta > `r C4_lowcut_sza`^\circ$}\\
+\text{Excluded measurements}, & \theta > `r 90 - BIO_ELEVA`^\circ
+\end{cases}\label{eq:CE4a}
+\end{equation}
+where: $\theta$ solar zenith angle.
+-->
+<!--
+\begin{equation}
+\text{CE} : \begin{cases}
+ \text{GHI}_\text{i} > `r C4_cs_ref_ratio` \cdot \text{GHI}_\text{mCSi}, & \text{$\theta \leq `r C4_lowcut_sza`^\circ$}\\
+\text{GHI}_\text{i} > \left ({ `r C4_lowcut_ratio` + \frac{`r C4_cs_ref_ratio` - `r C4_lowcut_ratio`}{`r C4_lowcut_sza` - `r 90 - BIO_ELEVA`} \cdot (\theta- `r 90 - BIO_ELEVA`) } \right ) \cdot \text{GHI}_\text{mCSi}, & \text{$ `r 90 - BIO_ELEVA`^\circ > \theta > `r C4_lowcut_sza`^\circ$}\\
+\text{Excluded measurements}, & \theta > `r 90 - BIO_ELEVA`^\circ
+\end{cases}\label{eq:CE4b}
+\end{equation}
+where: $\theta$ is the solar zenith angle, $\text{GHI}_\text{i}$ the measured
+irradiance, and $\text{GHI}_\text{mCSi}$ the selected modeled clear sky irradiance.
+-->
+\begin{equation}
+\text{CE} : \text{E}_\text{i} > \text{E}_\text{CSlim,i}, \text{where} \begin{cases}
+ \text{E}_\text{CSlim,i} = `r C4_cs_ref_ratio` \cdot \text{E}_\text{CSm,i}, & \text{$\theta \leq `r C4_lowcut_sza`^\circ$}\\
+\text{E}_\text{CSlim,i} = \left ({ `r C4_lowcut_ratio` + \frac{`r C4_cs_ref_ratio` - `r C4_lowcut_ratio`}{`r C4_lowcut_sza` - `r 90 - BIO_ELEVA`} \cdot (\theta- `r 90 - BIO_ELEVA`) } \right ) \cdot \text{E}_\text{CSm,i}, & \text{$ `r 90 - BIO_ELEVA`^\circ > \theta > `r C4_lowcut_sza`^\circ$}\\
+\text{Excluded measurements}, & \theta > `r 90 - BIO_ELEVA`^\circ
+\end{cases}\label{eq:CE4}
+\end{equation}
+where: $\theta$ is the solar zenith angle, $\text{E}$ the measured
+irradiance, $\text{E}_\text{CSm}$ the selected modeled clear sky irradiance, and $i$ each of the one-minute observation.
+
+<!-- reasoning for cretria -->
+We have to note, that the differentiation of the threshold factor was needed, because
+of the high irradiance values we observed, early in the morning and late in the
+afternoon. We have confirmed, by inspecting images from the sky cam, that we have
+duration of elevated irradiance, either due to the clearness of the atmosphere, or some
+interferences by reflections on nearby bright surfaces. Although, these cases may
+mask some of the CE events. The actual CE events, produce higher irradiance and thus
+are identified as such. As a side effect, the reported OIR will be slight
+underestimated for those SZAs, but the overall contribution of those cases to the
+total daily energy, is minimal due the low occurrences and the lower irradiances.
+
+<!--
+- can follow for clear days
+- this selection has some subjectivity
+- the most important are the thresholds
+- model have to be uniform on clear days
+- the level is adjusted by the threshold 
+- the effect of the sza uniform
+-->
+
+
+.............
+
+These selections have some subjectivity, as the definition of clear sky, is depended
+on the intended usage. Our main focus is to be able to identify the OIR created by the
+clouds. Although, the aerosols and water vapor are always present and can not be
+completely removed. 
+The effect of the different clearness levels
+
+.............
+
+
+<!-- extreme cases criterion -->
+Another aspect of the CE events, that is often reported in the relative bibliography,
+are cases of extreme cloud enhancement (ECE). These are cases of CE where the
+measured intensity of the irradiance, exceeds the equivalent TSI on the top of the
+atmosphere, and satisfy the Equation\nobreakspace{}\ref{eq:ECE}.
+\begin{equation}
+\text{ECE}: \text{GHI}_\text{i} > \cos(\theta) \times E_{i\odot} / r_{i}^2
+\label{eq:ECE}
+\end{equation}
+where: $\theta$ the solar zenith angle, $E_{\odot}$ the solar constant, $r$ the Sun -- Earth distance, and $i$ each of the one-minute observation.
+
+
+.......
+
+- Include Example of days plot in the Appendix!
+... this is clearer to understand and describe ....
+
+.......
+
+<!-- ```{r echo=F, include=T, warning=FALSE, message=FALSE} -->
+<!-- ST_total -->
+<!-- cat("\n - - - \n") -->
+<!-- ST_daily[which.max(wattGLB.max), wattGLB.max] -->
+<!-- round(ST_E_daily[which.max(GLB_diff.max), GLB_diff.max], 2) -->
+<!-- round(100*ST_daily[which.max(GLB_ench.max), GLB_ench.max],1) -->
+<!-- plot(ST_daily$Date, ST_daily$GLB_diff.max) -->
+<!-- ``` -->
+
+
+
+\FloatBarrier
+
+# Results
+
+
+Our dataset, after the data selection processing, consists of
+`r ST_total$wattGLB.N` records of GHI, of which
+$`r round(100*ST_total$GLB_diff.N_pos/ST_total$wattGLB.N, 3)`\,\%$ are CE and
+$`r round(100*ST_extreme_total$GLB_diff.N_pos/ST_total$wattGLB.N, 3)`\,\%$ are ECE events.
+The highest GHI recorder was 
+$`r round(ST_daily[which.max(wattGLB.max), wattGLB.max],1)`\,W/m^2$
+on `r strftime(ST_daily[which.max(wattGLB.max), Date], "%d\\ %B %Y")`.
+The absolute stronger CE event had an OIR of 
+$`r round(ST_daily[which.max(GLB_diff.max), GLB_diff.max], 2)`\,W/m^2$ on
+`r strftime(ST_daily[which.max(GLB_diff.max), Date], "%d\\ %B %Y")`.
+The relative stronger CE event was 
+$`r round(100*ST_daily[which.max(GLB_ench.max), GLB_ench.max],1)`\,\%$ above the 
+clear sky threshold, on 
+`r strftime(ST_daily[which.max(GLB_ench.max), Date], "%d\\ %B %Y")`.
+
+
+## Trends
+
+```{r loadtrends, echo=F, include=T, warning=FALSE, message=FALSE}
+dailytrends <- data.table(
+  read.csv("~/MANUSCRIPTS/02_enhancement/figures/Daily_trends_byYear.csv"))
+dailyCE <- dailytrends[DATA == "ST_E_daily"]
+yearlytrends <- data.table(
+  read.csv("~/MANUSCRIPTS/02_enhancement/figures/Daily_trends_byYear_Proper.csv"))
+yearlyCE <- yearlytrends[DATA == "ST_E_yearly"]
+
+```
+
+We computed the daily trend of the mean OIR of CE
+(Figure\nobreakspace{}\ref{fig:CEmeanDaily}), using a first-order autoregressive
+model with lag of 1 day, using the 'maximum likelihood' fitting method [@Gardner1980;
+@Jones1980] by implementing the function 'arima' from the library 'stats' of the R
+programming language [@RCT2023]. The trends are reported together with the $2\sigma$
+error.  We observe an increase of
+$`r round(dailyCE[var == "GLB_diff.mean", Tmod_Estimate], 3)`\pm
+`r round(2 * dailyCE[var == "GLB_diff.mean", Tmod_Std..Error], 3)`\,W/m^2/y$
+on the mean OIR.
+
+```{r CEmeanDaily, echo=FALSE, fig.cap="Daily mean values and trend of the CE over irradiance."}
+knitr::include_graphics("../images/P_daily_trend-1.png")
+```
+
+Although, the previous result is closer to the raw data, we preferred to present the
+annual statistics, that give a more clear picture about the long term CE trends.
+Hence, we calculated the annual values from the one-minute measurements.  The trend of
+OIR is
+$`r round(yearlyCE[var == "GLB_diff.mean", slope], 2)`\pm
+`r round(2 * yearlyCE[var == "GLB_diff.mean", slope.sd], 2)`\,W/m^2/y$
+(Figure\nobreakspace{}\ref{fig:P-energy-mean}),
+but this value alone is not very useful due the intrinsic high variability of this
+metric.
+
+<!-- ```{r CEmeanDaily2, echo=FALSE, fig.cap="Trend of the daily excess energy due to CE"} -->
+<!-- knitr::include_graphics("../images/daily-12.png") -->
+<!-- ``` -->
+
+<!-- ```{r echo=FALSE, fig.cap="Treds of the mean over irradiance per CE"} -->
+<!-- knitr::include_graphics("../images/energy-3.png") -->
+<!-- ``` -->
+
+```{r P-energy-mean, echo=FALSE, fig.cap="Trends of the mean OIR per CE."}
+knitr::include_graphics("../images/P_energy-7.png")
+```
+
+A better indicator of changes on the characteristic of CE would be the number of CE
+occurrences and the total energy of the CE over irradiance. The annual number of CE
+occurrences, shows a steady increase of
+$`r round(yearlyCE[var == "GLB_diff.N", slope], 1)`\pm
+`r round(2 * yearlyCE[var == "GLB_diff.N", slope.sd], 1)`\,\text{cases}/y$
+(Figure\nobreakspace{}\ref{fig:P-energy-N}).
+We have to note that the energy related to the CE events can not be directly linked
+with the total energy balance on the atmosphere. The net sun radiation of the region
+is not increased, but rather redistributed through the CE. Although, the
+instantaneous values, can exceed the equivalent clear sky irradiance to a
+considerable level.
+
+<!-- ```{r echo=FALSE, fig.cap="Trend of number of CE cases"} -->
+<!-- knitr::include_graphics("../images/energy-2.png") -->
+<!-- ``` -->
+
+```{r P-energy-N, echo=FALSE, fig.cap="Trend of yearly CE number of occurancies."}
+knitr::include_graphics("../images/P_energy-6.png")
+```
+
+Subsequently, the mean annual increase of energy due to CE events is
+$`r round(yearlyCE[var == "GLB_diff.sum", slope], 1)`\pm
+`r round(2 * yearlyCE[var == "GLB_diff.sum", slope.sd], 1)`\,kJ/y$
+(Figure\ \ref{fig:P-energy-sum}), witch follows the trend of the number of
+occurrences.
+
+<!-- ```{r echo=FALSE, fig.cap="Trend of the yearly excess energy due to CE over irradiance"} -->
+<!-- knitr::include_graphics("../images/energy-1.png") -->
+<!-- ``` -->
+
+```{r P-energy-sum, echo=FALSE, fig.cap="Trend of the yearly excess energy due to CE over irradiance"}
+knitr::include_graphics("../images/P_energy-5.png")
+```
+
+```{r P-energy-median, echo=FALSE, fig.cap="Trend of the yearly median over irradiance due to CE over irradiance"}
+knitr::include_graphics("../images/P_energy-8.png")
+```
+
+\FloatBarrier
+
+## Climatology
+
+Another interesting aspect of the CE cases, is their seasonal cycle. In
+Figure\nobreakspace{}\ref{fig:relative-month-occurancies}, we have the box plot
+(whisker plot), where the values have been normalized by the highest median value,
+that occurs in May.  Although the number of occurrences has a wide spread throughout
+the study period, the most active period of CE occurrences is during May and June.
+During the Winter (December -- February) the CE cases are about $25\,\%$ of the maximum.
+The rest of the months the occurrences ramp between the maximum and minimum.
+
+```{r relative-month-occurancies, echo=FALSE, fig.cap="Statistics of the number of CE occurancies for each month. The box represents the values of the low $25\\,\\%$ percentile to $75\\,\\%$ percentile, where the thick horizontal line inside is the mean, the verical lines extend to the macimum and minimum vales, the dots are outlier values, and the rhombus is the mean."}
+knitr::include_graphics("../images/clim_CE_month_norm_MAX_median_N-2.png")
+```
+<!--
+```{r echo=FALSE, fig.cap="Distribution of the number of CE cases"}
+knitr::include_graphics("../images/climCEmonth-1.png")
+```
+--->
+
+<!-- ```{r echo=FALSE, fig.cap="Distribution of CE above reference"} -->
+<!-- knitr::include_graphics("../images/relative_distributions-2.png") -->
+<!-- ``` -->
+<!--
+```{r echo=FALSE, fig.cap="Distribution of CE above reference"}
+knitr::include_graphics("../images/relative_distributions-4.png")
+```
+-->
+
+The distribution of the CE over irradiance spreads uniformly
+Figure\nobreakspace{}\ref{fig:ovir-distribution}. Where there is an inverse relation
+between the events frequency and events intensity. This is expected as, the stronger
+the CE events become, the rarer the particular atmospheric and sun conditions
+occur.
+
+```{r ovir-distribution, echo=FALSE, fig.cap="Distribution of CE over irradiance"}
+knitr::include_graphics("../images/P-relative-distribution-diff-1.png")
+```
+
+<!-- whisky plots relative to GLB -->
+
+<!-- set of yearly plots -->
+
+\FloatBarrier
+
+## Groups stats
+
+In order to further study the characteristics of the CE events, we grouped the single
+minute CE events, to continuous CE groups (CEG). Thus, a CEG consists of one or more
+successive CE cases, and can have a duration of multiple of minutes.  We have
+identified `r ST_G0[, .N]` groups, where the group with the longest duration lasted
+`r ST_G0[, max(GLB_diff.N)]` minutes on
+`r strftime(ST_G0[which.max(GLB_diff.N), Date], "%d\\ %B %Y")`.
+By examining the frequency distribution of the CEG durations
+(Figure\nobreakspace{}\ref{fig:ceg-duration-distribution}), we can conclude that
+longer durations are getting increasingly rare, with durations above 10 minutes very
+rare.
+
+```{r ceg-duration-distribution, echo=FALSE, fig.cap="Distribution of CE groups"}
+knitr::include_graphics("../images/groups-1.png")
+```
+
+
+... @Zhang2018 ....
+
+```{r echo=FALSE, fig.cap="Relation of mean over irradiance and CE group duration"}
+knitr::include_graphics("../images/P-groups-bin2d-1.png")
+```
+
+
+
+<!-- ```{r echo=FALSE, fig.cap="Relation of mean over irradiance and CE group duration"} -->
+<!-- knitr::include_graphics("../images/groups-4.png") -->
+<!-- ``` -->
+
+<!-- ```{r echo=FALSE, fig.cap="Relation of maximun over irradiance and CE group duration"} -->
+<!-- knitr::include_graphics("../images/groups-8.png") -->
+<!-- ``` -->
+
+
+\FloatBarrier
+
+## Extreme CE above TSI
+
+Another aspect of the CE events are the cases when the irradiance is above the
+expected irradiance on top of the atmosphere, we have defined this as ECE
+(Equation\nobreakspace{}\ref{eq:ECE}).
+
+-  max value ECE
+  relative to other works max values
+
+Analogous to Figure\nobreakspace{}\ref{fig:relative-month-occurancies} we have
+computed the distribution of the number of occurrences of ECE events by month in
+Figure\nobreakspace{}\ref{fig:relative-month-occurancies-ECE}. Here the most active
+period is in the spring (March -- May), followed by the months of June, September and
+October.
+
+.......
+
+```{r relative-month-occurancies-ECE, echo=FALSE, fig.cap="Distribution of "}
+knitr::include_graphics("../images/clim_ECE_month_norm_MAX_median_N-2.png")
+```
+
+
+<!-- ```{r echo=FALSE, fig.cap="Distribution of the number of ECE cases"} -->
+<!-- knitr::include_graphics("../images/climECEmonth-1.png") -->
+<!-- ``` -->
+
+
+```{r echo=FALSE, fig.cap="Distribution of ECE above 'clear sky' reference"}
+knitr::include_graphics("../images/extremedistributions-2.png")
+```
+
+
+<!-- ```{r echo=FALSE, fig.cap="Distribution of ECE Irradiance above 'TSI'"} -->
+<!-- knitr::include_graphics("../images/extremedistributions-4.png") -->
+<!-- ``` -->
+
+-   SZA
+
+
+
+
+<!-- ### Yearly plots relative to all GHI data. -->
+<!-- ```{r echo=FALSE, fig.cap=""} -->
+<!-- knitr::include_graphics("../images/rel_energy-1.png") -->
+<!-- ``` -->
+<!-- ```{r echo=FALSE, fig.cap=""} -->
+<!-- knitr::include_graphics("../images/rel_energy-2.png") -->
+<!-- ``` -->
+<!-- ```{r echo=FALSE, fig.cap=""} -->
+<!-- knitr::include_graphics("../images/rel_energy-3.png") -->
+<!-- ``` -->
+
+
+\FloatBarrier
+
+
+# Discussion and conclusions
+
+
+Compare to other location stats.
+max, ECE, distributions ....
+
+
+Climatology results
+
+
+
+
+# Appendix {.unnumbered}
+
+
+# References {.unnumbered}
