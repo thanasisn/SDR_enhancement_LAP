@@ -127,7 +127,7 @@
 
 \title{Enhancement of SDR in Thessaloniki}
 \author{Natsis Athanasios\footnote{Laboratory of Atmospheric Physics, AUTH, \href{mailto:natsisphysicist@gmail.com}{\nolinkurl{natsisphysicist@gmail.com}}} \and Alkiviadis Bais\footnote{Laboratory of Atmospheric Physics, AUTH}}
-\date{2024-04-09}
+\date{2024-04-10}
 
 \begin{document}
 \maketitle
@@ -140,6 +140,106 @@ Study of GHI enchantment.
 \setcounter{tocdepth}{4}
 \tableofcontents
 }
+\begin{verbatim}
+Warning in eval(ei, envir): 
+
+ ** Test is active!! ** 
+\end{verbatim}
+
+\begin{verbatim}
+
+ USING CSMODE: High_B.Low_W 
+
+C4 factor: 1.1 
+C4 offset: 0 
+\end{verbatim}
+
+\begin{verbatim}
+
+\FloatBarrier
+
+
+## Days with extreme cases day 
+\end{verbatim}
+
+\begin{verbatim}
+ 
+ 
+
+\FloatBarrier
+
+
+## Days with strong enhancement day 
+\end{verbatim}
+
+\begin{verbatim}
+ 
+ 
+
+\FloatBarrier
+
+
+## Days with sunny day 
+\end{verbatim}
+
+\begin{verbatim}
+ 
+ 
+
+\FloatBarrier
+
+
+## Days with sunny enhancement day 
+\end{verbatim}
+
+\begin{verbatim}
+ 
+ 
+
+\FloatBarrier
+
+
+## Days with cloudy day 
+\end{verbatim}
+
+\begin{verbatim}
+ 
+ 
+
+\FloatBarrier
+
+
+## Days with random day 
+\end{verbatim}
+
+\begin{verbatim}
+ 
+ 
+
+\FloatBarrier
+
+
+## Days with manual test days 
+\end{verbatim}
+
+\begin{verbatim}
+Warning: A numeric `legend.position` argument in `theme()` was deprecated in ggplot2 3.5.0.
+i Please use the `legend.position.inside` argument of `theme()` instead.
+This warning is displayed once every 8 hours.
+Call `lifecycle::last_lifecycle_warnings()` to see where this warning was generated.
+\end{verbatim}
+
+\begin{verbatim}
+Warning in eval(ei, envir): TEST IS ACTIVE !!
+\end{verbatim}
+
+\begin{verbatim}
+
+  TEST IS ACTIVE  !! 
+
+2024-04-10 14:55:07 athan@tyler GHI_enh_02_ID_CE.R 6.972880 mins
+\end{verbatim}
+
 Alpha * HAU is CS\_ref
 
 \hypertarget{time-series-decomposition-tests}{%
@@ -154,10 +254,8 @@ interactive FALSE
 \end{Shaded}
 
 \begin{verbatim}
-Warning: Removed 2 rows containing missing values or values outside the scale range
-(`geom_line()`).
-Removed 2 rows containing missing values or values outside the scale range
-(`geom_line()`).
+Warning: Removed 2 rows containing missing values or values outside the scale range (`geom_line()`).
+Removed 2 rows containing missing values or values outside the scale range (`geom_line()`).
 \end{verbatim}
 
 \begin{center}\includegraphics[width=1\linewidth]{GHI_enh_03_process_files/figure-latex/unnamed-chunk-6-1} \end{center}
@@ -169,10 +267,8 @@ Removed 2 rows containing missing values or values outside the scale range
 \end{Shaded}
 
 \begin{verbatim}
-Warning: Removed 2 rows containing missing values or values outside the scale range
-(`geom_line()`).
-Removed 2 rows containing missing values or values outside the scale range
-(`geom_line()`).
+Warning: Removed 2 rows containing missing values or values outside the scale range (`geom_line()`).
+Removed 2 rows containing missing values or values outside the scale range (`geom_line()`).
 \end{verbatim}
 
 \begin{center}\includegraphics[width=1\linewidth]{GHI_enh_03_process_files/figure-latex/unnamed-chunk-6-2} \end{center}
@@ -184,10 +280,8 @@ Removed 2 rows containing missing values or values outside the scale range
 \end{Shaded}
 
 \begin{verbatim}
-Warning: Removed 2 rows containing missing values or values outside the scale range
-(`geom_line()`).
-Removed 2 rows containing missing values or values outside the scale range
-(`geom_line()`).
+Warning: Removed 2 rows containing missing values or values outside the scale range (`geom_line()`).
+Removed 2 rows containing missing values or values outside the scale range (`geom_line()`).
 \end{verbatim}
 
 \begin{center}\includegraphics[width=1\linewidth]{GHI_enh_03_process_files/figure-latex/unnamed-chunk-6-3} \end{center}
@@ -358,18 +452,18 @@ stats::lm(formula = .formula, data = df)
 
 Residuals:
     Min      1Q  Median      3Q     Max 
--1440.3  -533.0  -125.8   463.6  2804.6 
+-922.49 -337.13  -68.82  261.22 1657.04 
 
 Coefficients:
                    Estimate Std. Error t value Pr(>|t|)    
-(Intercept)      -2.647e+02  1.691e+02  -1.565    0.118    
-as.numeric(Date)  1.153e-06  1.354e-07   8.517 4.38e-16 ***
+(Intercept)      -1.886e+02  1.075e+02  -1.754   0.0802 .  
+as.numeric(Date)  7.871e-07  8.610e-08   9.141   <2e-16 ***
 ---
 Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 
-Residual standard error: 728.2 on 364 degrees of freedom
-Multiple R-squared:  0.1662,    Adjusted R-squared:  0.1639 
-F-statistic: 72.54 on 1 and 364 DF,  p-value: 4.375e-16
+Residual standard error: 463.1 on 364 degrees of freedom
+Multiple R-squared:  0.1867,    Adjusted R-squared:  0.1845 
+F-statistic: 83.56 on 1 and 364 DF,  p-value: < 2.2e-16
 \end{verbatim}
 
 \begin{center}\includegraphics[width=1\linewidth]{GHI_enh_03_process_files/figure-latex/unnamed-chunk-6-19} \end{center}
@@ -388,18 +482,18 @@ lm(formula = ST_E_monthly$wattGLB.N ~ ST_E_monthly$Date)
 
 Residuals:
     Min      1Q  Median      3Q     Max 
--1440.3  -533.0  -125.8   463.6  2804.6 
+-922.49 -337.13  -68.82  261.22 1657.04 
 
 Coefficients:
                     Estimate Std. Error t value Pr(>|t|)    
-(Intercept)       -2.647e+02  1.691e+02  -1.565    0.118    
-ST_E_monthly$Date  1.153e-06  1.354e-07   8.517 4.38e-16 ***
+(Intercept)       -1.886e+02  1.075e+02  -1.754   0.0802 .  
+ST_E_monthly$Date  7.871e-07  8.610e-08   9.141   <2e-16 ***
 ---
 Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 
-Residual standard error: 728.2 on 364 degrees of freedom
-Multiple R-squared:  0.1662,    Adjusted R-squared:  0.1639 
-F-statistic: 72.54 on 1 and 364 DF,  p-value: 4.375e-16
+Residual standard error: 463.1 on 364 degrees of freedom
+Multiple R-squared:  0.1867,    Adjusted R-squared:  0.1845 
+F-statistic: 83.56 on 1 and 364 DF,  p-value: < 2.2e-16
 \end{verbatim}
 
 \begin{Shaded}
@@ -470,6 +564,7 @@ Daily_aggregation_N_lim
 Daily_confidence_limit
 daylist
 Days_of_year
+dummy
 Energy_Div
 I1_longterm
 I2_szatrend
@@ -535,7 +630,7 @@ ST_yearly
 \textbf{END}
 
 \begin{verbatim}
-2024-04-09 20:39:01 athan@tyler GHI_enh_03_process.R 13.754702 mins
+2024-04-10 15:18:08 athan@tyler GHI_enh_02_ID_CE.R 17.930279 mins
 \end{verbatim}
 
 \end{document}
