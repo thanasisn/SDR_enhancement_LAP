@@ -115,7 +115,7 @@ raw_input_data           <- "./data/CE_ID_Input.Rds"
 
 ## __ Execution control  -------------------------------------------------------
 TEST <- FALSE
-TEST <- TRUE
+# TEST <- TRUE
 
 if (TEST) {
     warning("\n\n ** Test is active!! ** \n\n")
@@ -271,7 +271,7 @@ switch(csmodel,
        Low_B.Exact_W   = { C4_cs_ref_ratio <- 1.04; C4_GLB_diff_THRES <- 20; C4_lowcut_sza <- 60; C4_lowcut_ratio <- 1.12},
        Low_B.High_W    = { C4_cs_ref_ratio <- 1.05; C4_GLB_diff_THRES <- 20; C4_lowcut_sza <- 60; C4_lowcut_ratio <- 1.12},
        Low_B.Low_W     = { C4_cs_ref_ratio <- 1.05; C4_GLB_diff_THRES <-  0; C4_lowcut_sza <- 60; C4_lowcut_ratio <- 1.18},
-       High_B.Low_W    = { C4_cs_ref_ratio <- 1.10; C4_GLB_diff_THRES <-  0; C4_lowcut_sza <- 60; C4_lowcut_ratio <- 1.30}, ## same as the used criterio
+       High_B.Low_W    = { C4_cs_ref_ratio <- 1.11; C4_GLB_diff_THRES <-  0; C4_lowcut_sza <- 60; C4_lowcut_ratio <- 1.31}, ## same as the used criterio
                          { C4_cs_ref_ratio <- 1   ; C4_GLB_diff_THRES <-  0; C4_lowcut_sza <-  0; C4_lowcut_ratio <- 1   })
 ## init flag
 DATA[, Enhanc_C_4 := FALSE]
