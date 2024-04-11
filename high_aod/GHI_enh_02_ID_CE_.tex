@@ -147,12 +147,6 @@ Study of GHI enchantment.
 \end{Shaded}
 
 \begin{verbatim}
-Warning: 
-
- ** Test is active!! ** 
-\end{verbatim}
-
-\begin{verbatim}
 [1] "Cloud" "Clear"
 \end{verbatim}
 
@@ -274,7 +268,7 @@ Alpha * HAU is CS\_ref
        \AttributeTok{Low\_B.Exact\_W   =}\NormalTok{ \{ C4\_cs\_ref\_ratio }\OtherTok{\textless{}{-}} \FloatTok{1.04}\NormalTok{; C4\_GLB\_diff\_THRES }\OtherTok{\textless{}{-}} \DecValTok{20}\NormalTok{; C4\_lowcut\_sza }\OtherTok{\textless{}{-}} \DecValTok{60}\NormalTok{; C4\_lowcut\_ratio }\OtherTok{\textless{}{-}} \FloatTok{1.12}\NormalTok{\},}
        \AttributeTok{Low\_B.High\_W    =}\NormalTok{ \{ C4\_cs\_ref\_ratio }\OtherTok{\textless{}{-}} \FloatTok{1.05}\NormalTok{; C4\_GLB\_diff\_THRES }\OtherTok{\textless{}{-}} \DecValTok{20}\NormalTok{; C4\_lowcut\_sza }\OtherTok{\textless{}{-}} \DecValTok{60}\NormalTok{; C4\_lowcut\_ratio }\OtherTok{\textless{}{-}} \FloatTok{1.12}\NormalTok{\},}
        \AttributeTok{Low\_B.Low\_W     =}\NormalTok{ \{ C4\_cs\_ref\_ratio }\OtherTok{\textless{}{-}} \FloatTok{1.05}\NormalTok{; C4\_GLB\_diff\_THRES }\OtherTok{\textless{}{-}}  \DecValTok{0}\NormalTok{; C4\_lowcut\_sza }\OtherTok{\textless{}{-}} \DecValTok{60}\NormalTok{; C4\_lowcut\_ratio }\OtherTok{\textless{}{-}} \FloatTok{1.18}\NormalTok{\},}
-       \AttributeTok{High\_B.Low\_W    =}\NormalTok{ \{ C4\_cs\_ref\_ratio }\OtherTok{\textless{}{-}} \FloatTok{1.10}\NormalTok{; C4\_GLB\_diff\_THRES }\OtherTok{\textless{}{-}}  \DecValTok{0}\NormalTok{; C4\_lowcut\_sza }\OtherTok{\textless{}{-}} \DecValTok{60}\NormalTok{; C4\_lowcut\_ratio }\OtherTok{\textless{}{-}} \FloatTok{1.30}\NormalTok{\}, }\DocumentationTok{\#\# same as the used criterio}
+       \AttributeTok{High\_B.Low\_W    =}\NormalTok{ \{ C4\_cs\_ref\_ratio }\OtherTok{\textless{}{-}} \FloatTok{1.11}\NormalTok{; C4\_GLB\_diff\_THRES }\OtherTok{\textless{}{-}}  \DecValTok{0}\NormalTok{; C4\_lowcut\_sza }\OtherTok{\textless{}{-}} \DecValTok{60}\NormalTok{; C4\_lowcut\_ratio }\OtherTok{\textless{}{-}} \FloatTok{1.31}\NormalTok{\}, }\DocumentationTok{\#\# same as the used criterio}
 \NormalTok{                         \{ C4\_cs\_ref\_ratio }\OtherTok{\textless{}{-}} \DecValTok{1}\NormalTok{   ; C4\_GLB\_diff\_THRES }\OtherTok{\textless{}{-}}  \DecValTok{0}\NormalTok{; C4\_lowcut\_sza }\OtherTok{\textless{}{-}}  \DecValTok{0}\NormalTok{; C4\_lowcut\_ratio }\OtherTok{\textless{}{-}} \DecValTok{1}\NormalTok{   \})}
 \DocumentationTok{\#\# init flag}
 \NormalTok{DATA[, Enhanc\_C\_4 }\SpecialCharTok{:=} \ConstantTok{FALSE}\NormalTok{]}
@@ -291,8 +285,8 @@ Alpha * HAU is CS\_ref
 \end{Shaded}
 
 \begin{verbatim}
- [1]        NA        NA 1.0857621 0.9949418 0.9171711 0.8498384 0.7909847
- [8] 0.7391123 0.6930560 0.6518963 0.6148972
+ [1]        NA        NA 1.0941141 1.0026612 0.9243490 0.8565476 0.7972846
+ [8] 0.7450515 0.6986754 0.6572300 0.6199744
 \end{verbatim}
 
 \begin{Shaded}
@@ -302,7 +296,7 @@ Alpha * HAU is CS\_ref
 \end{Shaded}
 
 \begin{verbatim}
-C4 factor: 1.1 
+C4 factor: 1.11 
 \end{verbatim}
 
 \begin{Shaded}
@@ -470,7 +464,7 @@ TRUE
 \endhead
 \bottomrule\noalign{}
 \endlastfoot
-6054123 & 148044 \\
+6072539 & 129628 \\
 \end{longtable}
 
 \begin{center}\includegraphics[width=1\linewidth]{GHI_enh_02_ID_CE__files/figure-latex/unnamed-chunk-13-4} \end{center}
@@ -830,6 +824,11 @@ TRUE
 
 \begin{center}\includegraphics[width=1\linewidth]{GHI_enh_02_ID_CE__files/figure-latex/example_days-136} \end{center}
 
+\FloatBarrier
+
+\hypertarget{days-with-cloudy-day}{%
+\subsection{Days with cloudy day}\label{days-with-cloudy-day}}
+
 \begin{center}\includegraphics[width=1\linewidth]{GHI_enh_02_ID_CE__files/figure-latex/example_days-137} \end{center}
 
 \begin{center}\includegraphics[width=1\linewidth]{GHI_enh_02_ID_CE__files/figure-latex/example_days-138} \end{center}
@@ -839,11 +838,6 @@ TRUE
 \begin{center}\includegraphics[width=1\linewidth]{GHI_enh_02_ID_CE__files/figure-latex/example_days-140} \end{center}
 
 \begin{center}\includegraphics[width=1\linewidth]{GHI_enh_02_ID_CE__files/figure-latex/example_days-141} \end{center}
-
-\FloatBarrier
-
-\hypertarget{days-with-cloudy-day}{%
-\subsection{Days with cloudy day}\label{days-with-cloudy-day}}
 
 \begin{center}\includegraphics[width=1\linewidth]{GHI_enh_02_ID_CE__files/figure-latex/example_days-142} \end{center}
 
@@ -875,6 +869,11 @@ TRUE
 
 \begin{center}\includegraphics[width=1\linewidth]{GHI_enh_02_ID_CE__files/figure-latex/example_days-156} \end{center}
 
+\FloatBarrier
+
+\hypertarget{days-with-random-day}{%
+\subsection{Days with random day}\label{days-with-random-day}}
+
 \begin{center}\includegraphics[width=1\linewidth]{GHI_enh_02_ID_CE__files/figure-latex/example_days-157} \end{center}
 
 \begin{center}\includegraphics[width=1\linewidth]{GHI_enh_02_ID_CE__files/figure-latex/example_days-158} \end{center}
@@ -884,11 +883,6 @@ TRUE
 \begin{center}\includegraphics[width=1\linewidth]{GHI_enh_02_ID_CE__files/figure-latex/example_days-160} \end{center}
 
 \begin{center}\includegraphics[width=1\linewidth]{GHI_enh_02_ID_CE__files/figure-latex/example_days-161} \end{center}
-
-\FloatBarrier
-
-\hypertarget{days-with-random-day}{%
-\subsection{Days with random day}\label{days-with-random-day}}
 
 \begin{center}\includegraphics[width=1\linewidth]{GHI_enh_02_ID_CE__files/figure-latex/example_days-162} \end{center}
 
@@ -940,6 +934,11 @@ TRUE
 
 \begin{center}\includegraphics[width=1\linewidth]{GHI_enh_02_ID_CE__files/figure-latex/example_days-186} \end{center}
 
+\FloatBarrier
+
+\hypertarget{days-with-manual-test-days}{%
+\subsection{Days with manual test days}\label{days-with-manual-test-days}}
+
 \begin{center}\includegraphics[width=1\linewidth]{GHI_enh_02_ID_CE__files/figure-latex/example_days-187} \end{center}
 
 \begin{center}\includegraphics[width=1\linewidth]{GHI_enh_02_ID_CE__files/figure-latex/example_days-188} \end{center}
@@ -947,21 +946,6 @@ TRUE
 \begin{center}\includegraphics[width=1\linewidth]{GHI_enh_02_ID_CE__files/figure-latex/example_days-189} \end{center}
 
 \begin{center}\includegraphics[width=1\linewidth]{GHI_enh_02_ID_CE__files/figure-latex/example_days-190} \end{center}
-
-\begin{center}\includegraphics[width=1\linewidth]{GHI_enh_02_ID_CE__files/figure-latex/example_days-191} \end{center}
-
-\FloatBarrier
-
-\hypertarget{days-with-manual-test-days}{%
-\subsection{Days with manual test days}\label{days-with-manual-test-days}}
-
-\begin{center}\includegraphics[width=1\linewidth]{GHI_enh_02_ID_CE__files/figure-latex/example_days-192} \end{center}
-
-\begin{center}\includegraphics[width=1\linewidth]{GHI_enh_02_ID_CE__files/figure-latex/example_days-193} \end{center}
-
-\begin{center}\includegraphics[width=1\linewidth]{GHI_enh_02_ID_CE__files/figure-latex/example_days-194} \end{center}
-
-\begin{center}\includegraphics[width=1\linewidth]{GHI_enh_02_ID_CE__files/figure-latex/example_days-195} \end{center}
 
 \newpage
 \FloatBarrier
@@ -984,16 +968,66 @@ generated.
 
 \begin{center}\includegraphics[width=1\linewidth]{GHI_enh_02_ID_CE__files/figure-latex/example_years-3} \end{center}
 
-\begin{verbatim}
-Warning: TEST IS ACTIVE !!
-\end{verbatim}
+\begin{center}\includegraphics[width=1\linewidth]{GHI_enh_02_ID_CE__files/figure-latex/example_years-4} \end{center}
 
-TEST IS ACTIVE !!
+\begin{center}\includegraphics[width=1\linewidth]{GHI_enh_02_ID_CE__files/figure-latex/example_years-5} \end{center}
+
+\begin{center}\includegraphics[width=1\linewidth]{GHI_enh_02_ID_CE__files/figure-latex/example_years-6} \end{center}
+
+\begin{center}\includegraphics[width=1\linewidth]{GHI_enh_02_ID_CE__files/figure-latex/example_years-7} \end{center}
+
+\begin{center}\includegraphics[width=1\linewidth]{GHI_enh_02_ID_CE__files/figure-latex/example_years-8} \end{center}
+
+\begin{center}\includegraphics[width=1\linewidth]{GHI_enh_02_ID_CE__files/figure-latex/example_years-9} \end{center}
+
+\begin{center}\includegraphics[width=1\linewidth]{GHI_enh_02_ID_CE__files/figure-latex/example_years-10} \end{center}
+
+\begin{center}\includegraphics[width=1\linewidth]{GHI_enh_02_ID_CE__files/figure-latex/example_years-11} \end{center}
+
+\begin{center}\includegraphics[width=1\linewidth]{GHI_enh_02_ID_CE__files/figure-latex/example_years-12} \end{center}
+
+\begin{center}\includegraphics[width=1\linewidth]{GHI_enh_02_ID_CE__files/figure-latex/example_years-13} \end{center}
+
+\begin{center}\includegraphics[width=1\linewidth]{GHI_enh_02_ID_CE__files/figure-latex/example_years-14} \end{center}
+
+\begin{center}\includegraphics[width=1\linewidth]{GHI_enh_02_ID_CE__files/figure-latex/example_years-15} \end{center}
+
+\begin{center}\includegraphics[width=1\linewidth]{GHI_enh_02_ID_CE__files/figure-latex/example_years-16} \end{center}
+
+\begin{center}\includegraphics[width=1\linewidth]{GHI_enh_02_ID_CE__files/figure-latex/example_years-17} \end{center}
+
+\begin{center}\includegraphics[width=1\linewidth]{GHI_enh_02_ID_CE__files/figure-latex/example_years-18} \end{center}
+
+\begin{center}\includegraphics[width=1\linewidth]{GHI_enh_02_ID_CE__files/figure-latex/example_years-19} \end{center}
+
+\begin{center}\includegraphics[width=1\linewidth]{GHI_enh_02_ID_CE__files/figure-latex/example_years-20} \end{center}
+
+\begin{center}\includegraphics[width=1\linewidth]{GHI_enh_02_ID_CE__files/figure-latex/example_years-21} \end{center}
+
+\begin{center}\includegraphics[width=1\linewidth]{GHI_enh_02_ID_CE__files/figure-latex/example_years-22} \end{center}
+
+\begin{center}\includegraphics[width=1\linewidth]{GHI_enh_02_ID_CE__files/figure-latex/example_years-23} \end{center}
+
+\begin{center}\includegraphics[width=1\linewidth]{GHI_enh_02_ID_CE__files/figure-latex/example_years-24} \end{center}
+
+\begin{center}\includegraphics[width=1\linewidth]{GHI_enh_02_ID_CE__files/figure-latex/example_years-25} \end{center}
+
+\begin{center}\includegraphics[width=1\linewidth]{GHI_enh_02_ID_CE__files/figure-latex/example_years-26} \end{center}
+
+\begin{center}\includegraphics[width=1\linewidth]{GHI_enh_02_ID_CE__files/figure-latex/example_years-27} \end{center}
+
+\begin{center}\includegraphics[width=1\linewidth]{GHI_enh_02_ID_CE__files/figure-latex/example_years-28} \end{center}
+
+\begin{center}\includegraphics[width=1\linewidth]{GHI_enh_02_ID_CE__files/figure-latex/example_years-29} \end{center}
+
+\begin{center}\includegraphics[width=1\linewidth]{GHI_enh_02_ID_CE__files/figure-latex/example_years-30} \end{center}
+
+\begin{center}\includegraphics[width=1\linewidth]{GHI_enh_02_ID_CE__files/figure-latex/example_years-31} \end{center}
 
 \textbf{END}
 
 \begin{verbatim}
-2024-04-11 09:13:59.5 athan@sagan GHI_enh_02_ID_CE_highAOD.R 0.935513 mins
+2024-04-11 09:51:15.2 athan@sagan GHI_enh_02_ID_CE_highAOD.R 32.426616 mins
 \end{verbatim}
 
 \end{document}
