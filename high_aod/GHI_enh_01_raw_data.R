@@ -66,10 +66,10 @@ Sys.setenv(TZ = "UTC")
 Script.Name <- "./GHI_enh_01_raw_data.R"
 tic <- Sys.time()
 
-if (!interactive()) {
-    pdf( file = paste0("./runtime/",  basename(sub("\\.R$",".pdf", Script.Name))))
-    sink(file = paste0("./runtime/",  basename(sub("\\.R$",".out", Script.Name))), split = TRUE)
-}
+# if (!interactive()) {
+#     pdf( file = paste0("./runtime/",  basename(sub("\\.R$",".pdf", Script.Name))))
+#     sink(file = paste0("./runtime/",  basename(sub("\\.R$",".out", Script.Name))), split = TRUE)
+# }
 
 
 library(data.table, quietly = TRUE, warn.conflicts = FALSE)

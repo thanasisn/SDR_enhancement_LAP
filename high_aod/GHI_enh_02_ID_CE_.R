@@ -40,8 +40,6 @@
 #'
 #' ---
 
-#+ echo=F, include=T
-
 
 
 ## __ Document options ---------------------------------------------------------
@@ -58,15 +56,14 @@ knitr::opts_chunk$set(fig.pos    = '!h'     )
 #+ echo=FALSE, include=TRUE
 ## __ Set environment  ---------------------------------------------------------
 Sys.setenv(TZ = "UTC")
-Script.Name <- "./GHI_enh_02_ID_CE.R"
+Script.Name <- "./GHI_enh_02_ID_CE_highAOD.R"
 
-## use worktree
-setwd("~/MANUSCRIPTS/02_enhancement/high_aod/")
 
-if (!interactive()) {
-    pdf( file = paste0("./runtime/", basename(sub("\\.R$",".pdf", Script.Name))))
-    sink(file = paste0("./runtime/", basename(sub("\\.R$",".out", Script.Name))), split = TRUE)
-}
+# if (!interactive()) {
+#     pdf( file = paste0("./runtime/", basename(sub("\\.R$",".pdf", Script.Name))))
+#     sink(file = paste0("./runtime/", basename(sub("\\.R$",".out", Script.Name))), split = TRUE)
+# }
+
 
 #+ echo=F, include=T
 library(data.table  , quietly = TRUE, warn.conflicts = FALSE)
@@ -101,7 +98,7 @@ options(error = function() {
 
 ## make sure we see the correct input
 raw_input_data           <- "./data/CE_ID_Input.Rds"
-getwd()
+
 
 ##  Prepare raw data if needed  ------------------------------------------------
 # if (
@@ -146,7 +143,6 @@ grep("Exact_B", names(DATA), value = T)
 
 
 
-
 ##  Get Kurudz Solar constant  -------------------------------------------------
 
 Kurudz <- read.table("~/LibRadTranG/libRadtran-2.0.5/data/solar_flux/kurudz_0.1nm.dat")
@@ -163,11 +159,6 @@ DATA[, TSI_Kurudz_factor := tsi_1au_comb / Kurudz_SC ]
 
 
 
-# export <- DATA[year(Date) %in% c(2022,2023), ]
-# write.csv(export, "exportCS.csv")
-
-
-
 
 #'
 #'  Alpha * HAU is CS_ref
@@ -180,7 +171,6 @@ DATA[, TSI_Kurudz_factor := tsi_1au_comb / Kurudz_SC ]
 # SelEnhanc <- "Enhanc_C_3"
 
 SelEnhanc <- "Enhanc_C_4"
-
 
 
 ## Mark used criteria for diff rati ench
@@ -281,7 +271,7 @@ switch(csmodel,
        Low_B.Exact_W   = { C4_cs_ref_ratio <- 1.04; C4_GLB_diff_THRES <- 20; C4_lowcut_sza <- 60; C4_lowcut_ratio <- 1.12},
        Low_B.High_W    = { C4_cs_ref_ratio <- 1.05; C4_GLB_diff_THRES <- 20; C4_lowcut_sza <- 60; C4_lowcut_ratio <- 1.12},
        Low_B.Low_W     = { C4_cs_ref_ratio <- 1.05; C4_GLB_diff_THRES <-  0; C4_lowcut_sza <- 60; C4_lowcut_ratio <- 1.18},
-       High_B.Low_W    = { C4_cs_ref_ratio <- 1.10; C4_GLB_diff_THRES <-  0; C4_lowcut_sza <- 60; C4_lowcut_ratio <- 1.25}, ## same as the used criterio
+       High_B.Low_W    = { C4_cs_ref_ratio <- 1.10; C4_GLB_diff_THRES <-  0; C4_lowcut_sza <- 60; C4_lowcut_ratio <- 1.30}, ## same as the used criterio
                          { C4_cs_ref_ratio <- 1   ; C4_GLB_diff_THRES <-  0; C4_lowcut_sza <-  0; C4_lowcut_ratio <- 1   })
 ## init flag
 DATA[, Enhanc_C_4 := FALSE]
