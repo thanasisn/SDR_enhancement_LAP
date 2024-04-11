@@ -60,9 +60,12 @@ knitr::opts_chunk$set(cache      =  FALSE   )  ## !! breaks calculations
 Sys.setenv(TZ = "UTC")
 Script.Name <- "./GHI_enh_03_process.R"
 
+## use worktree
+setwd("~/MANUSCRIPTS/02_enhancement/high_aod/")
+
 if (!interactive()) {
-    pdf( file = paste0("./runtime/",  basename(sub("\\.R$",".pdf", Script.Name))))
-    sink(file = paste0("./runtime/",  basename(sub("\\.R$",".out", Script.Name))), split = TRUE)
+    pdf( file = paste0("./runtime/", basename(sub("\\.R$",".pdf", Script.Name))))
+    sink(file = paste0("./runtime/", basename(sub("\\.R$",".out", Script.Name))), split = TRUE)
 }
 
 
@@ -82,7 +85,6 @@ source("~/CODE/FUNCTIONS/R/trig_deg.R")
 
 
 ## __ Source initial scripts  --------------------------------------------------
-# source("./DHI_GHI_0_data_input.R")
 source("./GHI_enh_00_variables.R")
 source("./GHI_enh_00_dictionary.R")
 
