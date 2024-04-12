@@ -62,8 +62,8 @@ Script.Name <- "./GHI_enh_03_process.R"
 setwd("~/MANUSCRIPTS/02_enhancement/high_aod/")
 
 if (!interactive()) {
-    pdf( file = paste0("./runtime/", basename(sub("\\.R$",".pdf", Script.Name))))
-    sink(file = paste0("./runtime/", basename(sub("\\.R$",".out", Script.Name))), split = TRUE)
+  pdf( file = paste0("./runtime/", basename(sub("\\.R$", ".pdf", Script.Name))))
+  sink(file = paste0("./runtime/", basename(sub("\\.R$", ".out", Script.Name))), split = TRUE)
 }
 
 
@@ -1025,6 +1025,6 @@ tac <- Sys.time()
 cat(sprintf("%s %s@%s %s %f mins\n\n", Sys.time(), Sys.info()["login"],
             Sys.info()["nodename"], basename(Script.Name), difftime(tac,tic,units = "mins")))
 if (difftime(tac,tic,units = "sec") > 30) {
-    system("mplayer /usr/share/sounds/freedesktop/stereo/dialog-warning.oga", ignore.stdout = T, ignore.stderr = T)
-    system(paste("notify-send -u normal -t 30000 ", Script.Name, " 'R script ended'"))
+  system("mplayer /usr/share/sounds/freedesktop/stereo/dialog-warning.oga", ignore.stdout = T, ignore.stderr = T)
+  system(paste("notify-send -u normal -t 30000 ", Script.Name, " 'R script ended'"))
 }
