@@ -40,14 +40,14 @@
 #'
 #' ---
 
+#+ echo=F, include=T
 
-
-## __ Document options ---------------------------------------------------------
+## __ Document options  --------------------------------------------------------
 
 #+ echo=FALSE, include=TRUE
 knitr::opts_chunk$set(comment    = ""       )
-# knitr::opts_chunk$set(dev        = c("pdf", "png")) ## expected option
-knitr::opts_chunk$set(dev        = "png"    )       ## for too much data
+knitr::opts_chunk$set(dev        = c("pdf", "png")) ## expected option
+# knitr::opts_chunk$set(dev        = "png"    )       ## for too much data
 knitr::opts_chunk$set(out.width  = "100%"   )
 knitr::opts_chunk$set(fig.align  = "center" )
 knitr::opts_chunk$set(cache      =  FALSE   )  ## !! breaks calculations
@@ -56,13 +56,15 @@ knitr::opts_chunk$set(fig.pos    = '!h'     )
 #+ echo=FALSE, include=TRUE
 ## __ Set environment  ---------------------------------------------------------
 Sys.setenv(TZ = "UTC")
-Script.Name <- "./GHI_enh_02_ID_CE_highAOD.R"
+Script.Name <- "./GHI_enh_02_ID_CE.R"
 
+## use worktree
+setwd("~/MANUSCRIPTS/02_enhancement/high_aod/")
 
-# if (!interactive()) {
-#     pdf( file = paste0("./runtime/", basename(sub("\\.R$",".pdf", Script.Name))))
-#     sink(file = paste0("./runtime/", basename(sub("\\.R$",".out", Script.Name))), split = TRUE)
-# }
+if (!interactive()) {
+    pdf( file = paste0("./runtime/", basename(sub("\\.R$",".pdf", Script.Name))))
+    sink(file = paste0("./runtime/", basename(sub("\\.R$",".out", Script.Name))), split = TRUE)
+}
 
 
 #+ echo=F, include=T
