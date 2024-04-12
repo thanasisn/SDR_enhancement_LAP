@@ -42,20 +42,18 @@
 
 #+ echo=F, include=T
 
-
 ## __ Document options  --------------------------------------------------------
 
-#+ echo=F, include=F
+#+ echo=FALSE, include=TRUE
 knitr::opts_chunk$set(comment    = ""       )
 knitr::opts_chunk$set(dev        = c("pdf", "png"))
 # knitr::opts_chunk$set(dev        = "png"    )
 knitr::opts_chunk$set(out.width  = "100%"   )
 knitr::opts_chunk$set(fig.align  = "center" )
 knitr::opts_chunk$set(cache      =  FALSE   )  ## !! breaks calculations
-# knitr::opts_chunk$set(fig.pos    = '!h'    )
+knitr::opts_chunk$set(fig.pos    = '!h'     )
 
-
-#+ include=F, echo=F
+#+ echo=FALSE, include=TRUE
 ## __ Set environment  ---------------------------------------------------------
 Sys.setenv(TZ = "UTC")
 Script.Name <- "./GHI_enh_03_process.R"
@@ -1026,7 +1024,7 @@ save(file = paste0("./data/", basename(sub("\\.R", ".Rda", Script.Name))),
 tac <- Sys.time()
 cat(sprintf("%s %s@%s %s %f mins\n\n", Sys.time(), Sys.info()["login"],
             Sys.info()["nodename"], basename(Script.Name), difftime(tac,tic,units = "mins")))
-if (interactive() & difftime(tac,tic,units = "sec") > 30) {
+if (difftime(tac,tic,units = "sec") > 30) {
     system("mplayer /usr/share/sounds/freedesktop/stereo/dialog-warning.oga", ignore.stdout = T, ignore.stderr = T)
     system(paste("notify-send -u normal -t 30000 ", Script.Name, " 'R script ended'"))
 }
