@@ -49,11 +49,10 @@
 #'  Creates:
 #'    - Raw_Input.Rds
 #'
+
 #+ echo=F, include=T
 
-
 ## __ Document options ---------------------------------------------------------
-
 knitr::opts_chunk$set(comment    = ""       )
 knitr::opts_chunk$set(echo       = FALSE    )
 knitr::opts_chunk$set(dev        = c("pdf", "png"))
@@ -61,7 +60,6 @@ knitr::opts_chunk$set(out.width  = "100%"   )
 knitr::opts_chunk$set(fig.align  = "center" )
 knitr::opts_chunk$set(cache      =  FALSE   )  ## !! breaks calculations
 knitr::opts_chunk$set(fig.pos    = '!h'     )
-
 
 ## __ Set environment ----------------------------------------------------------
 Sys.setenv(TZ = "UTC")
@@ -73,7 +71,6 @@ tic <- Sys.time()
 #     sink(file = paste0("./runtime/", basename(sub("\\.R$",".out", Script.Name))), split = TRUE)
 # }
 
-#+ echo=F, include=T
 library(data.table, quietly = TRUE, warn.conflicts = FALSE)
 require(zoo       , quietly = TRUE, warn.conflicts = FALSE)
 library(pander    , quietly = TRUE, warn.conflicts = FALSE)
