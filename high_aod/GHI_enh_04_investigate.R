@@ -51,7 +51,7 @@ knitr::opts_chunk$set(dev        = c("pdf", "png"))
 knitr::opts_chunk$set(out.width  = "100%"   )
 knitr::opts_chunk$set(fig.align  = "center" )
 knitr::opts_chunk$set(cache      =  FALSE   )  ## !! breaks calculations
-knitr::opts_chunk$set(fig.pos    = '!h'     )
+# knitr::opts_chunk$set(fig.pos    = '!h'    )
 
 #+ echo=FALSE, include=TRUE
 ## __ Set environment  ---------------------------------------------------------
@@ -63,7 +63,6 @@ setwd("~/MANUSCRIPTS/02_enhancement/high_aod/")
 
 if (!interactive()) {
   pdf( file = paste0("./runtime/", basename(sub("\\.R$", ".pdf", Script.Name))))
-  sink(file = paste0("./runtime/", basename(sub("\\.R$", ".out", Script.Name))), split = TRUE)
 }
 
 

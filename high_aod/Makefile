@@ -7,7 +7,7 @@ SHELL = /bin/bash
 all:       clean_all pdf rtim
 render:    pdf upload
 Ap:        Ap1
-pdf:       p1 p2 p3 p4 p5 p6 Ap
+pdf:       p2 p3 p4 p5 p6 Ap
 rtim:      r1 r2 r3
 clean_all: clean_cache clean_pdfs
 
@@ -112,7 +112,6 @@ $(RUNT): $(RMD)
 
 
 ###   3. aggregate data   #################################
-
 TARGET := GHI_enh_03_process
 RMD    := $(TARGET).R
 PDF    := $(TARGET).pdf
@@ -134,7 +133,6 @@ $(RUNT): $(RMD)
 
 
 ###   4. investigate  data   #################################
-
 TARGET := GHI_enh_04_investigate
 RMD    := $(TARGET).R
 PDF    := $(TARGET).pdf
@@ -158,7 +156,6 @@ $(RUNT): $(RMD)
 
 
 ###   5. distributions  data   #################################
-
 TARGET := GHI_enh_05_distributions
 RMD    := $(TARGET).R
 PDF    := $(TARGET).pdf
@@ -181,7 +178,6 @@ $(RUNT): $(RMD)
 
 
 ###   6. investigate  SZA   #################################
-
 TARGET := GHI_enh_06_sza
 RMD    := $(TARGET).R
 PDF    := $(TARGET).pdf
@@ -200,12 +196,6 @@ $(PDF): $(RMD)
 r6: $(RUNT)
 $(RUNT): $(RMD)
 	-Rscript $?
-
-
-
-
-
-
 
 
 

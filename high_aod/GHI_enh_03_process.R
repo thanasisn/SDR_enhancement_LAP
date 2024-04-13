@@ -63,7 +63,6 @@ setwd("~/MANUSCRIPTS/02_enhancement/high_aod/")
 
 if (!interactive()) {
   pdf( file = paste0("./runtime/", basename(sub("\\.R$", ".pdf", Script.Name))))
-  sink(file = paste0("./runtime/", basename(sub("\\.R$", ".out", Script.Name))), split = TRUE)
 }
 
 
@@ -76,7 +75,7 @@ library(ggplot2   , quietly = TRUE, warn.conflicts = FALSE)
 panderOptions("table.alignment.default", "right")
 panderOptions("table.split.table",        120   )
 
-## __ Load external functions --------------------------------------------------
+## __ Load external functions  -------------------------------------------------
 ## Functions from `https://github.com/thanasisn/IStillBreakStuff/tree/main/FUNCTIONS/R`
 source("~/CODE/FUNCTIONS/R/data.R")
 source("~/CODE/FUNCTIONS/R/trig_deg.R")
