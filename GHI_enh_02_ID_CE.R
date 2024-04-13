@@ -42,10 +42,9 @@
 
 #+ echo=F, include=T
 
+## __ Document options  --------------------------------------------------------
 
-
-## __ Document options ---------------------------------------------------------
-
+#+ echo=FALSE, include=TRUE
 knitr::opts_chunk$set(comment    = ""       )
 knitr::opts_chunk$set(dev        = c("pdf", "png")) ## expected option
 # knitr::opts_chunk$set(dev        = "png"    )       ## for too much data
@@ -54,14 +53,14 @@ knitr::opts_chunk$set(fig.align  = "center" )
 knitr::opts_chunk$set(cache      =  FALSE   )  ## !! breaks calculations
 knitr::opts_chunk$set(fig.pos    = '!h'     )
 
+#+ echo=FALSE, include=TRUE
 ## __ Set environment  ---------------------------------------------------------
 Sys.setenv(TZ = "UTC")
 Script.Name <- "./GHI_enh_02_ID_CE.R"
 tic <- Sys.time()
 
 # if (!interactive()) {
-#     pdf( file = paste0("./runtime/", basename(sub("\\.R$",".pdf", Script.Name))))
-#     sink(file = paste0("./runtime/", basename(sub("\\.R$",".out", Script.Name))), split = TRUE)
+#   pdf( file = paste0("./runtime/", basename(sub("\\.R$",".pdf", Script.Name))))
 # }
 
 #+ echo=F, include=T
@@ -136,7 +135,6 @@ set.seed(RANDOM_SEED)
 ##  Choose CS data to use ------------------------------------------------------
 DATA$TYPE |> unique()
 grep("Exact_B", names(DATA), value = T)
-
 
 
 

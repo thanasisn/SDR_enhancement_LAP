@@ -42,10 +42,9 @@
 
 #+ echo=F, include=T
 
+## __ Document options  --------------------------------------------------------
 
-## __ Document options ---------------------------------------------------------
-
-#+ echo=F, include=F
+#+ echo=FALSE, include=TRUE
 knitr::opts_chunk$set(comment    = ""       )
 knitr::opts_chunk$set(dev        = c("pdf", "png"))
 # knitr::opts_chunk$set(dev        = "png"    )
@@ -54,17 +53,14 @@ knitr::opts_chunk$set(fig.align  = "center" )
 knitr::opts_chunk$set(cache      =  FALSE   )  ## !! breaks calculations
 # knitr::opts_chunk$set(fig.pos    = '!h'    )
 
-
-#+ include=F, echo=F
-## __ Set environment ----------------------------------------------------------
+#+ echo=FALSE, include=TRUE
+## __ Set environment  ---------------------------------------------------------
 Sys.setenv(TZ = "UTC")
 Script.Name <- "./GHI_enh_04_investigate.R"
 
 if (!interactive()) {
-  pdf( file = paste0("./runtime/",  basename(sub("\\.R$", ".pdf", Script.Name))))
-  sink(file = paste0("./runtime/",  basename(sub("\\.R$", ".out", Script.Name))), split = TRUE)
+  pdf( file = paste0("./runtime/", basename(sub("\\.R$", ".pdf", Script.Name))))
 }
-
 
 
 #+ echo=F, include=T
@@ -93,7 +89,7 @@ source("~/CODE/FUNCTIONS/R/data.R")
 source("~/CODE/FUNCTIONS/R/trig_deg.R")
 
 
-## __ Source initial scripts ---------------------------------------------------
+## __ Source initial scripts  --------------------------------------------------
 source("./GHI_enh_00_variables.R")
 source("./GHI_enh_00_dictionary.R")
 source("~/CODE/FUNCTIONS/R/linear_fit_stats.R")
@@ -104,7 +100,7 @@ source("~/CODE/FUNCTIONS/R/cor_test_stats.R")
 options(error = function() {
     if (interactive()) {
         system("mplayer /usr/share/sounds/freedesktop/stereo/dialog-warning.oga", ignore.stdout = T, ignore.stderr = T)
-        system("notify-send -u normal -t 30000 'R session' 'An error occurred!'")
+        system(paste("notify-send -u normal -t 30000 ", Script.Name, " 'An error occurred!'"))
     }
 })
 
@@ -1412,7 +1408,7 @@ plot(ST_E_monthly[, GLB_diff.sum/wattGLB.sum, year],
 tac <- Sys.time()
 cat(sprintf("%s %s@%s %s %f mins\n\n", Sys.time(), Sys.info()["login"],
             Sys.info()["nodename"], basename(Script.Name), difftime(tac,tic,units = "mins")))
-if (interactive() & difftime(tac,tic,units = "sec") > 30) {
+if (difftime(tac,tic,units = "sec") > 30) {
   system("mplayer /usr/share/sounds/freedesktop/stereo/dialog-warning.oga", ignore.stdout = T, ignore.stderr = T)
   system(paste("notify-send -u normal -t 30000 ", Script.Name, " 'R script ended'"))
 }
