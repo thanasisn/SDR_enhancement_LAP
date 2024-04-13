@@ -1,34 +1,63 @@
 ---
-title:    SDR enhancement by clouds
-
-subtitle: A Short Subtitle
+title: Downward shortwave solar irradiance enhancement by clouds.
 
 author:
-  - Athanasios N. Natsis^[Laboratory of Atmospheric Physics _natsisphysicist@gmail.com_] 
-  - Alkiviadis Bais^[Laboratory of Atmospheric Physics _abais@auth.gr_] 
-  - Charikleia Meleti^[Laboratory of Atmospheric Physics _meleti@auth.gr_]
+  - name:        Athanasios N. Natsis
+    email:       natsisphysicist@gmail.com
+    affiliation: LAP
+    correspondingauthor: true
+    footnote: 1
+  - name:        Alkiviadis Bais
+    email:       abais@auth.gr
+    affiliation: LAP
+  - name:        Charikleia Meleti
+    email:       meleti@auth.gr
+    affiliation: LAP
+    footnote: 2
+address:
+  - code:         LAP
+    organization: Laboratory of Atmospheric Physics, A.U.Th.
+    addressline:  1 main street
+    city:         Thessaloniki
+    postcode:     123456
+    country:      Greece
+  - code:         Another University
+    organization: Department
+    addressline:  A street 29
+    postcode:     2054 NX
+    city:         Manchester,
+    state:        State
+    country:      The Netherlands
+footnote:
+  - code: 1
+    text: "This is the first author footnote."
+  - code: 2
+    text: "Another author footnote."
+abstract: |
+  Here wii be the abstract.
 
-# abstract: |
-#   This is the abstract. Lorem ipsum dolor sit amet, eu efficitur justo rutrum at. Sed at tempus elit.
+  It consists of two paragraphs.
 
-keywords:
+keywords: 
   - keyword1
   - keyword2
 
-bibliography:  [bibliography.bib]
+journal:        "An awesome journal"
+date:           "`r Sys.Date()`"
+linenumbers:    false
+numbersections: true
+bibliography:   bibliography.bib
 
-date: "`r format(Sys.time(), '%F')`"
+biblio-style:   elsarticle-harv # author year style for natbib - use 'elsarticle-num' or 'elsarticle-num-names' for numbered scheme
 
-header-includes:
-  - \usepackage{caption}
-  - \usepackage{placeins}
-  - \captionsetup{font=small}
+classoption:    preprint, 3p, authoryear # remove authoryear is not using `elsarticle-harv`
+# Use a CSL with `citation_package = "default"`
+# csl: https://www.zotero.org/styles/elsevier-harvard
 
-output:
-  # redoc::redoc: default
- #  rticles::mdpi_article:
- #    extra_dependencies:  longtable
- #    keep_tex:            yes
+output: 
+  rticles::elsevier_article:
+    keep_tex:         true
+    citation_package: natbib
   bookdown::pdf_document2:
     number_sections:  yes
     fig_caption:      yes
@@ -46,8 +75,9 @@ output:
     colorlinks:       yes
     urlcolor:         blue
     biblio-style:     apalike
-    bookdown::word_document2: default
+  bookdown::word_document2: default
 ---
+
 
 ```{r setup, echo=F, include=FALSE}
 rmarkdown::find_pandoc(dir = '/usr/lib/rstudio/resources/app/bin/quarto/bin/tools')
@@ -55,9 +85,9 @@ renv::load("~/MANUSCRIPTS/02_enhancement/", quiet = TRUE)
 ## document configurations
 knitr::opts_chunk$set(comment    = ""      )
 # knitr::opts_chunk$set(dev        = "pdf"   )
-knitr::opts_chunk$set(out.width  = "60%"   )
-knitr::opts_chunk$set(fig.align  = "center")
-knitr::opts_chunk$set(fig.pos    = 'h!'    )
+knitr::opts_chunk$set(out.width  = "50%"   )
+# knitr::opts_chunk$set(fig.align  = "center")
+# knitr::opts_chunk$set(fig.pos    = 'h!'    )
 options(knitr.graphics.auto_pdf = FALSE)
 library(pander)
 library(data.table)
@@ -436,7 +466,7 @@ where: $\theta$ the solar zenith angle, $E_{\odot}$ the solar constant, $r$ the 
 
 
 
-\FloatBarrier
+<!-- \FloatBarrier -->
 
 # Results
 
@@ -543,7 +573,7 @@ knitr::include_graphics("../images/P_energy-5.png")
 knitr::include_graphics("../images/P_energy-8.png")
 ```
 
-\FloatBarrier
+<!-- \FloatBarrier -->
 
 ## Climatology
 
@@ -587,7 +617,7 @@ knitr::include_graphics("../images/P-relative-distribution-diff-1.png")
 
 <!-- set of yearly plots -->
 
-\FloatBarrier
+<!-- \FloatBarrier -->
 
 ## Groups stats
 
@@ -624,7 +654,7 @@ knitr::include_graphics("../images/P-groups-bin2d-1.png")
 <!-- ``` -->
 
 
-\FloatBarrier
+<!-- \FloatBarrier -->
 
 ## Extreme CE above TSI
 
@@ -679,7 +709,7 @@ knitr::include_graphics("../images/extremedistributions-2.png")
 <!-- ``` -->
 
 
-\FloatBarrier
+<!-- \FloatBarrier -->
 
 
 # Discussion and conclusions
@@ -697,4 +727,74 @@ Climatology results
 # Appendix {.unnumbered}
 
 
-# References {.unnumbered}
+<!-- # References {.unnumbered} -->
+
+
+<!--
+Elsevier template
+
+
+Please make sure that your manuscript follows the guidelines in the 
+Guide for Authors of the relevant journal. It is not necessary to 
+typeset your manuscript in exactly the same way as an article, 
+unless you are submitting to a camera-ready copy (CRC) journal.
+
+For detailed instructions regarding the elsevier article class, see   <https://www.elsevier.com/authors/policies-and-guidelines/latex-instructions>
+
+# Bibliography styles
+
+Here are two sample references: @Feynman1963118 [@Dirac1953888].
+
+By default, natbib will be used with the `authoryear` style, set in `classoption` variable in YAML and with `elsearticle-harv.bst` which is among provided style by `elsarticle` documentclass. Other available style are `elsarticle-num.bst` and `elsarticle-num-names.bst` — the first one can be used for the numbered scheme, second one for numbered with new options of natbib.sty. 
+
+You can sets extra options with `natbiboptions` variable in YAML header. Example 
+```yaml
+natbiboptions: longnamesfirst,angle,semicolon
+```
+
+There are various more specific bibliography styles available at
+<https://support.stmdocs.in/wiki/index.php?title=Model-wise_bibliographic_style_files>. 
+To use one of these, add it in the header using, for example, `biblio-style: model1-num-names`.
+
+## Using CSL 
+
+If `citation_package` is set to `default` in `elsevier_article()`, then pandoc is used for citations instead of `natbib`. In this case, the `csl` option is used to format the references. Alternative `csl` files are available from <https://www.zotero.org/styles?q=elsevier>. These can be downloaded
+and stored locally, or the url can be used as in the example header.
+
+# Equations
+
+Here is an equation:
+$$ 
+  f_{X}(x) = \left(\frac{\alpha}{\beta}\right)
+  \left(\frac{x}{\beta}\right)^{\alpha-1}
+  e^{-\left(\frac{x}{\beta}\right)^{\alpha}}; 
+  \alpha,\beta,x > 0 .
+$$
+
+Here is another:
+\begin{align}
+  a^2+b^2=c^2.
+\end{align}
+
+Inline equations: $\sum_{i = 2}^\infty\{\alpha_i^\beta\}$
+
+# Figures and tables
+
+Figure \ref{fig2} is generated using an R chunk.
+
+```{r fig2, fig.width = 5, fig.height = 5, fig.align='center', out.width="50%", fig.cap = "\\label{fig2}A meaningless scatterplot.", echo = FALSE}
+plot(runif(25), runif(25))
+```
+
+# Tables coming from R
+
+Tables can also be generated using R chunks, as shown in Table \ref{tab1} for example.
+
+```{r tab1, echo = TRUE}
+knitr::kable(head(mtcars)[,1:4], 
+    caption = "\\label{tab1}Caption centered above table"
+)
+```
+
+-->
+

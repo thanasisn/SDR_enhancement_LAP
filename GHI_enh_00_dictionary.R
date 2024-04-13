@@ -50,7 +50,8 @@ tr_var <- function(x, type = "short") {
 varcol <- function(avar) {
   # switch(gsub("\\..*$", "", gsub(".*_", "", avar)),
   switch(gsub("^.*_", "", gsub("\\..*", "", "GLB_diff.p_95")),
-         diff = "green",
+         # diff = "green",
+         diff = "#317529",
          ench = "blue",
          rati = "magenta",
          "black"
