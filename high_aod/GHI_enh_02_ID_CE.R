@@ -57,13 +57,13 @@ knitr::opts_chunk$set(fig.pos    = '!h'     )
 ## __ Set environment  ---------------------------------------------------------
 Sys.setenv(TZ = "UTC")
 Script.Name <- "./GHI_enh_02_ID_CE.R"
+tic <- Sys.time()
 
 ## use worktree
 setwd("~/MANUSCRIPTS/02_enhancement/high_aod/")
 
 if (!interactive()) {
-    pdf( file = paste0("./runtime/", basename(sub("\\.R$",".pdf", Script.Name))))
-    sink(file = paste0("./runtime/", basename(sub("\\.R$",".out", Script.Name))), split = TRUE)
+  pdf( file = paste0("./runtime/", basename(sub("\\.R$",".pdf", Script.Name))))
 }
 
 
@@ -158,7 +158,6 @@ summary(DATA[, tsi_1au_comb / Kurudz_SC ])
 # plot(DATA[, tsi_1au_comb / Kurudz_SC ])
 
 DATA[, TSI_Kurudz_factor := tsi_1au_comb / Kurudz_SC ]
-
 
 
 
