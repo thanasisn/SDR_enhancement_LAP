@@ -3,7 +3,7 @@
 \PassOptionsToPackage{hyphens}{url}
 %
 \documentclass[
-]{article}
+  preprint, 3p, authoryear]{article}
 \usepackage{amsmath,amssymb}
 \usepackage{iftex}
 \ifPDFTeX
@@ -87,9 +87,6 @@
 \newcommand{\CSLLeftMargin}[1]{\parbox[t]{\csllabelwidth}{#1}}
 \newcommand{\CSLRightInline}[1]{\parbox[t]{\linewidth - \csllabelwidth}{#1}\break}
 \newcommand{\CSLIndent}[1]{\hspace{\cslhangindent}#1}
-\usepackage{caption}
-\usepackage{placeins}
-\captionsetup{font=small}
 \usepackage{booktabs}
 \usepackage{longtable}
 \usepackage{array}
@@ -111,25 +108,22 @@
 \IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
 \urlstyle{same}
 \hypersetup{
-  pdftitle={SDR enhancement by clouds},
-  pdfauthor={Athanasios N. Natsis; Alkiviadis Bais; Charikleia Meleti},
+  pdftitle={Downward shortwave solar irradiance enhancement by clouds.},
   pdfkeywords={keyword1, keyword2},
   hidelinks,
   pdfcreator={LaTeX via pandoc}}
 
-\title{SDR enhancement by clouds}
-\usepackage{etoolbox}
-\makeatletter
-\providecommand{\subtitle}[1]{% add subtitle to \maketitle
-  \apptocmd{\@title}{\par {\large #1 \par}}{}{}
-}
-\makeatother
-\subtitle{A Short Subtitle}
-\author{Athanasios N. Natsis\footnote{Laboratory of Atmospheric Physics \emph{\href{mailto:natsisphysicist@gmail.com}{\nolinkurl{natsisphysicist@gmail.com}}}} \and Alkiviadis Bais\footnote{Laboratory of Atmospheric Physics \emph{\href{mailto:abais@auth.gr}{\nolinkurl{abais@auth.gr}}}} \and Charikleia Meleti\footnote{Laboratory of Atmospheric Physics \emph{\href{mailto:meleti@auth.gr}{\nolinkurl{meleti@auth.gr}}}}}
-\date{2024-04-12}
+\title{Downward shortwave solar irradiance enhancement by clouds.}
+\author{true \and true \and true}
+\date{2024-04-14}
 
 \begin{document}
 \maketitle
+\begin{abstract}
+Here wii be the abstract.
+
+It consists of two paragraphs.
+\end{abstract}
 
 {
 \setcounter{tocdepth}{4}
@@ -422,8 +416,6 @@ where: \(\theta\) the solar zenith angle, \(E_{\odot}\) the solar constant, \(r\
 
 \ldots\ldots.
 
-\FloatBarrier
-
 \hypertarget{results}{%
 \section{Results}\label{results}}
 
@@ -453,9 +445,9 @@ error. We observe an increase of
 \(0.216\pm 0.083\,W/m^2/y\)
 on the mean OIR.
 
-\begin{figure}[h!]
+\begin{figure}
 
-{\centering \includegraphics[width=0.6\linewidth]{../images/P_daily_trend-1} 
+{\centering \includegraphics[width=0.5\linewidth]{../images/P_daily_trend-1} 
 
 }
 
@@ -471,9 +463,9 @@ OIR is
 but this value alone is not very useful due the intrinsic high variability of this
 metric.
 
-\begin{figure}[h!]
+\begin{figure}
 
-{\centering \includegraphics[width=0.6\linewidth]{../images/P_energy-7} 
+{\centering \includegraphics[width=0.5\linewidth]{../images/P_energy-7} 
 
 }
 
@@ -491,9 +483,9 @@ is not increased, but rather redistributed through the CE. Although, the
 instantaneous values, can exceed the equivalent clear sky irradiance to a
 considerable level.
 
-\begin{figure}[h!]
+\begin{figure}
 
-{\centering \includegraphics[width=0.6\linewidth]{../images/P_energy-6} 
+{\centering \includegraphics[width=0.5\linewidth]{../images/P_energy-6} 
 
 }
 
@@ -505,25 +497,23 @@ Subsequently, the mean annual increase of energy due to CE events is
 (Figure~\ref{fig:P-energy-sum}), witch follows the trend of the number of
 occurrences.
 
-\begin{figure}[h!]
+\begin{figure}
 
-{\centering \includegraphics[width=0.6\linewidth]{../images/P_energy-5} 
+{\centering \includegraphics[width=0.5\linewidth]{../images/P_energy-5} 
 
 }
 
 \caption{Trend of the yearly excess energy due to CE over irradiance}\label{fig:P-energy-sum}
 \end{figure}
 
-\begin{figure}[h!]
+\begin{figure}
 
-{\centering \includegraphics[width=0.6\linewidth]{../images/P_energy-8} 
+{\centering \includegraphics[width=0.5\linewidth]{../images/P_energy-8} 
 
 }
 
 \caption{Trend of the yearly median over irradiance due to CE over irradiance}\label{fig:P-energy-median}
 \end{figure}
-
-\FloatBarrier
 
 \hypertarget{climatology}{%
 \subsection{Climatology}\label{climatology}}
@@ -536,9 +526,9 @@ the study period, the most active period of CE occurrences is during May and Jun
 During the Winter (December -- February) the CE cases are about \(25\,\%\) of the maximum.
 The rest of the months the occurrences ramp between the maximum and minimum.
 
-\begin{figure}[h!]
+\begin{figure}
 
-{\centering \includegraphics[width=0.6\linewidth]{../images/clim_CE_month_norm_MAX_median_N-2} 
+{\centering \includegraphics[width=0.5\linewidth]{../images/clim_CE_month_norm_MAX_median_N-2} 
 
 }
 
@@ -551,16 +541,14 @@ between the events frequency and events intensity. This is expected as, the stro
 the CE events become, the rarer the particular atmospheric and sun conditions
 occur.
 
-\begin{figure}[h!]
+\begin{figure}
 
-{\centering \includegraphics[width=0.6\linewidth]{../images/P-relative-distribution-diff-1} 
+{\centering \includegraphics[width=0.5\linewidth]{../images/P-relative-distribution-diff-1} 
 
 }
 
 \caption{Distribution of CE over irradiance}\label{fig:ovir-distribution}
 \end{figure}
-
-\FloatBarrier
 
 \hypertarget{groups-stats}{%
 \subsection{Groups stats}\label{groups-stats}}
@@ -576,9 +564,9 @@ By examining the frequency distribution of the CEG durations
 longer durations are getting increasingly rare, with durations above 10 minutes very
 rare.
 
-\begin{figure}[h!]
+\begin{figure}
 
-{\centering \includegraphics[width=0.6\linewidth]{../images/groups-1} 
+{\centering \includegraphics[width=0.5\linewidth]{../images/groups-1} 
 
 }
 
@@ -587,16 +575,14 @@ rare.
 
 \ldots{} (\textbf{Zhang2018?}) \ldots.
 
-\begin{figure}[h!]
+\begin{figure}
 
-{\centering \includegraphics[width=0.6\linewidth]{../images/P-groups-bin2d-1} 
+{\centering \includegraphics[width=0.5\linewidth]{../images/P-groups-bin2d-1} 
 
 }
 
 \caption{Relation of mean over irradiance and CE group duration}\label{fig:unnamed-chunk-3}
 \end{figure}
-
-\FloatBarrier
 
 \hypertarget{extreme-ce-above-tsi}{%
 \subsection{Extreme CE above TSI}\label{extreme-ce-above-tsi}}
@@ -620,18 +606,18 @@ October.
 
 \ldots\ldots.
 
-\begin{figure}[h!]
+\begin{figure}
 
-{\centering \includegraphics[width=0.6\linewidth]{../images/clim_ECE_month_norm_MAX_median_N-2} 
+{\centering \includegraphics[width=0.5\linewidth]{../images/clim_ECE_month_norm_MAX_median_N-2} 
 
 }
 
 \caption{Distribution of }\label{fig:relative-month-occurancies-ECE}
 \end{figure}
 
-\begin{figure}[h!]
+\begin{figure}
 
-{\centering \includegraphics[width=0.6\linewidth]{../images/extremedistributions-2} 
+{\centering \includegraphics[width=0.5\linewidth]{../images/extremedistributions-2} 
 
 }
 
@@ -643,8 +629,6 @@ October.
 \item
   SZA
 \end{itemize}
-
-\FloatBarrier
 
 \hypertarget{discussion-and-conclusions}{%
 \section{Discussion and conclusions}\label{discussion-and-conclusions}}
@@ -658,17 +642,13 @@ Climatology results
 \section*{Appendix}\label{appendix}}
 \addcontentsline{toc}{section}{Appendix}
 
-\hypertarget{references}{%
-\section*{References}\label{references}}
-\addcontentsline{toc}{section}{References}
-
 \hypertarget{refs}{}
 \begin{CSLReferences}{1}{0}
 \leavevmode\vadjust pre{\hypertarget{ref-Anderson1986}{}}%
 Anderson, G. P., J. H. Chetwynd, S. A. Clough, E. P. Shettle, and F. X. Kneizys. 1986. {``{AFGL} Atmospheric Constituent Profiles (0-120km).''} Air Force Geophysics Laboratory, Optical Physics Division.
 
 \leavevmode\vadjust pre{\hypertarget{ref-AstropyCollaboration2022}{}}%
-Astropy Collaboration, Adrian M. Price-Whelan, Pey Lian Lim, Nicholas Earl, Nathaniel Starkman, Larry Bradley, David L. Shupe, et al. 2022. {``{The Astropy Project: Sustaining and Growing a Community-oriented Open-source Project and the Latest Major Release (v5.0) of the Core Package}''} 935 (2): 167. \url{https://doi.org/10.3847/1538-4357/ac7c74}.
+Astropy Collaboration, Adrian M. Price-Whelan, Pey Lian Lim, Nicholas Earl, Nathaniel Starkman, Larry Bradley, David L. Shupe, et al. 2022. {``{The Astropy Project: Sustaining and Growing a Community-oriented Open-source Project and the Latest Major Release (v5.0) of the Core Package}.''} \emph{Astrophysical Journal} 935 (2): 167. \url{https://doi.org/10.3847/1538-4357/ac7c74}.
 
 \leavevmode\vadjust pre{\hypertarget{ref-Buis1998}{}}%
 Buis, J. P. P., A. Setzer, B. N. N. Holben, T. F. F. Eck, I. Slutsker, D. Tanre, E. Vermote, et al. 1998. {``AERONET---a Federated Instrument Network and Data Archive for Aerosol Characterization.''} \emph{Remote Sensing of Environment} 66 (1): 1--16.
