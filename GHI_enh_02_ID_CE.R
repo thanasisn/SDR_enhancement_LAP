@@ -70,6 +70,7 @@ library(pander      , quietly = TRUE, warn.conflicts = FALSE)
 library(ggplot2     , quietly = TRUE, warn.conflicts = FALSE)
 library(RColorBrewer, quietly = TRUE, warn.conflicts = FALSE)
 library(pracma      , quietly = TRUE, warn.conflicts = FALSE)
+library(lubridate   , quietly = TRUE, warn.conflicts = FALSE)
 
 
 panderOptions("table.alignment.default", "right")
@@ -253,6 +254,16 @@ if (SelEnhanc == "Enhanc_C_3") {
 ## set values base
 csmodel <- "Low_B.Low_W"
 
+APPLY_TRANS <- TRUE
+
+if (APPLY_TRANS) {
+  source("./GHI_enh_Aeronet.R")
+  cat("USING TRASPARENCY TREND\n")
+} else {
+  trans_trend <- function(x) {x * 0}
+}
+
+
 #'
 #' ## 4. Use libradtran **`r csmodel`** as reference for Clear sky.
 #'
@@ -264,7 +275,8 @@ switch(csmodel,
        Low_2_B.Low_2_W = { C4_cs_ref_ratio <- 1.03; C4_GLB_diff_THRES <-  5; C4_lowcut_sza <- 60; C4_lowcut_ratio <- 1.12},
        Low_B.Exact_W   = { C4_cs_ref_ratio <- 1.04; C4_GLB_diff_THRES <- 20; C4_lowcut_sza <- 60; C4_lowcut_ratio <- 1.12},
        Low_B.High_W    = { C4_cs_ref_ratio <- 1.05; C4_GLB_diff_THRES <- 20; C4_lowcut_sza <- 60; C4_lowcut_ratio <- 1.12},
-       Low_B.Low_W     = { C4_cs_ref_ratio <- 1.05; C4_GLB_diff_THRES <-  0; C4_lowcut_sza <- 60; C4_lowcut_ratio <- 1.18},
+       # Low_B.Low_W     = { C4_cs_ref_ratio <- 1.05; C4_GLB_diff_THRES <-  0; C4_lowcut_sza <- 60; C4_lowcut_ratio <- 1.18}, ## without transparency
+       Low_B.Low_W     = { C4_cs_ref_ratio <- 1.05; C4_GLB_diff_THRES <-  0; C4_lowcut_sza <- 60; C4_lowcut_ratio <- 1.18}, ## without transparency
                          { C4_cs_ref_ratio <- 1   ; C4_GLB_diff_THRES <-  0; C4_lowcut_sza <-  0; C4_lowcut_ratio <- 1   })
 ## init flag
 DATA[, Enhanc_C_4 := FALSE]
@@ -272,8 +284,8 @@ DATA[, Enhanc_C_4 := FALSE]
 # DATA[, max(SZA)]
 
 smo <- approxfun(
-    x = c(90 - BIO_ELEVA, C4_lowcut_sza  ),
-    y = c(C4_lowcut_ratio,  C4_cs_ref_ratio)
+    x = c(90 - BIO_ELEVA,  C4_lowcut_sza  ),
+    y = c(C4_lowcut_ratio, C4_cs_ref_ratio)
     )
 
 smo(80:70) * (1/cosd(80:70) / max(1/cosd(80:70)))
@@ -281,6 +293,7 @@ smo(80:70) * (1/cosd(80:70) / max(1/cosd(80:70)))
 
 cat("C4 factor:", C4_cs_ref_ratio,   "\n")
 cat("C4 offset:", C4_GLB_diff_THRES, "\n")
+
 
 
 ## ____ Create global irradiance W/m^2  ----------------------------------------
@@ -303,11 +316,29 @@ abline(v = C4_cs_ref_ratio, col = "red" )
 
 
 ## ____ Calculate reference and mark data  -------------------------------------
+
+#; ## for most of the data
+#; DATA[SZA < C4_lowcut_sza, Enhanc_C_4_ref := (get(paste0(csmodel,".glo")) * C4_cs_ref_ratio) + C4_GLB_diff_THRES ]
+#;
+#; ## for low sun angles
+#; # DATA[SZA > C4_lowcut_sza, Enhanc_C_4_ref := (get(paste0(csmodel,".glo")) * C4_lowcut_ratio) ]
+#; DATA[SZA > C4_lowcut_sza, Enhanc_C_4_ref := (get(paste0(csmodel,".glo")) * smo(SZA)) ]
+
+
 ## for most of the data
-DATA[SZA < C4_lowcut_sza, Enhanc_C_4_ref := (get(paste0(csmodel,".glo")) * C4_cs_ref_ratio) + C4_GLB_diff_THRES ]
-## fol low sun angles
+DATA[SZA < C4_lowcut_sza,
+     Enhanc_C_4_ref := (1 + trans_trend(decimal_date(Date))) * (get(paste0(csmodel,".glo")) * C4_cs_ref_ratio) + C4_GLB_diff_THRES ]
+
+## for low sun angles
 # DATA[SZA > C4_lowcut_sza, Enhanc_C_4_ref := (get(paste0(csmodel,".glo")) * C4_lowcut_ratio) ]
-DATA[SZA > C4_lowcut_sza, Enhanc_C_4_ref := (get(paste0(csmodel,".glo")) * smo(SZA)) ]
+DATA[SZA > C4_lowcut_sza,
+     Enhanc_C_4_ref := (1 + trans_trend(decimal_date(Date))) * (get(paste0(csmodel,".glo")) * smo(SZA)) ]
+
+write.csv(
+  data.frame(year  = 1993:2023,
+             trans = trans_trend(1993:2023))
+  ,"./figures/transparency_trend.csv")
+
 
 DATA[wattGLB > Enhanc_C_4_ref ,
      Enhanc_C_4 := TRUE]
@@ -317,6 +348,18 @@ if (SelEnhanc == "Enhanc_C_4") {
     DATA[ , GLB_ench := ( wattGLB - Enhanc_C_4_ref ) / Enhanc_C_4_ref ] ## relative enhancement
     DATA[ , GLB_rati :=   wattGLB / Enhanc_C_4_ref                    ]
 }
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 #+ echo=F, include=T
@@ -653,7 +696,7 @@ for (ii in 1:nrow(vec_days)) {
 }
 #+ echo=F, include=T
 
-
+stop()
 
 ##  Yearly plots  --------------------------------------------------------------
 
