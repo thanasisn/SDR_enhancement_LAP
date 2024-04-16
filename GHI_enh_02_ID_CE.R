@@ -128,8 +128,8 @@ DATA <- merge(DATA, readRDS("./data/lookuptable_datatable.Rds"))
 
 
 ##  Reset Randomness  ----------------------------------------------------------
-RANDOM_SEED <- 333
-set.seed(RANDOM_SEED)
+# RANDOM_SEED <- 333
+# set.seed(RANDOM_SEED)
 ## may need to reset seed in each randomness generation below
 
 
@@ -333,11 +333,6 @@ DATA[SZA < C4_lowcut_sza,
 # DATA[SZA > C4_lowcut_sza, Enhanc_C_4_ref := (get(paste0(csmodel,".glo")) * C4_lowcut_ratio) ]
 DATA[SZA > C4_lowcut_sza,
      Enhanc_C_4_ref := (1 + trans_trend(decimal_date(Date))) * (get(paste0(csmodel,".glo")) * smo(SZA)) ]
-
-write.csv(
-  data.frame(year  = 1993:2023,
-             trans = trans_trend(1993:2023))
-  ,"./figures/transparency_trend.csv")
 
 
 DATA[wattGLB > Enhanc_C_4_ref ,
