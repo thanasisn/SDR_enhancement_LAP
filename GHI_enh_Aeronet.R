@@ -69,24 +69,70 @@ if (!interactive()) {
 }
 
 #+ echo=F, include=T
-library(data.table  , quietly = TRUE, warn.conflicts = FALSE)
+library(data.table, quietly = TRUE, warn.conflicts = FALSE)
+library(janitor   , quietly = TRUE, warn.conflicts = FALSE)
 
 
-
-
-
+##  Load and prepare data  -----------------------------------------------------
 AEin1 <- "~/DATA/Aeronet/Thessaloniki_Monthly/20030101_20241231_Thessaloniki.lev20"
 AE1   <- fread(AEin1, skip = 6, fill = T, na.strings = "-999")
 
+names(AE1)[names(AE1) == "Month"] <- "Date"
+
+AE1 <- AE1[, lapply(.SD, function(x) replace(x, which(x < -998), NA))]
+AE1 <- remove_constant(AE1)
 
 # AEin2 <- "~/DATA/Aeronet/Thessaloniki_Monthly/20030101_20241231_Thessaloniki.tot_lev20"
 # AE2 <- fread(AEin2, skip = 6, fill = T, na.strings = "-999")
 
+AE1[, c("Year", "Month") := tstrsplit(Date, "-")]
+AE1[, Year  := as.numeric(Year)]
+AE1[, Month := match(Month, toupper(month.abb))]
+AE1[, tsy := Year + (Month - 1) / 12]
 
-strsplit(AE1$Month, "-")
+
+## Find cross over point  ------------------------------------------------------
+setorder(AE1, tsy)
+AE1       <- AE1[!is.na(AOD_500nm)]
+mid       <- ceiling(nrow(AE1) / 2)
+zeropoint <- AE1[mid, tsy]
+
+
+## AOD trend  ------------------------------------------------------------------
+
+lm1 <- lm(AE1$AOD_500nm ~ AE1$tsy)
+
+plot(AE1[, AOD_500nm])
+
+plot(AE1[, AOD_500nm, tsy])
+abline(lm1)
+
+plot(AE1[, `NUM_DAYS[AOD_500nm]`, tsy])
 
 
 
+## AOD transparency trend  -----------------------------------------------------
+
+lm1 <- lm(exp(-AE1$AOD_500nm) ~ AE1$tsy)
+
+plot(AE1[, exp(-AOD_500nm), tsy])
+abline(lm1)
+
+
+## Calculate offset for zero point  --------------------------------------------
+b <- -coef(lm1)[2] * zeropoint
+
+## create a closure of the function
+trans_trend <- {
+  function(tsy)
+    function(tsy = tsy, a = coef(lm1)[2] , b = b) {
+      return(b + a * tsy)
+    }
+}(tsy)
+
+
+## Save the function of trasparency trend  --------------------------------------
+saveRDS(trans_trend, "./figures/trans_trend.Rds")
 
 
 
