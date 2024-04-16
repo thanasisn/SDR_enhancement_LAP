@@ -58,7 +58,7 @@ knitr::opts_chunk$set(fig.pos    = '!h'     )
 #+ echo=FALSE, include=TRUE
 ## __ Set environment  ---------------------------------------------------------
 Sys.setenv(TZ = "UTC")
-Script.Name <- "./GHI_enh_02_ID_CE.R"
+Script.Name <- "./GHI_enh_Aeronet.R"
 tic <- Sys.time()
 
 ## use worktree
@@ -94,18 +94,27 @@ AE1[, tsy := Year + (Month - 1) / 12]
 ## Find cross over point  ------------------------------------------------------
 setorder(AE1, tsy)
 AE1       <- AE1[!is.na(AOD_500nm)]
+
+## mid point of available data
 mid       <- ceiling(nrow(AE1) / 2)
+
+## time midle of data
+min(AE1$tsy) + (max(AE1$tsy) - min(AE1$tsy)) / 2
+
+stop()
+
 zeropoint <- AE1[mid, tsy]
 
+cat("Cross over point:", zeropoint, "\n")
 
 ## AOD trend  ------------------------------------------------------------------
 
-lm1 <- lm(AE1$AOD_500nm ~ AE1$tsy)
+lm_transp_trend <- lm(AE1$AOD_500nm ~ AE1$tsy)
 
 plot(AE1[, AOD_500nm])
 
 plot(AE1[, AOD_500nm, tsy])
-abline(lm1)
+abline(lm_transp_trend)
 
 plot(AE1[, `NUM_DAYS[AOD_500nm]`, tsy])
 
@@ -113,30 +122,34 @@ plot(AE1[, `NUM_DAYS[AOD_500nm]`, tsy])
 
 ## AOD transparency trend  -----------------------------------------------------
 
-lm1 <- lm(exp(-AE1$AOD_500nm) ~ AE1$tsy)
+lm_transp_trend <- lm(exp(-AE1$AOD_500nm) ~ AE1$tsy)
 
 plot(AE1[, exp(-AOD_500nm), tsy])
-abline(lm1)
+abline(lm_transp_trend)
 
 
 ## Calculate offset for zero point  --------------------------------------------
-b <- -coef(lm1)[2] * zeropoint
+b <- -coef(lm_transp_trend)[2] * zeropoint
+
+
 
 ## create a closure of the function
 trans_trend <- {
   function(tsy)
-    function(tsy = tsy, a = coef(lm1)[2] , b = b) {
-      return(b + a * tsy)
+    function(tsy = tsy, a. = coef(lm_transp_trend)[2], b. = b) {
+      return(b. + a. * tsy)
     }
 }(tsy)
 
-
-## Save the function of trasparency trend  --------------------------------------
-saveRDS(trans_trend, "./figures/trans_trend.Rds")
-
-
+trans_trend <- function(tsy = tsy, a. = coef(lm_transp_trend)[2], b. = b) {
+  return(b. + a. * tsy)
+}
 
 
+# plot(AE1[, exp(-AOD_500nm), tsy])
+# abline(lm_transp_trend)
+# plot(AE1[, trans_trend(tsy), tsy], col = "red")
+rm(AE1)
 
 #' **END**
 #+ include=T, echo=F
