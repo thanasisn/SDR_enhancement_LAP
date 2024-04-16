@@ -97,13 +97,11 @@ AE1       <- AE1[!is.na(AOD_500nm)]
 
 ## mid point of available data
 mid       <- ceiling(nrow(AE1) / 2)
+# zeropoint <- AE1[mid, tsy]
 
-## time midle of data
-min(AE1$tsy) + (max(AE1$tsy) - min(AE1$tsy)) / 2
+## time middle of data
+zeropoint <- min(AE1$tsy) + (max(AE1$tsy) - min(AE1$tsy)) / 2
 
-stop()
-
-zeropoint <- AE1[mid, tsy]
 
 cat("Cross over point:", zeropoint, "\n")
 
@@ -111,12 +109,12 @@ cat("Cross over point:", zeropoint, "\n")
 
 lm_transp_trend <- lm(AE1$AOD_500nm ~ AE1$tsy)
 
-plot(AE1[, AOD_500nm])
+# plot(AE1[, AOD_500nm])
 
 plot(AE1[, AOD_500nm, tsy])
 abline(lm_transp_trend)
 
-plot(AE1[, `NUM_DAYS[AOD_500nm]`, tsy])
+# plot(AE1[, `NUM_DAYS[AOD_500nm]`, tsy])
 
 
 
@@ -124,8 +122,8 @@ plot(AE1[, `NUM_DAYS[AOD_500nm]`, tsy])
 
 lm_transp_trend <- lm(exp(-AE1$AOD_500nm) ~ AE1$tsy)
 
-plot(AE1[, exp(-AOD_500nm), tsy])
-abline(lm_transp_trend)
+# plot(AE1[, exp(-AOD_500nm), tsy])
+# abline(lm_transp_trend)
 
 
 ## Calculate offset for zero point  --------------------------------------------
@@ -146,10 +144,26 @@ trans_trend <- function(tsy = tsy, a. = coef(lm_transp_trend)[2], b. = b) {
 }
 
 
-# plot(AE1[, exp(-AOD_500nm), tsy])
-# abline(lm_transp_trend)
-# plot(AE1[, trans_trend(tsy), tsy], col = "red")
+
+write.csv(
+  data.frame(year  = 1993:2023,
+             trans = trans_trend(1993:2023))
+  ,"./figures/transparency_trend.csv",
+  row.names = F)
+
+
+
+plot(AE1[, exp(-AOD_500nm), tsy])
+abline(lm_transp_trend)
+plot(1993:2024, trans_trend(1993:2024), col = "red")
+
 rm(AE1)
+
+if (!interactive()) {
+  dev.off()
+}
+
+
 
 #' **END**
 #+ include=T, echo=F
