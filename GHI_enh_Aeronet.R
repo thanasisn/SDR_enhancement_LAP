@@ -76,12 +76,14 @@ library(data.table  , quietly = TRUE, warn.conflicts = FALSE)
 
 
 AEin1 <- "~/DATA/Aeronet/Thessaloniki_Monthly/20030101_20241231_Thessaloniki.lev20"
+AE1   <- fread(AEin1, skip = 6, fill = T, na.strings = "-999")
 
-AEin2 <- "~/DATA/Aeronet/Thessaloniki_Monthly/20030101_20241231_Thessaloniki.tot_lev20"
 
-AE1 <- fread(AEin1, skip = 6, fill = T, na.strings = "-999")
-AE2 <- fread(AEin2, skip = 6, fill = T, na.strings = "-999")
+# AEin2 <- "~/DATA/Aeronet/Thessaloniki_Monthly/20030101_20241231_Thessaloniki.tot_lev20"
+# AE2 <- fread(AEin2, skip = 6, fill = T, na.strings = "-999")
 
+
+strsplit(AE1$Month, "-")
 
 
 
