@@ -111,10 +111,11 @@ if (
 
 ## __ Execution control  -------------------------------------------------------
 TEST <- FALSE
-# TEST <- TRUE
+TEST <- TRUE
 
 if (TEST) {
-    warning("\n\n ** Test is active!! ** \n\n")
+  warning("\n\n ** Test is active!! ** \n\n")
+  knitr::opts_chunk$set(dev        = "png"    )
 }
 
 
@@ -199,9 +200,9 @@ DATA[wattGLB > Enhanc_C_1_ref,
      Enhanc_C_1 := TRUE]
 
 if (SelEnhanc == "Enhanc_C_1") {
-    DATA[ , GLB_diff :=   wattGLB - Enhanc_C_1_ref                    ] ## enhancement
-    DATA[ , GLB_ench := ( wattGLB - Enhanc_C_1_ref ) / Enhanc_C_1_ref ] ## relative enhancement
-    DATA[ , GLB_rati :=   wattGLB / Enhanc_C_1_ref                    ]
+  DATA[ , GLB_diff :=   wattGLB - Enhanc_C_1_ref                    ] ## enhancement
+  DATA[ , GLB_ench := ( wattGLB - Enhanc_C_1_ref ) / Enhanc_C_1_ref ] ## relative enhancement
+  DATA[ , GLB_rati :=   wattGLB / Enhanc_C_1_ref                    ]
 }
 
 
@@ -222,9 +223,9 @@ DATA[wattGLB > Enhanc_C_2_ref,
      Enhanc_C_2 := TRUE]
 
 if (SelEnhanc == "Enhanc_C_2") {
-    DATA[ , GLB_diff :=   wattGLB - Enhanc_C_2_ref                    ] ## enhancement
-    DATA[ , GLB_ench := ( wattGLB - Enhanc_C_2_ref ) / Enhanc_C_2_ref ] ## relative enhancement
-    DATA[ , GLB_rati :=   wattGLB / Enhanc_C_2_ref                    ]
+  DATA[ , GLB_diff :=   wattGLB - Enhanc_C_2_ref                    ] ## enhancement
+  DATA[ , GLB_ench := ( wattGLB - Enhanc_C_2_ref ) / Enhanc_C_2_ref ] ## relative enhancement
+  DATA[ , GLB_rati :=   wattGLB / Enhanc_C_2_ref                    ]
 }
 
 
@@ -242,9 +243,9 @@ DATA[wattGLB > Enhanc_C_3_ref,
      Enhanc_C_3 := TRUE]
 
 if (SelEnhanc == "Enhanc_C_3") {
-    DATA[ , GLB_diff :=   wattGLB - Enhanc_C_3_ref                    ] ## enhancement
-    DATA[ , GLB_ench := ( wattGLB - Enhanc_C_3_ref ) / Enhanc_C_3_ref ] ## relative enhancement
-    DATA[ , GLB_rati :=   wattGLB / Enhanc_C_3_ref                    ]
+  DATA[ , GLB_diff :=   wattGLB - Enhanc_C_3_ref                    ] ## enhancement
+  DATA[ , GLB_ench := ( wattGLB - Enhanc_C_3_ref ) / Enhanc_C_3_ref ] ## relative enhancement
+  DATA[ , GLB_rati :=   wattGLB / Enhanc_C_3_ref                    ]
 }
 
 
@@ -276,17 +277,28 @@ switch(csmodel,
        Low_B.Exact_W   = { C4_cs_ref_ratio <- 1.04; C4_GLB_diff_THRES <- 20; C4_lowcut_sza <- 60; C4_lowcut_ratio <- 1.12},
        Low_B.High_W    = { C4_cs_ref_ratio <- 1.05; C4_GLB_diff_THRES <- 20; C4_lowcut_sza <- 60; C4_lowcut_ratio <- 1.12},
        # Low_B.Low_W     = { C4_cs_ref_ratio <- 1.05; C4_GLB_diff_THRES <-  0; C4_lowcut_sza <- 60; C4_lowcut_ratio <- 1.18}, ## without transparency
-       Low_B.Low_W     = { C4_cs_ref_ratio <- 1.05; C4_GLB_diff_THRES <-  0; C4_lowcut_sza <- 60; C4_lowcut_ratio <- 1.18}, ## without transparency
+       Low_B.Low_W     = { C4_cs_ref_ratio <- 1.09; C4_GLB_diff_THRES <-  0; C4_lowcut_sza <- 60; C4_lowcut_ratio <- 1.18}, ## without transparency
                          { C4_cs_ref_ratio <- 1   ; C4_GLB_diff_THRES <-  0; C4_lowcut_sza <-  0; C4_lowcut_ratio <- 1   })
 ## init flag
 DATA[, Enhanc_C_4 := FALSE]
 
+C4_test_cs_ref_ratio   <- 1.05;
+C4_test_GLB_diff_THRES <-  0;
+C4_test_lowcut_sza     <- 60;
+C4_test_lowcut_ratio   <- 1.18
+
 # DATA[, max(SZA)]
 
 smo <- approxfun(
-    x = c(90 - BIO_ELEVA,  C4_lowcut_sza  ),
-    y = c(C4_lowcut_ratio, C4_cs_ref_ratio)
-    )
+  x = c(90 - BIO_ELEVA,  C4_lowcut_sza  ),
+  y = c(C4_lowcut_ratio, C4_cs_ref_ratio)
+)
+
+smo_test <- approxfun(
+  x = c(90 - BIO_ELEVA,       C4_test_lowcut_sza  ),
+  y = c(C4_test_lowcut_ratio, C4_test_cs_ref_ratio)
+)
+
 
 smo(80:70) * (1/cosd(80:70) / max(1/cosd(80:70)))
 
@@ -329,27 +341,27 @@ abline(v = C4_cs_ref_ratio, col = "red" )
 DATA[SZA < C4_lowcut_sza,
      Enhanc_C_4_ref := (1 + trans_trend(decimal_date(Date))) * (get(paste0(csmodel,".glo")) * C4_cs_ref_ratio) + C4_GLB_diff_THRES ]
 
+DATA[SZA < C4_lowcut_sza,
+     Enhanc_C_4_ref_test :=                                    (get(paste0(csmodel,".glo")) * C4_test_cs_ref_ratio) ]
+
 ## for low sun angles
 # DATA[SZA > C4_lowcut_sza, Enhanc_C_4_ref := (get(paste0(csmodel,".glo")) * C4_lowcut_ratio) ]
 DATA[SZA > C4_lowcut_sza,
      Enhanc_C_4_ref := (1 + trans_trend(decimal_date(Date))) * (get(paste0(csmodel,".glo")) * smo(SZA)) ]
+
+DATA[SZA > C4_lowcut_sza,
+     Enhanc_C_4_ref_test :=                                    (get(paste0(csmodel,".glo")) * smo_test(SZA)) ]
+
 
 
 DATA[wattGLB > Enhanc_C_4_ref ,
      Enhanc_C_4 := TRUE]
 ## use threshold to compute values
 if (SelEnhanc == "Enhanc_C_4") {
-    DATA[ , GLB_diff :=   wattGLB - Enhanc_C_4_ref                    ] ## enhancement
-    DATA[ , GLB_ench := ( wattGLB - Enhanc_C_4_ref ) / Enhanc_C_4_ref ] ## relative enhancement
-    DATA[ , GLB_rati :=   wattGLB / Enhanc_C_4_ref                    ]
+  DATA[ , GLB_diff :=   wattGLB - Enhanc_C_4_ref                    ] ## enhancement
+  DATA[ , GLB_ench := ( wattGLB - Enhanc_C_4_ref ) / Enhanc_C_4_ref ] ## relative enhancement
+  DATA[ , GLB_rati :=   wattGLB / Enhanc_C_4_ref                    ]
 }
-
-
-
-
-
-
-
 
 
 
@@ -584,6 +596,9 @@ for (ii in 1:nrow(vec_days)) {
         ## Active model reference
         lines(temp[, get(paste0(SelEnhanc,"_ref")), Date], col = "red" )
 
+        ## test reference
+        lines(temp[, Enhanc_C_4_ref_test, Date], col = "cyan" )
+
 
         ## CS libradtran reference
         lines(temp[, get(paste0(csmodel, ".glo")), Date], col = "magenta" )
@@ -686,12 +701,12 @@ for (ii in 1:nrow(vec_days)) {
         # plot(temp$Date, temp$GLB_diff)
         cat(' \n \n')
 
-
     }
 }
 #+ echo=F, include=T
 
-stop()
+
+
 
 ##  Yearly plots  --------------------------------------------------------------
 
