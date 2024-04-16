@@ -59,9 +59,9 @@ Sys.setenv(TZ = "UTC")
 Script.Name <- "./GHI_enh_02_ID_CE.R"
 tic <- Sys.time()
 
-# if (!interactive()) {
-#   pdf( file = paste0("./runtime/", basename(sub("\\.R$",".pdf", Script.Name))))
-# }
+if (!interactive()) {
+  pdf( file = paste0("./runtime/", basename(sub("\\.R$",".pdf", Script.Name))))
+}
 
 #+ echo=F, include=T
 library(data.table  , quietly = TRUE, warn.conflicts = FALSE)
@@ -279,6 +279,8 @@ switch(csmodel,
        # Low_B.Low_W     = { C4_cs_ref_ratio <- 1.05; C4_GLB_diff_THRES <-  0; C4_lowcut_sza <- 60; C4_lowcut_ratio <- 1.18}, ## without transparency
        Low_B.Low_W     = { C4_cs_ref_ratio <- 1.09; C4_GLB_diff_THRES <-  0; C4_lowcut_sza <- 60; C4_lowcut_ratio <- 1.18}, ## without transparency
                          { C4_cs_ref_ratio <- 1   ; C4_GLB_diff_THRES <-  0; C4_lowcut_sza <-  0; C4_lowcut_ratio <- 1   })
+
+
 ## init flag
 DATA[, Enhanc_C_4 := FALSE]
 
@@ -299,13 +301,11 @@ smo_test <- approxfun(
   y = c(C4_test_lowcut_ratio, C4_test_cs_ref_ratio)
 )
 
-
 smo(80:70) * (1/cosd(80:70) / max(1/cosd(80:70)))
 
 
 cat("C4 factor:", C4_cs_ref_ratio,   "\n")
 cat("C4 offset:", C4_GLB_diff_THRES, "\n")
-
 
 
 ## ____ Create global irradiance W/m^2  ----------------------------------------
@@ -599,7 +599,6 @@ for (ii in 1:nrow(vec_days)) {
         ## test reference
         lines(temp[, Enhanc_C_4_ref_test, Date], col = "cyan" )
 
-
         ## CS libradtran reference
         lines(temp[, get(paste0(csmodel, ".glo")), Date], col = "magenta" )
         ## CS libradtran reference
@@ -700,6 +699,7 @@ for (ii in 1:nrow(vec_days)) {
         # plot(temp$Date, temp$GLB_ench)
         # plot(temp$Date, temp$GLB_diff)
         cat(' \n \n')
+
 
     }
 }
