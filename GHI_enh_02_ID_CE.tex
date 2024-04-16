@@ -127,7 +127,7 @@
 
 \title{Enhancement of SDR in Thessaloniki}
 \author{Natsis Athanasios\footnote{Laboratory of Atmospheric Physics, AUTH, \href{mailto:natsisphysicist@gmail.com}{\nolinkurl{natsisphysicist@gmail.com}}} \and Alkiviadis Bais\footnote{Laboratory of Atmospheric Physics, AUTH}}
-\date{2024-04-14}
+\date{2024-04-16}
 
 \begin{document}
 \maketitle
@@ -140,6 +140,12 @@ Study of GHI enchantment.
 \setcounter{tocdepth}{4}
 \tableofcontents
 }
+\begin{verbatim}
+Warning: 
+
+ ** Test is active!! ** 
+\end{verbatim}
+
 \begin{verbatim}
 [1] "Cloud" "Clear"
 \end{verbatim}
@@ -182,9 +188,9 @@ Alpha * HAU is CS\_ref
 \NormalTok{     Enhanc\_C\_1 }\SpecialCharTok{:=} \ConstantTok{TRUE}\NormalTok{]}
 
 \ControlFlowTok{if}\NormalTok{ (SelEnhanc }\SpecialCharTok{==} \StringTok{"Enhanc\_C\_1"}\NormalTok{) \{}
-\NormalTok{    DATA[ , GLB\_diff }\SpecialCharTok{:=}\NormalTok{   wattGLB }\SpecialCharTok{{-}}\NormalTok{ Enhanc\_C\_1\_ref                    ] }\DocumentationTok{\#\# enhancement}
-\NormalTok{    DATA[ , GLB\_ench }\SpecialCharTok{:=}\NormalTok{ ( wattGLB }\SpecialCharTok{{-}}\NormalTok{ Enhanc\_C\_1\_ref ) }\SpecialCharTok{/}\NormalTok{ Enhanc\_C\_1\_ref ] }\DocumentationTok{\#\# relative enhancement}
-\NormalTok{    DATA[ , GLB\_rati }\SpecialCharTok{:=}\NormalTok{   wattGLB }\SpecialCharTok{/}\NormalTok{ Enhanc\_C\_1\_ref                    ]}
+\NormalTok{  DATA[ , GLB\_diff }\SpecialCharTok{:=}\NormalTok{   wattGLB }\SpecialCharTok{{-}}\NormalTok{ Enhanc\_C\_1\_ref                    ] }\DocumentationTok{\#\# enhancement}
+\NormalTok{  DATA[ , GLB\_ench }\SpecialCharTok{:=}\NormalTok{ ( wattGLB }\SpecialCharTok{{-}}\NormalTok{ Enhanc\_C\_1\_ref ) }\SpecialCharTok{/}\NormalTok{ Enhanc\_C\_1\_ref ] }\DocumentationTok{\#\# relative enhancement}
+\NormalTok{  DATA[ , GLB\_rati }\SpecialCharTok{:=}\NormalTok{   wattGLB }\SpecialCharTok{/}\NormalTok{ Enhanc\_C\_1\_ref                    ]}
 \NormalTok{\}}
 \end{Highlighting}
 \end{Shaded}
@@ -205,9 +211,9 @@ Alpha * HAU is CS\_ref
 \NormalTok{     Enhanc\_C\_2 }\SpecialCharTok{:=} \ConstantTok{TRUE}\NormalTok{]}
 
 \ControlFlowTok{if}\NormalTok{ (SelEnhanc }\SpecialCharTok{==} \StringTok{"Enhanc\_C\_2"}\NormalTok{) \{}
-\NormalTok{    DATA[ , GLB\_diff }\SpecialCharTok{:=}\NormalTok{   wattGLB }\SpecialCharTok{{-}}\NormalTok{ Enhanc\_C\_2\_ref                    ] }\DocumentationTok{\#\# enhancement}
-\NormalTok{    DATA[ , GLB\_ench }\SpecialCharTok{:=}\NormalTok{ ( wattGLB }\SpecialCharTok{{-}}\NormalTok{ Enhanc\_C\_2\_ref ) }\SpecialCharTok{/}\NormalTok{ Enhanc\_C\_2\_ref ] }\DocumentationTok{\#\# relative enhancement}
-\NormalTok{    DATA[ , GLB\_rati }\SpecialCharTok{:=}\NormalTok{   wattGLB }\SpecialCharTok{/}\NormalTok{ Enhanc\_C\_2\_ref                    ]}
+\NormalTok{  DATA[ , GLB\_diff }\SpecialCharTok{:=}\NormalTok{   wattGLB }\SpecialCharTok{{-}}\NormalTok{ Enhanc\_C\_2\_ref                    ] }\DocumentationTok{\#\# enhancement}
+\NormalTok{  DATA[ , GLB\_ench }\SpecialCharTok{:=}\NormalTok{ ( wattGLB }\SpecialCharTok{{-}}\NormalTok{ Enhanc\_C\_2\_ref ) }\SpecialCharTok{/}\NormalTok{ Enhanc\_C\_2\_ref ] }\DocumentationTok{\#\# relative enhancement}
+\NormalTok{  DATA[ , GLB\_rati }\SpecialCharTok{:=}\NormalTok{   wattGLB }\SpecialCharTok{/}\NormalTok{ Enhanc\_C\_2\_ref                    ]}
 \NormalTok{\}}
 \end{Highlighting}
 \end{Shaded}
@@ -226,9 +232,9 @@ Alpha * HAU is CS\_ref
 \NormalTok{     Enhanc\_C\_3 }\SpecialCharTok{:=} \ConstantTok{TRUE}\NormalTok{]}
 
 \ControlFlowTok{if}\NormalTok{ (SelEnhanc }\SpecialCharTok{==} \StringTok{"Enhanc\_C\_3"}\NormalTok{) \{}
-\NormalTok{    DATA[ , GLB\_diff }\SpecialCharTok{:=}\NormalTok{   wattGLB }\SpecialCharTok{{-}}\NormalTok{ Enhanc\_C\_3\_ref                    ] }\DocumentationTok{\#\# enhancement}
-\NormalTok{    DATA[ , GLB\_ench }\SpecialCharTok{:=}\NormalTok{ ( wattGLB }\SpecialCharTok{{-}}\NormalTok{ Enhanc\_C\_3\_ref ) }\SpecialCharTok{/}\NormalTok{ Enhanc\_C\_3\_ref ] }\DocumentationTok{\#\# relative enhancement}
-\NormalTok{    DATA[ , GLB\_rati }\SpecialCharTok{:=}\NormalTok{   wattGLB }\SpecialCharTok{/}\NormalTok{ Enhanc\_C\_3\_ref                    ]}
+\NormalTok{  DATA[ , GLB\_diff }\SpecialCharTok{:=}\NormalTok{   wattGLB }\SpecialCharTok{{-}}\NormalTok{ Enhanc\_C\_3\_ref                    ] }\DocumentationTok{\#\# enhancement}
+\NormalTok{  DATA[ , GLB\_ench }\SpecialCharTok{:=}\NormalTok{ ( wattGLB }\SpecialCharTok{{-}}\NormalTok{ Enhanc\_C\_3\_ref ) }\SpecialCharTok{/}\NormalTok{ Enhanc\_C\_3\_ref ] }\DocumentationTok{\#\# relative enhancement}
+\NormalTok{  DATA[ , GLB\_rati }\SpecialCharTok{:=}\NormalTok{   wattGLB }\SpecialCharTok{/}\NormalTok{ Enhanc\_C\_3\_ref                    ]}
 \NormalTok{\}}
 
 
@@ -237,8 +243,38 @@ Alpha * HAU is CS\_ref
 
 \DocumentationTok{\#\# set values base}
 \NormalTok{csmodel }\OtherTok{\textless{}{-}} \StringTok{"Low\_B.Low\_W"}
+
+\NormalTok{APPLY\_TRANS }\OtherTok{\textless{}{-}} \ConstantTok{TRUE}
+
+\ControlFlowTok{if}\NormalTok{ (APPLY\_TRANS) \{}
+  \FunctionTok{source}\NormalTok{(}\StringTok{"./GHI\_enh\_Aeronet.R"}\NormalTok{)}
+  \FunctionTok{cat}\NormalTok{(}\StringTok{"USING TRASPARENCY TREND}\SpecialCharTok{\textbackslash{}n}\StringTok{"}\NormalTok{)}
+\NormalTok{\} }\ControlFlowTok{else}\NormalTok{ \{}
+\NormalTok{  trans\_trend }\OtherTok{\textless{}{-}} \ControlFlowTok{function}\NormalTok{(x) \{x }\SpecialCharTok{*} \DecValTok{0}\NormalTok{\}}
+\NormalTok{\}}
 \end{Highlighting}
 \end{Shaded}
+
+\begin{verbatim}
+Warning: Invalid .internal.selfref detected and fixed by taking a (shallow)
+copy of the data.table so that := can add this new column by reference. At an
+earlier point, this data.table has been copied by R (or was created manually
+using structure() or similar). Avoid names<- and attr<- which in R currently
+(and oddly) may copy the whole data.table. Use set* syntax instead to avoid
+copying: ?set, ?setnames and ?setattr. If this message doesn't help, please
+report your use case to the data.table issue tracker so the root cause can be
+fixed or this message improved.
+\end{verbatim}
+
+\begin{verbatim}
+Cross over point: 2014.75 
+\end{verbatim}
+
+\begin{verbatim}
+2024-04-16 14:58:25.6 athan@tyler GHI_enh_Aeronet.R 0.004768 mins
+
+USING TRASPARENCY TREND
+\end{verbatim}
 
 \hypertarget{use-libradtran-low_b.low_w-as-reference-for-clear-sky.}{%
 \subsection{\texorpdfstring{4. Use libradtran \textbf{Low\_B.Low\_W} as reference for Clear sky.}{4. Use libradtran Low\_B.Low\_W as reference for Clear sky.}}\label{use-libradtran-low_b.low_w-as-reference-for-clear-sky.}}
@@ -261,25 +297,37 @@ Alpha * HAU is CS\_ref
        \AttributeTok{Low\_2\_B.Low\_2\_W =}\NormalTok{ \{ C4\_cs\_ref\_ratio }\OtherTok{\textless{}{-}} \FloatTok{1.03}\NormalTok{; C4\_GLB\_diff\_THRES }\OtherTok{\textless{}{-}}  \DecValTok{5}\NormalTok{; C4\_lowcut\_sza }\OtherTok{\textless{}{-}} \DecValTok{60}\NormalTok{; C4\_lowcut\_ratio }\OtherTok{\textless{}{-}} \FloatTok{1.12}\NormalTok{\},}
        \AttributeTok{Low\_B.Exact\_W   =}\NormalTok{ \{ C4\_cs\_ref\_ratio }\OtherTok{\textless{}{-}} \FloatTok{1.04}\NormalTok{; C4\_GLB\_diff\_THRES }\OtherTok{\textless{}{-}} \DecValTok{20}\NormalTok{; C4\_lowcut\_sza }\OtherTok{\textless{}{-}} \DecValTok{60}\NormalTok{; C4\_lowcut\_ratio }\OtherTok{\textless{}{-}} \FloatTok{1.12}\NormalTok{\},}
        \AttributeTok{Low\_B.High\_W    =}\NormalTok{ \{ C4\_cs\_ref\_ratio }\OtherTok{\textless{}{-}} \FloatTok{1.05}\NormalTok{; C4\_GLB\_diff\_THRES }\OtherTok{\textless{}{-}} \DecValTok{20}\NormalTok{; C4\_lowcut\_sza }\OtherTok{\textless{}{-}} \DecValTok{60}\NormalTok{; C4\_lowcut\_ratio }\OtherTok{\textless{}{-}} \FloatTok{1.12}\NormalTok{\},}
-       \AttributeTok{Low\_B.Low\_W     =}\NormalTok{ \{ C4\_cs\_ref\_ratio }\OtherTok{\textless{}{-}} \FloatTok{1.05}\NormalTok{; C4\_GLB\_diff\_THRES }\OtherTok{\textless{}{-}}  \DecValTok{0}\NormalTok{; C4\_lowcut\_sza }\OtherTok{\textless{}{-}} \DecValTok{60}\NormalTok{; C4\_lowcut\_ratio }\OtherTok{\textless{}{-}} \FloatTok{1.18}\NormalTok{\},}
+       \CommentTok{\# Low\_B.Low\_W     = \{ C4\_cs\_ref\_ratio \textless{}{-} 1.05; C4\_GLB\_diff\_THRES \textless{}{-}  0; C4\_lowcut\_sza \textless{}{-} 60; C4\_lowcut\_ratio \textless{}{-} 1.18\}, \#\# without transparency}
+       \AttributeTok{Low\_B.Low\_W     =}\NormalTok{ \{ C4\_cs\_ref\_ratio }\OtherTok{\textless{}{-}} \FloatTok{1.09}\NormalTok{; C4\_GLB\_diff\_THRES }\OtherTok{\textless{}{-}}  \DecValTok{0}\NormalTok{; C4\_lowcut\_sza }\OtherTok{\textless{}{-}} \DecValTok{60}\NormalTok{; C4\_lowcut\_ratio }\OtherTok{\textless{}{-}} \FloatTok{1.18}\NormalTok{\}, }\DocumentationTok{\#\# without transparency}
 \NormalTok{                         \{ C4\_cs\_ref\_ratio }\OtherTok{\textless{}{-}} \DecValTok{1}\NormalTok{   ; C4\_GLB\_diff\_THRES }\OtherTok{\textless{}{-}}  \DecValTok{0}\NormalTok{; C4\_lowcut\_sza }\OtherTok{\textless{}{-}}  \DecValTok{0}\NormalTok{; C4\_lowcut\_ratio }\OtherTok{\textless{}{-}} \DecValTok{1}\NormalTok{   \})}
 \DocumentationTok{\#\# init flag}
 \NormalTok{DATA[, Enhanc\_C\_4 }\SpecialCharTok{:=} \ConstantTok{FALSE}\NormalTok{]}
 
+\NormalTok{C4\_test\_cs\_ref\_ratio   }\OtherTok{\textless{}{-}} \FloatTok{1.05}\NormalTok{;}
+\NormalTok{C4\_test\_GLB\_diff\_THRES }\OtherTok{\textless{}{-}}  \DecValTok{0}\NormalTok{;}
+\NormalTok{C4\_test\_lowcut\_sza     }\OtherTok{\textless{}{-}} \DecValTok{60}\NormalTok{;}
+\NormalTok{C4\_test\_lowcut\_ratio   }\OtherTok{\textless{}{-}} \FloatTok{1.18}
+
 \CommentTok{\# DATA[, max(SZA)]}
 
 \NormalTok{smo }\OtherTok{\textless{}{-}} \FunctionTok{approxfun}\NormalTok{(}
-    \AttributeTok{x =} \FunctionTok{c}\NormalTok{(}\DecValTok{90} \SpecialCharTok{{-}}\NormalTok{ BIO\_ELEVA, C4\_lowcut\_sza  ),}
-    \AttributeTok{y =} \FunctionTok{c}\NormalTok{(C4\_lowcut\_ratio,  C4\_cs\_ref\_ratio)}
-\NormalTok{    )}
+  \AttributeTok{x =} \FunctionTok{c}\NormalTok{(}\DecValTok{90} \SpecialCharTok{{-}}\NormalTok{ BIO\_ELEVA,  C4\_lowcut\_sza  ),}
+  \AttributeTok{y =} \FunctionTok{c}\NormalTok{(C4\_lowcut\_ratio, C4\_cs\_ref\_ratio)}
+\NormalTok{)}
+
+\NormalTok{smo\_test }\OtherTok{\textless{}{-}} \FunctionTok{approxfun}\NormalTok{(}
+  \AttributeTok{x =} \FunctionTok{c}\NormalTok{(}\DecValTok{90} \SpecialCharTok{{-}}\NormalTok{ BIO\_ELEVA,       C4\_test\_lowcut\_sza  ),}
+  \AttributeTok{y =} \FunctionTok{c}\NormalTok{(C4\_test\_lowcut\_ratio, C4\_test\_cs\_ref\_ratio)}
+\NormalTok{)}
+
 
 \FunctionTok{smo}\NormalTok{(}\DecValTok{80}\SpecialCharTok{:}\DecValTok{70}\NormalTok{) }\SpecialCharTok{*}\NormalTok{ (}\DecValTok{1}\SpecialCharTok{/}\FunctionTok{cosd}\NormalTok{(}\DecValTok{80}\SpecialCharTok{:}\DecValTok{70}\NormalTok{) }\SpecialCharTok{/} \FunctionTok{max}\NormalTok{(}\DecValTok{1}\SpecialCharTok{/}\FunctionTok{cosd}\NormalTok{(}\DecValTok{80}\SpecialCharTok{:}\DecValTok{70}\NormalTok{)))}
 \end{Highlighting}
 \end{Shaded}
 
 \begin{verbatim}
- [1]        NA        NA 0.9855379 0.9053113 0.8366196 0.7771548 0.7251860
- [8] 0.6793893 0.6387354 0.6024114 0.5697672
+ [1]        NA        NA 0.9855379 0.9070267 0.8398098 0.7816277 0.7307859
+ [8] 0.6859886 0.6462279 0.6107083 0.5787932
 \end{verbatim}
 
 \begin{Shaded}
@@ -289,7 +337,7 @@ Alpha * HAU is CS\_ref
 \end{Shaded}
 
 \begin{verbatim}
-C4 factor: 1.05 
+C4 factor: 1.09 
 \end{verbatim}
 
 \begin{Shaded}
@@ -329,19 +377,39 @@ C4 offset: 0
 \begin{Shaded}
 \begin{Highlighting}[]
 \DocumentationTok{\#\# \_\_\_\_ Calculate reference and mark data  {-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}}
+
+\CommentTok{\#; \#\# for most of the data}
+\CommentTok{\#; DATA[SZA \textless{} C4\_lowcut\_sza, Enhanc\_C\_4\_ref := (get(paste0(csmodel,".glo")) * C4\_cs\_ref\_ratio) + C4\_GLB\_diff\_THRES ]}
+\CommentTok{\#;}
+\CommentTok{\#; \#\# for low sun angles}
+\CommentTok{\#; \# DATA[SZA \textgreater{} C4\_lowcut\_sza, Enhanc\_C\_4\_ref := (get(paste0(csmodel,".glo")) * C4\_lowcut\_ratio) ]}
+\CommentTok{\#; DATA[SZA \textgreater{} C4\_lowcut\_sza, Enhanc\_C\_4\_ref := (get(paste0(csmodel,".glo")) * smo(SZA)) ]}
+
+
 \DocumentationTok{\#\# for most of the data}
-\NormalTok{DATA[SZA }\SpecialCharTok{\textless{}}\NormalTok{ C4\_lowcut\_sza, Enhanc\_C\_4\_ref }\SpecialCharTok{:=}\NormalTok{ (}\FunctionTok{get}\NormalTok{(}\FunctionTok{paste0}\NormalTok{(csmodel,}\StringTok{".glo"}\NormalTok{)) }\SpecialCharTok{*}\NormalTok{ C4\_cs\_ref\_ratio) }\SpecialCharTok{+}\NormalTok{ C4\_GLB\_diff\_THRES ]}
-\DocumentationTok{\#\# fol low sun angles}
+\NormalTok{DATA[SZA }\SpecialCharTok{\textless{}}\NormalTok{ C4\_lowcut\_sza,}
+\NormalTok{     Enhanc\_C\_4\_ref }\SpecialCharTok{:=}\NormalTok{ (}\DecValTok{1} \SpecialCharTok{+} \FunctionTok{trans\_trend}\NormalTok{(}\FunctionTok{decimal\_date}\NormalTok{(Date))) }\SpecialCharTok{*}\NormalTok{ (}\FunctionTok{get}\NormalTok{(}\FunctionTok{paste0}\NormalTok{(csmodel,}\StringTok{".glo"}\NormalTok{)) }\SpecialCharTok{*}\NormalTok{ C4\_cs\_ref\_ratio) }\SpecialCharTok{+}\NormalTok{ C4\_GLB\_diff\_THRES ]}
+
+\NormalTok{DATA[SZA }\SpecialCharTok{\textless{}}\NormalTok{ C4\_lowcut\_sza,}
+\NormalTok{     Enhanc\_C\_4\_ref\_test }\SpecialCharTok{:=}\NormalTok{                                    (}\FunctionTok{get}\NormalTok{(}\FunctionTok{paste0}\NormalTok{(csmodel,}\StringTok{".glo"}\NormalTok{)) }\SpecialCharTok{*}\NormalTok{ C4\_test\_cs\_ref\_ratio) ]}
+
+\DocumentationTok{\#\# for low sun angles}
 \CommentTok{\# DATA[SZA \textgreater{} C4\_lowcut\_sza, Enhanc\_C\_4\_ref := (get(paste0(csmodel,".glo")) * C4\_lowcut\_ratio) ]}
-\NormalTok{DATA[SZA }\SpecialCharTok{\textgreater{}}\NormalTok{ C4\_lowcut\_sza, Enhanc\_C\_4\_ref }\SpecialCharTok{:=}\NormalTok{ (}\FunctionTok{get}\NormalTok{(}\FunctionTok{paste0}\NormalTok{(csmodel,}\StringTok{".glo"}\NormalTok{)) }\SpecialCharTok{*} \FunctionTok{smo}\NormalTok{(SZA)) ]}
+\NormalTok{DATA[SZA }\SpecialCharTok{\textgreater{}}\NormalTok{ C4\_lowcut\_sza,}
+\NormalTok{     Enhanc\_C\_4\_ref }\SpecialCharTok{:=}\NormalTok{ (}\DecValTok{1} \SpecialCharTok{+} \FunctionTok{trans\_trend}\NormalTok{(}\FunctionTok{decimal\_date}\NormalTok{(Date))) }\SpecialCharTok{*}\NormalTok{ (}\FunctionTok{get}\NormalTok{(}\FunctionTok{paste0}\NormalTok{(csmodel,}\StringTok{".glo"}\NormalTok{)) }\SpecialCharTok{*} \FunctionTok{smo}\NormalTok{(SZA)) ]}
+
+\NormalTok{DATA[SZA }\SpecialCharTok{\textgreater{}}\NormalTok{ C4\_lowcut\_sza,}
+\NormalTok{     Enhanc\_C\_4\_ref\_test }\SpecialCharTok{:=}\NormalTok{                                    (}\FunctionTok{get}\NormalTok{(}\FunctionTok{paste0}\NormalTok{(csmodel,}\StringTok{".glo"}\NormalTok{)) }\SpecialCharTok{*} \FunctionTok{smo\_test}\NormalTok{(SZA)) ]}
+
+
 
 \NormalTok{DATA[wattGLB }\SpecialCharTok{\textgreater{}}\NormalTok{ Enhanc\_C\_4\_ref ,}
 \NormalTok{     Enhanc\_C\_4 }\SpecialCharTok{:=} \ConstantTok{TRUE}\NormalTok{]}
 \DocumentationTok{\#\# use threshold to compute values}
 \ControlFlowTok{if}\NormalTok{ (SelEnhanc }\SpecialCharTok{==} \StringTok{"Enhanc\_C\_4"}\NormalTok{) \{}
-\NormalTok{    DATA[ , GLB\_diff }\SpecialCharTok{:=}\NormalTok{   wattGLB }\SpecialCharTok{{-}}\NormalTok{ Enhanc\_C\_4\_ref                    ] }\DocumentationTok{\#\# enhancement}
-\NormalTok{    DATA[ , GLB\_ench }\SpecialCharTok{:=}\NormalTok{ ( wattGLB }\SpecialCharTok{{-}}\NormalTok{ Enhanc\_C\_4\_ref ) }\SpecialCharTok{/}\NormalTok{ Enhanc\_C\_4\_ref ] }\DocumentationTok{\#\# relative enhancement}
-\NormalTok{    DATA[ , GLB\_rati }\SpecialCharTok{:=}\NormalTok{   wattGLB }\SpecialCharTok{/}\NormalTok{ Enhanc\_C\_4\_ref                    ]}
+\NormalTok{  DATA[ , GLB\_diff }\SpecialCharTok{:=}\NormalTok{   wattGLB }\SpecialCharTok{{-}}\NormalTok{ Enhanc\_C\_4\_ref                    ] }\DocumentationTok{\#\# enhancement}
+\NormalTok{  DATA[ , GLB\_ench }\SpecialCharTok{:=}\NormalTok{ ( wattGLB }\SpecialCharTok{{-}}\NormalTok{ Enhanc\_C\_4\_ref ) }\SpecialCharTok{/}\NormalTok{ Enhanc\_C\_4\_ref ] }\DocumentationTok{\#\# relative enhancement}
+\NormalTok{  DATA[ , GLB\_rati }\SpecialCharTok{:=}\NormalTok{   wattGLB }\SpecialCharTok{/}\NormalTok{ Enhanc\_C\_4\_ref                    ]}
 \NormalTok{\}}
 \end{Highlighting}
 \end{Shaded}
@@ -457,7 +525,7 @@ TRUE
 \endhead
 \bottomrule\noalign{}
 \endlastfoot
-6091605 & 110562 \\
+6094309 & 107858 \\
 \end{longtable}
 
 \begin{center}\includegraphics[width=1\linewidth]{GHI_enh_02_ID_CE_files/figure-latex/unnamed-chunk-13-4} \end{center}
@@ -697,11 +765,6 @@ TRUE
 
 \begin{center}\includegraphics[width=1\linewidth]{GHI_enh_02_ID_CE_files/figure-latex/example_days-76} \end{center}
 
-\FloatBarrier
-
-\hypertarget{days-with-cloudy-day}{%
-\subsection{Days with cloudy day}\label{days-with-cloudy-day}}
-
 \begin{center}\includegraphics[width=1\linewidth]{GHI_enh_02_ID_CE_files/figure-latex/example_days-77} \end{center}
 
 \begin{center}\includegraphics[width=1\linewidth]{GHI_enh_02_ID_CE_files/figure-latex/example_days-78} \end{center}
@@ -728,6 +791,11 @@ TRUE
 
 \begin{center}\includegraphics[width=1\linewidth]{GHI_enh_02_ID_CE_files/figure-latex/example_days-89} \end{center}
 
+\FloatBarrier
+
+\hypertarget{days-with-cloudy-day}{%
+\subsection{Days with cloudy day}\label{days-with-cloudy-day}}
+
 \begin{center}\includegraphics[width=1\linewidth]{GHI_enh_02_ID_CE_files/figure-latex/example_days-90} \end{center}
 
 \begin{center}\includegraphics[width=1\linewidth]{GHI_enh_02_ID_CE_files/figure-latex/example_days-91} \end{center}
@@ -741,11 +809,6 @@ TRUE
 \begin{center}\includegraphics[width=1\linewidth]{GHI_enh_02_ID_CE_files/figure-latex/example_days-95} \end{center}
 
 \begin{center}\includegraphics[width=1\linewidth]{GHI_enh_02_ID_CE_files/figure-latex/example_days-96} \end{center}
-
-\FloatBarrier
-
-\hypertarget{days-with-random-day}{%
-\subsection{Days with random day}\label{days-with-random-day}}
 
 \begin{center}\includegraphics[width=1\linewidth]{GHI_enh_02_ID_CE_files/figure-latex/example_days-97} \end{center}
 
@@ -772,6 +835,11 @@ TRUE
 \begin{center}\includegraphics[width=1\linewidth]{GHI_enh_02_ID_CE_files/figure-latex/example_days-108} \end{center}
 
 \begin{center}\includegraphics[width=1\linewidth]{GHI_enh_02_ID_CE_files/figure-latex/example_days-109} \end{center}
+
+\FloatBarrier
+
+\hypertarget{days-with-random-day}{%
+\subsection{Days with random day}\label{days-with-random-day}}
 
 \begin{center}\includegraphics[width=1\linewidth]{GHI_enh_02_ID_CE_files/figure-latex/example_days-110} \end{center}
 
@@ -807,11 +875,6 @@ TRUE
 
 \begin{center}\includegraphics[width=1\linewidth]{GHI_enh_02_ID_CE_files/figure-latex/example_days-126} \end{center}
 
-\FloatBarrier
-
-\hypertarget{days-with-manual-test-days}{%
-\subsection{Days with manual test days}\label{days-with-manual-test-days}}
-
 \begin{center}\includegraphics[width=1\linewidth]{GHI_enh_02_ID_CE_files/figure-latex/example_days-127} \end{center}
 
 \begin{center}\includegraphics[width=1\linewidth]{GHI_enh_02_ID_CE_files/figure-latex/example_days-128} \end{center}
@@ -820,6 +883,37 @@ TRUE
 
 \begin{center}\includegraphics[width=1\linewidth]{GHI_enh_02_ID_CE_files/figure-latex/example_days-130} \end{center}
 
+\begin{center}\includegraphics[width=1\linewidth]{GHI_enh_02_ID_CE_files/figure-latex/example_days-131} \end{center}
+
+\begin{center}\includegraphics[width=1\linewidth]{GHI_enh_02_ID_CE_files/figure-latex/example_days-132} \end{center}
+
+\begin{center}\includegraphics[width=1\linewidth]{GHI_enh_02_ID_CE_files/figure-latex/example_days-133} \end{center}
+
+\begin{center}\includegraphics[width=1\linewidth]{GHI_enh_02_ID_CE_files/figure-latex/example_days-134} \end{center}
+
+\begin{center}\includegraphics[width=1\linewidth]{GHI_enh_02_ID_CE_files/figure-latex/example_days-135} \end{center}
+
+\begin{center}\includegraphics[width=1\linewidth]{GHI_enh_02_ID_CE_files/figure-latex/example_days-136} \end{center}
+
+\begin{center}\includegraphics[width=1\linewidth]{GHI_enh_02_ID_CE_files/figure-latex/example_days-137} \end{center}
+
+\begin{center}\includegraphics[width=1\linewidth]{GHI_enh_02_ID_CE_files/figure-latex/example_days-138} \end{center}
+
+\begin{center}\includegraphics[width=1\linewidth]{GHI_enh_02_ID_CE_files/figure-latex/example_days-139} \end{center}
+
+\FloatBarrier
+
+\hypertarget{days-with-manual-test-days}{%
+\subsection{Days with manual test days}\label{days-with-manual-test-days}}
+
+\begin{center}\includegraphics[width=1\linewidth]{GHI_enh_02_ID_CE_files/figure-latex/example_days-140} \end{center}
+
+\begin{center}\includegraphics[width=1\linewidth]{GHI_enh_02_ID_CE_files/figure-latex/example_days-141} \end{center}
+
+\begin{center}\includegraphics[width=1\linewidth]{GHI_enh_02_ID_CE_files/figure-latex/example_days-142} \end{center}
+
+\begin{center}\includegraphics[width=1\linewidth]{GHI_enh_02_ID_CE_files/figure-latex/example_days-143} \end{center}
+
 \newpage
 \FloatBarrier
 
@@ -827,10 +921,12 @@ TRUE
 \section{Plot years with enhancement cases}\label{plot-years-with-enhancement-cases}}
 
 \begin{verbatim}
-Warning: A numeric `legend.position` argument in `theme()` was deprecated in ggplot2 3.5.0.
+Warning: A numeric `legend.position` argument in `theme()` was deprecated in ggplot2
+3.5.0.
 i Please use the `legend.position.inside` argument of `theme()` instead.
 This warning is displayed once every 8 hours.
-Call `lifecycle::last_lifecycle_warnings()` to see where this warning was generated.
+Call `lifecycle::last_lifecycle_warnings()` to see where this warning was
+generated.
 \end{verbatim}
 
 \begin{center}\includegraphics[width=1\linewidth]{GHI_enh_02_ID_CE_files/figure-latex/example_years-1} \end{center}
@@ -839,66 +935,16 @@ Call `lifecycle::last_lifecycle_warnings()` to see where this warning was genera
 
 \begin{center}\includegraphics[width=1\linewidth]{GHI_enh_02_ID_CE_files/figure-latex/example_years-3} \end{center}
 
-\begin{center}\includegraphics[width=1\linewidth]{GHI_enh_02_ID_CE_files/figure-latex/example_years-4} \end{center}
+\begin{verbatim}
+Warning: TEST IS ACTIVE !!
+\end{verbatim}
 
-\begin{center}\includegraphics[width=1\linewidth]{GHI_enh_02_ID_CE_files/figure-latex/example_years-5} \end{center}
-
-\begin{center}\includegraphics[width=1\linewidth]{GHI_enh_02_ID_CE_files/figure-latex/example_years-6} \end{center}
-
-\begin{center}\includegraphics[width=1\linewidth]{GHI_enh_02_ID_CE_files/figure-latex/example_years-7} \end{center}
-
-\begin{center}\includegraphics[width=1\linewidth]{GHI_enh_02_ID_CE_files/figure-latex/example_years-8} \end{center}
-
-\begin{center}\includegraphics[width=1\linewidth]{GHI_enh_02_ID_CE_files/figure-latex/example_years-9} \end{center}
-
-\begin{center}\includegraphics[width=1\linewidth]{GHI_enh_02_ID_CE_files/figure-latex/example_years-10} \end{center}
-
-\begin{center}\includegraphics[width=1\linewidth]{GHI_enh_02_ID_CE_files/figure-latex/example_years-11} \end{center}
-
-\begin{center}\includegraphics[width=1\linewidth]{GHI_enh_02_ID_CE_files/figure-latex/example_years-12} \end{center}
-
-\begin{center}\includegraphics[width=1\linewidth]{GHI_enh_02_ID_CE_files/figure-latex/example_years-13} \end{center}
-
-\begin{center}\includegraphics[width=1\linewidth]{GHI_enh_02_ID_CE_files/figure-latex/example_years-14} \end{center}
-
-\begin{center}\includegraphics[width=1\linewidth]{GHI_enh_02_ID_CE_files/figure-latex/example_years-15} \end{center}
-
-\begin{center}\includegraphics[width=1\linewidth]{GHI_enh_02_ID_CE_files/figure-latex/example_years-16} \end{center}
-
-\begin{center}\includegraphics[width=1\linewidth]{GHI_enh_02_ID_CE_files/figure-latex/example_years-17} \end{center}
-
-\begin{center}\includegraphics[width=1\linewidth]{GHI_enh_02_ID_CE_files/figure-latex/example_years-18} \end{center}
-
-\begin{center}\includegraphics[width=1\linewidth]{GHI_enh_02_ID_CE_files/figure-latex/example_years-19} \end{center}
-
-\begin{center}\includegraphics[width=1\linewidth]{GHI_enh_02_ID_CE_files/figure-latex/example_years-20} \end{center}
-
-\begin{center}\includegraphics[width=1\linewidth]{GHI_enh_02_ID_CE_files/figure-latex/example_years-21} \end{center}
-
-\begin{center}\includegraphics[width=1\linewidth]{GHI_enh_02_ID_CE_files/figure-latex/example_years-22} \end{center}
-
-\begin{center}\includegraphics[width=1\linewidth]{GHI_enh_02_ID_CE_files/figure-latex/example_years-23} \end{center}
-
-\begin{center}\includegraphics[width=1\linewidth]{GHI_enh_02_ID_CE_files/figure-latex/example_years-24} \end{center}
-
-\begin{center}\includegraphics[width=1\linewidth]{GHI_enh_02_ID_CE_files/figure-latex/example_years-25} \end{center}
-
-\begin{center}\includegraphics[width=1\linewidth]{GHI_enh_02_ID_CE_files/figure-latex/example_years-26} \end{center}
-
-\begin{center}\includegraphics[width=1\linewidth]{GHI_enh_02_ID_CE_files/figure-latex/example_years-27} \end{center}
-
-\begin{center}\includegraphics[width=1\linewidth]{GHI_enh_02_ID_CE_files/figure-latex/example_years-28} \end{center}
-
-\begin{center}\includegraphics[width=1\linewidth]{GHI_enh_02_ID_CE_files/figure-latex/example_years-29} \end{center}
-
-\begin{center}\includegraphics[width=1\linewidth]{GHI_enh_02_ID_CE_files/figure-latex/example_years-30} \end{center}
-
-\begin{center}\includegraphics[width=1\linewidth]{GHI_enh_02_ID_CE_files/figure-latex/example_years-31} \end{center}
+TEST IS ACTIVE !!
 
 \textbf{END}
 
 \begin{verbatim}
-2024-04-14 00:32:05.2 athan@tyler GHI_enh_02_ID_CE.R 63.459085 mins
+2024-04-16 15:04:44.7 athan@tyler GHI_enh_Aeronet.R 6.323049 mins
 \end{verbatim}
 
 \end{document}
