@@ -81,7 +81,7 @@ output:
 
 ```{r setup, echo=F, include=FALSE}
 rmarkdown::find_pandoc(dir = '/usr/lib/rstudio/resources/app/bin/quarto/bin/tools')
-renv::load("~/MANUSCRIPTS/02_enhancement/", quiet = TRUE)
+# renv::load("~/MANUSCRIPTS/02_enhancement/", quiet = TRUE)
 ## document configurations
 knitr::opts_chunk$set(comment    = ""      )
 # knitr::opts_chunk$set(dev        = "pdf"   )
