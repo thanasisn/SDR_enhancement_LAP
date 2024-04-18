@@ -61,7 +61,7 @@ model_cs     <- "./Model_CS.Rds"
 DATA <- data.table(readRDS("~/MANUSCRIPTS/02_enhancement/data/CE_ID_Input.Rds"))
 
 ## Fill with CS approximation model
-CS <- data.table(readRDS("./Model_CS.Rds"))
+CS <- data.table(readRDS("./Model_CS_.Rds"))
 CS[, SZA := sza]
 
 ## Create global irradiance W/m^2
