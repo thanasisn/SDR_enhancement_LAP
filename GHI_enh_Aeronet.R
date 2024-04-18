@@ -121,6 +121,8 @@ abline(lm_transp_trend)
 ## AOD transparency trend  -----------------------------------------------------
 
 lm_transp_trend <- lm(exp(-AE1$AOD_500nm) ~ AE1$tsy)
+lm_AOD_trend    <- lm(     AE1$AOD_500nm  ~ AE1$tsy)
+
 
 # plot(AE1[, exp(-AOD_500nm), tsy])
 # abline(lm_transp_trend)
@@ -128,20 +130,20 @@ lm_transp_trend <- lm(exp(-AE1$AOD_500nm) ~ AE1$tsy)
 
 ## Calculate offset for zero point  --------------------------------------------
 b <- -coef(lm_transp_trend)[2] * zeropoint
+t <- -coef(lm_AOD_trend)[2] * zeropoint
 
 
 
 ## create a closure of the function
-trans_trend <- {
-  function(tsy)
-    function(tsy = tsy, a. = coef(lm_transp_trend)[2], b. = b) {
-      return(b. + a. * tsy)
-    }
-}(tsy)
 
 trans_trend <- function(tsy = tsy, a. = coef(lm_transp_trend)[2], b. = b) {
   return(b. + a. * tsy)
 }
+
+trans_AOD   <- function(tsy = tsy, a. = coef(lm_AOD_trend)[2], b. = t) {
+  return(b. + a. * tsy)
+}
+
 
 
 
@@ -157,8 +159,53 @@ plot(AE1[, exp(-AOD_500nm), tsy])
 abline(lm_transp_trend)
 plot(1993:2024, trans_trend(1993:2024), col = "red")
 
-rm(AE1)
+# rm(AE1)
 
+
+min(AE1$tsy):max(AE1$tsy)
+
+
+plot(min(AE1$tsy):max(AE1$tsy), trans_AOD(min(AE1$tsy):max(AE1$tsy)), col = "red")
+
+trans_AOD(min(AE1$tsy))
+trans_AOD(max(AE1$tsy))
+
+
+CS <- readRDS("./data/Model_CS.Rds")
+CS$hostname <- NULL
+CS$ticTime  <- NULL
+CS$tacTime  <- NULL
+CS$ID       <- NULL
+
+CS[sza == 17 & type == "Low B.Low W",]
+
+min(unique(CS$sza))
+
+
+# LT <- readRDS("./data/lookuptable_datatable.Rds")
+#
+# LT
+
+# plot(LT$Date, LT$Low_B.Low_2_W.edn / 1000)
+
+
+
+
+AEY <- AE1[, .( Mean500   = mean(AOD_500nm),
+                Median500 = median(AOD_500nm),
+                meantsy   = mean(tsy)         ,
+                .N),
+           by = Year]
+
+
+
+plot(AE1[, AOD_500nm, tsy])
+abline(lm_AOD_trend)
+points(AEY$meantsy, AEY$Mean500,   col = "red", pch = 19 )
+points(AEY$meantsy, AEY$Median500, col = "green", pch = 19 )
+
+
+CS
 
 
 
