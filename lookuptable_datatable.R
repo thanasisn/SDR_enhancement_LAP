@@ -27,13 +27,14 @@
 rm(list = (ls()[ls() != ""]))
 Script.Name <- "~/MANUSCRIPTS/02_enhancement/lookuptable_datatable.R"
 dir.create("./runtime/", showWarnings = FALSE)
-d <- filelock::lock(paste0("./runtime/", basename(sub("\\.R$",".lock", Script.Name))), timeout = 0)
+# d <- filelock::lock(paste0("./runtime/", basename(sub("\\.R$",".lock", Script.Name))), timeout = 0)
 Sys.setenv(TZ = "UTC")
+
 ## standard output
 if (!interactive()) {
     pdf( file = paste0("./runtime/",  basename(sub("\\.R$",".pdf", Script.Name))))
-    sink(file = paste0("./runtime/",  basename(sub("\\.R$",".out", Script.Name))), split = TRUE)
 }
+
 ## error notification function
 options(error = function() {
     if (interactive()) {
@@ -53,7 +54,7 @@ source("~/Aerosols/RlibRadtran/R/date_to_standard_atmosphere_file.R")
 ##  Prepare data  --------------------------------------------------------------
 
 ## all runs are stored here
-model_cs     <- "./data/Model_CS.Rds"
+model_cs     <- "./data/Model_CS_2.Rds"
 
 ## _ Get raw data we want to create reference for  -----------------------------
 DATA <- data.table(readRDS("~/MANUSCRIPTS/02_enhancement/data/CE_ID_Input.Rds"))
