@@ -159,6 +159,32 @@ plot(1993:2024, trans_trend(1993:2024), col = "red")
 
 rm(AE1)
 
+
+
+
+
+#
+# From Stelios' paper 2007:
+# AOD @340 from Brewer 086
+# Period: 1997-2005
+# The mean AOD for this period was calculated to 0.403 for the Brewer and 0.422 for the CIMEL.
+# A linear regression on the Brewer deseasonalized data reveals a change of −3.8±0.93% per year.
+# From the above data AOD @340 changes by 0.0153 per year (or 0.138 for the 9 years).
+# Using Angstrom a= 1.6  this translates to a change in Angstrom β=0.00272 per year (or β=0.084 in 1997 and β=0.059 in 2005).
+#
+# Libradtran calculations suggest for the clear-sky GHI:
+# SZA	1997	2005
+# 60 	407	426	(Wm-2)
+# 30	844	865
+# 15	968	988
+#
+# Μπορούμε να διαμορφώσουμε τα thresholds με αυτό το trend για την περίοδο 1993-2005 και το αντίστοιχα από το cimel για την περίοδο 2004-2024.
+# Αν οι διαφορές στην noon-GHI φαίνονται λογικές, μπορούμε να το σκεφτούμε πως θα αντιμετωπίσουμε και τις υπόλοιπες γωνίες στην κατασκευή του reference
+
+
+
+
+
 if (!interactive()) {
   dev.off()
 }
