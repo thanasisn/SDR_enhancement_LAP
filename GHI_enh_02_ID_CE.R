@@ -111,7 +111,9 @@ if (
 
 ## __ Execution control  -------------------------------------------------------
 TEST <- FALSE
-# TEST <- TRUE
+TEST <- TRUE
+
+APPLY_TRANS <- FALSE
 
 if (TEST) {
   warning("\n\n ** Test is active!! ** \n\n")
@@ -255,7 +257,7 @@ if (SelEnhanc == "Enhanc_C_3") {
 ## set values base
 csmodel <- "Low_B.Low_W"
 
-APPLY_TRANS <- TRUE
+
 
 if (APPLY_TRANS) {
   source("./GHI_enh_Aeronet.R")
@@ -277,8 +279,9 @@ switch(csmodel,
        Low_B.Exact_W   = { C4_cs_ref_ratio <- 1.04; C4_GLB_diff_THRES <- 20; C4_lowcut_sza <- 60; C4_lowcut_ratio <- 1.12},
        Low_B.High_W    = { C4_cs_ref_ratio <- 1.05; C4_GLB_diff_THRES <- 20; C4_lowcut_sza <- 60; C4_lowcut_ratio <- 1.12},
        # Low_B.Low_W     = { C4_cs_ref_ratio <- 1.05; C4_GLB_diff_THRES <-  0; C4_lowcut_sza <- 60; C4_lowcut_ratio <- 1.18}, ## without transparency
-       Low_B.Low_W     = { C4_cs_ref_ratio <- 1.09; C4_GLB_diff_THRES <-  0; C4_lowcut_sza <- 60; C4_lowcut_ratio <- 1.18}, ## without transparency
-                         { C4_cs_ref_ratio <- 1   ; C4_GLB_diff_THRES <-  0; C4_lowcut_sza <-  0; C4_lowcut_ratio <- 1   })
+       # Low_B.Low_W     = { C4_cs_ref_ratio <- 1.09; C4_GLB_diff_THRES <-  0; C4_lowcut_sza <- 60; C4_lowcut_ratio <- 1.18}, ## without transparency
+       Low_B.Low_W     = { C4_cs_ref_ratio <- 1.05; C4_GLB_diff_THRES <-  0; C4_lowcut_sza <- 90; C4_lowcut_ratio <- 1.18},
+                         { C4_cs_ref_ratio <- 1   ; C4_GLB_diff_THRES <-  0; C4_lowcut_sza <- 90; C4_lowcut_ratio <- 1   })
 
 
 ## init flag
