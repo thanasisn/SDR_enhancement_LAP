@@ -80,7 +80,7 @@ AE1   <- fread(AEin1, skip = 6, fill = T, na.strings = "-999")
 names(AE1)[names(AE1) == "Month"] <- "Date"
 
 AE1 <- AE1[, lapply(.SD, function(x) replace(x, which(x < -998), NA))]
-AE1 <- remove_constant(AE1)
+AE1 <- data.table(remove_constant(AE1))
 
 # AEin2 <- "~/DATA/Aeronet/Thessaloniki_Monthly/20030101_20241231_Thessaloniki.tot_lev20"
 # AE2 <- fread(AEin2, skip = 6, fill = T, na.strings = "-999")
@@ -171,7 +171,7 @@ trans_AOD(min(AE1$tsy))
 trans_AOD(max(AE1$tsy))
 
 
-CS <- readRDS("./data/Model_CS.Rds")
+CS <- readRDS("./data/Model_CS_2.Rds")
 CS$hostname <- NULL
 CS$ticTime  <- NULL
 CS$tacTime  <- NULL
@@ -205,12 +205,33 @@ points(AEY$meantsy, AEY$Mean500,   col = "red", pch = 19 )
 points(AEY$meantsy, AEY$Median500, col = "green", pch = 19 )
 
 
-CS
+
+
+## Libradtran for monthly AERONET ---------------
+
+AEM         <- readRDS("./data/Model_CS_trend.Rds")
+AEM$ID      <- NULL
+AEM$ticTime <- NULL
+AEM$tacTime <- NULL
+AEM         <- data.table(remove_constant(AEM))
+
+AEM[, tsy := year + (month - 1)/12 ]
+
+
+readRDS("~/DATA/SUN/TSI_COMPOSITE.Rds")
+
+LKU[, .(Date, SZA, sun_dist)]
+
+stop()
+
+unique(AEM$atmosphere_file)
+
+plot(AEM[sza == 17 & atmosphere_file == "afglms", (edn + edir) / 1000, tsy])
+
+abline(lm(AEM[sza == 17 & atmosphere_file == "afglms", tsy, (edn + edir) / 1000]))
 
 
 
-
-#
 # From Stelios' paper 2007:
 # AOD @340 from Brewer 086
 # Period: 1997-2005
