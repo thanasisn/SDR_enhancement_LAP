@@ -54,7 +54,7 @@ source("~/Aerosols/RlibRadtran/R/date_to_standard_atmosphere_file.R")
 ##  Prepare data  --------------------------------------------------------------
 
 ## all runs are stored here
-model_cs     <- "./data/Model_CS_2.Rds"
+model_cs <- "./data/Model_CS_2.Rds"
 
 ## _ Get raw data we want to create reference for  -----------------------------
 DATA <- data.table(readRDS("~/MANUSCRIPTS/02_enhancement/data/CE_ID_Input.Rds"))
@@ -110,15 +110,15 @@ for (aty in types) {
         nnm <- gsub(" ", "_", paste0(aty, ".", avr))
 
         ## One family of functions for each variable
-        fns <- CS[type == aty,   .(f = list(approxfun(SZA + 0, get(avr) + 0))), .(month, atmosphere_file)]
+        fns <- CS[type == aty, .(f = list(approxfun(SZA + 0, get(avr) + 0))), .(month, atmosphere_file)]
 
         ## Do the interpolation
-        LKUO[fns,  (nnm)   := unlist(Map(\(f, x) f(x), f, SZA)), on = .(month, atmosphere_file)]
+        LKUO[fns, (nnm) := unlist(Map(\(f, x) f(x), f, SZA)), on = .(month, atmosphere_file)]
     }
 }
 
 ##  store final lookup table  --------------------------------------------------
-LKUO[, wattGLB := NULL ]
+LKUO[, wattGLB := NULL]
 saveRDS(LKUO, paste0("./data/", sub(".R", ".Rds", basename(Script.Name))))
 
 
@@ -145,16 +145,11 @@ summary(LKUO)
 
 
 
-
-
 ## ## Unlist and apply sun distance
 ## ## This will be done elsewhere!!!
 ## LKUO[, CS_low_v2   := unlist(CS_low_v2)   / sun_dist^2]
 ## LKUO[, CS_2_low_v2 := unlist(CS_2_low_v2) / sun_dist^2]
 ## LKUO[, CS_exact_v2 := unlist(CS_exact_v2) / sun_dist^2]
-
-
-
 
 
 # # ## compare with dplyr method
