@@ -219,16 +219,47 @@ AEM[, tsy := year + (month - 1)/12 ]
 
 
 LKU <- readRDS("~/DATA/SUN/TSI_COMPOSITE.Rds")
+LKU <- LKU[year(Date) >= min(AEM$year), ]
+
+LKU_month <- LKU[, .(sun_dist     = mean(sun_dist),
+                     tsi_1au_comb = mean(tsi_1au_comb)),
+                 by = .(year(Date), month(Date))]
+
+## apply kuruds and distance
+
+library(pracma)
+
+Kurudz <- read.table("~/LibRadTranG/libRadtran-2.0.5/data/solar_flux/kurudz_0.1nm.dat")
+Kurudz <- data.table(Kurudz)
+
+# currently we only on set to run Libradtran
+spectrum  <- Kurudz[ V1 >= 280 & V1 <= 2500]
+Kurudz_SC <- trapz(x = spectrum$V1, y = spectrum$V2) / 1000
+
+LKU_month[ , TSI_Kurudz_factor := tsi_1au_comb / Kurudz_SC ]
+
+AEM <- merge(AEM, LKU_month, all.x = T)
+rm(LKU, LKU_month)
+
+
+## corrections
+
+## create global
+AEM[, glo := (edn + edir) / 1000]
+
+## sun distance
+AEM[, glo := glo / sun_dist^2 ]
+
+## kurudz
+AEM[, glo := glo * TSI_Kurudz_factor ]
 
 
 
-stop()
 
-unique(AEM$atmosphere_file)
+plot(AEM[sza == 17 & atmosphere_file == "afglms", glo, tsy])
+lm1 <- lm(AEM[sza == 17 & atmosphere_file == "afglms", tsy, glo])
 
-plot(AEM[sza == 17 & atmosphere_file == "afglms", (edn + edir) / 1000, tsy])
-
-abline(lm(AEM[sza == 17 & atmosphere_file == "afglms", tsy, (edn + edir) / 1000]))
+abline(lm1)
 
 
 
