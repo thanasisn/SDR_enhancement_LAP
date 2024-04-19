@@ -274,14 +274,14 @@ if (APPLY_TRANS) {
 cat("\n USING CSMODE:", csmodel, "\n\n")
 
 switch(csmodel,
-       Exact_B.Exact_W = { C4_cs_ref_ratio <- 1.02; C4_GLB_diff_THRES <- 55; C4_lowcut_sza <- 60; C4_lowcut_ratio <- 1.12},
-       Low_2_B.Low_2_W = { C4_cs_ref_ratio <- 1.03; C4_GLB_diff_THRES <-  5; C4_lowcut_sza <- 60; C4_lowcut_ratio <- 1.12},
-       Low_B.Exact_W   = { C4_cs_ref_ratio <- 1.04; C4_GLB_diff_THRES <- 20; C4_lowcut_sza <- 60; C4_lowcut_ratio <- 1.12},
-       Low_B.High_W    = { C4_cs_ref_ratio <- 1.05; C4_GLB_diff_THRES <- 20; C4_lowcut_sza <- 60; C4_lowcut_ratio <- 1.12},
+       Exact_B.Exact_W = { C4_cs_ref_ratio <- 1.02; C4_GLB_diff_THRES <- 55; C4_lowcut_sza <- 60; C4_lowcut_ratio <- 1.12; C4_GLB_offset_THRES <- 0},
+       Low_2_B.Low_2_W = { C4_cs_ref_ratio <- 1.03; C4_GLB_diff_THRES <-  5; C4_lowcut_sza <- 60; C4_lowcut_ratio <- 1.12; C4_GLB_offset_THRES <- 0},
+       Low_B.Exact_W   = { C4_cs_ref_ratio <- 1.04; C4_GLB_diff_THRES <- 20; C4_lowcut_sza <- 60; C4_lowcut_ratio <- 1.12; C4_GLB_offset_THRES <- 0},
+       Low_B.High_W    = { C4_cs_ref_ratio <- 1.05; C4_GLB_diff_THRES <- 20; C4_lowcut_sza <- 60; C4_lowcut_ratio <- 1.12; C4_GLB_offset_THRES <- 0},
        # Low_B.Low_W     = { C4_cs_ref_ratio <- 1.05; C4_GLB_diff_THRES <-  0; C4_lowcut_sza <- 60; C4_lowcut_ratio <- 1.18}, ## without transparency
        # Low_B.Low_W     = { C4_cs_ref_ratio <- 1.09; C4_GLB_diff_THRES <-  0; C4_lowcut_sza <- 60; C4_lowcut_ratio <- 1.18}, ## without transparency
-       Low_B.Low_W     = { C4_cs_ref_ratio <- 1.05; C4_GLB_diff_THRES <-  0; C4_lowcut_sza <- 90; C4_lowcut_ratio <- 1.18},
-                         { C4_cs_ref_ratio <- 1   ; C4_GLB_diff_THRES <-  0; C4_lowcut_sza <- 90; C4_lowcut_ratio <- 1   })
+       Low_B.Low_W     = { C4_cs_ref_ratio <- 1.05; C4_GLB_diff_THRES <-  0; C4_lowcut_sza <- 90; C4_lowcut_ratio <- 1.05; C4_GLB_offset_THRES <- 5},
+                         { C4_cs_ref_ratio <- 1   ; C4_GLB_diff_THRES <-  0; C4_lowcut_sza <- 90; C4_lowcut_ratio <- 1   ; C4_GLB_offset_THRES <- 0})
 
 
 ## init flag
@@ -289,7 +289,7 @@ DATA[, Enhanc_C_4 := FALSE]
 
 C4_test_cs_ref_ratio   <- 1.05;
 C4_test_GLB_diff_THRES <-  0;
-C4_test_lowcut_sza     <- 60;
+C4_test_lowcut_sza     <- 90;  ## Disabled
 C4_test_lowcut_ratio   <- 1.18
 
 # DATA[, max(SZA)]
@@ -599,26 +599,27 @@ for (ii in 1:nrow(vec_days)) {
         ## Active model reference
         lines(temp[, get(paste0(SelEnhanc,"_ref")), Date], col = "red" )
 
-        ## test reference
-        lines(temp[, Enhanc_C_4_ref_test, Date], col = "cyan" )
+        ## A test reference
+        # lines(temp[, Enhanc_C_4_ref_test, Date], col = "cyan" )
 
         ## CS libradtran reference
         lines(temp[, get(paste0(csmodel, ".glo")), Date], col = "magenta" )
+
         ## CS libradtran reference
         # lines(temp[, CS_low * TSI_Kurudz_factor , Date], col = "pink" )
-
 
         ## add sza axis
         aaa <- temp[Date %in% c(min(Date), (pretty(Date, 10) + 30), max(Date))  , ]
         axis(1, at = aaa$Date, labels = round(aaa$SZA,1),
              line = 1.2, lwd = 0, lwd.ticks = 0, cex.axis = 0.8)
 
-
         ## Enchantment cases
         points(temp[get(SelEnhanc) == TRUE, wattGLB, Date], col = "red")
+
         ## Cloud cases
         points(temp[TYPE == "Cloud", wattGLB, Date], col = "blue", pch = 3, cex = 0.3)
 
+        ## Decorations
         title(main = paste(as.Date(aday, origin = "1970-01-01"), temp[get(SelEnhanc) == TRUE, .N], temp[TYPE == "Cloud", .N], vec_days$Descriprion[ii]))
 
         legend("topleft",
@@ -630,15 +631,15 @@ for (ii in 1:nrow(vec_days)) {
                cex = 0.8
         )
 
+        ## ggplot
 
-        cols <- brewer.pal(n = 9, name = 'Set1')
+        # cols <- brewer.pal(n = 9, name = 'Set1')
         #  display.brewer.pal(n = 9, name = 'Set1')
 
-        temp[TYPE == "Clouds", ]
-
-        mark <- temp[get(SelEnhanc) == TRUE, wattGLB, Date]
-
-
+        # temp[TYPE == "Clouds", ]
+        #
+        # mark <- temp[get(SelEnhanc) == TRUE, wattGLB, Date]
+        #
         # p <- ggplot(temp, aes(x = Date)) +
         #     geom_point(aes(y = wattGLB,                       color = "wattGLB" ),size = .3 ) +
         #     geom_point(data = mark ,
