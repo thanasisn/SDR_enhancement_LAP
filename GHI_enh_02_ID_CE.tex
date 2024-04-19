@@ -270,14 +270,14 @@ Alpha * HAU is CS\_ref
 \begin{Shaded}
 \begin{Highlighting}[]
 \ControlFlowTok{switch}\NormalTok{(csmodel,}
-       \AttributeTok{Exact\_B.Exact\_W =}\NormalTok{ \{ C4\_cs\_ref\_ratio }\OtherTok{\textless{}{-}} \FloatTok{1.02}\NormalTok{; C4\_GLB\_diff\_THRES }\OtherTok{\textless{}{-}} \DecValTok{55}\NormalTok{; C4\_lowcut\_sza }\OtherTok{\textless{}{-}} \DecValTok{60}\NormalTok{; C4\_lowcut\_ratio }\OtherTok{\textless{}{-}} \FloatTok{1.12}\NormalTok{\},}
-       \AttributeTok{Low\_2\_B.Low\_2\_W =}\NormalTok{ \{ C4\_cs\_ref\_ratio }\OtherTok{\textless{}{-}} \FloatTok{1.03}\NormalTok{; C4\_GLB\_diff\_THRES }\OtherTok{\textless{}{-}}  \DecValTok{5}\NormalTok{; C4\_lowcut\_sza }\OtherTok{\textless{}{-}} \DecValTok{60}\NormalTok{; C4\_lowcut\_ratio }\OtherTok{\textless{}{-}} \FloatTok{1.12}\NormalTok{\},}
-       \AttributeTok{Low\_B.Exact\_W   =}\NormalTok{ \{ C4\_cs\_ref\_ratio }\OtherTok{\textless{}{-}} \FloatTok{1.04}\NormalTok{; C4\_GLB\_diff\_THRES }\OtherTok{\textless{}{-}} \DecValTok{20}\NormalTok{; C4\_lowcut\_sza }\OtherTok{\textless{}{-}} \DecValTok{60}\NormalTok{; C4\_lowcut\_ratio }\OtherTok{\textless{}{-}} \FloatTok{1.12}\NormalTok{\},}
-       \AttributeTok{Low\_B.High\_W    =}\NormalTok{ \{ C4\_cs\_ref\_ratio }\OtherTok{\textless{}{-}} \FloatTok{1.05}\NormalTok{; C4\_GLB\_diff\_THRES }\OtherTok{\textless{}{-}} \DecValTok{20}\NormalTok{; C4\_lowcut\_sza }\OtherTok{\textless{}{-}} \DecValTok{60}\NormalTok{; C4\_lowcut\_ratio }\OtherTok{\textless{}{-}} \FloatTok{1.12}\NormalTok{\},}
+       \AttributeTok{Exact\_B.Exact\_W =}\NormalTok{ \{ C4\_cs\_ref\_ratio }\OtherTok{\textless{}{-}} \FloatTok{1.02}\NormalTok{; C4\_GLB\_diff\_THRES }\OtherTok{\textless{}{-}} \DecValTok{55}\NormalTok{; C4\_lowcut\_sza }\OtherTok{\textless{}{-}} \DecValTok{60}\NormalTok{; C4\_lowcut\_ratio }\OtherTok{\textless{}{-}} \FloatTok{1.12}\NormalTok{; C4\_GLB\_offset\_THRES }\OtherTok{\textless{}{-}} \DecValTok{0}\NormalTok{\},}
+       \AttributeTok{Low\_2\_B.Low\_2\_W =}\NormalTok{ \{ C4\_cs\_ref\_ratio }\OtherTok{\textless{}{-}} \FloatTok{1.03}\NormalTok{; C4\_GLB\_diff\_THRES }\OtherTok{\textless{}{-}}  \DecValTok{5}\NormalTok{; C4\_lowcut\_sza }\OtherTok{\textless{}{-}} \DecValTok{60}\NormalTok{; C4\_lowcut\_ratio }\OtherTok{\textless{}{-}} \FloatTok{1.12}\NormalTok{; C4\_GLB\_offset\_THRES }\OtherTok{\textless{}{-}} \DecValTok{0}\NormalTok{\},}
+       \AttributeTok{Low\_B.Exact\_W   =}\NormalTok{ \{ C4\_cs\_ref\_ratio }\OtherTok{\textless{}{-}} \FloatTok{1.04}\NormalTok{; C4\_GLB\_diff\_THRES }\OtherTok{\textless{}{-}} \DecValTok{20}\NormalTok{; C4\_lowcut\_sza }\OtherTok{\textless{}{-}} \DecValTok{60}\NormalTok{; C4\_lowcut\_ratio }\OtherTok{\textless{}{-}} \FloatTok{1.12}\NormalTok{; C4\_GLB\_offset\_THRES }\OtherTok{\textless{}{-}} \DecValTok{0}\NormalTok{\},}
+       \AttributeTok{Low\_B.High\_W    =}\NormalTok{ \{ C4\_cs\_ref\_ratio }\OtherTok{\textless{}{-}} \FloatTok{1.05}\NormalTok{; C4\_GLB\_diff\_THRES }\OtherTok{\textless{}{-}} \DecValTok{20}\NormalTok{; C4\_lowcut\_sza }\OtherTok{\textless{}{-}} \DecValTok{60}\NormalTok{; C4\_lowcut\_ratio }\OtherTok{\textless{}{-}} \FloatTok{1.12}\NormalTok{; C4\_GLB\_offset\_THRES }\OtherTok{\textless{}{-}} \DecValTok{0}\NormalTok{\},}
        \CommentTok{\# Low\_B.Low\_W     = \{ C4\_cs\_ref\_ratio \textless{}{-} 1.05; C4\_GLB\_diff\_THRES \textless{}{-}  0; C4\_lowcut\_sza \textless{}{-} 60; C4\_lowcut\_ratio \textless{}{-} 1.18\}, \#\# without transparency}
        \CommentTok{\# Low\_B.Low\_W     = \{ C4\_cs\_ref\_ratio \textless{}{-} 1.09; C4\_GLB\_diff\_THRES \textless{}{-}  0; C4\_lowcut\_sza \textless{}{-} 60; C4\_lowcut\_ratio \textless{}{-} 1.18\}, \#\# without transparency}
-       \AttributeTok{Low\_B.Low\_W     =}\NormalTok{ \{ C4\_cs\_ref\_ratio }\OtherTok{\textless{}{-}} \FloatTok{1.05}\NormalTok{; C4\_GLB\_diff\_THRES }\OtherTok{\textless{}{-}}  \DecValTok{0}\NormalTok{; C4\_lowcut\_sza }\OtherTok{\textless{}{-}} \DecValTok{90}\NormalTok{; C4\_lowcut\_ratio }\OtherTok{\textless{}{-}} \FloatTok{1.18}\NormalTok{\},}
-\NormalTok{                         \{ C4\_cs\_ref\_ratio }\OtherTok{\textless{}{-}} \DecValTok{1}\NormalTok{   ; C4\_GLB\_diff\_THRES }\OtherTok{\textless{}{-}}  \DecValTok{0}\NormalTok{; C4\_lowcut\_sza }\OtherTok{\textless{}{-}} \DecValTok{90}\NormalTok{; C4\_lowcut\_ratio }\OtherTok{\textless{}{-}} \DecValTok{1}\NormalTok{   \})}
+       \AttributeTok{Low\_B.Low\_W     =}\NormalTok{ \{ C4\_cs\_ref\_ratio }\OtherTok{\textless{}{-}} \FloatTok{1.05}\NormalTok{; C4\_GLB\_diff\_THRES }\OtherTok{\textless{}{-}}  \DecValTok{0}\NormalTok{; C4\_lowcut\_sza }\OtherTok{\textless{}{-}} \DecValTok{90}\NormalTok{; C4\_lowcut\_ratio }\OtherTok{\textless{}{-}} \FloatTok{1.05}\NormalTok{; C4\_GLB\_offset\_THRES }\OtherTok{\textless{}{-}} \DecValTok{5}\NormalTok{\},}
+\NormalTok{                         \{ C4\_cs\_ref\_ratio }\OtherTok{\textless{}{-}} \DecValTok{1}\NormalTok{   ; C4\_GLB\_diff\_THRES }\OtherTok{\textless{}{-}}  \DecValTok{0}\NormalTok{; C4\_lowcut\_sza }\OtherTok{\textless{}{-}} \DecValTok{90}\NormalTok{; C4\_lowcut\_ratio }\OtherTok{\textless{}{-}} \DecValTok{1}\NormalTok{   ; C4\_GLB\_offset\_THRES }\OtherTok{\textless{}{-}} \DecValTok{0}\NormalTok{\})}
 
 
 \DocumentationTok{\#\# init flag}
@@ -285,7 +285,7 @@ Alpha * HAU is CS\_ref
 
 \NormalTok{C4\_test\_cs\_ref\_ratio   }\OtherTok{\textless{}{-}} \FloatTok{1.05}\NormalTok{;}
 \NormalTok{C4\_test\_GLB\_diff\_THRES }\OtherTok{\textless{}{-}}  \DecValTok{0}\NormalTok{;}
-\NormalTok{C4\_test\_lowcut\_sza     }\OtherTok{\textless{}{-}} \DecValTok{60}\NormalTok{;}
+\NormalTok{C4\_test\_lowcut\_sza     }\OtherTok{\textless{}{-}} \DecValTok{90}\NormalTok{;  }\DocumentationTok{\#\# Disabled}
 \NormalTok{C4\_test\_lowcut\_ratio   }\OtherTok{\textless{}{-}} \FloatTok{1.18}
 
 \CommentTok{\# DATA[, max(SZA)]}
@@ -305,7 +305,7 @@ Alpha * HAU is CS\_ref
 \end{Shaded}
 
 \begin{verbatim}
- [1] 1.1583333 1.0640151 0.9855379        NA        NA        NA        NA
+ [1] 1.0500000 0.9555660 0.8769617        NA        NA        NA        NA
  [8]        NA        NA        NA        NA
 \end{verbatim}
 
@@ -832,12 +832,12 @@ TRUE
 
 \begin{center}\includegraphics[width=1\linewidth]{GHI_enh_02_ID_CE_files/figure-latex/example_days-120} \end{center}
 
+\begin{center}\includegraphics[width=1\linewidth]{GHI_enh_02_ID_CE_files/figure-latex/example_days-121} \end{center}
+
 \FloatBarrier
 
 \hypertarget{days-with-cloudy-day}{%
 \subsection{Days with cloudy day}\label{days-with-cloudy-day}}
-
-\begin{center}\includegraphics[width=1\linewidth]{GHI_enh_02_ID_CE_files/figure-latex/example_days-121} \end{center}
 
 \begin{center}\includegraphics[width=1\linewidth]{GHI_enh_02_ID_CE_files/figure-latex/example_days-122} \end{center}
 
@@ -877,12 +877,12 @@ TRUE
 
 \begin{center}\includegraphics[width=1\linewidth]{GHI_enh_02_ID_CE_files/figure-latex/example_days-140} \end{center}
 
+\begin{center}\includegraphics[width=1\linewidth]{GHI_enh_02_ID_CE_files/figure-latex/example_days-141} \end{center}
+
 \FloatBarrier
 
 \hypertarget{days-with-random-day}{%
 \subsection{Days with random day}\label{days-with-random-day}}
-
-\begin{center}\includegraphics[width=1\linewidth]{GHI_enh_02_ID_CE_files/figure-latex/example_days-141} \end{center}
 
 \begin{center}\includegraphics[width=1\linewidth]{GHI_enh_02_ID_CE_files/figure-latex/example_days-142} \end{center}
 
@@ -942,18 +942,20 @@ TRUE
 
 \begin{center}\includegraphics[width=1\linewidth]{GHI_enh_02_ID_CE_files/figure-latex/example_days-170} \end{center}
 
+\begin{center}\includegraphics[width=1\linewidth]{GHI_enh_02_ID_CE_files/figure-latex/example_days-171} \end{center}
+
 \FloatBarrier
 
 \hypertarget{days-with-manual-test-days}{%
 \subsection{Days with manual test days}\label{days-with-manual-test-days}}
-
-\begin{center}\includegraphics[width=1\linewidth]{GHI_enh_02_ID_CE_files/figure-latex/example_days-171} \end{center}
 
 \begin{center}\includegraphics[width=1\linewidth]{GHI_enh_02_ID_CE_files/figure-latex/example_days-172} \end{center}
 
 \begin{center}\includegraphics[width=1\linewidth]{GHI_enh_02_ID_CE_files/figure-latex/example_days-173} \end{center}
 
 \begin{center}\includegraphics[width=1\linewidth]{GHI_enh_02_ID_CE_files/figure-latex/example_days-174} \end{center}
+
+\begin{center}\includegraphics[width=1\linewidth]{GHI_enh_02_ID_CE_files/figure-latex/example_days-175} \end{center}
 
 \newpage
 \FloatBarrier
@@ -985,7 +987,7 @@ TEST IS ACTIVE !!
 \textbf{END}
 
 \begin{verbatim}
-2024-04-19 07:58:36.0 athan@sagan GHI_enh_02_ID_CE.R 2.315817 mins
+2024-04-19 09:06:48.5 athan@sagan GHI_enh_02_ID_CE.R 0.744353 mins
 \end{verbatim}
 
 \end{document}
