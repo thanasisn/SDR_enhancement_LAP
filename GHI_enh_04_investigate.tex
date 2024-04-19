@@ -87,7 +87,7 @@
 
 \title{Enhancement of SDR in Thessaloniki}
 \author{Natsis Athanasios\footnote{Laboratory of Atmospheric Physics, AUTH, \href{mailto:natsisphysicist@gmail.com}{\nolinkurl{natsisphysicist@gmail.com}}} \and Alkiviadis Bais\footnote{Laboratory of Atmospheric Physics, AUTH}}
-\date{2024-04-17}
+\date{2024-04-19}
 
 \begin{document}
 \maketitle
@@ -148,256 +148,6 @@ Registered S3 method overwritten by 'ggpmisc':
 \end{verbatim}
 
 \begin{verbatim}
-Run previous step: ./GHI_enh_03_process.R
-\end{verbatim}
-
-\begin{verbatim}
-Warning: Invalid .internal.selfref detected and fixed by taking a (shallow)
-copy of the data.table so that := can add this new column by reference. At an
-earlier point, this data.table has been copied by R (or was created manually
-using structure() or similar). Avoid names<- and attr<- which in R currently
-(and oddly) may copy the whole data.table. Use set* syntax instead to avoid
-copying: ?set, ?setnames and ?setattr. If this message doesn't help, please
-report your use case to the data.table issue tracker so the root cause can be
-fixed or this message improved.
-\end{verbatim}
-
-\begin{verbatim}
-Cross over point: 2014.75 
-\end{verbatim}
-
-\begin{verbatim}
-2024-04-17 07:44:01.2 athan@tyler GHI_enh_Aeronet.R 0.004314 mins
-
-USING TRASPARENCY TREND
-
- USING CSMODE: Low_B.Low_W 
-
-C4 factor: 1.09 
-C4 offset: 0 
-\end{verbatim}
-
-\begin{verbatim}
-
-\FloatBarrier
-
-
-## Days with extreme cases day 
-\end{verbatim}
-
-\begin{verbatim}
- 
- 
-
-\FloatBarrier
-
-
-## Days with strong enhancement day 
-\end{verbatim}
-
-\begin{verbatim}
- 
- 
-
-\FloatBarrier
-
-
-## Days with sunny day 
-\end{verbatim}
-
-\begin{verbatim}
- 
- 
-
-\FloatBarrier
-
-
-## Days with sunny enhancement day 
-\end{verbatim}
-
-\begin{verbatim}
- 
- 
-
-\FloatBarrier
-
-
-## Days with cloudy day 
-\end{verbatim}
-
-\begin{verbatim}
- 
- 
-
-\FloatBarrier
-
-
-## Days with random day 
-\end{verbatim}
-
-\begin{verbatim}
- 
- 
-
-\FloatBarrier
-
-
-## Days with manual test days 
-\end{verbatim}
-
-\begin{verbatim}
-Warning: A numeric `legend.position` argument in `theme()` was deprecated in ggplot2 3.5.0.
-i Please use the `legend.position.inside` argument of `theme()` instead.
-This warning is displayed once every 8 hours.
-Call `lifecycle::last_lifecycle_warnings()` to see where this warning was generated.
-\end{verbatim}
-
-\begin{verbatim}
-2024-04-17 09:21:27.9 athan@tyler GHI_enh_Aeronet.R 97.447730 mins
-\end{verbatim}
-
-\begin{verbatim}
-
-Attaching package: 'timetk'
-\end{verbatim}
-
-\begin{verbatim}
-The following object is masked from 'package:data.table':
-
-    :=
-\end{verbatim}
-
-\begin{verbatim}
-frequency = 30 observations
-\end{verbatim}
-
-\begin{verbatim}
-trend = 180 observations
-\end{verbatim}
-
-\begin{verbatim}
-frequency = 30 observations
-\end{verbatim}
-
-\begin{verbatim}
-trend = 180 observations
-\end{verbatim}
-
-\begin{verbatim}
-
-Call:
-stats::lm(formula = .formula, data = df)
-
-Residuals:
-    Min      1Q  Median      3Q     Max 
--372.77 -150.51  -49.67   99.05  778.55 
-
-Coefficients:
-                   Estimate Std. Error t value Pr(>|t|)    
-(Intercept)      -9.118e+01  5.082e+01  -1.794   0.0736 .  
-as.numeric(Date)  3.246e-07  4.062e-08   7.991 1.82e-14 ***
----
-Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
-
-Residual standard error: 217 on 361 degrees of freedom
-Multiple R-squared:  0.1503,    Adjusted R-squared:  0.148 
-F-statistic: 63.86 on 1 and 361 DF,  p-value: 1.815e-14
-
-aa
-aday
-AEin1
-All_daily_ratio_lim
-alpha
-ampl
-avar
-b
-BIO_ELEVA
-C1_Clearness_Kt_THRES
-C1_GLB_diff_THRES
-C2_Clearness_Kt_THRES
-C3_cs_ref_ratio
-C4_cs_ref_ratio
-C4_GLB_diff_THRES
-C4_lowcut_ratio
-C4_lowcut_sza
-C4_test_cs_ref_ratio
-C4_test_GLB_diff_THRES
-C4_test_lowcut_ratio
-C4_test_lowcut_sza
-Clear_daily_ratio_lim
-CLEARdir
-Cloud_daily_ratio_lim
-cols
-common_data_13
-common_data_14
-common_data_14_2
-CS_file_13
-CS_file_14
-CS_file_14_2
-csmodel
-Daily_aggregation_N_lim
-Daily_confidence_limit
-daylist
-Days_of_year
-dummy
-Energy_Div
-I1_longterm
-I2_szatrend
-I3_trendsconsist
-ii
-Input_data_ID
-Kurudz_SC
-mid
-MIN_ELEVA
-MIN_N
-Monthly_aggegation_N_lim
-Monthly_confidence_limit
-my.cols
-my.cols.gr
-pyear
-R_COMPILE_PKGS
-RANDOM_SEED
-raw_input_data
-running_mean_window_days
-running_mean_window_years
-SEAS_MIN_N
-SelEnhanc
-SZA_aggregation_N_lim
-SZA_BIN
-SZA_confidence_limit
-torun
-variables_fl
-yearstodo
-ylim
-zeropoint
-ST_daily
-ST_E_daily
-ST_E_daily_seas
-ST_E_monthly
-ST_E_monthly_seas
-ST_E_sza
-ST_E_sza_doy
-ST_E_sza_monthly
-ST_E_yearly
-ST_extreme_daily
-ST_extreme_monthly
-ST_extreme_SZA
-ST_extreme_SZA_doy
-ST_extreme_SZA_monthly
-ST_extreme_total
-ST_extreme_yearly
-ST_G0
-ST_G1
-ST_monthly
-ST_sza
-ST_sza_doy
-ST_sza_monthly
-ST_total
-ST_yearly
-2024-04-17 09:47:34.9 athan@tyler GHI_enh_Aeronet.R 19.406323 mins
-\end{verbatim}
-
-\begin{verbatim}
 ST_daily ST_E_daily ST_E_daily_seas ST_extreme_daily
 \end{verbatim}
 
@@ -423,31 +173,31 @@ Loading required package: stringr
 
 Units for GLB\_diff.max : Watt/m\^{}2
 
-lmD: 1.566006 +/- 0.108321
+lmD: 1.552161 +/- 0.104876
 
-lmY: 1.566022 +/- 0.108322
+lmY: 1.552176 +/- 0.104878
 
-Arima: 1.566405 +/- 0.146687
+Arima: 1.552549 +/- 0.14034
 
 \begin{center}\includegraphics[width=1\linewidth]{GHI_enh_04_investigate_files/figure-latex/daily-1} \end{center}
 
 Units for GLB\_diff.mean : Watt/m\^{}2
 
-lmD: 0.950804 +/- 0.155249
+lmD: 0.954836 +/- 0.154734
 
-lmY: 0.950827 +/- 0.155251
+lmY: 0.954859 +/- 0.154736
 
-Arima: 1.022268 +/- 0.236917
+Arima: 1.024507 +/- 0.23503
 
 \begin{center}\includegraphics[width=1\linewidth]{GHI_enh_04_investigate_files/figure-latex/daily-2} \end{center}
 
 Units for GLB\_diff.median : Watt/m\^{}2
 
-lmD: 1.086985 +/- 0.167871
+lmD: 1.088987 +/- 0.16743
 
-lmY: 1.087013 +/- 0.167874
+lmY: 1.089013 +/- 0.167433
 
-Arima: 1.159971 +/- 0.251086
+Arima: 1.160151 +/- 0.24838
 
 Units for GLB\_diff.N :
 
@@ -467,87 +217,87 @@ Warning in sqrt(diag(se)): NaNs produced
 
 \begin{center}\includegraphics[width=1\linewidth]{GHI_enh_04_investigate_files/figure-latex/daily-3} \end{center}
 
-Arima: -0.013183 +/- 6.904159
+Arima: -0.013183 +/- 6.898051
 
 \begin{center}\includegraphics[width=1\linewidth]{GHI_enh_04_investigate_files/figure-latex/daily-4} \end{center}
 
 Units for GLB\_diff.p\_10 : Watt/m\^{}2
 
-lmD: 1.034078 +/- 0.239285
+lmD: 1.050842 +/- 0.240164
 
-lmY: 1.034088 +/- 0.23929
+lmY: 1.050851 +/- 0.240168
 
-Arima: 1.03413 +/- 0.363491
+Arima: 1.050895 +/- 0.364666
 
 \begin{center}\includegraphics[width=1\linewidth]{GHI_enh_04_investigate_files/figure-latex/daily-5} \end{center}
 
 Units for GLB\_diff.p\_5 : Watt/m\^{}2
 
-lmD: 0.944568 +/- 0.252832
+lmD: 0.958299 +/- 0.253655
 
-lmY: 0.944578 +/- 0.252837
+lmY: 0.958309 +/- 0.25366
 
-Arima: 0.944623 +/- 0.387039
+Arima: 0.958355 +/- 0.388216
 
 \begin{center}\includegraphics[width=1\linewidth]{GHI_enh_04_investigate_files/figure-latex/daily-6} \end{center}
 
 Units for GLB\_diff.p\_90 : Watt/m\^{}2
 
-lmD: 1.109672 +/- 0.07725
+lmD: 1.089066 +/- 0.07424
 
-lmY: 1.109686 +/- 0.077252
+lmY: 1.089079 +/- 0.074241
 
-Arima: 1.109689 +/- 0.115906
+Arima: 1.089082 +/- 0.109498
 
 \begin{center}\includegraphics[width=1\linewidth]{GHI_enh_04_investigate_files/figure-latex/daily-7} \end{center}
 
 Units for GLB\_diff.p\_95 : Watt/m\^{}2
 
-lmD: 1.167512 +/- 0.073583
+lmD: 1.136243 +/- 0.070602
 
-lmY: 1.167525 +/- 0.073584
+lmY: 1.136256 +/- 0.070603
 
-Arima: 1.167532 +/- 0.106265
+Arima: 1.136263 +/- 0.100583
 
 \begin{center}\includegraphics[width=1\linewidth]{GHI_enh_04_investigate_files/figure-latex/daily-8} \end{center}
 
 Units for GLB\_diff.sum : kJ/m\^{}2
 
-lmD: 33.66024 +/- 5.69273
+lmD: 33.75698 +/- 5.702807
 
-lmY: 33.6608 +/- 5.692829
+lmY: 33.75752 +/- 5.702906
 
-Arima: 33.721354 +/- 8.881459
+Arima: 33.816428 +/- 8.918367
 
 \begin{center}\includegraphics[width=1\linewidth]{GHI_enh_04_investigate_files/figure-latex/daily-9} \end{center}
 
 Units for GLB\_ench.max : Watt/m\^{}2
 
-lmD: 0.003266 +/- 0.000271
+lmD: 0.003302 +/- 0.00027
 
-lmY: 0.003266 +/- 0.000271
+lmY: 0.003302 +/- 0.00027
 
-Arima: 0.003291 +/- 0.000364
+Arima: 0.003326 +/- 0.000357
 
 \begin{center}\includegraphics[width=1\linewidth]{GHI_enh_04_investigate_files/figure-latex/daily-10} \end{center}
 
 Units for GLB\_ench.mean : Watt/m\^{}2
 
-lmD: 0.001715 +/- 0.000278
+lmD: 0.001743 +/- 0.000278
 
-lmY: 0.001715 +/- 0.000278
+lmY: 0.001743 +/- 0.000278
 
-Arima: 0.001886 +/- 0.000465
+Arima: 0.001906 +/- 0.000459
 
 \begin{center}\includegraphics[width=1\linewidth]{GHI_enh_04_investigate_files/figure-latex/daily-11} \end{center}
 
 Units for GLB\_ench.median : Watt/m\^{}2
 
-lmD: 0.001677 +/- 0.000314
+lmD: 0.001718 +/- 0.000312
 
-lmY: 0.001677 +/- 0.000314
+lmY: 0.001718 +/- 0.000312
 
-Arima: 0.001849 +/- 0.000512
+Arima: 0.001883 +/- 0.000503
 
 Units for GLB\_ench.N :
 
@@ -566,57 +316,57 @@ NaNs produced
 
 \begin{center}\includegraphics[width=1\linewidth]{GHI_enh_04_investigate_files/figure-latex/daily-12} \end{center}
 
-Arima: -0.013183 +/- 6.904159
+Arima: -0.013183 +/- 6.898051
 
 \begin{center}\includegraphics[width=1\linewidth]{GHI_enh_04_investigate_files/figure-latex/daily-13} \end{center}
 
 Units for GLB\_ench.p\_10 : Watt/m\^{}2
 
-lmD: 0.00184 +/- 0.000301
+lmD: 0.001896 +/- 0.000307
 
-lmY: 0.00184 +/- 0.000301
+lmY: 0.001896 +/- 0.000307
 
-Arima: 0.00184 +/- 0.000473
+Arima: 0.001896 +/- 0.000479
 
 \begin{center}\includegraphics[width=1\linewidth]{GHI_enh_04_investigate_files/figure-latex/daily-14} \end{center}
 
 Units for GLB\_ench.p\_5 : Watt/m\^{}2
 
-lmD: 0.001768 +/- 0.000292
+lmD: 0.001823 +/- 0.000299
 
-lmY: 0.001768 +/- 0.000292
+lmY: 0.001823 +/- 0.000299
 
-Arima: 0.001768 +/- 0.000451
+Arima: 0.001823 +/- 0.00046
 
 \begin{center}\includegraphics[width=1\linewidth]{GHI_enh_04_investigate_files/figure-latex/daily-15} \end{center}
 
 Units for GLB\_ench.p\_90 : Watt/m\^{}2
 
-lmD: 0.002432 +/- 0.000235
+lmD: 0.002414 +/- 0.000233
 
-lmY: 0.002432 +/- 0.000235
+lmY: 0.002414 +/- 0.000233
 
-Arima: 0.002432 +/- 0.000369
+Arima: 0.002414 +/- 0.000362
 
 \begin{center}\includegraphics[width=1\linewidth]{GHI_enh_04_investigate_files/figure-latex/daily-16} \end{center}
 
 Units for GLB\_ench.p\_95 : Watt/m\^{}2
 
-lmD: 0.002624 +/- 0.000229
+lmD: 0.002624 +/- 0.000228
 
-lmY: 0.002624 +/- 0.000229
+lmY: 0.002624 +/- 0.000228
 
-Arima: 0.002624 +/- 0.000346
+Arima: 0.002624 +/- 0.000339
 
 \begin{center}\includegraphics[width=1\linewidth]{GHI_enh_04_investigate_files/figure-latex/daily-17} \end{center}
 
 Units for GLB\_ench.sum : Watt/m\^{}2
 
-lmD: 0.977006 +/- 0.143935
+lmD: 0.988112 +/- 0.144355
 
-lmY: 0.977029 +/- 0.143937
+lmY: 0.988134 +/- 0.144358
 
-Arima: 1.040956 +/- 0.218636
+Arima: 1.051184 +/- 0.218585
 
 \begin{center}\includegraphics[width=1\linewidth]{GHI_enh_04_investigate_files/figure-latex/daily-18} \end{center}
 
@@ -627,181 +377,181 @@ Arima: 1.040956 +/- 0.218636
 
 Units for GLB\_diff.max : Watt/m\^{}2
 
-lmD: 0.817503 +/- 0.103432
+lmD: 0.816129 +/- 0.101923
 
-lmY: 0.817514 +/- 0.103434
+lmY: 0.816139 +/- 0.101925
 
-Arima: 0.817505 +/- 0.120041
+Arima: 0.816132 +/- 0.119665
 
 \begin{center}\includegraphics[width=1\linewidth]{GHI_enh_04_investigate_files/figure-latex/daily-19} \end{center}
 
 Units for GLB\_diff.mean : Watt/m\^{}2
 
-lmD: 0.216071 +/- 0.038072
+lmD: 0.215792 +/- 0.037414
 
-lmY: 0.216075 +/- 0.038073
+lmY: 0.215795 +/- 0.037415
 
-Arima: 0.216075 +/- 0.041418
+Arima: 0.215796 +/- 0.040986
 
 \begin{center}\includegraphics[width=1\linewidth]{GHI_enh_04_investigate_files/figure-latex/daily-20} \end{center}
 
 Units for GLB\_diff.median : Watt/m\^{}2
 
-lmD: 0.190931 +/- 0.037875
+lmD: 0.181869 +/- 0.03711
 
-lmY: 0.190936 +/- 0.037876
+lmY: 0.181874 +/- 0.037111
 
-Arima: 0.190936 +/- 0.040087
+Arima: 0.181874 +/- 0.039209
 
 \begin{center}\includegraphics[width=1\linewidth]{GHI_enh_04_investigate_files/figure-latex/daily-21} \end{center}
 
 Units for GLB\_diff.N :
 
-lmD: 0.485676 +/- 0.046388
+lmD: 0.481659 +/- 0.045723
 
-lmY: 0.485682 +/- 0.046389
+lmY: 0.481664 +/- 0.045724
 
-Arima: 0.485682 +/- 0.055179
+Arima: 0.481665 +/- 0.054201
 
 \begin{center}\includegraphics[width=1\linewidth]{GHI_enh_04_investigate_files/figure-latex/daily-22} \end{center}
 
 Units for GLB\_diff.p\_10 : Watt/m\^{}2
 
-lmD: -0.00734 +/- 0.019077
+lmD: 0.001364 +/- 0.01878
 
-lmY: -0.007339 +/- 0.019077
+lmY: 0.001365 +/- 0.018781
 
-Arima: -0.007339 +/- 0.019267
+Arima: 0.001365 +/- 0.01932
 
 \begin{center}\includegraphics[width=1\linewidth]{GHI_enh_04_investigate_files/figure-latex/daily-23} \end{center}
 
 Units for GLB\_diff.p\_5 : Watt/m\^{}2
 
-lmD: -0.027816 +/- 0.017696
+lmD: -0.018679 +/- 0.017374
 
-lmY: -0.027816 +/- 0.017696
+lmY: -0.018679 +/- 0.017374
 
-Arima: -0.027816 +/- 0.017858
+Arima: -0.018679 +/- 0.017837
 
 \begin{center}\includegraphics[width=1\linewidth]{GHI_enh_04_investigate_files/figure-latex/daily-24} \end{center}
 
 Units for GLB\_diff.p\_90 : Watt/m\^{}2
 
-lmD: 0.49203 +/- 0.073274
+lmD: 0.496018 +/- 0.071855
 
-lmY: 0.492037 +/- 0.073275
+lmY: 0.496024 +/- 0.071857
 
-Arima: 0.492032 +/- 0.081403
+Arima: 0.496022 +/- 0.080622
 
 \begin{center}\includegraphics[width=1\linewidth]{GHI_enh_04_investigate_files/figure-latex/daily-25} \end{center}
 
 Units for GLB\_diff.p\_95 : Watt/m\^{}2
 
-lmD: 0.595557 +/- 0.083417
+lmD: 0.597354 +/- 0.08202
 
-lmY: 0.595566 +/- 0.083419
+lmY: 0.597361 +/- 0.082022
 
-Arima: 0.59556 +/- 0.094857
+Arima: 0.597357 +/- 0.094227
 
 \begin{center}\includegraphics[width=1\linewidth]{GHI_enh_04_investigate_files/figure-latex/daily-26} \end{center}
 
 Units for GLB\_diff.sum : kJ/m\^{}2
 
-lmD: 1.467857 +/- 0.152656
+lmD: 1.432631 +/- 0.148944
 
-lmY: 1.46788 +/- 0.152659
+lmY: 1.432652 +/- 0.148947
 
-Arima: 1.467877 +/- 0.18431
+Arima: 1.432652 +/- 0.180994
 
 \begin{center}\includegraphics[width=1\linewidth]{GHI_enh_04_investigate_files/figure-latex/daily-27} \end{center}
 
 Units for GLB\_ench.max : Watt/m\^{}2
 
-lmD: 0.001336 +/- 0.000137
+lmD: 0.001383 +/- 0.000137
 
-lmY: 0.001336 +/- 0.000137
+lmY: 0.001383 +/- 0.000137
 
-Arima: 0.001336 +/- 0.000157
+Arima: 0.001383 +/- 0.00016
 
 \begin{center}\includegraphics[width=1\linewidth]{GHI_enh_04_investigate_files/figure-latex/daily-28} \end{center}
 
 Units for GLB\_ench.mean : Watt/m\^{}2
 
-lmD: 0.000423 +/- 5.9e-05
+lmD: 0.00044 +/- 6.1e-05
 
-lmY: 0.000423 +/- 5.9e-05
+lmY: 0.00044 +/- 6.1e-05
 
-Arima: 0.000423 +/- 6.7e-05
+Arima: 0.00044 +/- 7e-05
 
 \begin{center}\includegraphics[width=1\linewidth]{GHI_enh_04_investigate_files/figure-latex/daily-29} \end{center}
 
 Units for GLB\_ench.median : Watt/m\^{}2
 
-lmD: 0.000372 +/- 6.1e-05
+lmD: 0.000363 +/- 6.4e-05
 
-lmY: 0.000372 +/- 6.1e-05
+lmY: 0.000363 +/- 6.4e-05
 
-Arima: 0.000372 +/- 6.8e-05
+Arima: 0.000363 +/- 7.2e-05
 
 \begin{center}\includegraphics[width=1\linewidth]{GHI_enh_04_investigate_files/figure-latex/daily-30} \end{center}
 
 Units for GLB\_ench.N :
 
-lmD: 0.485676 +/- 0.046388
+lmD: 0.481659 +/- 0.045723
 
-lmY: 0.485682 +/- 0.046389
+lmY: 0.481664 +/- 0.045724
 
-Arima: 0.485682 +/- 0.055179
+Arima: 0.481665 +/- 0.054201
 
 \begin{center}\includegraphics[width=1\linewidth]{GHI_enh_04_investigate_files/figure-latex/daily-31} \end{center}
 
 Units for GLB\_ench.p\_10 : Watt/m\^{}2
 
-lmD: 2.1e-05 +/- 3.2e-05
+lmD: 4e-05 +/- 3.3e-05
 
-lmY: 2.1e-05 +/- 3.2e-05
+lmY: 4e-05 +/- 3.3e-05
 
-Arima: 2.1e-05 +/- 3.6e-05
+Arima: 4e-05 +/- 3.8e-05
 
 \begin{center}\includegraphics[width=1\linewidth]{GHI_enh_04_investigate_files/figure-latex/daily-32} \end{center}
 
 Units for GLB\_ench.p\_5 : Watt/m\^{}2
 
-lmD: -1.2e-05 +/- 2.9e-05
+lmD: 5e-06 +/- 2.9e-05
 
-lmY: -1.2e-05 +/- 2.9e-05
+lmY: 5e-06 +/- 2.9e-05
 
-Arima: -1.2e-05 +/- 3.4e-05
+Arima: 5e-06 +/- 3.4e-05
 
 \begin{center}\includegraphics[width=1\linewidth]{GHI_enh_04_investigate_files/figure-latex/daily-33} \end{center}
 
 Units for GLB\_ench.p\_90 : Watt/m\^{}2
 
-lmD: 0.000922 +/- 0.000106
+lmD: 0.000968 +/- 0.000108
 
-lmY: 0.000922 +/- 0.000106
+lmY: 0.000968 +/- 0.000108
 
-Arima: 0.000922 +/- 0.00012
+Arima: 0.000968 +/- 0.000125
 
 \begin{center}\includegraphics[width=1\linewidth]{GHI_enh_04_investigate_files/figure-latex/daily-34} \end{center}
 
 Units for GLB\_ench.p\_95 : Watt/m\^{}2
 
-lmD: 0.001074 +/- 0.000117
+lmD: 0.001126 +/- 0.000119
 
-lmY: 0.001074 +/- 0.000117
+lmY: 0.001126 +/- 0.000119
 
-Arima: 0.001074 +/- 0.000134
+Arima: 0.001126 +/- 0.000138
 
 \begin{center}\includegraphics[width=1\linewidth]{GHI_enh_04_investigate_files/figure-latex/daily-35} \end{center}
 
 Units for GLB\_ench.sum : Watt/m\^{}2
 
-lmD: 0.036561 +/- 0.003622
+lmD: 0.036713 +/- 0.003659
 
-lmY: 0.036562 +/- 0.003622
+lmY: 0.036714 +/- 0.003659
 
-Arima: 0.036562 +/- 0.004204
+Arima: 0.036714 +/- 0.00425
 
 \begin{center}\includegraphics[width=1\linewidth]{GHI_enh_04_investigate_files/figure-latex/daily-36} \end{center}
 
@@ -812,31 +562,31 @@ Arima: 0.036562 +/- 0.004204
 
 Units for GLB\_diff.max : Watt/m\^{}2
 
-lmD: 0.187208 +/- 0.249476
+lmD: 0.203753 +/- 0.246152
 
-lmY: 0.187246 +/- 0.24948
+lmY: 0.20379 +/- 0.246156
 
-Arima: 0.171775 +/- 0.364628
+Arima: 0.191314 +/- 0.355242
 
 \begin{center}\includegraphics[width=1\linewidth]{GHI_enh_04_investigate_files/figure-latex/daily-37} \end{center}
 
 Units for GLB\_diff.mean : Watt/m\^{}2
 
-lmD: 0.049774 +/- 0.192505
+lmD: 0.066924 +/- 0.186933
 
-lmY: 0.049798 +/- 0.192508
+lmY: 0.066947 +/- 0.186936
 
-Arima: 0.008548 +/- 0.346363
+Arima: 0.031787 +/- 0.332858
 
 \begin{center}\includegraphics[width=1\linewidth]{GHI_enh_04_investigate_files/figure-latex/daily-38} \end{center}
 
 Units for GLB\_diff.median : Watt/m\^{}2
 
-lmD: 0.091248 +/- 0.191453
+lmD: 0.108038 +/- 0.185587
 
-lmY: 0.091272 +/- 0.191456
+lmY: 0.10806 +/- 0.18559
 
-Arima: 0.049975 +/- 0.33542
+Arima: 0.07227 +/- 0.320898
 
 \begin{center}\includegraphics[width=1\linewidth]{GHI_enh_04_investigate_files/figure-latex/daily-39} \end{center}
 
@@ -852,81 +602,81 @@ Arima: 0.030378 +/- 0.022031
 
 Units for GLB\_diff.p\_10 : Watt/m\^{}2
 
-lmD: -0.069532 +/- 0.179279
+lmD: -0.047504 +/- 0.172428
 
-lmY: -0.06952 +/- 0.179282
+lmY: -0.047493 +/- 0.17243
 
-Arima: -0.124647 +/- 0.339466
+Arima: -0.093727 +/- 0.32618
 
 \begin{center}\includegraphics[width=1\linewidth]{GHI_enh_04_investigate_files/figure-latex/daily-41} \end{center}
 
 Units for GLB\_diff.p\_5 : Watt/m\^{}2
 
-lmD: -0.089703 +/- 0.178956
+lmD: -0.06805 +/- 0.171992
 
-lmY: -0.089692 +/- 0.178959
+lmY: -0.068039 +/- 0.171995
 
-Arima: -0.144328 +/- 0.338161
+Arima: -0.113836 +/- 0.324815
 
 \begin{center}\includegraphics[width=1\linewidth]{GHI_enh_04_investigate_files/figure-latex/daily-42} \end{center}
 
 Units for GLB\_diff.p\_90 : Watt/m\^{}2
 
-lmD: 0.16704 +/- 0.22968
+lmD: 0.1818 +/- 0.225799
 
-lmY: 0.167077 +/- 0.229683
+lmY: 0.181836 +/- 0.225802
 
-Arima: 0.146398 +/- 0.353614
+Arima: 0.164846 +/- 0.343081
 
 \begin{center}\includegraphics[width=1\linewidth]{GHI_enh_04_investigate_files/figure-latex/daily-43} \end{center}
 
 Units for GLB\_diff.p\_95 : Watt/m\^{}2
 
-lmD: 0.17703 +/- 0.238162
+lmD: 0.192758 +/- 0.234509
 
-lmY: 0.177067 +/- 0.238165
+lmY: 0.192794 +/- 0.234513
 
-Arima: 0.158966 +/- 0.358093
+Arima: 0.178049 +/- 0.348128
 
 \begin{center}\includegraphics[width=1\linewidth]{GHI_enh_04_investigate_files/figure-latex/daily-44} \end{center}
 
 Units for GLB\_diff.sum : kJ/m\^{}2
 
-lmD: 0.368357 +/- 0.253498
+lmD: 0.372906 +/- 0.252445
 
-lmY: 0.368383 +/- 0.253502
+lmY: 0.372932 +/- 0.252449
 
-Arima: 0.36844 +/- 0.258271
+Arima: 0.373033 +/- 0.257109
 
 \begin{center}\includegraphics[width=1\linewidth]{GHI_enh_04_investigate_files/figure-latex/daily-45} \end{center}
 
 Units for GLB\_ench.max : Watt/m\^{}2
 
-lmD: 0.000508 +/- 0.000281
+lmD: 0.000567 +/- 0.000291
 
-lmY: 0.000509 +/- 0.000281
+lmY: 0.000567 +/- 0.000291
 
-Arima: 0.000508 +/- 0.000318
+Arima: 0.000567 +/- 0.000322
 
 \begin{center}\includegraphics[width=1\linewidth]{GHI_enh_04_investigate_files/figure-latex/daily-46} \end{center}
 
 Units for GLB\_ench.mean : Watt/m\^{}2
 
-lmD: 0.000356 +/- 0.000214
+lmD: 0.000397 +/- 0.000226
 
-lmY: 0.000356 +/- 0.000214
+lmY: 0.000397 +/- 0.000226
 
-Arima: 0.000349 +/- 0.000265
+Arima: 0.000393 +/- 0.000269
 
 \begin{center}\includegraphics[width=1\linewidth]{GHI_enh_04_investigate_files/figure-latex/daily-47} \end{center}
 
 Units for GLB\_ench.median : Watt/m\^{}2
 
-lmD: 0.000399 +/- 0.000221
+lmD: 0.000416 +/- 0.000234
 
-lmY: 0.000399 +/- 0.000221
+lmY: 0.000416 +/- 0.000234
 
-Arima: 0.000392 +/- 0.00027
+Arima: 0.000413 +/- 0.000274
 
 \begin{center}\includegraphics[width=1\linewidth]{GHI_enh_04_investigate_files/figure-latex/daily-48} \end{center}
 
@@ -942,55 +692,55 @@ Arima: 0.030378 +/- 0.022031
 
 Units for GLB\_ench.p\_10 : Watt/m\^{}2
 
-lmD: 0.000168 +/- 0.000199
+lmD: 0.000209 +/- 0.000208
 
-lmY: 0.000168 +/- 0.000199
+lmY: 0.000209 +/- 0.000208
 
-Arima: 0.000157 +/- 0.000257
+Arima: 0.000203 +/- 0.000261
 
 \begin{center}\includegraphics[width=1\linewidth]{GHI_enh_04_investigate_files/figure-latex/daily-50} \end{center}
 
 Units for GLB\_ench.p\_5 : Watt/m\^{}2
 
-lmD: 0.000155 +/- 0.000199
+lmD: 0.000194 +/- 0.000208
 
-lmY: 0.000155 +/- 0.000199
+lmY: 0.000194 +/- 0.000208
 
-Arima: 0.000144 +/- 0.000256
+Arima: 0.000187 +/- 0.000261
 
 \begin{center}\includegraphics[width=1\linewidth]{GHI_enh_04_investigate_files/figure-latex/daily-51} \end{center}
 
 Units for GLB\_ench.p\_90 : Watt/m\^{}2
 
-lmD: 0.000509 +/- 0.000261
+lmD: 0.000565 +/- 0.000272
 
-lmY: 0.000509 +/- 0.000261
+lmY: 0.000565 +/- 0.000272
 
-Arima: 0.000508 +/- 3e-04
+Arima: 0.000565 +/- 0.000304
 
 \begin{center}\includegraphics[width=1\linewidth]{GHI_enh_04_investigate_files/figure-latex/daily-52} \end{center}
 
 Units for GLB\_ench.p\_95 : Watt/m\^{}2
 
-lmD: 0.00051 +/- 0.00027
+lmD: 0.000571 +/- 0.00028
 
-lmY: 0.00051 +/- 0.00027
+lmY: 0.000571 +/- 0.00028
 
-Arima: 0.000509 +/- 0.000307
+Arima: 0.000571 +/- 0.000312
 
 \begin{center}\includegraphics[width=1\linewidth]{GHI_enh_04_investigate_files/figure-latex/daily-53} \end{center}
 
 Units for GLB\_ench.sum : Watt/m\^{}2
 
-lmD: 0.008776 +/- 0.005507
+lmD: 0.008989 +/- 0.005522
 
-lmY: 0.008777 +/- 0.005507
+lmY: 0.008989 +/- 0.005522
 
-Arima: 0.008799 +/- 0.005722
+Arima: 0.009015 +/- 0.00575
 
 \begin{center}\includegraphics[width=1\linewidth]{GHI_enh_04_investigate_files/figure-latex/daily-54} \end{center}
 
-Arima: 0.216075 +/- 0.041418
+Arima: 0.215796 +/- 0.040986
 
 \begin{verbatim}
 Warning: The S3 guide system was deprecated in ggplot2 3.5.0.
@@ -1020,6 +770,13 @@ range (`geom_bar()`).
 
 \begin{center}\includegraphics[width=1\linewidth]{GHI_enh_04_investigate_files/figure-latex/groups-2} \end{center}
 
+\begin{verbatim}
+Warning: A numeric `legend.position` argument in `theme()` was deprecated in ggplot2 3.5.0.
+i Please use the `legend.position.inside` argument of `theme()` instead.
+This warning is displayed once every 8 hours.
+Call `lifecycle::last_lifecycle_warnings()` to see where this warning was generated.
+\end{verbatim}
+
 \begin{center}\includegraphics[width=1\linewidth]{GHI_enh_04_investigate_files/figure-latex/groups-3} \end{center}
 
 \begin{center}\includegraphics[width=1\linewidth]{GHI_enh_04_investigate_files/figure-latex/groups-4} \end{center}
@@ -1041,13 +798,8 @@ Adding another scale for x, which will replace the existing scale.
 \end{verbatim}
 
 \begin{verbatim}
-Warning: Removed 12 rows containing non-finite outside the scale range
+Warning: Removed 16 rows containing non-finite outside the scale range
 (`stat_bin2d()`).
-\end{verbatim}
-
-\begin{verbatim}
-Warning: Removed 2 rows containing missing values or values outside the scale
-range (`geom_tile()`).
 \end{verbatim}
 
 \begin{center}\includegraphics[width=1\linewidth]{GHI_enh_04_investigate_files/figure-latex/P-groups-bin2d-1} \end{center}
@@ -1058,8 +810,13 @@ Adding another scale for x, which will replace the existing scale.
 \end{verbatim}
 
 \begin{verbatim}
-Warning: Removed 12 rows containing non-finite outside the scale range (`stat_bin2d()`).
-Removed 2 rows containing missing values or values outside the scale range (`geom_tile()`).
+Warning: Removed 16 rows containing non-finite outside the scale range
+(`stat_bin2d()`).
+\end{verbatim}
+
+\begin{verbatim}
+Warning: Removed 1 row containing missing values or values outside the scale
+range (`geom_tile()`).
 \end{verbatim}
 
 \begin{center}\includegraphics[width=1\linewidth]{GHI_enh_04_investigate_files/figure-latex/P-groups-bin2d-2} \end{center}
@@ -1070,8 +827,8 @@ Adding another scale for x, which will replace the existing scale.
 \end{verbatim}
 
 \begin{verbatim}
-Warning: Removed 12 rows containing non-finite outside the scale range (`stat_bin2d()`).
-Removed 2 rows containing missing values or values outside the scale range (`geom_tile()`).
+Warning: Removed 16 rows containing non-finite outside the scale range
+(`stat_bin2d()`).
 \end{verbatim}
 
 \begin{center}\includegraphics[width=1\linewidth]{GHI_enh_04_investigate_files/figure-latex/P-groups-bin2d-3} \end{center}
@@ -1082,8 +839,8 @@ Adding another scale for x, which will replace the existing scale.
 \end{verbatim}
 
 \begin{verbatim}
-Warning: Removed 12 rows containing non-finite outside the scale range (`stat_bin2d()`).
-Removed 2 rows containing missing values or values outside the scale range (`geom_tile()`).
+Warning: Removed 16 rows containing non-finite outside the scale range
+(`stat_bin2d()`).
 \end{verbatim}
 
 \begin{center}\includegraphics[width=1\linewidth]{GHI_enh_04_investigate_files/figure-latex/P-groups-bin2d-4} \end{center}
@@ -1141,19 +898,19 @@ Call `lifecycle::last_lifecycle_warnings()` to see where this warning was genera
 
 \begin{center}\includegraphics[width=1\linewidth]{GHI_enh_04_investigate_files/figure-latex/energy-9} \end{center}
 
-lmY: 341.6364 +/- 36.57038
+lmY: 339.1753 +/- 35.87673
 
 \begin{center}\includegraphics[width=1\linewidth]{GHI_enh_04_investigate_files/figure-latex/P_energy-1} \end{center}
 
-lmY: 122.2229 +/- 11.42113
+lmY: 123.4768 +/- 11.47021
 
 \begin{center}\includegraphics[width=1\linewidth]{GHI_enh_04_investigate_files/figure-latex/P_energy-2} \end{center}
 
-lmY: 0.232986 +/- 0.055703
+lmY: 0.228163 +/- 0.054288
 
 \begin{center}\includegraphics[width=1\linewidth]{GHI_enh_04_investigate_files/figure-latex/P_energy-3} \end{center}
 
-lmY: 0.183685 +/- 0.040872
+lmY: 0.174806 +/- 0.039192
 
 \begin{center}\includegraphics[width=1\linewidth]{GHI_enh_04_investigate_files/figure-latex/P_energy-4} \end{center}
 
@@ -1198,7 +955,7 @@ lmY: 0.183685 +/- 0.040872
 \textbf{END}
 
 \begin{verbatim}
-2024-04-17 09:50:38.0 athan@tyler GHI_enh_Aeronet.R 2.951092 mins
+2024-04-19 10:28:33.6 athan@sagan GHI_enh_04_investigate.R 0.788870 mins
 \end{verbatim}
 
 \end{document}

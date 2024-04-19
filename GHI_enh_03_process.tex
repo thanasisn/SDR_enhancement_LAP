@@ -127,7 +127,7 @@
 
 \title{Enhancement of SDR in Thessaloniki}
 \author{Natsis Athanasios\footnote{Laboratory of Atmospheric Physics, AUTH, \href{mailto:natsisphysicist@gmail.com}{\nolinkurl{natsisphysicist@gmail.com}}} \and Alkiviadis Bais\footnote{Laboratory of Atmospheric Physics, AUTH}}
-\date{2024-04-17}
+\date{2024-04-19}
 
 \begin{document}
 \maketitle
@@ -140,111 +140,6 @@ Study of GHI enchantment.
 \setcounter{tocdepth}{4}
 \tableofcontents
 }
-\begin{verbatim}
-Warning: Invalid .internal.selfref detected and fixed by taking a (shallow)
-copy of the data.table so that := can add this new column by reference. At an
-earlier point, this data.table has been copied by R (or was created manually
-using structure() or similar). Avoid names<- and attr<- which in R currently
-(and oddly) may copy the whole data.table. Use set* syntax instead to avoid
-copying: ?set, ?setnames and ?setattr. If this message doesn't help, please
-report your use case to the data.table issue tracker so the root cause can be
-fixed or this message improved.
-\end{verbatim}
-
-\begin{verbatim}
-Cross over point: 2014.75 
-\end{verbatim}
-
-\begin{verbatim}
-2024-04-17 05:42:42.7 athan@tyler GHI_enh_Aeronet.R 0.011558 mins
-
-USING TRASPARENCY TREND
-
- USING CSMODE: Low_B.Low_W 
-
-C4 factor: 1.09 
-C4 offset: 0 
-\end{verbatim}
-
-\begin{verbatim}
-
-\FloatBarrier
-
-
-## Days with extreme cases day 
-\end{verbatim}
-
-\begin{verbatim}
- 
- 
-
-\FloatBarrier
-
-
-## Days with strong enhancement day 
-\end{verbatim}
-
-\begin{verbatim}
- 
- 
-
-\FloatBarrier
-
-
-## Days with sunny day 
-\end{verbatim}
-
-\begin{verbatim}
- 
- 
-
-\FloatBarrier
-
-
-## Days with sunny enhancement day 
-\end{verbatim}
-
-\begin{verbatim}
- 
- 
-
-\FloatBarrier
-
-
-## Days with cloudy day 
-\end{verbatim}
-
-\begin{verbatim}
- 
- 
-
-\FloatBarrier
-
-
-## Days with random day 
-\end{verbatim}
-
-\begin{verbatim}
- 
- 
-
-\FloatBarrier
-
-
-## Days with manual test days 
-\end{verbatim}
-
-\begin{verbatim}
-Warning: A numeric `legend.position` argument in `theme()` was deprecated in ggplot2 3.5.0.
-i Please use the `legend.position.inside` argument of `theme()` instead.
-This warning is displayed once every 8 hours.
-Call `lifecycle::last_lifecycle_warnings()` to see where this warning was generated.
-\end{verbatim}
-
-\begin{verbatim}
-2024-04-17 07:14:42.3 athan@tyler GHI_enh_Aeronet.R 92.002896 mins
-\end{verbatim}
-
 Alpha * HAU is CS\_ref
 
 \hypertarget{time-series-decomposition-tests}{%
@@ -457,18 +352,18 @@ stats::lm(formula = .formula, data = df)
 
 Residuals:
     Min      1Q  Median      3Q     Max 
--372.77 -150.51  -49.67   99.05  778.55 
+-384.81 -144.57  -53.50   96.68  768.76 
 
 Coefficients:
                    Estimate Std. Error t value Pr(>|t|)    
-(Intercept)      -9.118e+01  5.082e+01  -1.794   0.0736 .  
-as.numeric(Date)  3.246e-07  4.062e-08   7.991 1.82e-14 ***
+(Intercept)      -9.187e+01  4.952e+01  -1.855   0.0644 .  
+as.numeric(Date)  3.286e-07  3.958e-08   8.302 2.08e-15 ***
 ---
 Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 
-Residual standard error: 217 on 361 degrees of freedom
-Multiple R-squared:  0.1503,    Adjusted R-squared:  0.148 
-F-statistic: 63.86 on 1 and 361 DF,  p-value: 1.815e-14
+Residual standard error: 211.4 on 361 degrees of freedom
+Multiple R-squared:  0.1603,    Adjusted R-squared:  0.158 
+F-statistic: 68.92 on 1 and 361 DF,  p-value: 2.077e-15
 \end{verbatim}
 
 \begin{center}\includegraphics[width=1\linewidth]{GHI_enh_03_process_files/figure-latex/unnamed-chunk-6-19} \end{center}
@@ -487,18 +382,18 @@ lm(formula = ST_E_monthly$wattGLB.N ~ ST_E_monthly$Date)
 
 Residuals:
     Min      1Q  Median      3Q     Max 
--372.77 -150.51  -49.67   99.05  778.55 
+-384.81 -144.57  -53.50   96.68  768.76 
 
 Coefficients:
                     Estimate Std. Error t value Pr(>|t|)    
-(Intercept)       -9.118e+01  5.082e+01  -1.794   0.0736 .  
-ST_E_monthly$Date  3.246e-07  4.062e-08   7.991 1.82e-14 ***
+(Intercept)       -9.187e+01  4.952e+01  -1.855   0.0644 .  
+ST_E_monthly$Date  3.286e-07  3.958e-08   8.302 2.08e-15 ***
 ---
 Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 
-Residual standard error: 217 on 361 degrees of freedom
-Multiple R-squared:  0.1503,    Adjusted R-squared:  0.148 
-F-statistic: 63.86 on 1 and 361 DF,  p-value: 1.815e-14
+Residual standard error: 211.4 on 361 degrees of freedom
+Multiple R-squared:  0.1603,    Adjusted R-squared:  0.158 
+F-statistic: 68.92 on 1 and 361 DF,  p-value: 2.077e-15
 \end{verbatim}
 
 \begin{Shaded}
@@ -541,12 +436,10 @@ F-statistic: 63.86 on 1 and 361 DF,  p-value: 1.815e-14
 \begin{verbatim}
 aa
 aday
-AEin1
 All_daily_ratio_lim
 alpha
 ampl
 avar
-b
 BIO_ELEVA
 C1_Clearness_Kt_THRES
 C1_GLB_diff_THRES
@@ -563,7 +456,6 @@ C4_test_lowcut_sza
 Clear_daily_ratio_lim
 CLEARdir
 Cloud_daily_ratio_lim
-cols
 common_data_13
 common_data_14
 common_data_14_2
@@ -575,7 +467,6 @@ Daily_aggregation_N_lim
 Daily_confidence_limit
 daylist
 Days_of_year
-dummy
 Energy_Div
 I1_longterm
 I2_szatrend
@@ -583,7 +474,6 @@ I3_trendsconsist
 ii
 Input_data_ID
 Kurudz_SC
-mid
 MIN_ELEVA
 MIN_N
 Monthly_aggegation_N_lim
@@ -592,7 +482,6 @@ my.cols
 my.cols.gr
 pyear
 R_COMPILE_PKGS
-RANDOM_SEED
 raw_input_data
 running_mean_window_days
 running_mean_window_years
@@ -604,7 +493,6 @@ SZA_confidence_limit
 variables_fl
 yearstodo
 ylim
-zeropoint
 ST_daily
 ST_E_daily
 ST_E_daily_seas
@@ -643,7 +531,7 @@ ST_yearly
 \textbf{END}
 
 \begin{verbatim}
-2024-04-17 07:39:43.8 athan@tyler GHI_enh_Aeronet.R 14.179698 mins
+2024-04-19 10:26:46.8 athan@sagan GHI_enh_03_process.R 3.634787 mins
 \end{verbatim}
 
 \end{document}
