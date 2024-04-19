@@ -218,9 +218,9 @@ AEM         <- data.table(remove_constant(AEM))
 AEM[, tsy := year + (month - 1)/12 ]
 
 
-readRDS("~/DATA/SUN/TSI_COMPOSITE.Rds")
+LKU <- readRDS("~/DATA/SUN/TSI_COMPOSITE.Rds")
 
-LKU[, .(Date, SZA, sun_dist)]
+
 
 stop()
 
