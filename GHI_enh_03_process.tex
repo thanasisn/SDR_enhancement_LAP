@@ -144,7 +144,7 @@ Study of GHI enchantment.
 
  USING CSMODE: Low_B.Low_W 
 
-C4 factor: 1.03 
+C4 factor: 1.04 
 C4 offset: 15 
 \end{verbatim}
 
@@ -224,7 +224,7 @@ Call `lifecycle::last_lifecycle_warnings()` to see where this warning was genera
 \end{verbatim}
 
 \begin{verbatim}
-2024-04-21 13:51:37.8 athan@sagan GHI_enh_02_ID_CE.R 14.833272 mins
+2024-04-21 16:10:56.4 athan@tyler GHI_enh_02_ID_CE.R 27.296893 mins
 \end{verbatim}
 
 Alpha * HAU is CS\_ref
@@ -439,18 +439,18 @@ stats::lm(formula = .formula, data = df)
 
 Residuals:
     Min      1Q  Median      3Q     Max 
--384.81 -144.57  -53.50   96.68  768.76 
+-349.43 -124.67  -47.48   83.61  668.69 
 
 Coefficients:
                    Estimate Std. Error t value Pr(>|t|)    
-(Intercept)      -9.187e+01  4.952e+01  -1.855   0.0644 .  
-as.numeric(Date)  3.286e-07  3.958e-08   8.302 2.08e-15 ***
+(Intercept)      -8.500e+01  4.348e+01  -1.955   0.0514 .  
+as.numeric(Date)  2.911e-07  3.473e-08   8.383 1.18e-15 ***
 ---
 Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 
-Residual standard error: 211.4 on 361 degrees of freedom
-Multiple R-squared:  0.1603,    Adjusted R-squared:  0.158 
-F-statistic: 68.92 on 1 and 361 DF,  p-value: 2.077e-15
+Residual standard error: 185 on 360 degrees of freedom
+Multiple R-squared:  0.1633,    Adjusted R-squared:  0.161 
+F-statistic: 70.27 on 1 and 360 DF,  p-value: 1.182e-15
 \end{verbatim}
 
 \begin{center}\includegraphics[width=1\linewidth]{GHI_enh_03_process_files/figure-latex/unnamed-chunk-6-19} \end{center}
@@ -469,18 +469,18 @@ lm(formula = ST_E_monthly$wattGLB.N ~ ST_E_monthly$Date)
 
 Residuals:
     Min      1Q  Median      3Q     Max 
--384.81 -144.57  -53.50   96.68  768.76 
+-349.43 -124.67  -47.48   83.61  668.69 
 
 Coefficients:
                     Estimate Std. Error t value Pr(>|t|)    
-(Intercept)       -9.187e+01  4.952e+01  -1.855   0.0644 .  
-ST_E_monthly$Date  3.286e-07  3.958e-08   8.302 2.08e-15 ***
+(Intercept)       -8.500e+01  4.348e+01  -1.955   0.0514 .  
+ST_E_monthly$Date  2.911e-07  3.473e-08   8.383 1.18e-15 ***
 ---
 Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 
-Residual standard error: 211.4 on 361 degrees of freedom
-Multiple R-squared:  0.1603,    Adjusted R-squared:  0.158 
-F-statistic: 68.92 on 1 and 361 DF,  p-value: 2.077e-15
+Residual standard error: 185 on 360 degrees of freedom
+Multiple R-squared:  0.1633,    Adjusted R-squared:  0.161 
+F-statistic: 70.27 on 1 and 360 DF,  p-value: 1.182e-15
 \end{verbatim}
 
 \begin{Shaded}
@@ -619,7 +619,7 @@ ST_yearly
 \textbf{END}
 
 \begin{verbatim}
-2024-04-21 13:57:31.4 athan@sagan GHI_enh_02_ID_CE.R 3.765186 mins
+2024-04-21 16:22:21.3 athan@tyler GHI_enh_02_ID_CE.R 8.808619 mins
 \end{verbatim}
 
 \end{document}
