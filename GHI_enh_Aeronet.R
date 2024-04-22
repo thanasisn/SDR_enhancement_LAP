@@ -255,13 +255,33 @@ AEM[, glo := glo * TSI_Kurudz_factor ]
 
 
 
+asza <- 17
+aatm <- "afglms"
 
-plot(AEM[sza == 17 & atmosphere_file == "afglms", glo, tsy])
-lm1 <- lm(AEM[sza == 17 & atmosphere_file == "afglms", tsy, glo])
+plot(AEM[sza == asza & atmosphere_file == aatm, glo, tsy])
+lm1   <- lm(AEM[sza == asza & atmosphere_file == aatm, tsy, glo])
+amean <- mean(AEM[sza == asza & atmosphere_file == aatm, glo])
 
-abline(lm1)
+title(paste("sza:", asza, "atm:", aatm))
+
+abline(lm1, col = "red")
 
 
+
+## display trend on graph
+fit <- lm1[[1]]
+units <- "Watt/m^2"
+legend("top", lty = 1, bty = "n", lwd = 2, cex = 1,
+       c(paste("Trend: ",
+             if (fit[2] > 0) "+" else "-",
+             signif(abs(fit[2]), 2) , bquote(.(units)), "/y"),
+         paste("Trend: ",
+               if (fit[2] > 0) "+" else "-",
+               signif(abs(100 * fit[2] / amean), 2) , "%/y")
+         )
+)
+
+100 * fit[2] / amean
 
 # From Stelios' paper 2007:
 # AOD @340 from Brewer 086
