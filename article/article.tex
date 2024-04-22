@@ -386,8 +386,8 @@ SZAs, and a higher ramped factor for higher SZAs
 (Equation\nobreakspace\ref{eq:CE4}). This is the criterion of our CE
 identification. \begin{equation}
 \text{CE} : \text{E}_\text{i} > \text{E}_\text{CSlim,i}, \text{where} \begin{cases}
- \text{E}_\text{CSlim,i} = 1.03 \cdot \text{E}_\text{CSm,i}, & \text{$\theta \leq 90^\circ$}\\
-\text{E}_\text{CSlim,i} = \left ({ 1.05 + \frac{1.03 - 1.05}{90 - 78} \cdot (\theta- 78) } \right ) \cdot \text{E}_\text{CSm,i}, & \text{$ 78^\circ > \theta > 90^\circ$}\\
+ \text{E}_\text{CSlim,i} = 1.04 \cdot \text{E}_\text{CSm,i}, & \text{$\theta \leq 90^\circ$}\\
+\text{E}_\text{CSlim,i} = \left ({ 1.04 + \frac{1.04 - 1.04}{90 - 78} \cdot (\theta- 78) } \right ) \cdot \text{E}_\text{CSm,i}, & \text{$ 78^\circ > \theta > 90^\circ$}\\
 \text{Excluded measurements}, & \theta > 78^\circ
 \end{cases}\label{eq:CE4}
 \end{equation} where: \(\theta\) is the solar zenith angle, \(\text{E}\)
@@ -442,10 +442,10 @@ the one-minute observation.
 \section{Results}\label{results}}
 
 Our dataset, after the data selection processing, consists of 6144534
-records of GHI, of which \(1.824\,\%\) are CE and \(0.036\,\%\) are ECE
+records of GHI, of which \(1.592\,\%\) are CE and \(0.036\,\%\) are ECE
 events. The highest GHI recorder was \(1416.6\,W/m^2\) on 24~May 2007.
-The absolute stronger CE event had an OIR of \(345.53\,W/m^2\) on 24~May
-2007. The relative stronger CE event was \(51.6\,\%\) above the clear
+The absolute stronger CE event had an OIR of \(335.28\,W/m^2\) on 24~May
+2007. The relative stronger CE event was \(50.2\,\%\) above the clear
 sky threshold, on 28~October 2016.
 
 \hypertarget{trends}{%
@@ -457,7 +457,7 @@ autoregressive model with lag of 1 day, using the `maximum likelihood'
 fitting method \citep{Gardner1980, Jones1980} by implementing the
 function `arima' from the library `stats' of the R programming language
 \citep{RCT2023}. The trends are reported together with the \(2\sigma\)
-error. We observe an increase of \(0.216\pm 0.082\,W/m^2/y\) on the mean
+error. We observe an increase of \(0.202\pm 0.083\,W/m^2/y\) on the mean
 OIR.
 
 \begin{figure}
@@ -472,7 +472,7 @@ OIR.
 Although, the previous result is closer to the raw data, we preferred to
 present the annual statistics, that give a more clear picture about the
 long term CE trends. Hence, we calculated the annual values from the
-one-minute measurements. The trend of OIR is \(0.23\pm 0.11\,W/m^2/y\)
+one-minute measurements. The trend of OIR is \(0.22\pm 0.11\,W/m^2/y\)
 (Figure\nobreakspace{}\ref{fig:P-energy-mean}), but this value alone is
 not very useful due the intrinsic high variability of this metric.
 
@@ -488,7 +488,7 @@ not very useful due the intrinsic high variability of this metric.
 A better indicator of changes on the characteristic of CE would be the
 number of CE occurrences and the total energy of the CE over irradiance.
 The annual number of CE occurrences, shows a steady increase of
-\(123.5\pm 22.9\,\text{cases}/y\)
+\(110.1\pm 20.3\,\text{cases}/y\)
 (Figure\nobreakspace{}\ref{fig:P-energy-N}). We have to note that the
 energy related to the CE events can not be directly linked with the
 total energy balance on the atmosphere. The net sun radiation of the
@@ -506,7 +506,7 @@ irradiance to a considerable level.
 \end{figure}
 
 Subsequently, the mean annual increase of energy due to CE events is
-\(339.2\pm 71.8\,kJ/y\) (Figure~\ref{fig:P-energy-sum}), witch follows
+\(293.3\pm 63.1\,kJ/y\) (Figure~\ref{fig:P-energy-sum}), witch follows
 the trend of the number of occurrences.
 
 \begin{figure}
@@ -570,7 +570,7 @@ particular atmospheric and sun conditions occur.
 In order to further study the characteristics of the CE events, we
 grouped the single minute CE events, to continuous CE groups (CEG).
 Thus, a CEG consists of one or more successive CE cases, and can have a
-duration of multiple of minutes. We have identified 28939 groups, where
+duration of multiple of minutes. We have identified 26042 groups, where
 the group with the longest duration lasted 140 minutes on 07~July 2013.
 By examining the frequency distribution of the CEG durations
 (Figure\nobreakspace{}\ref{fig:ceg-duration-distribution}), we can

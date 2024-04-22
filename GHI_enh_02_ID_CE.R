@@ -280,7 +280,7 @@ switch(csmodel,
        Low_B.High_W    = { C4_cs_ref_ratio <- 1.05; C4_GLB_diff_THRES <- 20; C4_lowcut_sza <- 60; C4_lowcut_ratio <- 1.12},
        # Low_B.Low_W     = { C4_cs_ref_ratio <- 1.05; C4_GLB_diff_THRES <-  0; C4_lowcut_sza <- 60; C4_lowcut_ratio <- 1.18}, ## without transparency
        # Low_B.Low_W     = { C4_cs_ref_ratio <- 1.09; C4_GLB_diff_THRES <-  0; C4_lowcut_sza <- 60; C4_lowcut_ratio <- 1.18}, ## without transparency
-       Low_B.Low_W     = { C4_cs_ref_ratio <- 1.03; C4_GLB_diff_THRES <- 15; C4_lowcut_sza <- 90; C4_lowcut_ratio <- 1.05},
+       Low_B.Low_W     = { C4_cs_ref_ratio <- 1.04; C4_GLB_diff_THRES <- 15; C4_lowcut_sza <- 90; C4_lowcut_ratio <- 1.04},
                          { C4_cs_ref_ratio <- 1   ; C4_GLB_diff_THRES <-  0; C4_lowcut_sza <- 90; C4_lowcut_ratio <- 1   })
 
 
@@ -849,6 +849,7 @@ objects <- c(
     objects, "DATA"
 )
 
+stopifnot(any(objects %in% "DATA"))
 
 save(file = paste0("./data/", basename(sub("\\.R", ".Rda", Script.Name))),
      list = objects,
