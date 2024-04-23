@@ -254,17 +254,29 @@ AEM[, glo := glo * TSI_Kurudz_factor ]
 
 
 
-asza <- 17
-aatm <- "afglms"
 
-plot(AEM[sza == asza & atmosphere_file == aatm, glo, tsy])
-lm1   <- lm(AEM[sza == asza & atmosphere_file == aatm, tsy, glo])
-amean <- mean(AEM[sza == asza & atmosphere_file == aatm, glo])
+asza  <- 17
+aatm  <- "afglms"
+atype <- "Month Exact"
 
-title(paste("sza:", asza, "atm:", aatm))
+unique(AEM$typer)
+
+
+
+sel <- AEM[, sza == asza & atmosphere_file == aatm & typer == atype]
+
+ylim <- range(AEM[sel, glo])
+ylim[2] <- ylim[2] * 1.05
+
+plot(AEM[sel, glo, tsy],
+     ylim = ylim)
+
+lm1   <- lm(  AEM[sel, tsy, glo])
+amean <- mean(AEM[sel, glo])
+
+title(paste("sza:", asza, "atm:", aatm, "type:", atype))
 
 abline(lm1, col = "red")
-
 
 ## display trend on graph
 fit <- lm1[[1]]
@@ -282,10 +294,103 @@ legend("top", lty = 1, bty = "n", lwd = 2, cex = 1,
 
 
 
+aatm  <- "afglms"
+atype <- "SZA min"
+
+sel <- AEM[, atmosphere_file == aatm & typer == atype]
+
+ylim <- range(AEM[sel, glo])
+ylim[2] <- ylim[2] * 1.05
+
+plot(AEM[sel, glo, tsy],
+     ylim = ylim)
+
+lm1   <- lm(  AEM[sel, tsy, glo])
+amean <- mean(AEM[sel, glo])
+
+title(paste("atm:", aatm, "type:", atype))
+
+abline(lm1, col = "red")
+
+## display trend on graph
+fit <- lm1[[1]]
+units <- "Watt/m^2"
+legend("top", lty = 1, bty = "n", lwd = 2, cex = 1,
+       c(paste("Trend: ",
+             if (fit[2] > 0) "+" else "-",
+             signif(abs(fit[2]), 2) , bquote(.(units)), "/y"),
+         paste("Trend: ",
+               if (fit[2] > 0) "+" else "-",
+               signif(abs(100 * fit[2] / amean), 2) , "%/y")
+         )
+)
+
+
+aatm  <- "afglms"
+atype <- "SZA mean"
+
+sel <- AEM[, atmosphere_file == aatm & typer == atype]
+
+ylim <- range(AEM[sel, glo])
+ylim[2] <- ylim[2] * 1.12
+
+plot(AEM[sel, glo, tsy],
+     ylim = ylim)
+
+lm1   <- lm(  AEM[sel, tsy, glo])
+amean <- mean(AEM[sel, glo])
+
+title(paste("atm:", aatm, "type:", atype))
+
+abline(lm1, col = "red")
+
+## display trend on graph
+fit <- lm1[[1]]
+units <- "Watt/m^2"
+legend("top", lty = 1, bty = "n", lwd = 2, cex = 1,
+       c(paste("Trend: ",
+               if (fit[2] > 0) "+" else "-",
+               signif(abs(fit[2]), 2) , bquote(.(units)), "/y"),
+         paste("Trend: ",
+               if (fit[2] > 0) "+" else "-",
+               signif(abs(100 * fit[2] / amean), 2) , "%/y")
+       )
+)
+
+
+aatm  <- "afglms"
+atype <- "SZA median"
+
+sel <- AEM[, atmosphere_file == aatm & typer == atype]
+
+ylim <- range(AEM[sel, glo])
+ylim[2] <- ylim[2] * 1.12
+
+plot(AEM[sel, glo, tsy],
+     ylim = ylim)
+
+lm1   <- lm(  AEM[sel, tsy, glo])
+amean <- mean(AEM[sel, glo])
+
+title(paste("atm:", aatm, "type:", atype))
+
+abline(lm1, col = "red")
+
+## display trend on graph
+fit <- lm1[[1]]
+units <- "Watt/m^2"
+legend("top", lty = 1, bty = "n", lwd = 2, cex = 1,
+       c(paste("Trend: ",
+               if (fit[2] > 0) "+" else "-",
+               signif(abs(fit[2]), 2) , bquote(.(units)), "/y"),
+         paste("Trend: ",
+               if (fit[2] > 0) "+" else "-",
+               signif(abs(100 * fit[2] / amean), 2) , "%/y")
+       )
+)
 
 
 
-stop()
 
 # 100 * fit[2] / amean
 
