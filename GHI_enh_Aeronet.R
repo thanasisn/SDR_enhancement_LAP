@@ -155,20 +155,19 @@ write.csv(
 
 
 
-plot(AE1[, exp(-AOD_500nm), tsy])
+plot(AE1[, exp(-AOD_500nm), tsy],
+     ylab = "exp(-AOD_500nm)")
 abline(lm_transp_trend)
 plot(1993:2024, trans_trend(1993:2024), col = "red")
 
 # rm(AE1)
 
 
-min(AE1$tsy):max(AE1$tsy)
+# min(AE1$tsy):max(AE1$tsy)
 
 
 plot(min(AE1$tsy):max(AE1$tsy), trans_AOD(min(AE1$tsy):max(AE1$tsy)), col = "red")
 
-trans_AOD(min(AE1$tsy))
-trans_AOD(max(AE1$tsy))
 
 
 CS <- readRDS("./data/Model_CS_2.Rds")
@@ -177,9 +176,9 @@ CS$ticTime  <- NULL
 CS$tacTime  <- NULL
 CS$ID       <- NULL
 
-CS[sza == 17 & type == "Low B.Low W",]
+# CS[sza == 17 & type == "Low B.Low W",]
 
-min(unique(CS$sza))
+# min(unique(CS$sza))
 
 
 # LT <- readRDS("./data/lookuptable_datatable.Rds")
@@ -203,7 +202,7 @@ plot(AE1[, AOD_500nm, tsy])
 abline(lm_AOD_trend)
 points(AEY$meantsy, AEY$Mean500,   col = "red", pch = 19 )
 points(AEY$meantsy, AEY$Median500, col = "green", pch = 19 )
-
+title("Yearly means and median")
 
 
 
@@ -281,7 +280,7 @@ legend("top", lty = 1, bty = "n", lwd = 2, cex = 1,
          )
 )
 
-100 * fit[2] / amean
+# 100 * fit[2] / amean
 
 # From Stelios' paper 2007:
 # AOD @340 from Brewer 086
