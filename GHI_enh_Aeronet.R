@@ -266,7 +266,6 @@ title(paste("sza:", asza, "atm:", aatm))
 abline(lm1, col = "red")
 
 
-
 ## display trend on graph
 fit <- lm1[[1]]
 units <- "Watt/m^2"
@@ -279,6 +278,14 @@ legend("top", lty = 1, bty = "n", lwd = 2, cex = 1,
                signif(abs(100 * fit[2] / amean), 2) , "%/y")
          )
 )
+
+
+
+
+
+
+
+stop()
 
 # 100 * fit[2] / amean
 
