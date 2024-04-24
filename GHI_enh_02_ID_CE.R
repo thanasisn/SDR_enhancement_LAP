@@ -131,8 +131,8 @@ DATA <- merge(DATA, readRDS("./data/lookuptable_datatable.Rds"))
 
 
 ##  Reset Randomness  ----------------------------------------------------------
-# RANDOM_SEED <- 333
-# set.seed(RANDOM_SEED)
+RANDOM_SEED <- 333
+set.seed(RANDOM_SEED)
 ## may need to reset seed in each randomness generation below
 
 
