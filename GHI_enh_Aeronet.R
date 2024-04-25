@@ -130,7 +130,7 @@ lm_AOD_trend    <- lm(     AE1$AOD_500nm  ~ AE1$tsy)
 
 ## Calculate offset for zero point  --------------------------------------------
 b <- -coef(lm_transp_trend)[2] * zeropoint
-t <- -coef(lm_AOD_trend)[2] * zeropoint
+t <- -coef(lm_AOD_trend)[2]    * zeropoint
 
 
 
@@ -294,6 +294,8 @@ legend("top", lty = 1, bty = "n", lwd = 2, cex = 1,
 
 
 
+
+
 aatm  <- "afglms"
 atype <- "SZA min"
 
@@ -305,15 +307,15 @@ ylim[2] <- ylim[2] * 1.05
 plot(AEM[sel, glo, tsy],
      ylim = ylim)
 
-lm1   <- lm(  AEM[sel, tsy, glo])
-amean <- mean(AEM[sel, glo])
+lm_min   <- lm(  AEM[sel, tsy, glo])
+mean_min <- mean(AEM[sel, glo])
 
 title(paste("atm:", aatm, "type:", atype))
 
-abline(lm1, col = "red")
+abline(lm_min, col = "red")
 
 ## display trend on graph
-fit <- lm1[[1]]
+fit <- lm_min[[1]]
 units <- "Watt/m^2"
 legend("top", lty = 1, bty = "n", lwd = 2, cex = 1,
        c(paste("Trend: ",
@@ -321,9 +323,24 @@ legend("top", lty = 1, bty = "n", lwd = 2, cex = 1,
              signif(abs(fit[2]), 2) , bquote(.(units)), "/y"),
          paste("Trend: ",
                if (fit[2] > 0) "+" else "-",
-               signif(abs(100 * fit[2] / amean), 2) , "%/y")
+               signif(abs(100 * fit[2] / mean_min), 2) , "%/y")
          )
 )
+
+
+global_sza_min <- function(tsy   = tsy,
+                           a.    =  coef(lm_min)[2] ,
+                           b.    = -coef(lm_min)[2] * zeropoint,
+                           mean. = mean_min) {
+  return( (b. + a. * tsy) / mean. )
+}
+
+plot(1993:2024, global_sza_min(1993:2024), col = "red")
+
+
+
+
+
 
 
 aatm  <- "afglms"
@@ -337,15 +354,15 @@ ylim[2] <- ylim[2] * 1.12
 plot(AEM[sel, glo, tsy],
      ylim = ylim)
 
-lm1   <- lm(  AEM[sel, tsy, glo])
-amean <- mean(AEM[sel, glo])
+lm_mean   <- lm(  AEM[sel, tsy, glo])
+mean_mean <- mean(AEM[sel, glo])
 
 title(paste("atm:", aatm, "type:", atype))
 
-abline(lm1, col = "red")
+abline(lm_mean, col = "red")
 
 ## display trend on graph
-fit <- lm1[[1]]
+fit   <- lm_mean[[1]]
 units <- "Watt/m^2"
 legend("top", lty = 1, bty = "n", lwd = 2, cex = 1,
        c(paste("Trend: ",
@@ -353,9 +370,20 @@ legend("top", lty = 1, bty = "n", lwd = 2, cex = 1,
                signif(abs(fit[2]), 2) , bquote(.(units)), "/y"),
          paste("Trend: ",
                if (fit[2] > 0) "+" else "-",
-               signif(abs(100 * fit[2] / amean), 2) , "%/y")
+               signif(abs(100 * fit[2] / mean_mean), 2) , "%/y")
        )
 )
+
+global_sza_mean <- function(tsy   = tsy,
+                           a.    =  coef(lm_mean)[2] ,
+                           b.    = -coef(lm_mean)[2] * zeropoint,
+                           mean. = mean_mean) {
+  return( (b. + a. * tsy) / mean. )
+}
+
+plot(1993:2024, global_sza_mean(1993:2024), col = "red")
+
+
 
 
 aatm  <- "afglms"
@@ -369,15 +397,15 @@ ylim[2] <- ylim[2] * 1.12
 plot(AEM[sel, glo, tsy],
      ylim = ylim)
 
-lm1   <- lm(  AEM[sel, tsy, glo])
-amean <- mean(AEM[sel, glo])
+lm_median   <- lm(  AEM[sel, tsy, glo])
+mean_median <- mean(AEM[sel, glo])
 
 title(paste("atm:", aatm, "type:", atype))
 
-abline(lm1, col = "red")
+abline(lm_median, col = "red")
 
 ## display trend on graph
-fit <- lm1[[1]]
+fit <- lm_median[[1]]
 units <- "Watt/m^2"
 legend("top", lty = 1, bty = "n", lwd = 2, cex = 1,
        c(paste("Trend: ",
@@ -385,9 +413,30 @@ legend("top", lty = 1, bty = "n", lwd = 2, cex = 1,
                signif(abs(fit[2]), 2) , bquote(.(units)), "/y"),
          paste("Trend: ",
                if (fit[2] > 0) "+" else "-",
-               signif(abs(100 * fit[2] / amean), 2) , "%/y")
+               signif(abs(100 * fit[2] / mean_median), 2) , "%/y")
        )
 )
+
+
+global_sza_median <- function(tsy   = tsy,
+                            a.    =  coef(lm_median)[2] ,
+                            b.    = -coef(lm_median)[2] * zeropoint,
+                            mean. = mean_median) {
+  return( (b. + a. * tsy) / mean. )
+}
+
+plot(1993:2024, global_sza_median(1993:2024), col = "red")
+
+
+
+
+# save(list = c("lm_median",
+#               "lm_min",
+#               "lm_mean",
+#               "lm_AOD_trend",
+#               "lm_transp_trend",
+#               "zeropoint"),
+#      file = "./figures/Aerosols_trends.Rda")
 
 
 
