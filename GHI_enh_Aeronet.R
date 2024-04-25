@@ -208,14 +208,17 @@ title("Yearly means and median")
 
 ## Libradtran for monthly AERONET ---------------
 
-AEM         <- readRDS("./data/Model_CS_trend.Rds")
-AEM$ID      <- NULL
-AEM$ticTime <- NULL
-AEM$tacTime <- NULL
-AEM         <- data.table(remove_constant(AEM))
+AEM          <- readRDS("./data/Model_CS_trend.Rds")
+AEM$ID       <- NULL
+AEM$hostname <- NULL
+AEM$ticTime  <- NULL
+AEM$tacTime  <- NULL
+AEM          <- data.table(remove_constant(AEM))
 
-AEM[, tsy := year + (month - 1)/12 ]
+AEM[!is.na(month), tsy := year + (month - 1)/12 ]
+AEM[ is.na(month), tsy := year + 0.5 ]
 
+min(AEM$year)
 
 LKU <- readRDS("~/DATA/SUN/TSI_COMPOSITE.Rds")
 LKU <- LKU[year(Date) >= min(AEM$year), ]
@@ -223,6 +226,12 @@ LKU <- LKU[year(Date) >= min(AEM$year), ]
 LKU_month <- LKU[, .(sun_dist     = mean(sun_dist),
                      tsi_1au_comb = mean(tsi_1au_comb)),
                  by = .(year(Date), month(Date))]
+
+LKU_year <- LKU[, .(sun_dist     = mean(sun_dist),
+                    tsi_1au_comb = mean(tsi_1au_comb),
+                    month        = NA),
+                 by = .(year(Date))]
+
 
 ## apply kuruds and distance
 
@@ -236,10 +245,21 @@ spectrum  <- Kurudz[ V1 >= 280 & V1 <= 2500]
 Kurudz_SC <- trapz(x = spectrum$V1, y = spectrum$V2) / 1000
 
 LKU_month[ , TSI_Kurudz_factor := tsi_1au_comb / Kurudz_SC ]
+LKU_year[  , TSI_Kurudz_factor := tsi_1au_comb / Kurudz_SC ]
 
-AEM <- merge(AEM, LKU_month, all.x = T)
-rm(LKU, LKU_month)
 
+AEM <- rbind(
+  merge(AEM[!is.na(month), ], LKU_month, all.x = T),
+  merge(AEM[ is.na(month), ], LKU_year,  all.x = T)
+)
+
+
+
+# AEM <- merge(AEM, LKU_month, all.x = T)
+rm(LKU, LKU_month, LKU_year)
+
+# AEM[ is.na(month),]
+# AEM[!is.na(month),]
 
 ## corrections
 
@@ -255,11 +275,13 @@ AEM[, glo := glo * TSI_Kurudz_factor ]
 
 
 
+
+
 asza  <- 17
 aatm  <- "afglms"
 atype <- "Month Exact"
 
-unique(AEM$typer)
+# unique(AEM$typer)
 
 
 
@@ -299,18 +321,18 @@ legend("top", lty = 1, bty = "n", lwd = 2, cex = 1,
 aatm  <- "afglms"
 atype <- "SZA min"
 
-sel <- AEM[, atmosphere_file == aatm & typer == atype]
+sel2 <- AEM[, atmosphere_file == aatm & typer == atype]
 
-ylim <- range(AEM[sel, glo])
+ylim <- range(AEM[sel2, glo])
 ylim[2] <- ylim[2] * 1.05
 
-plot(AEM[sel, glo, tsy],
+plot(AEM[sel2, glo, tsy],
      ylim = ylim)
 
-lm_min   <- lm(  AEM[sel, tsy, glo])
-mean_min <- mean(AEM[sel, glo])
+lm_min   <- lm(  AEM[sel2, tsy, glo])
+mean_min <- mean(AEM[sel2, glo])
 
-title(paste("atm:", aatm, "type:", atype))
+title(paste("Second part, atm:", aatm, "type:", atype))
 
 abline(lm_min, col = "red")
 
@@ -328,6 +350,44 @@ legend("top", lty = 1, bty = "n", lwd = 2, cex = 1,
 )
 
 
+sel1 <- AEM[, is.na(month) & atmosphere_file == aatm & typer == "BR SZA min", ]
+
+plot(AEM[sel1, glo, tsy],
+     ylim = ylim)
+
+zeropointA <- min(AEM[sel1, tsy]) + (max(AEM[sel1, tsy]) - min(AEM[sel1, tsy])) / 2
+
+lm_BR_min   <- lm(  AEM[sel1, tsy, glo])
+mean_BR_min <- mean(AEM[sel1, glo])
+
+title(paste("First part, atm:", aatm, "type:", atype))
+
+abline(lm_BR_min, col = "red")
+
+## display trend on graph
+fit <- lm_BR_min[[1]]
+units <- "Watt/m^2"
+legend("top", lty = 1, bty = "n", lwd = 2, cex = 1,
+       c(paste("Trend: ",
+               if (fit[2] > 0) "+" else "-",
+               signif(abs(fit[2]), 2) , bquote(.(units)), "/y"),
+         paste("Trend: ",
+               if (fit[2] > 0) "+" else "-",
+               signif(abs(100 * fit[2] / mean_BR_min), 2) , "%/y")
+       )
+)
+
+
+
+plot(AEM[sel1 | sel2, glo, tsy])
+abline(lm_BR_min, col = "red")
+abline(lm_min, col = "red")
+title("Both")
+
+test <- AEM[sel1 | sel2,]
+
+AEM[sel2, min(tsy)]
+
 global_sza_min <- function(tsy   = tsy,
                            a.    =  coef(lm_min)[2] ,
                            b.    = -coef(lm_min)[2] * zeropoint,
@@ -335,99 +395,115 @@ global_sza_min <- function(tsy   = tsy,
   return( (b. + a. * tsy) / mean. )
 }
 
-plot(1993:2024, global_sza_min(1993:2024), col = "red")
+tsy <-1993:2024
+global_sza_min <- function(tsy) {
+  tsyA <- tsy[tsy <  AEM[sel2, min(tsy)]]
+  tsyB <- tsy[tsy >= AEM[sel2, min(tsy)]]
 
-
-
-
-
-
-
-aatm  <- "afglms"
-atype <- "SZA mean"
-
-sel <- AEM[, atmosphere_file == aatm & typer == atype]
-
-ylim <- range(AEM[sel, glo])
-ylim[2] <- ylim[2] * 1.12
-
-plot(AEM[sel, glo, tsy],
-     ylim = ylim)
-
-lm_mean   <- lm(  AEM[sel, tsy, glo])
-mean_mean <- mean(AEM[sel, glo])
-
-title(paste("atm:", aatm, "type:", atype))
-
-abline(lm_mean, col = "red")
-
-## display trend on graph
-fit   <- lm_mean[[1]]
-units <- "Watt/m^2"
-legend("top", lty = 1, bty = "n", lwd = 2, cex = 1,
-       c(paste("Trend: ",
-               if (fit[2] > 0) "+" else "-",
-               signif(abs(fit[2]), 2) , bquote(.(units)), "/y"),
-         paste("Trend: ",
-               if (fit[2] > 0) "+" else "-",
-               signif(abs(100 * fit[2] / mean_mean), 2) , "%/y")
-       )
-)
-
-global_sza_mean <- function(tsy   = tsy,
-                           a.    =  coef(lm_mean)[2] ,
-                           b.    = -coef(lm_mean)[2] * zeropoint,
-                           mean. = mean_mean) {
-  return( (b. + a. * tsy) / mean. )
+  rbind(
+    cbind(tsyA, (-coef(lm_BR_min)[2] * zeropointA + tsyA * coef(lm_BR_min)[2]) / mean_BR_min )  ,
+    cbind(tsyB, (-coef(lm_min)[2]    * zeropoint  + tsyB * coef(lm_min)[2])    / mean_min )
+  )
 }
 
-plot(1993:2024, global_sza_mean(1993:2024), col = "red")
+# global_sza_min(1993:2024)
+
+
+plot(1993:2024, global_sza_min(1993:2024)[,2], col = "red")
+title("Combined trend")
 
 
 
 
-aatm  <- "afglms"
-atype <- "SZA median"
-
-sel <- AEM[, atmosphere_file == aatm & typer == atype]
-
-ylim <- range(AEM[sel, glo])
-ylim[2] <- ylim[2] * 1.12
-
-plot(AEM[sel, glo, tsy],
-     ylim = ylim)
-
-lm_median   <- lm(  AEM[sel, tsy, glo])
-mean_median <- mean(AEM[sel, glo])
-
-title(paste("atm:", aatm, "type:", atype))
-
-abline(lm_median, col = "red")
-
-## display trend on graph
-fit <- lm_median[[1]]
-units <- "Watt/m^2"
-legend("top", lty = 1, bty = "n", lwd = 2, cex = 1,
-       c(paste("Trend: ",
-               if (fit[2] > 0) "+" else "-",
-               signif(abs(fit[2]), 2) , bquote(.(units)), "/y"),
-         paste("Trend: ",
-               if (fit[2] > 0) "+" else "-",
-               signif(abs(100 * fit[2] / mean_median), 2) , "%/y")
-       )
-)
 
 
-global_sza_median <- function(tsy   = tsy,
-                            a.    =  coef(lm_median)[2] ,
-                            b.    = -coef(lm_median)[2] * zeropoint,
-                            mean. = mean_median) {
-  return( (b. + a. * tsy) / mean. )
-}
 
-plot(1993:2024, global_sza_median(1993:2024), col = "red")
-
-
+#
+# aatm  <- "afglms"
+# atype <- "SZA mean"
+#
+# sel <- AEM[, atmosphere_file == aatm & typer == atype]
+#
+# ylim <- range(AEM[sel, glo])
+# ylim[2] <- ylim[2] * 1.12
+#
+# plot(AEM[sel, glo, tsy],
+#      ylim = ylim)
+#
+# lm_mean   <- lm(  AEM[sel, tsy, glo])
+# mean_mean <- mean(AEM[sel, glo])
+#
+# title(paste("atm:", aatm, "type:", atype))
+#
+# abline(lm_mean, col = "red")
+#
+# ## display trend on graph
+# fit   <- lm_mean[[1]]
+# units <- "Watt/m^2"
+# legend("top", lty = 1, bty = "n", lwd = 2, cex = 1,
+#        c(paste("Trend: ",
+#                if (fit[2] > 0) "+" else "-",
+#                signif(abs(fit[2]), 2) , bquote(.(units)), "/y"),
+#          paste("Trend: ",
+#                if (fit[2] > 0) "+" else "-",
+#                signif(abs(100 * fit[2] / mean_mean), 2) , "%/y")
+#        )
+# )
+#
+# global_sza_mean <- function(tsy   = tsy,
+#                            a.    =  coef(lm_mean)[2] ,
+#                            b.    = -coef(lm_mean)[2] * zeropoint,
+#                            mean. = mean_mean) {
+#   return( (b. + a. * tsy) / mean. )
+# }
+#
+# plot(1993:2024, global_sza_mean(1993:2024), col = "red")
+#
+#
+#
+#
+# aatm  <- "afglms"
+# atype <- "SZA median"
+#
+# sel <- AEM[, atmosphere_file == aatm & typer == atype]
+#
+# ylim <- range(AEM[sel, glo])
+# ylim[2] <- ylim[2] * 1.12
+#
+# plot(AEM[sel, glo, tsy],
+#      ylim = ylim)
+#
+# lm_median   <- lm(  AEM[sel, tsy, glo])
+# mean_median <- mean(AEM[sel, glo])
+#
+# title(paste("atm:", aatm, "type:", atype))
+#
+# abline(lm_median, col = "red")
+#
+# ## display trend on graph
+# fit <- lm_median[[1]]
+# units <- "Watt/m^2"
+# legend("top", lty = 1, bty = "n", lwd = 2, cex = 1,
+#        c(paste("Trend: ",
+#                if (fit[2] > 0) "+" else "-",
+#                signif(abs(fit[2]), 2) , bquote(.(units)), "/y"),
+#          paste("Trend: ",
+#                if (fit[2] > 0) "+" else "-",
+#                signif(abs(100 * fit[2] / mean_median), 2) , "%/y")
+#        )
+# )
+#
+#
+# global_sza_median <- function(tsy   = tsy,
+#                             a.    =  coef(lm_median)[2] ,
+#                             b.    = -coef(lm_median)[2] * zeropoint,
+#                             mean. = mean_median) {
+#   return( (b. + a. * tsy) / mean. )
+# }
+#
+# plot(1993:2024, global_sza_median(1993:2024), col = "red")
+#
+#
 
 
 # save(list = c("lm_median",
