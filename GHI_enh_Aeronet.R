@@ -272,8 +272,10 @@ AEM[, glo := glo / sun_dist^2 ]
 ## kurudz
 AEM[, glo := glo * TSI_Kurudz_factor ]
 
-
-
+## clean to no reuse them
+AEM$TSI_Kurudz_factor <- NULL
+AEM$tsi_1au_comb      <- NULL
+AEM$sun_dist          <- NULL
 
 
 
@@ -400,16 +402,17 @@ global_sza_min <- function(tsy) {
   tsyA <- tsy[tsy <  AEM[sel2, min(tsy)]]
   tsyB <- tsy[tsy >= AEM[sel2, min(tsy)]]
 
-  rbind(
+  res <- rbind(
     cbind(tsyA, (-coef(lm_BR_min)[2] * zeropointA + tsyA * coef(lm_BR_min)[2]) / mean_BR_min )  ,
     cbind(tsyB, (-coef(lm_min)[2]    * zeropoint  + tsyB * coef(lm_min)[2])    / mean_min )
   )
+
+  ## return resulst with the same order
+  res[match(tsy, res[,1]),][,2]
 }
 
-# global_sza_min(1993:2024)
 
-
-plot(1993:2024, global_sza_min(1993:2024)[,2], col = "red")
+plot(1993:2024, global_sza_min(1993:2024), col = "red")
 title("Combined trend")
 
 
@@ -418,7 +421,6 @@ title("Combined trend")
 
 
 
-#
 # aatm  <- "afglms"
 # atype <- "SZA mean"
 #
@@ -513,6 +515,57 @@ title("Combined trend")
 #               "lm_transp_trend",
 #               "zeropoint"),
 #      file = "./figures/Aerosols_trends.Rda")
+
+
+
+## MONTHLY TREND  -------------------------
+
+#+ echo=F, include=T, results='asis'
+
+gather <- data.frame()
+
+## iterate SZA
+unique(AEM$typer)
+types <- c("SZA min", "SZA mean", "SZA median")
+atype <- "SZA min"
+
+## iterate months
+for (mm in 12) {
+  pp <- AEM[typer == atype & month == mm]
+
+  lm1          <- lm(pp[, tsy, glo])
+  lm_mean      <- mean(pp[, glo])
+  lm_zeropoint <- min(pp[, tsy]) + (max(pp[, tsy]) - min(pp[, tsy])) / 2
+
+
+  plot(pp[, glo, tsy])
+  abline(lm1, col = "red")
+
+  ## display trend on graph
+  fit   <- lm1[[1]]
+  units <- "Watt/m^2"
+  legend("top", lty = 1, bty = "n", lwd = 2, cex = 1,
+         c(paste("Trend: ",
+                 if (fit[2] > 0) "+" else "-",
+                 signif(abs(fit[2]), 2) , bquote(.(units)), "/y"),
+           paste("Trend: ",
+                 if (fit[2] > 0) "+" else "-",
+                 signif(abs(100 * fit[2] / lm_mean), 2) , "%/y")
+         )
+  )
+
+  title(month.name[mm])
+
+  tt <- data.frame(Intercept = lm1[[1]][1],
+                   Slope     = lm1[[1]][2],
+                   Month     = mm,
+                   MeanGlo   = lm_mean,
+                   SlopeRela = lm1[[1]][2] / lm_mean)
+  gather <- rbind(gather, tt)
+
+  pander::pander(tt)
+
+}
 
 
 
