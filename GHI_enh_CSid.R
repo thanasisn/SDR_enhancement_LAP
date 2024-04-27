@@ -76,17 +76,14 @@ library(janitor   , quietly = TRUE, warn.conflicts = FALSE)
 
 
 ## Load raw
-load("./data/GHI_enh_01_raw_data.Rda")
+load("./data/GHI_enh_02_ID_CE.Rda")
 
-DATA$wattDIR     <- NULL
-DATA$wattDIR_sds <- NULL
-DATA$wattHOR     <- NULL
-DATA$wattHOR_sds <- NULL
+DATA$wattDIR           <- NULL
+DATA$wattDIR_sds       <- NULL
+DATA$wattHOR           <- NULL
+DATA$wattHOR_sds       <- NULL
+DATA$ClearnessIndex_kt <- NULL
 
-
-
-## keep only clear
-DATA <- DATA[TYPE == "Clear"]
 
 DATA <- DATA |>
   select(!ends_with(  "W.edir")) |>
@@ -94,28 +91,51 @@ DATA <- DATA |>
   select(!ends_with(  "W.eup"))  |>
   select(!starts_with("C1Grp"))
 
+#' `Low_B.Low_W.glo` has compensation for sun distance, TSI variation and Kurudz difference
+
+
+## keep only clear
+DATA <- DATA[TYPE == "Clear"]
+
+table(DATA$TYPE)
+
+
 DATA <- DATA[!is.na(wattGLB)]
 
-DATA[, .N, by = Day]
+hist(DATA$ClearnessIndex_C_4)
+
+## Hard limits
+DATA <- DATA[ClearnessIndex_C_4 > 0.8 ]
+DATA <- DATA[ClearnessIndex_C_4 < 1.3 ]
+
 
 DTdaily <- DATA[,
                 .(
                   glo_Sum   = sum(Low_B.Low_W.glo),
                   GLB_Sum   = sum(wattGLB),
                   GLB_N     = sum(!is.na(wattGLB)),
-                  DayLength = max(DayLength)
+                  DayLength = max(DayLength),
+                  .N
                 ),
                 by = Day]
+
+
+Day_points <- 30
+
+DATA <- DATA[ Day %in% DTdaily[GLB_N > Day_points, Day]]
 
 
 hist(DTdaily$GLB_N)
 hist(DTdaily[, GLB_N/DayLength])
+# plot(DTdaily[, GLB_N/DayLength, Day])
+summary(DTdaily[, GLB_N/DayLength])
 
-Daytime_Ratio <- 0.006
+## remove days with few relative data
+Daytime_Ratio <- 0.3
 
 DTdaily[GLB_N/DayLength < Daytime_Ratio, .N]
 
-DATA <- DATA[ Day %in% DTdaily[GLB_N/DayLength > Daytime_Ratio, Day]]
+DATA <- DATA[Day %in% DTdaily[GLB_N/DayLength > Daytime_Ratio, Day]]
 
 
 
@@ -124,35 +144,41 @@ DTdaily <- DATA[,
                   glo_Sum   = sum(Low_B.Low_W.glo),
                   GLB_Sum   = sum(wattGLB),
                   GLB_N     = sum(!is.na(wattGLB)),
-                  DayLength = max(DayLength)
+                  DayLength = max(DayLength),
+                  .N
                 ),
                 by = Day]
 
 
 
-plot(DATA[, wattGLB / Low_B.Low_W.glo ])
+# plot(DATA[, ClearnessIndex_C_4, Date ])
 
-table(DATA$BAD_h)
+# table(DATA$BAD_h)
 
 
 
 
 DTyear <- DATA[, .(glo = mean(Low_B.Low_W.glo),
-                   GLB = mean(wattGLB)),
+                   GLB = mean(wattGLB),
+                   .N),
                by = .(year(Date))]
 
 ylim <- range(DTyear[, glo, GLB])
+
+
 
 # plot(  DTyear[, glo, year],
 #        ylim = ylim)
 # points(DTyear[, GLB, year], col = "green")
 
-plot(  DTyear[, GLB/glo, year], col = "red")
-title("Clear GLB / CSlibratran by year")
+plot(DTyear[, N, year], col = "blue")
+plot(DTyear[, GLB/glo, year], col = "red")
+title("Clear GLB / CS libratran by year")
 
 DTmonth <- DATA[, .(glo = mean(Low_B.Low_W.glo),
-                   GLB = mean(wattGLB)),
-               by = .(year(Date), month(Date))]
+                    GLB = mean(wattGLB),
+                    .N),
+                by = .(year(Date), month(Date))]
 DTmonth[, tsy := year + (month - 1)/12 ]
 
 
@@ -162,16 +188,24 @@ ylim <- range(DTmonth[, glo, GLB])
 #        ylim = ylim)
 # points(DTmonth[, GLB, tsy], col = "green")
 
+# plot(  DTmonth[, .N, tsy], col = "blue")
 plot(  DTmonth[, GLB/glo, tsy], col = "red")
-title("Clear GLB / CSlibratran by month")
+title("Clear GLB / CS libratran by month")
 
 
 
+knitr::opts_chunk$set(out.height = "32%"   )
 
 
-days <- unique(c(DTdaily[GLB_Sum/glo_Sum < 0.6, Day]))
+Ratio_lim <- 0.85
 
-for (ad in days) {
+DTdaily[GLB_Sum/glo_Sum < Ratio_lim, .N]
+
+days <- unique(c(DTdaily[GLB_Sum/glo_Sum < Ratio_lim, Day]))
+
+days <- sample(DTdaily[, Day], 40)
+
+for (ad in sort(days)) {
   temp <- DATA[Day == ad,]
 
   ylim <- range(temp[, Low_B.Low_W.glo, wattGLB])
@@ -180,8 +214,7 @@ for (ad in days) {
          col = "blue",
          ylim = ylim)
   points(temp[, wattGLB, Date], col = "green")
-  title(as.Date(ad))
-
+  title(as.Date(ad, origin = "1970-01-01"))
 }
 
 

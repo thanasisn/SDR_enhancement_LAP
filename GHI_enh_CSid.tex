@@ -1,0 +1,425 @@
+% Options for packages loaded elsewhere
+\PassOptionsToPackage{unicode}{hyperref}
+\PassOptionsToPackage{hyphens}{url}
+\PassOptionsToPackage{dvipsnames,svgnames,x11names}{xcolor}
+%
+\documentclass[
+  10pt,
+  a4paper,oneside]{article}
+\usepackage{amsmath,amssymb}
+\usepackage{iftex}
+\ifPDFTeX
+  \usepackage[T1]{fontenc}
+  \usepackage[utf8]{inputenc}
+  \usepackage{textcomp} % provide euro and other symbols
+\else % if luatex or xetex
+  \usepackage{unicode-math} % this also loads fontspec
+  \defaultfontfeatures{Scale=MatchLowercase}
+  \defaultfontfeatures[\rmfamily]{Ligatures=TeX,Scale=1}
+\fi
+\usepackage{lmodern}
+\ifPDFTeX\else
+  % xetex/luatex font selection
+\fi
+% Use upquote if available, for straight quotes in verbatim environments
+\IfFileExists{upquote.sty}{\usepackage{upquote}}{}
+\IfFileExists{microtype.sty}{% use microtype if available
+  \usepackage[]{microtype}
+  \UseMicrotypeSet[protrusion]{basicmath} % disable protrusion for tt fonts
+}{}
+\makeatletter
+\@ifundefined{KOMAClassName}{% if non-KOMA class
+  \IfFileExists{parskip.sty}{%
+    \usepackage{parskip}
+  }{% else
+    \setlength{\parindent}{0pt}
+    \setlength{\parskip}{6pt plus 2pt minus 1pt}}
+}{% if KOMA class
+  \KOMAoptions{parskip=half}}
+\makeatother
+\usepackage{xcolor}
+\usepackage[left=0.5in,right=0.5in,top=0.5in,bottom=0.5in]{geometry}
+\usepackage{color}
+\usepackage{fancyvrb}
+\newcommand{\VerbBar}{|}
+\newcommand{\VERB}{\Verb[commandchars=\\\{\}]}
+\DefineVerbatimEnvironment{Highlighting}{Verbatim}{commandchars=\\\{\}}
+% Add ',fontsize=\small' for more characters per line
+\usepackage{framed}
+\definecolor{shadecolor}{RGB}{248,248,248}
+\newenvironment{Shaded}{\begin{snugshade}}{\end{snugshade}}
+\newcommand{\AlertTok}[1]{\textcolor[rgb]{0.94,0.16,0.16}{#1}}
+\newcommand{\AnnotationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\AttributeTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{#1}}
+\newcommand{\BaseNTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\BuiltInTok}[1]{#1}
+\newcommand{\CharTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\CommentTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textit{#1}}}
+\newcommand{\CommentVarTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\ConstantTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{#1}}
+\newcommand{\ControlFlowTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
+\newcommand{\DataTypeTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{#1}}
+\newcommand{\DecValTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\DocumentationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\ErrorTok}[1]{\textcolor[rgb]{0.64,0.00,0.00}{\textbf{#1}}}
+\newcommand{\ExtensionTok}[1]{#1}
+\newcommand{\FloatTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\FunctionTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
+\newcommand{\ImportTok}[1]{#1}
+\newcommand{\InformationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\KeywordTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
+\newcommand{\NormalTok}[1]{#1}
+\newcommand{\OperatorTok}[1]{\textcolor[rgb]{0.81,0.36,0.00}{\textbf{#1}}}
+\newcommand{\OtherTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{#1}}
+\newcommand{\PreprocessorTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textit{#1}}}
+\newcommand{\RegionMarkerTok}[1]{#1}
+\newcommand{\SpecialCharTok}[1]{\textcolor[rgb]{0.81,0.36,0.00}{\textbf{#1}}}
+\newcommand{\SpecialStringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\StringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\VariableTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\VerbatimStringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\WarningTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\usepackage{longtable,booktabs,array}
+\usepackage{calc} % for calculating minipage widths
+% Correct order of tables after \paragraph or \subparagraph
+\usepackage{etoolbox}
+\makeatletter
+\patchcmd\longtable{\par}{\if@noskipsec\mbox{}\fi\par}{}{}
+\makeatother
+% Allow footnotes in longtable head/foot
+\IfFileExists{footnotehyper.sty}{\usepackage{footnotehyper}}{\usepackage{footnote}}
+\makesavenoteenv{longtable}
+\usepackage{graphicx}
+\makeatletter
+\def\maxwidth{\ifdim\Gin@nat@width>\linewidth\linewidth\else\Gin@nat@width\fi}
+\def\maxheight{\ifdim\Gin@nat@height>\textheight\textheight\else\Gin@nat@height\fi}
+\makeatother
+% Scale images if necessary, so that they will not overflow the page
+% margins by default, and it is still possible to overwrite the defaults
+% using explicit options in \includegraphics[width, height, ...]{}
+\setkeys{Gin}{width=\maxwidth,height=\maxheight,keepaspectratio}
+% Set default figure placement to htbp
+\makeatletter
+\def\fps@figure{htbp}
+\makeatother
+\setlength{\emergencystretch}{3em} % prevent overfull lines
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+\setcounter{secnumdepth}{-\maxdimen} % remove section numbering
+\usepackage{caption}
+\usepackage{placeins}
+\captionsetup{font=small}
+\ifLuaTeX
+  \usepackage{selnolig}  % disable illegal ligatures
+\fi
+\IfFileExists{bookmark.sty}{\usepackage{bookmark}}{\usepackage{hyperref}}
+\IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
+\urlstyle{same}
+\hypersetup{
+  pdftitle={Enhancement of SDR in Thessaloniki},
+  pdfauthor={Natsis Athanasios; Alkiviadis Bais},
+  colorlinks=true,
+  linkcolor={Maroon},
+  filecolor={Maroon},
+  citecolor={Blue},
+  urlcolor={Blue},
+  pdfcreator={LaTeX via pandoc}}
+
+\title{Enhancement of SDR in Thessaloniki}
+\author{Natsis Athanasios\footnote{Laboratory of Atmospheric Physics, AUTH, \href{mailto:natsisphysicist@gmail.com}{\nolinkurl{natsisphysicist@gmail.com}}} \and Alkiviadis Bais\footnote{Laboratory of Atmospheric Physics, AUTH}}
+\date{2024-04-27}
+
+\begin{document}
+\maketitle
+\begin{abstract}
+Study of GHI enchantment.
+\end{abstract}
+
+{
+\hypersetup{linkcolor=}
+\setcounter{tocdepth}{4}
+\tableofcontents
+}
+\texttt{Low\_B.Low\_W.glo} has compensation for sun distance, TSI variation and Kurudz difference
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\DocumentationTok{\#\# keep only clear}
+\NormalTok{DATA }\OtherTok{\textless{}{-}}\NormalTok{ DATA[TYPE }\SpecialCharTok{==} \StringTok{"Clear"}\NormalTok{]}
+
+\FunctionTok{table}\NormalTok{(DATA}\SpecialCharTok{$}\NormalTok{TYPE)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+
+  Clear 
+2577597 
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{DATA }\OtherTok{\textless{}{-}}\NormalTok{ DATA[}\SpecialCharTok{!}\FunctionTok{is.na}\NormalTok{(wattGLB)]}
+
+\FunctionTok{hist}\NormalTok{(DATA}\SpecialCharTok{$}\NormalTok{ClearnessIndex\_C\_4)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{center}\includegraphics[width=1\linewidth]{GHI_enh_CSid_files/figure-latex/unnamed-chunk-5-1} \end{center}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\DocumentationTok{\#\# Hard limits}
+\NormalTok{DATA }\OtherTok{\textless{}{-}}\NormalTok{ DATA[ClearnessIndex\_C\_4 }\SpecialCharTok{\textgreater{}} \FloatTok{0.8}\NormalTok{ ]}
+\NormalTok{DATA }\OtherTok{\textless{}{-}}\NormalTok{ DATA[ClearnessIndex\_C\_4 }\SpecialCharTok{\textless{}} \FloatTok{1.3}\NormalTok{ ]}
+
+
+\NormalTok{DTdaily }\OtherTok{\textless{}{-}}\NormalTok{ DATA[,}
+\NormalTok{                .(}
+                  \AttributeTok{glo\_Sum   =} \FunctionTok{sum}\NormalTok{(Low\_B.Low\_W.glo),}
+                  \AttributeTok{GLB\_Sum   =} \FunctionTok{sum}\NormalTok{(wattGLB),}
+                  \AttributeTok{GLB\_N     =} \FunctionTok{sum}\NormalTok{(}\SpecialCharTok{!}\FunctionTok{is.na}\NormalTok{(wattGLB)),}
+                  \AttributeTok{DayLength =} \FunctionTok{max}\NormalTok{(DayLength),}
+\NormalTok{                  .N}
+\NormalTok{                ),}
+\NormalTok{                by }\OtherTok{=}\NormalTok{ Day]}
+
+
+\NormalTok{Day\_points }\OtherTok{\textless{}{-}} \DecValTok{30}
+
+\NormalTok{DATA }\OtherTok{\textless{}{-}}\NormalTok{ DATA[ Day }\SpecialCharTok{\%in\%}\NormalTok{ DTdaily[GLB\_N }\SpecialCharTok{\textgreater{}}\NormalTok{ Day\_points, Day]]}
+
+
+\FunctionTok{hist}\NormalTok{(DTdaily}\SpecialCharTok{$}\NormalTok{GLB\_N)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{center}\includegraphics[width=1\linewidth]{GHI_enh_CSid_files/figure-latex/unnamed-chunk-5-2} \end{center}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{hist}\NormalTok{(DTdaily[, GLB\_N}\SpecialCharTok{/}\NormalTok{DayLength])}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{center}\includegraphics[width=1\linewidth]{GHI_enh_CSid_files/figure-latex/unnamed-chunk-5-3} \end{center}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# plot(DTdaily[, GLB\_N/DayLength, Day])}
+\FunctionTok{summary}\NormalTok{(DTdaily[, GLB\_N}\SpecialCharTok{/}\NormalTok{DayLength])}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+    Min.  1st Qu.   Median     Mean  3rd Qu.     Max. 
+0.001152 0.181870 0.422018 0.420691 0.657944 0.838020 
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\DocumentationTok{\#\# remove days with few relative data}
+\NormalTok{Daytime\_Ratio }\OtherTok{\textless{}{-}} \FloatTok{0.3}
+
+\NormalTok{DTdaily[GLB\_N}\SpecialCharTok{/}\NormalTok{DayLength }\SpecialCharTok{\textless{}}\NormalTok{ Daytime\_Ratio, .N]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+[1] 2932
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{DATA }\OtherTok{\textless{}{-}}\NormalTok{ DATA[Day }\SpecialCharTok{\%in\%}\NormalTok{ DTdaily[GLB\_N}\SpecialCharTok{/}\NormalTok{DayLength }\SpecialCharTok{\textgreater{}}\NormalTok{ Daytime\_Ratio, Day]]}
+
+
+
+\NormalTok{DTdaily }\OtherTok{\textless{}{-}}\NormalTok{ DATA[,}
+\NormalTok{                .(}
+                  \AttributeTok{glo\_Sum   =} \FunctionTok{sum}\NormalTok{(Low\_B.Low\_W.glo),}
+                  \AttributeTok{GLB\_Sum   =} \FunctionTok{sum}\NormalTok{(wattGLB),}
+                  \AttributeTok{GLB\_N     =} \FunctionTok{sum}\NormalTok{(}\SpecialCharTok{!}\FunctionTok{is.na}\NormalTok{(wattGLB)),}
+                  \AttributeTok{DayLength =} \FunctionTok{max}\NormalTok{(DayLength),}
+\NormalTok{                  .N}
+\NormalTok{                ),}
+\NormalTok{                by }\OtherTok{=}\NormalTok{ Day]}
+
+
+
+\CommentTok{\# plot(DATA[, ClearnessIndex\_C\_4, Date ])}
+
+\CommentTok{\# table(DATA$BAD\_h)}
+
+
+
+
+\NormalTok{DTyear }\OtherTok{\textless{}{-}}\NormalTok{ DATA[, .(}\AttributeTok{glo =} \FunctionTok{mean}\NormalTok{(Low\_B.Low\_W.glo),}
+                   \AttributeTok{GLB =} \FunctionTok{mean}\NormalTok{(wattGLB),}
+\NormalTok{                   .N),}
+\NormalTok{               by }\OtherTok{=}\NormalTok{ .(}\FunctionTok{year}\NormalTok{(Date))]}
+
+\NormalTok{ylim }\OtherTok{\textless{}{-}} \FunctionTok{range}\NormalTok{(DTyear[, glo, GLB])}
+
+
+
+\CommentTok{\# plot(  DTyear[, glo, year],}
+\CommentTok{\#        ylim = ylim)}
+\CommentTok{\# points(DTyear[, GLB, year], col = "green")}
+
+\FunctionTok{plot}\NormalTok{(DTyear[, N, year], }\AttributeTok{col =} \StringTok{"blue"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{center}\includegraphics[width=1\linewidth]{GHI_enh_CSid_files/figure-latex/unnamed-chunk-5-4} \end{center}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{plot}\NormalTok{(DTyear[, GLB}\SpecialCharTok{/}\NormalTok{glo, year], }\AttributeTok{col =} \StringTok{"red"}\NormalTok{)}
+\FunctionTok{title}\NormalTok{(}\StringTok{"Clear GLB / CS libratran by year"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{center}\includegraphics[width=1\linewidth]{GHI_enh_CSid_files/figure-latex/unnamed-chunk-5-5} \end{center}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{DTmonth }\OtherTok{\textless{}{-}}\NormalTok{ DATA[, .(}\AttributeTok{glo =} \FunctionTok{mean}\NormalTok{(Low\_B.Low\_W.glo),}
+                    \AttributeTok{GLB =} \FunctionTok{mean}\NormalTok{(wattGLB),}
+\NormalTok{                    .N),}
+\NormalTok{                by }\OtherTok{=}\NormalTok{ .(}\FunctionTok{year}\NormalTok{(Date), }\FunctionTok{month}\NormalTok{(Date))]}
+\NormalTok{DTmonth[, tsy }\SpecialCharTok{:=}\NormalTok{ year }\SpecialCharTok{+}\NormalTok{ (month }\SpecialCharTok{{-}} \DecValTok{1}\NormalTok{)}\SpecialCharTok{/}\DecValTok{12}\NormalTok{ ]}
+
+
+\NormalTok{ylim }\OtherTok{\textless{}{-}} \FunctionTok{range}\NormalTok{(DTmonth[, glo, GLB])}
+
+\CommentTok{\# plot(  DTmonth[, glo, tsy],}
+\CommentTok{\#        ylim = ylim)}
+\CommentTok{\# points(DTmonth[, GLB, tsy], col = "green")}
+
+\CommentTok{\# plot(  DTmonth[, .N, tsy], col = "blue")}
+\FunctionTok{plot}\NormalTok{(  DTmonth[, GLB}\SpecialCharTok{/}\NormalTok{glo, tsy], }\AttributeTok{col =} \StringTok{"red"}\NormalTok{)}
+\FunctionTok{title}\NormalTok{(}\StringTok{"Clear GLB / CS libratran by month"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{center}\includegraphics[width=1\linewidth]{GHI_enh_CSid_files/figure-latex/unnamed-chunk-5-6} \end{center}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{knitr}\SpecialCharTok{::}\NormalTok{opts\_chunk}\SpecialCharTok{$}\FunctionTok{set}\NormalTok{(}\AttributeTok{out.height =} \StringTok{"32\%"}\NormalTok{   )}
+
+
+\NormalTok{Ratio\_lim }\OtherTok{\textless{}{-}} \FloatTok{0.85}
+
+\NormalTok{DTdaily[GLB\_Sum}\SpecialCharTok{/}\NormalTok{glo\_Sum }\SpecialCharTok{\textless{}}\NormalTok{ Ratio\_lim, .N]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+[1] 134
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{days }\OtherTok{\textless{}{-}} \FunctionTok{unique}\NormalTok{(}\FunctionTok{c}\NormalTok{(DTdaily[GLB\_Sum}\SpecialCharTok{/}\NormalTok{glo\_Sum }\SpecialCharTok{\textless{}}\NormalTok{ Ratio\_lim, Day]))}
+
+\NormalTok{days }\OtherTok{\textless{}{-}} \FunctionTok{sample}\NormalTok{(DTdaily[, Day], }\DecValTok{40}\NormalTok{)}
+
+\ControlFlowTok{for}\NormalTok{ (ad }\ControlFlowTok{in} \FunctionTok{sort}\NormalTok{(days)) \{}
+\NormalTok{  temp }\OtherTok{\textless{}{-}}\NormalTok{ DATA[Day }\SpecialCharTok{==}\NormalTok{ ad,]}
+
+\NormalTok{  ylim }\OtherTok{\textless{}{-}} \FunctionTok{range}\NormalTok{(temp[, Low\_B.Low\_W.glo, wattGLB])}
+
+  \FunctionTok{plot}\NormalTok{(  temp[, Low\_B.Low\_W.glo, Date],}
+         \AttributeTok{col =} \StringTok{"blue"}\NormalTok{,}
+         \AttributeTok{ylim =}\NormalTok{ ylim)}
+  \FunctionTok{points}\NormalTok{(temp[, wattGLB, Date], }\AttributeTok{col =} \StringTok{"green"}\NormalTok{)}
+  \FunctionTok{title}\NormalTok{(}\FunctionTok{as.Date}\NormalTok{(ad, }\AttributeTok{origin =} \StringTok{"1970{-}01{-}01"}\NormalTok{))}
+\NormalTok{\}}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{center}\includegraphics[width=1\linewidth]{GHI_enh_CSid_files/figure-latex/unnamed-chunk-5-7} \end{center}
+
+\begin{center}\includegraphics[width=1\linewidth]{GHI_enh_CSid_files/figure-latex/unnamed-chunk-5-8} \end{center}
+
+\begin{center}\includegraphics[width=1\linewidth]{GHI_enh_CSid_files/figure-latex/unnamed-chunk-5-9} \end{center}
+
+\begin{center}\includegraphics[width=1\linewidth]{GHI_enh_CSid_files/figure-latex/unnamed-chunk-5-10} \end{center}
+
+\begin{center}\includegraphics[width=1\linewidth]{GHI_enh_CSid_files/figure-latex/unnamed-chunk-5-11} \end{center}
+
+\begin{center}\includegraphics[width=1\linewidth]{GHI_enh_CSid_files/figure-latex/unnamed-chunk-5-12} \end{center}
+
+\begin{center}\includegraphics[width=1\linewidth]{GHI_enh_CSid_files/figure-latex/unnamed-chunk-5-13} \end{center}
+
+\begin{center}\includegraphics[width=1\linewidth]{GHI_enh_CSid_files/figure-latex/unnamed-chunk-5-14} \end{center}
+
+\begin{center}\includegraphics[width=1\linewidth]{GHI_enh_CSid_files/figure-latex/unnamed-chunk-5-15} \end{center}
+
+\begin{center}\includegraphics[width=1\linewidth]{GHI_enh_CSid_files/figure-latex/unnamed-chunk-5-16} \end{center}
+
+\begin{center}\includegraphics[width=1\linewidth]{GHI_enh_CSid_files/figure-latex/unnamed-chunk-5-17} \end{center}
+
+\begin{center}\includegraphics[width=1\linewidth]{GHI_enh_CSid_files/figure-latex/unnamed-chunk-5-18} \end{center}
+
+\begin{center}\includegraphics[width=1\linewidth]{GHI_enh_CSid_files/figure-latex/unnamed-chunk-5-19} \end{center}
+
+\begin{center}\includegraphics[width=1\linewidth]{GHI_enh_CSid_files/figure-latex/unnamed-chunk-5-20} \end{center}
+
+\begin{center}\includegraphics[width=1\linewidth]{GHI_enh_CSid_files/figure-latex/unnamed-chunk-5-21} \end{center}
+
+\begin{center}\includegraphics[width=1\linewidth]{GHI_enh_CSid_files/figure-latex/unnamed-chunk-5-22} \end{center}
+
+\begin{center}\includegraphics[width=1\linewidth]{GHI_enh_CSid_files/figure-latex/unnamed-chunk-5-23} \end{center}
+
+\begin{center}\includegraphics[width=1\linewidth]{GHI_enh_CSid_files/figure-latex/unnamed-chunk-5-24} \end{center}
+
+\begin{center}\includegraphics[width=1\linewidth]{GHI_enh_CSid_files/figure-latex/unnamed-chunk-5-25} \end{center}
+
+\begin{center}\includegraphics[width=1\linewidth]{GHI_enh_CSid_files/figure-latex/unnamed-chunk-5-26} \end{center}
+
+\begin{center}\includegraphics[width=1\linewidth]{GHI_enh_CSid_files/figure-latex/unnamed-chunk-5-27} \end{center}
+
+\begin{center}\includegraphics[width=1\linewidth]{GHI_enh_CSid_files/figure-latex/unnamed-chunk-5-28} \end{center}
+
+\begin{center}\includegraphics[width=1\linewidth]{GHI_enh_CSid_files/figure-latex/unnamed-chunk-5-29} \end{center}
+
+\begin{center}\includegraphics[width=1\linewidth]{GHI_enh_CSid_files/figure-latex/unnamed-chunk-5-30} \end{center}
+
+\begin{center}\includegraphics[width=1\linewidth]{GHI_enh_CSid_files/figure-latex/unnamed-chunk-5-31} \end{center}
+
+\begin{center}\includegraphics[width=1\linewidth]{GHI_enh_CSid_files/figure-latex/unnamed-chunk-5-32} \end{center}
+
+\begin{center}\includegraphics[width=1\linewidth]{GHI_enh_CSid_files/figure-latex/unnamed-chunk-5-33} \end{center}
+
+\begin{center}\includegraphics[width=1\linewidth]{GHI_enh_CSid_files/figure-latex/unnamed-chunk-5-34} \end{center}
+
+\begin{center}\includegraphics[width=1\linewidth]{GHI_enh_CSid_files/figure-latex/unnamed-chunk-5-35} \end{center}
+
+\begin{center}\includegraphics[width=1\linewidth]{GHI_enh_CSid_files/figure-latex/unnamed-chunk-5-36} \end{center}
+
+\begin{center}\includegraphics[width=1\linewidth]{GHI_enh_CSid_files/figure-latex/unnamed-chunk-5-37} \end{center}
+
+\begin{center}\includegraphics[width=1\linewidth]{GHI_enh_CSid_files/figure-latex/unnamed-chunk-5-38} \end{center}
+
+\begin{center}\includegraphics[width=1\linewidth]{GHI_enh_CSid_files/figure-latex/unnamed-chunk-5-39} \end{center}
+
+\begin{center}\includegraphics[width=1\linewidth]{GHI_enh_CSid_files/figure-latex/unnamed-chunk-5-40} \end{center}
+
+\begin{center}\includegraphics[width=1\linewidth]{GHI_enh_CSid_files/figure-latex/unnamed-chunk-5-41} \end{center}
+
+\begin{center}\includegraphics[width=1\linewidth]{GHI_enh_CSid_files/figure-latex/unnamed-chunk-5-42} \end{center}
+
+\begin{center}\includegraphics[width=1\linewidth]{GHI_enh_CSid_files/figure-latex/unnamed-chunk-5-43} \end{center}
+
+\begin{center}\includegraphics[width=1\linewidth]{GHI_enh_CSid_files/figure-latex/unnamed-chunk-5-44} \end{center}
+
+\begin{center}\includegraphics[width=1\linewidth]{GHI_enh_CSid_files/figure-latex/unnamed-chunk-5-45} \end{center}
+
+\begin{center}\includegraphics[width=1\linewidth]{GHI_enh_CSid_files/figure-latex/unnamed-chunk-5-46} \end{center}
+
+\textbf{END}
+
+\end{document}

@@ -127,7 +127,7 @@
 
 \title{Enhancement of SDR in Thessaloniki}
 \author{Natsis Athanasios\footnote{Laboratory of Atmospheric Physics, AUTH, \href{mailto:natsisphysicist@gmail.com}{\nolinkurl{natsisphysicist@gmail.com}}} \and Alkiviadis Bais\footnote{Laboratory of Atmospheric Physics, AUTH}}
-\date{2024-04-22}
+\date{2024-04-27}
 
 \begin{document}
 \maketitle
@@ -164,26 +164,26 @@ Alpha * HAU is CS\_ref
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\DocumentationTok{\#\# \_\_ 1. My criteria  {-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}}
-\CommentTok{\# C1\_GLB\_ench\_THRES     \textless{}{-}  1.10 \#\# enchantment relative to HAU}
-\NormalTok{C1\_GLB\_diff\_THRES     }\OtherTok{\textless{}{-}} \DecValTok{20}    \DocumentationTok{\#\# enchantment absolute diff to HAU}
-\NormalTok{C1\_Clearness\_Kt\_THRES }\OtherTok{\textless{}{-}}  \FloatTok{0.8}  \DocumentationTok{\#\# enchantment threshold}
-\CommentTok{\# C1\_wattGLB\_THRES      \textless{}{-} 20    \#\# minimum value to consider}
-
-\NormalTok{DATA[, Enhanc\_C\_1 }\SpecialCharTok{:=} \ConstantTok{FALSE}\NormalTok{]}
-\CommentTok{\# DATA[wattGLB           \textgreater{} CS\_ref * C1\_GLB\_ench\_THRES + C1\_GLB\_diff\_THRES \&}
-\CommentTok{\#      ClearnessIndex\_kt \textgreater{} C1\_Clearness\_Kt\_THRES,}
+\CommentTok{\# \#\# \_\_ 1. My criteria  {-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}}
+\CommentTok{\# \# C1\_GLB\_ench\_THRES     \textless{}{-}  1.10 \#\# enchantment relative to HAU}
+\CommentTok{\# C1\_GLB\_diff\_THRES     \textless{}{-} 20    \#\# enchantment absolute diff to HAU}
+\CommentTok{\# C1\_Clearness\_Kt\_THRES \textless{}{-}  0.8  \#\# enchantment threshold}
+\CommentTok{\# \# C1\_wattGLB\_THRES      \textless{}{-} 20    \#\# minimum value to consider}
+\CommentTok{\#}
+\CommentTok{\# DATA[, Enhanc\_C\_1 := FALSE]}
+\CommentTok{\# \# DATA[wattGLB           \textgreater{} CS\_ref * C1\_GLB\_ench\_THRES + C1\_GLB\_diff\_THRES \&}
+\CommentTok{\# \#      ClearnessIndex\_kt \textgreater{} C1\_Clearness\_Kt\_THRES,}
+\CommentTok{\# \#      Enhanc\_C\_1 := TRUE]}
+\CommentTok{\#}
+\CommentTok{\# DATA[, Enhanc\_C\_1\_ref := ETH * C1\_Clearness\_Kt\_THRES + C1\_GLB\_diff\_THRES]}
+\CommentTok{\# DATA[wattGLB \textgreater{} Enhanc\_C\_1\_ref,}
 \CommentTok{\#      Enhanc\_C\_1 := TRUE]}
-
-\NormalTok{DATA[, Enhanc\_C\_1\_ref }\SpecialCharTok{:=}\NormalTok{ ETH }\SpecialCharTok{*}\NormalTok{ C1\_Clearness\_Kt\_THRES }\SpecialCharTok{+}\NormalTok{ C1\_GLB\_diff\_THRES]}
-\NormalTok{DATA[wattGLB }\SpecialCharTok{\textgreater{}}\NormalTok{ Enhanc\_C\_1\_ref,}
-\NormalTok{     Enhanc\_C\_1 }\SpecialCharTok{:=} \ConstantTok{TRUE}\NormalTok{]}
-
-\ControlFlowTok{if}\NormalTok{ (SelEnhanc }\SpecialCharTok{==} \StringTok{"Enhanc\_C\_1"}\NormalTok{) \{}
-\NormalTok{  DATA[ , GLB\_diff }\SpecialCharTok{:=}\NormalTok{   wattGLB }\SpecialCharTok{{-}}\NormalTok{ Enhanc\_C\_1\_ref                    ] }\DocumentationTok{\#\# enhancement}
-\NormalTok{  DATA[ , GLB\_ench }\SpecialCharTok{:=}\NormalTok{ ( wattGLB }\SpecialCharTok{{-}}\NormalTok{ Enhanc\_C\_1\_ref ) }\SpecialCharTok{/}\NormalTok{ Enhanc\_C\_1\_ref ] }\DocumentationTok{\#\# relative enhancement}
-\NormalTok{  DATA[ , GLB\_rati }\SpecialCharTok{:=}\NormalTok{   wattGLB }\SpecialCharTok{/}\NormalTok{ Enhanc\_C\_1\_ref                    ]}
-\NormalTok{\}}
+\CommentTok{\#}
+\CommentTok{\# if (SelEnhanc == "Enhanc\_C\_1") \{}
+\CommentTok{\#   DATA[ , GLB\_diff :=   wattGLB {-} Enhanc\_C\_1\_ref                    ] \#\# enhancement}
+\CommentTok{\#   DATA[ , GLB\_ench := ( wattGLB {-} Enhanc\_C\_1\_ref ) / Enhanc\_C\_1\_ref ] \#\# relative enhancement}
+\CommentTok{\#   DATA[ , GLB\_rati :=   wattGLB / Enhanc\_C\_1\_ref                    ]}
+\CommentTok{\# \}}
 \end{Highlighting}
 \end{Shaded}
 
@@ -192,21 +192,21 @@ Alpha * HAU is CS\_ref
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\DocumentationTok{\#\# \_\_ 2. Gueymard2017 Criteria  {-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}}
-\DocumentationTok{\#\# Clearness index \textgreater{} 0.8 / 1}
-\NormalTok{C2\_Clearness\_Kt\_THRES }\OtherTok{\textless{}{-}} \FloatTok{0.8}
-\NormalTok{DATA[, Enhanc\_C\_2 }\SpecialCharTok{:=} \ConstantTok{FALSE}\NormalTok{]}
-\NormalTok{DATA[, Enhanc\_C\_2\_ref }\SpecialCharTok{:=}\NormalTok{ ETH }\SpecialCharTok{*}\NormalTok{ C2\_Clearness\_Kt\_THRES]}
-\CommentTok{\# DATA[ClearnessIndex\_kt \textgreater{} C1\_Clearness\_Kt\_THRES,}
+\CommentTok{\# \#\# \_\_ 2. Gueymard2017 Criteria  {-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}}
+\CommentTok{\# \#\# Clearness index \textgreater{} 0.8 / 1}
+\CommentTok{\# C2\_Clearness\_Kt\_THRES \textless{}{-} 0.8}
+\CommentTok{\# DATA[, Enhanc\_C\_2 := FALSE]}
+\CommentTok{\# DATA[, Enhanc\_C\_2\_ref := ETH * C2\_Clearness\_Kt\_THRES]}
+\CommentTok{\# \# DATA[ClearnessIndex\_kt \textgreater{} C1\_Clearness\_Kt\_THRES,}
+\CommentTok{\# \#      Enhanc\_C\_2 := TRUE]}
+\CommentTok{\# DATA[wattGLB \textgreater{} Enhanc\_C\_2\_ref,}
 \CommentTok{\#      Enhanc\_C\_2 := TRUE]}
-\NormalTok{DATA[wattGLB }\SpecialCharTok{\textgreater{}}\NormalTok{ Enhanc\_C\_2\_ref,}
-\NormalTok{     Enhanc\_C\_2 }\SpecialCharTok{:=} \ConstantTok{TRUE}\NormalTok{]}
-
-\ControlFlowTok{if}\NormalTok{ (SelEnhanc }\SpecialCharTok{==} \StringTok{"Enhanc\_C\_2"}\NormalTok{) \{}
-\NormalTok{  DATA[ , GLB\_diff }\SpecialCharTok{:=}\NormalTok{   wattGLB }\SpecialCharTok{{-}}\NormalTok{ Enhanc\_C\_2\_ref                    ] }\DocumentationTok{\#\# enhancement}
-\NormalTok{  DATA[ , GLB\_ench }\SpecialCharTok{:=}\NormalTok{ ( wattGLB }\SpecialCharTok{{-}}\NormalTok{ Enhanc\_C\_2\_ref ) }\SpecialCharTok{/}\NormalTok{ Enhanc\_C\_2\_ref ] }\DocumentationTok{\#\# relative enhancement}
-\NormalTok{  DATA[ , GLB\_rati }\SpecialCharTok{:=}\NormalTok{   wattGLB }\SpecialCharTok{/}\NormalTok{ Enhanc\_C\_2\_ref                    ]}
-\NormalTok{\}}
+\CommentTok{\#}
+\CommentTok{\# if (SelEnhanc == "Enhanc\_C\_2") \{}
+\CommentTok{\#   DATA[ , GLB\_diff :=   wattGLB {-} Enhanc\_C\_2\_ref                    ] \#\# enhancement}
+\CommentTok{\#   DATA[ , GLB\_ench := ( wattGLB {-} Enhanc\_C\_2\_ref ) / Enhanc\_C\_2\_ref ] \#\# relative enhancement}
+\CommentTok{\#   DATA[ , GLB\_rati :=   wattGLB / Enhanc\_C\_2\_ref                    ]}
+\CommentTok{\# \}}
 \end{Highlighting}
 \end{Shaded}
 
@@ -215,19 +215,19 @@ Alpha * HAU is CS\_ref
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\DocumentationTok{\#\# \_\_ 3. Vamvakas2020  Criteria  {-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}}
-\DocumentationTok{\#\# +5\% from model =\textgreater{} enhancements above 15 Wm\^{}2 the instrument uncertainty}
-\NormalTok{C3\_cs\_ref\_ratio }\OtherTok{\textless{}{-}} \FloatTok{1.05}
-\NormalTok{DATA[, Enhanc\_C\_3 }\SpecialCharTok{:=} \ConstantTok{FALSE}\NormalTok{]}
-\NormalTok{DATA[, Enhanc\_C\_3\_ref }\SpecialCharTok{:=}\NormalTok{ CS\_ref }\SpecialCharTok{*}\NormalTok{ C3\_cs\_ref\_ratio]}
-\NormalTok{DATA[wattGLB }\SpecialCharTok{\textgreater{}}\NormalTok{ Enhanc\_C\_3\_ref,}
-\NormalTok{     Enhanc\_C\_3 }\SpecialCharTok{:=} \ConstantTok{TRUE}\NormalTok{]}
-
-\ControlFlowTok{if}\NormalTok{ (SelEnhanc }\SpecialCharTok{==} \StringTok{"Enhanc\_C\_3"}\NormalTok{) \{}
-\NormalTok{  DATA[ , GLB\_diff }\SpecialCharTok{:=}\NormalTok{   wattGLB }\SpecialCharTok{{-}}\NormalTok{ Enhanc\_C\_3\_ref                    ] }\DocumentationTok{\#\# enhancement}
-\NormalTok{  DATA[ , GLB\_ench }\SpecialCharTok{:=}\NormalTok{ ( wattGLB }\SpecialCharTok{{-}}\NormalTok{ Enhanc\_C\_3\_ref ) }\SpecialCharTok{/}\NormalTok{ Enhanc\_C\_3\_ref ] }\DocumentationTok{\#\# relative enhancement}
-\NormalTok{  DATA[ , GLB\_rati }\SpecialCharTok{:=}\NormalTok{   wattGLB }\SpecialCharTok{/}\NormalTok{ Enhanc\_C\_3\_ref                    ]}
-\NormalTok{\}}
+\CommentTok{\# \#\# \_\_ 3. Vamvakas2020  Criteria  {-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}}
+\CommentTok{\# \#\# +5\% from model =\textgreater{} enhancements above 15 Wm\^{}2 the instrument uncertainty}
+\CommentTok{\# C3\_cs\_ref\_ratio \textless{}{-} 1.05}
+\CommentTok{\# DATA[, Enhanc\_C\_3 := FALSE]}
+\CommentTok{\# DATA[, Enhanc\_C\_3\_ref := CS\_ref * C3\_cs\_ref\_ratio]}
+\CommentTok{\# DATA[wattGLB \textgreater{} Enhanc\_C\_3\_ref,}
+\CommentTok{\#      Enhanc\_C\_3 := TRUE]}
+\CommentTok{\#}
+\CommentTok{\# if (SelEnhanc == "Enhanc\_C\_3") \{}
+\CommentTok{\#   DATA[ , GLB\_diff :=   wattGLB {-} Enhanc\_C\_3\_ref                    ] \#\# enhancement}
+\CommentTok{\#   DATA[ , GLB\_ench := ( wattGLB {-} Enhanc\_C\_3\_ref ) / Enhanc\_C\_3\_ref ] \#\# relative enhancement}
+\CommentTok{\#   DATA[ , GLB\_rati :=   wattGLB / Enhanc\_C\_3\_ref                    ]}
+\CommentTok{\# \}}
 
 
 
@@ -400,81 +400,6 @@ C4 offset: 15
 \begin{center}\includegraphics[width=1\linewidth]{GHI_enh_02_ID_CE_files/figure-latex/unnamed-chunk-13-2} \end{center}
 
 \begin{center}\includegraphics[width=1\linewidth]{GHI_enh_02_ID_CE_files/figure-latex/unnamed-chunk-13-3} \end{center}
-
-\begin{longtable}[]{@{}
-  >{\raggedleft\arraybackslash}p{(\columnwidth - 2\tabcolsep) * \real{0.1389}}
-  >{\raggedleft\arraybackslash}p{(\columnwidth - 2\tabcolsep) * \real{0.1389}}@{}}
-\caption{Enhanc\_C\_1}\tabularnewline
-\toprule\noalign{}
-\begin{minipage}[b]{\linewidth}\raggedleft
-FALSE
-\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
-TRUE
-\end{minipage} \\
-\midrule\noalign{}
-\endfirsthead
-\toprule\noalign{}
-\begin{minipage}[b]{\linewidth}\raggedleft
-FALSE
-\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
-TRUE
-\end{minipage} \\
-\midrule\noalign{}
-\endhead
-\bottomrule\noalign{}
-\endlastfoot
-6082440 & 119727 \\
-\end{longtable}
-
-\begin{longtable}[]{@{}
-  >{\raggedleft\arraybackslash}p{(\columnwidth - 2\tabcolsep) * \real{0.1389}}
-  >{\raggedleft\arraybackslash}p{(\columnwidth - 2\tabcolsep) * \real{0.1389}}@{}}
-\caption{Enhanc\_C\_2}\tabularnewline
-\toprule\noalign{}
-\begin{minipage}[b]{\linewidth}\raggedleft
-FALSE
-\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
-TRUE
-\end{minipage} \\
-\midrule\noalign{}
-\endfirsthead
-\toprule\noalign{}
-\begin{minipage}[b]{\linewidth}\raggedleft
-FALSE
-\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
-TRUE
-\end{minipage} \\
-\midrule\noalign{}
-\endhead
-\bottomrule\noalign{}
-\endlastfoot
-6012875 & 189292 \\
-\end{longtable}
-
-\begin{longtable}[]{@{}
-  >{\raggedleft\arraybackslash}p{(\columnwidth - 2\tabcolsep) * \real{0.1389}}
-  >{\raggedleft\arraybackslash}p{(\columnwidth - 2\tabcolsep) * \real{0.1389}}@{}}
-\caption{Enhanc\_C\_3}\tabularnewline
-\toprule\noalign{}
-\begin{minipage}[b]{\linewidth}\raggedleft
-FALSE
-\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
-TRUE
-\end{minipage} \\
-\midrule\noalign{}
-\endfirsthead
-\toprule\noalign{}
-\begin{minipage}[b]{\linewidth}\raggedleft
-FALSE
-\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
-TRUE
-\end{minipage} \\
-\midrule\noalign{}
-\endhead
-\bottomrule\noalign{}
-\endlastfoot
-5455724 & 746443 \\
-\end{longtable}
 
 \begin{longtable}[]{@{}
   >{\raggedleft\arraybackslash}p{(\columnwidth - 2\tabcolsep) * \real{0.1389}}
@@ -734,12 +659,12 @@ TRUE
 
 \begin{center}\includegraphics[width=1\linewidth]{GHI_enh_02_ID_CE_files/figure-latex/example_days-74} \end{center}
 
-\begin{center}\includegraphics[width=1\linewidth]{GHI_enh_02_ID_CE_files/figure-latex/example_days-75} \end{center}
-
 \FloatBarrier
 
 \hypertarget{days-with-cloudy-day}{%
 \subsection{Days with cloudy day}\label{days-with-cloudy-day}}
+
+\begin{center}\includegraphics[width=1\linewidth]{GHI_enh_02_ID_CE_files/figure-latex/example_days-75} \end{center}
 
 \begin{center}\includegraphics[width=1\linewidth]{GHI_enh_02_ID_CE_files/figure-latex/example_days-76} \end{center}
 
@@ -779,12 +704,12 @@ TRUE
 
 \begin{center}\includegraphics[width=1\linewidth]{GHI_enh_02_ID_CE_files/figure-latex/example_days-94} \end{center}
 
-\begin{center}\includegraphics[width=1\linewidth]{GHI_enh_02_ID_CE_files/figure-latex/example_days-95} \end{center}
-
 \FloatBarrier
 
 \hypertarget{days-with-random-day}{%
 \subsection{Days with random day}\label{days-with-random-day}}
+
+\begin{center}\includegraphics[width=1\linewidth]{GHI_enh_02_ID_CE_files/figure-latex/example_days-95} \end{center}
 
 \begin{center}\includegraphics[width=1\linewidth]{GHI_enh_02_ID_CE_files/figure-latex/example_days-96} \end{center}
 
@@ -844,20 +769,18 @@ TRUE
 
 \begin{center}\includegraphics[width=1\linewidth]{GHI_enh_02_ID_CE_files/figure-latex/example_days-124} \end{center}
 
-\begin{center}\includegraphics[width=1\linewidth]{GHI_enh_02_ID_CE_files/figure-latex/example_days-125} \end{center}
-
 \FloatBarrier
 
 \hypertarget{days-with-manual-test-days}{%
 \subsection{Days with manual test days}\label{days-with-manual-test-days}}
+
+\begin{center}\includegraphics[width=1\linewidth]{GHI_enh_02_ID_CE_files/figure-latex/example_days-125} \end{center}
 
 \begin{center}\includegraphics[width=1\linewidth]{GHI_enh_02_ID_CE_files/figure-latex/example_days-126} \end{center}
 
 \begin{center}\includegraphics[width=1\linewidth]{GHI_enh_02_ID_CE_files/figure-latex/example_days-127} \end{center}
 
 \begin{center}\includegraphics[width=1\linewidth]{GHI_enh_02_ID_CE_files/figure-latex/example_days-128} \end{center}
-
-\begin{center}\includegraphics[width=1\linewidth]{GHI_enh_02_ID_CE_files/figure-latex/example_days-129} \end{center}
 
 \newpage
 \FloatBarrier
@@ -866,12 +789,10 @@ TRUE
 \section{Plot years with enhancement cases}\label{plot-years-with-enhancement-cases}}
 
 \begin{verbatim}
-Warning: A numeric `legend.position` argument in `theme()` was deprecated in ggplot2
-3.5.0.
+Warning: A numeric `legend.position` argument in `theme()` was deprecated in ggplot2 3.5.0.
 i Please use the `legend.position.inside` argument of `theme()` instead.
 This warning is displayed once every 8 hours.
-Call `lifecycle::last_lifecycle_warnings()` to see where this warning was
-generated.
+Call `lifecycle::last_lifecycle_warnings()` to see where this warning was generated.
 \end{verbatim}
 
 \begin{center}\includegraphics[width=1\linewidth]{GHI_enh_02_ID_CE_files/figure-latex/example_years-1} \end{center}
@@ -939,7 +860,7 @@ generated.
 \textbf{END}
 
 \begin{verbatim}
-2024-04-22 08:24:07.3 athan@tyler GHI_enh_02_ID_CE.R 27.226547 mins
+2024-04-27 12:40:21.7 athan@tyler GHI_enh_02_ID_CE.R 26.763804 mins
 \end{verbatim}
 
 \end{document}
