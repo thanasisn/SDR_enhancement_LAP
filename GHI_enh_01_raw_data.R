@@ -159,7 +159,7 @@ if (havetorun) {
         temp$CHP1temp           <- NULL
         temp$CHP1tempSD         <- NULL
         temp$CHP1tempUNC        <- NULL
-        # temp$CS_ref             <- NULL
+        temp$CS_ref             <- NULL
         temp$CS_ref_HOR         <- NULL
         temp$Clearness_Kt       <- NULL
         temp$ClrSW              <- NULL
@@ -183,6 +183,7 @@ if (havetorun) {
         temp$pressure           <- NULL
         temp$wattDIR_tmp_cr     <- NULL
         temp$wattHOR_tmp_cr     <- NULL
+        temp$ClearnessIndex_kt  <- NULL
 
         rm.cols.DT(temp, "VIL_*"    , quiet = TRUE)
         rm.cols.DT(temp, "*Clim_lim", quiet = TRUE)
