@@ -46,8 +46,8 @@
 
 #+ echo=FALSE, include=TRUE
 knitr::opts_chunk$set(comment    = ""       )
-# knitr::opts_chunk$set(dev        = c("pdf", "png")) ## expected option
-knitr::opts_chunk$set(dev        = "png"    )       ## for too much data
+knitr::opts_chunk$set(dev        = c("pdf", "png")) ## expected option
+# knitr::opts_chunk$set(dev        = "png"    )       ## for too much data
 knitr::opts_chunk$set(out.width  = "100%"   )
 knitr::opts_chunk$set(fig.align  = "center" )
 knitr::opts_chunk$set(cache      =  FALSE   )  ## !! breaks calculations
@@ -186,26 +186,26 @@ DATA[, CEC := SelEnhanc ]
 #'
 #+ echo=TRUE, include=TRUE
 
-## __ 1. My criteria  ----------------------------------------------------------
-# C1_GLB_ench_THRES     <-  1.10 ## enchantment relative to HAU
-C1_GLB_diff_THRES     <- 20    ## enchantment absolute diff to HAU
-C1_Clearness_Kt_THRES <-  0.8  ## enchantment threshold
-# C1_wattGLB_THRES      <- 20    ## minimum value to consider
-
-DATA[, Enhanc_C_1 := FALSE]
-# DATA[wattGLB           > CS_ref * C1_GLB_ench_THRES + C1_GLB_diff_THRES &
-#      ClearnessIndex_kt > C1_Clearness_Kt_THRES,
+# ## __ 1. My criteria  ----------------------------------------------------------
+# # C1_GLB_ench_THRES     <-  1.10 ## enchantment relative to HAU
+# C1_GLB_diff_THRES     <- 20    ## enchantment absolute diff to HAU
+# C1_Clearness_Kt_THRES <-  0.8  ## enchantment threshold
+# # C1_wattGLB_THRES      <- 20    ## minimum value to consider
+#
+# DATA[, Enhanc_C_1 := FALSE]
+# # DATA[wattGLB           > CS_ref * C1_GLB_ench_THRES + C1_GLB_diff_THRES &
+# #      ClearnessIndex_kt > C1_Clearness_Kt_THRES,
+# #      Enhanc_C_1 := TRUE]
+#
+# DATA[, Enhanc_C_1_ref := ETH * C1_Clearness_Kt_THRES + C1_GLB_diff_THRES]
+# DATA[wattGLB > Enhanc_C_1_ref,
 #      Enhanc_C_1 := TRUE]
-
-DATA[, Enhanc_C_1_ref := ETH * C1_Clearness_Kt_THRES + C1_GLB_diff_THRES]
-DATA[wattGLB > Enhanc_C_1_ref,
-     Enhanc_C_1 := TRUE]
-
-if (SelEnhanc == "Enhanc_C_1") {
-  DATA[ , GLB_diff :=   wattGLB - Enhanc_C_1_ref                    ] ## enhancement
-  DATA[ , GLB_ench := ( wattGLB - Enhanc_C_1_ref ) / Enhanc_C_1_ref ] ## relative enhancement
-  DATA[ , GLB_rati :=   wattGLB / Enhanc_C_1_ref                    ]
-}
+#
+# if (SelEnhanc == "Enhanc_C_1") {
+#   DATA[ , GLB_diff :=   wattGLB - Enhanc_C_1_ref                    ] ## enhancement
+#   DATA[ , GLB_ench := ( wattGLB - Enhanc_C_1_ref ) / Enhanc_C_1_ref ] ## relative enhancement
+#   DATA[ , GLB_rati :=   wattGLB / Enhanc_C_1_ref                    ]
+# }
 
 
 #'
@@ -214,21 +214,21 @@ if (SelEnhanc == "Enhanc_C_1") {
 #+ echo=TRUE, include=TRUE
 
 
-## __ 2. Gueymard2017 Criteria  ------------------------------------------------
-## Clearness index > 0.8 / 1
-C2_Clearness_Kt_THRES <- 0.8
-DATA[, Enhanc_C_2 := FALSE]
-DATA[, Enhanc_C_2_ref := ETH * C2_Clearness_Kt_THRES]
-# DATA[ClearnessIndex_kt > C1_Clearness_Kt_THRES,
+# ## __ 2. Gueymard2017 Criteria  ------------------------------------------------
+# ## Clearness index > 0.8 / 1
+# C2_Clearness_Kt_THRES <- 0.8
+# DATA[, Enhanc_C_2 := FALSE]
+# DATA[, Enhanc_C_2_ref := ETH * C2_Clearness_Kt_THRES]
+# # DATA[ClearnessIndex_kt > C1_Clearness_Kt_THRES,
+# #      Enhanc_C_2 := TRUE]
+# DATA[wattGLB > Enhanc_C_2_ref,
 #      Enhanc_C_2 := TRUE]
-DATA[wattGLB > Enhanc_C_2_ref,
-     Enhanc_C_2 := TRUE]
-
-if (SelEnhanc == "Enhanc_C_2") {
-  DATA[ , GLB_diff :=   wattGLB - Enhanc_C_2_ref                    ] ## enhancement
-  DATA[ , GLB_ench := ( wattGLB - Enhanc_C_2_ref ) / Enhanc_C_2_ref ] ## relative enhancement
-  DATA[ , GLB_rati :=   wattGLB / Enhanc_C_2_ref                    ]
-}
+#
+# if (SelEnhanc == "Enhanc_C_2") {
+#   DATA[ , GLB_diff :=   wattGLB - Enhanc_C_2_ref                    ] ## enhancement
+#   DATA[ , GLB_ench := ( wattGLB - Enhanc_C_2_ref ) / Enhanc_C_2_ref ] ## relative enhancement
+#   DATA[ , GLB_rati :=   wattGLB / Enhanc_C_2_ref                    ]
+# }
 
 
 #'
@@ -236,19 +236,19 @@ if (SelEnhanc == "Enhanc_C_2") {
 #'
 #+ echo=TRUE, include=TRUE
 
-## __ 3. Vamvakas2020  Criteria  -----------------------------------------------
-## +5% from model => enhancements above 15 Wm^2 the instrument uncertainty
-C3_cs_ref_ratio <- 1.05
-DATA[, Enhanc_C_3 := FALSE]
-DATA[, Enhanc_C_3_ref := CS_ref * C3_cs_ref_ratio]
-DATA[wattGLB > Enhanc_C_3_ref,
-     Enhanc_C_3 := TRUE]
-
-if (SelEnhanc == "Enhanc_C_3") {
-  DATA[ , GLB_diff :=   wattGLB - Enhanc_C_3_ref                    ] ## enhancement
-  DATA[ , GLB_ench := ( wattGLB - Enhanc_C_3_ref ) / Enhanc_C_3_ref ] ## relative enhancement
-  DATA[ , GLB_rati :=   wattGLB / Enhanc_C_3_ref                    ]
-}
+# ## __ 3. Vamvakas2020  Criteria  -----------------------------------------------
+# ## +5% from model => enhancements above 15 Wm^2 the instrument uncertainty
+# C3_cs_ref_ratio <- 1.05
+# DATA[, Enhanc_C_3 := FALSE]
+# DATA[, Enhanc_C_3_ref := CS_ref * C3_cs_ref_ratio]
+# DATA[wattGLB > Enhanc_C_3_ref,
+#      Enhanc_C_3 := TRUE]
+#
+# if (SelEnhanc == "Enhanc_C_3") {
+#   DATA[ , GLB_diff :=   wattGLB - Enhanc_C_3_ref                    ] ## enhancement
+#   DATA[ , GLB_ench := ( wattGLB - Enhanc_C_3_ref ) / Enhanc_C_3_ref ] ## relative enhancement
+#   DATA[ , GLB_rati :=   wattGLB / Enhanc_C_3_ref                    ]
+# }
 
 
 
@@ -441,14 +441,14 @@ abline(v = 1, col = "red")
 ## near by values with +0.1 are also accepted
 
 
-pander(table(DATA$Enhanc_C_1),
-       caption = "Enhanc_C_1")
-
-pander(table(DATA$Enhanc_C_2),
-       caption = "Enhanc_C_2")
-
-pander(table(DATA$Enhanc_C_3),
-       caption = "Enhanc_C_3")
+# pander(table(DATA$Enhanc_C_1),
+#        caption = "Enhanc_C_1")
+#
+# pander(table(DATA$Enhanc_C_2),
+#        caption = "Enhanc_C_2")
+#
+# pander(table(DATA$Enhanc_C_3),
+#        caption = "Enhanc_C_3")
 
 pander(table(DATA$Enhanc_C_4),
        caption = "Enhanc_C_4")
