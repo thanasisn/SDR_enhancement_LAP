@@ -101,7 +101,7 @@ mid       <- ceiling(nrow(AE1) / 2)
 
 ## time middle of data
 zeropoint <- min(AE1$tsy) + (max(AE1$tsy) - min(AE1$tsy)) / 2
-
+zeropoint <- 2005
 
 cat("Cross over point:", zeropoint, "\n")
 
@@ -358,6 +358,7 @@ plot(AEM[sel1, glo, tsy],
      ylim = ylim)
 
 zeropointA <- min(AEM[sel1, tsy]) + (max(AEM[sel1, tsy]) - min(AEM[sel1, tsy])) / 2
+zeropointA <- 2005
 
 lm_BR_min   <- lm(  AEM[sel1, tsy, glo])
 mean_BR_min <- mean(AEM[sel1, glo])
@@ -547,6 +548,8 @@ zeropointA <- min(AEM[sel1, tsy]) + (max(AEM[sel1, tsy]) - min(AEM[sel1, tsy])) 
 
 lm_BR_median   <- lm(  AEM[sel1, tsy, glo])
 mean_BR_median <- mean(AEM[sel1, glo])
+mean_BR_median <- mean(AEM[sel1 & year == 2005, glo])
+
 
 title(paste("Secod part, atm:", aatm, "type:", atype))
 
@@ -599,27 +602,31 @@ for (atype in c("SZA min", "SZA mean", "SZA median") ) {
     pp <- AEM[atmosphere_file == aatm & typer == atype & month == mm]
 
     lm1          <- lm(pp[, tsy, glo])
-    lm_mean      <- mean(pp[, glo])
+    # lm_mean      <- mean(pp[, glo])
+    lm_mean      <- mean(pp[year == min(year), glo])
     lm_zeropoint <- min(pp[, tsy]) + (max(pp[, tsy]) - min(pp[, tsy])) / 2
 
 
 
-    # plot(pp[, glo, tsy])
-    # abline(lm1, col = "red")
-    #
-    # ## display trend on graph
-    # fit   <- lm1[[1]]
-    # units <- "Watt/m^2"
-    # legend("top", lty = 1, bty = "n", lwd = 2, cex = 1,
-    #        c(paste("Trend: ",
-    #                if (fit[2] > 0) "+" else "-",
-    #                signif(abs(fit[2]), 2) , bquote(.(units)), "/y"),
-    #          paste("Trend: ",
-    #                if (fit[2] > 0) "+" else "-",
-    #                signif(abs(100 * fit[2] / lm_mean), 2) , "%/y")
-    #        )
-    # )
-    # title(paste(atype, month.name[mm]))
+
+    plot(pp[, glo, tsy])
+    abline(lm1, col = "red")
+
+    ## display trend on graph
+    fit   <- lm1[[1]]
+    units <- "Watt/m^2"
+    legend("top", lty = 1, bty = "n", lwd = 2, cex = 1,
+           c(paste("Trend: ",
+                   if (fit[2] > 0) "+" else "-",
+                   signif(abs(fit[2]), 2) , bquote(.(units)), "/y"),
+             paste("Trend: ",
+                   if (fit[2] > 0) "+" else "-",
+                   signif(abs(100 * fit[2] / lm_mean), 2) , "%/y")
+           )
+    )
+    title(paste(atype, month.name[mm]))
+
+
 
 
     tt <- data.frame(Intercept = lm1[[1]][1],
@@ -639,6 +646,8 @@ for (atype in c("SZA min", "SZA mean", "SZA median") ) {
   cat(paste(atype, ":", mean(gather[Type == atype,  SlopeRela]), "\n\n"))
 }
 
+
+pander::pander(gather)
 
 
 cat("\n\\newpage\n\n")
