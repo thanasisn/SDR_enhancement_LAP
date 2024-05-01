@@ -287,10 +287,10 @@ switch(csmodel,
 ## init flag
 DATA[, Enhanc_C_4 := FALSE]
 
-C4_test_cs_ref_ratio   <- 1.05;
+C4_test_cs_ref_ratio   <-  1.05
 C4_test_GLB_diff_THRES <-  0;
 C4_test_lowcut_sza     <- 90;  ## Disabled
-C4_test_lowcut_ratio   <- 1.18
+C4_test_lowcut_ratio   <-  1.18
 
 # DATA[, max(SZA)]
 
@@ -849,7 +849,6 @@ objects <- c(
     objects, "DATA"
 )
 
-stopifnot(any(objects %in% "DATA"))
 
 save(file = paste0("./data/", basename(sub("\\.R", ".Rda", Script.Name))),
      list = objects,
