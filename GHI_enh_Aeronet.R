@@ -751,6 +751,7 @@ plot(  1993:2005, year_trend_median(1993:2005), col = "red",
        ylab = "")
 points(2005:2024, month_trend_median(2005:2024), col = "blue")
 
+points(1993:2024, trend_median(1993:2024), col = "magenta")
 
 legend("top", pch = 1, lty = NA, bty = "n", lwd = 2, cex = 1,
        col = c("red", "blue"),
@@ -782,6 +783,7 @@ plot(  1993:2005, year_trend_min(1993:2005), col = "red",
        ylab = "")
 points(2005:2024, month_trend_min(2005:2024), col = "blue")
 
+points(1993:2024, trend_min(1993:2024), col = "magenta")
 
 legend("top", pch = 1, lty = NA, bty = "n", lwd = 2, cex = 1,
        col = c("red", "blue"),
@@ -816,7 +818,6 @@ plot(  1993:2005, year_trend_mean(1993:2005), col = "red",
 points(2005:2024, month_trend_mean(2005:2024), col = "blue")
 
 points(1993:2024, trend_mean(1993:2024), col = "magenta")
-
 
 legend("top", pch = 1, lty = NA, bty = "n", lwd = 2, cex = 1,
        col = c("red", "blue"),
