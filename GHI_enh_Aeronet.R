@@ -695,8 +695,44 @@ year_trend_mean <- function(tsy) {
 }
 
 
-# comninewe
 
+trend_mean <- function(tsy) {
+  tsyA <- tsy[tsy <  2005]
+  tsyB <- tsy[tsy >= 2005]
+  ## calculate values
+  res <- rbind(
+    cbind(tsyA,  year_trend_mean(tsyA)),
+    cbind(tsyB, month_trend_mean(tsyB))
+  )
+  ## return results with the same order
+  res[match(tsy, res[,1]),][,2]
+}
+
+
+trend_median <- function(tsy) {
+  tsyA <- tsy[tsy <  2005]
+  tsyB <- tsy[tsy >= 2005]
+  ## calculate values
+  res <- rbind(
+    cbind(tsyA,  year_trend_median(tsyA)),
+    cbind(tsyB, month_trend_median(tsyB))
+  )
+  ## return results with the same order
+  res[match(tsy, res[,1]),][,2]
+}
+
+
+trend_min <- function(tsy) {
+  tsyA <- tsy[tsy <  2005]
+  tsyB <- tsy[tsy >= 2005]
+  ## calculate values
+  res <- rbind(
+    cbind(tsyA,  year_trend_min(tsyA)),
+    cbind(tsyB, month_trend_min(tsyB))
+  )
+  ## return results with the same order
+  res[match(tsy, res[,1]),][,2]
+}
 
 
 ### Median
@@ -778,6 +814,8 @@ plot(  1993:2005, year_trend_mean(1993:2005), col = "red",
        xlab = "",
        ylab = "")
 points(2005:2024, month_trend_mean(2005:2024), col = "blue")
+
+points(1993:2024, trend_mean(1993:2024), col = "magenta")
 
 
 legend("top", pch = 1, lty = NA, bty = "n", lwd = 2, cex = 1,
