@@ -467,6 +467,7 @@ plot(1993:2024, global_sza_mean(1993:2024), col = "red")
 sel1 <- AEM[, is.na(month) & atmosphere_file == aatm & typer == "BR SZA mean", ]
 
 zeropointA <- min(AEM[sel1, tsy]) + (max(AEM[sel1, tsy]) - min(AEM[sel1, tsy])) / 2
+zeropointA <- 2005
 
 lm_BR_mean   <- lm(  AEM[sel1, tsy, glo])
 mean_BR_mean <- mean(AEM[sel1, glo])
@@ -545,6 +546,7 @@ plot(1993:2024, global_sza_median(1993:2024), col = "red")
 sel1 <- AEM[, is.na(month) & atmosphere_file == aatm & typer == "BR SZA median", ]
 
 zeropointA <- min(AEM[sel1, tsy]) + (max(AEM[sel1, tsy]) - min(AEM[sel1, tsy])) / 2
+zeropointA <- 2005
 
 lm_BR_median   <- lm(  AEM[sel1, tsy, glo])
 mean_BR_median <- mean(AEM[sel1, glo])
