@@ -160,10 +160,6 @@ plot(AE1[, exp(-AOD_500nm), tsy],
 abline(lm_transp_trend)
 plot(1993:2024, trans_trend(1993:2024), col = "red")
 
-# rm(AE1)
-
-
-# min(AE1$tsy):max(AE1$tsy)
 
 
 plot(min(AE1$tsy):max(AE1$tsy), trans_AOD(min(AE1$tsy):max(AE1$tsy)), col = "red")
@@ -389,8 +385,6 @@ title("Both")
 
 test <- AEM[sel1 | sel2,]
 
-AEM[sel2, min(tsy)]
-
 global_sza_min <- function(tsy   = tsy,
                            a.    =  coef(lm_min)[2] ,
                            b.    = -coef(lm_min)[2] * zeropoint,
@@ -412,10 +406,6 @@ global_sza_min <- function(tsy) {
   ## return resulst with the same order
   res[match(tsy, res[,1]),][,2]
 }
-
-
-# plot(1993:2024, global_sza_min(1993:2024), col = "red")
-# title("Combined trend")
 
 
 
@@ -607,8 +597,6 @@ for (atype in c("SZA min", "SZA mean", "SZA median") ) {
     # lm_mean      <- mean(pp[, glo])
     lm_mean      <- mean(pp[year == min(year), glo])
     lm_zeropoint <- min(pp[, tsy]) + (max(pp[, tsy]) - min(pp[, tsy])) / 2
-
-
 
 
     plot(pp[, glo, tsy])
