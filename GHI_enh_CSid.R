@@ -117,10 +117,11 @@ DATA <- DATA[ClearnessIndex_C_4 < 1.3 ]
 
 DTdaily <- DATA[,
                 .(
-                  glo_Sum   = sum(Low_B.Low_W.glo),
-                  GLB_Sum   = sum(wattGLB),
-                  GLB_N     = sum(!is.na(wattGLB)),
-                  DayLength = max(DayLength),
+                  glo_Sum    = sum(Low_B.Low_W.glo),
+                  GLB_Sum    = sum(wattGLB),
+                  GLB_N      = sum(!is.na(wattGLB)),
+                  DayLength  = max(DayLength),
+                  En_Ref_sum = sum(Enhanc_C_4_ref),
                   .N
                 ),
                 by = Day]
@@ -135,6 +136,11 @@ hist(DTdaily$GLB_N)
 hist(DTdaily[, GLB_N/DayLength])
 # plot(DTdaily[, GLB_N/DayLength, Day])
 summary(DTdaily[, GLB_N/DayLength])
+
+plot(DTdaily[, En_Ref_sum, Day])
+plot(DTdaily[, glo_Sum, Day])
+plot(DTdaily[, GLB_Sum, Day])
+
 
 ## remove days with few relative data
 Daytime_Ratio <- 0.3
@@ -151,6 +157,7 @@ DTdaily <- DATA[,
                   GLB_Sum   = sum(wattGLB),
                   GLB_N     = sum(!is.na(wattGLB)),
                   DayLength = max(DayLength),
+                  En_Ref_sum = sum(Enhanc_C_4_ref),
                   .N
                 ),
                 by = Day]
@@ -166,6 +173,7 @@ DTdaily <- DATA[,
 
 DTyear <- DATA[, .(glo = mean(Low_B.Low_W.glo),
                    GLB = mean(wattGLB),
+                   Ref = mean(Enhanc_C_4_ref),
                    .N),
                by = .(year(Date))]
 
@@ -178,8 +186,18 @@ ylim <- range(DTyear[, glo, GLB])
 # points(DTyear[, GLB, year], col = "green")
 
 plot(DTyear[, N, year], col = "blue")
+
 plot(DTyear[, GLB/glo, year], col = "red")
-title("Clear GLB / CS libratran by year")
+title("Clear GLB / CS libratran yearly means")
+
+plot(DTyear[, Ref/GLB, year], col = "red")
+title("Threshold / Clear Global yearly means")
+
+
+plot(DTyear[, Ref/glo, year], col = "red")
+title("Threshold / CS libratran yearly means")
+
+
 
 DTmonth <- DATA[, .(glo = mean(Low_B.Low_W.glo),
                     GLB = mean(wattGLB),
