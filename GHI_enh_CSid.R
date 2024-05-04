@@ -75,8 +75,10 @@ library(janitor   , quietly = TRUE, warn.conflicts = FALSE)
 
 
 
-## Load raw
-load("./data/GHI_enh_02_ID_CE.Rda")
+## Load raw from main
+# load("./data/GHI_enh_02_ID_CE.Rda")
+load("./threshold_change/data/GHI_enh_02_ID_CE.Rda")
+
 
 DATA$wattDIR           <- NULL
 DATA$wattDIR_sds       <- NULL
@@ -91,7 +93,11 @@ DATA <- DATA |>
   select(!ends_with(  "W.eup"))  |>
   select(!starts_with("C1Grp"))
 
-#' `Low_B.Low_W.glo` has compensation for sun distance, TSI variation and Kurudz difference
+
+
+#'
+#' `Low_B.Low_W.glo` has compensation for sun distance, TSI variation and Kurudz difference only
+#'
 
 
 ## keep only clear
@@ -205,17 +211,17 @@ days <- unique(c(DTdaily[GLB_Sum/glo_Sum < Ratio_lim, Day]))
 
 days <- sample(DTdaily[, Day], 40)
 
-for (ad in sort(days)) {
-  temp <- DATA[Day == ad,]
-
-  ylim <- range(temp[, Low_B.Low_W.glo, wattGLB])
-
-  plot(  temp[, Low_B.Low_W.glo, Date],
-         col = "blue",
-         ylim = ylim)
-  points(temp[, wattGLB, Date], col = "green")
-  title(as.Date(ad, origin = "1970-01-01"))
-}
+# for (ad in sort(days)) {
+#   temp <- DATA[Day == ad,]
+#
+#   ylim <- range(temp[, Low_B.Low_W.glo, wattGLB])
+#
+#   plot(  temp[, Low_B.Low_W.glo, Date],
+#          col = "blue",
+#          ylim = ylim)
+#   points(temp[, wattGLB, Date], col = "green")
+#   title(as.Date(ad, origin = "1970-01-01"))
+# }
 
 
 
