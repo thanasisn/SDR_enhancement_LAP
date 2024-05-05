@@ -129,8 +129,20 @@ trend_factor <- 0.8
 
 
 DATA[, Thresh_test := Enhanc_C_4_ref * (1 + trend_apply(tsy) * trend_factor)]
+rmserr(DATA$Enhanc_C_4_ref, DATA$wattGLB)
 
-plot(DATA[, .((1 + trend_apply(tsy) * trend_factor), tsy)])
+f <- function(x) {
+  rmserr(DATA[, Enhanc_C_4_ref * (1 + trend_apply(tsy) * x)],
+         DATA$wattGLB)$rmse
+}
+
+optimise(f, interval = c(0.2, 1.5), maximum = FALSE)
+
+optim(0.8, f, method = "Brent", lower = 0.2, upper = 1.5, tol = 0.01)
+
+plot(DATA[, .(tsy, (1 + trend_apply(tsy) * trend_factor))])
+
+
 
 
 DTdaily <- DATA[,
@@ -223,6 +235,8 @@ title(paste("Threshold / global yearly means", trend_factor))
 plot(DTyear[, GLB, year], col = "red")
 plot(DTyear[, Thr, year], col = "red")
 plot(DTyear[, glo, year], col = "red")
+
+rmserr(DTyear$GLB, DTyear$Thr)
 
 
 stop()
