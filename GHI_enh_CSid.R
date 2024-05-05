@@ -114,6 +114,15 @@ hist(DATA$ClearnessIndex_C_4)
 DATA <- DATA[ClearnessIndex_C_4 > 0.8 ]
 DATA <- DATA[ClearnessIndex_C_4 < 1.3 ]
 
+source("./GHI_enh_Aeronet.R")
+
+
+
+
+
+
+
+
 
 DTdaily <- DATA[,
                 .(
