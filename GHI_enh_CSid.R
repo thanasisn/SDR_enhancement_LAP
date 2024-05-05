@@ -125,22 +125,35 @@ trendsf <- c(trend_median, trend_mean, trend_min)
 
 
 trend_apply  <- trend_median
-trend_factor <- 0.8
+trend_apply  <- trend_mean
+
+trend_factor <- 0.86
 
 
 DATA[, Thresh_test := Enhanc_C_4_ref * (1 + trend_apply(tsy) * trend_factor)]
+
 rmserr(DATA$Enhanc_C_4_ref, DATA$wattGLB)
 
 f <- function(x) {
-  rmserr(DATA[, Enhanc_C_4_ref * (1 + trend_apply(tsy) * x)],
-         DATA$wattGLB)$rmse
+
+  test <- DATA[, .(
+    mean(Enhanc_C_4_ref * (1 + trend_apply(tsy) * x)),
+    mean(wattGLB)),
+       by = .(year(Date), month(Date))]
+
+  # DATA[, sum( abs((Enhanc_C_4_ref * (1 + trend_apply(tsy) * x)) - wattGLB)) ]
+
+  # DATA[, sum(1 - (Enhanc_C_4_ref * (1 + trend_apply(tsy) * x) / wattGLB)) ]
+
+  rmserr(test$V1, test$V2)$mse
+  # test[, sum(V1 - V2)]
 }
 
-optimise(f, interval = c(0.2, 1.5), maximum = FALSE)
+optimise(f, interval = c(0.2, 1.8), maximum = F, tol = 0.0001)
 
-optim(0.8, f, method = "Brent", lower = 0.2, upper = 1.5, tol = 0.01)
+# optim(0.8, f, method = "Brent", lower = 0.2, upper = 1.5)
 
-plot(DATA[, .(tsy, (1 + trend_apply(tsy) * trend_factor))])
+# plot(DATA[, .(tsy, (1 + trend_apply(tsy) * trend_factor))])
 
 
 
@@ -232,9 +245,24 @@ plot(DTyear[, Thr/GLB, year], col = "red")
 title(paste("Threshold / global yearly means", trend_factor))
 
 
+ff <- function(x) {
+    plot(DTyear[, 1 - x * Thr/GLB, year], col = "red", main = x)
+    DTyear[, sum(abs(1 - x * Thr/GLB))]
+}
+
+
+
+optimize(ff, c(.5, 1.5), tol = 0.001)
+
+ff(0.85)
+
+
+
 plot(DTyear[, GLB, year], col = "red")
 plot(DTyear[, Thr, year], col = "red")
 plot(DTyear[, glo, year], col = "red")
+plot(DTyear[, Ref, year], col = "red")
+
 
 rmserr(DTyear$GLB, DTyear$Thr)
 
