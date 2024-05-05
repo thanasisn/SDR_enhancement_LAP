@@ -117,11 +117,20 @@ DATA <- DATA[ClearnessIndex_C_4 < 1.3 ]
 source("./GHI_enh_Aeronet.R")
 
 
+DATA[, tsy := year(Date) + (month(Date) - 1)/12 ]
 
 
+## apply AOD trend
+trendsf <- c(trend_median, trend_mean, trend_min)
 
 
+trend_apply  <- trend_median
+trend_factor <- 0.8
 
+
+DATA[, Thresh_test := Enhanc_C_4_ref * (1 + trend_apply(tsy) * trend_factor)]
+
+plot(DATA[, .((1 + trend_apply(tsy) * trend_factor), tsy)])
 
 
 DTdaily <- DATA[,
@@ -131,6 +140,7 @@ DTdaily <- DATA[,
                   GLB_N      = sum(!is.na(wattGLB)),
                   DayLength  = max(DayLength),
                   En_Ref_sum = sum(Enhanc_C_4_ref),
+                  Thresh_sum = sum(Thresh_test),
                   .N
                 ),
                 by = Day]
@@ -162,11 +172,12 @@ DATA <- DATA[Day %in% DTdaily[GLB_N/DayLength > Daytime_Ratio, Day]]
 
 DTdaily <- DATA[,
                 .(
-                  glo_Sum   = sum(Low_B.Low_W.glo),
-                  GLB_Sum   = sum(wattGLB),
-                  GLB_N     = sum(!is.na(wattGLB)),
-                  DayLength = max(DayLength),
+                  glo_Sum    = sum(Low_B.Low_W.glo),
+                  GLB_Sum    = sum(wattGLB),
+                  GLB_N      = sum(!is.na(wattGLB)),
+                  DayLength  = max(DayLength),
                   En_Ref_sum = sum(Enhanc_C_4_ref),
+                  Thresh_sum = sum(Thresh_test),
                   .N
                 ),
                 by = Day]
@@ -178,11 +189,10 @@ DTdaily <- DATA[,
 # table(DATA$BAD_h)
 
 
-
-
 DTyear <- DATA[, .(glo = mean(Low_B.Low_W.glo),
                    GLB = mean(wattGLB),
                    Ref = mean(Enhanc_C_4_ref),
+                   Thr = mean(Thresh_test),
                    .N),
                by = .(year(Date))]
 
@@ -200,16 +210,26 @@ plot(DTyear[, GLB/glo, year], col = "red")
 title("Clear GLB / CS libratran yearly means")
 
 plot(DTyear[, Ref/GLB, year], col = "red")
-title("Threshold / Clear Global yearly means")
+title("Threshold ref / Clear Global yearly means")
 
 
 plot(DTyear[, Ref/glo, year], col = "red")
-title("Threshold / CS libratran yearly means")
+title("Threshold ref / CS libratran yearly means")
+
+plot(DTyear[, Thr/GLB, year], col = "red")
+title(paste("Threshold / global yearly means", trend_factor))
 
 
+plot(DTyear[, GLB, year], col = "red")
+plot(DTyear[, Thr, year], col = "red")
+plot(DTyear[, glo, year], col = "red")
+
+
+stop()
 
 DTmonth <- DATA[, .(glo = mean(Low_B.Low_W.glo),
                     GLB = mean(wattGLB),
+                    Thr = mean(Thresh_test),
                     .N),
                 by = .(year(Date), month(Date))]
 DTmonth[, tsy := year + (month - 1)/12 ]
