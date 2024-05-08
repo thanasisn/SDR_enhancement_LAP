@@ -112,7 +112,7 @@
 \ifLuaTeX
   \usepackage{selnolig}  % disable illegal ligatures
 \fi
-\IfFileExists{bookmark.sty}{\usepackage{bookmark}}{\usepackage{hyperref}}
+\usepackage{bookmark}
 \IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
 \urlstyle{same}
 \hypersetup{
@@ -127,7 +127,7 @@
 
 \title{Enhancement of SDR in Thessaloniki}
 \author{Natsis Athanasios\footnote{Laboratory of Atmospheric Physics, AUTH, \href{mailto:natsisphysicist@gmail.com}{\nolinkurl{natsisphysicist@gmail.com}}} \and Alkiviadis Bais\footnote{Laboratory of Atmospheric Physics, AUTH}}
-\date{2024-04-27}
+\date{2024-05-08}
 
 \begin{document}
 \maketitle
@@ -140,7 +140,7 @@ Study of GHI enchantment.
 \setcounter{tocdepth}{4}
 \tableofcontents
 }
-\texttt{Low\_B.Low\_W.glo} has compensation for sun distance, TSI variation and Kurudz difference
+\texttt{Low\_B.Low\_W.glo} has compensation for sun distance, TSI variation and Kurudz difference only
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -173,172 +173,23 @@ Study of GHI enchantment.
 \NormalTok{DATA }\OtherTok{\textless{}{-}}\NormalTok{ DATA[ClearnessIndex\_C\_4 }\SpecialCharTok{\textgreater{}} \FloatTok{0.8}\NormalTok{ ]}
 \NormalTok{DATA }\OtherTok{\textless{}{-}}\NormalTok{ DATA[ClearnessIndex\_C\_4 }\SpecialCharTok{\textless{}} \FloatTok{1.3}\NormalTok{ ]}
 
-
-\NormalTok{DTdaily }\OtherTok{\textless{}{-}}\NormalTok{ DATA[,}
-\NormalTok{                .(}
-                  \AttributeTok{glo\_Sum   =} \FunctionTok{sum}\NormalTok{(Low\_B.Low\_W.glo),}
-                  \AttributeTok{GLB\_Sum   =} \FunctionTok{sum}\NormalTok{(wattGLB),}
-                  \AttributeTok{GLB\_N     =} \FunctionTok{sum}\NormalTok{(}\SpecialCharTok{!}\FunctionTok{is.na}\NormalTok{(wattGLB)),}
-                  \AttributeTok{DayLength =} \FunctionTok{max}\NormalTok{(DayLength),}
-\NormalTok{                  .N}
-\NormalTok{                ),}
-\NormalTok{                by }\OtherTok{=}\NormalTok{ Day]}
-
-
-\NormalTok{Day\_points }\OtherTok{\textless{}{-}} \DecValTok{30}
-
-\NormalTok{DATA }\OtherTok{\textless{}{-}}\NormalTok{ DATA[ Day }\SpecialCharTok{\%in\%}\NormalTok{ DTdaily[GLB\_N }\SpecialCharTok{\textgreater{}}\NormalTok{ Day\_points, Day]]}
-
-
-\FunctionTok{hist}\NormalTok{(DTdaily}\SpecialCharTok{$}\NormalTok{GLB\_N)}
+\FunctionTok{source}\NormalTok{(}\StringTok{"./GHI\_enh\_Aeronet.R"}\NormalTok{)}
 \end{Highlighting}
 \end{Shaded}
+
+\begin{verbatim}
+Cross over point: 2005 
+\end{verbatim}
 
 \begin{center}\includegraphics[width=1\linewidth]{GHI_enh_CSid_files/figure-latex/unnamed-chunk-5-2} \end{center}
 
-\begin{Shaded}
-\begin{Highlighting}[]
-\FunctionTok{hist}\NormalTok{(DTdaily[, GLB\_N}\SpecialCharTok{/}\NormalTok{DayLength])}
-\end{Highlighting}
-\end{Shaded}
-
 \begin{center}\includegraphics[width=1\linewidth]{GHI_enh_CSid_files/figure-latex/unnamed-chunk-5-3} \end{center}
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\CommentTok{\# plot(DTdaily[, GLB\_N/DayLength, Day])}
-\FunctionTok{summary}\NormalTok{(DTdaily[, GLB\_N}\SpecialCharTok{/}\NormalTok{DayLength])}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{verbatim}
-    Min.  1st Qu.   Median     Mean  3rd Qu.     Max. 
-0.001152 0.181870 0.422018 0.420691 0.657944 0.838020 
-\end{verbatim}
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\DocumentationTok{\#\# remove days with few relative data}
-\NormalTok{Daytime\_Ratio }\OtherTok{\textless{}{-}} \FloatTok{0.3}
-
-\NormalTok{DTdaily[GLB\_N}\SpecialCharTok{/}\NormalTok{DayLength }\SpecialCharTok{\textless{}}\NormalTok{ Daytime\_Ratio, .N]}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{verbatim}
-[1] 2932
-\end{verbatim}
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\NormalTok{DATA }\OtherTok{\textless{}{-}}\NormalTok{ DATA[Day }\SpecialCharTok{\%in\%}\NormalTok{ DTdaily[GLB\_N}\SpecialCharTok{/}\NormalTok{DayLength }\SpecialCharTok{\textgreater{}}\NormalTok{ Daytime\_Ratio, Day]]}
-
-
-
-\NormalTok{DTdaily }\OtherTok{\textless{}{-}}\NormalTok{ DATA[,}
-\NormalTok{                .(}
-                  \AttributeTok{glo\_Sum   =} \FunctionTok{sum}\NormalTok{(Low\_B.Low\_W.glo),}
-                  \AttributeTok{GLB\_Sum   =} \FunctionTok{sum}\NormalTok{(wattGLB),}
-                  \AttributeTok{GLB\_N     =} \FunctionTok{sum}\NormalTok{(}\SpecialCharTok{!}\FunctionTok{is.na}\NormalTok{(wattGLB)),}
-                  \AttributeTok{DayLength =} \FunctionTok{max}\NormalTok{(DayLength),}
-\NormalTok{                  .N}
-\NormalTok{                ),}
-\NormalTok{                by }\OtherTok{=}\NormalTok{ Day]}
-
-
-
-\CommentTok{\# plot(DATA[, ClearnessIndex\_C\_4, Date ])}
-
-\CommentTok{\# table(DATA$BAD\_h)}
-
-
-
-
-\NormalTok{DTyear }\OtherTok{\textless{}{-}}\NormalTok{ DATA[, .(}\AttributeTok{glo =} \FunctionTok{mean}\NormalTok{(Low\_B.Low\_W.glo),}
-                   \AttributeTok{GLB =} \FunctionTok{mean}\NormalTok{(wattGLB),}
-\NormalTok{                   .N),}
-\NormalTok{               by }\OtherTok{=}\NormalTok{ .(}\FunctionTok{year}\NormalTok{(Date))]}
-
-\NormalTok{ylim }\OtherTok{\textless{}{-}} \FunctionTok{range}\NormalTok{(DTyear[, glo, GLB])}
-
-
-
-\CommentTok{\# plot(  DTyear[, glo, year],}
-\CommentTok{\#        ylim = ylim)}
-\CommentTok{\# points(DTyear[, GLB, year], col = "green")}
-
-\FunctionTok{plot}\NormalTok{(DTyear[, N, year], }\AttributeTok{col =} \StringTok{"blue"}\NormalTok{)}
-\end{Highlighting}
-\end{Shaded}
 
 \begin{center}\includegraphics[width=1\linewidth]{GHI_enh_CSid_files/figure-latex/unnamed-chunk-5-4} \end{center}
 
-\begin{Shaded}
-\begin{Highlighting}[]
-\FunctionTok{plot}\NormalTok{(DTyear[, GLB}\SpecialCharTok{/}\NormalTok{glo, year], }\AttributeTok{col =} \StringTok{"red"}\NormalTok{)}
-\FunctionTok{title}\NormalTok{(}\StringTok{"Clear GLB / CS libratran by year"}\NormalTok{)}
-\end{Highlighting}
-\end{Shaded}
-
 \begin{center}\includegraphics[width=1\linewidth]{GHI_enh_CSid_files/figure-latex/unnamed-chunk-5-5} \end{center}
 
-\begin{Shaded}
-\begin{Highlighting}[]
-\NormalTok{DTmonth }\OtherTok{\textless{}{-}}\NormalTok{ DATA[, .(}\AttributeTok{glo =} \FunctionTok{mean}\NormalTok{(Low\_B.Low\_W.glo),}
-                    \AttributeTok{GLB =} \FunctionTok{mean}\NormalTok{(wattGLB),}
-\NormalTok{                    .N),}
-\NormalTok{                by }\OtherTok{=}\NormalTok{ .(}\FunctionTok{year}\NormalTok{(Date), }\FunctionTok{month}\NormalTok{(Date))]}
-\NormalTok{DTmonth[, tsy }\SpecialCharTok{:=}\NormalTok{ year }\SpecialCharTok{+}\NormalTok{ (month }\SpecialCharTok{{-}} \DecValTok{1}\NormalTok{)}\SpecialCharTok{/}\DecValTok{12}\NormalTok{ ]}
-
-
-\NormalTok{ylim }\OtherTok{\textless{}{-}} \FunctionTok{range}\NormalTok{(DTmonth[, glo, GLB])}
-
-\CommentTok{\# plot(  DTmonth[, glo, tsy],}
-\CommentTok{\#        ylim = ylim)}
-\CommentTok{\# points(DTmonth[, GLB, tsy], col = "green")}
-
-\CommentTok{\# plot(  DTmonth[, .N, tsy], col = "blue")}
-\FunctionTok{plot}\NormalTok{(  DTmonth[, GLB}\SpecialCharTok{/}\NormalTok{glo, tsy], }\AttributeTok{col =} \StringTok{"red"}\NormalTok{)}
-\FunctionTok{title}\NormalTok{(}\StringTok{"Clear GLB / CS libratran by month"}\NormalTok{)}
-\end{Highlighting}
-\end{Shaded}
-
 \begin{center}\includegraphics[width=1\linewidth]{GHI_enh_CSid_files/figure-latex/unnamed-chunk-5-6} \end{center}
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\NormalTok{knitr}\SpecialCharTok{::}\NormalTok{opts\_chunk}\SpecialCharTok{$}\FunctionTok{set}\NormalTok{(}\AttributeTok{out.height =} \StringTok{"32\%"}\NormalTok{   )}
-
-
-\NormalTok{Ratio\_lim }\OtherTok{\textless{}{-}} \FloatTok{0.85}
-
-\NormalTok{DTdaily[GLB\_Sum}\SpecialCharTok{/}\NormalTok{glo\_Sum }\SpecialCharTok{\textless{}}\NormalTok{ Ratio\_lim, .N]}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{verbatim}
-[1] 134
-\end{verbatim}
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\NormalTok{days }\OtherTok{\textless{}{-}} \FunctionTok{unique}\NormalTok{(}\FunctionTok{c}\NormalTok{(DTdaily[GLB\_Sum}\SpecialCharTok{/}\NormalTok{glo\_Sum }\SpecialCharTok{\textless{}}\NormalTok{ Ratio\_lim, Day]))}
-
-\NormalTok{days }\OtherTok{\textless{}{-}} \FunctionTok{sample}\NormalTok{(DTdaily[, Day], }\DecValTok{40}\NormalTok{)}
-
-\ControlFlowTok{for}\NormalTok{ (ad }\ControlFlowTok{in} \FunctionTok{sort}\NormalTok{(days)) \{}
-\NormalTok{  temp }\OtherTok{\textless{}{-}}\NormalTok{ DATA[Day }\SpecialCharTok{==}\NormalTok{ ad,]}
-
-\NormalTok{  ylim }\OtherTok{\textless{}{-}} \FunctionTok{range}\NormalTok{(temp[, Low\_B.Low\_W.glo, wattGLB])}
-
-  \FunctionTok{plot}\NormalTok{(  temp[, Low\_B.Low\_W.glo, Date],}
-         \AttributeTok{col =} \StringTok{"blue"}\NormalTok{,}
-         \AttributeTok{ylim =}\NormalTok{ ylim)}
-  \FunctionTok{points}\NormalTok{(temp[, wattGLB, Date], }\AttributeTok{col =} \StringTok{"green"}\NormalTok{)}
-  \FunctionTok{title}\NormalTok{(}\FunctionTok{as.Date}\NormalTok{(ad, }\AttributeTok{origin =} \StringTok{"1970{-}01{-}01"}\NormalTok{))}
-\NormalTok{\}}
-\end{Highlighting}
-\end{Shaded}
 
 \begin{center}\includegraphics[width=1\linewidth]{GHI_enh_CSid_files/figure-latex/unnamed-chunk-5-7} \end{center}
 
@@ -380,6 +231,10 @@ Study of GHI enchantment.
 
 \begin{center}\includegraphics[width=1\linewidth]{GHI_enh_CSid_files/figure-latex/unnamed-chunk-5-26} \end{center}
 
+\begin{verbatim}
+SZA min : 0.00137165912186399 
+\end{verbatim}
+
 \begin{center}\includegraphics[width=1\linewidth]{GHI_enh_CSid_files/figure-latex/unnamed-chunk-5-27} \end{center}
 
 \begin{center}\includegraphics[width=1\linewidth]{GHI_enh_CSid_files/figure-latex/unnamed-chunk-5-28} \end{center}
@@ -404,6 +259,10 @@ Study of GHI enchantment.
 
 \begin{center}\includegraphics[width=1\linewidth]{GHI_enh_CSid_files/figure-latex/unnamed-chunk-5-38} \end{center}
 
+\begin{verbatim}
+SZA mean : 0.0020024477410843 
+\end{verbatim}
+
 \begin{center}\includegraphics[width=1\linewidth]{GHI_enh_CSid_files/figure-latex/unnamed-chunk-5-39} \end{center}
 
 \begin{center}\includegraphics[width=1\linewidth]{GHI_enh_CSid_files/figure-latex/unnamed-chunk-5-40} \end{center}
@@ -419,6 +278,334 @@ Study of GHI enchantment.
 \begin{center}\includegraphics[width=1\linewidth]{GHI_enh_CSid_files/figure-latex/unnamed-chunk-5-45} \end{center}
 
 \begin{center}\includegraphics[width=1\linewidth]{GHI_enh_CSid_files/figure-latex/unnamed-chunk-5-46} \end{center}
+
+\begin{center}\includegraphics[width=1\linewidth]{GHI_enh_CSid_files/figure-latex/unnamed-chunk-5-47} \end{center}
+
+\begin{center}\includegraphics[width=1\linewidth]{GHI_enh_CSid_files/figure-latex/unnamed-chunk-5-48} \end{center}
+
+\begin{center}\includegraphics[width=1\linewidth]{GHI_enh_CSid_files/figure-latex/unnamed-chunk-5-49} \end{center}
+
+\begin{center}\includegraphics[width=1\linewidth]{GHI_enh_CSid_files/figure-latex/unnamed-chunk-5-50} \end{center}
+
+\begin{verbatim}
+SZA median : 0.00184853525463023 
+
+
+\newpage
+\end{verbatim}
+
+\begin{center}\includegraphics[width=1\linewidth]{GHI_enh_CSid_files/figure-latex/unnamed-chunk-5-51} \end{center}
+
+\begin{verbatim}
+
+\newpage
+\end{verbatim}
+
+\begin{center}\includegraphics[width=1\linewidth]{GHI_enh_CSid_files/figure-latex/unnamed-chunk-5-52} \end{center}
+
+\begin{verbatim}
+
+\newpage
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{DATA[, tsy }\SpecialCharTok{:=} \FunctionTok{year}\NormalTok{(Date) }\SpecialCharTok{+}\NormalTok{ (}\FunctionTok{month}\NormalTok{(Date) }\SpecialCharTok{{-}} \DecValTok{1}\NormalTok{)}\SpecialCharTok{/}\DecValTok{12}\NormalTok{ ]}
+
+
+\DocumentationTok{\#\# apply AOD trend}
+\NormalTok{trendsf }\OtherTok{\textless{}{-}} \FunctionTok{c}\NormalTok{(trend\_median, trend\_mean, trend\_min)}
+
+
+\NormalTok{trend\_apply  }\OtherTok{\textless{}{-}}\NormalTok{ trend\_median}
+\NormalTok{trend\_apply  }\OtherTok{\textless{}{-}}\NormalTok{ trend\_mean}
+
+\NormalTok{trend\_factor }\OtherTok{\textless{}{-}} \FloatTok{0.86}
+
+
+\NormalTok{DATA[, Thresh\_test }\SpecialCharTok{:=}\NormalTok{ Enhanc\_C\_4\_ref }\SpecialCharTok{*}\NormalTok{ (}\DecValTok{1} \SpecialCharTok{+} \FunctionTok{trend\_apply}\NormalTok{(tsy) }\SpecialCharTok{*}\NormalTok{ trend\_factor)]}
+
+\FunctionTok{rmserr}\NormalTok{(DATA}\SpecialCharTok{$}\NormalTok{Enhanc\_C\_4\_ref, DATA}\SpecialCharTok{$}\NormalTok{wattGLB)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+$mae
+[1] 94.57364
+
+$mse
+[1] 10035.43
+
+$rmse
+[1] 100.177
+
+$mape
+[1] 0.1485271
+
+$nmse
+[1] 0.1642926
+
+$rstd
+[1] 0.1495398
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{f }\OtherTok{\textless{}{-}} \ControlFlowTok{function}\NormalTok{(x) \{}
+
+\NormalTok{  test }\OtherTok{\textless{}{-}}\NormalTok{ DATA[, .(}
+    \FunctionTok{mean}\NormalTok{(Enhanc\_C\_4\_ref }\SpecialCharTok{*}\NormalTok{ (}\DecValTok{1} \SpecialCharTok{+} \FunctionTok{trend\_apply}\NormalTok{(tsy) }\SpecialCharTok{*}\NormalTok{ x)),}
+    \FunctionTok{mean}\NormalTok{(wattGLB)),}
+\NormalTok{       by }\OtherTok{=}\NormalTok{ .(}\FunctionTok{year}\NormalTok{(Date), }\FunctionTok{month}\NormalTok{(Date))]}
+
+  \CommentTok{\# DATA[, sum( abs((Enhanc\_C\_4\_ref * (1 + trend\_apply(tsy) * x)) {-} wattGLB)) ]}
+
+  \CommentTok{\# DATA[, sum(1 {-} (Enhanc\_C\_4\_ref * (1 + trend\_apply(tsy) * x) / wattGLB)) ]}
+
+  \FunctionTok{rmserr}\NormalTok{(test}\SpecialCharTok{$}\NormalTok{V1, test}\SpecialCharTok{$}\NormalTok{V2)}\SpecialCharTok{$}\NormalTok{mse}
+  \CommentTok{\# test[, sum(V1 {-} V2)]}
+\NormalTok{\}}
+
+\FunctionTok{optimise}\NormalTok{(f, }\AttributeTok{interval =} \FunctionTok{c}\NormalTok{(}\FloatTok{0.2}\NormalTok{, }\FloatTok{1.8}\NormalTok{), }\AttributeTok{maximum =}\NormalTok{ F, }\AttributeTok{tol =} \FloatTok{0.0001}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+$minimum
+[1] 0.2000654
+
+$objective
+[1] 8644.06
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# optim(0.8, f, method = "Brent", lower = 0.2, upper = 1.5)}
+
+\CommentTok{\# plot(DATA[, .(tsy, (1 + trend\_apply(tsy) * trend\_factor))])}
+
+
+
+
+\NormalTok{DTdaily }\OtherTok{\textless{}{-}}\NormalTok{ DATA[,}
+\NormalTok{                .(}
+                  \AttributeTok{glo\_Sum    =} \FunctionTok{sum}\NormalTok{(Low\_B.Low\_W.glo),}
+                  \AttributeTok{GLB\_Sum    =} \FunctionTok{sum}\NormalTok{(wattGLB),}
+                  \AttributeTok{GLB\_N      =} \FunctionTok{sum}\NormalTok{(}\SpecialCharTok{!}\FunctionTok{is.na}\NormalTok{(wattGLB)),}
+                  \AttributeTok{DayLength  =} \FunctionTok{max}\NormalTok{(DayLength),}
+                  \AttributeTok{En\_Ref\_sum =} \FunctionTok{sum}\NormalTok{(Enhanc\_C\_4\_ref),}
+                  \AttributeTok{Thresh\_sum =} \FunctionTok{sum}\NormalTok{(Thresh\_test),}
+\NormalTok{                  .N}
+\NormalTok{                ),}
+\NormalTok{                by }\OtherTok{=}\NormalTok{ Day]}
+
+
+\NormalTok{Day\_points }\OtherTok{\textless{}{-}} \DecValTok{30}
+
+\NormalTok{DATA }\OtherTok{\textless{}{-}}\NormalTok{ DATA[ Day }\SpecialCharTok{\%in\%}\NormalTok{ DTdaily[GLB\_N }\SpecialCharTok{\textgreater{}}\NormalTok{ Day\_points, Day]]}
+
+
+\FunctionTok{hist}\NormalTok{(DTdaily}\SpecialCharTok{$}\NormalTok{GLB\_N)}
+\FunctionTok{hist}\NormalTok{(DTdaily[, GLB\_N}\SpecialCharTok{/}\NormalTok{DayLength])}
+\CommentTok{\# plot(DTdaily[, GLB\_N/DayLength, Day])}
+\FunctionTok{summary}\NormalTok{(DTdaily[, GLB\_N}\SpecialCharTok{/}\NormalTok{DayLength])}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+    Min.  1st Qu.   Median     Mean  3rd Qu.     Max. 
+0.001152 0.181870 0.422018 0.420691 0.657944 0.838020 
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{plot}\NormalTok{(DTdaily[, En\_Ref\_sum, Day])}
+\FunctionTok{plot}\NormalTok{(DTdaily[, glo\_Sum, Day])}
+\FunctionTok{plot}\NormalTok{(DTdaily[, GLB\_Sum, Day])}
+
+
+\DocumentationTok{\#\# remove days with few relative data}
+\NormalTok{Daytime\_Ratio }\OtherTok{\textless{}{-}} \FloatTok{0.3}
+
+\NormalTok{DTdaily[GLB\_N}\SpecialCharTok{/}\NormalTok{DayLength }\SpecialCharTok{\textless{}}\NormalTok{ Daytime\_Ratio, .N]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+[1] 2932
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{DATA }\OtherTok{\textless{}{-}}\NormalTok{ DATA[Day }\SpecialCharTok{\%in\%}\NormalTok{ DTdaily[GLB\_N}\SpecialCharTok{/}\NormalTok{DayLength }\SpecialCharTok{\textgreater{}}\NormalTok{ Daytime\_Ratio, Day]]}
+
+
+
+\NormalTok{DTdaily }\OtherTok{\textless{}{-}}\NormalTok{ DATA[,}
+\NormalTok{                .(}
+                  \AttributeTok{glo\_Sum    =} \FunctionTok{sum}\NormalTok{(Low\_B.Low\_W.glo),}
+                  \AttributeTok{GLB\_Sum    =} \FunctionTok{sum}\NormalTok{(wattGLB),}
+                  \AttributeTok{GLB\_N      =} \FunctionTok{sum}\NormalTok{(}\SpecialCharTok{!}\FunctionTok{is.na}\NormalTok{(wattGLB)),}
+                  \AttributeTok{DayLength  =} \FunctionTok{max}\NormalTok{(DayLength),}
+                  \AttributeTok{En\_Ref\_sum =} \FunctionTok{sum}\NormalTok{(Enhanc\_C\_4\_ref),}
+                  \AttributeTok{Thresh\_sum =} \FunctionTok{sum}\NormalTok{(Thresh\_test),}
+\NormalTok{                  .N}
+\NormalTok{                ),}
+\NormalTok{                by }\OtherTok{=}\NormalTok{ Day]}
+
+
+
+\CommentTok{\# plot(DATA[, ClearnessIndex\_C\_4, Date ])}
+
+\CommentTok{\# table(DATA$BAD\_h)}
+
+
+\NormalTok{DTyear }\OtherTok{\textless{}{-}}\NormalTok{ DATA[, .(}\AttributeTok{glo =} \FunctionTok{mean}\NormalTok{(Low\_B.Low\_W.glo),}
+                   \AttributeTok{GLB =} \FunctionTok{mean}\NormalTok{(wattGLB),}
+                   \AttributeTok{Ref =} \FunctionTok{mean}\NormalTok{(Enhanc\_C\_4\_ref),}
+                   \AttributeTok{Thr =} \FunctionTok{mean}\NormalTok{(Thresh\_test),}
+\NormalTok{                   .N),}
+\NormalTok{               by }\OtherTok{=}\NormalTok{ .(}\FunctionTok{year}\NormalTok{(Date))]}
+
+\NormalTok{ylim }\OtherTok{\textless{}{-}} \FunctionTok{range}\NormalTok{(DTyear[, glo, GLB])}
+
+
+
+\CommentTok{\# plot(  DTyear[, glo, year],}
+\CommentTok{\#        ylim = ylim)}
+\CommentTok{\# points(DTyear[, GLB, year], col = "green")}
+
+\FunctionTok{plot}\NormalTok{(DTyear[, N, year], }\AttributeTok{col =} \StringTok{"blue"}\NormalTok{)}
+
+\FunctionTok{plot}\NormalTok{(DTyear[, GLB}\SpecialCharTok{/}\NormalTok{glo, year], }\AttributeTok{col =} \StringTok{"red"}\NormalTok{)}
+\FunctionTok{title}\NormalTok{(}\StringTok{"Clear GLB / CS libratran yearly means"}\NormalTok{)}
+
+\FunctionTok{plot}\NormalTok{(DTyear[, Ref}\SpecialCharTok{/}\NormalTok{GLB, year], }\AttributeTok{col =} \StringTok{"red"}\NormalTok{)}
+\FunctionTok{title}\NormalTok{(}\StringTok{"Threshold ref / Clear Global yearly means"}\NormalTok{)}
+
+
+\FunctionTok{plot}\NormalTok{(DTyear[, Ref}\SpecialCharTok{/}\NormalTok{glo, year], }\AttributeTok{col =} \StringTok{"red"}\NormalTok{)}
+\FunctionTok{title}\NormalTok{(}\StringTok{"Threshold ref / CS libratran yearly means"}\NormalTok{)}
+
+\FunctionTok{plot}\NormalTok{(DTyear[, Thr}\SpecialCharTok{/}\NormalTok{GLB, year], }\AttributeTok{col =} \StringTok{"red"}\NormalTok{)}
+\FunctionTok{title}\NormalTok{(}\FunctionTok{paste}\NormalTok{(}\StringTok{"Threshold / global yearly means"}\NormalTok{, trend\_factor))}
+
+
+\NormalTok{ff }\OtherTok{\textless{}{-}} \ControlFlowTok{function}\NormalTok{(x) \{}
+    \FunctionTok{plot}\NormalTok{(DTyear[, }\DecValTok{1} \SpecialCharTok{{-}}\NormalTok{ x }\SpecialCharTok{*}\NormalTok{ Thr}\SpecialCharTok{/}\NormalTok{GLB, year], }\AttributeTok{col =} \StringTok{"red"}\NormalTok{, }\AttributeTok{main =}\NormalTok{ x)}
+\NormalTok{    DTyear[, }\FunctionTok{sum}\NormalTok{(}\FunctionTok{abs}\NormalTok{(}\DecValTok{1} \SpecialCharTok{{-}}\NormalTok{ x }\SpecialCharTok{*}\NormalTok{ Thr}\SpecialCharTok{/}\NormalTok{GLB))]}
+\NormalTok{\}}
+
+
+
+\FunctionTok{optimize}\NormalTok{(ff, }\FunctionTok{c}\NormalTok{(.}\DecValTok{5}\NormalTok{, }\FloatTok{1.5}\NormalTok{), }\AttributeTok{tol =} \FloatTok{0.001}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+$minimum
+[1] 0.8590668
+
+$objective
+[1] 0.6771877
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{ff}\NormalTok{(}\FloatTok{0.85}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+[1] 0.7037762
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{plot}\NormalTok{(DTyear[, GLB, year], }\AttributeTok{col =} \StringTok{"red"}\NormalTok{)}
+\FunctionTok{plot}\NormalTok{(DTyear[, Thr, year], }\AttributeTok{col =} \StringTok{"red"}\NormalTok{)}
+\FunctionTok{plot}\NormalTok{(DTyear[, glo, year], }\AttributeTok{col =} \StringTok{"red"}\NormalTok{)}
+\FunctionTok{plot}\NormalTok{(DTyear[, Ref, year], }\AttributeTok{col =} \StringTok{"red"}\NormalTok{)}
+
+
+\FunctionTok{rmserr}\NormalTok{(DTyear}\SpecialCharTok{$}\NormalTok{GLB, DTyear}\SpecialCharTok{$}\NormalTok{Thr)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+$mae
+[1] 97.55895
+
+$mse
+[1] 9799.437
+
+$rmse
+[1] 98.9921
+
+$mape
+[1] 0.1680595
+
+$nmse
+[1] 46.16276
+
+$rstd
+[1] 0.1700543
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{DTmonth }\OtherTok{\textless{}{-}}\NormalTok{ DATA[, .(}\AttributeTok{glo =} \FunctionTok{mean}\NormalTok{(Low\_B.Low\_W.glo),}
+                    \AttributeTok{GLB =} \FunctionTok{mean}\NormalTok{(wattGLB),}
+                    \AttributeTok{Thr =} \FunctionTok{mean}\NormalTok{(Thresh\_test),}
+\NormalTok{                    .N),}
+\NormalTok{                by }\OtherTok{=}\NormalTok{ .(}\FunctionTok{year}\NormalTok{(Date), }\FunctionTok{month}\NormalTok{(Date))]}
+\NormalTok{DTmonth[, tsy }\SpecialCharTok{:=}\NormalTok{ year }\SpecialCharTok{+}\NormalTok{ (month }\SpecialCharTok{{-}} \DecValTok{1}\NormalTok{)}\SpecialCharTok{/}\DecValTok{12}\NormalTok{ ]}
+
+
+\NormalTok{ylim }\OtherTok{\textless{}{-}} \FunctionTok{range}\NormalTok{(DTmonth[, glo, GLB])}
+
+\CommentTok{\# plot(  DTmonth[, glo, tsy],}
+\CommentTok{\#        ylim = ylim)}
+\CommentTok{\# points(DTmonth[, GLB, tsy], col = "green")}
+
+\CommentTok{\# plot(  DTmonth[, .N, tsy], col = "blue")}
+\FunctionTok{plot}\NormalTok{(  DTmonth[, GLB}\SpecialCharTok{/}\NormalTok{glo, tsy], }\AttributeTok{col =} \StringTok{"red"}\NormalTok{)}
+\FunctionTok{title}\NormalTok{(}\StringTok{"Clear GLB / CS libratran by month"}\NormalTok{)}
+
+
+
+\NormalTok{knitr}\SpecialCharTok{::}\NormalTok{opts\_chunk}\SpecialCharTok{$}\FunctionTok{set}\NormalTok{(}\AttributeTok{out.height =} \StringTok{"32\%"}\NormalTok{   )}
+
+
+\NormalTok{Ratio\_lim }\OtherTok{\textless{}{-}} \FloatTok{0.85}
+
+\NormalTok{DTdaily[GLB\_Sum}\SpecialCharTok{/}\NormalTok{glo\_Sum }\SpecialCharTok{\textless{}}\NormalTok{ Ratio\_lim, .N]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+[1] 134
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{days }\OtherTok{\textless{}{-}} \FunctionTok{unique}\NormalTok{(}\FunctionTok{c}\NormalTok{(DTdaily[GLB\_Sum}\SpecialCharTok{/}\NormalTok{glo\_Sum }\SpecialCharTok{\textless{}}\NormalTok{ Ratio\_lim, Day]))}
+
+\NormalTok{days }\OtherTok{\textless{}{-}} \FunctionTok{sample}\NormalTok{(DTdaily[, Day], }\DecValTok{40}\NormalTok{)}
+
+\CommentTok{\# for (ad in sort(days)) \{}
+\CommentTok{\#   temp \textless{}{-} DATA[Day == ad,]}
+\CommentTok{\#}
+\CommentTok{\#   ylim \textless{}{-} range(temp[, Low\_B.Low\_W.glo, wattGLB])}
+\CommentTok{\#}
+\CommentTok{\#   plot(  temp[, Low\_B.Low\_W.glo, Date],}
+\CommentTok{\#          col = "blue",}
+\CommentTok{\#          ylim = ylim)}
+\CommentTok{\#   points(temp[, wattGLB, Date], col = "green")}
+\CommentTok{\#   title(as.Date(ad, origin = "1970{-}01{-}01"))}
+\CommentTok{\# \}}
+\end{Highlighting}
+\end{Shaded}
 
 \textbf{END}
 
