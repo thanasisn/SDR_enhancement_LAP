@@ -267,7 +267,7 @@ plot(DTyear[, Ref, year], col = "red")
 rmserr(DTyear$GLB, DTyear$Thr)
 
 
-stop()
+
 
 DTmonth <- DATA[, .(glo = mean(Low_B.Low_W.glo),
                     GLB = mean(wattGLB),
