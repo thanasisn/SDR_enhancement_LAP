@@ -113,7 +113,8 @@ if (
 TEST <- FALSE
 # TEST <- TRUE
 
-APPLY_TRANS <- FALSE
+# APPLY_TRANS <- FALSE
+APPLY_TRANS <- TRUE
 
 if (TEST) {
   warning("\n\n ** Test is active!! ** \n\n")
@@ -262,6 +263,9 @@ csmodel <- "Low_B.Low_W"
 if (APPLY_TRANS) {
   source("./GHI_enh_Aeronet.R")
   cat("USING TRASPARENCY TREND\n")
+  ## choose function
+  # trans_trend <- trend_median
+  trans_trend <- trend_median_adj
 } else {
   trans_trend <- function(x) {x * 0}
 }
@@ -271,7 +275,8 @@ if (APPLY_TRANS) {
 #' ## 4. Use libradtran **`r csmodel`** as reference for Clear sky.
 #'
 #+ echo=TRUE, include=TRUE
-cat("\n USING CSMODE:", csmodel, "\n\n")
+cat("\n USING CSMODE:",    csmodel,     "\n\n")
+cat("\n APPLY GHI TREND:", APPLY_TRANS, "\n\n")
 
 switch(csmodel,
        Exact_B.Exact_W = { C4_cs_ref_ratio <- 1.02; C4_GLB_diff_THRES <- 55; C4_lowcut_sza <- 60; C4_lowcut_ratio <- 1.12},
@@ -288,8 +293,8 @@ switch(csmodel,
 DATA[, Enhanc_C_4 := FALSE]
 
 C4_test_cs_ref_ratio   <-  1.05
-C4_test_GLB_diff_THRES <-  0;
-C4_test_lowcut_sza     <- 90;  ## Disabled
+C4_test_GLB_diff_THRES <-  0
+C4_test_lowcut_sza     <- 90  ## Disabled
 C4_test_lowcut_ratio   <-  1.18
 
 # DATA[, max(SZA)]
@@ -343,6 +348,11 @@ abline(v = C4_cs_ref_ratio, col = "red" )
 ## for most of the data
 DATA[SZA < C4_lowcut_sza,
      Enhanc_C_4_ref := (1 + trans_trend(decimal_date(Date))) * (get(paste0(csmodel,".glo")) * C4_cs_ref_ratio) + C4_GLB_diff_THRES ]
+
+DATA[SZA < C4_lowcut_sza,
+     (1 + trans_trend(decimal_date(Date))) * (get(paste0(csmodel,".glo")) * C4_cs_ref_ratio) + C4_GLB_diff_THRES ]
+
+
 
 DATA[SZA < C4_lowcut_sza,
      Enhanc_C_4_ref_test :=                                    (get(paste0(csmodel,".glo")) * C4_test_cs_ref_ratio) ]
