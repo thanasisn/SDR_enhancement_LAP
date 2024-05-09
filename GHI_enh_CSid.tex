@@ -317,13 +317,17 @@ SZA median : 0.00184853525463023
 \NormalTok{trendsf }\OtherTok{\textless{}{-}} \FunctionTok{c}\NormalTok{(trend\_median, trend\_mean, trend\_min)}
 
 
+
+
+\DocumentationTok{\#\# for trend mean}
+\CommentTok{\# trend\_apply  \textless{}{-} trend\_mean}
+\CommentTok{\# trend\_factor \textless{}{-} {-}0.01995656}
+\DocumentationTok{\#\# for trend median}
 \NormalTok{trend\_apply  }\OtherTok{\textless{}{-}}\NormalTok{ trend\_median}
-\NormalTok{trend\_apply  }\OtherTok{\textless{}{-}}\NormalTok{ trend\_mean}
-
-\NormalTok{trend\_factor }\OtherTok{\textless{}{-}} \FloatTok{0.86}
+\NormalTok{trend\_factor }\OtherTok{\textless{}{-}} \SpecialCharTok{{-}}\FloatTok{0.01995656}  \CommentTok{\# the same}
 
 
-\NormalTok{DATA[, Thresh\_test }\SpecialCharTok{:=}\NormalTok{ Enhanc\_C\_4\_ref }\SpecialCharTok{*}\NormalTok{ (}\DecValTok{1} \SpecialCharTok{+} \FunctionTok{trend\_apply}\NormalTok{(tsy) }\SpecialCharTok{*}\NormalTok{ trend\_factor)]}
+\NormalTok{DATA[, Thresh\_test }\SpecialCharTok{:=}\NormalTok{ Enhanc\_C\_4\_ref }\SpecialCharTok{*}\NormalTok{ (}\DecValTok{1} \SpecialCharTok{+} \FunctionTok{trend\_apply}\NormalTok{(tsy) }\SpecialCharTok{+}\NormalTok{ trend\_factor)]}
 
 \FunctionTok{rmserr}\NormalTok{(DATA}\SpecialCharTok{$}\NormalTok{Enhanc\_C\_4\_ref, DATA}\SpecialCharTok{$}\NormalTok{wattGLB)}
 \end{Highlighting}
@@ -351,10 +355,36 @@ $rstd
 
 \begin{Shaded}
 \begin{Highlighting}[]
+\FunctionTok{rmserr}\NormalTok{(DATA}\SpecialCharTok{$}\NormalTok{Thresh\_test, DATA}\SpecialCharTok{$}\NormalTok{wattGLB)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+$mae
+[1] 85.55033
+
+$mse
+[1] 8567.15
+
+$rmse
+[1] 92.5589
+
+$mape
+[1] 0.1365803
+
+$nmse
+[1] 0.1436112
+
+$rstd
+[1] 0.1400624
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
 \NormalTok{f }\OtherTok{\textless{}{-}} \ControlFlowTok{function}\NormalTok{(x) \{}
 
 \NormalTok{  test }\OtherTok{\textless{}{-}}\NormalTok{ DATA[, .(}
-    \FunctionTok{mean}\NormalTok{(Enhanc\_C\_4\_ref }\SpecialCharTok{*}\NormalTok{ (}\DecValTok{1} \SpecialCharTok{+} \FunctionTok{trend\_apply}\NormalTok{(tsy) }\SpecialCharTok{*}\NormalTok{ x)),}
+    \FunctionTok{mean}\NormalTok{(Enhanc\_C\_4\_ref }\SpecialCharTok{*}\NormalTok{ (}\DecValTok{1} \SpecialCharTok{+} \FunctionTok{trend\_apply}\NormalTok{(tsy) }\SpecialCharTok{+}\NormalTok{ x)),}
     \FunctionTok{mean}\NormalTok{(wattGLB)),}
 \NormalTok{       by }\OtherTok{=}\NormalTok{ .(}\FunctionTok{year}\NormalTok{(Date), }\FunctionTok{month}\NormalTok{(Date))]}
 
@@ -366,16 +396,16 @@ $rstd
   \CommentTok{\# test[, sum(V1 {-} V2)]}
 \NormalTok{\}}
 
-\FunctionTok{optimise}\NormalTok{(f, }\AttributeTok{interval =} \FunctionTok{c}\NormalTok{(}\FloatTok{0.2}\NormalTok{, }\FloatTok{1.8}\NormalTok{), }\AttributeTok{maximum =}\NormalTok{ F, }\AttributeTok{tol =} \FloatTok{0.0001}\NormalTok{)}
+\FunctionTok{optimise}\NormalTok{(f, }\AttributeTok{interval =} \FunctionTok{c}\NormalTok{(}\SpecialCharTok{{-}}\FloatTok{0.02}\NormalTok{, }\FloatTok{0.02}\NormalTok{), }\AttributeTok{maximum =}\NormalTok{ F, }\AttributeTok{tol =} \FloatTok{0.0001}\NormalTok{)}
 \end{Highlighting}
 \end{Shaded}
 
 \begin{verbatim}
 $minimum
-[1] 0.2000654
+[1] -0.01995656
 
 $objective
-[1] 8619.603
+[1] 7042.576
 \end{verbatim}
 
 \begin{Shaded}
@@ -422,6 +452,7 @@ $objective
 \FunctionTok{plot}\NormalTok{(DTdaily[, En\_Ref\_sum, Day])}
 \FunctionTok{plot}\NormalTok{(DTdaily[, glo\_Sum, Day])}
 \FunctionTok{plot}\NormalTok{(DTdaily[, GLB\_Sum, Day])}
+\FunctionTok{plot}\NormalTok{(DTdaily[, Thresh\_sum, Day])}
 
 
 \DocumentationTok{\#\# remove days with few relative data}
@@ -483,50 +514,6 @@ $objective
 
 \begin{center}\includegraphics[width=1\linewidth]{GHI_enh_CSid_files/figure-latex/unnamed-chunk-6-5} \end{center}
 
-\begin{center}\includegraphics[width=1\linewidth]{GHI_enh_CSid_files/figure-latex/unnamed-chunk-6-6} \end{center}
-
-\begin{center}\includegraphics[width=1\linewidth]{GHI_enh_CSid_files/figure-latex/unnamed-chunk-6-7} \end{center}
-
-\begin{center}\includegraphics[width=1\linewidth]{GHI_enh_CSid_files/figure-latex/unnamed-chunk-6-8} \end{center}
-
-\begin{center}\includegraphics[width=1\linewidth]{GHI_enh_CSid_files/figure-latex/unnamed-chunk-6-9} \end{center}
-
-\begin{center}\includegraphics[width=1\linewidth]{GHI_enh_CSid_files/figure-latex/unnamed-chunk-6-10} \end{center}
-
-\begin{center}\includegraphics[width=1\linewidth]{GHI_enh_CSid_files/figure-latex/unnamed-chunk-6-11} \end{center}
-
-\begin{center}\includegraphics[width=1\linewidth]{GHI_enh_CSid_files/figure-latex/unnamed-chunk-6-12} \end{center}
-
-\begin{center}\includegraphics[width=1\linewidth]{GHI_enh_CSid_files/figure-latex/unnamed-chunk-6-13} \end{center}
-
-\begin{center}\includegraphics[width=1\linewidth]{GHI_enh_CSid_files/figure-latex/unnamed-chunk-6-14} \end{center}
-
-\begin{center}\includegraphics[width=1\linewidth]{GHI_enh_CSid_files/figure-latex/unnamed-chunk-6-15} \end{center}
-
-\begin{center}\includegraphics[width=1\linewidth]{GHI_enh_CSid_files/figure-latex/unnamed-chunk-6-16} \end{center}
-
-\begin{center}\includegraphics[width=1\linewidth]{GHI_enh_CSid_files/figure-latex/unnamed-chunk-6-17} \end{center}
-
-\begin{center}\includegraphics[width=1\linewidth]{GHI_enh_CSid_files/figure-latex/unnamed-chunk-6-18} \end{center}
-
-\begin{center}\includegraphics[width=1\linewidth]{GHI_enh_CSid_files/figure-latex/unnamed-chunk-6-19} \end{center}
-
-\begin{center}\includegraphics[width=1\linewidth]{GHI_enh_CSid_files/figure-latex/unnamed-chunk-6-20} \end{center}
-
-\begin{verbatim}
-$minimum
-[1] 0.8593852
-
-$objective
-[1] 0.6165028
-\end{verbatim}
-
-\begin{center}\includegraphics[width=1\linewidth]{GHI_enh_CSid_files/figure-latex/unnamed-chunk-6-21} \end{center}
-
-\begin{verbatim}
-[1] 0.6615997
-\end{verbatim}
-
 \subsection{Yearly values}\label{yearly-values}
 
 \begin{center}\includegraphics[width=1\linewidth]{GHI_enh_CSid_files/figure-latex/unnamed-chunk-7-1} \end{center}
@@ -539,22 +526,22 @@ $objective
 
 \begin{verbatim}
 $mae
-[1] 97.0816
+[1] 83.65625
 
 $mse
-[1] 9657.575
+[1] 7337.38
 
 $rmse
-[1] 98.27296
+[1] 85.65851
 
 $mape
-[1] 0.1672027
+[1] 0.1442124
 
 $nmse
-[1] 45.49449
+[1] 34.56461
 
 $rstd
-[1] 0.1688189
+[1] 0.1471491
 \end{verbatim}
 
 \begin{center}\includegraphics[width=1\linewidth]{GHI_enh_CSid_files/figure-latex/unnamed-chunk-7-5} \end{center}
