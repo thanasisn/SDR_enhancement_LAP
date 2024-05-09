@@ -124,13 +124,16 @@ DATA[, tsy := year(Date) + (month(Date) - 1)/12 ]
 trendsf <- c(trend_median, trend_mean, trend_min)
 
 
-# trend_apply  <- trend_median
+trend_apply  <- trend_median
 trend_apply  <- trend_mean
 
-trend_factor <- 0.859
+## for trend mean
+trend_factor <- 0
+## for trend median
+# trend_factor <- 0.859
 
 
-DATA[, Thresh_test := Enhanc_C_4_ref * (1 + trend_apply(tsy) * trend_factor)]
+DATA[, Thresh_test := Enhanc_C_4_ref * (1 + trend_apply(tsy) - trend_factor)]
 
 rmserr(DATA$Enhanc_C_4_ref, DATA$wattGLB)
 rmserr(DATA$Thresh_test, DATA$wattGLB)
@@ -139,7 +142,7 @@ rmserr(DATA$Thresh_test, DATA$wattGLB)
 f <- function(x) {
 
   test <- DATA[, .(
-    mean(Enhanc_C_4_ref * (1 + trend_apply(tsy) * x)),
+    mean(Enhanc_C_4_ref * (1 + trend_apply(tsy) + x)),
     mean(wattGLB)),
        by = .(year(Date), month(Date))]
 
@@ -151,7 +154,7 @@ f <- function(x) {
   # test[, sum(V1 - V2)]
 }
 
-optimise(f, interval = c(0.2, 1.8), maximum = F, tol = 0.0001)
+optimise(f, interval = c(-0.02, 0.02), maximum = F, tol = 0.0001)
 
 # optim(0.8, f, method = "Brent", lower = 0.2, upper = 1.5)
 
