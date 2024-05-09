@@ -693,7 +693,7 @@ trend_mean <- function(tsy) {
     cbind(tsyB, month_trend_mean(tsyB))
   )
   ## return results with the same order
-  res[match(tsy, res[,1]),][,2] * 0.8590668
+  res[match(tsy, res[,1]),][,2]
 }
 
 

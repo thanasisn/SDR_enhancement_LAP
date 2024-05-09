@@ -124,15 +124,17 @@ DATA[, tsy := year(Date) + (month(Date) - 1)/12 ]
 trendsf <- c(trend_median, trend_mean, trend_min)
 
 
-trend_apply  <- trend_median
+# trend_apply  <- trend_median
 trend_apply  <- trend_mean
 
-trend_factor <- 0.86
+trend_factor <- 0.859
 
 
 DATA[, Thresh_test := Enhanc_C_4_ref * (1 + trend_apply(tsy) * trend_factor)]
 
 rmserr(DATA$Enhanc_C_4_ref, DATA$wattGLB)
+rmserr(DATA$Thresh_test, DATA$wattGLB)
+
 
 f <- function(x) {
 
@@ -184,6 +186,7 @@ summary(DTdaily[, GLB_N/DayLength])
 plot(DTdaily[, En_Ref_sum, Day])
 plot(DTdaily[, glo_Sum, Day])
 plot(DTdaily[, GLB_Sum, Day])
+plot(DTdaily[, Thresh_sum, Day])
 
 
 ## remove days with few relative data
