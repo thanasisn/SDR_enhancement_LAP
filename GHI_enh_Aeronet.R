@@ -727,6 +727,9 @@ trend_median_adj <- function(tsy) {
   trend_median(tsy) - 0.01995656
 }
 
+trend_mean_adj <- function(tsy) {
+  trend_mean(tsy) - 0.01995656
+}
 
 
 
@@ -758,7 +761,7 @@ legend("top", pch = 1, lty = NA, bty = "n", lwd = 2, cex = 1,
 )
 
 title("Median SZA")
-stop()
+
 
 
 cat("\n\\newpage\n\n")
@@ -803,7 +806,7 @@ pander::pander(setorder(aa, year))
 
 
 xlim <- range(1993:2024)
-ylim <- range(c(year_trend_mean(xlim), month_trend_mean(xlim), trend_mean(xlim)))
+ylim <- range(c(year_trend_mean(xlim), month_trend_mean(xlim), trend_mean_adj(xlim)))
 
 plot(  1993:2005, year_trend_mean(1993:2005), col = "red",
        xlim = xlim,
@@ -812,7 +815,7 @@ plot(  1993:2005, year_trend_mean(1993:2005), col = "red",
        ylab = "")
 points(2005:2024, month_trend_mean(2005:2024), col = "blue")
 
-points(1993:2024, trend_mean(1993:2024), col = "magenta")
+points(1993:2024, trend_mean_adj(1993:2024), col = "magenta")
 
 legend("top", pch = 1, lty = NA, bty = "n", lwd = 2, cex = 1,
        col = c("red", "blue"),
