@@ -1,7 +1,7 @@
 # /* #!/usr/bin/env Rscript */
 # /* Copyright (C) 2022 Athanasios Natsis <natsisphysicist@gmail.com> */
 #' ---
-#' title:         "Enhancement of SDR in Thessaloniki "
+#' title:         "Enhancement of SDR in Thessaloniki Clear Sky "
 #' author:
 #'   - Natsis Athanasios^[Laboratory of Atmospheric Physics, AUTH, natsisphysicist@gmail.com]
 #'   - Alkiviadis Bais^[Laboratory of Atmospheric Physics, AUTH]
@@ -224,6 +224,10 @@ DTyear <- DATA[, .(glo = mean(Low_B.Low_W.glo),
 ylim <- range(DTyear[, glo, GLB])
 
 
+#'
+#' ## Relations
+#'
+#+ echo=F, include=T
 
 # plot(  DTyear[, glo, year],
 #        ylim = ylim)
@@ -257,6 +261,10 @@ optimize(ff, c(.5, 1.5), tol = 0.001)
 ff(0.85)
 
 
+#'
+#' ## Yearly values
+#'
+#+ echo=F, include=T
 
 plot(DTyear[, GLB, year], col = "red")
 plot(DTyear[, Thr, year], col = "red")

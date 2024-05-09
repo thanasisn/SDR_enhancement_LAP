@@ -116,7 +116,7 @@
 \IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
 \urlstyle{same}
 \hypersetup{
-  pdftitle={Enhancement of SDR in Thessaloniki},
+  pdftitle={Enhancement of SDR in Thessaloniki Clear Sky},
   pdfauthor={Natsis Athanasios; Alkiviadis Bais},
   colorlinks=true,
   linkcolor={Maroon},
@@ -125,9 +125,9 @@
   urlcolor={Blue},
   pdfcreator={LaTeX via pandoc}}
 
-\title{Enhancement of SDR in Thessaloniki}
+\title{Enhancement of SDR in Thessaloniki Clear Sky}
 \author{Natsis Athanasios\footnote{Laboratory of Atmospheric Physics, AUTH, \href{mailto:natsisphysicist@gmail.com}{\nolinkurl{natsisphysicist@gmail.com}}} \and Alkiviadis Bais\footnote{Laboratory of Atmospheric Physics, AUTH}}
-\date{2024-05-08}
+\date{2024-05-09}
 
 \begin{document}
 \maketitle
@@ -375,7 +375,7 @@ $minimum
 [1] 0.2000654
 
 $objective
-[1] 8644.06
+[1] 8619.603
 \end{verbatim}
 
 \begin{Shaded}
@@ -468,144 +468,100 @@ $objective
 \NormalTok{               by }\OtherTok{=}\NormalTok{ .(}\FunctionTok{year}\NormalTok{(Date))]}
 
 \NormalTok{ylim }\OtherTok{\textless{}{-}} \FunctionTok{range}\NormalTok{(DTyear[, glo, GLB])}
-
-
-
-\CommentTok{\# plot(  DTyear[, glo, year],}
-\CommentTok{\#        ylim = ylim)}
-\CommentTok{\# points(DTyear[, GLB, year], col = "green")}
-
-\FunctionTok{plot}\NormalTok{(DTyear[, N, year], }\AttributeTok{col =} \StringTok{"blue"}\NormalTok{)}
-
-\FunctionTok{plot}\NormalTok{(DTyear[, GLB}\SpecialCharTok{/}\NormalTok{glo, year], }\AttributeTok{col =} \StringTok{"red"}\NormalTok{)}
-\FunctionTok{title}\NormalTok{(}\StringTok{"Clear GLB / CS libratran yearly means"}\NormalTok{)}
-
-\FunctionTok{plot}\NormalTok{(DTyear[, Ref}\SpecialCharTok{/}\NormalTok{GLB, year], }\AttributeTok{col =} \StringTok{"red"}\NormalTok{)}
-\FunctionTok{title}\NormalTok{(}\StringTok{"Threshold ref / Clear Global yearly means"}\NormalTok{)}
-
-
-\FunctionTok{plot}\NormalTok{(DTyear[, Ref}\SpecialCharTok{/}\NormalTok{glo, year], }\AttributeTok{col =} \StringTok{"red"}\NormalTok{)}
-\FunctionTok{title}\NormalTok{(}\StringTok{"Threshold ref / CS libratran yearly means"}\NormalTok{)}
-
-\FunctionTok{plot}\NormalTok{(DTyear[, Thr}\SpecialCharTok{/}\NormalTok{GLB, year], }\AttributeTok{col =} \StringTok{"red"}\NormalTok{)}
-\FunctionTok{title}\NormalTok{(}\FunctionTok{paste}\NormalTok{(}\StringTok{"Threshold / global yearly means"}\NormalTok{, trend\_factor))}
-
-
-\NormalTok{ff }\OtherTok{\textless{}{-}} \ControlFlowTok{function}\NormalTok{(x) \{}
-    \FunctionTok{plot}\NormalTok{(DTyear[, }\DecValTok{1} \SpecialCharTok{{-}}\NormalTok{ x }\SpecialCharTok{*}\NormalTok{ Thr}\SpecialCharTok{/}\NormalTok{GLB, year], }\AttributeTok{col =} \StringTok{"red"}\NormalTok{, }\AttributeTok{main =}\NormalTok{ x)}
-\NormalTok{    DTyear[, }\FunctionTok{sum}\NormalTok{(}\FunctionTok{abs}\NormalTok{(}\DecValTok{1} \SpecialCharTok{{-}}\NormalTok{ x }\SpecialCharTok{*}\NormalTok{ Thr}\SpecialCharTok{/}\NormalTok{GLB))]}
-\NormalTok{\}}
-
-
-
-\FunctionTok{optimize}\NormalTok{(ff, }\FunctionTok{c}\NormalTok{(.}\DecValTok{5}\NormalTok{, }\FloatTok{1.5}\NormalTok{), }\AttributeTok{tol =} \FloatTok{0.001}\NormalTok{)}
 \end{Highlighting}
 \end{Shaded}
+
+\subsection{Relations}\label{relations}
+
+\begin{center}\includegraphics[width=1\linewidth]{GHI_enh_CSid_files/figure-latex/unnamed-chunk-6-1} \end{center}
+
+\begin{center}\includegraphics[width=1\linewidth]{GHI_enh_CSid_files/figure-latex/unnamed-chunk-6-2} \end{center}
+
+\begin{center}\includegraphics[width=1\linewidth]{GHI_enh_CSid_files/figure-latex/unnamed-chunk-6-3} \end{center}
+
+\begin{center}\includegraphics[width=1\linewidth]{GHI_enh_CSid_files/figure-latex/unnamed-chunk-6-4} \end{center}
+
+\begin{center}\includegraphics[width=1\linewidth]{GHI_enh_CSid_files/figure-latex/unnamed-chunk-6-5} \end{center}
+
+\begin{center}\includegraphics[width=1\linewidth]{GHI_enh_CSid_files/figure-latex/unnamed-chunk-6-6} \end{center}
+
+\begin{center}\includegraphics[width=1\linewidth]{GHI_enh_CSid_files/figure-latex/unnamed-chunk-6-7} \end{center}
+
+\begin{center}\includegraphics[width=1\linewidth]{GHI_enh_CSid_files/figure-latex/unnamed-chunk-6-8} \end{center}
+
+\begin{center}\includegraphics[width=1\linewidth]{GHI_enh_CSid_files/figure-latex/unnamed-chunk-6-9} \end{center}
+
+\begin{center}\includegraphics[width=1\linewidth]{GHI_enh_CSid_files/figure-latex/unnamed-chunk-6-10} \end{center}
+
+\begin{center}\includegraphics[width=1\linewidth]{GHI_enh_CSid_files/figure-latex/unnamed-chunk-6-11} \end{center}
+
+\begin{center}\includegraphics[width=1\linewidth]{GHI_enh_CSid_files/figure-latex/unnamed-chunk-6-12} \end{center}
+
+\begin{center}\includegraphics[width=1\linewidth]{GHI_enh_CSid_files/figure-latex/unnamed-chunk-6-13} \end{center}
+
+\begin{center}\includegraphics[width=1\linewidth]{GHI_enh_CSid_files/figure-latex/unnamed-chunk-6-14} \end{center}
+
+\begin{center}\includegraphics[width=1\linewidth]{GHI_enh_CSid_files/figure-latex/unnamed-chunk-6-15} \end{center}
+
+\begin{center}\includegraphics[width=1\linewidth]{GHI_enh_CSid_files/figure-latex/unnamed-chunk-6-16} \end{center}
+
+\begin{center}\includegraphics[width=1\linewidth]{GHI_enh_CSid_files/figure-latex/unnamed-chunk-6-17} \end{center}
+
+\begin{center}\includegraphics[width=1\linewidth]{GHI_enh_CSid_files/figure-latex/unnamed-chunk-6-18} \end{center}
+
+\begin{center}\includegraphics[width=1\linewidth]{GHI_enh_CSid_files/figure-latex/unnamed-chunk-6-19} \end{center}
+
+\begin{center}\includegraphics[width=1\linewidth]{GHI_enh_CSid_files/figure-latex/unnamed-chunk-6-20} \end{center}
 
 \begin{verbatim}
 $minimum
-[1] 0.8590668
+[1] 0.8593852
 
 $objective
-[1] 0.6771877
+[1] 0.6165028
 \end{verbatim}
 
-\begin{Shaded}
-\begin{Highlighting}[]
-\FunctionTok{ff}\NormalTok{(}\FloatTok{0.85}\NormalTok{)}
-\end{Highlighting}
-\end{Shaded}
+\begin{center}\includegraphics[width=1\linewidth]{GHI_enh_CSid_files/figure-latex/unnamed-chunk-6-21} \end{center}
 
 \begin{verbatim}
-[1] 0.7037762
+[1] 0.6615997
 \end{verbatim}
 
-\begin{Shaded}
-\begin{Highlighting}[]
-\FunctionTok{plot}\NormalTok{(DTyear[, GLB, year], }\AttributeTok{col =} \StringTok{"red"}\NormalTok{)}
-\FunctionTok{plot}\NormalTok{(DTyear[, Thr, year], }\AttributeTok{col =} \StringTok{"red"}\NormalTok{)}
-\FunctionTok{plot}\NormalTok{(DTyear[, glo, year], }\AttributeTok{col =} \StringTok{"red"}\NormalTok{)}
-\FunctionTok{plot}\NormalTok{(DTyear[, Ref, year], }\AttributeTok{col =} \StringTok{"red"}\NormalTok{)}
+\subsection{Yearly values}\label{yearly-values}
 
+\begin{center}\includegraphics[width=1\linewidth]{GHI_enh_CSid_files/figure-latex/unnamed-chunk-7-1} \end{center}
 
-\FunctionTok{rmserr}\NormalTok{(DTyear}\SpecialCharTok{$}\NormalTok{GLB, DTyear}\SpecialCharTok{$}\NormalTok{Thr)}
-\end{Highlighting}
-\end{Shaded}
+\begin{center}\includegraphics[width=1\linewidth]{GHI_enh_CSid_files/figure-latex/unnamed-chunk-7-2} \end{center}
+
+\begin{center}\includegraphics[width=1\linewidth]{GHI_enh_CSid_files/figure-latex/unnamed-chunk-7-3} \end{center}
+
+\begin{center}\includegraphics[width=1\linewidth]{GHI_enh_CSid_files/figure-latex/unnamed-chunk-7-4} \end{center}
 
 \begin{verbatim}
 $mae
-[1] 97.55895
+[1] 97.0816
 
 $mse
-[1] 9799.437
+[1] 9657.575
 
 $rmse
-[1] 98.9921
+[1] 98.27296
 
 $mape
-[1] 0.1680595
+[1] 0.1672027
 
 $nmse
-[1] 46.16276
+[1] 45.49449
 
 $rstd
-[1] 0.1700543
+[1] 0.1688189
 \end{verbatim}
 
-\begin{Shaded}
-\begin{Highlighting}[]
-\NormalTok{DTmonth }\OtherTok{\textless{}{-}}\NormalTok{ DATA[, .(}\AttributeTok{glo =} \FunctionTok{mean}\NormalTok{(Low\_B.Low\_W.glo),}
-                    \AttributeTok{GLB =} \FunctionTok{mean}\NormalTok{(wattGLB),}
-                    \AttributeTok{Thr =} \FunctionTok{mean}\NormalTok{(Thresh\_test),}
-\NormalTok{                    .N),}
-\NormalTok{                by }\OtherTok{=}\NormalTok{ .(}\FunctionTok{year}\NormalTok{(Date), }\FunctionTok{month}\NormalTok{(Date))]}
-\NormalTok{DTmonth[, tsy }\SpecialCharTok{:=}\NormalTok{ year }\SpecialCharTok{+}\NormalTok{ (month }\SpecialCharTok{{-}} \DecValTok{1}\NormalTok{)}\SpecialCharTok{/}\DecValTok{12}\NormalTok{ ]}
-
-
-\NormalTok{ylim }\OtherTok{\textless{}{-}} \FunctionTok{range}\NormalTok{(DTmonth[, glo, GLB])}
-
-\CommentTok{\# plot(  DTmonth[, glo, tsy],}
-\CommentTok{\#        ylim = ylim)}
-\CommentTok{\# points(DTmonth[, GLB, tsy], col = "green")}
-
-\CommentTok{\# plot(  DTmonth[, .N, tsy], col = "blue")}
-\FunctionTok{plot}\NormalTok{(  DTmonth[, GLB}\SpecialCharTok{/}\NormalTok{glo, tsy], }\AttributeTok{col =} \StringTok{"red"}\NormalTok{)}
-\FunctionTok{title}\NormalTok{(}\StringTok{"Clear GLB / CS libratran by month"}\NormalTok{)}
-
-
-
-\NormalTok{knitr}\SpecialCharTok{::}\NormalTok{opts\_chunk}\SpecialCharTok{$}\FunctionTok{set}\NormalTok{(}\AttributeTok{out.height =} \StringTok{"32\%"}\NormalTok{   )}
-
-
-\NormalTok{Ratio\_lim }\OtherTok{\textless{}{-}} \FloatTok{0.85}
-
-\NormalTok{DTdaily[GLB\_Sum}\SpecialCharTok{/}\NormalTok{glo\_Sum }\SpecialCharTok{\textless{}}\NormalTok{ Ratio\_lim, .N]}
-\end{Highlighting}
-\end{Shaded}
+\begin{center}\includegraphics[width=1\linewidth]{GHI_enh_CSid_files/figure-latex/unnamed-chunk-7-5} \end{center}
 
 \begin{verbatim}
 [1] 134
 \end{verbatim}
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\NormalTok{days }\OtherTok{\textless{}{-}} \FunctionTok{unique}\NormalTok{(}\FunctionTok{c}\NormalTok{(DTdaily[GLB\_Sum}\SpecialCharTok{/}\NormalTok{glo\_Sum }\SpecialCharTok{\textless{}}\NormalTok{ Ratio\_lim, Day]))}
-
-\NormalTok{days }\OtherTok{\textless{}{-}} \FunctionTok{sample}\NormalTok{(DTdaily[, Day], }\DecValTok{40}\NormalTok{)}
-
-\CommentTok{\# for (ad in sort(days)) \{}
-\CommentTok{\#   temp \textless{}{-} DATA[Day == ad,]}
-\CommentTok{\#}
-\CommentTok{\#   ylim \textless{}{-} range(temp[, Low\_B.Low\_W.glo, wattGLB])}
-\CommentTok{\#}
-\CommentTok{\#   plot(  temp[, Low\_B.Low\_W.glo, Date],}
-\CommentTok{\#          col = "blue",}
-\CommentTok{\#          ylim = ylim)}
-\CommentTok{\#   points(temp[, wattGLB, Date], col = "green")}
-\CommentTok{\#   title(as.Date(ad, origin = "1970{-}01{-}01"))}
-\CommentTok{\# \}}
-\end{Highlighting}
-\end{Shaded}
 
 \textbf{END}
 
