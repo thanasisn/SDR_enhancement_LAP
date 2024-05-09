@@ -127,7 +127,7 @@
 
 \title{Enhancement of SDR in Thessaloniki}
 \author{Natsis Athanasios\footnote{Laboratory of Atmospheric Physics, AUTH, \href{mailto:natsisphysicist@gmail.com}{\nolinkurl{natsisphysicist@gmail.com}}} \and Alkiviadis Bais\footnote{Laboratory of Atmospheric Physics, AUTH}}
-\date{2024-04-21}
+\date{2024-05-09}
 
 \begin{document}
 \maketitle
@@ -140,93 +140,6 @@ Study of GHI enchantment.
 \setcounter{tocdepth}{4}
 \tableofcontents
 }
-\begin{verbatim}
-
- USING CSMODE: Low_B.Low_W 
-
-C4 factor: 1.04 
-C4 offset: 15 
-\end{verbatim}
-
-\begin{verbatim}
-
-\FloatBarrier
-
-
-## Days with extreme cases day 
-\end{verbatim}
-
-\begin{verbatim}
- 
- 
-
-\FloatBarrier
-
-
-## Days with strong enhancement day 
-\end{verbatim}
-
-\begin{verbatim}
- 
- 
-
-\FloatBarrier
-
-
-## Days with sunny day 
-\end{verbatim}
-
-\begin{verbatim}
- 
- 
-
-\FloatBarrier
-
-
-## Days with sunny enhancement day 
-\end{verbatim}
-
-\begin{verbatim}
- 
- 
-
-\FloatBarrier
-
-
-## Days with cloudy day 
-\end{verbatim}
-
-\begin{verbatim}
- 
- 
-
-\FloatBarrier
-
-
-## Days with random day 
-\end{verbatim}
-
-\begin{verbatim}
- 
- 
-
-\FloatBarrier
-
-
-## Days with manual test days 
-\end{verbatim}
-
-\begin{verbatim}
-Warning: A numeric `legend.position` argument in `theme()` was deprecated in ggplot2 3.5.0.
-i Please use the `legend.position.inside` argument of `theme()` instead.
-This warning is displayed once every 8 hours.
-Call `lifecycle::last_lifecycle_warnings()` to see where this warning was generated.
-\end{verbatim}
-
-\begin{verbatim}
-2024-04-21 16:10:56.4 athan@tyler GHI_enh_02_ID_CE.R 27.296893 mins
-\end{verbatim}
-
 Alpha * HAU is CS\_ref
 
 \hypertarget{time-series-decomposition-tests}{%
@@ -439,18 +352,18 @@ stats::lm(formula = .formula, data = df)
 
 Residuals:
     Min      1Q  Median      3Q     Max 
--349.43 -124.67  -47.48   83.61  668.69 
+-327.56 -157.11  -65.36  116.74  760.36 
 
 Coefficients:
-                   Estimate Std. Error t value Pr(>|t|)    
-(Intercept)      -8.500e+01  4.348e+01  -1.955   0.0514 .  
-as.numeric(Date)  2.911e-07  3.473e-08   8.383 1.18e-15 ***
+                  Estimate Std. Error t value Pr(>|t|)    
+(Intercept)      2.431e+02  4.880e+01   4.981  9.8e-07 ***
+as.numeric(Date) 6.397e-08  3.907e-08   1.637    0.102    
 ---
 Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 
-Residual standard error: 185 on 360 degrees of freedom
-Multiple R-squared:  0.1633,    Adjusted R-squared:  0.161 
-F-statistic: 70.27 on 1 and 360 DF,  p-value: 1.182e-15
+Residual standard error: 210.1 on 363 degrees of freedom
+Multiple R-squared:  0.007332,  Adjusted R-squared:  0.004597 
+F-statistic: 2.681 on 1 and 363 DF,  p-value: 0.1024
 \end{verbatim}
 
 \begin{center}\includegraphics[width=1\linewidth]{GHI_enh_03_process_files/figure-latex/unnamed-chunk-6-19} \end{center}
@@ -469,18 +382,18 @@ lm(formula = ST_E_monthly$wattGLB.N ~ ST_E_monthly$Date)
 
 Residuals:
     Min      1Q  Median      3Q     Max 
--349.43 -124.67  -47.48   83.61  668.69 
+-327.56 -157.11  -65.36  116.74  760.36 
 
 Coefficients:
-                    Estimate Std. Error t value Pr(>|t|)    
-(Intercept)       -8.500e+01  4.348e+01  -1.955   0.0514 .  
-ST_E_monthly$Date  2.911e-07  3.473e-08   8.383 1.18e-15 ***
+                   Estimate Std. Error t value Pr(>|t|)    
+(Intercept)       2.431e+02  4.880e+01   4.981  9.8e-07 ***
+ST_E_monthly$Date 6.397e-08  3.907e-08   1.637    0.102    
 ---
 Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 
-Residual standard error: 185 on 360 degrees of freedom
-Multiple R-squared:  0.1633,    Adjusted R-squared:  0.161 
-F-statistic: 70.27 on 1 and 360 DF,  p-value: 1.182e-15
+Residual standard error: 210.1 on 363 degrees of freedom
+Multiple R-squared:  0.007332,  Adjusted R-squared:  0.004597 
+F-statistic: 2.681 on 1 and 363 DF,  p-value: 0.1024
 \end{verbatim}
 
 \begin{Shaded}
@@ -522,16 +435,18 @@ F-statistic: 70.27 on 1 and 360 DF,  p-value: 1.182e-15
 
 \begin{verbatim}
 aa
+aatm
 aday
+AEin1
 All_daily_ratio_lim
 alpha
+amean
 ampl
+asza
+atype
 avar
+b
 BIO_ELEVA
-C1_Clearness_Kt_THRES
-C1_GLB_diff_THRES
-C2_Clearness_Kt_THRES
-C3_cs_ref_ratio
 C4_cs_ref_ratio
 C4_GLB_diff_THRES
 C4_lowcut_ratio
@@ -554,33 +469,53 @@ Daily_aggregation_N_lim
 Daily_confidence_limit
 daylist
 Days_of_year
-dummy
 Energy_Div
+fit
 I1_longterm
 I2_szatrend
 I3_trendsconsist
 ii
 Input_data_ID
 Kurudz_SC
+lm_mean
+lm_zeropoint
+mean_BR_mean
+mean_BR_median
+mean_BR_min
+mean_mean
+mean_median
+mean_min
+mid
 MIN_ELEVA
 MIN_N
+mm
 Monthly_aggegation_N_lim
 Monthly_confidence_limit
 my.cols
 my.cols.gr
 pyear
 R_COMPILE_PKGS
+RANDOM_SEED
 raw_input_data
 running_mean_window_days
 running_mean_window_years
 SEAS_MIN_N
 SelEnhanc
+slope_mean
+slope_median
+slope_min
 SZA_aggregation_N_lim
 SZA_BIN
 SZA_confidence_limit
+t
+tsy
+units
 variables_fl
+xlim
 yearstodo
 ylim
+zeropoint
+zeropointA
 ST_daily
 ST_E_daily
 ST_E_daily_seas
@@ -619,7 +554,7 @@ ST_yearly
 \textbf{END}
 
 \begin{verbatim}
-2024-04-21 16:22:21.3 athan@tyler GHI_enh_02_ID_CE.R 8.808619 mins
+2024-05-09 20:10:12.1 athan@sagan GHI_enh_03_process.R 3.712139 mins
 \end{verbatim}
 
 \end{document}
