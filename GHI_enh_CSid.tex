@@ -127,7 +127,7 @@
 
 \title{Enhancement of SDR in Thessaloniki Clear Sky}
 \author{Natsis Athanasios\footnote{Laboratory of Atmospheric Physics, AUTH, \href{mailto:natsisphysicist@gmail.com}{\nolinkurl{natsisphysicist@gmail.com}}} \and Alkiviadis Bais\footnote{Laboratory of Atmospheric Physics, AUTH}}
-\date{2024-05-09}
+\date{2024-05-13}
 
 \begin{document}
 \maketitle
@@ -325,9 +325,21 @@ SZA median : 0.00184853525463023
 \DocumentationTok{\#\# for trend median}
 \NormalTok{trend\_apply  }\OtherTok{\textless{}{-}}\NormalTok{ trend\_median}
 \NormalTok{trend\_factor }\OtherTok{\textless{}{-}} \SpecialCharTok{{-}}\FloatTok{0.01995656}  \CommentTok{\# the same}
+\NormalTok{trend\_apply\_adj }\OtherTok{\textless{}{-}} \ControlFlowTok{function}\NormalTok{(tsy) \{}
+  \FunctionTok{trend\_median}\NormalTok{(tsy) }\SpecialCharTok{{-}} \FloatTok{0.01995656}
+\NormalTok{\}}
 
+\FunctionTok{trend\_apply}\NormalTok{(}\DecValTok{1999}\SpecialCharTok{:}\DecValTok{2000}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
 
-\NormalTok{DATA[, Thresh\_test }\SpecialCharTok{:=}\NormalTok{ Enhanc\_C\_4\_ref }\SpecialCharTok{*}\NormalTok{ (}\DecValTok{1} \SpecialCharTok{+} \FunctionTok{trend\_apply}\NormalTok{(tsy) }\SpecialCharTok{+}\NormalTok{ trend\_factor)]}
+\begin{verbatim}
+[1] -0.01599489 -0.01332907
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{DATA[, Thresh\_test }\SpecialCharTok{:=}\NormalTok{ Enhanc\_C\_4\_ref }\SpecialCharTok{*}\NormalTok{ (}\DecValTok{1} \SpecialCharTok{+} \FunctionTok{trend\_apply\_adj}\NormalTok{(tsy))]}
 
 \FunctionTok{rmserr}\NormalTok{(DATA}\SpecialCharTok{$}\NormalTok{Enhanc\_C\_4\_ref, DATA}\SpecialCharTok{$}\NormalTok{wattGLB)}
 \end{Highlighting}
@@ -387,10 +399,6 @@ $rstd
     \FunctionTok{mean}\NormalTok{(Enhanc\_C\_4\_ref }\SpecialCharTok{*}\NormalTok{ (}\DecValTok{1} \SpecialCharTok{+} \FunctionTok{trend\_apply}\NormalTok{(tsy) }\SpecialCharTok{+}\NormalTok{ x)),}
     \FunctionTok{mean}\NormalTok{(wattGLB)),}
 \NormalTok{       by }\OtherTok{=}\NormalTok{ .(}\FunctionTok{year}\NormalTok{(Date), }\FunctionTok{month}\NormalTok{(Date))]}
-
-  \CommentTok{\# DATA[, sum( abs((Enhanc\_C\_4\_ref * (1 + trend\_apply(tsy) * x)) {-} wattGLB)) ]}
-
-  \CommentTok{\# DATA[, sum(1 {-} (Enhanc\_C\_4\_ref * (1 + trend\_apply(tsy) * x) / wattGLB)) ]}
 
   \FunctionTok{rmserr}\NormalTok{(test}\SpecialCharTok{$}\NormalTok{V1, test}\SpecialCharTok{$}\NormalTok{V2)}\SpecialCharTok{$}\NormalTok{mse}
   \CommentTok{\# test[, sum(V1 {-} V2)]}
@@ -479,7 +487,7 @@ $objective
                   \AttributeTok{GLB\_N      =} \FunctionTok{sum}\NormalTok{(}\SpecialCharTok{!}\FunctionTok{is.na}\NormalTok{(wattGLB)),}
                   \AttributeTok{DayLength  =} \FunctionTok{max}\NormalTok{(DayLength),}
                   \AttributeTok{En\_Ref\_sum =} \FunctionTok{sum}\NormalTok{(Enhanc\_C\_4\_ref),}
-                  \AttributeTok{Thresh\_sum =} \FunctionTok{sum}\NormalTok{(Thresh\_test),}
+                  \CommentTok{\# Thresh\_sum = sum(Thresh\_test),}
 \NormalTok{                  .N}
 \NormalTok{                ),}
 \NormalTok{                by }\OtherTok{=}\NormalTok{ Day]}
@@ -494,13 +502,15 @@ $objective
 \NormalTok{DTyear }\OtherTok{\textless{}{-}}\NormalTok{ DATA[, .(}\AttributeTok{glo =} \FunctionTok{mean}\NormalTok{(Low\_B.Low\_W.glo),}
                    \AttributeTok{GLB =} \FunctionTok{mean}\NormalTok{(wattGLB),}
                    \AttributeTok{Ref =} \FunctionTok{mean}\NormalTok{(Enhanc\_C\_4\_ref),}
-                   \AttributeTok{Thr =} \FunctionTok{mean}\NormalTok{(Thresh\_test),}
+                   \CommentTok{\# Thr = mean(Thresh\_test),}
 \NormalTok{                   .N),}
 \NormalTok{               by }\OtherTok{=}\NormalTok{ .(}\FunctionTok{year}\NormalTok{(Date))]}
 
 \NormalTok{ylim }\OtherTok{\textless{}{-}} \FunctionTok{range}\NormalTok{(DTyear[, glo, GLB])}
 \end{Highlighting}
 \end{Shaded}
+
+\newpage
 
 \subsection{Relations}\label{relations}
 
@@ -510,9 +520,7 @@ $objective
 
 \begin{center}\includegraphics[width=1\linewidth]{GHI_enh_CSid_files/figure-latex/unnamed-chunk-6-3} \end{center}
 
-\begin{center}\includegraphics[width=1\linewidth]{GHI_enh_CSid_files/figure-latex/unnamed-chunk-6-4} \end{center}
-
-\begin{center}\includegraphics[width=1\linewidth]{GHI_enh_CSid_files/figure-latex/unnamed-chunk-6-5} \end{center}
+\newpage
 
 \subsection{Yearly values}\label{yearly-values}
 
@@ -523,28 +531,6 @@ $objective
 \begin{center}\includegraphics[width=1\linewidth]{GHI_enh_CSid_files/figure-latex/unnamed-chunk-7-3} \end{center}
 
 \begin{center}\includegraphics[width=1\linewidth]{GHI_enh_CSid_files/figure-latex/unnamed-chunk-7-4} \end{center}
-
-\begin{verbatim}
-$mae
-[1] 83.65625
-
-$mse
-[1] 7337.38
-
-$rmse
-[1] 85.65851
-
-$mape
-[1] 0.1442124
-
-$nmse
-[1] 34.56461
-
-$rstd
-[1] 0.1471491
-\end{verbatim}
-
-\begin{center}\includegraphics[width=1\linewidth]{GHI_enh_CSid_files/figure-latex/unnamed-chunk-7-5} \end{center}
 
 \begin{verbatim}
 [1] 134
