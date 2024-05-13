@@ -230,7 +230,7 @@ DTyear <- DATA[, .(glo = mean(Low_B.Low_W.glo),
 
 ylim <- range(DTyear[, glo, GLB])
 
-
+#' \newpage
 #'
 #' ## Relations
 #'
@@ -240,20 +240,20 @@ ylim <- range(DTyear[, glo, GLB])
 #        ylim = ylim)
 # points(DTyear[, GLB, year], col = "green")
 
-plot(DTyear[, N, year], col = "blue")
+# plot(DTyear[, N, year], col = "blue")
 
 plot(DTyear[, GLB/glo, year], col = "red")
-title("Clear GLB / CS libratran yearly means")
+title("Clear GLB / CS libratran  yearly means")
 
 plot(DTyear[, Ref/GLB, year], col = "red")
-title("Threshold ref / Clear Global yearly means")
+title("Threshold ref / Clear Global  yearly means")
 
 
-plot(DTyear[, Ref/glo, year], col = "red")
-title("Threshold ref / CS libratran yearly means")
+plot(DTyear[, Thr/glo, year], col = "red")
+title("Threshold ref / CS libratran  yearly means")
 
 plot(DTyear[, Thr/GLB, year], col = "red")
-title(paste("Threshold / global yearly means", trend_factor))
+title(paste("Threshold ref / Clear GLB  yearly means", trend_factor))
 
 
 # ff <- function(x) {
@@ -266,6 +266,8 @@ title(paste("Threshold / global yearly means", trend_factor))
 
 
 
+#' \newpage
+#'
 #'
 #' ## Yearly values
 #'
