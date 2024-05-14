@@ -266,6 +266,7 @@ if (APPLY_TRANS) {
   ## choose function
   # trans_trend <- trend_median
   trans_trend <- trend_median_adj
+  trans_trend <- trend_55_adj
 } else {
   trans_trend <- function(x) {x * 0}
 }
