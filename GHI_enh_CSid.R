@@ -131,9 +131,10 @@ trendsf <- c(trend_median, trend_mean, trend_min)
 # trend_factor <- -0.01995656
 ## for trend median
 trend_apply  <- trend_median
+trend_apply  <- trend_55
 trend_factor <- -0.01995656  # the same
 trend_apply_adj <- function(tsy) {
-  trend_median(tsy) - 0.01995656
+  trend_apply(tsy) - 0.01995656
 }
 
 trend_apply(1999:2000)
@@ -156,6 +157,7 @@ f <- function(x) {
 }
 
 optimise(f, interval = c(-0.02, 0.02), maximum = F, tol = 0.0001)
+
 
 # optim(0.8, f, method = "Brent", lower = 0.2, upper = 1.5)
 

@@ -792,15 +792,15 @@ year_trend_median <- function(tsy) {
 }
 
 year_trend_min <- function(tsy) {
-  (-coef(lm_BR_min)[2] * zeropointA + tsy * coef(lm_BR_min)[2]) / mean_BR_min
+  (-coef(lm_BR_min)[2]    * zeropointA + tsy * coef(lm_BR_min)[2])    / mean_BR_min
 }
 
 year_trend_mean <- function(tsy) {
-  (-coef(lm_BR_mean)[2] * zeropointA + tsy * coef(lm_BR_mean)[2]) / mean_BR_mean
+  (-coef(lm_BR_mean)[2]   * zeropointA + tsy * coef(lm_BR_mean)[2])   / mean_BR_mean
 }
 
-year_trend_mean <- function(tsy) {
-  (-coef(lm_BR_mean)[2] * zeropointA + tsy * coef(lm_BR_mean)[2]) / mean_BR_mean
+year_trend_55 <- function(tsy) {
+  (-coef(lm_BR_55)[2]     * zeropointA + tsy * coef(lm_BR_55)[2])     / mean_BR_55
 }
 
 trend_mean <- function(tsy) {
@@ -842,6 +842,21 @@ trend_min <- function(tsy) {
 }
 
 
+trend_55 <- function(tsy) {
+  tsyA <- tsy[tsy <  2005]
+  tsyB <- tsy[tsy >= 2005]
+  ## calculate values
+  res <- rbind(
+    cbind(tsyA,  year_trend_55(tsyA)),
+    cbind(tsyB, month_trend_55(tsyB))
+  )
+  ## return results with order
+  res[match(tsy, res[,1]),][,2]
+}
+
+
+
+
 trend_median_adj <- function(tsy) {
   trend_median(tsy) - 0.01995656
 }
@@ -851,8 +866,15 @@ trend_mean_adj <- function(tsy) {
 }
 
 
+trend_55_adj <- function(tsy) {
+  trend_55(tsy) - 0.01995656
+}
 
-### Median
+
+
+
+
+### Median  --------------------
 
 aa <- AEM[typer %in% c("SZA median", "BR SZA median"), .(MeanGlo = mean(glo)), by = .(year, typer) ]
 pander::pander(setorder(aa, year))
@@ -884,7 +906,7 @@ title("Median SZA")
 
 
 cat("\n\\newpage\n\n")
-#### Min
+#### Min ------------
 
 aa <- AEM[typer %in% c("SZA min", "BR SZA min"), .(MeanGlo = mean(glo)), by = .(year, typer) ]
 pander::pander(setorder(aa, year))
@@ -918,7 +940,7 @@ title("Min SZA")
 
 
 cat("\n\\newpage\n\n")
-#### Mean
+#### Mean  ------------------
 
 aa <- AEM[typer %in% c("SZA mean", "BR SZA mean"), .(MeanGlo = mean(glo)), by = .(year, typer) ]
 pander::pander(setorder(aa, year))
@@ -952,6 +974,37 @@ title("Mean SZA")
 
 
 
+
+
+cat("\n\\newpage\n\n")
+#### 55  ------------------
+
+aa <- AEM[typer %in% c("SZA 55", "BR SZA 55"), .(MeanGlo = mean(glo)), by = .(year, typer) ]
+pander::pander(setorder(aa, year))
+
+
+xlim <- range(1993:2024)
+ylim <- range(c(year_trend_55(xlim), month_trend_55(xlim), trend_55_adj(xlim)))
+
+plot(  1993:2005, year_trend_55(1993:2005), col = "red",
+       xlim = xlim,
+       ylim = ylim,
+       xlab = "",
+       ylab = "")
+points(2005:2024, month_trend_55(2005:2024), col = "blue")
+
+points(1993:2024, trend_55_adj(1993:2024), col = "magenta")
+
+legend("top", pch = 1, lty = NA, bty = "n", lwd = 2, cex = 1,
+       col = c("red", "blue"),
+       c(paste(if (coef(lm_BR_mean)[2]/ mean_BR_mean > 0) "+" else "-",
+               signif(abs(100 * coef(lm_BR_mean)[2] / mean_BR_mean), 2), "%/y"),
+         paste(if (slope_mean > 0) "+" else "-",
+               signif(100 * slope_mean, 2) , "%/y")
+       )
+)
+
+title("55 SZA")
 
 
 
