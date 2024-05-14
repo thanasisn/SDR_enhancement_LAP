@@ -124,7 +124,7 @@
 
 \title{Enhancement of SDR in Thessaloniki}
 \author{Natsis Athanasios\footnote{Laboratory of Atmospheric Physics, AUTH, \href{mailto:natsisphysicist@gmail.com}{\nolinkurl{natsisphysicist@gmail.com}}} \and Alkiviadis Bais\footnote{Laboratory of Atmospheric Physics, AUTH}}
-\date{2024-05-13}
+\date{2024-05-14}
 
 \begin{document}
 \maketitle
@@ -348,18 +348,18 @@ stats::lm(formula = .formula, data = df)
 
 Residuals:
     Min      1Q  Median      3Q     Max 
--327.56 -157.11  -65.36  116.74  760.36 
+-349.46 -163.23  -64.56  115.86  799.73 
 
 Coefficients:
                   Estimate Std. Error t value Pr(>|t|)    
-(Intercept)      2.431e+02  4.880e+01   4.981  9.8e-07 ***
-as.numeric(Date) 6.397e-08  3.907e-08   1.637    0.102    
+(Intercept)      1.608e+02  5.029e+01   3.198 0.001507 ** 
+as.numeric(Date) 1.376e-07  4.026e-08   3.417 0.000704 ***
 ---
 Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 
-Residual standard error: 210.1 on 363 degrees of freedom
-Multiple R-squared:  0.007332,  Adjusted R-squared:  0.004597 
-F-statistic: 2.681 on 1 and 363 DF,  p-value: 0.1024
+Residual standard error: 216.5 on 363 degrees of freedom
+Multiple R-squared:  0.03117,   Adjusted R-squared:  0.0285 
+F-statistic: 11.68 on 1 and 363 DF,  p-value: 0.0007045
 \end{verbatim}
 
 \begin{center}\includegraphics[width=1\linewidth]{GHI_enh_03_process_files/figure-latex/unnamed-chunk-6-19} \end{center}
@@ -377,18 +377,18 @@ lm(formula = ST_E_monthly$wattGLB.N ~ ST_E_monthly$Date)
 
 Residuals:
     Min      1Q  Median      3Q     Max 
--327.56 -157.11  -65.36  116.74  760.36 
+-349.46 -163.23  -64.56  115.86  799.73 
 
 Coefficients:
                    Estimate Std. Error t value Pr(>|t|)    
-(Intercept)       2.431e+02  4.880e+01   4.981  9.8e-07 ***
-ST_E_monthly$Date 6.397e-08  3.907e-08   1.637    0.102    
+(Intercept)       1.608e+02  5.029e+01   3.198 0.001507 ** 
+ST_E_monthly$Date 1.376e-07  4.026e-08   3.417 0.000704 ***
 ---
 Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 
-Residual standard error: 210.1 on 363 degrees of freedom
-Multiple R-squared:  0.007332,  Adjusted R-squared:  0.004597 
-F-statistic: 2.681 on 1 and 363 DF,  p-value: 0.1024
+Residual standard error: 216.5 on 363 degrees of freedom
+Multiple R-squared:  0.03117,   Adjusted R-squared:  0.0285 
+F-statistic: 11.68 on 1 and 363 DF,  p-value: 0.0007045
 \end{verbatim}
 
 \begin{Shaded}
@@ -474,6 +474,8 @@ Input_data_ID
 Kurudz_SC
 lm_mean
 lm_zeropoint
+mean_55
+mean_BR_55
 mean_BR_mean
 mean_BR_median
 mean_BR_min
@@ -496,6 +498,7 @@ running_mean_window_days
 running_mean_window_years
 SEAS_MIN_N
 SelEnhanc
+slope_55
 slope_mean
 slope_median
 slope_min
@@ -549,7 +552,7 @@ ST_yearly
 \textbf{END}
 
 \begin{verbatim}
-2024-05-13 09:11:34.5 athan@sagan GHI_enh_03_process.R 3.715344 mins
+2024-05-14 07:42:43.5 athan@tyler GHI_enh_03_process.R 11.010634 mins
 \end{verbatim}
 
 \end{document}
