@@ -997,10 +997,10 @@ points(1993:2024, trend_55_adj(1993:2024), col = "magenta")
 
 legend("top", pch = 1, lty = NA, bty = "n", lwd = 2, cex = 1,
        col = c("red", "blue"),
-       c(paste(if (coef(lm_BR_mean)[2]/ mean_BR_mean > 0) "+" else "-",
-               signif(abs(100 * coef(lm_BR_mean)[2] / mean_BR_mean), 2), "%/y"),
-         paste(if (slope_mean > 0) "+" else "-",
-               signif(100 * slope_mean, 2) , "%/y")
+       c(paste(if (coef(lm_BR_55)[2]/ mean_BR_55 > 0) "+" else "-",
+               signif(abs(100 * coef(lm_BR_55)[2] / mean_BR_55), 2), "%/y"),
+         paste(if (slope_55 > 0) "+" else "-",
+               signif(100 * slope_55, 2) , "%/y")
        )
 )
 
