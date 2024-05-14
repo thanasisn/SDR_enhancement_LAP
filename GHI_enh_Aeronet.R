@@ -282,7 +282,6 @@ atype <- "Month Exact"
 # unique(AEM$typer)
 
 
-
 sel <- AEM[, sza == asza & atmosphere_file == aatm & typer == atype]
 
 ylim <- range(AEM[sel, glo])
@@ -313,8 +312,111 @@ legend("top", lty = 1, bty = "n", lwd = 2, cex = 1,
 
 
 
-stop()
 
+
+## SZA 55 ------------
+
+aatm  <- "afglms"
+atype <- "SZA 55"
+
+sel2 <- AEM[, atmosphere_file == aatm & typer == atype]
+
+ylim <- range(AEM[sel2, glo])
+ylim[2] <- ylim[2] * 1.05
+
+plot(AEM[sel2, glo, tsy],
+     ylim = ylim)
+
+lm_55   <- lm(  AEM[sel2, tsy, glo])
+mean_55 <- mean(AEM[sel2, glo])
+
+title(paste("Second part, atm:", aatm, "type:", atype))
+
+abline(lm_55, col = "red")
+
+## display trend on graph
+fit <- lm_55[[1]]
+units <- "Watt/m^2"
+legend("top", lty = 1, bty = "n", lwd = 2, cex = 1,
+       c(paste("Trend: ",
+               if (fit[2] > 0) "+" else "-",
+               signif(abs(fit[2]), 2) , bquote(.(units)), "/y"),
+         paste("Trend: ",
+               if (fit[2] > 0) "+" else "-",
+               signif(abs(100 * fit[2] / mean_55), 2) , "%/y")
+       )
+)
+
+
+## BR SZA 55 ------------
+atype <- "BR SZA 55"
+
+sel1 <- AEM[, is.na(month) & atmosphere_file == aatm & typer == atype, ]
+
+plot(AEM[sel1, glo, tsy],
+     ylim = ylim)
+
+zeropointA <- min(AEM[sel1, tsy]) + (max(AEM[sel1, tsy]) - min(AEM[sel1, tsy])) / 2
+zeropointA <- 2005
+
+lm_BR_55   <- lm(  AEM[sel1, tsy, glo])
+mean_BR_55 <- mean(AEM[sel1, glo])
+
+title(paste("First part, atm:", aatm, "type:", atype))
+
+abline(lm_BR_55, col = "red")
+
+## display trend on graph
+fit <- lm_BR_55[[1]]
+units <- "Watt/m^2"
+legend("top", lty = 1, bty = "n", lwd = 2, cex = 1,
+       c(paste("Trend: ",
+               if (fit[2] > 0) "+" else "-",
+               signif(abs(fit[2]), 2) , bquote(.(units)), "/y"),
+         paste("Trend: ",
+               if (fit[2] > 0) "+" else "-",
+               signif(abs(100 * fit[2] / mean_BR_55), 2) , "%/y")
+       )
+)
+
+
+
+plot(AEM[sel1 | sel2, glo, tsy])
+abline(lm_BR_55, col = "red")
+abline(lm_55, col = "red")
+title("Both")
+
+test <- AEM[sel1 | sel2,]
+
+global_sza_55 <- function(tsy   = tsy,
+                           a.    =  coef(lm_55)[2] ,
+                           b.    = -coef(lm_55)[2] * zeropoint,
+                           mean. = mean_55) {
+  return( (b. + a. * tsy) / mean. )
+}
+
+tsy <- 1993:2024
+
+global_sza_55 <- function(tsy) {
+  tsyA <- tsy[tsy <  AEM[sel2, min(tsy)]]
+  tsyB <- tsy[tsy >= AEM[sel2, min(tsy)]]
+
+  res <- rbind(
+    cbind(tsyA, (-coef(lm_BR_55)[2] * zeropointA + tsyA * coef(lm_BR_55)[2]) / mean_BR_55 )  ,
+    cbind(tsyB, (-coef(lm_55)[2]    * zeropoint  + tsyB * coef(lm_55)[2])    / mean_55 )
+  )
+
+  ## return resulst with the same order
+  res[match(tsy, res[,1]),][,2]
+}
+
+
+
+
+
+
+
+## SZA min ------------
 
 aatm  <- "afglms"
 atype <- "SZA min"
@@ -347,6 +449,8 @@ legend("top", lty = 1, bty = "n", lwd = 2, cex = 1,
          )
 )
 
+
+## BR SZA min ------------
 
 sel1 <- AEM[, is.na(month) & atmosphere_file == aatm & typer == "BR SZA min", ]
 
@@ -412,6 +516,7 @@ global_sza_min <- function(tsy) {
 
 
 
+## SZA mean ------------
 
 aatm  <- "afglms"
 atype <- "SZA mean"
@@ -454,6 +559,8 @@ global_sza_mean <- function(tsy   = tsy,
 plot(1993:2024, global_sza_mean(1993:2024), col = "red")
 
 
+## BR SZA mean ------------
+
 sel1 <- AEM[, is.na(month) & atmosphere_file == aatm & typer == "BR SZA mean", ]
 
 zeropointA <- min(AEM[sel1, tsy]) + (max(AEM[sel1, tsy]) - min(AEM[sel1, tsy])) / 2
@@ -490,7 +597,7 @@ legend("top", lty = 1, bty = "n", lwd = 2, cex = 1,
 
 
 
-
+## SZA median ------------
 
 aatm  <- "afglms"
 atype <- "SZA median"
@@ -532,6 +639,9 @@ global_sza_median <- function(tsy   = tsy,
 }
 
 plot(1993:2024, global_sza_median(1993:2024), col = "red")
+
+
+## BR SZA median ------------
 
 sel1 <- AEM[, is.na(month) & atmosphere_file == aatm & typer == "BR SZA median", ]
 
@@ -579,7 +689,7 @@ legend("top", lty = 1, bty = "n", lwd = 2, cex = 1,
 
 gather <- data.frame()
 ## iterate SZA
-for (atype in c("SZA min", "SZA mean", "SZA median") ) {
+for (atype in c("SZA min", "SZA mean", "SZA median", "SZA 55") ) {
   ## iterate months
   for (mm in 1:12) {
 
@@ -652,6 +762,7 @@ atype <- "SZA median"
 slope_median <- mean(gather[Type == "SZA median", SlopeRela])
 slope_mean   <- mean(gather[Type == "SZA mean",   SlopeRela])
 slope_min    <- mean(gather[Type == "SZA min",    SlopeRela])
+slope_55     <- mean(gather[Type == "SZA 55",    SlopeRela])
 
 
 
@@ -669,6 +780,12 @@ month_trend_min <- function(tsy) {
   -slope_min * zeropoint  + tsy * slope_min
 }
 
+month_trend_55 <- function(tsy) {
+  -slope_55 * zeropoint  + tsy * slope_55
+}
+
+
+
 
 year_trend_median <- function(tsy) {
   (-coef(lm_BR_median)[2] * zeropointA + tsy * coef(lm_BR_median)[2]) / mean_BR_median
@@ -682,7 +799,9 @@ year_trend_mean <- function(tsy) {
   (-coef(lm_BR_mean)[2] * zeropointA + tsy * coef(lm_BR_mean)[2]) / mean_BR_mean
 }
 
-
+year_trend_mean <- function(tsy) {
+  (-coef(lm_BR_mean)[2] * zeropointA + tsy * coef(lm_BR_mean)[2]) / mean_BR_mean
+}
 
 trend_mean <- function(tsy) {
   tsyA <- tsy[tsy <  2005]
