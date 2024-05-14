@@ -313,7 +313,7 @@ legend("top", lty = 1, bty = "n", lwd = 2, cex = 1,
 
 
 
-
+stop()
 
 
 aatm  <- "afglms"
