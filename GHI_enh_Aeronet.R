@@ -223,6 +223,7 @@ LKU_month <- LKU[, .(sun_dist     = mean(sun_dist),
                      tsi_1au_comb = mean(tsi_1au_comb)),
                  by = .(year(Date), month(Date))]
 
+## Nine years of UV aerosol optical depth measurements at {T}hessaloniki, {G}reece
 LKU_year <- LKU[, .(sun_dist     = mean(sun_dist),
                     tsi_1au_comb = mean(tsi_1au_comb),
                     month        = NA),

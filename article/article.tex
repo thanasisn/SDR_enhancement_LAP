@@ -297,6 +297,10 @@ radiation transfer model.
 \subsection{Modeled clear Sky
 Irradiance}\label{modeled-clear-sky-irradiance}}
 
+\hypertarget{climatology-of-clear-sky-irradiance}{%
+\subsubsection{Climatology of clear sky
+irradiance}\label{climatology-of-clear-sky-irradiance}}
+
 We approximated the expected clear sky GHI by using a radiation transfer
 model. The simulations was performed by the well established model
 Libradtran \citep{Emde2016}, a similar approach, was also used by
@@ -326,23 +330,39 @@ The ``AFGL atmospheric constituent profile, midlatitude summer''
 (afglms) and the ``AFGL atmospheric constituent profile, midlatitude
 winter'' (afglmw) \citep{Anderson1986}.
 
-To create a look-up table that aligns with our dataset, we applied some
+To create a look-up table, that aligns with our dataset, we applied some
 adjustments. To account for the Sun's variability, in our one-minute GHI
-measurements, we adapted each modeled value by scaling the\\
-model's input spectrum integral, to the corresponding total solar
-irradiance (TSI) provided by NOAA \citep{Coddington2005}.\\
-Also, we applied the effect of the Earth -- Sun distance on the
-irradiance, by using the distance calculated by the Astropy
-\citep{AstropyCollaboration2022} software library. As needed, we
-interpolate the resulting irradiances to the exact SZA of our
-measurements. For each period of the year, we used the appropriate
-atmospheric profile (afglms or afglmw). Finally, we calculated the clear
-sky irradiance value at the horizontal plane. Thus, we were able to
-emulate different atmospheric condition and levels of atmospheric
-clearness for the climatological conditions of the site. With this
-method, the modeled clear sky irradiances can be directly compared to
-each measured one-minute value of GHI, for different conditions of
-atmospheric clearness.
+measurements, we adapted each modeled value by scaling the model's input
+spectrum integral, to the corresponding total solar irradiance (TSI)
+provided by NOAA \citep{Coddington2005}. Also, we account for the effect
+of the Earth -- Sun distance on the irradiance, by using the distance
+calculated by the Astropy \citep{AstropyCollaboration2022} software
+library. As needed, we interpolate the resulting irradiances to the
+exact SZA of our measurements. For each period of the year, we used the
+appropriate atmospheric profile (afglms or afglmw). Finally, we
+calculated the clear sky irradiance value at the horizontal plane. Thus,
+we were able to emulate different atmospheric condition and levels of
+atmospheric clearness for the climatological conditions of the site.
+With this method, the modeled clear sky irradiances can be directly
+compared to each measured one-minute value of GHI, for different
+conditions of atmospheric clearness.
+
+\hypertarget{long-term-change-of-clear-sky-irradiance}{%
+\subsubsection{Long term change of clear sky
+irradiance}\label{long-term-change-of-clear-sky-irradiance}}
+
+The above clear sky reference values are not enough to describe the long
+term variation due to the changes of the atmospheric constituents. As
+observed by \citet{Natsis2023}, there is long term brightening effect,
+over Thessaloniki for the studied period. In order to better describe
+this change, we used, estimations of AOD change derived from two
+sources. For 1993 -- 2005, \citet{Kazadzis2007} have found a change of
+\(-3.8\,\%\) per year at AOD on \(340\) nm, using a Brewer
+spectrophotometer. For 2005 to 2023, we derived the trend from the
+available AERONET data.
+
+To create a unified trend for the long term change of the clear sky
+irradiance, we sim simulated
 
 \hypertarget{ce-criteria-investigation}{%
 \subsection{CE Criteria investigation}\label{ce-criteria-investigation}}
