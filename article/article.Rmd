@@ -347,12 +347,16 @@ to 2023, we derived the trend from the available AERONET data.
 
 To create a unified trend for the long term change of the clear sky irradiance, we
 simulated the values of AOD derived from those sources with Libradtran. For both, we
-use the AOD at $500\,\text{nm}$, which was inferred by the available Ångström
-exponent, and we choose the SZA of $55^\circ$ as a representative value for all runs.
+used the AOD at $500\,\text{nm}$, which was inferred by the available Ångström
+coefficients, and we choose the SZA of $55^\circ$ as a representative value for all runs.
+For the first period, the alpha Ångström coefficient is $1.6$ and the beta
+coefficient $0.086$ and $0.059$, for 1997 and 2005 respectively. By interpolating the
+resulting clear sky irradiance, we have a trend of $+0.21\,\%$ per year.
+For the period 2005 -- 2005 we used the mean monthly values from AERONET, with a
+similar simulation scheme. We computed the trend of clear sky radiation for each
+month of the year, which gave us a mean clear sky radiation trend of $+0.14\,\%$ per year.
 
-For the period 1993 -- 2005 
 
-For the period 2005 -- 2005 we used
 
 ## CE Criteria investigation
 
