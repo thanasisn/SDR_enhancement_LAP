@@ -357,6 +357,8 @@ simulation scheme. We computed the trend of clear sky radiation for each month o
 year, which gave us a mean clear sky radiation trend of $+0.14\,\%$ per year.
 
 
+.... combine for threshold .......
+
 
 ## CE Criteria investigation
 
