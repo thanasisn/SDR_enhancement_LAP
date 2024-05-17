@@ -4,11 +4,10 @@ SHELL = /bin/bash
 
 .DEFAULT_GOAL := render
 
-all:       clean_all pdf rtim
+all:       clean_all pdf 
 render:    pdf upload
 Ap:        Ap1
-pdf:       p1 p2 p3 p4 p5 p6 Ap
-rtim:      r1 r2 r3
+pdf:       p1 p2 p3 p4 p5 p6 p7 Ap
 clean_all: clean_cache clean_pdfs
 
 include .buildver.makefile
@@ -87,9 +86,6 @@ $(PDF): $(RMD)
 	@#-touch article/article.qmd
 	@-touch article/article.Rmd
 
-r1: $(RUNT)
-$(RUNT): $(RMD)
-	Rscript $?
 
 
 ###   2. ID CE  ####################################
@@ -107,14 +103,10 @@ $(PDF): $(RMD)
 	@#-touch article/article.qmd
 	@-touch article/article.Rmd
 
-r2: $(RUNT)
-$(RUNT): $(RMD)
-	Rscript $?
 
 
 
 ###   3. aggregate data   #################################
-
 TARGET := GHI_enh_03_process
 RMD    := $(TARGET).R
 PDF    := $(TARGET).pdf
@@ -130,13 +122,8 @@ $(PDF): $(RMD)
 	@#-touch article/article.qmd
 	@-touch article/article.Rmd
 
-r3: $(RUNT)
-$(RUNT): $(RMD)
-	Rscript $?
-
 
 ###   4. investigate  data   #################################
-
 TARGET := GHI_enh_04_investigate
 RMD    := $(TARGET).R
 PDF    := $(TARGET).pdf
@@ -153,14 +140,9 @@ $(PDF): $(RMD)
 	@-touch article/article.Rmd
 
 
-r4: $(RUNT)
-$(RUNT): $(RMD)
-	Rscript $?
-
 
 
 ###   5. distributions  data   #################################
-
 TARGET := GHI_enh_05_distributions
 RMD    := $(TARGET).R
 PDF    := $(TARGET).pdf
@@ -176,14 +158,9 @@ $(PDF): $(RMD)
 	@#-touch article/article.qmd
 	@-touch article/article.Rmd
 
-r5: $(RUNT)
-$(RUNT): $(RMD)
-	Rscript $?
-
 
 
 ###   6. investigate  SZA   #################################
-
 TARGET := GHI_enh_06_sza
 RMD    := $(TARGET).R
 PDF    := $(TARGET).pdf
@@ -199,12 +176,24 @@ $(PDF): $(RMD)
 	@#-touch article/article.qmd
 	@-touch article/article.Rmd
 
-r6: $(RUNT)
-$(RUNT): $(RMD)
-	Rscript $?
 
 
 
+###   7. investigate  Aerosols   #################################
+TARGET := GHI_enh_07_Aerosols
+RMD    := $(TARGET).R
+PDF    := $(TARGET).pdf
+RUNT   := ./runtime/$(TARGET).pdf
+
+p7: $(PDF)
+$(PDF): $(RMD)
+	@echo "Building: $@"
+	Rscript -e "rmarkdown::find_pandoc(dir = '/usr/lib/rstudio/resources/app/bin/quarto/bin/tools'); rmarkdown::render('$?', output_format='bookdown::pdf_document2', output_file='$@')"
+	@-rsync -a --prune-empty-dirs --exclude 'unnamed-chunk*' --include '*.pdf' --include '*.png' ./GHI_*/figure-latex/ ./images
+	@#setsid evince    $@ &
+	@-rsync -a "$@" ${LIBRARY}
+	@#-touch article/article.qmd
+	@-touch article/article.Rmd
 
 
 

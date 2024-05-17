@@ -71,7 +71,10 @@ setwd("~/MANUSCRIPTS/02_enhancement/")
 #+ echo=F, include=T
 library(data.table, quietly = TRUE, warn.conflicts = FALSE)
 library(janitor   , quietly = TRUE, warn.conflicts = FALSE)
+library(ggplot2   , quietly = TRUE, warn.conflicts = FALSE)
 
+source("./GHI_enh_00_variables.R")
+source("./GHI_enh_00_dictionary.R")
 
 ##  Load and prepare data  -----------------------------------------------------
 AEin1 <- "~/DATA/Aeronet/Thessaloniki_Monthly/20030101_20241231_Thessaloniki.lev20"
@@ -1007,9 +1010,54 @@ legend("top", pch = 1, lty = NA, bty = "n", lwd = 2, cex = 1,
 
 title("55 SZA")
 
+dataset <- rbind(
+  data.table(year   = 1993:2005,
+             change = 100 * trend_55_adj(1993:2005),
+             Source = "Brewer"),
+  data.table(year   = 2005:2024,
+             change = 100 * trend_55_adj(2005:2024),
+             Source = "AERONET")
+)
 
 
+#+ P_CS_change, echo=F, include=T, results="asis"
+# p2 <-
+ggplot(dataset,
+       aes(x = year,
+           y = change,
+           colour = Source)) +
+  geom_line(linewidth = 1.3) +
+  ylab(bquote("Anomaly %" )) +
+  xlab("Date") +
+  annotate("text", x = 2000, y = dataset[year==2000, change],
+           label = "paste(\"+0.21 %/y\")", parse = TRUE,
+           fontface = 2,
+           size     = 5,
+           hjust    = 1.1,
+           vjust    = 0) +
+  annotate("text", x = 2015, y = dataset[year==2015, change],
+           label = "paste(\"+0.14 %/y\")", parse = TRUE,
+           fontface = 2,
+           size     = 5,
+           hjust    = 1.1,
+           vjust    = 0) +
+  theme(legend.justification = c(0, 1),
+        legend.position = c(0.01, .99),
+        legend.key=element_blank(),
+        legend.background = element_rect(fill = "transparent"))
+# theme(plot.margin = margin(t = 0, r = 0.5 , b = 0.5, l = 0, "cm"))
 
+#   scale_y_continuous(guide        = "axis_minor",
+#                      minor_breaks = seq(0, 500, by = 25)) +
+#   scale_x_continuous(guide        = "axis_minor",
+#                      limits = c(1993, NA),
+#                      breaks = c(
+#                        1993,
+#                        pretty(dataset[,year], n = 4),
+#                        max(ceiling(dataset[,year]))),
+#                      minor_breaks = seq(1990, 2050, by = 1) )
+# p2
+#
 
 
 

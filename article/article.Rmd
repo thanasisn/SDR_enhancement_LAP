@@ -338,23 +338,23 @@ measured one-minute value of GHI, for different conditions of atmospheric clearn
 
 <!-- Aerosol change -->
 The above clear sky reference values are not enough to describe the long term
-variation due to the changes of the atmospheric constituents. As observed
-by @Natsis2023, there is long term brightening effect, over Thessaloniki for the
-studied period. In order to better describe this change, we used, estimations of AOD
-change derived from two sources. For 1993 -- 2005, @Kazadzis2007 have found a change
-of $-3.8\,\%$ per year at AOD on $340\,\text{nm}$, using a Brewer spectrophotometer. For 2005
-to 2023, we derived the trend from the available AERONET data.
+variation due to the changes of the atmospheric constituents. As observed by
+@Natsis2023, there is long term brightening effect, over Thessaloniki for the studied
+period. In order to better describe this change, we used, estimations of AOD change
+derived from two sources. For 1993 -- 2005, @Kazadzis2007 have found a change of
+$-3.8\,\%$ per year at AOD on $340\,\text{nm}$, using a Brewer spectrophotometer. For
+2005 to 2023, we derived the trend from the available AERONET data.
 
 To create a unified trend for the long term change of the clear sky irradiance, we
 simulated the values of AOD derived from those sources with Libradtran. For both, we
 used the AOD at $500\,\text{nm}$, which was inferred by the available Ångström
-coefficients, and we choose the SZA of $55^\circ$ as a representative value for all runs.
-For the first period, the alpha Ångström coefficient is $1.6$ and the beta
+coefficients, and we choose the SZA of $55^\circ$ as a representative value for all
+runs.  For the first period, the alpha Ångström coefficient is $1.6$ and the beta
 coefficient $0.086$ and $0.059$, for 1997 and 2005 respectively. By interpolating the
-resulting clear sky irradiance, we have a trend of $+0.21\,\%$ per year.
-For the period 2005 -- 2005 we used the mean monthly values from AERONET, with a
-similar simulation scheme. We computed the trend of clear sky radiation for each
-month of the year, which gave us a mean clear sky radiation trend of $+0.14\,\%$ per year.
+resulting clear sky irradiance, we have a trend of $+0.21\,\%$ per year.  For the
+period 2005 -- 2005 we used the mean monthly values from AERONET, with a similar
+simulation scheme. We computed the trend of clear sky radiation for each month of the
+year, which gave us a mean clear sky radiation trend of $+0.14\,\%$ per year.
 
 
 
