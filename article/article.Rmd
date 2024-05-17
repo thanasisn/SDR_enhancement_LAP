@@ -342,12 +342,17 @@ variation due to the changes of the atmospheric constituents. As observed
 by @Natsis2023, there is long term brightening effect, over Thessaloniki for the
 studied period. In order to better describe this change, we used, estimations of AOD
 change derived from two sources. For 1993 -- 2005, @Kazadzis2007 have found a change
-of $-3.8\,\%$ per year at AOD on $340$ nm, using a Brewer spectrophotometer. For 2005
+of $-3.8\,\%$ per year at AOD on $340\,\text{nm}$, using a Brewer spectrophotometer. For 2005
 to 2023, we derived the trend from the available AERONET data.
 
 To create a unified trend for the long term change of the clear sky irradiance, we
-sim simulated 
+simulated the values of AOD derived from those sources with Libradtran. For both, we
+use the AOD at $500\,\text{nm}$, which was inferred by the available Ångström
+exponent, and we choose the SZA of $55^\circ$ as a representative value for all runs.
 
+For the period 1993 -- 2005 
+
+For the period 2005 -- 2005 we used
 
 ## CE Criteria investigation
 
