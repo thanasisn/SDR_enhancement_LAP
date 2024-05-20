@@ -357,7 +357,18 @@ simulation scheme. We computed the trend of clear sky radiation for each month o
 year, which gave us a mean clear sky radiation trend of $+0.14\,\%$ per year.
 
 
-.... combine for threshold .......
+
+<!--
+# Kazadzis2007 - Nine years of UV aerosol optical depth measurements at Thessaloniki, Greece
+# From Stelios' paper 2007:
+# AOD @340 from Brewer 086
+# Period: 1997-2005
+# The mean AOD for this period was calculated to 0.403 for the Brewer and 0.422 for the CIMEL.
+# A linear regression on the Brewer deseasonalized data reveals a change of −3.8±0.93% per year.
+# From the above data AOD @340 changes by 0.0153 per year (or 0.138 for the 9 years).
+# Using Angstrom a= 1.6  this translates to a change in Angstrom β=0.00272 per year (or β=0.084 in 1997 and β=0.059 in 2005).
+-->
+
 
 
 ## CE Criteria investigation
