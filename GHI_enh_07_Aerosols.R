@@ -1056,10 +1056,11 @@ ggplot(dataset,
            hjust    = 1.1,
            vjust    = 0) +
   theme(legend.justification = c(0, 1),
-        legend.position = c(0.01, .99),
-        legend.key=element_blank(),
-        legend.background = element_rect(fill = "transparent")) +
-  scale_x_continuous(guide        = "axis_minor",
+        legend.title         = element_text(size=10),
+        legend.position      = c(0.01, .99),
+        legend.key           = element_blank(),
+        legend.background    = element_rect(fill = "transparent")) +
+  scale_x_continuous(guide  = "axis_minor",
                      limits = c(1993, NA),
                      breaks = c(
                        1993,
