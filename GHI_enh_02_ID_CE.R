@@ -766,9 +766,8 @@ for (pyear in yearstodo) {
             legend.justification = c("left", "top"),
             legend.box.just      = "right",
             legend.key           = element_blank(),
-            legend.background    = element_rect(fill = "transparent")
-            legend.margin        = margin(6, 6, 6, 6)
-        ) +
+            legend.background    = element_rect(fill = "transparent"),
+            legend.margin        = margin(6, 6, 6, 6) ) +
         scale_x_continuous(expand = expansion(mult = c(0.03, 0.03))) +
         scale_y_continuous(breaks = scales::breaks_extended(n = 6),
                            expand = expansion(mult = c(0.03, 0.03)))
