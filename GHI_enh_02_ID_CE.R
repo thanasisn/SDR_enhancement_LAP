@@ -759,7 +759,7 @@ for (pyear in yearstodo) {
         xlab(bquote("Clear sky reference" ~ group("[", W/m^2,"]"))) +
         # xlab(paste0(SelEnhanc, "_ref")) +
         # labs(color = "Over\nIrradiance W/m^2") +
-        labs(color = bquote("Over\nIrradiance\n" ~ group("[", W/m^2,"]"))) +
+        labs(color = bquote("OIR" ~ group("[", W/m^2,"]"))) +
         theme(
             legend.title         = element_text(size = 10),
             legend.position      = c(.03, .97),
