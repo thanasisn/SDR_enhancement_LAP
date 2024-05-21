@@ -759,11 +759,14 @@ for (pyear in yearstodo) {
         xlab(bquote("Clear sky reference" ~ group("[", W/m^2,"]"))) +
         # xlab(paste0(SelEnhanc, "_ref")) +
         # labs(color = "Over\nIrradiance W/m^2") +
-        labs(color = bquote("Over\nIrradiance" ~ group("[", W/m^2,"]"))) +
+        labs(color = bquote("Over\nIrradiance\n" ~ group("[", W/m^2,"]"))) +
         theme(
+            legend.title         = element_text(size = 10),
             legend.position      = c(.03, .97),
             legend.justification = c("left", "top"),
             legend.box.just      = "right",
+            legend.key           = element_blank(),
+            legend.background    = element_rect(fill = "transparent")
             legend.margin        = margin(6, 6, 6, 6)
         ) +
         scale_x_continuous(expand = expansion(mult = c(0.03, 0.03))) +
