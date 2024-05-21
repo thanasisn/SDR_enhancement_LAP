@@ -338,8 +338,8 @@ measured one-minute value of GHI, for different conditions of atmospheric clearn
 
 <!-- Aerosol change -->
 The above clear sky reference values are not enough to describe the long term
-variation due to the changes of the atmospheric constituents. As observed by
-@Natsis2023, there is long term brightening effect, over Thessaloniki for the studied
+variation, due to the changes of the atmospheric constituents. As observed by
+@Natsis2023, there is a long term brightening effect, over Thessaloniki for the studied
 period. In order to better describe this change, we used, estimations of AOD change
 derived from two sources. For 1993 -- 2005, @Kazadzis2007 have found a change of
 $-3.8\,\%$ per year at AOD on $340\,\text{nm}$, using a Brewer spectrophotometer. For
@@ -347,47 +347,52 @@ $-3.8\,\%$ per year at AOD on $340\,\text{nm}$, using a Brewer spectrophotometer
 
 To create a unified trend for the long term change of the clear sky irradiance, we
 simulated the values of AOD derived from those sources with Libradtran. For both, we
-used the AOD at $500\,\text{nm}$, which was inferred by the available Ångström
+have used the AOD at $500\,\text{nm}$, which was inferred by the available Ångström
 coefficients, and we choose the SZA of $55^\circ$ as a representative value for all
-runs.  
+runs.
 
+According to @Kazadzis2007, in the period 1997 -- 2005, the mean AOD of
+$340\,\text{nm}$ was calculated to $0.403$ with the use of a Brewer
+spectrophotometer, with a linear trend of $-3.8±0.93\,\%$ per year.  This corresponds
+to a AOD $340\,\text{nm}$ change of $0.0153$ per year.  Using the alpha Ångström
+coefficient of $\alpha = 1.6$, this translates to a change in Ångström beta
+coefficient of $\beta=0.00272$ per year (or $\beta=0.084$ in 1997 and $\beta=0.059$
+in 2005).  By interpolating the resulting clear sky irradiance, we have a trend of
+$+0.21\,\%$ per year for the clear sky irradiance.  For the period 2005 -- 2005 we
+used the mean monthly values from AERONET, with a similar simulation scheme. We
+computed the trend of clear sky radiation for each month of the year, which gave us a
+mean clear sky radiation trend of $+0.14\,\%$ per year. We applied this long term
+change to the clear sky irradiance, in order to create a more realistic
+representation of the irradiance for the whole study period
+(Figure\nobreakspace{}\ref{fig:CS-change}).
 
-For the first period, the alpha Ångström coefficient is $1.6$ and the beta
-coefficient $0.086$ and $0.059$, for 1997 and 2005 respectively. By interpolating the
-resulting clear sky irradiance, we have a trend of $+0.21\,\%$ per year.  For the
-period 2005 -- 2005 we used the mean monthly values from AERONET, with a similar
-simulation scheme. We computed the trend of clear sky radiation for each month of the
-year, which gave us a mean clear sky radiation trend of $+0.14\,\%$ per year.
+```{r CS-change, echo=FALSE, fig.cap="Simulated long term change of clear sky irradiance relevant to its climatological values."}
+knitr::include_graphics("../images/P_CS_change-1.png")
+```
 
-
-According to @Kazadzis2007, in the period 1997 -- 2005, the mean AOD of $340\,\text{nm}$ was calculated
-to 0.403 by the Brewer spectrophotometer, with a linear trend of $-3.8±0.93\,\%$ per year.
-This corresponds to a AOD $340\,\text{nm}$ change of $0.0153$ per year.
-Using the alpha Ångström coefficient of $\alpha = 1.6$ this translates to a change in Ångström beta coefficient of $\beta=0.00272$ per year (or $\beta=0.084$ in 1997 and $\beta=0.059$ in 2005).
-
-
-
-<!--
-1997 0.0839901
-2005 0.05496013
-# Kazadzis2007 - Nine years of UV aerosol optical depth measurements at Thessaloniki, Greece
-# From Stelios' paper 2007:
-# AOD @340 from Brewer 086
-# Period: 1997-2005
-# The mean AOD for this period was calculated to 0.403 for the Brewer and 0.422 for the CIMEL.
-# A linear regression on the Brewer deseasonalized data reveals a change of -3.8±0.93% per year.
-# From the above data AOD @340 changes by 0.0153 per year (or 0.138 for the 9 years).
-# Using Angstrom a= 1.6  this translates to a change in Angstrom β=0.00272 per year (or β=0.084 in 1997 and β=0.059 in 2005).
+<!-- 1997 0.0839901
+<!-- 2005 0.05496013
+<!-- # Kazadzis2007 - Nine years of UV aerosol optical depth measurements at Thessaloniki, Greece
+<!-- # From Stelios' paper 2007:
+<!-- # AOD @340 from Brewer 086
+<!-- # Period: 1997-2005
+<!-- # The mean AOD for this period was calculated to 0.403 for the Brewer and 0.422 for the CIMEL.
+<!-- # A linear regression on the Brewer deseasonalized data reveals a change of -3.8±0.93% per year.
+<!-- # From the above data AOD @340 changes by 0.0153 per year (or 0.138 for the 9 years).
+<!-- # Using Angstrom a= 1.6  this translates to a change in Angstrom β=0.00272 per year (or β=0.084 in 1997 and β=0.059 in 2005).
 -->
 
 
 
 ## CE Criteria investigation
 
-The use of the actual modeled values of clear sky GHI alone, can not provide us with
+The use of the actual modeled values of clear sky GHI, described above , can not provide us with
 a robust method to distinguish the CE cases, due to the limited accuracy of the input
-data. Our main focus was to positively identify over irradiance events from CEs, thus
-we used a relative factor, to create an upper envelope of the clear sky irradiance,
+data. Our main focus was to positively identify over irradiance events from CEs, 
+so we created an upper envelope of the clear sky irradiance,
+
+.............................
+
 above which, any GHI value can safely attributed to CE.  We evaluated the performance
 of the modeled clear radiation for each of atmospheric level of clearness, as
 reference, in order to conclude which is the most appropriate.
@@ -438,17 +443,27 @@ where: $\theta$ solar zenith angle.
 \end{cases}\label{eq:CE4b}
 \end{equation}
 where: $\theta$ is the solar zenith angle, $\text{GHI}_\text{i}$ the measured
-irradiance, and $\text{GHI}_\text{mCSi}$ the selected modeled clear sky irradiance.
+irradiance, and $\text{GHI}_\text{mCSi}$ the selected modelled clear sky irradiance.
 -->
+<!-- \begin{equation} -->
+<!-- \text{CE} : \text{E}_\text{i} > \text{E}_\text{CSlim,i}, \text{where} \begin{cases} -->
+<!--  \text{E}_\text{CSlim,i} = `r C4_cs_ref_ratio` \cdot \text{E}_\text{CSm,i}, & \text{$\theta \leq `r C4_lowcut_sza`^\circ$}\\ -->
+<!-- \text{E}_\text{CSlim,i} = \left ({ `r C4_lowcut_ratio` + \frac{`r C4_cs_ref_ratio` - `r C4_lowcut_ratio`}{`r C4_lowcut_sza` - `r 90 - BIO_ELEVA`} \cdot (\theta- `r 90 - BIO_ELEVA`) } \right ) \cdot \text{E}_\text{CSm,i}, & \text{$ `r 90 - BIO_ELEVA`^\circ > \theta > `r C4_lowcut_sza`^\circ$}\\ -->
+<!-- \text{Excluded measurements}, & \theta > `r 90 - BIO_ELEVA`^\circ -->
+<!-- \end{cases}\label{eq:CE4} -->
+<!-- \end{equation} -->
+<!-- where: $\theta$ is the solar zenith angle, $\text{E}$ the measured -->
+<!-- irradiance, $\text{E}_\text{CSm}$ the selected modelled clear sky irradiance, and $i$ each of the one-minute observation. -->
+
+
+
 \begin{equation}
-\text{CE} : \text{E}_\text{i} > \text{E}_\text{CSlim,i}, \text{where} \begin{cases}
- \text{E}_\text{CSlim,i} = `r C4_cs_ref_ratio` \cdot \text{E}_\text{CSm,i}, & \text{$\theta \leq `r C4_lowcut_sza`^\circ$}\\
-\text{E}_\text{CSlim,i} = \left ({ `r C4_lowcut_ratio` + \frac{`r C4_cs_ref_ratio` - `r C4_lowcut_ratio`}{`r C4_lowcut_sza` - `r 90 - BIO_ELEVA`} \cdot (\theta- `r 90 - BIO_ELEVA`) } \right ) \cdot \text{E}_\text{CSm,i}, & \text{$ `r 90 - BIO_ELEVA`^\circ > \theta > `r C4_lowcut_sza`^\circ$}\\
-\text{Excluded measurements}, & \theta > `r 90 - BIO_ELEVA`^\circ
-\end{cases}\label{eq:CE4}
+\text{CE} : \text{E}_\text{i} > `r C4_GLB_diff_THRES` + `r C4_cs_ref_ratio` \cdot \text{E}_\text{CSm,i} \,\,[W/m^2] \label{eq:CE4}
 \end{equation}
 where: $\theta$ is the solar zenith angle, $\text{E}$ the measured
-irradiance, $\text{E}_\text{CSm}$ the selected modeled clear sky irradiance, and $i$ each of the one-minute observation.
+irradiance, $\text{E}_\text{CSm}$ the selected modelled clear sky irradiance, and $i$ each of the one-minute observation.
+
+
 
 <!-- reasoning for cretria -->
 We have to note, that the differentiation of the threshold factor was needed, because

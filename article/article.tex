@@ -352,8 +352,8 @@ conditions of atmospheric clearness.
 irradiance}\label{long-term-change-of-clear-sky-irradiance}}
 
 The above clear sky reference values are not enough to describe the long
-term variation due to the changes of the atmospheric constituents. As
-observed by \citet{Natsis2023}, there is long term brightening effect,
+term variation, due to the changes of the atmospheric constituents. As
+observed by \citet{Natsis2023}, there is a long term brightening effect,
 over Thessaloniki for the studied period. In order to better describe
 this change, we used, estimations of AOD change derived from two
 sources. For 1993 -- 2005, \citet{Kazadzis2007} have found a change of
@@ -363,36 +363,48 @@ available AERONET data.
 
 To create a unified trend for the long term change of the clear sky
 irradiance, we simulated the values of AOD derived from those sources
-with Libradtran. For both, we used the AOD at \(500\,\text{nm}\), which
-was inferred by the available Ångström coefficients, and we choose the
-SZA of \(55^\circ\) as a representative value for all runs.
-
-For the first period, the alpha Ångström coefficient is \(1.6\) and the
-beta coefficient \(0.086\) and \(0.059\), for 1997 and 2005
-respectively. By interpolating the resulting clear sky irradiance, we
-have a trend of \(+0.21\,\%\) per year. For the period 2005 -- 2005 we
-used the mean monthly values from AERONET, with a similar simulation
-scheme. We computed the trend of clear sky radiation for each month of
-the year, which gave us a mean clear sky radiation trend of
-\(+0.14\,\%\) per year.
+with Libradtran. For both, we have used the AOD at \(500\,\text{nm}\),
+which was inferred by the available Ångström coefficients, and we choose
+the SZA of \(55^\circ\) as a representative value for all runs.
 
 According to \citet{Kazadzis2007}, in the period 1997 -- 2005, the mean
-AOD of \(340\,\text{nm}\) was calculated to 0.403 by the Brewer
-spectrophotometer, with a linear trend of \(-3.8±0.93\,\%\) per year.
-This corresponds to a AOD \(340\,\text{nm}\) change of \(0.0153\) per
-year. Using the alpha Ångström coefficient of \(\alpha = 1.6\) this
+AOD of \(340\,\text{nm}\) was calculated to \(0.403\) with the use of a
+Brewer spectrophotometer, with a linear trend of \(-3.8±0.93\,\%\) per
+year. This corresponds to a AOD \(340\,\text{nm}\) change of \(0.0153\)
+per year. Using the alpha Ångström coefficient of \(\alpha = 1.6\), this
 translates to a change in Ångström beta coefficient of \(\beta=0.00272\)
-per year (or \(\beta=0.084\) in 1997 and \(\beta=0.059\) in 2005).
+per year (or \(\beta=0.084\) in 1997 and \(\beta=0.059\) in 2005). By
+interpolating the resulting clear sky irradiance, we have a trend of
+\(+0.21\,\%\) per year for the clear sky irradiance. For the period 2005
+-- 2005 we used the mean monthly values from AERONET, with a similar
+simulation scheme. We computed the trend of clear sky radiation for each
+month of the year, which gave us a mean clear sky radiation trend of
+\(+0.14\,\%\) per year. We applied this long term change to the clear
+sky irradiance, in order to create a more realistic representation of
+the irradiance for the whole study period
+(Figure\nobreakspace{}\ref{fig:CS-change}).
+
+\begin{figure}
+
+{\centering \includegraphics[width=0.5\linewidth]{../images/P_CS_change-1} 
+
+}
+
+\caption{Simulated long term change of clear sky irradiance relevant to its climatological values.}\label{fig:CS-change}
+\end{figure}
 
 \hypertarget{ce-criteria-investigation}{%
 \subsection{CE Criteria investigation}\label{ce-criteria-investigation}}
 
-The use of the actual modeled values of clear sky GHI alone, can not
-provide us with a robust method to distinguish the CE cases, due to the
-limited accuracy of the input data. Our main focus was to positively
-identify over irradiance events from CEs, thus we used a relative
-factor, to create an upper envelope of the clear sky irradiance, above
-which, any GHI value can safely attributed to CE. We evaluated the
+The use of the actual modeled values of clear sky GHI, described above ,
+can not provide us with a robust method to distinguish the CE cases, due
+to the limited accuracy of the input data. Our main focus was to
+positively identify over irradiance events from CEs, so we created an
+upper envelope of the clear sky irradiance,
+
+\ldots\ldots\ldots\ldots\ldots\ldots\ldots\ldots\ldots..
+
+above which, any GHI value can safely attributed to CE. We evaluated the
 performance of the modeled clear radiation for each of atmospheric level
 of clearness, as reference, in order to conclude which is the most
 appropriate.
@@ -424,14 +436,12 @@ excluding clouds. To create the limit of CE identification, we created a
 two branched threshold, as a function of SZA. A constant factor for low
 SZAs, and a higher ramped factor for higher SZAs
 (Equation\nobreakspace\ref{eq:CE4}). This is the criterion of our CE
-identification. \begin{equation}
-\text{CE} : \text{E}_\text{i} > \text{E}_\text{CSlim,i}, \text{where} \begin{cases}
- \text{E}_\text{CSlim,i} = 1.04 \cdot \text{E}_\text{CSm,i}, & \text{$\theta \leq 90^\circ$}\\
-\text{E}_\text{CSlim,i} = \left ({ 1.04 + \frac{1.04 - 1.04}{90 - 78} \cdot (\theta- 78) } \right ) \cdot \text{E}_\text{CSm,i}, & \text{$ 78^\circ > \theta > 90^\circ$}\\
-\text{Excluded measurements}, & \theta > 78^\circ
-\end{cases}\label{eq:CE4}
+identification.
+
+\begin{equation}
+\text{CE} : \text{E}_\text{i} > 15 + 1.04 \cdot \text{E}_\text{CSm,i} \,\,[W/m^2] \label{eq:CE4}
 \end{equation} where: \(\theta\) is the solar zenith angle, \(\text{E}\)
-the measured irradiance, \(\text{E}_\text{CSm}\) the selected modeled
+the measured irradiance, \(\text{E}_\text{CSm}\) the selected modelled
 clear sky irradiance, and \(i\) each of the one-minute observation.
 
 We have to note, that the differentiation of the threshold factor was
