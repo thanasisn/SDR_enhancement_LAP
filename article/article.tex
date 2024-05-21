@@ -365,17 +365,24 @@ To create a unified trend for the long term change of the clear sky
 irradiance, we simulated the values of AOD derived from those sources
 with Libradtran. For both, we used the AOD at \(500\,\text{nm}\), which
 was inferred by the available Ångström coefficients, and we choose the
-SZA of \(55^\circ\) as a representative value for all runs. For the
-first period, the alpha Ångström coefficient is \(1.6\) and the beta
-coefficient \(0.086\) and \(0.059\), for 1997 and 2005 respectively. By
-interpolating the resulting clear sky irradiance, we have a trend of
-\(+0.21\,\%\) per year. For the period 2005 -- 2005 we used the mean
-monthly values from AERONET, with a similar simulation scheme. We
-computed the trend of clear sky radiation for each month of the year,
-which gave us a mean clear sky radiation trend of \(+0.14\,\%\) per
-year.
+SZA of \(55^\circ\) as a representative value for all runs.
 
-\ldots. combine for threshold \ldots\ldots.
+For the first period, the alpha Ångström coefficient is \(1.6\) and the
+beta coefficient \(0.086\) and \(0.059\), for 1997 and 2005
+respectively. By interpolating the resulting clear sky irradiance, we
+have a trend of \(+0.21\,\%\) per year. For the period 2005 -- 2005 we
+used the mean monthly values from AERONET, with a similar simulation
+scheme. We computed the trend of clear sky radiation for each month of
+the year, which gave us a mean clear sky radiation trend of
+\(+0.14\,\%\) per year.
+
+According to \citet{Kazadzis2007}, in the period 1997 -- 2005, the mean
+AOD of \(340\,\text{nm}\) was calculated to 0.403 by the Brewer
+spectrophotometer, with a linear trend of \(-3.8±0.93\,\%\) per year.
+This corresponds to a AOD \(340\,\text{nm}\) change of \(0.0153\) per
+year. Using the alpha Ångström coefficient of \(\alpha = 1.6\) this
+translates to a change in Ångström beta coefficient of \(\beta=0.00272\)
+per year (or \(\beta=0.084\) in 1997 and \(\beta=0.059\) in 2005).
 
 \hypertarget{ce-criteria-investigation}{%
 \subsection{CE Criteria investigation}\label{ce-criteria-investigation}}
@@ -475,10 +482,10 @@ the one-minute observation.
 \section{Results}\label{results}}
 
 Our dataset, after the data selection processing, consists of 6144534
-records of GHI, of which \(1.95\,\%\) are CE and \(0.036\,\%\) are ECE
+records of GHI, of which \(1.764\,\%\) are CE and \(0.036\,\%\) are ECE
 events. The highest GHI recorder was \(1416.6\,W/m^2\) on 24~May 2007.
-The absolute stronger CE event had an OIR of \(353.05\,W/m^2\) on 24~May
-2007. The relative stronger CE event was \(50.7\,\%\) above the clear
+The absolute stronger CE event had an OIR of \(345.86\,W/m^2\) on 24~May
+2007. The relative stronger CE event was \(49.7\,\%\) above the clear
 sky threshold, on 28~October 2016.
 
 \hypertarget{trends}{%
@@ -490,7 +497,7 @@ autoregressive model with lag of 1 day, using the `maximum likelihood'
 fitting method \citep{Gardner1980, Jones1980} by implementing the
 function `arima' from the library `stats' of the R programming language
 \citep{RCT2023}. The trends are reported together with the \(2\sigma\)
-error. We observe an increase of \(0.107\pm 0.08\,W/m^2/y\) on the mean
+error. We observe an increase of \(0.087\pm 0.08\,W/m^2/y\) on the mean
 OIR.
 
 \begin{figure}
@@ -505,7 +512,7 @@ OIR.
 Although, the previous result is closer to the raw data, we preferred to
 present the annual statistics, that give a more clear picture about the
 long term CE trends. Hence, we calculated the annual values from the
-one-minute measurements. The trend of OIR is \(0.08\pm 0.11\,W/m^2/y\)
+one-minute measurements. The trend of OIR is \(0.06\pm 0.11\,W/m^2/y\)
 (Figure\nobreakspace{}\ref{fig:P-energy-mean}), but this value alone is
 not very useful due the intrinsic high variability of this metric.
 
@@ -521,7 +528,7 @@ not very useful due the intrinsic high variability of this metric.
 A better indicator of changes on the characteristic of CE would be the
 number of CE occurrences and the total energy of the CE over irradiance.
 The annual number of CE occurrences, shows a steady increase of
-\(48.1\pm 23.8\,\text{cases}/y\)
+\(45.6\pm 21.9\,\text{cases}/y\)
 (Figure\nobreakspace{}\ref{fig:P-energy-N}). We have to note that the
 energy related to the CE events can not be directly linked with the
 total energy balance on the atmosphere. The net sun radiation of the
@@ -539,7 +546,7 @@ irradiance to a considerable level.
 \end{figure}
 
 Subsequently, the mean annual increase of energy due to CE events is
-\(129.7\pm 74.2\,kJ/y\) (Figure~\ref{fig:P-energy-sum}), witch follows
+\(116.9\pm 67.8\,kJ/y\) (Figure~\ref{fig:P-energy-sum}), witch follows
 the trend of the number of occurrences.
 
 \begin{figure}
@@ -603,7 +610,7 @@ particular atmospheric and sun conditions occur.
 In order to further study the characteristics of the CE events, we
 grouped the single minute CE events, to continuous CE groups (CEG).
 Thus, a CEG consists of one or more successive CE cases, and can have a
-duration of multiple of minutes. We have identified 30749 groups, where
+duration of multiple of minutes. We have identified 28468 groups, where
 the group with the longest duration lasted 140 minutes on 07~July 2013.
 By examining the frequency distribution of the CEG durations
 (Figure\nobreakspace{}\ref{fig:ceg-duration-distribution}), we can
