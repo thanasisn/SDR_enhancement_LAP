@@ -601,7 +601,7 @@ for (ii in 1:nrow(vec_days)) {
         ## Global
         lines(temp$Date, temp$wattGLB, col = "green")
         ## Direct
-        lines(temp$Date, temp$wattHOR, col = "blue")
+        # lines(temp$Date, temp$wattHOR, col = "blue")
         ## TSI on ground
         lines(temp$Date, temp$ETH)
 
@@ -633,6 +633,14 @@ for (ii in 1:nrow(vec_days)) {
 
         legend("topleft",
                      c(  "GHI", "DNI","GHI threshold","TSI on horizontal level","GHI Enhancement event",paste0(csmodel, ".glo"),"CloudsID"),
+               col = c("green","blue",          "red",                  "black",                  "red",              "magenta",    "blue"),
+               pch = c(     NA,    NA,             NA,                       NA,                     1 ,                     NA,         3),
+               lty = c(      1,     1,              1,                        1,                    NA ,                      1,        NA),
+               bty = "n",
+               cex = 0.8
+        )
+        legend("topleft",
+               c(  "GHI", "DNI","GHI threshold","TSI on horizontal level","GHI Enhancement event",paste0(csmodel, ".glo"),"CloudsID"),
                col = c("green","blue",          "red",                  "black",                  "red",              "magenta",    "blue"),
                pch = c(     NA,    NA,             NA,                       NA,                     1 ,                     NA,         3),
                lty = c(      1,     1,              1,                        1,                    NA ,                      1,        NA),
