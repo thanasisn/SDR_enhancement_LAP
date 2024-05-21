@@ -69,9 +69,22 @@ setwd("~/MANUSCRIPTS/02_enhancement/")
 # }
 
 #+ echo=F, include=T
-library(data.table, quietly = TRUE, warn.conflicts = FALSE)
-library(janitor   , quietly = TRUE, warn.conflicts = FALSE)
-library(ggplot2   , quietly = TRUE, warn.conflicts = FALSE)
+library(data.table    , quietly = TRUE, warn.conflicts = FALSE)
+library(janitor       , quietly = TRUE, warn.conflicts = FALSE)
+library(ggplot2       , quietly = TRUE, warn.conflicts = FALSE)
+library(ggpmisc       , quietly = TRUE, warn.conflicts = FALSE)
+library(data.table    , quietly = TRUE, warn.conflicts = FALSE)
+library(pander        , quietly = TRUE, warn.conflicts = FALSE)
+library(ggplot2       , quietly = TRUE, warn.conflicts = FALSE)
+library(lmtest        , quietly = TRUE, warn.conflicts = FALSE)
+library(viridis       , quietly = TRUE, warn.conflicts = FALSE)
+library(ggpointdensity, quietly = TRUE, warn.conflicts = FALSE)
+library(patchwork     , quietly = TRUE, warn.conflicts = FALSE)
+library(ggh4x         , quietly = TRUE, warn.conflicts = FALSE)
+library(grid          , quietly = TRUE, warn.conflicts = FALSE)
+library(latex2exp     , quietly = TRUE, warn.conflicts = FALSE)
+library(ggpmisc       , quietly = TRUE, warn.conflicts = FALSE)
+library(cowplot       , quietly = TRUE, warn.conflicts = FALSE)
 
 source("./GHI_enh_00_variables.R")
 source("./GHI_enh_00_dictionary.R")
@@ -1028,7 +1041,7 @@ ggplot(dataset,
            y = change,
            colour = Source)) +
   geom_line(linewidth = 1.3) +
-  ylab(bquote("Anomaly %" )) +
+  ylab(bquote("Difference %" )) +
   xlab("Date") +
   annotate("text", x = 2000, y = dataset[year==2000, change],
            label = "paste(\"+0.21 %/y\")", parse = TRUE,
@@ -1045,7 +1058,15 @@ ggplot(dataset,
   theme(legend.justification = c(0, 1),
         legend.position = c(0.01, .99),
         legend.key=element_blank(),
-        legend.background = element_rect(fill = "transparent"))
+        legend.background = element_rect(fill = "transparent")) +
+  scale_x_continuous(guide        = "axis_minor",
+                     limits = c(1993, NA),
+                     breaks = c(
+                       1993,
+                       pretty(dataset[, year], n = 4),
+                       max(ceiling(dataset[, year]))),
+                     minor_breaks = seq(1990, 2050, by = 1) )
+
 # theme(plot.margin = margin(t = 0, r = 0.5 , b = 0.5, l = 0, "cm"))
 
 #   scale_y_continuous(guide        = "axis_minor",

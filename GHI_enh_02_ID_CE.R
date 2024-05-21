@@ -348,12 +348,11 @@ abline(v = C4_cs_ref_ratio, col = "red" )
 
 ## for most of the data
 DATA[SZA < C4_lowcut_sza,
-     Enhanc_C_4_ref := (1 + trans_trend(decimal_date(Date))) * (get(paste0(csmodel,".glo")) * C4_cs_ref_ratio) + C4_GLB_diff_THRES ]
+     Enhanc_C_4_ref :=
+       (1 + trans_trend(decimal_date(Date))) * (get(paste0(csmodel,".glo")) * C4_cs_ref_ratio) + C4_GLB_diff_THRES ]
 
-DATA[SZA < C4_lowcut_sza,
-     (1 + trans_trend(decimal_date(Date))) * (get(paste0(csmodel,".glo")) * C4_cs_ref_ratio) + C4_GLB_diff_THRES ]
-
-
+# DATA[SZA < C4_lowcut_sza,
+#       (1 + trans_trend(decimal_date(Date))) * (get(paste0(csmodel,".glo")) * C4_cs_ref_ratio) + C4_GLB_diff_THRES ]
 
 DATA[SZA < C4_lowcut_sza,
      Enhanc_C_4_ref_test :=                                    (get(paste0(csmodel,".glo")) * C4_test_cs_ref_ratio) ]
@@ -377,10 +376,9 @@ if (SelEnhanc == "Enhanc_C_4") {
   DATA[ , GLB_rati :=   wattGLB / Enhanc_C_4_ref                    ]
 }
 
-
-
-
-
+cat("C4_lowcut_sza",      C4_lowcut_sza    , "\n")
+cat("C4_cs_ref_ratio",    C4_cs_ref_ratio  , "\n")
+cat("C4_GLB_diff_THRES",  C4_GLB_diff_THRES, "\n")
 
 
 #+ echo=F, include=T
@@ -757,8 +755,11 @@ for (pyear in yearstodo) {
                               high     = "red",
                               na.value = NA) +
         labs(title = pyear) +
-        xlab(paste0(SelEnhanc, "_ref")) +
-        labs(color = "Over\nreference") +
+        ylab(bquote("SDR" ~ group("[", W/m^2,"]"))) +
+        xlab(bquote("Clear sky reference" ~ group("[", W/m^2,"]"))) +
+        # xlab(paste0(SelEnhanc, "_ref")) +
+        # labs(color = "Over\nIrradiance W/m^2") +
+        labs(color = bquote("Over\nIrradiance" ~ group("[", W/m^2,"]"))) +
         theme(
             legend.position      = c(.03, .97),
             legend.justification = c("left", "top"),
