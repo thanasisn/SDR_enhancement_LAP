@@ -114,7 +114,7 @@ hist(DATA$ClearnessIndex_C_4)
 DATA <- DATA[ClearnessIndex_C_4 > 0.8 ]
 DATA <- DATA[ClearnessIndex_C_4 < 1.3 ]
 
-source("./GHI_enh_Aeronet.R")
+source("./GHI_enh_07_Aerosols.R")
 
 
 DATA[, tsy := year(Date) + (month(Date) - 1)/12 ]
@@ -130,7 +130,7 @@ trendsf <- c(trend_median, trend_mean, trend_min)
 # trend_apply  <- trend_mean
 # trend_factor <- -0.01995656
 ## for trend median
-trend_apply  <- trend_median
+# trend_apply  <- trend_median
 trend_apply  <- trend_55
 trend_factor <- -0.01995656  # the same
 trend_apply_adj <- function(tsy) {
@@ -156,7 +156,7 @@ f <- function(x) {
   # test[, sum(V1 - V2)]
 }
 
-optimise(f, interval = c(-0.02, 0.02), maximum = F, tol = 0.0001)
+optimise(f, interval = c(-0.03, 0.03), maximum = F, tol = 0.0001)
 
 
 # optim(0.8, f, method = "Brent", lower = 0.2, upper = 1.5)

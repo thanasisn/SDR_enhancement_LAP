@@ -58,7 +58,7 @@ knitr::opts_chunk$set(fig.pos    = '!h'     )
 #+ echo=FALSE, include=TRUE
 ## __ Set environment  ---------------------------------------------------------
 Sys.setenv(TZ = "UTC")
-# Script.Name <- "./GHI_enh_Aeronet.R"
+# Script.Name <- "./GHI_enh_07_Aerosols.R"
 tic <- Sys.time()
 
 ## use worktree
@@ -870,8 +870,9 @@ trend_mean_adj <- function(tsy) {
 }
 
 
+adjpoint55 <- trend_55(c(2005+(2024-2005)/2):2020)[1]
 trend_55_adj <- function(tsy) {
-  trend_55(tsy) - 0.01995656
+  trend_55(tsy) - adjpoint55
 }
 
 

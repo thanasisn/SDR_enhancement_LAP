@@ -261,7 +261,7 @@ csmodel <- "Low_B.Low_W"
 
 
 if (APPLY_TRANS) {
-  source("./GHI_enh_Aeronet.R")
+  source("./GHI_enh_07_Aerosols.R")
   cat("USING TRASPARENCY TREND\n")
   ## choose function
   # trans_trend <- trend_median
