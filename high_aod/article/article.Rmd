@@ -1,63 +1,34 @@
 ---
-title: Downward shortwave solar irradiance enhancement by clouds.
+title:    SDR enhancement by clouds High AOD
+
+subtitle: A Short Subtitle
 
 author:
-  - name:        Athanasios N. Natsis
-    email:       natsisphysicist@gmail.com
-    affiliation: LAP
-    correspondingauthor: true
-    footnote: 1
-  - name:        Alkiviadis Bais
-    email:       abais@auth.gr
-    affiliation: LAP
-  - name:        Charikleia Meleti
-    email:       meleti@auth.gr
-    affiliation: LAP
-    footnote: 2
-address:
-  - code:         LAP
-    organization: Laboratory of Atmospheric Physics, A.U.Th.
-    addressline:  1 main street
-    city:         Thessaloniki
-    postcode:     123456
-    country:      Greece
-  - code:         Another University
-    organization: Department
-    addressline:  A street 29
-    postcode:     2054 NX
-    city:         Manchester,
-    state:        State
-    country:      The Netherlands
-footnote:
-  - code: 1
-    text: "This is the first author footnote."
-  - code: 2
-    text: "Another author footnote."
-abstract: |
-  Here wii be the abstract.
+  - Athanasios N. Natsis^[Laboratory of Atmospheric Physics _natsisphysicist@gmail.com_] 
+  - Alkiviadis Bais^[Laboratory of Atmospheric Physics _abais@auth.gr_] 
+  - Charikleia Meleti^[Laboratory of Atmospheric Physics _meleti@auth.gr_]
 
-  It consists of two paragraphs.
+# abstract: |
+#   This is the abstract. Lorem ipsum dolor sit amet, eu efficitur justo rutrum at. Sed at tempus elit.
 
-keywords: 
+keywords:
   - keyword1
   - keyword2
 
-journal:        "An awesome journal"
-date:           "`r Sys.Date()`"
-linenumbers:    false
-numbersections: true
-bibliography:   bibliography.bib
+bibliography:  [bibliography.bib]
 
-biblio-style:   elsarticle-harv # author year style for natbib - use 'elsarticle-num' or 'elsarticle-num-names' for numbered scheme
+date: "`r format(Sys.time(), '%F')`"
 
-classoption:    preprint, 3p, authoryear # remove authoryear is not using `elsarticle-harv`
-# Use a CSL with `citation_package = "default"`
-# csl: https://www.zotero.org/styles/elsevier-harvard
+header-includes:
+  - \usepackage{caption}
+  - \usepackage{placeins}
+  - \captionsetup{font=small}
 
-output: 
-  rticles::elsevier_article:
-    keep_tex:         true
-    citation_package: natbib
+output:
+  # redoc::redoc: default
+ #  rticles::mdpi_article:
+ #    extra_dependencies:  longtable
+ #    keep_tex:            yes
   bookdown::pdf_document2:
     number_sections:  yes
     fig_caption:      yes
@@ -75,19 +46,18 @@ output:
     colorlinks:       yes
     urlcolor:         blue
     biblio-style:     apalike
-  bookdown::word_document2: default
+    bookdown::word_document2: default
 ---
-
 
 ```{r setup, echo=F, include=FALSE}
 rmarkdown::find_pandoc(dir = '/usr/lib/rstudio/resources/app/bin/quarto/bin/tools')
-# renv::load("~/MANUSCRIPTS/02_enhancement/", quiet = TRUE)
+renv::load("~/MANUSCRIPTS/02_enhancement/", quiet = TRUE)
 ## document configurations
 knitr::opts_chunk$set(comment    = ""      )
 # knitr::opts_chunk$set(dev        = "pdf"   )
-knitr::opts_chunk$set(out.width  = "50%"   )
+knitr::opts_chunk$set(out.width  = "60%"   )
 knitr::opts_chunk$set(fig.align  = "center")
-# knitr::opts_chunk$set(fig.pos    = 'h!'    )
+knitr::opts_chunk$set(fig.pos    = 'h!'    )
 options(knitr.graphics.auto_pdf = FALSE)
 library(pander)
 library(data.table)
@@ -290,8 +260,6 @@ model.
 
 ## Modeled clear Sky Irradiance
 
-### Climatology of clear sky irradiance
-
 We approximated the expected clear sky GHI by using a radiation transfer model.  The
 simulations was performed by the well established model Libradtran [@Emde2016], a
 similar approach, was also used by @Vamvakas2020 for creating a clear sky reference.
@@ -320,79 +288,30 @@ Laboratory (AFGL). The "AFGL atmospheric constituent profile, midlatitude summer
 [@Anderson1986].
 
 <!-- Lookup table -->
-To create a look-up table, that aligns with our dataset, we applied some adjustments.
-To account for the Sun's variability, in our one-minute GHI measurements, we adapted
-each modeled value by scaling the model's input spectrum integral, to the
-corresponding total solar irradiance (TSI) provided by NOAA [@Coddington2005].  Also,
-we account for the effect of the Earth -- Sun distance on the irradiance, by using
-the distance calculated by the Astropy [@AstropyCollaboration2022] software library.
-As needed, we interpolate the resulting irradiances to the exact SZA of our
-measurements.  For each period of the year, we used the appropriate atmospheric
-profile (afglms or afglmw).  Finally, we calculated the clear sky irradiance value at
-the horizontal plane.  Thus, we were able to emulate different atmospheric condition
-and levels of atmospheric clearness for the climatological conditions of the site.
-With this method, the modeled clear sky irradiances can be directly compared to each
-measured one-minute value of GHI, for different conditions of atmospheric clearness.
-
-### Long term change of clear sky irradiance
-
-<!-- Aerosol change -->
-The above clear sky reference values are not enough to describe the long term
-variation, due to the changes of the atmospheric constituents. As observed by
-@Natsis2023, there is a long term brightening effect, over Thessaloniki for the studied
-period. In order to better describe this change, we used, estimations of AOD change
-derived from two sources. For 1993 -- 2005, @Kazadzis2007 have found a change of
-$-3.8\,\%$ per year at AOD on $340\,\text{nm}$, using a Brewer spectrophotometer. For
-2005 to 2023, we derived the trend from the available AERONET data.
-
-To create a unified trend for the long term change of the clear sky irradiance, we
-simulated the values of AOD derived from those sources with Libradtran. For both, we
-have used the AOD at $500\,\text{nm}$, which was inferred by the available Ångström
-coefficients, and we choose the SZA of $55^\circ$ as a representative value for all
-runs.
-
-According to @Kazadzis2007, in the period 1997 -- 2005, the mean AOD of
-$340\,\text{nm}$ was calculated to $0.403$ with the use of a Brewer
-spectrophotometer, with a linear trend of $-3.8±0.93\,\%$ per year.  This corresponds
-to a AOD $340\,\text{nm}$ change of $0.0153$ per year.  Using the alpha Ångström
-coefficient of $\alpha = 1.6$, this translates to a change in Ångström beta
-coefficient of $\beta=0.00272$ per year (or $\beta=0.084$ in 1997 and $\beta=0.059$
-in 2005).  By interpolating the resulting clear sky irradiance, we have a trend of
-$+0.21\,\%$ per year for the clear sky irradiance.  For the period 2005 -- 2005 we
-used the mean monthly values from AERONET, with a similar simulation scheme. We
-computed the trend of clear sky radiation for each month of the year, which gave us a
-mean clear sky radiation trend of $+0.14\,\%$ per year. We applied this long term
-change to the clear sky irradiance, in order to create a more realistic
-representation of the irradiance for the whole study period
-(Figure\nobreakspace{}\ref{fig:CS-change}).
-
-```{r CS-change, echo=FALSE, fig.cap="Simulated long term change of clear sky irradiance relevant to its climatological values."}
-knitr::include_graphics("../images/P_CS_change-1.png")
-```
-
-<!-- 1997 0.0839901
-<!-- 2005 0.05496013
-<!-- # Kazadzis2007 - Nine years of UV aerosol optical depth measurements at Thessaloniki, Greece
-<!-- # From Stelios' paper 2007:
-<!-- # AOD @340 from Brewer 086
-<!-- # Period: 1997-2005
-<!-- # The mean AOD for this period was calculated to 0.403 for the Brewer and 0.422 for the CIMEL.
-<!-- # A linear regression on the Brewer deseasonalized data reveals a change of -3.8±0.93% per year.
-<!-- # From the above data AOD @340 changes by 0.0153 per year (or 0.138 for the 9 years).
-<!-- # Using Angstrom a= 1.6  this translates to a change in Angstrom β=0.00272 per year (or β=0.084 in 1997 and β=0.059 in 2005).
--->
+To create a look-up table that aligns with our dataset, we applied some adjustments.
+To account for the Sun's variability, in our one-minute GHI measurements, 
+we adapted each modeled value by scaling the  
+model's input spectrum integral, to the corresponding total solar irradiance (TSI)
+provided by NOAA [@Coddington2005].  
+Also, we applied the effect of the Earth -- Sun
+distance on the irradiance, by using the distance calculated by the Astropy
+[@AstropyCollaboration2022] software library. As needed, we interpolate the resulting
+irradiances to the exact SZA of our measurements.  For each period of the year, we
+used the appropriate atmospheric profile (afglms or afglmw).  Finally, we calculated
+the clear sky irradiance value at the horizontal plane.  Thus, we were able to
+emulate different atmospheric condition and levels of atmospheric clearness for the
+climatological conditions of the site.  With this method, the modeled clear sky
+irradiances can be directly compared to each measured one-minute value of GHI, for
+different conditions of atmospheric clearness.
 
 
 
 ## CE Criteria investigation
 
-The use of the actual modeled values of clear sky GHI, described above , can not provide us with
+The use of the actual modeled values of clear sky GHI alone, can not provide us with
 a robust method to distinguish the CE cases, due to the limited accuracy of the input
-data. Our main focus was to positively identify over irradiance events from CEs, 
-so we created an upper envelope of the clear sky irradiance,
-
-.............................
-
+data. Our main focus was to positively identify over irradiance events from CEs, thus
+we used a relative factor, to create an upper envelope of the clear sky irradiance,
 above which, any GHI value can safely attributed to CE.  We evaluated the performance
 of the modeled clear radiation for each of atmospheric level of clearness, as
 reference, in order to conclude which is the most appropriate.
@@ -443,27 +362,17 @@ where: $\theta$ solar zenith angle.
 \end{cases}\label{eq:CE4b}
 \end{equation}
 where: $\theta$ is the solar zenith angle, $\text{GHI}_\text{i}$ the measured
-irradiance, and $\text{GHI}_\text{mCSi}$ the selected modelled clear sky irradiance.
+irradiance, and $\text{GHI}_\text{mCSi}$ the selected modeled clear sky irradiance.
 -->
-<!-- \begin{equation} -->
-<!-- \text{CE} : \text{E}_\text{i} > \text{E}_\text{CSlim,i}, \text{where} \begin{cases} -->
-<!--  \text{E}_\text{CSlim,i} = `r C4_cs_ref_ratio` \cdot \text{E}_\text{CSm,i}, & \text{$\theta \leq `r C4_lowcut_sza`^\circ$}\\ -->
-<!-- \text{E}_\text{CSlim,i} = \left ({ `r C4_lowcut_ratio` + \frac{`r C4_cs_ref_ratio` - `r C4_lowcut_ratio`}{`r C4_lowcut_sza` - `r 90 - BIO_ELEVA`} \cdot (\theta- `r 90 - BIO_ELEVA`) } \right ) \cdot \text{E}_\text{CSm,i}, & \text{$ `r 90 - BIO_ELEVA`^\circ > \theta > `r C4_lowcut_sza`^\circ$}\\ -->
-<!-- \text{Excluded measurements}, & \theta > `r 90 - BIO_ELEVA`^\circ -->
-<!-- \end{cases}\label{eq:CE4} -->
-<!-- \end{equation} -->
-<!-- where: $\theta$ is the solar zenith angle, $\text{E}$ the measured -->
-<!-- irradiance, $\text{E}_\text{CSm}$ the selected modelled clear sky irradiance, and $i$ each of the one-minute observation. -->
-
-
-
 \begin{equation}
-\text{CE} : \text{E}_\text{i} > `r C4_GLB_diff_THRES` + `r C4_cs_ref_ratio` \cdot \text{E}_\text{CSm,i} \,\,[W/m^2] \label{eq:CE4}
+\text{CE} : \text{E}_\text{i} > \text{E}_\text{CSlim,i}, \text{where} \begin{cases}
+ \text{E}_\text{CSlim,i} = `r C4_cs_ref_ratio` \cdot \text{E}_\text{CSm,i}, & \text{$\theta \leq `r C4_lowcut_sza`^\circ$}\\
+\text{E}_\text{CSlim,i} = \left ({ `r C4_lowcut_ratio` + \frac{`r C4_cs_ref_ratio` - `r C4_lowcut_ratio`}{`r C4_lowcut_sza` - `r 90 - BIO_ELEVA`} \cdot (\theta- `r 90 - BIO_ELEVA`) } \right ) \cdot \text{E}_\text{CSm,i}, & \text{$ `r 90 - BIO_ELEVA`^\circ > \theta > `r C4_lowcut_sza`^\circ$}\\
+\text{Excluded measurements}, & \theta > `r 90 - BIO_ELEVA`^\circ
+\end{cases}\label{eq:CE4}
 \end{equation}
 where: $\theta$ is the solar zenith angle, $\text{E}$ the measured
-irradiance, $\text{E}_\text{CSm}$ the selected modelled clear sky irradiance, and $i$ each of the one-minute observation.
-
-
+irradiance, $\text{E}_\text{CSm}$ the selected modeled clear sky irradiance, and $i$ each of the one-minute observation.
 
 <!-- reasoning for cretria -->
 We have to note, that the differentiation of the threshold factor was needed, because
@@ -527,7 +436,7 @@ where: $\theta$ the solar zenith angle, $E_{\odot}$ the solar constant, $r$ the 
 
 
 
-<!-- \FloatBarrier -->
+\FloatBarrier
 
 # Results
 
@@ -634,7 +543,7 @@ knitr::include_graphics("../images/P_energy-5.png")
 knitr::include_graphics("../images/P_energy-8.png")
 ```
 
-<!-- \FloatBarrier -->
+\FloatBarrier
 
 ## Climatology
 
@@ -678,7 +587,7 @@ knitr::include_graphics("../images/P-relative-distribution-diff-1.png")
 
 <!-- set of yearly plots -->
 
-<!-- \FloatBarrier -->
+\FloatBarrier
 
 ## Groups stats
 
@@ -715,7 +624,7 @@ knitr::include_graphics("../images/P-groups-bin2d-1.png")
 <!-- ``` -->
 
 
-<!-- \FloatBarrier -->
+\FloatBarrier
 
 ## Extreme CE above TSI
 
@@ -770,7 +679,7 @@ knitr::include_graphics("../images/extremedistributions-2.png")
 <!-- ``` -->
 
 
-<!-- \FloatBarrier -->
+\FloatBarrier
 
 
 # Discussion and conclusions
@@ -788,74 +697,4 @@ Climatology results
 # Appendix {.unnumbered}
 
 
-<!-- # References {.unnumbered} -->
-
-
-<!--
-Elsevier template
-
-
-Please make sure that your manuscript follows the guidelines in the 
-Guide for Authors of the relevant journal. It is not necessary to 
-typeset your manuscript in exactly the same way as an article, 
-unless you are submitting to a camera-ready copy (CRC) journal.
-
-For detailed instructions regarding the elsevier article class, see   <https://www.elsevier.com/authors/policies-and-guidelines/latex-instructions>
-
-# Bibliography styles
-
-Here are two sample references: @Feynman1963118 [@Dirac1953888].
-
-By default, natbib will be used with the `authoryear` style, set in `classoption` variable in YAML and with `elsearticle-harv.bst` which is among provided style by `elsarticle` documentclass. Other available style are `elsarticle-num.bst` and `elsarticle-num-names.bst` — the first one can be used for the numbered scheme, second one for numbered with new options of natbib.sty. 
-
-You can sets extra options with `natbiboptions` variable in YAML header. Example 
-```yaml
-natbiboptions: longnamesfirst,angle,semicolon
-```
-
-There are various more specific bibliography styles available at
-<https://support.stmdocs.in/wiki/index.php?title=Model-wise_bibliographic_style_files>. 
-To use one of these, add it in the header using, for example, `biblio-style: model1-num-names`.
-
-## Using CSL 
-
-If `citation_package` is set to `default` in `elsevier_article()`, then pandoc is used for citations instead of `natbib`. In this case, the `csl` option is used to format the references. Alternative `csl` files are available from <https://www.zotero.org/styles?q=elsevier>. These can be downloaded
-and stored locally, or the url can be used as in the example header.
-
-# Equations
-
-Here is an equation:
-$$ 
-  f_{X}(x) = \left(\frac{\alpha}{\beta}\right)
-  \left(\frac{x}{\beta}\right)^{\alpha-1}
-  e^{-\left(\frac{x}{\beta}\right)^{\alpha}}; 
-  \alpha,\beta,x > 0 .
-$$
-
-Here is another:
-\begin{align}
-  a^2+b^2=c^2.
-\end{align}
-
-Inline equations: $\sum_{i = 2}^\infty\{\alpha_i^\beta\}$
-
-# Figures and tables
-
-Figure \ref{fig2} is generated using an R chunk.
-
-```{r fig2, fig.width = 5, fig.height = 5, fig.align='center', out.width="50%", fig.cap = "\\label{fig2}A meaningless scatterplot.", echo = FALSE}
-plot(runif(25), runif(25))
-```
-
-# Tables coming from R
-
-Tables can also be generated using R chunks, as shown in Table \ref{tab1} for example.
-
-```{r tab1, echo = TRUE}
-knitr::kable(head(mtcars)[,1:4], 
-    caption = "\\label{tab1}Caption centered above table"
-)
-```
-
--->
-
+# References {.unnumbered}
