@@ -38,6 +38,12 @@ abstract: |
 
   It consists of two paragraphs.
 
+header-includes:
+  - \usepackage{caption}
+  - \usepackage{placeins}
+  - \captionsetup{font=small}
+  
+  
 keywords: 
   - keyword1
   - keyword2
@@ -506,19 +512,14 @@ atmosphere, and satisfy the Equation\nobreakspace{}\ref{eq:ECE}.
 where: $\theta$ the solar zenith angle, $E_{\odot}$ the solar constant, $r$ the Sun -- Earth distance, and $i$ each of the one-minute observation.
 
 
-To give a better understanding of the CE identification procedure, we included 
-an example of the CE identification for a selected day .... appendix....
-where the use of the reference and the threshold are shown, along with the relevant
-measurements.
+To give a better understanding of the CE identification procedure, we provide an
+example of the CE identification for a selected day in the Appendix
+(Figure\nobreakspace{}\ref{fig:example-day}), where the use of the reference and the
+threshold are shown, along with the relevant measurements.  Similar we provide an
+example plot of one year data, where the relation of the GHI and clear sky reference
+is shown, along with the OIR intensity also in the Appendix
+Figure\nobreakspace{}\ref{fig:example-year}.
 
-Similar we provide yearly plots
-
-.......
-
-- Include Example of days plot in the Appendix!
-... this is clearer to understand and describe ....
-
-.......
 
 <!-- ```{r echo=F, include=T, warning=FALSE, message=FALSE} -->
 <!-- ST_total -->
@@ -533,10 +534,9 @@ Similar we provide yearly plots
 
 # Results
 
-
 Our dataset, after the data selection processing, consists of
 `r ST_total$wattGLB.N` records of GHI, of which
-$`r round(100*ST_total$GLB_diff.N_pos/ST_total$wattGLB.N, 3)`\,\%$ are CE and
+$`r round(100*ST_total$GLB_diff.N_pos/ST_total$wattGLB.N, 3)`\,\%$ are CE events and
 $`r round(100*ST_extreme_total$GLB_diff.N_pos/ST_total$wattGLB.N, 3)`\,\%$ are ECE events.
 The highest GHI recorder was 
 $`r round(ST_daily[which.max(wattGLB.max), wattGLB.max],1)`\,W/m^2$
@@ -563,28 +563,39 @@ yearlyCE <- yearlytrends[DATA == "ST_E_yearly"]
 ```
 
 We computed the daily trend of the mean OIR of CE
-(Figure\nobreakspace{}\ref{fig:CEmeanDaily}), using a first-order autoregressive
-model with lag of 1 day, using the 'maximum likelihood' fitting method [@Gardner1980;
+<!-- (Figure\nobreakspace{}\ref{fig:CEmeanDaily}), -->
+using a first-order autoregressive
+model with lag of 1 day, with the 'maximum likelihood' fitting method [@Gardner1980;
 @Jones1980] by implementing the function 'arima' from the library 'stats' of the R
 programming language [@RCT2023]. The trends are reported together with the $2\sigma$
-error.  We observe an increase of
+error.  We observe an negligible change of
 $`r round(dailyCE[var == "GLB_diff.mean", Tmod_Estimate], 3)`\pm
 `r round(2 * dailyCE[var == "GLB_diff.mean", Tmod_Std..Error], 3)`\,W/m^2/y$
 on the mean OIR.
 
-```{r CEmeanDaily, echo=FALSE, fig.cap="Daily mean values and trend of the CE over irradiance."}
-knitr::include_graphics("../images/P_daily_trend-1.png")
-```
+<!-- ```{r CEmeanDaily, echo=FALSE, fig.cap="Daily mean values and trend of the CE over irradiance."} -->
+<!-- knitr::include_graphics("../images/P_daily_trend-1.png") -->
+<!-- ``` -->
 
-Although, the previous result is closer to the raw data, we preferred to present the
-annual statistics, that give a more clear picture about the long term CE trends.
-Hence, we calculated the annual values from the one-minute measurements.  The trend of
-OIR is
-$`r round(yearlyCE[var == "GLB_diff.mean", slope], 2)`\pm
-`r round(2 * yearlyCE[var == "GLB_diff.mean", slope.sd], 2)`\,W/m^2/y$
-(Figure\nobreakspace{}\ref{fig:P-energy-mean}),
-but this value alone is not very useful due the intrinsic high variability of this
-metric.
+Although, the previous result is closer to the raw data, we preferred to present
+the annual statistics, that give a more clear picture about the long term CE
+trends. Hence, we calculated the annual values from the one-minute measurements.
+Although, the trend of the mean OIR has very weak statistical significance, the
+annual number of CE occurrences, shows a steady increase of
+$`r round(yearlyCE[var == "GLB_diff.N", slope], 1)`\pm
+`r round(2 * yearlyCE[var == "GLB_diff.N", slope.sd], 1)`\,\text{cases}/y$
+(Figure\nobreakspace{}\ref{fig:P-energy-N}).
+We have to note that the energy related to the CE events can not be directly
+linked with the total energy balance on the atmosphere. The net solar radiation of
+the region is not increased, but rather redistributed through the CE events. Resulting,
+instantaneous values, that can exceed the equivalent clear sky irradiance to a
+considerable level.
+
+<!-- $`r round(yearlyCE[var == "GLB_diff.mean", slope], 2)`\pm -->
+<!-- `r round(2 * yearlyCE[var == "GLB_diff.mean", slope.sd], 2)`\,W/m^2/y$ -->
+<!-- (Figure\nobreakspace{}\ref{fig:P-energy-mean}), -->
+<!-- but this value alone is not very useful due the intrinsic high variability of this -->
+<!-- metric. -->
 
 <!-- ```{r CEmeanDaily2, echo=FALSE, fig.cap="Trend of the daily excess energy due to CE"} -->
 <!-- knitr::include_graphics("../images/daily-12.png") -->
@@ -594,21 +605,10 @@ metric.
 <!-- knitr::include_graphics("../images/energy-3.png") -->
 <!-- ``` -->
 
-```{r P-energy-mean, echo=FALSE, fig.cap="Trends of the mean OIR per CE."}
-knitr::include_graphics("../images/P_energy-7.png")
-```
+<!-- ```{r P-energy-mean, echo=FALSE, fig.cap="Trends of the mean OIR per CE."} -->
+<!-- knitr::include_graphics("../images/P_energy-7.png") -->
+<!-- ``` -->
 
-A better indicator of changes on the characteristic of CE would be the number of CE
-occurrences and the total energy of the CE over irradiance. The annual number of CE
-occurrences, shows a steady increase of
-$`r round(yearlyCE[var == "GLB_diff.N", slope], 1)`\pm
-`r round(2 * yearlyCE[var == "GLB_diff.N", slope.sd], 1)`\,\text{cases}/y$
-(Figure\nobreakspace{}\ref{fig:P-energy-N}).
-We have to note that the energy related to the CE events can not be directly linked
-with the total energy balance on the atmosphere. The net sun radiation of the region
-is not increased, but rather redistributed through the CE. Although, the
-instantaneous values, can exceed the equivalent clear sky irradiance to a
-considerable level.
 
 <!-- ```{r echo=FALSE, fig.cap="Trend of number of CE cases"} -->
 <!-- knitr::include_graphics("../images/energy-2.png") -->
@@ -632,21 +632,22 @@ occurrences.
 knitr::include_graphics("../images/P_energy-5.png")
 ```
 
-```{r P-energy-median, echo=FALSE, fig.cap="Trend of the yearly median over irradiance due to CE over irradiance"}
-knitr::include_graphics("../images/P_energy-8.png")
-```
+
+<!-- ```{r P-energy-median, echo=FALSE, fig.cap="Trend of the yearly median over irradiance due to CE over irradiance"} -->
+<!-- knitr::include_graphics("../images/P_energy-8.png") -->
+<!-- ``` -->
 
 <!-- \FloatBarrier -->
 
-## Climatology
+## CE Climatology
 
 Another interesting aspect of the CE cases, is their seasonal cycle. In
 Figure\nobreakspace{}\ref{fig:relative-month-occurancies}, we have the box plot
 (whisker plot), where the values have been normalized by the highest median value,
-that occurs in May.  Although the number of occurrences has a wide spread throughout
+that occurs on June.  Although the number of occurrences has a wide spread throughout
 the study period, the most active period of CE occurrences is during May and June.
 During the Winter (December -- February) the CE cases are about $25\,\%$ of the maximum.
-The rest of the months the occurrences ramp between the maximum and minimum.
+For the rest months the occurrences gradually ramp between the maximum and minimum.
 
 ```{r relative-month-occurancies, echo=FALSE, fig.cap="Statistics of the number of CE occurancies for each month. The box represents the values of the low $25\\,\\%$ percentile to $75\\,\\%$ percentile, where the thick horizontal line inside is the mean, the verical lines extend to the macimum and minimum vales, the dots are outlier values, and the rhombus is the mean."}
 knitr::include_graphics("../images/clim_CE_month_norm_MAX_median_N-2.png")
@@ -786,8 +787,16 @@ Climatology results
 
 
 
-
 # Appendix {.unnumbered}
+
+```{r example-day, echo=FALSE, fig.cap="Example of cloud indentification data for 2019-07-11. Where are denoted with red circles all the detected CE events, the cloud intearaction with the GHI (blue crosses), and the thesholds of CE and the threshold of ECE events with red and black line respectively."}
+knitr::include_graphics("../images/example_days-18.png")
+```
+
+```{r example-year, echo=FALSE, fig.cap="Example of the relation of the measured GHI versus the reference clear sky irradiance for the year 2005, where the intesity of the detected over irradianse (OIR) is color coded."}
+knitr::include_graphics("../images/example_years-13.png")
+```
+
 
 
 <!-- # References {.unnumbered} -->

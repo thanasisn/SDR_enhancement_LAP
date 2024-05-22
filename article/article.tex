@@ -61,6 +61,9 @@ authoryear]{elsarticle} %review=doublespace preprint=single 5p=2 column
 
 
 
+\usepackage{caption}
+\usepackage{placeins}
+\captionsetup{font=small}
 \usepackage{booktabs}
 \usepackage{longtable}
 \usepackage{array}
@@ -461,80 +464,47 @@ the solar constant, \(r\) the Sun -- Earth distance, and \(i\) each of
 the one-minute observation.
 
 To give a better understanding of the CE identification procedure, we
-included an example of the CE identification for a selected day \ldots.
-appendix\ldots. where the use of the reference and the threshold are
-shown, along with the relevant measurements.
-
-Similar we provide yearly plots
-
-\ldots\ldots.
-
-\begin{itemize}
-\tightlist
-\item
-  Include Example of days plot in the Appendix! \ldots{} this is clearer
-  to understand and describe \ldots.
-\end{itemize}
-
-\ldots\ldots.
+provide an example of the CE identification for a selected day in the
+Appendix (Figure\nobreakspace{}\ref{fig:example-day}), where the use of
+the reference and the threshold are shown, along with the relevant
+measurements. Similar we provide an example plot of one year data, where
+the relation of the GHI and clear sky reference is shown, along with the
+OIR intensity also in the Appendix
+Figure\nobreakspace{}\ref{fig:example-year}.
 
 \hypertarget{results}{%
 \section{Results}\label{results}}
 
 Our dataset, after the data selection processing, consists of 6144534
-records of GHI, of which \(1.764\,\%\) are CE and \(0.036\,\%\) are ECE
-events. The highest GHI recorder was \(1416.6\,W/m^2\) on 24~May 2007.
-The absolute stronger CE event had an OIR of \(345.86\,W/m^2\) on 24~May
-2007. The relative stronger CE event was \(49.7\,\%\) above the clear
-sky threshold, on 28~October 2016.
+records of GHI, of which \(1.764\,\%\) are CE events and \(0.036\,\%\)
+are ECE events. The highest GHI recorder was \(1416.6\,W/m^2\) on 24~May
+2007. The absolute stronger CE event had an OIR of \(345.86\,W/m^2\) on
+24~May 2007. The relative stronger CE event was \(49.7\,\%\) above the
+clear sky threshold, on 28~October 2016.
 
 \hypertarget{trends}{%
 \subsection{Trends}\label{trends}}
 
-We computed the daily trend of the mean OIR of CE
-(Figure\nobreakspace{}\ref{fig:CEmeanDaily}), using a first-order
-autoregressive model with lag of 1 day, using the `maximum likelihood'
+We computed the daily trend of the mean OIR of CE using a first-order
+autoregressive model with lag of 1 day, with the `maximum likelihood'
 fitting method \citep{Gardner1980, Jones1980} by implementing the
 function `arima' from the library `stats' of the R programming language
 \citep{RCT2023}. The trends are reported together with the \(2\sigma\)
-error. We observe an increase of \(0.087\pm 0.08\,W/m^2/y\) on the mean
-OIR.
-
-\begin{figure}
-
-{\centering \includegraphics[width=0.5\linewidth]{../images/P_daily_trend-1} 
-
-}
-
-\caption{Daily mean values and trend of the CE over irradiance.}\label{fig:CEmeanDaily}
-\end{figure}
+error. We observe an negligible change of \(0.087\pm 0.08\,W/m^2/y\) on
+the mean OIR.
 
 Although, the previous result is closer to the raw data, we preferred to
 present the annual statistics, that give a more clear picture about the
 long term CE trends. Hence, we calculated the annual values from the
-one-minute measurements. The trend of OIR is \(0.06\pm 0.11\,W/m^2/y\)
-(Figure\nobreakspace{}\ref{fig:P-energy-mean}), but this value alone is
-not very useful due the intrinsic high variability of this metric.
-
-\begin{figure}
-
-{\centering \includegraphics[width=0.5\linewidth]{../images/P_energy-7} 
-
-}
-
-\caption{Trends of the mean OIR per CE.}\label{fig:P-energy-mean}
-\end{figure}
-
-A better indicator of changes on the characteristic of CE would be the
-number of CE occurrences and the total energy of the CE over irradiance.
-The annual number of CE occurrences, shows a steady increase of
-\(45.6\pm 21.9\,\text{cases}/y\)
+one-minute measurements. Although, the trend of the mean OIR has very
+weak statistical significance, the annual number of CE occurrences,
+shows a steady increase of \(45.6\pm 21.9\,\text{cases}/y\)
 (Figure\nobreakspace{}\ref{fig:P-energy-N}). We have to note that the
 energy related to the CE events can not be directly linked with the
-total energy balance on the atmosphere. The net sun radiation of the
-region is not increased, but rather redistributed through the CE.
-Although, the instantaneous values, can exceed the equivalent clear sky
-irradiance to a considerable level.
+total energy balance on the atmosphere. The net solar radiation of the
+region is not increased, but rather redistributed through the CE events.
+Resulting, instantaneous values, that can exceed the equivalent clear
+sky irradiance to a considerable level.
 
 \begin{figure}
 
@@ -556,15 +526,6 @@ the trend of the number of occurrences.
 }
 
 \caption{Trend of the yearly excess energy due to CE over irradiance}\label{fig:P-energy-sum}
-\end{figure}
-
-\begin{figure}
-
-{\centering \includegraphics[width=0.5\linewidth]{../images/P_energy-8} 
-
-}
-
-\caption{Trend of the yearly median over irradiance due to CE over irradiance}\label{fig:P-energy-median}
 \end{figure}
 
 \hypertarget{climatology}{%
@@ -693,6 +654,26 @@ Climatology results
 \hypertarget{appendix}{%
 \section*{Appendix}\label{appendix}}
 \addcontentsline{toc}{section}{Appendix}
+
+\begin{figure}
+
+{\centering \includegraphics[width=0.5\linewidth]{../images/example_days-18} 
+
+}
+
+\caption{Example of cloud indentification data for 2019-07-11. Where are denoted with red circles all the detected CE events, the cloud intearaction with the GHI (blue crosses), and the thesholds of CE and the threshold of ECE events with red and black line respectively.}\label{fig:example-day}
+\end{figure}
+
+\begin{figure}
+
+{\centering \includegraphics[width=0.5\linewidth]{../images/example_years-13} 
+
+}
+
+\caption{Example of the relation of the measured GHI versus the reference clear sky irradiance for the year 2005, where the intesity of the detected over irradianse (OIR) is color coded.}\label{fig:example-year}
+\end{figure}
+
+\FloatBarrier
 
 \bibliography{bibliography.bib}
 
