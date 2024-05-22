@@ -396,79 +396,62 @@ the irradiance for the whole study period
 \hypertarget{ce-criteria-investigation}{%
 \subsection{CE Criteria investigation}\label{ce-criteria-investigation}}
 
-The use of the actual modeled values of clear sky GHI, described above ,
-can not provide us with a robust method to distinguish the CE cases, due
-to the limited accuracy of the input data. Our main focus was to
-positively identify over irradiance events from CEs, so we created an
-upper envelope of the clear sky irradiance,
+Our main focus was to positively identify over irradiance events related
+to CEs. For this reason we had to select an appropriate set of
+atmospheric parameterization, in Libradtran, and define an relevant
+threshold for the CE identification. The selection of the atmospheric
+parameterization will provide us with a reference, that has a good
+agreement with the clear sky conditions. Additional, with the
+implementation of the long term change, as described above, it will be
+able to align well with most of the natural variation of the physical
+quantity. The selection of adequate threshold, will also allow us to
+have a robust method to distinguish the CE cases, which will compensate
+for the limited accuracy of the input data, and the natural variability
+of the atmosphere.
 
-\ldots\ldots\ldots\ldots\ldots\ldots\ldots\ldots\ldots..
-
-above which, any GHI value can safely attributed to CE. We evaluated the
-performance of the modeled clear radiation for each of atmospheric level
-of clearness, as reference, in order to conclude which is the most
-appropriate.
-
-To select the exact values of these thresholds factors (Equation
-\ref{eq:CE4}), we implemented an empirical method, by manual inspection
-of the CE identification, on specially selected days from the whole
-dataset. We used seven sets of selected days, with characteristics
-relevant to the efficiency of the identification threshold. These sets
-were random groups of about 20 to 30 days with the following
-characteristics: (a) the largest over irradiance CE events, (b) the
-largest daily total over irradiance, (c) without clouds (by implementing
-a clear sky identification algorithm as discussed in
-\citet{Natsis2023}), (d) without clouds and without EC events, (e) with
-at least \(60\,\%\) of the day length without clouds and some EC events,
-(h) random days and (i) some manual selected days that were included
-during the manual inspection. Where it was needed, for some of the edge
-cases, we also used images from a sky-cam, to further aid the decisions
-of the manual inspection.
-
-After evaluating the modeled clear radiation for the different
-atmospheric conditions, in relation to the measured GHI data, we choose
-as a representative of the clear sky radiation, the case where
+First, we evaluated the performance of the modelled clear radiation, for
+each of the atmospheric level of clearness we have created as reference,
+in relation to the measured GHI data, and choose as a representative of
+the clear sky radiation, the case where
 \(\tau_{\text{cs}} = \tau_{500\text{nm}} - 1\sigma\) and
 \(w_{h\text{cs}} = w_h - 1\sigma\) (\(\text{GHI}_\text{CSm}\)). These
-values represent a typical atmosphere in Thessaloniki with low load of
+values represent a typical atmosphere in Thessaloniki, with low load of
 aerosols and humidity, which are the main factor that attenuate the GHI,
-excluding clouds. To create the limit of CE identification, we created a
-two branched threshold, as a function of SZA. A constant factor for low
-SZAs, and a higher ramped factor for higher SZAs
-(Equation\nobreakspace\ref{eq:CE4}). This is the criterion of our CE
-identification.
+excluding clouds. To create the upper limit of CE identification, we
+used a value relative to clear sky irradiance (\(4\,\%\)) with an
+additional constant offset of \(15\,\text{W}/\text{m}^2\), as described
+in Equation\nobreakspace\ref{eq:CE4}). \begin{equation}
+\text{CE} : \text{E}_\text{i} > 15 + 1.04 \cdot \text{E}_\text{CSm,i} \,\,[\text{W}/\text{m}^2] \label{eq:CE4}
+\end{equation} where: \(\text{E}\) the measured irradiance,
+\(\text{E}_\text{CSm}\) the selected modelled clear sky irradiance, and
+\(i\) each of the one-minute observation. This is the criterion of our
+CE identification.
 
-\begin{equation}
-\text{CE} : \text{E}_\text{i} > 15 + 1.04 \cdot \text{E}_\text{CSm,i} \,\,[W/m^2] \label{eq:CE4}
-\end{equation} where: \(\theta\) is the solar zenith angle, \(\text{E}\)
-the measured irradiance, \(\text{E}_\text{CSm}\) the selected modelled
-clear sky irradiance, and \(i\) each of the one-minute observation.
+In the process of defining the above details, we implemented an
+empirical method, by manual inspection of the CE identification, on
+specially selected days from the whole dataset. We used seven sets of
+selected days, with characteristics relevant to the efficiency of the
+identification threshold. These sets were random groups of about 20 to
+30 days with the following characteristics: (a) the largest over
+irradiance CE events, (b) the largest daily total over irradiance, (c)
+without clouds (by implementing a clear sky identification algorithm as
+discussed in \citet{Natsis2023}), (d) without clouds and without EC
+events, (e) with at least \(60\,\%\) of the day length without clouds
+and some EC events, (h) random days and (i) some manual selected days
+that were included during the manual inspection. Where it was needed,
+for some of the edge cases, we also used images from a sky-cam, to
+further aid the decisions of the manual inspection.
 
-We have to note, that the differentiation of the threshold factor was
-needed, because of the high irradiance values we observed, early in the
-morning and late in the afternoon. We have confirmed, by inspecting
-images from the sky cam, that we have duration of elevated irradiance,
-either due to the clearness of the atmosphere, or some interferences by
-reflections on nearby bright surfaces. Although, these cases may mask
-some of the CE events. The actual CE events, produce higher irradiance
-and thus are identified as such. As a side effect, the reported OIR will
-be slight underestimated for those SZAs, but the overall contribution of
-those cases to the total daily energy, is minimal due the low
-occurrences and the lower irradiances.
-
-\ldots\ldots\ldots\ldots.
-
-These selections have some subjectivity, as the definition of clear sky,
-is depended on the intended usage. Our main focus is to be able to
-identify the OIR created by the clouds. Although, the aerosols and water
-vapor are always present and can not be completely removed. The effect
-of the different clearness levels
-
-\ldots\ldots\ldots\ldots.
+The definition of the CE events with this method, has a level of
+subjectivity. The actual clear sky irradiance, is not known, and can
+only be approximated. Although, because our main focus is to be able to
+identify the OIR created by the clouds, we expect that we were able to
+detect all the major events of OIR due to CE. Where, minor enhancements
+may be not detected, are less significant for most of our results.
 
 Another aspect of the CE events, that is often reported in the relative
 bibliography, are cases of extreme cloud enhancement (ECE). These are
-cases of CE where the measured intensity of the irradiance, exceeds the
+cases of CE, where the measured intensity of the irradiance, exceeds the
 equivalent TSI on the top of the atmosphere, and satisfy the
 Equation\nobreakspace{}\ref{eq:ECE}. \begin{equation}
 \text{ECE}: \text{GHI}_\text{i} > \cos(\theta) \times E_{i\odot} / r_{i}^2
@@ -476,6 +459,13 @@ Equation\nobreakspace{}\ref{eq:ECE}. \begin{equation}
 \end{equation} where: \(\theta\) the solar zenith angle, \(E_{\odot}\)
 the solar constant, \(r\) the Sun -- Earth distance, and \(i\) each of
 the one-minute observation.
+
+To give a better understanding of the CE identification procedure, we
+included an example of the CE identification for a selected day \ldots.
+appendix\ldots. where the use of the reference and the threshold are
+shown, along with the relevant measurements.
+
+Similar we provide yearly plots
 
 \ldots\ldots.
 
