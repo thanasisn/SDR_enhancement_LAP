@@ -345,19 +345,19 @@ ST_G0[, GLB_diff.sum  := GLB_diff.sum * 60 / Energy_Div]
 ST_G0[, wattGLB.sum   := wattGLB.sum  * 60 / Energy_Div]
 
 
-##  Groups with one gap  -------------------------------------------------------
-ST_G1 <- DATA[!is.na(C1Grp1),
-              unlist(c(lapply(.SD, enhanc.summary, na.rm = FALSE),
-                       Date = min(Date)),
-                     recursive = FALSE),
-              .SDcols = my.cols.gr,
-              by = .(Group1 = C1Grp1)]
-ST_G1$Date <- as.POSIXct(ST_G1$Date, origin = "1970-01-01")
-
-## convert sum Irradiance to energy
-## Σ(W/m^2) * 60 s = J/m^2
-ST_G1[, GLB_diff.sum  := GLB_diff.sum * 60 / Energy_Div]
-ST_G1[, wattGLB.sum   := wattGLB.sum  * 60 / Energy_Div]
+# ##  Groups with one gap  -------------------------------------------------------
+# ST_G1 <- DATA[!is.na(C1Grp1),
+#               unlist(c(lapply(.SD, enhanc.summary, na.rm = FALSE),
+#                        Date = min(Date)),
+#                      recursive = FALSE),
+#               .SDcols = my.cols.gr,
+#               by = .(Group1 = C1Grp1)]
+# ST_G1$Date <- as.POSIXct(ST_G1$Date, origin = "1970-01-01")
+#
+# ## convert sum Irradiance to energy
+# ## Σ(W/m^2) * 60 s = J/m^2
+# ST_G1[, GLB_diff.sum  := GLB_diff.sum * 60 / Energy_Div]
+# ST_G1[, wattGLB.sum   := wattGLB.sum  * 60 / Energy_Div]
 
 
 

@@ -600,27 +600,29 @@ for (ii in 1:nrow(vec_days)) {
              ylab = expression(Watt/m^2), xlab = "Time (UTC)")
         ## Global
         lines(temp$Date, temp$wattGLB, col = "green")
+
         ## Direct
         # lines(temp$Date, temp$wattHOR, col = "blue")
+
         ## TSI on ground
         lines(temp$Date, temp$ETH)
 
         ## Active model reference
-        lines(temp[, get(paste0(SelEnhanc,"_ref")), Date], col = "red" )
+        lines(temp[, get(paste0(SelEnhanc, "_ref")), Date], col = "red" )
 
         ## A test reference
         # lines(temp[, Enhanc_C_4_ref_test, Date], col = "cyan" )
 
         ## CS libradtran reference
-        lines(temp[, get(paste0(csmodel, ".glo")), Date], col = "magenta" )
+        # lines(temp[, get(paste0(csmodel, ".glo")), Date], col = "magenta" )
 
         ## CS libradtran reference
         # lines(temp[, CS_low * TSI_Kurudz_factor , Date], col = "pink" )
 
-        ## add sza axis
-        aaa <- temp[Date %in% c(min(Date), (pretty(Date, 10) + 30), max(Date))  , ]
-        axis(1, at = aaa$Date, labels = round(aaa$SZA,1),
-             line = 1.2, lwd = 0, lwd.ticks = 0, cex.axis = 0.8)
+        # ## add sza axis
+        # aaa <- temp[Date %in% c(min(Date), (pretty(Date, 10) + 30), max(Date))  , ]
+        # axis(1, at = aaa$Date, labels = round(aaa$SZA,1),
+        #      line = 1.2, lwd = 0, lwd.ticks = 0, cex.axis = 0.8)
 
         ## Enchantment cases
         points(temp[get(SelEnhanc) == TRUE, wattGLB, Date], col = "red")
@@ -629,16 +631,25 @@ for (ii in 1:nrow(vec_days)) {
         points(temp[TYPE == "Cloud", wattGLB, Date], col = "blue", pch = 3, cex = 0.3)
 
         ## Decorations
-        title(main = paste(as.Date(aday, origin = "1970-01-01"), temp[get(SelEnhanc) == TRUE, .N], temp[TYPE == "Cloud", .N], vec_days$Descriprion[ii]))
+        # title(main = paste(as.Date(aday, origin = "1970-01-01"), temp[get(SelEnhanc) == TRUE, .N], temp[TYPE == "Cloud", .N], vec_days$Descriprion[ii]))
+        title(main = paste(as.Date(aday, origin = "1970-01-01")))
 
         legend("topleft",
-                     c(  "GHI","GHI threshold","TSI on horizontal level","GHI Enhancement event",paste0(csmodel, ".glo"),"CloudsID"),
-               col = c("green",          "red",                  "black",                  "red",              "magenta",    "blue"),
-               pch = c(     NA,             NA,                       NA,                     1 ,                     NA,         3),
-               lty = c(      1,              1,                        1,                    NA ,                      1,        NA),
+                     c(  "GHI","CE threshold","TSI on ground","Cloud Enhancement","Clouds IDs"),
+               col = c("green",         "red",        "black",              "red",      "blue"),
+               pch = c(     NA,            NA,             NA,                 1 ,           3),
+               lty = c(      1,             1,              1,                NA ,          NA),
                bty = "n",
                cex = 0.8
         )
+        # legend("topleft",
+        #              c(  "GHI","CE threshold","TSI on horizontal plane","Cloud Enhancement", paste0(csmodel, ".glo"),"Clouds ID"),
+        #        col = c("green",          "red",                  "black",                  "red",              "magenta",    "blue"),
+        #        pch = c(     NA,             NA,                       NA,                     1 ,                     NA,         3),
+        #        lty = c(      1,              1,                        1,                    NA ,                      1,        NA),
+        #        bty = "n",
+        #        cex = 0.8
+        # )
 #         legend("topleft",
 #                c(  "GHI", "DNI","GHI threshold","TSI on horizontal level","GHI Enhancement event",paste0(csmodel, ".glo"),"CloudsID"),
 #                col = c("green","blue",          "red",                  "black",                  "red",              "magenta",    "blue"),
@@ -720,7 +731,7 @@ for (ii in 1:nrow(vec_days)) {
         # plot(temp$Date, temp$GLB_ench)
         # plot(temp$Date, temp$GLB_diff)
         cat(' \n \n')
-
+# stop()
 
     }
 }
@@ -816,13 +827,13 @@ DATA[, C1G0 := get(SelEnhanc)]
 DATA[, C1Grp0 := rleid(c(NA,diff(cumsum(C1G0))))]
 DATA[C1G0 == FALSE, C1Grp0 := NA]
 
-## __ Allow one gap group  -----------------------------------------------------
-DATA[shift(C1G1, n = +1)[[1L]] == TRUE &
-     shift(C1G1, n = -1)[[1L]] == TRUE &
-     C1G1 == FALSE,
-     C1G1 := TRUE]
-DATA[, C1Grp1 := rleid(c(NA,diff(cumsum(C1G1))))]
-DATA[C1G1 == FALSE, C1Grp1 := NA]
+# ## __ Allow one gap group  -----------------------------------------------------
+# DATA[shift(C1G1, n = +1)[[1L]] == TRUE &
+#      shift(C1G1, n = -1)[[1L]] == TRUE &
+#      C1G1 == FALSE,
+#      C1G1 := TRUE]
+# DATA[, C1Grp1 := rleid(c(NA,diff(cumsum(C1G1))))]
+# DATA[C1G1 == FALSE, C1Grp1 := NA]
 
 ## For bigger gaps should use a similar method with the one gap
 ## for the pattern TTFFTT -> TTTTTT
