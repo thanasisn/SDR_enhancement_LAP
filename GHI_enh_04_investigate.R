@@ -420,11 +420,11 @@ ggplot(data = ST_G0, aes(x = GLB_ench.N)) +
   # xlab(bquote(.(varname("GLB_diff")) ~ group("[", W/m^2,"]"))) +
   xlab("Duration of enhancement group [min]") +
   ylab("Relative frequency [%]") +
-  labs(caption = paste("Bin width:", binwidth, "min")) +
-  inset_element(p1, left = 0.3, bottom = 0.3, right = 1, top = 1,
-                align_to = "plot")
+  labs(caption = paste("Bin width:", binwidth, "min"))
+#   inset_element(p1, left = 0.3, bottom = 0.3, right = 1, top = 1,
+#                 align_to = "plot")
 
-
+ST_G0[GLB_ench.N <= 5, .N] / ST_G0[, .N]
 
 
 ggplot(data = ST_G0, aes(x = GLB_ench.N)) +
