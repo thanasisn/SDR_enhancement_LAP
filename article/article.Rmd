@@ -562,35 +562,33 @@ yearlyCE <- yearlytrends[DATA == "ST_E_yearly"]
 
 ```
 
-We computed the daily trend of the mean OIR of CE <!--
-(Figure\nobreakspace{}\ref{fig:CEmeanDaily}), --> using a first-order autoregressive
-model with a lag of one day, with the 'maximum likelihood' fitting method
-[@Gardner1980; @Jones1980] by implementing the function 'arima' from the library
-'stats' of the R programming language [@RCT2023]. The trends are reported together
-with the $2\sigma$ error.  We observed a negligible change of
+We computed the daily trend of the mean OIR of CE
+<!-- (Figure\nobreakspace{}\ref{fig:CEmeanDaily}), -->
+using a first-order autoregressive
+model with lag of 1 day, with the 'maximum likelihood' fitting method [@Gardner1980;
+@Jones1980] by implementing the function 'arima' from the library 'stats' of the R
+programming language [@RCT2023]. The trends are reported together with the $2\sigma$
+error.  We observe an negligible change of
 $`r round(dailyCE[var == "GLB_diff.mean", Tmod_Estimate], 3)`\pm
 `r round(2 * dailyCE[var == "GLB_diff.mean", Tmod_Std..Error], 3)`\,W/m^2/y$
 on the mean OIR.
+
 <!-- ```{r CEmeanDaily, echo=FALSE, fig.cap="Daily mean values and trend of the CE over irradiance."} -->
 <!-- knitr::include_graphics("../images/P_daily_trend-1.png") -->
 <!-- ``` -->
-Although, the previous result is closer to the raw data, we preferred to present the
-annual statistics, that give a more clear picture about the long term CE trends.
-Hence, we calculated the annual values from the one-minute measurements.  Despite the
-very weak statistical significance of the mean OIR trend, the annual number of CE
-occurrences shows a steady increase of
+
+Although, the previous result is closer to the raw data, we preferred to present
+the annual statistics, that give a more clear picture about the long term CE
+trends. Hence, we calculated the annual values from the one-minute measurements.
+Although, the trend of the mean OIR has very weak statistical significance, the
+annual number of CE occurrences, shows a steady increase of
 $`r round(yearlyCE[var == "GLB_diff.N", slope], 1)`\pm
 `r round(2 * yearlyCE[var == "GLB_diff.N", slope.sd], 1)`\,\text{cases}/y$
 (Figure\nobreakspace{}\ref{fig:P-energy-N}).
-Subsequently, the mean annual energy of the CE events is increasing with a rate of
-$`r round(yearlyCE[var == "GLB_diff.sum", slope], 1)`\pm
-`r round(2 * yearlyCE[var == "GLB_diff.sum", slope.sd], 1)`\,kJ/y$
-(Figure\ \ref{fig:P-energy-sum}), witch follows the trend of the number of
-occurrences.  We have to note that the energy related to the CE events can not be
-directly linked with the total energy balance of the atmosphere. The net solar
-radiation of the region is not increased, but rather redistributed through the CE
-events.  This also is depicted by the "instantaneous" values of irradiance (average
-over one minute), that can exceed the equivalent clear sky irradiance to a
+We have to note that the energy related to the CE events can not be directly
+linked with the total energy balance on the atmosphere. The net solar radiation of
+the region is not increased, but rather redistributed through the CE events. Resulting,
+instantaneous values, that can exceed the equivalent clear sky irradiance to a
 considerable level.
 
 <!-- $`r round(yearlyCE[var == "GLB_diff.mean", slope], 2)`\pm -->
@@ -620,6 +618,11 @@ considerable level.
 knitr::include_graphics("../images/P_energy-6.png")
 ```
 
+Subsequently, the mean annual increase of energy due to CE events is
+$`r round(yearlyCE[var == "GLB_diff.sum", slope], 1)`\pm
+`r round(2 * yearlyCE[var == "GLB_diff.sum", slope.sd], 1)`\,kJ/y$
+(Figure\ \ref{fig:P-energy-sum}), witch follows the trend of the number of
+occurrences.
 
 <!-- ```{r echo=FALSE, fig.cap="Trend of the yearly excess energy due to CE over irradiance"} -->
 <!-- knitr::include_graphics("../images/energy-1.png") -->
