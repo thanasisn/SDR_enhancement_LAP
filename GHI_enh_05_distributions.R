@@ -364,6 +364,42 @@ ggplot(data = DATA[GLB_diff > 0], aes(x = GLB_diff)) +
 
 
 
+## Extreme CE distribution  -------
+
+#+ P-extreme-distribution, echo=F, include=T, results="asis"
+
+binwidth = 10
+ggplot(data = DATA[wattGLB > ETH], aes(x = GLB_diff)) +
+  geom_histogram(aes(y = (after_stat(count))/sum(after_stat(count)) * 100),
+                 binwidth = binwidth,
+                 boundary = 0,
+                 fill = "lightblue",
+                 color    = "black") +
+  xlab(bquote("Over Irradiance" ~ group("[", W/m^2,"]"))) +
+  ylab("Relative frequency [%]") +
+  labs(caption = bquote(paste("Bin width: ", .(binwidth)) ~ group("[", W/m^2,"]"))) #  +
+# inset_element(p1, left = 0.4, bottom = 0.4, right = 1, top = 1,
+#               align_to = "plot")
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 #' **END**
 #+ include=T, echo=F
