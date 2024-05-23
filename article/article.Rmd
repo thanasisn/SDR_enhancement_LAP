@@ -648,7 +648,7 @@ These seasonality is a combinations of the clouds occurrences, and the relevant
 position of the sun during the year. Unfortunately, the lack of detailed data of cloud
 formation, type and location is not allowing further analysis.
 
-```{r relative-month-occurancies, echo=FALSE, fig.cap="Statistics of the number of CE occurancies for each month. The box represents the values of the low $25\\,\\%$ percentile to $75\\,\\%$ percentile, where the thick horizontal line inside is the mean, the verical lines extend to the macimum and minimum vales, the dots are outlier values, and the rhombus is the mean."}
+```{r relative-month-occurancies, echo=FALSE, fig.cap="Seasonal statistics of the number of CE occurancies for each month, normalized to the maximum occurancies on June. The box represents the values of the low $25\\,\\%$ percentile to $75\\,\\%$ percentile, where the thick horizontal line inside is the mean, the verical lines extend to the macimum and minimum vales, the dots are outlier values, and the rhombus is the mean."}
 knitr::include_graphics("../images/clim_CE_month_norm_MAX_median_N-2.png")
 ```
 <!--
@@ -688,29 +688,29 @@ knitr::include_graphics("../images/P-relative-distribution-diff-1.png")
 In order to further study the characteristics of the CE events, we grouped the single
 minute CE events to continuous CE groups (CEG). Thus, a CEG consists of one or more
 successive CE cases, and can represent cloud enhancement conditions spanning a
-duration of multiple minutes.  We have identified `r ST_G0[, .N]` groups, where
-the group with the longest duration lasted
+duration of multiple minutes.  We have identified `r ST_G0[, .N]` groups, where the
+group with the longest duration lasted
 `r ST_G0[, max(GLB_diff.N)]` minutes on
 `r strftime(ST_G0[which.max(GLB_diff.N), Date], "%d\\ %B %Y")`.
 By examining the frequency distribution of the CEG durations
 (Figure\nobreakspace{}\ref{fig:ceg-duration-distribution}), we can conclude, that
-although we detected some CEG with durations longer than an hour, about $80\,\%$ of the CEG have a duration of less than 5 minutes.
+although we detected some CEG with durations longer than an hour, about $80\,\%$ of
+the CEG have a duration of less than 5 minutes.
 
 
 ```{r ceg-duration-distribution, echo=FALSE, fig.cap="Distribution of CE groups duration in minutes."}
 knitr::include_graphics("../images/groups-1.png")
 ```
 
+The relation between the duration and the mean OIR intensity of the groups have been
+studied (Figure\nobreakspace{}\ref{fig:group-2d}). We observe that the GCE events
+tend to have either long duration, or large intensity, events with strong enhancement
+and long duration are very rare. A similar result on this relation, have been also
+reported by @Zhang2018, on a study using a far higher sampling rate than ours.
 
-
-
-... @Zhang2018 ....
-
-```{r echo=FALSE, fig.cap="Relation of mean over irradiance and CE group duration"}
+```{r group-2d, echo=FALSE, fig.cap="Relation of mean over irradiance and CE group duration"}
 knitr::include_graphics("../images/P-groups-bin2d-1.png")
 ```
-
-
 
 <!-- ```{r echo=FALSE, fig.cap="Relation of mean over irradiance and CE group duration"} -->
 <!-- knitr::include_graphics("../images/groups-4.png") -->
@@ -725,9 +725,10 @@ knitr::include_graphics("../images/P-groups-bin2d-1.png")
 
 ## Extreme CE above TSI
 
-Another aspect of the CE events are the cases when the irradiance is above the
-expected irradiance on top of the atmosphere, we have defined this as ECE
-(Equation\nobreakspace{}\ref{eq:ECE}).
+A characteristic of the CE events that is commonly reported and has some significance
+on the solar energy production infrastructure are the extreme CE events (ECE). Where
+solar irradiance exceeds the expected irradiance on top of the atmosphere, we have
+defined this as ECE (Equation\nobreakspace{}\ref{eq:ECE}).
 
 -  max value ECE
   relative to other works max values
@@ -735,25 +736,22 @@ expected irradiance on top of the atmosphere, we have defined this as ECE
 Analogous to Figure\nobreakspace{}\ref{fig:relative-month-occurancies} we have
 computed the distribution of the number of occurrences of ECE events by month in
 Figure\nobreakspace{}\ref{fig:relative-month-occurancies-ECE}. Here the most active
-period is in the spring (March -- May), followed by the months of June, September and
-October.
+period is in the spring and the start of the summer (March -- June), followed by the
+late fall (Septemcer and October).
 
 .......
 
-```{r relative-month-occurancies-ECE, echo=FALSE, fig.cap="Distribution of "}
+```{r relative-month-occurancies-ECE, echo=FALSE, fig.cap="Seasonal statistics of the number of ECE occurancies for each month, normalized to the maximum occurancies on March. The box represents the values of the low $25\\,\\%$ percentile to $75\\,\\%$ percentile, where the thick horizontal line inside is the mean, the verical lines extend to the macimum and minimum vales, the dots are outlier values, and the rhombus is the mean."}
 knitr::include_graphics("../images/clim_ECE_month_norm_MAX_median_N-2.png")
 ```
-
 
 <!-- ```{r echo=FALSE, fig.cap="Distribution of the number of ECE cases"} -->
 <!-- knitr::include_graphics("../images/climECEmonth-1.png") -->
 <!-- ``` -->
 
-
 ```{r echo=FALSE, fig.cap="Distribution of ECE above 'clear sky' reference"}
 knitr::include_graphics("../images/extremedistributions-2.png")
 ```
-
 
 <!-- ```{r echo=FALSE, fig.cap="Distribution of ECE Irradiance above 'TSI'"} -->
 <!-- knitr::include_graphics("../images/extremedistributions-4.png") -->
@@ -780,6 +778,14 @@ knitr::include_graphics("../images/extremedistributions-2.png")
 
 
 # Discussion and conclusions
+
+
+Created a clear sky approximation and a long term change representation for a period of 30 years.
+
+Identify CE events and found a trend on .....
+The climatology of CE occurrences over the whole period and
+the magnitude of the CE events.
+We estabished the occurances of extreme CE events ...
 
 
 Compare to other location stats.
