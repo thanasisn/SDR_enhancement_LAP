@@ -786,6 +786,12 @@ Identify CE events and found a trend on .....
 The climatology of CE occurrences over the whole period and
 the magnitude of the CE events.
 We estabished the occurances of extreme CE events ...
+The characteristic of the duration of "continuous" CE events.
+with their magnitude occurnacies and climatology
+
+Our find have similarities with other mediterranean / europe sites.
+
+The interaction of GHI with the clouds through this period shows a systematic change.
 
 
 Compare to other location stats.
