@@ -486,25 +486,28 @@ clear sky threshold, on 28~October 2016.
 \subsection{Trends}\label{trends}}
 
 We computed the daily trend of the mean OIR of CE using a first-order
-autoregressive model with lag of 1 day, with the `maximum likelihood'
-fitting method \citep{Gardner1980, Jones1980} by implementing the
-function `arima' from the library `stats' of the R programming language
-\citep{RCT2023}. The trends are reported together with the \(2\sigma\)
-error. We observe an negligible change of \(0.087\pm 0.08\,W/m^2/y\) on
-the mean OIR.
-
-Although, the previous result is closer to the raw data, we preferred to
-present the annual statistics, that give a more clear picture about the
-long term CE trends. Hence, we calculated the annual values from the
-one-minute measurements. Although, the trend of the mean OIR has very
-weak statistical significance, the annual number of CE occurrences,
-shows a steady increase of \(45.6\pm 21.9\,\text{cases}/y\)
-(Figure\nobreakspace{}\ref{fig:P-energy-N}). We have to note that the
-energy related to the CE events can not be directly linked with the
-total energy balance on the atmosphere. The net solar radiation of the
-region is not increased, but rather redistributed through the CE events.
-Resulting, instantaneous values, that can exceed the equivalent clear
-sky irradiance to a considerable level.
+autoregressive model with a lag of one day, with the `maximum
+likelihood' fitting method \citep{Gardner1980, Jones1980} by
+implementing the function `arima' from the library `stats' of the R
+programming language \citep{RCT2023}. The trends are reported together
+with the \(2\sigma\) error. We observed a negligible change of
+\(0.087\pm 0.08\,W/m^2/y\) on the mean OIR. Although, the previous
+result is closer to the raw data, we preferred to present the annual
+statistics, that give a more clear picture about the long term CE
+trends. Hence, we calculated the annual values from the one-minute
+measurements. Despite the very weak statistical significance of the mean
+OIR trend, the annual number of CE occurrences shows a steady increase
+of \(45.6\pm 21.9\,\text{cases}/y\)
+(Figure\nobreakspace{}\ref{fig:P-energy-N}). Subsequently, the mean
+annual energy of the CE events is increasing with a rate of
+\(116.9\pm 67.8\,kJ/y\) (Figure~\ref{fig:P-energy-sum}), witch follows
+the trend of the number of occurrences. We have to note that the energy
+related to the CE events can not be directly linked with the total
+energy balance of the atmosphere. The net solar radiation of the region
+is not increased, but rather redistributed through the CE events. This
+also is depicted by the ``instantaneous'' values of irradiance (average
+over one minute), that can exceed the equivalent clear sky irradiance to
+a considerable level.
 
 \begin{figure}
 
@@ -515,10 +518,6 @@ sky irradiance to a considerable level.
 \caption{Trend of yearly CE number of occurancies.}\label{fig:P-energy-N}
 \end{figure}
 
-Subsequently, the mean annual increase of energy due to CE events is
-\(116.9\pm 67.8\,kJ/y\) (Figure~\ref{fig:P-energy-sum}), witch follows
-the trend of the number of occurrences.
-
 \begin{figure}
 
 {\centering \includegraphics[width=0.5\linewidth]{../images/P_energy-5} 
@@ -528,18 +527,18 @@ the trend of the number of occurrences.
 \caption{Trend of the yearly excess energy due to CE over irradiance}\label{fig:P-energy-sum}
 \end{figure}
 
-\hypertarget{climatology}{%
-\subsection{Climatology}\label{climatology}}
+\hypertarget{ce-climatology}{%
+\subsection{CE Climatology}\label{ce-climatology}}
 
 Another interesting aspect of the CE cases, is their seasonal cycle. In
 Figure\nobreakspace{}\ref{fig:relative-month-occurancies}, we have the
 box plot (whisker plot), where the values have been normalized by the
-highest median value, that occurs in May. Although the number of
+highest median value, that occurs on June. Although the number of
 occurrences has a wide spread throughout the study period, the most
 active period of CE occurrences is during May and June. During the
 Winter (December -- February) the CE cases are about \(25\,\%\) of the
-maximum. The rest of the months the occurrences ramp between the maximum
-and minimum.
+maximum. For the rest months the occurrences gradually ramp between the
+maximum and minimum.
 
 \begin{figure}
 
@@ -672,8 +671,6 @@ Climatology results
 
 \caption{Example of the relation of the measured GHI versus the reference clear sky irradiance for the year 2005, where the intesity of the detected over irradianse (OIR) is color coded.}\label{fig:example-year}
 \end{figure}
-
-\FloatBarrier
 
 \bibliography{bibliography.bib}
 
