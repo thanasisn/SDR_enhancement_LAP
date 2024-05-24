@@ -730,16 +730,16 @@ on the solar energy production infrastructure are the extreme CE events (ECE). W
 solar irradiance exceeds the expected irradiance on top of the atmosphere, we have
 defined this as ECE (Equation\nobreakspace{}\ref{eq:ECE}).
 
--  max value ECE
-  relative to other works max values
+<!-- -  max value ECE -->
+<!--   relative to other works max values -->
 
 Analogous to Figure\nobreakspace{}\ref{fig:relative-month-occurancies} we have
 computed the distribution of the number of occurrences of ECE events by month in
-Figure\nobreakspace{}\ref{fig:relative-month-occurancies-ECE}. Here the most active
-period is in the spring and the start of the summer (March -- June), followed by the
-late fall (Septemcer and October).
-
-.......
+Figure\nobreakspace{}\ref{fig:relative-month-occurancies-ECE}. The most active period
+for ECE events is in the spring and the start of the summer (March -- June), followed
+by a period in the late fall (September and October).  This is probably an effect of
+the weather characteristics of those periods where, there are continuous alternations
+between clear sky periods and clouds.
 
 ```{r relative-month-occurancies-ECE, echo=FALSE, fig.cap="Seasonal statistics of the number of ECE occurancies for each month, normalized to the maximum occurancies on March. The box represents the values of the low $25\\,\\%$ percentile to $75\\,\\%$ percentile, where the thick horizontal line inside is the mean, the verical lines extend to the macimum and minimum vales, the dots are outlier values, and the rhombus is the mean."}
 knitr::include_graphics("../images/clim_ECE_month_norm_MAX_median_N-2.png")
@@ -749,15 +749,15 @@ knitr::include_graphics("../images/clim_ECE_month_norm_MAX_median_N-2.png")
 <!-- knitr::include_graphics("../images/climECEmonth-1.png") -->
 <!-- ``` -->
 
-```{r echo=FALSE, fig.cap="Distribution of ECE above 'clear sky' reference"}
-knitr::include_graphics("../images/extremedistributions-2.png")
+```{r echo=FALSE, fig.cap="Distribution of ECE above clear sky threshold."}
+knitr::include_graphics("../images/P-extreme-distribution-1.png")
 ```
 
 <!-- ```{r echo=FALSE, fig.cap="Distribution of ECE Irradiance above 'TSI'"} -->
 <!-- knitr::include_graphics("../images/extremedistributions-4.png") -->
 <!-- ``` -->
 
--   SZA
+<!-- -   SZA -->
 
 
 
@@ -780,10 +780,13 @@ knitr::include_graphics("../images/extremedistributions-2.png")
 # Discussion and conclusions
 
 
-Created a clear sky approximation and a long term change representation for a period of 30 years.
+By creating a clear sky approximation of the GHI, which can represent the long- and
+short-term variation of the expected clear sky GHI, we were able to identify cases of 
+CE events.
+By analysing the CE cases we found 
 
-Identify CE events and found a trend on .....
 The climatology of CE occurrences over the whole period and
+
 the magnitude of the CE events.
 We estabished the occurances of extreme CE events ...
 The characteristic of the duration of "continuous" CE events.
