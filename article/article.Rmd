@@ -580,11 +580,11 @@ Hence, we calculated the annual values from the one-minute measurements.  Despit
 very weak statistical significance of the mean OIR trend, the annual number of CE
 occurrences shows a steady increase of
 $`r round(yearlyCE[var == "GLB_diff.N", slope], 1)`\pm
-`r round(2 * yearlyCE[var == "GLB_diff.N", slope.sd], 1)`\,\text{cases}/y$
+`r round(2 * yearlyCE[var == "GLB_diff.N", slope.sd], 1)`\,\text{cases}/\text{year}$
 (Figure\nobreakspace{}\ref{fig:P-energy-N}).
 Subsequently, the mean annual energy of the CE events is increasing with a rate of
 $`r round(yearlyCE[var == "GLB_diff.sum", slope], 1)`\pm
-`r round(2 * yearlyCE[var == "GLB_diff.sum", slope.sd], 1)`\,kJ/y$
+`r round(2 * yearlyCE[var == "GLB_diff.sum", slope.sd], 1)`\,\text{kj}/\text{year}$
 (Figure\ \ref{fig:P-energy-sum}), witch follows the trend of the number of CE
 occurrences.  We have to note that the energy related to the CE events can not be
 directly linked with the total energy balance of the atmosphere. The net solar
@@ -783,25 +783,35 @@ knitr::include_graphics("../images/P-extreme-distribution-1.png")
 By creating a clear sky approximation of the GHI, which can represent the long- and
 short-term variation of the expected clear sky GHI, we were able to identify cases of 
 CE events.
-By analysing the CE cases we found 
+By analyzing the CE cases we found an increase of 
+$`r round(yearlyCE[var == "GLB_diff.N", slope], 1)`\pm
+`r round(2 * yearlyCE[var == "GLB_diff.N", slope.sd], 1)`\,\text{cases}/\text{year}$,
+with the
+mean annual total energy of the CE events increasing with a rate of
+$`r round(yearlyCE[var == "GLB_diff.sum", slope], 1)`\pm
+`r round(2 * yearlyCE[var == "GLB_diff.sum", slope.sd], 1)`\,\text{kj}/\text{year}$.
+The most active season of CE events over Thessaloniki is concentrated on early
+summer, on May and June.
 
-The climatology of CE occurrences over the whole period and
+The magnitude of the ECE events doesn't exceeds the values reported from sites with
+more favorable conditions for the phenomenon. Although, the climatological
+characteristic of the ECE events, showed that the most active months are spread on
+half of the year (March -- June and September and October).
 
-the magnitude of the CE events.
-We estabished the occurances of extreme CE events ...
-The characteristic of the duration of "continuous" CE events.
-with their magnitude occurnacies and climatology
+We find that CE conditions can have a duration of more than an hour in rare
+cases, with the bulk of the cases having a duration under 5 minutes.
 
 Our find have similarities with other mediterranean / europe sites.
 
-The interaction of GHI with the clouds through this period shows a systematic change.
+An interpretation of CE trends, shows that the interaction of GHI with the clouds
+through this 30 year period, is a dynamic phenomenon that's needs further investigation.
+Although, to approach it, we need more long term observations of AOD and clouds
+characteristics.
 
 
 Compare to other location stats.
 max, ECE, distributions ....
 
-
-Climatology results
 
 
 

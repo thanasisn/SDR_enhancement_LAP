@@ -1021,7 +1021,7 @@ grob <- grobTree(
     label = TeX(
       paste("Trend:  $", round(lmY2$coefficients[2], 1),
             "\\pm",      round(2 * d2[2,2],          1),   ## show 2 sigma
-            "\\,/year$")),
+            "\\,cases/year$")),
     x = 0.95,  y = 0.05, hjust = 1,
     gp = gpar(col = "black", fontsize = 13, fontface= "bold")
   ))
