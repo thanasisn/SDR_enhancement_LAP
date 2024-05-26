@@ -16,10 +16,10 @@ author:
     footnote: 2
 address:
   - code:         LAP
-    organization: Laboratory of Atmospheric Physics, A.U.Th.
-    addressline:  1 main street
+    organization: Laboratory of Atmospheric Physics, Physics Department, Aristotle University of Thessaloniki
+    # addressline:  1 main street
     city:         Thessaloniki
-    postcode:     123456
+    postcode:     54124
     country:      Greece
   - code:         Another University
     organization: Department
@@ -45,8 +45,10 @@ header-includes:
   
   
 keywords: 
-  - keyword1
-  - keyword2
+  - cloud enhancement
+  - total solar radiation
+  - global horizonta irradiance
+  - over irradiance
 
 journal:        "An awesome journal"
 date:           "`r Sys.Date()`"
@@ -569,7 +571,7 @@ model with a lag of one day, with the 'maximum likelihood' fitting method
 'stats' of the R programming language [@RCT2023]. The trends are reported together
 with the $2\sigma$ error.  We observed a negligible change of
 $`r round(dailyCE[var == "GLB_diff.mean", Tmod_Estimate], 3)`\pm
-`r round(2 * dailyCE[var == "GLB_diff.mean", Tmod_Std..Error], 3)`\,W/m^2/y$
+`r round(2 * dailyCE[var == "GLB_diff.mean", Tmod_Std..Error], 3)`\,\text{W}/\text{m}^2/\text{year}$
 on the mean OIR.
 <!-- ```{r CEmeanDaily, echo=FALSE, fig.cap="Daily mean values and trend of the CE over irradiance."} -->
 <!-- knitr::include_graphics("../images/P_daily_trend-1.png") -->
@@ -670,8 +672,11 @@ The distribution of the CE over irradiance intensity follows an exponential decl
 Figure\nobreakspace{}\ref{fig:ovir-distribution}, where there is an inverse relation
 between the events frequency and events intensity. This is expected as, the stronger
 the CE events become, the rarer the particular atmospheric and sun conditions will
-occur. This is indicative to the magnitude and probability of the expected OIRs
-events over Thessaloniki.
+occur. This fact is indicative to the magnitude and probability of the expected OIRs
+events over Thessaloniki. Similar distribution of CE occurrences have been reported
+by @Vamvakas2020, where the magnitude of OIR is 
+higher due to the location of the the city of Patras, $2.5^\circ$ closer to the equator.
+
 
 ```{r ovir-distribution, echo=FALSE, fig.cap="Distribution of CE over irradiance magnitude."}
 knitr::include_graphics("../images/P-relative-distribution-diff-1.png")
@@ -749,7 +754,12 @@ knitr::include_graphics("../images/clim_ECE_month_norm_MAX_median_N-2.png")
 <!-- knitr::include_graphics("../images/climECEmonth-1.png") -->
 <!-- ``` -->
 
-```{r echo=FALSE, fig.cap="Distribution of ECE above clear sky threshold."}
+The distribution of the ECE events (Figure\nobreakspace{}\ref{fig:P-extreme-distribution}), shows that there are rare cases where the OIR can exceed the 
+TSI even more than $400\,\text{W}/\text{m}^2$, with the $75\,\%$ of the cases to be below $200\,\text{W}/\text{m}^2$. Similar to CE cases, the  distribution of ECE have a similar pattern
+with the results of @Vamvakas2020, with the difference that the OIR values are lower fro Thessaloniki.
+
+
+```{r P-extreme-distribution, echo=FALSE, fig.cap="Distribution of ECE above clear sky threshold, for cases that are exceeding the TSI."}
 knitr::include_graphics("../images/P-extreme-distribution-1.png")
 ```
 
@@ -794,23 +804,22 @@ The most active season of CE events over Thessaloniki is concentrated on early
 summer, on May and June.
 
 The magnitude of the ECE events doesn't exceeds the values reported from sites with
-more favorable conditions for the phenomenon. Although, the climatological
+more favourable conditions for the phenomenon. Although, the climatological
 characteristic of the ECE events, showed that the most active months are spread on
 half of the year (March -- June and September and October).
-
-We find that CE conditions can have a duration of more than an hour in rare
+We found that CE conditions, can have a duration of more than an hour in rare
 cases, with the bulk of the cases having a duration under 5 minutes.
+Some of the characteristics of CE and ECE events we analysed,
+have strong similarities with results
+by @Vamvakas2020, for a city southern of Thessaloniki, with analogues differences, due to the 
+ higher intensity of the solar radiation.
 
-Our find have similarities with other mediterranean / europe sites.
 
 An interpretation of CE trends, shows that the interaction of GHI with the clouds
 through this 30 year period, is a dynamic phenomenon that's needs further investigation.
 Although, to approach it, we need more long term observations of AOD and clouds
 characteristics.
 
-
-Compare to other location stats.
-max, ECE, distributions ....
 
 
 

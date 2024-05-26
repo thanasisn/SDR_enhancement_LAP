@@ -100,9 +100,9 @@ authoryear]{elsarticle} %review=doublespace preprint=single 5p=2 column
   \fnref{2}}
    \ead{meleti@auth.gr} 
       \affiliation[LAP]{
-    organization={Laboratory of Atmospheric Physics,
-A.U.Th.},addressline={1 main
-street},city={Thessaloniki},postcode={123456},country={Greece},}
+    organization={Laboratory of Atmospheric Physics, Physics Department,
+Aristotle University of
+Thessaloniki},city={Thessaloniki},postcode={54124},country={Greece},}
     \affiliation[Another University]{
     organization={Department},addressline={A street
 29},city={Manchester,},postcode={2054 NX},state={State},country={The
@@ -117,8 +117,9 @@ Netherlands},}
   It consists of two paragraphs.
   \end{abstract}
     \begin{keyword}
-    keyword1 \sep 
-    keyword2
+    cloud enhancement \sep total solar radiation \sep global horizonta
+irradiance \sep 
+    over irradiance
   \end{keyword}
   
  \end{frontmatter}
@@ -491,13 +492,13 @@ likelihood' fitting method \citep{Gardner1980, Jones1980} by
 implementing the function `arima' from the library `stats' of the R
 programming language \citep{RCT2023}. The trends are reported together
 with the \(2\sigma\) error. We observed a negligible change of
-\(0.087\pm 0.08\,W/m^2/y\) on the mean OIR. Although, the previous
-result is closer to the raw data, we preferred to present the annual
-statistics, that give a more clear picture about the long term CE
-trends. Hence, we calculated the annual values from the one-minute
-measurements. Despite the very weak statistical significance of the mean
-OIR trend, the annual number of CE occurrences shows a steady increase
-of \(45.6\pm 21.9\,\text{cases}/\text{year}\)
+\(0.087\pm 0.08\,\text{W}/\text{m}^2/\text{year}\) on the mean OIR.
+Although, the previous result is closer to the raw data, we preferred to
+present the annual statistics, that give a more clear picture about the
+long term CE trends. Hence, we calculated the annual values from the
+one-minute measurements. Despite the very weak statistical significance
+of the mean OIR trend, the annual number of CE occurrences shows a
+steady increase of \(45.6\pm 21.9\,\text{cases}/\text{year}\)
 (Figure\nobreakspace{}\ref{fig:P-energy-N}). Subsequently, the mean
 annual energy of the CE events is increasing with a rate of
 \(116.9\pm 67.8\,\text{kj}/\text{year}\)
@@ -558,8 +559,11 @@ exponential decline Figure\nobreakspace{}\ref{fig:ovir-distribution},
 where there is an inverse relation between the events frequency and
 events intensity. This is expected as, the stronger the CE events
 become, the rarer the particular atmospheric and sun conditions will
-occur. This is indicative to the magnitude and probability of the
-expected OIRs events over Thessaloniki.
+occur. This fact is indicative to the magnitude and probability of the
+expected OIRs events over Thessaloniki. Similar distribution of CE
+occurrences have been reported by \citet{Vamvakas2020}, where the
+magnitude of OIR is higher due to the location of the the city of
+Patras, \(2.5^\circ\) closer to the equator.
 
 \begin{figure}
 
@@ -639,13 +643,22 @@ sky periods and clouds.
 \caption{Seasonal statistics of the number of ECE occurancies for each month, normalized to the maximum occurancies on March. The box represents the values of the low $25\,\%$ percentile to $75\,\%$ percentile, where the thick horizontal line inside is the mean, the verical lines extend to the macimum and minimum vales, the dots are outlier values, and the rhombus is the mean.}\label{fig:relative-month-occurancies-ECE}
 \end{figure}
 
+The distribution of the ECE events
+(Figure\nobreakspace{}\ref{fig:P-extreme-distribution}), shows that
+there are rare cases where the OIR can exceed the TSI even more than
+\(400\,\text{W}/\text{m}^2\), with the \(75\,\%\) of the cases to be
+below \(200\,\text{W}/\text{m}^2\). Similar to CE cases, the
+distribution of ECE have a similar pattern with the results of
+\citet{Vamvakas2020}, with the difference that the OIR values are lower
+fro Thessaloniki.
+
 \begin{figure}
 
 {\centering \includegraphics[width=0.5\linewidth]{../images/P-extreme-distribution-1} 
 
 }
 
-\caption{Distribution of ECE above clear sky threshold.}\label{fig:unnamed-chunk-3}
+\caption{Distribution of ECE above clear sky threshold, for cases that are exceeding the TSI.}\label{fig:P-extreme-distribution}
 \end{figure}
 
 \hypertarget{discussion-and-conclusions}{%
@@ -661,23 +674,21 @@ events over Thessaloniki is concentrated on early summer, on May and
 June.
 
 The magnitude of the ECE events doesn't exceeds the values reported from
-sites with more favorable conditions for the phenomenon. Although, the
+sites with more favourable conditions for the phenomenon. Although, the
 climatological characteristic of the ECE events, showed that the most
 active months are spread on half of the year (March -- June and
-September and October).
-
-We find that CE conditions can have a duration of more than an hour in
-rare cases, with the bulk of the cases having a duration under 5
-minutes.
-
-Our find have similarities with other mediterranean / europe sites.
+September and October). We found that CE conditions, can have a duration
+of more than an hour in rare cases, with the bulk of the cases having a
+duration under 5 minutes. Some of the characteristics of CE and ECE
+events we analysed, have strong similarities with results by
+\citet{Vamvakas2020}, for a city southern of Thessaloniki, with
+analogues differences, due to the higher intensity of the solar
+radiation.
 
 An interpretation of CE trends, shows that the interaction of GHI with
 the clouds through this 30 year period, is a dynamic phenomenon that's
 needs further investigation. Although, to approach it, we need more long
 term observations of AOD and clouds characteristics.
-
-Compare to other location stats. max, ECE, distributions \ldots.
 
 \hypertarget{appendix}{%
 \section*{Appendix}\label{appendix}}
