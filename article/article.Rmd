@@ -1,5 +1,5 @@
 ---
-title: Downward shortwave solar irradiance enhancement by clouds.
+title: Long term cloud enhancement events of global solar irradiance over Thessaloniki
 
 author:
   - name:        Athanasios N. Natsis
@@ -110,16 +110,40 @@ TSIinfo <- data.table(read.csv("~/MANUSCRIPTS/02_enhancement/figures/tbl_tsi_inf
                                header = TRUE))
 ```
 
+
+```{r loadtrends, echo=F, include=T, warning=FALSE, message=FALSE}
+dailytrends <- data.table(
+  read.csv("~/MANUSCRIPTS/02_enhancement/figures/Daily_trends_byYear.csv"))
+dailyCE <- dailytrends[DATA == "ST_E_daily"]
+yearlytrends <- data.table(
+  read.csv("~/MANUSCRIPTS/02_enhancement/figures/Daily_trends_byYear_Proper.csv"))
+yearlyCE <- yearlytrends[DATA == "ST_E_yearly"]
+
+```
+
 # Abstract {.unnumbered}
 
-- Phenomenon
-- Effects
-- bibliography
-- our approach
-- our results
 
+We studied the enhancement of the global horizontal irradiance (GHI), over Thessaloniki, 
+for the period 1993 -- 2023, on one minute average records.
+We identify the cloud enhancement events (CE), by creating an appropriate clear sky
+irradiance reference with the use of a radiation transfer model, and aerosol optical 
+depth (AOD) data, from the AERONET, and a collocated Brewer photospectrometer.
+We found that there is a trend of CE cases of
+$`r round(yearlyCE[var == "GLB_diff.N", slope], 1)`\pm
+`r round(2 * yearlyCE[var == "GLB_diff.N", slope.sd], 1)`\,\text{cases}/\text{year}$,
+and a
+mean total energy change, of the CE events by
+$`r round(yearlyCE[var == "GLB_diff.sum", slope], 1)`\pm
+`r round(2 * yearlyCE[var == "GLB_diff.sum", slope.sd], 1)`\,\text{kj}/\text{year}$
+with the peak of the CE events are observed during May and June.
+An analysis of the total duration of CE events, showed that durations longer than 
+5 minutes are very rare, with exceptions lasting over an hour.
+We have detected enhancements over the total solar irradiance, without exceeding the
+maximum values reported for other sites, with more favorable CE conditions.
 
-
+\  
+\  
 CE: cloud enhancement cases one minute
 
 ECE: extreme cloud enhancement cases one minute over TSI on horizontal plane
@@ -128,24 +152,27 @@ CEG: cloud enhancement groups, cases events with consecutive CE
 
 $\text{GHI}_\text{i}$: measured one minute global horizontal irradiance 
 
-$\text{GHI}_\text{CSm}$: modeled clear sky one minute global horizontal irradiance 
+$\text{GHI}_\text{CSm}$: modelled clear sky one minute global horizontal irradiance 
+
+
+
 
 
 
 # Intro
 
 The shortwave solar irradiance, reaching Earth's surface, is the main energy source
-of the atmosphere and biosphere and drives and governs the climate [@Gray2010].  It
-has direct practical application, in different industries, like energy production and
-agriculture method.  The variability of its intensity, can cause difficulties in
+of the atmosphere and the biosphere, and drives and governs the climate [@Gray2010].  It
+has direct practical application, in industries like energy and
+agricultural production. The variability of its intensity, can cause difficulties in
 predicting the yield, and designing the specifications of the appropriate equipment.
-A lot of research has been focused on predicting the renewable energy production in a
+Significant portion of research has been focused on predicting the renewable energy production in a
 fine timescale and in near real-time (for a review see @Inman2013; @Graabak2016).
 
-A big aspect of this variability is the interaction with the clouds. In general,
+A big aspect of this variability is the interaction of GHI with the clouds. In general,
 clouds absorb part of the solar irradiance, but under certain conditions, can enhance
 the total shortwave irradiance reaching the ground. This effect, can locally increase
-the observed total shortwave irradiance higher than the expected clear sky irradiance
+the observed GHI, even higher than the expected clear sky irradiance
 [see references therein].
 
 Some of the proposed underling mechanisms of those events, have been summarized by
@@ -554,15 +581,7 @@ clear sky threshold, on
 
 ## Trends
 
-```{r loadtrends, echo=F, include=T, warning=FALSE, message=FALSE}
-dailytrends <- data.table(
-  read.csv("~/MANUSCRIPTS/02_enhancement/figures/Daily_trends_byYear.csv"))
-dailyCE <- dailytrends[DATA == "ST_E_daily"]
-yearlytrends <- data.table(
-  read.csv("~/MANUSCRIPTS/02_enhancement/figures/Daily_trends_byYear_Proper.csv"))
-yearlyCE <- yearlytrends[DATA == "ST_E_yearly"]
 
-```
 
 We computed the daily trend of the mean OIR of CE <!--
 (Figure\nobreakspace{}\ref{fig:CEmeanDaily}), --> using a first-order autoregressive
