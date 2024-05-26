@@ -382,7 +382,7 @@ ggplot(data = DATA[wattGLB > ETH], aes(x = GLB_diff)) +
 #               align_to = "plot")
 
 
-
+quantile(DATA[wattGLB > ETH, GLB_diff])
 
 
 
