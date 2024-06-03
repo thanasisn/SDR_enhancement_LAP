@@ -759,7 +759,7 @@ by a period in the late fall (September and October).  This is probably related 
 the weather characteristics of these periods, where there are continuous alternations
 between clear sky periods and clouds.
 
-```{r relative-month-occurancies-ECE, echo=FALSE, fig.cap="Seasonal statistics of the number of ECE occurancies for each month, normalized to the maximum occurancies on March. The box represents the values of the low $25\\,\\%$ percentile to $75\\,\\%$ percentile, where the thick horizontal line inside is the mean, the vertical lines extend to the maximum and minimum vales, the dots are outlier values, and the rhombus is the mean."}
+```{r relative-month-occurancies-ECE, echo=FALSE, fig.cap="Seasonal statistics of the number of ECE occurancies for each month, normalized to the maximum occurancies on March. The box represents the values of the low $25\\,\\%$ percentile to $75\\,\\%$ percentile, where the thick horizontal line inside is the mean, the vertical lines extend to the max imum and minimum vales, the dots are outlier values, and the rhombus is the mean."}
 knitr::include_graphics("../images/clim_ECE_month_norm_MAX_median_N-2.png")
 ```
 
