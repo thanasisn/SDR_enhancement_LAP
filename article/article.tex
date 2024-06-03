@@ -1,10 +1,10 @@
-\documentclass[preprint, 3p,
+\documentclass[preprint, 5p,
 authoryear]{elsarticle} %review=doublespace preprint=single 5p=2 column
 %%% Begin My package additions %%%%%%%%%%%%%%%%%%%
 
 \usepackage[hyphens]{url}
 
-  \journal{An awesome journal} % Sets Journal name
+  \journal{Atmospheric Research} % Sets Journal name
 
 \usepackage{graphicx}
 %%%%%%%%%%%%%%%% end my additions to header
@@ -32,7 +32,7 @@ authoryear]{elsarticle} %review=doublespace preprint=single 5p=2 column
 % use microtype if available
 \IfFileExists{microtype.sty}{\usepackage{microtype}}{}
 \usepackage[]{natbib}
-\bibliographystyle{elsarticle-harv}
+\bibliographystyle{elsarticle-num-names}
 
 \ifxetex
   \usepackage[setpagesize=false, % page size defined by xetex
@@ -90,7 +90,7 @@ authoryear]{elsarticle} %review=doublespace preprint=single 5p=2 column
 over Thessaloniki}
     \author[LAP]{Athanasios N. Natsis%
   \corref{cor1}%
-  \fnref{1}}
+  }
    \ead{natsisphysicist@gmail.com} 
     \author[LAP]{Alkiviadis Bais%
   %
@@ -98,7 +98,7 @@ over Thessaloniki}
    \ead{abais@auth.gr} 
     \author[LAP]{Charikleia Meleti%
   %
-  \fnref{1}}
+  }
    \ead{meleti@auth.gr} 
       \affiliation[LAP]{
     organization={Laboratory of Atmospheric Physics, Physics Department,
@@ -112,7 +112,7 @@ Thessaloniki},city={Thessaloniki},postcode={54124},country={Greece},}
   Here will be the abstract.
   \end{abstract}
     \begin{keyword}
-    cloud enhancement \sep total solar radiation \sep global horizonta
+    cloud enhancement \sep total solar radiation \sep global horizontal
 irradiance \sep 
     over irradiance
   \end{keyword}
@@ -138,7 +138,9 @@ with exceptions lasting over an hour. We have detected enhancements over
 the total solar irradiance, without exceeding the maximum values
 reported for other sites, with more favorable CE conditions.
 
-~ ~ CE: cloud enhancement cases one minute
+~ ~
+
+CE: cloud enhancement cases one minute
 
 ECE: extreme cloud enhancement cases one minute over TSI on horizontal
 plane
@@ -387,7 +389,7 @@ realistic representation of the irradiance for the whole study period
 
 \begin{figure}
 
-{\centering \includegraphics[width=0.5\linewidth]{../images/P_CS_change-1} 
+{\centering \includegraphics[width=1\linewidth]{../images/P_CS_change-1} 
 
 }
 
@@ -477,9 +479,10 @@ Figure\nobreakspace{}\ref{fig:example-year}).
 Our dataset, after the data selection processing, consists of 6144534
 records of GHI measurements, of which \(1.764\,\%\) were identified as
 CE events and \(0.036\,\%\) as ECE events. The highest recorded GHI due
-to CE was \(1416.6\,W/m^2\) on 24~May 2007, and had the maximum value of
-OIR at \(345.9\,W/m^2\). The relative stronger CE event was \(49.7\,\%\)
-above the clear sky threshold, on 28~October 2016.
+to CE was \(1416.6\,\text{W}/\text{m}^2\) on 24~May 2007, and had the
+maximum value of OIR at \(345.9\,\text{W}/\text{m}^2\). The relative
+stronger CE event was \(49.7\,\%\) above the clear sky threshold, on
+28~October 2016.
 
 \hypertarget{long-term-trends}{%
 \subsection{Long term trends}\label{long-term-trends}}
@@ -510,16 +513,16 @@ can exceed the equivalent clear sky irradiance to a considerable level.
 
 \begin{figure}
 
-{\centering \includegraphics[width=0.5\linewidth]{../images/P_energy-6} 
+{\centering \includegraphics[width=1\linewidth]{../images/P_energy-6} 
 
 }
 
-\caption{Trend of yearly CE number of occurancies.}\label{fig:P-energy-N}
+\caption{Trend of yearly cloud enhancement occurrences.}\label{fig:P-energy-N}
 \end{figure}
 
 \begin{figure}
 
-{\centering \includegraphics[width=0.5\linewidth]{../images/P_energy-5} 
+{\centering \includegraphics[width=1\linewidth]{../images/P_energy-5} 
 
 }
 
@@ -532,7 +535,7 @@ climatology}\label{cloud-enhancements-climatology}}
 
 Another interesting aspect of the CE cases occurrences, is their
 seasonal cycle. In
-Figure\nobreakspace{}\ref{fig:relative-month-occurancies}, we have the
+Figure\nobreakspace{}\ref{fig:relative-month-occurrences}, we have the
 monthly box plot (whisker plot), where the values have been normalized
 by the highest median value, that occurs on June. Although the number of
 occurrences has a wide spread throughout the study period, the most
@@ -546,11 +549,11 @@ type and location is not allowing further analysis.
 
 \begin{figure}
 
-{\centering \includegraphics[width=0.5\linewidth]{../images/clim_CE_month_norm_MAX_median_N-2} 
+{\centering \includegraphics[width=1\linewidth]{../images/clim_CE_month_norm_MAX_median_N-2} 
 
 }
 
-\caption{Seasonal statistics of the number of CE occurancies for each month, normalized to the maximum occurancies on June. The box represents the values of the low $25\,\%$ percentile to $75\,\%$ percentile, where the thick horizontal line inside is the mean, the verical lines extend to the macimum and minimum vales, the dots are outlier values, and the rhombus is the mean.}\label{fig:relative-month-occurancies}
+\caption{Seasonal statistics of the number of CE occurrences for each month, normalized to the maximum occurrences on June. The box represents the values of the low $25\,\%$ percentile to $75\,\%$ percentile, where the thick horizontal line inside is the mean, the vertical lines extend to the maximum and minimum values, the dots are outlier values, and the rhombus is the mean.}\label{fig:relative-month-occurrences}
 \end{figure}
 
 The distribution of the OIR intensity, follows an exponential decline
@@ -566,7 +569,7 @@ to the equator.
 
 \begin{figure}
 
-{\centering \includegraphics[width=0.5\linewidth]{../images/P-relative-distribution-diff-1} 
+{\centering \includegraphics[width=1\linewidth]{../images/P-relative-distribution-diff-1} 
 
 }
 
@@ -591,7 +594,7 @@ minutes.
 
 \begin{figure}
 
-{\centering \includegraphics[width=0.5\linewidth]{../images/groups-1} 
+{\centering \includegraphics[width=1\linewidth]{../images/groups-1} 
 
 }
 
@@ -608,11 +611,11 @@ ours.
 
 \begin{figure}
 
-{\centering \includegraphics[width=0.5\linewidth]{../images/P-groups-bin2d-1} 
+{\centering \includegraphics[width=1\linewidth]{../images/P-groups-bin2d-1} 
 
 }
 
-\caption{Relation of the mean over irradiance and duration of GCE, where the color scale donotes the frequency of the respected events.}\label{fig:group-2d}
+\caption{Relation of the mean over irradiance and duration of GCE, where the color scale denotes the frequency of the respected events.}\label{fig:group-2d}
 \end{figure}
 
 \hypertarget{extreme-cloud-enhancement-events}{%
@@ -635,11 +638,11 @@ alternations between clear sky periods and clouds.
 
 \begin{figure}
 
-{\centering \includegraphics[width=0.5\linewidth]{../images/clim_ECE_month_norm_MAX_median_N-2} 
+{\centering \includegraphics[width=1\linewidth]{../images/clim_ECE_month_norm_MAX_median_N-2} 
 
 }
 
-\caption{Seasonal statistics of the number of ECE occurancies for each month, normalized to the maximum occurancies on March. The box represents the values of the low $25\,\%$ percentile to $75\,\%$ percentile, where the thick horizontal line inside is the mean, the verical lines extend to the macimum and minimum vales, the dots are outlier values, and the rhombus is the mean.}\label{fig:relative-month-occurancies-ECE}
+\caption{Seasonal statistics of the number of ECE occurancies for each month, normalized to the maximum occurancies on March. The box represents the values of the low $25\,\%$ percentile to $75\,\%$ percentile, where the thick horizontal line inside is the mean, the vertical lines extend to the maximum and minimum vales, the dots are outlier values, and the rhombus is the mean.}\label{fig:relative-month-occurancies-ECE}
 \end{figure}
 
 The distribution of the ECE events
@@ -652,7 +655,7 @@ values are lower for Thessaloniki.
 
 \begin{figure}
 
-{\centering \includegraphics[width=0.5\linewidth]{../images/P-extreme-distribution-1} 
+{\centering \includegraphics[width=1\linewidth]{../images/P-extreme-distribution-1} 
 
 }
 
@@ -691,22 +694,22 @@ more long term observations of AOD and clouds characteristics.
 \section*{Appendix}\label{appendix}}
 \addcontentsline{toc}{section}{Appendix}
 
-\begin{figure}
+\begin{figure}[H]
 
-{\centering \includegraphics[width=0.5\linewidth]{../images/example_days-18} 
+{\centering \includegraphics[width=1\linewidth]{../images/example_days-18} 
 
 }
 
-\caption{Example of cloud indentification data for 2019-07-11. Where are denoted with red circles all the detected CE events, the cloud intearaction with the GHI (blue crosses), and the thesholds of CE and the threshold of ECE events with red and black line respectively.}\label{fig:example-day}
+\caption{Example of cloud identification data for 2019-07-11. Where are denoted with red circles all the detected CE events, the cloud interaction with the GHI (blue crosses), and the thresholds of CE and the threshold of ECE events with red and black line respectively.}\label{fig:example-day}
 \end{figure}
 
-\begin{figure}
+\begin{figure}[H]
 
-{\centering \includegraphics[width=0.5\linewidth]{../images/example_years-13} 
+{\centering \includegraphics[width=1\linewidth]{../images/example_years-13} 
 
 }
 
-\caption{Example of the relation of the measured GHI versus the reference clear sky irradiance for the year 2005, where the intesity of the detected over irradianse (OIR) is color coded.}\label{fig:example-year}
+\caption{Example of the relation of the measured GHI versus the reference clear sky irradiance for the year 2005, where the intensity of the detected over irradiance (OIR) is color coded.}\label{fig:example-year}
 \end{figure}
 
 \bibliography{bibliography.bib}
