@@ -41,8 +41,16 @@ $(PDF): $(RMD)
 	@#-Rscript -e "rmarkdown::find_pandoc(dir = '/usr/lib/rstudio/resources/app/bin/quarto/bin/tools'); rmarkdown::render('$?', output_format='bookdown::pdf_document2', output_file='$@', output_dir='article', clean = TRUE)"
 	@Rscript -e "rmarkdown::find_pandoc(dir = '/usr/lib/rstudio/resources/app/bin/quarto/bin/tools'); rmarkdown::render('$?', output_format='rticles::elsevier_article', output_file='$@', output_dir='article', clean = TRUE)"
 	@#quarto render '$?' --to elsevier-pdf --log-level warning
-	@#setsid evince    $@ &
 	@-rsync -a "$@" ${LIBRARY}
+
+### Doc for spellinig  ############################33
+TARGET := ./article/article
+RMD    := $(TARGET).Rmd
+DOC1   := $(TARGET).docx
+doc: $(DOC1)
+$(DOC1): $(RMD)
+	@echo "Building: $? -> $@"
+	Rscript -e "rmarkdown::find_pandoc(dir = '/usr/lib/rstudio/resources/app/bin/quarto/bin/tools'); rmarkdown::render('$?', clean = TRUE, output_format='bookdown::word_document2', output_file='$@',  output_dir='article')"
 
 
 
@@ -68,6 +76,8 @@ $(PDFa): $(RMDv)
 	-git tag $(BUILD)
 	## increase build counter
 	$(call buildver)
+
+
 
 
 
