@@ -626,9 +626,9 @@ considerable level.
 <!-- knitr::include_graphics("../images/energy-3.png") -->
 <!-- ``` -->
 
-<!-- ```{r P-energy-mean, echo=FALSE, fig.cap="Trends of the mean OIR per CE."} -->
-<!-- knitr::include_graphics("../images/P_energy-7.png") -->
-<!-- ``` -->
+```{r P-energy-mean, echo=FALSE, fig.cap="Trends of the mean OIR per CE."}
+knitr::include_graphics("../images/P_energy-7.png")
+```
 
 
 <!-- ```{r echo=FALSE, fig.cap="Trend of number of CE cases"} -->

@@ -939,6 +939,9 @@ yeartrends <- data.table()
 
 #+ P_energy, echo=F, include=T, results="asis"
 
+
+### Total energy per year  -------------------
+
 pvar1   <- "GLB_diff.sum"
 dataset <- copy(ST_E_yearly)
 # partial year sum is not valid
@@ -994,6 +997,9 @@ p1 <- ggplot(dataset,
 p1
 
 
+
+### Number of cases per year  -----------------------
+
 pvar2   <- "GLB_diff.N"
 dataset <- copy(ST_E_yearly)
 # partial year N is not valid
@@ -1048,6 +1054,7 @@ p2 <- ggplot(dataset,
 p2
 
 
+###  Mean OIR energy per year -------------
 
 pvar3   <- "GLB_diff.mean"
 dataset <- copy(ST_E_yearly)
@@ -1102,7 +1109,7 @@ p3
 
 
 
-
+###  Median energy per year  ----------------------------------
 
 pvar4   <- "GLB_diff.median"
 dataset <- copy(ST_E_yearly)

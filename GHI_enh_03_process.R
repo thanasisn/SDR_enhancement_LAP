@@ -111,6 +111,21 @@ tic  <- Sys.time()
 
 
 
+##  Get number of minutes -----
+
+ALLDT <- data.table(readRDS("~/DATA/SUN/Pysolar_LAP.Rds"))
+summary(ALLDT$V2)
+summary(ALLDT$V3)
+## above horizon
+ALLDT <- ALLDT[V3 >= 0, ]
+
+## same range
+dtrange <- DATA[, range(Date)]
+ALLDT   <- ALLDT[V1 <= dtrange[2] & V1 >= dtrange[1]]
+
+yr_cnt  <- ALLDT[, .(All_N = .N) , by = year(V1)]
+
+
 
 # TODO -------------------------------------------------------------------------
 # k clastering Vamvakas2020
@@ -466,8 +481,8 @@ ST_yearly[, wattGLB.sum     := wattGLB.sum     * 60 / Energy_Div]
 ST_yearly[, wattGLB.sumPOS  := wattGLB.sumPOS  * 60 / Energy_Div]
 ST_yearly[, wattGLB.sumNEG  := wattGLB.sumNEG  * 60 / Energy_Div]
 
-
-
+yr_cnt
+stop()
 ## stats on extreme enhancement cases
 ST_extreme_yearly <- DATA[wattGLB > ETH,
                            unlist(lapply(.SD, data.summary, na.rm = TRUE),
