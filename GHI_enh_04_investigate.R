@@ -1258,7 +1258,7 @@ write.csv(yeartrends, "./figures/Daily_trends_byYear_Proper.csv")
   plot(ST_yearly[, 100 * GLB_diff.N_pos/wattGLB.N, year],
        col = varcol("GLB_diff.sumPOS"),
        ylab = "CE cases %")
-  title("CE cases % in all measurments")
+  title("CE cases % in all measurments GLB_diff.N_pos/wattGLB.N")
 
   lmD <- lm( ST_yearly[, year, 100 * GLB_diff.N_pos/wattGLB.N])
   abline(lmD)
@@ -1271,6 +1271,27 @@ write.csv(yeartrends, "./figures/Daily_trends_byYear_Proper.csv")
                signif(abs(fit[2]), 2) ,"%/y" )
   )
 }
+
+{
+  plot(ST_yearly[, 100 * GLB_diff.N_pos/All_N, year],
+       col = varcol("GLB_diff.sumPOS"),
+       ylab = "CE cases %")
+  title("CE cases % in all minutes GLB_diff.N_pos/All_N")
+
+  lmD <- lm( ST_yearly[, year, 100 * GLB_diff.N_pos/All_N])
+  abline(lmD)
+
+  ## display trend on graph
+  fit <- lmD[[1]]
+  legend("top", lty = 1, bty = "n", lwd = 2, cex = 1,
+         paste("Trend: ",
+               if (fit[2] > 0) "+" else "-",
+               signif(abs(fit[2]), 2) ,"%/y" )
+  )
+}
+
+
+
 
 
 
@@ -1292,6 +1313,11 @@ write.csv(yeartrends, "./figures/Daily_trends_byYear_Proper.csv")
                signif(abs(fit[2]), 2) ,"%/y" )
   )
 }
+
+
+
+
+
 
 
 
