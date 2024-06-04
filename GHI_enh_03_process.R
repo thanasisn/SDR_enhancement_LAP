@@ -481,8 +481,9 @@ ST_yearly[, wattGLB.sum     := wattGLB.sum     * 60 / Energy_Div]
 ST_yearly[, wattGLB.sumPOS  := wattGLB.sumPOS  * 60 / Energy_Div]
 ST_yearly[, wattGLB.sumNEG  := wattGLB.sumNEG  * 60 / Energy_Div]
 
-yr_cnt
-stop()
+## all possible data count
+ST_yearly <- merge(ST_yearly, yr_cnt)
+
 ## stats on extreme enhancement cases
 ST_extreme_yearly <- DATA[wattGLB > ETH,
                            unlist(lapply(.SD, data.summary, na.rm = TRUE),
@@ -501,6 +502,8 @@ ST_extreme_yearly[, wattGLB.sum     := wattGLB.sum     * 60 / Energy_Div]
 ST_extreme_yearly[, wattGLB.sumPOS  := wattGLB.sumPOS  * 60 / Energy_Div]
 ST_extreme_yearly[, wattGLB.sumNEG  := wattGLB.sumNEG  * 60 / Energy_Div]
 
+## all possible data count
+ST_extreme_yearly <- merge(ST_extreme_yearly, yr_cnt)
 
 ## stats on enhancement cases
 ST_E_yearly <- DATA[get(SelEnhanc) == TRUE,
@@ -510,7 +513,8 @@ ST_E_yearly <- DATA[get(SelEnhanc) == TRUE,
                      by = .(year(Date))]
 ST_E_yearly$Date <- as.POSIXct(strptime(paste(ST_E_yearly$year, "01", "1"),"%Y %m %d"))
 
-
+## all possible data count
+ST_E_yearly <- merge(ST_E_yearly, yr_cnt)
 
 ## convert sum Irradiance to energy
 ## Σ(W/m^2) * 60 s = J/m^2
