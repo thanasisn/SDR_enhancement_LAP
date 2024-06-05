@@ -983,6 +983,21 @@ yeartrends <- data.table()
 
 ### Total energy per year  -------------------
 
+##  create yearly from monthly data presence weigth
+
+
+ST_monthly[ , MW := wattGLB.N/All_N]
+
+ST_monthly[ , .(MW, GLB_diff.N, GLB_diff.N_pos, GLB_diff.sumPOS) ]
+
+ST_monthly[, .(
+  GLB_diff.sumPOS = sum(GLB_diff.sumPOS * MW, na.rm = T),
+  GLB_diff.N_pos  = sum(GLB_diff.N_pos  * MW, na.rm = T)
+  ), by = year]
+
+
+stop()
+
 pvar1   <- "GLB_diff.sum"
 dataset <- copy(ST_E_yearly)
 # partial year sum is not valid
