@@ -395,7 +395,7 @@ ST_monthly          <- DATA[, unlist(lapply(.SD, data.summary, na.rm = FALSE),
 ST_monthly$Date     <- as.POSIXct(strptime(paste(ST_monthly$year, ST_monthly$month, "1"),"%Y %m %d"))
 ST_monthly[, yts := (year(Date) - min(year(Date))) + ( yday(Date) - 1 ) / Hmisc::yearDays(Date)]
 
-stop()
+stop("merge month all_N")
 
 ## convert sum Irradiance to energy
 ## Σ(W/m^2) * 60 s = J/m^2
