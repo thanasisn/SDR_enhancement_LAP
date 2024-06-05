@@ -123,7 +123,8 @@ ALLDT <- ALLDT[V3 >= 0, ]
 dtrange <- DATA[, range(Date)]
 ALLDT   <- ALLDT[V1 <= dtrange[2] & V1 >= dtrange[1]]
 
-yr_cnt  <- ALLDT[, .(All_N = .N) , by = year(V1)]
+yr_cnt  <- ALLDT[, .(All_N = .N) , by =   year(V1)]
+mn_cnt  <- ALLDT[, .(All_N = .N) , by = .(year(V1), month(V1))]
 
 
 
@@ -393,6 +394,8 @@ ST_monthly          <- DATA[, unlist(lapply(.SD, data.summary, na.rm = FALSE),
                             by = .(year(Date), month(Date))]
 ST_monthly$Date     <- as.POSIXct(strptime(paste(ST_monthly$year, ST_monthly$month, "1"),"%Y %m %d"))
 ST_monthly[, yts := (year(Date) - min(year(Date))) + ( yday(Date) - 1 ) / Hmisc::yearDays(Date)]
+
+stop()
 
 ## convert sum Irradiance to energy
 ## Σ(W/m^2) * 60 s = J/m^2
