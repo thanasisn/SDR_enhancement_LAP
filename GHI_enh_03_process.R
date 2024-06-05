@@ -214,8 +214,8 @@ data.summary <- function(x, na.rm = FALSE)
         sum    = sum   (x,         na.rm = na.rm),
         sumPOS = sum(x[which(x > 0)], na.rm = na.rm),  ## not meaningful for a subset
         sumNEG = sum(x[which(x < 0)], na.rm = na.rm),  ## not meaningful for a subset
-        N_pos  = sum(x > 0, na.rm = na.rm),            ## not meaningful for a subset of data
-        N_neg  = sum(x < 0, na.rm = na.rm),            ## not meaningful for a subset of data
+        N_pos  = sum(x > 0, na.rm = TRUE),             ## not meaningful for a subset of data
+        N_neg  = sum(x < 0, na.rm = TRUE),             ## not meaningful for a subset of data
         N      = sum(!is.na(x)),
         TotalN = length(x)                             ## not meaningful for a subset
     )
