@@ -395,7 +395,9 @@ ST_monthly          <- DATA[, unlist(lapply(.SD, data.summary, na.rm = FALSE),
 ST_monthly$Date     <- as.POSIXct(strptime(paste(ST_monthly$year, ST_monthly$month, "1"),"%Y %m %d"))
 ST_monthly[, yts := (year(Date) - min(year(Date))) + ( yday(Date) - 1 ) / Hmisc::yearDays(Date)]
 
-stop("merge month all_N")
+## merge monthly counts
+ST_monthly <- merge(ST_monthly, mn_cnt)
+
 
 ## convert sum Irradiance to energy
 ## Σ(W/m^2) * 60 s = J/m^2
@@ -417,6 +419,8 @@ ST_extreme_monthly <- DATA[wattGLB > ETH,
 ST_extreme_monthly$Date <- as.POSIXct(strptime(paste(ST_extreme_monthly$year, ST_extreme_monthly$month, "1"),"%Y %m %d"))
 ST_extreme_monthly[, yts := (year(Date) - min(year(Date))) + ( yday(Date) - 1 ) / Hmisc::yearDays(Date)]
 
+## merge monthly counts
+ST_extreme_monthly <- merge(ST_extreme_monthly, mn_cnt)
 
 ## convert sum Irradiance to energy
 ## Σ(W/m^2) * 60 s = J/m^2
@@ -442,6 +446,8 @@ ST_E_monthly[, yts := (year(Date) - min(year(Date))) + ( yday(Date) - 1 ) / Hmis
 ST_E_monthly[, GLB_diff.sum := GLB_diff.sum * 60 / Energy_Div]
 ST_E_monthly[, wattGLB.sum  := wattGLB.sum  * 60 / Energy_Div]
 
+## merge monthly counts
+ST_E_monthly <- merge(ST_E_monthly, mn_cnt)
 
 ## monthly climatology
 ST_E_monthly_seas <- DATA[get(SelEnhanc) == TRUE,
