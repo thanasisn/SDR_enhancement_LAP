@@ -1253,14 +1253,15 @@ write.csv(yeartrends, "./figures/Daily_trends_byYear_Proper.csv")
 }
 
 
+ST_yearly[,  .(GLB_diff.sumPOS, wattGLB.N, All_N) ]
 
 {
-  plot(ST_yearly[, 100 * GLB_diff.N_pos/wattGLB.N, year],
+  plot(ST_yearly[,  GLB_diff.sumPOS * (wattGLB.N/All_N), year],
        col = varcol("GLB_diff.sumPOS"),
        ylab = "CE cases %")
   title("CE cases % in all measurments GLB_diff.N_pos/wattGLB.N")
 
-  lmD <- lm( ST_yearly[, year, 100 * GLB_diff.N_pos/wattGLB.N])
+  lmD <- lm( ST_yearly[, year, GLB_diff.sumPOS * (wattGLB.N/All_N)])
   abline(lmD)
 
   ## display trend on graph
