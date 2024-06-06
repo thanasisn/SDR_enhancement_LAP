@@ -164,7 +164,7 @@ hist(DATA[GLB_diff > 0, GLB_rati],
 #'
 #' ### Distributions
 #'
-#+ relative_distributions, echo=F, include=T, results="asis"
+#+ relative-distributions, echo=F, include=T, results="asis"
 
 # hist(DATA[get(unique(CEC)) == TRUE, GLB_ench],
 #      breaks = breaks,

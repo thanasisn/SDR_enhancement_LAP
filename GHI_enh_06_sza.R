@@ -158,7 +158,7 @@ plot(ST_E_sza[, get(avar), SZA],
 #'
 #' ### SZA enhancements by month
 #'
-#+ sza_month, echo=F, include=T, results="asis"
+#+ sza-month, echo=F, include=T, results="asis"
 
 for (am in 1:12) {
   temp <- ST_E_sza_monthly[Month == am, ]
@@ -205,7 +205,7 @@ for (am in 1:12) {
 #'
 #' ### SZA heatmaps of DOY and SZA
 #'
-#+ sza_doy, echo=F, include=T, results="asis"
+#+ sza-doy, echo=F, include=T, results="asis"
 
 lim <- 10
 ST_E_sza_doy[ GLB_diff.N > lim] |>
