@@ -84,7 +84,7 @@
 
 \title{Enhancement of SDR in Thessaloniki}
 \author{Natsis Athanasios\footnote{Laboratory of Atmospheric Physics, AUTH, \href{mailto:natsisphysicist@gmail.com}{\nolinkurl{natsisphysicist@gmail.com}}} \and Alkiviadis Bais\footnote{Laboratory of Atmospheric Physics, AUTH}}
-\date{2024-06-05}
+\date{2024-06-06}
 
 \begin{document}
 \maketitle
@@ -97,51 +97,6 @@ Study of GHI enchantment.
 \setcounter{tocdepth}{4}
 \tableofcontents
 }
-\begin{verbatim}
-Attaching package: 'zoo'
-\end{verbatim}
-
-\begin{verbatim}
-The following objects are masked from 'package:data.table':
-
-    yearmon, yearqtr
-\end{verbatim}
-
-\begin{verbatim}
-The following objects are masked from 'package:base':
-
-    as.Date, as.Date.numeric
-\end{verbatim}
-
-\begin{verbatim}
-Registered S3 methods overwritten by 'ggpp':
-  method                  from   
-  heightDetails.titleGrob ggplot2
-  widthDetails.titleGrob  ggplot2
-\end{verbatim}
-
-\begin{verbatim}
-Attaching package: 'ggpp'
-\end{verbatim}
-
-\begin{verbatim}
-The following object is masked from 'package:ggh4x':
-
-    stat_centroid
-\end{verbatim}
-
-\begin{verbatim}
-The following object is masked from 'package:ggplot2':
-
-    annotate
-\end{verbatim}
-
-\begin{verbatim}
-Registered S3 method overwritten by 'ggpmisc':
-  method                  from   
-  as.character.polynomial polynom
-\end{verbatim}
-
 \begin{verbatim}
 ST_daily ST_E_daily ST_E_daily_seas ST_extreme_daily
 \end{verbatim}
@@ -248,11 +203,21 @@ Warning: Removed 16 rows containing non-finite outside the scale range
 
 \begin{center}\includegraphics[width=1\linewidth]{GHI_enh_04_investigate_files/figure-latex/P-groups-bin2d-4} \end{center}
 
+\hypertarget{climatolgy}{%
+\section{Climatolgy}\label{climatolgy}}
+
 \begin{center}\includegraphics[width=1\linewidth]{GHI_enh_04_investigate_files/figure-latex/clim_CE_N_doy-1} \end{center}
 
 \begin{center}\includegraphics[width=1\linewidth]{GHI_enh_04_investigate_files/figure-latex/climCEmonth-1} \end{center}
 
+\begin{center}\includegraphics[width=1\linewidth]{GHI_enh_04_investigate_files/figure-latex/climCEmonth-MW-1} \end{center}
+
 \begin{center}\includegraphics[width=1\linewidth]{GHI_enh_04_investigate_files/figure-latex/clim_CE_month_norm_MAX_N-1} \end{center}
+
+\begin{center}\includegraphics[width=1\linewidth]{GHI_enh_04_investigate_files/figure-latex/clim_CE_month_norm_MAX_N_MW-1} \end{center}
+
+\hypertarget{monthly-ce}{%
+\subsection{Monthly CE}\label{monthly-ce}}
 
 \begin{center}\includegraphics[width=1\linewidth]{GHI_enh_04_investigate_files/figure-latex/clim_CE_month_norm_MAX_median_N-1} \end{center}
 
@@ -265,15 +230,33 @@ Call `lifecycle::last_lifecycle_warnings()` to see where this warning was genera
 
 \begin{center}\includegraphics[width=1\linewidth]{GHI_enh_04_investigate_files/figure-latex/clim_CE_month_norm_MAX_median_N-2} \end{center}
 
+\hypertarget{monthly-weighted-ce}{%
+\subsection{Monthly weighted CE}\label{monthly-weighted-ce}}
+
+\begin{center}\includegraphics[width=1\linewidth]{GHI_enh_04_investigate_files/figure-latex/clim_CE_month_norm_MAX_median_N_MW-1} \end{center}
+
+\begin{center}\includegraphics[width=1\linewidth]{GHI_enh_04_investigate_files/figure-latex/clim_CE_month_norm_MAX_median_N_MW-2} \end{center}
+
+\hypertarget{monthly-extreme-ce-raw}{%
+\subsection{Monthly extreme CE raw}\label{monthly-extreme-ce-raw}}
+
 \begin{center}\includegraphics[width=1\linewidth]{GHI_enh_04_investigate_files/figure-latex/climECEmonth-1} \end{center}
+
+\begin{center}\includegraphics[width=1\linewidth]{GHI_enh_04_investigate_files/figure-latex/climECEmonth-MW-1} \end{center}
+
+\hypertarget{monthly-extreme-ce}{%
+\subsection{Monthly extreme CE}\label{monthly-extreme-ce}}
 
 \begin{center}\includegraphics[width=1\linewidth]{GHI_enh_04_investigate_files/figure-latex/clim_ECE_month_norm_MAX_median_N-1} \end{center}
 
 \begin{center}\includegraphics[width=1\linewidth]{GHI_enh_04_investigate_files/figure-latex/clim_ECE_month_norm_MAX_median_N-2} \end{center}
 
-\begin{center}\includegraphics[width=1\linewidth]{GHI_enh_04_investigate_files/figure-latex/climCE_daily-1} \end{center}
+\hypertarget{monthly-weighted-extreme-ce}{%
+\subsection{Monthly weighted extreme CE}\label{monthly-weighted-extreme-ce}}
 
-\begin{center}\includegraphics[width=1\linewidth]{GHI_enh_04_investigate_files/figure-latex/climCE_week-1} \end{center}
+\begin{center}\includegraphics[width=1\linewidth]{GHI_enh_04_investigate_files/figure-latex/clim_ECE_month_norm_MAX_median_N_MW-1} \end{center}
+
+\begin{center}\includegraphics[width=1\linewidth]{GHI_enh_04_investigate_files/figure-latex/clim_ECE_month_norm_MAX_median_N_MW-2} \end{center}
 
 \newpage
 \FloatBarrier
@@ -382,7 +365,7 @@ GLB\_diff.sumPOS wattGLB.N All\_N
 \textbf{END}
 
 \begin{verbatim}
-2024-06-05 17:31:25.4 athan@tyler GHI_enh_04_investigate.R 1.589891 mins
+2024-06-06 08:05:21.1 athan@tyler GHI_enh_04_investigate.R 2.110215 mins
 \end{verbatim}
 
 \end{document}

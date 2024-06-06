@@ -64,21 +64,22 @@ if (!interactive()) {
 
 
 #+ echo=F, include=T
-library(data.table    , quietly = TRUE, warn.conflicts = FALSE)
-library(pander        , quietly = TRUE, warn.conflicts = FALSE)
-library(ggplot2       , quietly = TRUE, warn.conflicts = FALSE)
-library(lmtest        , quietly = TRUE, warn.conflicts = FALSE)
-library(viridis       , quietly = TRUE, warn.conflicts = FALSE)
-library(ggpointdensity, quietly = TRUE, warn.conflicts = FALSE)
-library(patchwork     , quietly = TRUE, warn.conflicts = FALSE)
-library(ggh4x         , quietly = TRUE, warn.conflicts = FALSE)
-library(grid          , quietly = TRUE, warn.conflicts = FALSE)
-library(latex2exp     , quietly = TRUE, warn.conflicts = FALSE)
-library(ggpmisc       , quietly = TRUE, warn.conflicts = FALSE)
-library(cowplot       , quietly = TRUE, warn.conflicts = FALSE)
-# library(patchwork     , quietly = TRUE, warn.conflicts = FALSE)
-# library(ggpubr        , quietly = TRUE, warn.conflicts = FALSE)
-
+suppressPackageStartupMessages({
+  library(data.table    , quietly = TRUE, warn.conflicts = FALSE)
+  library(pander        , quietly = TRUE, warn.conflicts = FALSE)
+  library(ggplot2       , quietly = TRUE, warn.conflicts = FALSE)
+  library(lmtest        , quietly = TRUE, warn.conflicts = FALSE)
+  library(viridis       , quietly = TRUE, warn.conflicts = FALSE)
+  library(ggpointdensity, quietly = TRUE, warn.conflicts = FALSE)
+  library(patchwork     , quietly = TRUE, warn.conflicts = FALSE)
+  library(ggh4x         , quietly = TRUE, warn.conflicts = FALSE)
+  library(grid          , quietly = TRUE, warn.conflicts = FALSE)
+  library(latex2exp     , quietly = TRUE, warn.conflicts = FALSE)
+  library(ggpmisc       , quietly = TRUE, warn.conflicts = FALSE)
+  library(cowplot       , quietly = TRUE, warn.conflicts = FALSE)
+  # library(patchwork     , quietly = TRUE, warn.conflicts = FALSE)
+  # library(ggpubr        , quietly = TRUE, warn.conflicts = FALSE)
+})
 
 panderOptions("table.alignment.default", "right")
 panderOptions("table.split.table",        120   )
@@ -629,6 +630,9 @@ ggplot(data    = ST_G0[GLB_ench.N > 1,],
 ##  Climatology  ----------------------------------------------
 
 
+#'
+#' # Climatolgy
+#'
 #+ clim_CE_N_doy, echo=F, include=T, results="asis"
 plot(ST_E_daily[, sum(GLB_ench.N), by = yday(Date)],
      ylab = "Enhancement cases",
@@ -637,9 +641,20 @@ plot(ST_E_daily[, sum(GLB_ench.N), by = yday(Date)],
 
 
 
+#  monthly weight for all months
+ST_E_monthly[      , GLB_ench.N_MW := GLB_ench.N * (GLB_ench.N / All_N) ]
+ST_extreme_monthly[, GLB_ench.N_MW := GLB_ench.N * (GLB_ench.N / All_N) ]
+
+
+
+
 #+ climCEmonth, echo=F, include=T, results="asis"
 boxplot(ST_E_monthly$GLB_ench.N ~ ST_E_monthly$month )
 title("Climatology of CE cases per month")
+
+#+ climCEmonth-MW, echo=F, include=T, results="asis"
+boxplot(ST_E_monthly$GLB_ench.N_MW ~ ST_E_monthly$month )
+title("Climatology of monthly weighted CE cases per month")
 
 
 # normalize with max value
@@ -647,8 +662,19 @@ title("Climatology of CE cases per month")
 boxplot(ST_E_monthly[, GLB_ench.N/max(GLB_ench.N, na.rm = T) ~ month ])
 title("Climatology of CE cases per month Norm by max N")
 
-# normalize with max monthly median
+
+#+ clim_CE_month_norm_MAX_N_MW, echo=F, include=T, results="asis"
+boxplot(ST_E_monthly[, GLB_ench.N_MW/max(GLB_ench.N_MW, na.rm = T) ~ month ])
+title("Climatology of monthly weighted CE cases per month Norm by max N")
+
+
+
+
+#'
+#' ## Monthly  CE
+#'
 #+ clim_CE_month_norm_MAX_median_N, echo=F, include=T, results="asis"
+# normalize with max monthly median
 temp       <- ST_E_monthly[, median(GLB_ench.N, na.rm = T), by = month]
 max_median <- max(temp$V1)
 max_month  <- month.name[temp[which.max(temp$V1), month]]
@@ -661,7 +687,7 @@ ggplot(ST_E_monthly, aes(y = GLB_ench.N/max_median,
                                     labels = month.abb[1:12]))) +
   geom_boxplot(fill = varcol("GLB_diff")) +
   xlab("") +
-  ylab("Relative monthly occurances") +
+  ylab("Relative monthly occurrences") +
   stat_summary(fun.y = mean, geom = "point", shape = 23, size = 3) +
   theme(
     panel.grid.major.x = element_blank(),
@@ -671,17 +697,56 @@ ggplot(ST_E_monthly, aes(y = GLB_ench.N/max_median,
   # geom_jitter(shape=16, position=position_jitter(0.2))
 
 
+#'
+#' ## Monthly weighted CE
+#'
+#+ clim_CE_month_norm_MAX_median_N_MW, echo=F, include=T, results="asis"
 
-# dd <- boxplot(ST_E_monthly$GLB_ench.N ~ ST_E_monthly$month)
-# bxp(dd)
+# normalize with max monthly median
+temp       <- ST_E_monthly[, median(GLB_ench.N_MW, na.rm = T), by = month]
+max_median <- max(temp$V1)
+max_month  <- month.name[temp[which.max(temp$V1), month]]
 
+boxplot(ST_E_monthly[, GLB_ench.N_MW/max_median ~ month ])
+title(paste("Monthly weighed Climatology of CE cases per month Norm the median of", max_month))
+
+ggplot(ST_E_monthly, aes(y = GLB_ench.N_MW/max_median,
+                         x = factor(month,
+                                    levels = 1:12,
+                                    labels = month.abb[1:12]))) +
+  geom_boxplot(fill = varcol("GLB_diff")) +
+  xlab("") +
+  ylab("Relative monthly weighted occurrences") +
+  stat_summary(fun.y = mean, geom = "point", shape = 23, size = 3) +
+  theme(
+    panel.grid.major.x = element_blank(),
+    panel.grid.minor.x = element_blank()
+  )
+# geom_dotplot(binaxis='y', stackdir='center', dotsize=.3) +
+# geom_jitter(shape=16, position=position_jitter(0.2))
+
+
+
+
+
+#'
+#' ## Monthly extreme CE raw
+#'
 
 #+ climECEmonth, echo=F, include=T, results="asis"
 boxplot(ST_extreme_monthly$GLB_ench.N ~ ST_extreme_monthly$month )
 title("Climatology of ECE cases per month")
 
-# normalize with max monthly median
+#+ climECEmonth-MW, echo=F, include=T, results="asis"
+boxplot(ST_extreme_monthly$GLB_ench.N_MW ~ ST_extreme_monthly$month )
+title("Climatology of ECE cases per month")
+
+
+#'
+#' ## Monthly extreme CE
+#'
 #+ clim_ECE_month_norm_MAX_median_N, echo=F, include=T, results="asis"
+# normalize with max monthly median
 temp       <- ST_extreme_monthly[, median(GLB_ench.N, na.rm = T), by = month]
 max_median <- max(temp$V1)
 max_month  <- month.name[temp[which.max(temp$V1), month]]
@@ -695,7 +760,34 @@ ggplot(ST_extreme_monthly, aes(y = GLB_ench.N/max_median,
                                     labels = month.abb[1:12]))) +
   geom_boxplot(fill = "lightblue") +
   xlab("") +
-  ylab("Relative monthly occurances") +
+  ylab("Relative monthly occurrences") +
+  stat_summary(fun.y = mean, geom = "point", shape = 23, size = 3) +
+  theme(
+    panel.grid.major.x = element_blank(),
+    panel.grid.minor.x = element_blank()
+  )
+
+
+#'
+#' ## Monthly weighted extreme CE
+#'
+#+ clim_ECE_month_norm_MAX_median_N_MW, echo=F, include=T, results="asis"
+
+# normalize with max monthly median
+temp       <- ST_extreme_monthly[, median(GLB_ench.N_MW, na.rm = T), by = month]
+max_median <- max(temp$V1)
+max_month  <- month.name[temp[which.max(temp$V1), month]]
+
+boxplot(ST_extreme_monthly[, GLB_ench.N_MW/max_median ~ month ])
+title(paste("Climatology of monthly weighted ECE cases per month Norm the median of", max_month))
+
+ggplot(ST_extreme_monthly, aes(y = GLB_ench.N_MW/max_median,
+                               x = factor(month,
+                                          levels = 1:12,
+                                          labels = month.abb[1:12]))) +
+  geom_boxplot(fill = "lightblue") +
+  xlab("") +
+  ylab("Relative monthly weighted occurrences") +
   stat_summary(fun.y = mean, geom = "point", shape = 23, size = 3) +
   theme(
     panel.grid.major.x = element_blank(),
@@ -1411,7 +1503,7 @@ ST_yearly[,  .(GLB_diff.sumPOS, wattGLB.N, All_N) ]
   plot(ST_yearly[,  GLB_diff.sumPOS * (wattGLB.N/All_N), year],
        col = varcol("GLB_diff.sumPOS"),
        ylab = "CE cases %")
-  title("CE cases % in all measurments GLB_diff.N_pos/wattGLB.N")
+  title("CE cases % in all measurements GLB_diff.N_pos/wattGLB.N")
 
   lmD <- lm( ST_yearly[, year, GLB_diff.sumPOS * (wattGLB.N/All_N)])
   abline(lmD)
@@ -1456,7 +1548,7 @@ ST_yearly[,  .(GLB_diff.sumPOS, wattGLB.N, All_N) ]
   lmD <- lm( ST_yearly[, year, 100 * (GLB_diff.sumPOS/GLB_diff.N_pos) / (wattGLB.sumPOS/wattGLB.N_pos)])
   abline(lmD)
 
-  title("Mean Over iradiance % on mean Global Radiation")
+  title("Mean Over irradiance % on mean Global Radiation")
 
   ## display trend on graph
   fit <- lmD[[1]]
