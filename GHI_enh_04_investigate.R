@@ -688,7 +688,7 @@ ggplot(ST_E_monthly, aes(y = GLB_ench.N/max_median,
                          x = factor(month,
                                     levels = 1:12,
                                     labels = month.abb[1:12]))) +
-  geom_boxplot(fill = varcol("GLB_diff")) +
+  geom_boxplot(fill = varcol("GLB_diff"), outliers = FALSE) +
   xlab("") +
   ylab("Relative monthly occurrences") +
   stat_summary(fun.y = mean, geom = "point", shape = 23, size = 3) +
@@ -719,7 +719,7 @@ ggplot(ST_E_monthly, aes(y = GLB_ench.N_MW/max_median,
                          x = factor(month,
                                     levels = 1:12,
                                     labels = month.abb[1:12]))) +
-  geom_boxplot(fill = varcol("GLB_diff")) +
+  geom_boxplot(fill = varcol("GLB_diff"), outliers = FALSE) +
   xlab("") +
   ylab("Relative monthly weighted occurrences") +
   stat_summary(fun.y = mean, geom = "point", shape = 23, size = 3) +
@@ -763,7 +763,7 @@ ggplot(ST_extreme_monthly, aes(y = GLB_ench.N/max_median,
                          x = factor(month,
                                     levels = 1:12,
                                     labels = month.abb[1:12]))) +
-  geom_boxplot(fill = "lightblue") +
+  geom_boxplot(fill = "lightblue", outliers = FALSE) +
   xlab("") +
   ylab("Relative monthly occurrences") +
   stat_summary(fun.y = mean, geom = "point", shape = 23, size = 3) +
@@ -790,7 +790,7 @@ ggplot(ST_extreme_monthly, aes(y = GLB_ench.N_MW/max_median,
                                x = factor(month,
                                           levels = 1:12,
                                           labels = month.abb[1:12]))) +
-  geom_boxplot(fill = "lightblue") +
+  geom_boxplot(fill = "lightblue", outliers = FALSE) +
   xlab("") +
   ylab("Relative monthly weighted occurrences") +
   stat_summary(fun.y = mean, geom = "point", shape = 23, size = 3) +
@@ -1467,7 +1467,7 @@ p2
 #
 #
 #
-# #+ energy_multi, echo=F, include=T, out.heigth="100%"
+# #+ energy-multi, echo=F, include=T, out.heigth="100%"
 # plot_grid(p1, p2, p3, labels = c('A', 'B', "(C)"), ncol = 1, align = "v")
 # #+ echo=F, include=T
 
@@ -1581,7 +1581,7 @@ write.csv(yeartrends, "./figures/Daily_trends_byYear_Proper.csv")
 ##; #'
 ##; #' ### Monthly Energy contribution of enhancements
 ##; #'
-##; #+ energy_monthly, echo=F, include=T, results="asis"
+##; #+ energy-monthly, echo=F, include=T, results="asis"
 ##;
 ##; mcol <- viridis(n = 12)
 ##;

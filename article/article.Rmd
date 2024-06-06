@@ -401,7 +401,7 @@ representation of the irradiance for the whole study period
 (Figure\nobreakspace{}\ref{fig:CS-change}).
 
 ```{r CS-change, echo=FALSE, fig.cap="Simulated long term change of the clear sky irradiance relevant to its climatological values, due to changed of AOD."}
-knitr::include_graphics("../images/P_CS_change-1.png")
+knitr::include_graphics("../images/P-CS-change-1.png")
 ```
 
 <!-- 1997 0.0839901
@@ -627,7 +627,7 @@ considerable level.
 <!-- ``` -->
 
 ```{r P-energy-mean, echo=FALSE, fig.cap="Trends of the mean OIR per CE."}
-knitr::include_graphics("../images/P_energy-7.png")
+knitr::include_graphics("../images/P-energy-3.png")
 ```
 
 
@@ -636,7 +636,7 @@ knitr::include_graphics("../images/P_energy-7.png")
 <!-- ``` -->
 
 ```{r P-energy-N, echo=FALSE, fig.cap="Trend of yearly cloud enhancement occurrences."}
-knitr::include_graphics("../images/P_energy-6.png")
+knitr::include_graphics("../images/P-energy-2.png")
 ```
 
 <!-- ```{r echo=FALSE, fig.cap="Trend of the yearly excess energy due to CE over irradiance"} -->
@@ -644,7 +644,7 @@ knitr::include_graphics("../images/P_energy-6.png")
 <!-- ``` -->
 
 ```{r P-energy-sum, echo=FALSE, fig.cap="Trend of the yearly excess energy due to CE over irradiance"}
-knitr::include_graphics("../images/P_energy-5.png")
+knitr::include_graphics("../images/P-energy-1.png")
 ```
 
 
@@ -668,7 +668,7 @@ position of the sun during each season of the year. Unfortunately, the lack of d
 formation, type and location is not allowing further analysis.
 
 ```{r relative-month-occurrences, echo=FALSE, fig.cap="Seasonal statistics of the number of CE occurrences for each month, normalized to the maximum occurrences on June. The box represents the values of the low $25\\,\\%$ percentile to $75\\,\\%$ percentile, where the thick horizontal line inside is the mean, the vertical lines extend to the maximum and minimum values, the dots are outlier values, and the rhombus is the mean."}
-knitr::include_graphics("../images/clim_CE_month_norm_MAX_median_N-2.png")
+knitr::include_graphics("../images/clim-CE-month-norm-MAX-median-N-1.png")
 ```
 <!--
 ```{r echo=FALSE, fig.cap="Distribution of the number of CE cases"}
@@ -760,7 +760,7 @@ the weather characteristics of these periods, where there are continuous alterna
 between clear sky periods and clouds.
 
 ```{r relative-month-occurancies-ECE, echo=FALSE, fig.cap="Seasonal statistics of the number of ECE occurancies for each month, normalized to the maximum occurancies on March. The box represents the values of the low $25\\,\\%$ percentile to $75\\,\\%$ percentile, where the thick horizontal line inside is the mean, the vertical lines extend to the max imum and minimum vales, the dots are outlier values, and the rhombus is the mean."}
-knitr::include_graphics("../images/clim_ECE_month_norm_MAX_median_N-2.png")
+knitr::include_graphics("../images/clim-ECE-month-norm-MAX-median-N-2.png")
 ```
 
 <!-- ```{r echo=FALSE, fig.cap="Distribution of the number of ECE cases"} -->
@@ -843,11 +843,11 @@ characteristics.
 # Appendix {.unnumbered}
 
 ```{r example-day, echo=FALSE, fig.cap="Example of cloud identification data for 2019-07-11. Where are denoted with red circles all the detected CE events, the cloud interaction with the GHI (blue crosses), and the thresholds of CE and the threshold of ECE events with red and black line respectively.", fig.pos='H'}
-knitr::include_graphics("../images/example_days-18.png")
+knitr::include_graphics("../images/example-days-18.png")
 ```
 
 ```{r example-year, echo=FALSE, fig.cap="Example of the relation of the measured GHI versus the reference clear sky irradiance for the year 2005, where the intensity of the detected over irradiance (OIR) is color coded.", fig.pos='H'}
-knitr::include_graphics("../images/example_years-13.png")
+knitr::include_graphics("../images/example-years-13.png")
 ```
 
 
