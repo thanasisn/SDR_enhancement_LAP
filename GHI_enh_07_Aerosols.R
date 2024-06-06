@@ -17,13 +17,14 @@
 #'
 #' header-includes:
 #' - \usepackage{caption}
+#' - \usepackage{float}
 #' - \usepackage{placeins}
 #' - \captionsetup{font=small}
 #'
 #' output:
 #'   bookdown::pdf_document2:
 #'     number_sections: no
-#'     fig_caption:     no
+#'     fig_caption:     yes
 #'     keep_tex:        yes
 #'     latex_engine:    xelatex
 #'     toc:             yes
@@ -52,8 +53,9 @@ knitr::opts_chunk$set(dev        = c("pdf", "png")) ## expected option
 # knitr::opts_chunk$set(dev        = "png"    )       ## for too much data
 knitr::opts_chunk$set(out.width  = "100%"   )
 knitr::opts_chunk$set(fig.align  = "center" )
+knitr::opts_chunk$set(fig.cap    = " - empty caption - " )
 knitr::opts_chunk$set(cache      =  FALSE   )  ## !! breaks calculations
-knitr::opts_chunk$set(fig.pos    = '!h'     )
+knitr::opts_chunk$set(fig.pos    = 'H'    )
 
 #+ echo=FALSE, include=TRUE
 ## __ Set environment  ---------------------------------------------------------

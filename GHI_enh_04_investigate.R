@@ -17,13 +17,14 @@
 #'
 #' header-includes:
 #' - \usepackage{caption}
+#' - \usepackage{float}
 #' - \usepackage{placeins}
 #' - \captionsetup{font=small}
 #'
 #' output:
 #'   bookdown::pdf_document2:
 #'     number_sections: no
-#'     fig_caption:     no
+#'     fig_caption:     yes
 #'     keep_tex:        yes
 #'     latex_engine:    xelatex
 #'     toc:             yes
@@ -50,8 +51,9 @@ knitr::opts_chunk$set(dev        = c("pdf", "png"))
 # knitr::opts_chunk$set(dev        = "png"    )
 knitr::opts_chunk$set(out.width  = "100%"   )
 knitr::opts_chunk$set(fig.align  = "center" )
+knitr::opts_chunk$set(fig.cap    = " - empty caption - " )
 knitr::opts_chunk$set(cache      =  FALSE   )  ## !! breaks calculations
-# knitr::opts_chunk$set(fig.pos    = '!h'    )
+knitr::opts_chunk$set(fig.pos    = 'H'    )
 
 #+ echo=FALSE, include=TRUE
 ## __ Set environment  ---------------------------------------------------------
@@ -631,9 +633,9 @@ ggplot(data    = ST_G0[GLB_ench.N > 1,],
 
 
 #'
-#' # Climatolgy
+#' # Climatoogy
 #'
-#+ clim_CE_N_doy, echo=F, include=T, results="asis"
+#+ clim-CE-N-doy, echo=F, include=T
 plot(ST_E_daily[, sum(GLB_ench.N), by = yday(Date)],
      ylab = "Enhancement cases",
      xlab = "DOY",
@@ -658,12 +660,12 @@ title("Climatology of monthly weighted CE cases per month")
 
 
 # normalize with max value
-#+ clim_CE_month_norm_MAX_N, echo=F, include=T, results="asis"
+#+ clim-CE-month-norm-MAX-N, echo=F, include=T, results="asis"
 boxplot(ST_E_monthly[, GLB_ench.N/max(GLB_ench.N, na.rm = T) ~ month ])
 title("Climatology of CE cases per month Norm by max N")
 
 
-#+ clim_CE_month_norm_MAX_N_MW, echo=F, include=T, results="asis"
+#+ clim-CE-month-norm-MAX-N-MW, echo=F, include=T, results="asis"
 boxplot(ST_E_monthly[, GLB_ench.N_MW/max(GLB_ench.N_MW, na.rm = T) ~ month ])
 title("Climatology of monthly weighted CE cases per month Norm by max N")
 
@@ -673,13 +675,14 @@ title("Climatology of monthly weighted CE cases per month Norm by max N")
 #'
 #' ## Monthly  CE
 #'
-#+ clim_CE_month_norm_MAX_median_N, echo=F, include=T, results="asis"
+#+ clim-CE-month-norm-MAX-median-N, echo=F, include=T, results="asis"
 # normalize with max monthly median
 temp       <- ST_E_monthly[, median(GLB_ench.N, na.rm = T), by = month]
 max_median <- max(temp$V1)
 max_month  <- month.name[temp[which.max(temp$V1), month]]
-boxplot(ST_E_monthly[, GLB_ench.N/max_median ~ month ])
-title(paste("Climatology of CE cases per month Norm the median of", max_month))
+
+# boxplot(ST_E_monthly[, GLB_ench.N/max_median ~ month ])
+# title(paste("Climatology of CE cases per month Norm the median of", max_month))
 
 ggplot(ST_E_monthly, aes(y = GLB_ench.N/max_median,
                          x = factor(month,
@@ -700,15 +703,17 @@ ggplot(ST_E_monthly, aes(y = GLB_ench.N/max_median,
 #'
 #' ## Monthly weighted CE
 #'
-#+ clim_CE_month_norm_MAX_median_N_MW, echo=F, include=T, results="asis"
+#+ clim-CE-month-norm-MAX-median-N-MW, echo=F, include=T, results="asis"
 
 # normalize with max monthly median
 temp       <- ST_E_monthly[, median(GLB_ench.N_MW, na.rm = T), by = month]
 max_median <- max(temp$V1)
 max_month  <- month.name[temp[which.max(temp$V1), month]]
 
-boxplot(ST_E_monthly[, GLB_ench.N_MW/max_median ~ month ])
-title(paste("Monthly weighed Climatology of CE cases per month Norm the median of", max_month))
+
+# boxplot(ST_E_monthly[, GLB_ench.N_MW/max_median ~ month ])
+# title(paste("Monthly weighed Climatology of CE cases per month Norm the median of", max_month))
+
 
 ggplot(ST_E_monthly, aes(y = GLB_ench.N_MW/max_median,
                          x = factor(month,
@@ -745,7 +750,7 @@ title("Climatology of ECE cases per month")
 #'
 #' ## Monthly extreme CE
 #'
-#+ clim_ECE_month_norm_MAX_median_N, echo=F, include=T, results="asis"
+#+ clim-ECE-month-norm-MAX-median-N, echo=F, include=T, results="asis"
 # normalize with max monthly median
 temp       <- ST_extreme_monthly[, median(GLB_ench.N, na.rm = T), by = month]
 max_median <- max(temp$V1)
@@ -771,15 +776,15 @@ ggplot(ST_extreme_monthly, aes(y = GLB_ench.N/max_median,
 #'
 #' ## Monthly weighted extreme CE
 #'
-#+ clim_ECE_month_norm_MAX_median_N_MW, echo=F, include=T, results="asis"
+#+ clim-ECE-month-norm-MAX-median-N-MW, echo=F, include=T, results="asis"
 
 # normalize with max monthly median
 temp       <- ST_extreme_monthly[, median(GLB_ench.N_MW, na.rm = T), by = month]
 max_median <- max(temp$V1)
 max_month  <- month.name[temp[which.max(temp$V1), month]]
 
-boxplot(ST_extreme_monthly[, GLB_ench.N_MW/max_median ~ month ])
-title(paste("Climatology of monthly weighted ECE cases per month Norm the median of", max_month))
+# boxplot(ST_extreme_monthly[, GLB_ench.N_MW/max_median ~ month ])
+# title(paste("Climatology of monthly weighted ECE cases per month Norm the median of", max_month))
 
 ggplot(ST_extreme_monthly, aes(y = GLB_ench.N_MW/max_median,
                                x = factor(month,
@@ -799,12 +804,12 @@ ggplot(ST_extreme_monthly, aes(y = GLB_ench.N_MW/max_median,
 
 
 
-#+ climCE_daily, echo=F, include=FALSE, results="asis"
+#+ climCE-daily, echo=F, include=FALSE, results="asis"
 boxplot(ST_E_daily$GLB_ench.N ~ yday(ST_E_daily$Date) )
 title("Climatology of CE cases per DOY")
 
 
-#+ climCE_week, echo=F, include=FALSE, results="asis"
+#+ climCE-week, echo=F, include=FALSE, results="asis"
 boxplot(ST_E_daily$GLB_ench.N ~ week(ST_E_daily$Date) )
 title("Climatology of CE cases per weak")
 
@@ -1071,9 +1076,9 @@ plot(ST_yearly[, GLB_diff.sumPOS/wattGLB.sumPOS, year],
 yeartrends <- data.table()
 
 #' \newpage
-#' ## yearly trends
+#' ## Yearly trends
 #'
-#+ P_energy, echo=F, include=T, results="asis"
+#+ P-energy, echo=F, include=T, results="asis"
 
 
 ### Total energy per year  -------------------
@@ -1307,9 +1312,9 @@ p4
 
 
 #' \newpage
-#' ## yearly trends month weight
+#' ## Yearly trends month weighted
 #'
-#+ P_MW_energy, echo=F, include=T, results="asis"
+#+ P-MW-energy, echo=F, include=T, results="asis"
 
 ### Total energy per year monthly weight -------------------
 
@@ -1476,7 +1481,7 @@ write.csv(yeartrends, "./figures/Daily_trends_byYear_Proper.csv")
 
 
 
-#+ rel_energy, echo=F, include=T, results="asis"
+#+ rel-energy, echo=F, include=T, results="asis"
 
 {
   plot(ST_yearly[, 100 * (GLB_diff.sumPOS/wattGLB.sum), year],
@@ -1497,7 +1502,7 @@ write.csv(yeartrends, "./figures/Daily_trends_byYear_Proper.csv")
 }
 
 
-ST_yearly[,  .(GLB_diff.sumPOS, wattGLB.N, All_N) ]
+# ST_yearly[,  .(GLB_diff.sumPOS, wattGLB.N, All_N) ]
 
 {
   plot(ST_yearly[,  GLB_diff.sumPOS * (wattGLB.N/All_N), year],
