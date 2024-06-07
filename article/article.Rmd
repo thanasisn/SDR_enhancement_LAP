@@ -174,7 +174,7 @@ An important aspect of the variability of solar radiation is its interaction wit
 clouds. In general, clouds can attenuate a fraction  of solar irradiance, but under
 certain conditions, can lead to  enhancement of the global horizontal irradiance
 (GHI) reaching the ground. This effect can locally increase the observed GHI to
-levels even higher than the expected clear-sky irradiance [@Cordero2023; @Vamvakas2020 see references therein].
+levels even higher than the expected clear-sky irradiance [see references therein].
 
 Some of the proposed underling mechanisms of those enhancements, have been summarized
 by @Gueymard2017, and include scattering on the edge of cumulus clouds or through
@@ -195,6 +195,7 @@ enhancements can effect the efficiency and stability of photovoltaic power produ
 potential to compromise the integrity of photovoltaic plants infrastructure
 [@DoNascimento2019].  It has also been demonstrated, that these events can interfere
 in the comparison of ground data and satellite observations [@Damiani2018]
+
 
 <!--
 Study of the mechanism has also been done with modeling of different cloud types and
