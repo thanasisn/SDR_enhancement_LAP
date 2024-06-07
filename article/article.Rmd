@@ -189,8 +189,13 @@ are also; some practical implications of the cloud enchantments.  The intensity 
 duration of enhancements can effect the efficiency and stability of photovoltaic
 power production [@Lappalainen2020; @Jaervelae2020]; while ECEs have the potential to
 compromise the integrity of photovoltaic plants infrastructure [@DoNascimento2019].
-It has also been demonstrated, that these events can interfere in the comparison of
-ground-based and satellite observations [@Damiani2018]
+It has also been demonstrated that these events can interfere in the comparison of
+ground-based and satellite observations [@Damiani2018].  Global warming has likely
+affected cloud coverage in the last few decades. @Liu2023 reported increases in cloud
+cover over the tropical and subtropical oceans and decreases over most continents,
+while @Dong2022 reported decreases over North America and Europe. To our knowledge,
+there is no evidence on whether this trend has affected also the number and strength
+of CE events.
 
 <!--
 Study of the mechanism has also been done with modeling of different cloud types and

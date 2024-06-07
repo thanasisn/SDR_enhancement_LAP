@@ -74,9 +74,15 @@ intensity and duration of enhancements can effect the efficiency and
 stability of photovoltaic power production (Lappalainen and Kleissl
 2020; Järvelä and Valkealahti 2020); while ECEs have the potential to
 compromise the integrity of photovoltaic plants infrastructure (Do
-Nascimento et al. 2019). It has also been demonstrated, that these
-events can interfere in the comparison of ground-based and satellite
-observations (Damiani et al. 2018)
+Nascimento et al. 2019). It has also been demonstrated that these events
+can interfere in the comparison of ground-based and satellite
+observations (Damiani et al. 2018). Global warming has likely affected
+cloud coverage in the last few decades. Liu et al. (2023) reported
+increases in cloud cover over the tropical and subtropical oceans and
+decreases over most continents, while (**Dong2022?**) reported decreases
+over North America and Europe. To our knowledge, there is no evidence on
+whether this trend has affected also the number and strength of CE
+events.
 
 Methods of identification of CE events usually include the use of
 simulated clear sky irradiance as baseline, that is combined with an
@@ -674,6 +680,11 @@ Lappalainen, Kari, and Jan Kleissl. 2020. "Analysis of the Cloud
 Enhancement Phenomenon and Its Effects on Photovoltaic Generators Based
 on Cloud Speed Sensor Measurements." *Journal of Renewable and
 Sustainable Energy* 12 (4): 043502. <https://doi.org/10.1063/5.0007550>.
+
+Liu, Huan, Ilan Koren, Orit Altaratz, and Mickaël D. Chekroun. 2023.
+"Opposing Trends of Cloud Coverage over Land and Ocean Under Global
+Warming." *Atmospheric Chemistry and Physics* 23 (11): 6559--69.
+<https://doi.org/10.5194/acp-23-6559-2023>.
 
 Long, Charles N., and Y. Shi. 2006. "The QCRad Value Added Product:
 Surface Radiation Measurement Quality Control Testing, Including
