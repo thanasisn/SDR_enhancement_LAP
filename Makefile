@@ -43,7 +43,7 @@ $(PDF): $(RMD)
 	@#quarto render '$?' --to elsevier-pdf --log-level warning
 	@-rsync -a "$@" ${LIBRARY}
 
-### Doc for spellinig  ############################33
+### Doc for spellining  ############################33
 TARGET := ./article/article
 RMD    := $(TARGET).Rmd
 DOC1   := $(TARGET).docx

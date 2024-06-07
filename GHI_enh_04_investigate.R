@@ -1729,7 +1729,16 @@ plot(ST_E_monthly[, GLB_diff.sum/wattGLB.sum, year],
 # test <- DATA[as.Date(Date) == "2004-05-25"]
 
 test <- ST_E_monthly[, mean(GLB_ench.N / All_N), by = month]
-plot(test, main = "Mean monthly weight")
+plot(test, main = "Mean monthly weight", ylab = "MW")
+
+ST_E_monthly[, MW := GLB_ench.N / All_N]
+plot(ST_E_monthly[, MW, month], main = "Monthly weight")
+
+plot(ST_E_monthly[, All_N, month], main = "All data")
+
+plot(ST_E_monthly[, GLB_ench.N, month], main = "CE N")
+
+
 
 
 #' **END**
