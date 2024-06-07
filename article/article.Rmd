@@ -1,5 +1,5 @@
 ---
-title: Long term cloud enhancement events of global solar irradiance over Thessaloniki
+title: Long term cloud enhancement events of global solar irradiance over Thessaloniki, Greece
 
 author:
   - name:        Athanasios N. Natsis
@@ -158,21 +158,23 @@ $\text{GHI}_\text{CSm}$: modelled clear sky one minute global horizontal irradia
 
 
 
-# Intro
 
-The shortwave solar irradiance, reaching Earth's surface, is the main energy source
-of the atmosphere and the biosphere, and drives and governs the climate [@Gray2010].  It
-has direct practical application, in industries like energy and
-agricultural production. The variability of its intensity, can cause difficulties in
-predicting the yield, and designing the specifications of the appropriate equipment.
-Significant portion of research has been focused on predicting the renewable energy production in a
-fine timescale and in near real-time (for a review see @Inman2013; @Graabak2016).
+# Introduction
 
-A big aspect of this variability is the interaction of GHI with the clouds. In general,
-clouds absorb part of the solar irradiance, but under certain conditions, can enhance
-the total shortwave irradiance reaching the ground. This effect, can locally increase
-the observed GHI, even higher than the expected clear sky irradiance
-[see references therein].
+The shortwave solar radiation, reaching Earth's surface, is the main energy source of
+the atmosphere and the biosphere, and drives and governs the climate [@Gray2010].  It
+has direct practical application; in industries like energy and agricultural
+production. The variability of its intensity; can impose difficulties in predicting
+the yield; and in designing the specifications of the appropriate equipment.
+Significant portion of research has been focused on predicting the renewable energy
+production in a fine timescale and in near real-time (for a review see @Inman2013;
+@Graabak2016).
+
+An important aspect of the variability of solar radiation is its interaction with the
+clouds. In general, clouds can attenuate a fraction  of solar irradiance, but under
+certain conditions, can lead to  enhancement of the global horizontal irradiance
+(GHI) reaching the ground. This effect can locally increase the observed GHI to
+levels even higher than the expected clear-sky irradiance [@Cordero2023; @Vamvakas2020 see references therein].
 
 Some of the proposed underling mechanisms of those enhancements, have been summarized
 by @Gueymard2017, and include scattering on the edge of cumulus clouds or through
