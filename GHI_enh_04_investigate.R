@@ -732,8 +732,6 @@ ggplot(ST_E_monthly, aes(y = GLB_ench.N_MW/max_median,
 
 
 
-
-
 #'
 #' ## Monthly extreme CE raw
 #'
@@ -1730,6 +1728,8 @@ plot(ST_E_monthly[, GLB_diff.sum/wattGLB.sum, year],
 ## group fix
 # test <- DATA[as.Date(Date) == "2004-05-25"]
 
+test <- ST_E_monthly[, mean(GLB_ench.N / All_N), by = month]
+plot(test, main = "Mean monthly weight")
 
 
 #' **END**
