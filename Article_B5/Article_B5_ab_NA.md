@@ -29,7 +29,7 @@ irradiance
 $\text{GHI}_{\text{CSm}}$: modelled clear sky one minute global
 horizontal irradiance
 
-# 1 Intro
+# 1 Introduction
 
 The shortwave solar radiation, reaching Earth's surface, is the main
 energy source of the atmosphere and the biosphere, and drives and

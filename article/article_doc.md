@@ -48,8 +48,10 @@ interaction with the clouds. In general, clouds can attenuate a fraction
 of solar irradiance, but under certain conditions, can lead to
 enhancement of the global horizontal irradiance (GHI) reaching the
 ground. This effect can locally increase the observed GHI to levels even
-higher than the expected clear-sky irradiance \[see references
-therein\].
+higher than the expected clear-sky irradiance \[Cordero et al. (2023);
+Vamvakas, Salamalikis, and Kazantzidis (2020); Castillejo-Cuberos and
+Escobar (2020); Vamvakas, Salamalikis, and Kazantzidis (2020); see
+references therein\].
 
 Some of the proposed underling mechanisms of those enhancements, have
 been summarized by Gueymard (2017), and include scattering on the edge
@@ -592,6 +594,13 @@ Coddington, Odele, Judith L. Lean, Doug Lindholm, Peter Pilewskie,
 Martin Snow, and NOAA CDR Program. 2005. "NOAA Climate Data Record (CDR)
 of Total Solar Irradiance (TSI), NRLTSI Version 2. Daily."
 <https://doi.org/10.7289/V55B00C1>.
+
+Cordero, Raúl R., Sarah Feron, Alessandro Damiani, Edgardo Sepúlveda,
+Jose Jorquera, Alberto Redondas, Gunther Seckmeyer, Jorge Carrasco,
+Penny Rowe, and Zutao Ouyang. 2023. "Surface Solar Extremes in the Most
+Irradiated Region on Earth, Altiplano." *Bulletin of the American
+Meteorological Society* 104 (6): E1206--21.
+<https://doi.org/10.1175/BAMS-D-22-0215.1>.
 
 Damiani, Alessandro, Hitoshi Irie, Takashi Horio, Tamio Takamura,
 Pradeep Khatri, Hideaki Takenaka, Takashi Nagao, Takashi Y. Nakajima,
