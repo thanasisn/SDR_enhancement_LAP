@@ -851,7 +851,6 @@ title("Climatology of CE cases per weak")
 }
 
 
-
 {
   plot(ST_E_yearly[, GLB_diff.N, year],
        col = varcol("GLB_diff.N"),
@@ -990,7 +989,7 @@ title("Climatology of CE cases per weak")
 
 
 
-## TODO relative to all points -------
+## relative to all points ------------------------------
 
 
 {
@@ -1314,13 +1313,13 @@ p4
 #'
 #+ P-MW-energy, echo=F, include=T, results="asis"
 
-### Total energy per year monthly weight -------------------
+### MW Total energy per year monthly weight -------------------
 
 
 ##  create yearly from monthly data presence weight
 
-
 ST_monthly[ , MW := wattGLB.N/All_N]
+
 
 # ST_monthly[ , .(MW, GLB_diff.N, GLB_diff.N_pos, GLB_diff.sumPOS) ]
 
@@ -1328,6 +1327,7 @@ ST_MW_yearly <- ST_monthly[, .(
   GLB_diff.sum = sum(GLB_diff.sumPOS * MW, na.rm = T),
   GLB_diff.N   = sum(GLB_diff.N_pos  * MW, na.rm = T)
 ), by = year]
+
 
 
 pvar1   <- "GLB_diff.sum"
@@ -1728,15 +1728,15 @@ plot(ST_E_monthly[, GLB_diff.sum/wattGLB.sum, year],
 ## group fix
 # test <- DATA[as.Date(Date) == "2004-05-25"]
 
-test <- ST_E_monthly[, mean(GLB_ench.N / All_N), by = month]
+test <- ST_monthly[, mean( MW ), by = month]
 plot(test, main = "Mean monthly weight", ylab = "MW")
 
-ST_E_monthly[, MW := GLB_ench.N / All_N]
-plot(ST_E_monthly[, MW, month], main = "Monthly weight")
 
-plot(ST_E_monthly[, All_N, month], main = "All data")
+plot(ST_monthly[, MW,             month], main = "Monthly weight")
 
-plot(ST_E_monthly[, GLB_ench.N, month], main = "CE N")
+plot(ST_monthly[, All_N,          month], main = "All data")
+
+plot(ST_monthly[, GLB_ench.N_pos, month], main = "CE N")
 
 
 

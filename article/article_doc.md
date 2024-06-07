@@ -15,8 +15,6 @@ with exceptions lasting over an hour. We have detected enhancements over
 the total solar irradiance, without exceeding the maximum values
 reported for other sites, with more favorable CE conditions.
 
-   
-
 CE: cloud enhancement cases one minute
 
 ECE: extreme cloud enhancement cases one minute over TSI on horizontal
@@ -48,53 +46,54 @@ interaction with the clouds. In general, clouds can attenuate a fraction
 of solar irradiance, but under certain conditions, can lead to
 enhancement of the global horizontal irradiance (GHI) reaching the
 ground. This effect can locally increase the observed GHI to levels even
-higher than the expected clear-sky irradiance \[Cordero et al. (2023);
-Vamvakas, Salamalikis, and Kazantzidis (2020); Castillejo-Cuberos and
-Escobar (2020); Vamvakas, Salamalikis, and Kazantzidis (2020); see
-references therein\].
+higher than the expected clear-sky irradiance (Cordero et al. 2023;
+Vamvakas, Salamalikis, and Kazantzidis 2020; Castillejo-Cuberos and
+Escobar 2020; Vamvakas, Salamalikis, and Kazantzidis 2020 and references
+therein).
 
 Some of the proposed underling mechanisms of those enhancements, have
-been summarized by Gueymard (2017), and include scattering on the edge
-of cumulus clouds or through thin cirrus. Further investigation with
-radiation transfer modeling methods and observations have pointed as the
-prevailing mechanism, the forward Mie scattering (Pecenak et al. 2016;
-Thuillier et al. 2013; G. H. Yordanov et al. 2013; Georgi Hristov
-Yordanov, Saetre, and Midtgård 2015), through the clouds. The overall
-phenomenon depends on different interactive factors, which includes
-cloud thickness, constitution and type; and the relative position of the
-sun and the clouds (Gueymard 2017; Veerman, Van Stratum, and Van
-Heerwaarden 2022). As such, there are multiple contributing mechanisms
-that are responsible for the observed irradiance enhancements.
+been summarized by Gueymard (2017); the most important being the
+scattering of radiation on the edges of cumulus clouds. It has been also
+suggested that enhancement of GHI can be produced by thin cirrus clouds
+though refraction and scattering (Thuillier et al. 2013). Further
+investigation with radiative transfer modeling and observations pointed
+as the prevailing mechanism, the strong forward Mie scattering through
+clouds of low optical depth (Pecenak et al. 2016; Thuillier et al. 2013;
+G. H. Yordanov et al. 2013; Georgi Hristov Yordanov, Saetre, and
+Midtgård 2015). Overall, enhancement event depend on different
+interactive factors, which include cloud thickness, structure and type,
+and the relative position of the sun and the clouds (Gueymard 2017;
+Veerman, Van Stratum, and Van Heerwaarden 2022).
 
-On multiple sites, cloud enhancements have been reported, to be able to
-briefly exceed the value of the solar constant, resulting of clear
-indexes above unit. A summary of extreme enchantment cases (ECE) have
-been compiled by Martins, Mantelli, and Rüther (2022). There are also,
-some practical implication of the cloud enchantments. The intensity and
-duration of enhancements can effect the efficiency and stability of
-photovoltaic power production (Lappalainen and Kleissl 2020; Järvelä and
-Valkealahti 2020), and extreme enhancements cases, have the potential to
+On multiple sites, cloud enhancements (CE) have been reported to be able
+to briefly exceed the value of the solar constant, resulting of
+clearness indices above unit. A summary of extreme enchantment cases
+(ECE) has been compiled by Martins, Mantelli, and Rüther (2022). There
+are also; some practical implications of the cloud enchantments. The
+intensity and duration of enhancements can effect the efficiency and
+stability of photovoltaic power production (Lappalainen and Kleissl
+2020; Järvelä and Valkealahti 2020); while ECEs have the potential to
 compromise the integrity of photovoltaic plants infrastructure (Do
 Nascimento et al. 2019). It has also been demonstrated, that these
-events can interfere in the comparison of ground data and satellite
+events can interfere in the comparison of ground-based and satellite
 observations (Damiani et al. 2018)
 
-Methods of identification cloud enchantment events in the literature,
-usually include the use of a simulated clear sky radiation as baseline,
-that is combined with an appropriate threshold or some other statistical
-characteristics, and in some cases, with visual methods with a sky cam
-(Vamvakas, Salamalikis, and Kazantzidis 2020; Mol, Knap, and Van
-Heerwaarden 2023 and references therein).
+Methods of identification of CE events usually include the use of
+simulated clear sky irradiance as baseline, that is combined with an
+appropriate threshold or some other statistical characteristics, and in
+some cases, with visual inspection of sky camera images (Vamvakas,
+Salamalikis, and Kazantzidis 2020; Mol, Knap, and Van Heerwaarden 2023
+and references therein).
 
-In this study, we evaluated the effects CE on the GHI by studding the
-occurrences, their intensity, and their duration in a thirty-year period
-at the city of Thessaloniki. We used modeled clear sky irradiance, as a
-baseline to identify cloud enhancements. We were able to determine some
-trends of the phenomenon, it's Climatology, and some of their general
-characteristics. We weren't able to find a comparable study that
-provides trends for similar long term dataset, as ours. The recording of
-the GHI signal is the mean of one-minute. Thus, the minimum resolution
-of CE events, in this study is one minute.
+In this study, we evaluate the effects CE on GHI by investigating their
+frequency of occurrence, intensity, and duration in a thirty-year period
+of GHI observations at Thessaloniki, Greece. We used modeled clear sky
+irradiance, as a baseline to identify cloud enhancements. We were able
+to determine some trends of the phenomenon, it's Climatology, and some
+of their general characteristics. We weren't able to find a comparable
+study that provides trends for similar long term dataset, as ours. The
+recording of the GHI signal is the mean of one-minute. Thus, the minimum
+resolution of CE events, in this study is one minute.
 
 In the relative bibliography different definition have been used for
 these events, some of the are summarized by Gueymard (2017). Here, we
