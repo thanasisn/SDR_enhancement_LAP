@@ -23,7 +23,7 @@ enhancements over the total solar irradiance, without exceeding the
 maximum values reported for other sites, with more favorable CE
 conditions.
 
-    CE: cloud enhancement cases one minute
+CE: cloud enhancement cases one minute
 
 ECE: extreme cloud enhancement cases one minute over TSI on horizontal
 plane
@@ -225,6 +225,7 @@ Sun-Earth distance derived by the Astropy software library (Astropy
 Collaboration et al. 2022).
 
 $280$$2500\text{nm}$${0.2}^{\circ}$$500\text{nm}$$\tau_{500\text{nm}}$$\pm 1$$\pm 2\sigma$$w$$\pm 1$$\pm 2\sigma$
+
 2.3.2 Long term change of clear sky irradiance
 
 The above clear sky reference valuesare based on the climatological AOD

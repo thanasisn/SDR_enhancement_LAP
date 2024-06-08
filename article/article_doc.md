@@ -106,38 +106,37 @@ determined long term trends of the above mentioned metrics, their
 climatology and some general characteristics. To our knowledge there are
 no other studies that provide trends from such long dataset.
 
-In the relative bibliography different definition have been used for
-these events, some of the are summarized by Gueymard (2017). Here, we
-defined as CE events, the cases when the measured GHI at ground level,
-exceeds the expected value under clear-sky conditions. Similarly, we
-define as extreme cloud enhancement events (ECE), the cases when GHI at
-ground level exceeds the Total Solar Irradiance (TSI). Although the
-duration of these bursts can vary, from seconds to several minutes, here
-we are constrained by the recorded data, to one-minute steps.
+In this study, we define an event as CE when the measured GHI at ground
+level, exceeds the expected value under clear-sky conditions. Similarly,
+we define as extreme cloud enhancement events (ECE), the cases when GHI
+at ground level exceeds the Total Solar Irradiance (TSI). Although the
+duration of these bursts can vary from seconds to several minutes, here
+we are constrained by the temporal resolution of our data to identify
+evens with duration of at minimum one-minute.
 
 # 2 Data and methodology
 
 ## 2.1 Instrumentation and data
 
-The monitoring site is operating in the Laboratory of Atmospheric
-Physics of the Aristotle University of Thessaloniki
-($40^{\circ}\, 38\prime\,$N, $22^{\circ}\, 57\prime\,$E,
-$80\,$m a.s.l.). In this study we present data from the period 13 April
-1993 to 31 December 2023. The GHI data were measured with a Kipp & Zonen
-CM-21 pyranometer. During the study period, the pyranometer was
+The data used in this study were recorded at the monitoring site of the
+Laboratory of Atmospheric Physics, Aristotle University of Thessaloniki,
+in Thessaloniki, Greece ($40^{\circ}\, 38\prime\,$N,
+$22^{\circ}\, 57\prime\,$E, $80\,$m a.s.l.). The GHI data were measured
+with a Kipp & Zonen CM-21 pyranometer and cover the period 13 April 1993
+to 31 December 2023. During the study period, the pyranometer was
 independently calibrated three times at the Meteorologisches
 Observatorium Lindenberg, DWD, verifying that the stability of the
 instrument's sensitivity was better than $0.7\,\%$ relative to the
 initial calibration by the manufacturer. For the acquisition of
 radiometric data, the signal of the pyranometer was sampled at a rate of
-$1\,\text{Hz}$. The mean and the standard deviation of these samples
-were calculated and recorded for every minute. The measurements were
-corrected for the zero offset ("dark signal" in volts), which was
-calculated by averaging all measurements recorded for a period of
-$3\,\text{h}$, before (morning) or after (evening) the Sun reaches an
-elevation angle of $- 10^{\circ}$. The signal was converted to
-irradiance using the ramped value of the instrument's sensitivity
-between subsequent calibrations.
+$1\,\text{Hz}$ with the mean and standard deviation of these samples
+calculated and recorded every minute. The measurements were corrected
+for the zero offset ("dark signal" in volts), which was calculated by
+averaging all measurements recorded for a period of $3\,\text{h}$,
+before (morning) or after (evening) the Sun reaches an elevation angle
+of $- 10^{\circ}$. The signal was converted to irradiance using the
+ramped value of the instrument's sensitivity between subsequent
+calibrations.
 
 To further improve the quality of the irradiance data, a manual
 screening was performed, in order to remove inconsistent and erroneous
@@ -150,22 +149,26 @@ Although it is impossible to detect all false data, the large number of
 available data, and the aggregation scheme we used, ensures the quality
 of the radiation measurements used in this study. To preserve an
 unbiased representation of the data we applied a constraint, similar the
-one used by Castillejo-Cuberos and Escobar (2020). Where, for each valid
-hour of day, there must exist at least 45 minutes of valid measurements,
+one used by Castillejo-Cuberos and Escobar (2020). For each valid hour
+of day, there must exist at least 45 minutes of valid measurements,
 including nighttime, when near sunrise and sunset. Days with less than 5
 valid hours were rejected completely. Furthermore, due to the
-significant measurement uncertainty, when the Sun is near the horizon,
-and due to some systematic obstructions by nearby buildings, we have
-excluded all measurements with solar zenith angle (SZA) greater than
-$78^{\circ}$.
+significant measurement uncertainty in GHI when the Sun is near the
+horizon, and due to some systematic obstructions by nearby buildings, we
+have excluded all measurements with solar zenith angle (SZA) greater
+than $78^{\circ}$.
+
+Finally, images from a sky camera have been used in the manual
+inspection of the CE identification. The sky camera operates since 2012
+and stores images in 5 min time steps.
 
 ## 2.2 Cloud enhancement detection
 
-To be able to detect the CE cases, we had to establish a baseline, above
-which we characterized each data point as an enhancement event, by
-estimating the occurring over irradiance (OIR). The OIR, is defined as
-the irradiance difference of the measured one-minute $\text{GHI}_{i}$
-from the CE identification criterion
+For the detection of CE cases we established a baseline of irradiance
+above which we characterized each data point as an enhancement event and
+calculated the over irradiance (OIR). The OIR is defined as the
+irradiance difference of the measured one-minute $\text{GHI}_{i}$ from
+the CE identification criterion
 ($\text{OIR}_{i} = \text{GHI}_{i} - \text{GHI}_{\text{CSlim}}$), as
 defined in Equation. To have an estimation, and a first insight on the
 phenomenon, we experimented with two simple approaches for the
@@ -203,37 +206,14 @@ pyranometer. The mean monthly AOD on different wavelengths are provided
 by AERONET, along with the equivalent water column height in the
 atmosphere.
 
-For completeness, we will describe here the main points of the radiation
-simulation procedure. We used as input the spectrum of Kurucz (1994) in
-the range $280$ to $2500\,\text{nm}$, with the Libradtran radiation
-transfer solver "disort" on a "pseudospherical" geometry and the
-"LOWTRAN" gas parameterization. For each combination of conditions we
-use a SZA step of ${0.2}^{\circ}$. For the atmospheric characteristics,
-we iterated on combinations of AOD at $500\,\text{nm}$
-($\tau_{500\text{nm}}$) with additional offsets of $\pm 1$ and
-$\pm 2\sigma$, and water column ($w$), also with offsets of $\pm 1$ and
-$\pm 2\sigma$. We applied them on two atmospheric profiles, from the Air
-Force Geophysics Laboratory (AFGL). The "AFGL atmospheric constituent
-profile, midlatitude summer" (afglms) and the "AFGL atmospheric
-constituent profile, midlatitude winter" (afglmw) (Anderson et al.
-1986).
-
-To create a look-up table, that aligns with our dataset, we applied some
-adjustments. To account for the Sun's variability, in our one-minute GHI
-measurements, we adapted each modeled value by scaling the model's input
-spectrum integral, to the corresponding TSI, provided by NOAA
-(Coddington et al. 2005). Also, we account for the effect of the Earth
--- Sun distance on the irradiance, by using the distance calculated by
-the Astropy (Astropy Collaboration et al. 2022) software library. As
-needed, we interpolate the resulting irradiances to the SZA of our
-measurements. For each period of the year, we used the appropriate
-atmospheric profile (afglms or afglmw). Finally, we calculated the clear
-sky irradiance value at the horizontal plane. Thus, we were able to
-emulate different atmospheric condition and levels of atmospheric
-clearness for the climatological conditions of the site. With this
-method, the modeled clear sky irradiances can be directly compared to
-each measured one-minute value of GHI, for different conditions of
-atmospheric clearness.
+For the atmospheric characteristics, we iterated on combinations of AOD
+at $500\,\text{nm}$ ($\tau_{500\text{nm}}$) with additional offsets of
+$\pm 1$ and $\pm 2\sigma$, and water column ($w$), also with offsets of
+$\pm 1$ and $\pm 2\sigma$. We applied them on two atmospheric profiles,
+from the Air Force Geophysics Laboratory (AFGL). The "AFGL atmospheric
+constituent profile, midlatitude summer" (afglms) and the "AFGL
+atmospheric constituent profile, midlatitude winter" (afglmw) (Anderson
+et al. 1986). --\>
 
 ### 2.3.2 Long term change of clear sky irradiance
 
@@ -582,13 +562,6 @@ Anderson, G. P., J. H. Chetwynd, S. A. Clough, E. P. Shettle, and F. X.
 Kneizys. 1986. "AFGL Atmospheric Constituent Profiles (0-120km)." Air
 Force Geophysics Laboratory, Optical Physics Division.
 
-Astropy Collaboration, Adrian M. Price-Whelan, Pey Lian Lim, Nicholas
-Earl, Nathaniel Starkman, Larry Bradley, David L. Shupe, et al. 2022.
-"The Astropy Project: Sustaining and Growing a Community-oriented
-Open-source Project and the Latest Major Release (v5.0) of the Core
-Package." *Astrophysical Journal* 935 (2): 167.
-<https://doi.org/10.3847/1538-4357/ac7c74>.
-
 Buis, J. P. P., A. Setzer, B. N. N. Holben, T. F. F. Eck, I. Slutsker,
 D. Tanre, E. Vermote, et al. 1998. "AERONET---a Federated Instrument
 Network and Data Archive for Aerosol Characterization." *Remote Sensing
@@ -598,11 +571,6 @@ Castillejo-Cuberos, Armando, and Rodrigo Escobar. 2020. "Detection and
 Characterization of Cloud Enhancement Events for Solar Irradiance Using
 a Model-Independent, Statistically-Driven Approach." *Solar Energy* 209
 (October): 547--67. <https://doi.org/10.1016/j.solener.2020.09.046>.
-
-Coddington, Odele, Judith L. Lean, Doug Lindholm, Peter Pilewskie,
-Martin Snow, and NOAA CDR Program. 2005. "NOAA Climate Data Record (CDR)
-of Total Solar Irradiance (TSI), NRLTSI Version 2. Daily."
-<https://doi.org/10.7289/V55B00C1>.
 
 Cordero, Raúl R., Sarah Feron, Alessandro Damiani, Edgardo Sepúlveda,
 Jose Jorquera, Alberto Redondas, Gunther Seckmeyer, Jorge Carrasco,
@@ -681,10 +649,6 @@ Kazadzis, S., A. Bais, V. Amiridis, D. Balis, C. Meleti, N. Kouremeti,
 C. S. Zerefos, et al. 2007. "Nine Years of UV Aerosol Optical Depth
 Measurements at Thessaloniki, Greece." *Atmospheric Chemistry and
 Physics* 7 (8): 2091--101. <https://doi.org/cmjz23>.
-
-Kurucz, Robert L. 1994. "Synthetic Infrared Spectra." In *Infrared Solar
-Physics*, edited by D. M. Rabin, J. T. Jefferies, and C. Lindsey,
-523--31. Dordrecht: Springer Netherlands.
 
 Lappalainen, Kari, and Jan Kleissl. 2020. "Analysis of the Cloud
 Enhancement Phenomenon and Its Effects on Photovoltaic Generators Based

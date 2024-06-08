@@ -218,15 +218,14 @@ cloud enhancements and we determined long term trends of the above mentioned met
 their climatology and some general characteristics.  To our knowledge there are no
 other studies that provide trends from such  long dataset.
 
-<!-- Define CE and ECE -->
-In the relative bibliography different definition have been used for these events,
-some of the are summarized by @Gueymard2017.  Here, we defined as CE
-events, the cases when the measured GHI at ground
-level, exceeds the expected value under clear-sky conditions.  Similarly, we define as
-extreme cloud enhancement events (ECE), the cases when GHI at ground level exceeds the Total Solar
-Irradiance (TSI).  Although the duration of these
-bursts can vary, from seconds to several minutes, here we are constrained by the
-recorded data, to one-minute steps.
+<!-- Define CE and ECE tomove? -->
+In this study, we define an event as CE when the measured GHI at ground level,
+exceeds the expected value under clear-sky conditions. Similarly, we define as
+extreme cloud enhancement events (ECE), the cases when GHI at ground level exceeds
+the Total Solar Irradiance (TSI). Although the duration of these bursts can vary from
+seconds to several minutes, here we are constrained by the temporal resolution of our
+data to identify evens with duration of at minimum one-minute.
+
 
 <!--
 Identification methods from bib
@@ -249,61 +248,64 @@ Constrains of the site
 
 ## Instrumentation and data
 
-The monitoring site is operating in the Laboratory of Atmospheric Physics of the
-Aristotle University of Thessaloniki (\(40^\circ\,38'\,\)N,
-\(22^\circ\,57'\,\)E, \(80\,\)m\ a.s.l.).
-In this study we present data from the period
+The data used in this study were recorded at the monitoring site of the Laboratory of
+Atmospheric Physics, Aristotle University of Thessaloniki, in Thessaloniki, Greece
+(\(40^\circ\,38'\,\)N, \(22^\circ\,57'\,\)E, \(80\,\)m\ a.s.l.).  The GHI data were
+measured with a Kipp\ & Zonen CM-21 pyranometer and cover the period
 `r strftime(min(ST_daily$Date), "%d\\ %B %Y")` to
 `r strftime(max(ST_daily$Date), "%d\\ %B %Y")`.
 <!-- Instrument -->
-The GHI data were measured with a Kipp\ & Zonen CM-21 pyranometer.  During the study
+  During the study
 period, the pyranometer was independently calibrated three times at the
 Meteorologisches Observatorium Lindenberg, DWD, verifying that the stability of the
 instrument’s sensitivity was better than $0.7\,\%$ relative to the initial
 calibration by the manufacturer.
 <!-- Measurements -->
 For the acquisition of radiometric data, the signal of the pyranometer was sampled at
-a rate of $1\,\text{Hz}$.  The mean and the standard deviation of these samples were
-calculated and recorded for every minute.  The measurements were corrected for the
-zero offset ("dark signal" in volts), which was calculated by averaging all
-measurements recorded for a period of $3\,\text{h}$, before (morning) or after
-(evening) the Sun reaches an elevation angle of $-10^\circ$.  The signal was
-converted to irradiance using the ramped value of the instrument’s sensitivity
-between subsequent calibrations.
+a rate of $1\,\text{Hz}$ with the mean and standard deviation of these samples
+calculated and recorded every minute.  The measurements were corrected for the zero
+offset ("dark signal" in volts), which was calculated by averaging all measurements
+recorded for a period of $3\,\text{h}$, before (morning) or after (evening) the Sun
+reaches an elevation angle of $-10^\circ$.  The signal was converted to irradiance
+using the ramped value of the instrument’s sensitivity between subsequent
+calibrations.
 
 <!-- Radiation data quality check -->
 To further improve the quality of the irradiance data, a manual screening was
 performed, in order to remove inconsistent and erroneous recordings that can occur
-stochastically or systematically during the long operation of the instrument.
-The manual screening was aided by a radiation data quality assurance procedure,
-adjusted for the site, which was based on the methods of Long and Shi\ [@Long2006;
+stochastically or systematically during the long operation of the instrument.  The
+manual screening was aided by a radiation data quality assurance procedure, adjusted
+for the site, which was based on the methods of Long and Shi\ [@Long2006;
 @Long2008a].  Thus, problematic recordings have been excluded from further
 processing.  Although it is impossible to detect all false data, the large number of
 available data, and the aggregation scheme we used, ensures the quality of the
 radiation measurements used in this study.
 <!-- Data selection -->
 To preserve an unbiased representation of the data we applied a constraint, similar
-the one used by @CastillejoCuberos2020. Where, for each valid hour of day, there must
-exist at least 45 minutes of valid measurements, including nighttime, when near sunrise and
+the one used by @CastillejoCuberos2020. For each valid hour of day, there must exist
+at least 45 minutes of valid measurements, including nighttime, when near sunrise and
 sunset. Days with less than 5 valid hours were rejected completely.
 <!--# CastillejoCuberos2020 There must be at least 5 h of valid data (Tests 1–7),
 otherwise all data for this day is flagged as invalid. There must be at least This
 work valid data 45 min of valid data (Tests 1–7) for an hour to be flagged as valid,
 otherwise all minute data for this hour is flagged as invalid. -->
-Furthermore, due to the significant measurement uncertainty, when the Sun is near the
-horizon, and due to some systematic obstructions by nearby buildings, we have
-excluded all measurements with solar zenith angle (SZA) greater than 
-$`r 90 - BIO_ELEVA`^\circ$.
+Furthermore, due to the significant measurement uncertainty in GHI when the Sun is
+near the horizon, and due to some systematic obstructions by nearby buildings, we
+have excluded all measurements with solar zenith angle (SZA) greater than $`r 90 -
+BIO_ELEVA`^\circ$.
 
+Finally, images from a sky camera have been used in the manual inspection of the CE
+identification. The sky camera operates since 2012 and stores images in 5 min time
+steps.
 
 
 ## Cloud enhancement detection
 
-To be able to detect the CE cases, we had to establish a baseline, above which we 
-characterized each data point as an enhancement event, by estimating the occurring
-over irradiance (OIR). The OIR, is defined as the irradiance difference of the
-measured one-minute $\text{GHI}_i$ from the CE identification criterion
-($\text{OIR}_i = \text{GHI}_i - \text{GHI}_\text{CSlim}$), as defined in
+For the detection of CE cases we established a baseline of irradiance above which we
+characterized each data point as an enhancement event and calculated the over
+irradiance (OIR). The OIR is defined as the irradiance difference of the measured
+one-minute $\text{GHI}_i$ from the CE identification criterion ($\text{OIR}_i =
+\text{GHI}_i - \text{GHI}_\text{CSlim}$), as defined in
 Equation\nobreakspace\ref{eq:CE4}.
 To have an estimation, and a first insight on the phenomenon, we experimented with
 two simple approaches for the reference.  The Haurwitz's model [@Haurwitz1945], which
@@ -337,6 +339,7 @@ are provided by AERONET, along with the equivalent water column height in the
 atmosphere.
 
 <!-- Libradtran options -->
+<!-- 
 For completeness, we will describe here the main points of the radiation simulation
 procedure. We used as input the spectrum of @Kurucz1994 in the range $280$ to
 $2500\,\text{nm}$, with the Libradtran radiation transfer solver "disort" on a
@@ -350,8 +353,10 @@ We applied them on two atmospheric profiles, from the Air Force Geophysics
 Laboratory (AFGL). The "AFGL atmospheric constituent profile, midlatitude summer"
 (afglms) and the "AFGL atmospheric constituent profile, midlatitude winter" (afglmw)
 [@Anderson1986].
+-->
 
 <!-- Lookup table -->
+<!-- 
 To create a look-up table, that aligns with our dataset, we applied some adjustments.
 To account for the Sun's variability, in our one-minute GHI measurements, we adapted
 each modeled value by scaling the model's input spectrum integral, to the
@@ -365,6 +370,7 @@ the horizontal plane.  Thus, we were able to emulate different atmospheric condi
 and levels of atmospheric clearness for the climatological conditions of the site.
 With this method, the modeled clear sky irradiances can be directly compared to each
 measured one-minute value of GHI, for different conditions of atmospheric clearness.
+-->
 
 ### Long term change of clear sky irradiance
 
