@@ -1,3 +1,10 @@
+---
+abstract: Here will be the abstract.
+date: 2024-06-08
+title: Long term cloud enhancement events of global solar irradiance
+  over Thessaloniki, Greece
+---
+
 # Abstract
 
 We studied the enhancement of the global horizontal irradiance (GHI),
@@ -33,9 +40,9 @@ horizontal irradiance
 The shortwave solar radiation, reaching Earth's surface, is the main
 energy source of the atmosphere and the biosphere, and drives and
 governs the climate (Gray et al. 2010). It has direct practical
-application; in industries like energy and agricultural production. The
-variability of its intensity; can impose difficulties in predicting the
-yield; and in designing the specifications of the appropriate equipment.
+application in industries like energy and agricultural production. The
+variability of its intensity can impose difficulties in predicting the
+yield and in designing the specifications of the appropriate equipment.
 Significant portion of research has been focused on predicting the
 renewable energy production in a fine timescale and in near real-time
 (for a review see Inman, Pedro, and Coimbra (2013); Graabak and Korpås
@@ -69,10 +76,10 @@ On multiple sites, cloud enhancements (CE) have been reported to be able
 to briefly exceed the value of the solar constant, resulting of
 clearness indices above unit. A summary of extreme enchantment cases
 (ECE) has been compiled by Martins, Mantelli, and Rüther (2022). There
-are also; some practical implications of the cloud enchantments. The
+are also some practical implications of the cloud enchantments. The
 intensity and duration of enhancements can effect the efficiency and
 stability of photovoltaic power production (Lappalainen and Kleissl
-2020; Järvelä and Valkealahti 2020); while ECEs have the potential to
+2020; Järvelä and Valkealahti 2020) while ECEs have the potential to
 compromise the integrity of photovoltaic plants infrastructure (Do
 Nascimento et al. 2019). It has also been demonstrated that these events
 can interfere in the comparison of ground-based and satellite
@@ -94,26 +101,23 @@ and references therein).
 In this study, we evaluate the effects CE on GHI by investigating their
 frequency of occurrence, intensity, and duration in a thirty-year period
 of GHI observations at Thessaloniki, Greece. We used modeled clear sky
-irradiance, as a baseline to identify cloud enhancements. We were able
-to determine some trends of the phenomenon, it's Climatology, and some
-of their general characteristics. We weren't able to find a comparable
-study that provides trends for similar long term dataset, as ours. The
-recording of the GHI signal is the mean of one-minute. Thus, the minimum
-resolution of CE events, in this study is one minute.
+irradiance as a baseline to identify cloud enhancements and we
+determined long term trends of the above mentioned metrics, their
+climatology and some general characteristics. To our knowledge there are
+no other studies that provide trends from such long dataset.
 
 In the relative bibliography different definition have been used for
 these events, some of the are summarized by Gueymard (2017). Here, we
 defined as CE events, the cases when the measured GHI at ground level,
-exceeds the expected value under clear-sky conditions. Similar, we
-define as extreme cloud enhancement events (ECE), the cases when GHI,
-exceeds the Total Solar Irradiance (TSI) on horizontal plane at ground
-level. Although the duration of these bursts varies, from instantaneous
-to several minutes, here we are constrained by the recorded data, to
-one-minute steps.
+exceeds the expected value under clear-sky conditions. Similarly, we
+define as extreme cloud enhancement events (ECE), the cases when GHI at
+ground level exceeds the Total Solar Irradiance (TSI). Although the
+duration of these bursts can vary, from seconds to several minutes, here
+we are constrained by the recorded data, to one-minute steps.
 
 # 2 Data and methodology
 
-## 2.1 GHI data
+## 2.1 Instrumentation and data
 
 The monitoring site is operating in the Laboratory of Atmospheric
 Physics of the Aristotle University of Thessaloniki

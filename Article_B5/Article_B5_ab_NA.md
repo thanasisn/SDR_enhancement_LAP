@@ -1,3 +1,10 @@
+---
+abstract: Here will be the abstract.
+date: 2024-05-26
+title: Long term cloud enhancement events of global solar irradiance
+  over Thessaloniki, Greece
+---
+
 # Abstract
 
 We studied the enhancement of the global horizontal irradiance (GHI),
