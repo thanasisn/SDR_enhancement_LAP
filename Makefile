@@ -51,8 +51,8 @@ doc: $(DOC1)
 $(DOC1): $(RMD)
 	@echo "Building: $? -> $@"
 	Rscript -e "rmarkdown::find_pandoc(dir = '/usr/lib/rstudio/resources/app/bin/quarto/bin/tools'); rmarkdown::render('$?', clean = TRUE, output_format='bookdown::word_document2', output_file='$@',  output_dir='article')"
-	pandoc $(DOC1)                            -o ./article/article_doc.md
-	pandoc ./Article_B5/Article_B5_ab_NA.docx -o ./Article_B5/Article_B5_ab_NA.md
+	pandoc -s $(DOC1)                            -o ./article/article_doc.md
+	pandoc -s ./Article_B5/Article_B5_ab_NA.docx -o ./Article_B5/Article_B5_ab_NA.md
 
 
 
