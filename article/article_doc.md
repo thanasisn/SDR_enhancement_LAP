@@ -79,10 +79,10 @@ can interfere in the comparison of ground-based and satellite
 observations (Damiani et al. 2018). Global warming has likely affected
 cloud coverage in the last few decades. Liu et al. (2023) reported
 increases in cloud cover over the tropical and subtropical oceans and
-decreases over most continents, while (**Dong2022?**) reported decreases
-over North America and Europe. To our knowledge, there is no evidence on
-whether this trend has affected also the number and strength of CE
-events.
+decreases over most continents, while Dong, Sutton, and Wilcox (2023)
+reported decreases over North America and Europe. To our knowledge,
+there is no evidence on whether this trend has affected also the number
+and strength of CE events.
 
 Methods of identification of CE events usually include the use of
 simulated clear sky irradiance as baseline, that is combined with an
@@ -617,6 +617,12 @@ Campos, and Ricardo Rüther. 2019. "Extreme Solar Overirradiance Events:
 Occurrence and Impacts on Utility-Scale Photovoltaic Power Plants in
 Brazil." *Solar Energy* 186 (July): 370--81.
 <https://doi.org/10.1016/j.solener.2019.05.008>.
+
+Dong, Buwen, Rowan T. Sutton, and Laura J. Wilcox. 2023. "Decadal Trends
+in Surface Solar Radiation and Cloud Cover over the North Atlantic
+Sector During the Last Four Decades: Drivers and Physical Processes."
+*Climate Dynamics* 60 (7): 2533--46.
+<https://doi.org/10.1007/s00382-022-06438-3>.
 
 Emde, Claudia, Robert Buras-Schnell, Arve Kylling, Bernhard Mayer, Josef
 Gasteiger, Ulrich Hamann, Jonas Kylling, et al. 2016. "The libRadtran
