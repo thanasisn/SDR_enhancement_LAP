@@ -1,6 +1,6 @@
 ---
 abstract: Here will be the abstract.
-date: 2024-06-08
+date: 2024-06-09
 title: Long term cloud enhancement events of global solar irradiance
   over Thessaloniki, Greece
 ---
@@ -168,24 +168,23 @@ For the detection of CE cases we established a baseline of irradiance
 above which we characterized each data point as an enhancement event and
 calculated the over irradiance (OIR). The OIR is defined as the
 irradiance difference of the measured one-minute $\text{GHI}_{i}$ from
-the CE identification criterion
-($\text{OIR}_{i} = \text{GHI}_{i} - \text{GHI}_{\text{CSlim}}$), as
-defined in Equation. To have an estimation, and a first insight on the
-phenomenon, we experimented with two simple approaches for the
-reference. The Haurwitz's model (Haurwitz 1945), which is as simple
-clear sky model, and we had already adjusted and had good fit with our
-data (Natsis, Bais, and Meleti 2023), and the TSI at the top of the
-atmosphere. We have tested both cases by using an appropriate relative
-threshold and/or an additional constant offset. The initial results,
-showed that we can detect a big portion of the CE events. These results
-were helpful, as they are independent from unknown factors, and helped
-us to establish some criteria to further improve the CE identification.
-It was evident, by inspecting the daily plot of irradiance, that changes
-on the atmospheric conditions introduced numerous false positive and
-false negative results. To produce a more accurate reference, we had to
-take into account more factors that effect the clear sky radiation. So
-we used a radiation transfer model in order to include the effects of
-ADO and the water vapors.
+the $\text{GHI}_{\text{ref}}$ corresponding to cloud-free atmosphere.
+First, we tested two simple approaches for the determination of
+$\text{GHI}_{\text{ref}}$: The Haurwitz's model (Haurwitz 1945), which
+is a simple clear sky model and was already adjusted and applied to our
+data (Natsis, Bais, and Meleti 2023), and the total solar irradiance
+(TSI) at the top of the atmosphere, adjusted for the Sun-Earth distance.
+We have tested both cases by using an appropriate relative threshold
+and/or an additional constant offset. The initial results, showed that
+we can detect a big portion of the CE events. These results were
+helpful, as they are independent from unknown factors, and helped us to
+establish some criteria to further improve the CE identification. It was
+evident, by inspecting the daily plot of irradiance, that changes on the
+atmospheric conditions introduced numerous false positive and false
+negative results. To produce a more accurate reference, we had to take
+into account more factors that effect the clear sky radiation. So we
+used a radiation transfer model in order to include the effects of ADO
+and the water vapors.
 
 ## 2.3 Modeled clear Sky Irradiance
 
