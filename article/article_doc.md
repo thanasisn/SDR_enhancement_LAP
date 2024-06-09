@@ -230,14 +230,10 @@ Collaboration et al. 2022).
 
 ### 2.3.2 Long term change of clear sky irradiance
 
-The above clear sky reference values are based on the climatological AOD
-and WC, hence they cannot describe accurately the long term variation of
-$\text{GHI}_{\text{ref}}$ due to changes in the two atmospheric
-constituents, mainly AOD. As reported by Natsis, Bais, and Meleti
-(2023), there is a long term brightening effect in the GHI data of
-Thessaloniki for the period 1993 -- 2023, which for clear-sky data was
-attributed to long-term changes in aerosol effects.
-
+The above clear sky reference values are not enough to describe the long
+term variation, due to the changes of the atmospheric constituents,
+mainly AOD. As observed by Natsis, Bais, and Meleti (2023), there is a
+long term brightening effect, over Thessaloniki for the studied period.
 In order to better incorporate this change, we used, estimations of AOD
 change derived from two sources. For 1993 -- 2005, Kazadzis et al.
 (2007) have found a change of $- 3.8\,\%$ per year at AOD on
