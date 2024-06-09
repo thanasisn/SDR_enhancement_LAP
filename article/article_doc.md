@@ -230,16 +230,19 @@ Collaboration et al. 2022).
 
 ### 2.3.2 Long term change of clear sky irradiance
 
-The above clear sky reference values are not enough to describe the long
-term variation, due to the changes of the atmospheric constituents,
-mainly AOD. As observed by Natsis, Bais, and Meleti (2023), there is a
-long term brightening effect, over Thessaloniki for the studied period.
-In order to better incorporate this change, we used, estimations of AOD
-change derived from two sources. For 1993 -- 2005, Kazadzis et al.
-(2007) have found a change of $- 3.8\,\%$ per year at AOD on
-$340\,\text{nm}$, using a Brewer spectrophotometer. For 2005 to 2023, we
-derived the trend from the available monthly climatological data of
-AERONET.
+The above clear sky reference values are based on the climatological AOD
+and WC, hence they cannot describe accurately the long term variation of
+$\text{GHI}_{\text{ref}}$ due to changes in the two atmospheric
+constituents, mainly AOD. As reported by Natsis, Bais, and Meleti
+(2023), there is a long term brightening effect in the GHI data of
+Thessaloniki for the period 1993 -- 2023, which for clear-sky data was
+attributed to long-term changes in aerosol effects. Therefore, an
+adjustment of the $\text{GHI}_{\text{ref}}$ used in this study is
+necessary. As AERONET data start only in 2003, we used for the period
+1993 --- 2005 estimates of changes in AOD at $340\,\text{nm}$ derived
+from a collocated Brewer spectrophotometer derived from two sources. For
+1993 -- 2005 (Kazadzis et al. 2007) to calculate the trend in
+$\text{GHI}_{\text{ref}}$ during this period.
 
 To create a unified trend for the long term change of the clear sky
 irradiance, we simulated the values of AOD derived from those sources
@@ -247,22 +250,26 @@ with Libradtran. For both inputs, we used the AOD at $500\,\text{nm}$,
 which was inferred by the available Ångström coefficients. We choose the
 SZA of $55^{\circ}$ as a representative value for all the runs.
 
-According to Kazadzis et al. (2007), in the period 1997 -- 2005, the
-mean AOD of $340\,\text{nm}$ was calculated to $0.403$ with the use of a
-Brewer spectrophotometer, with a linear trend of $- 3.8 \pm 0.93\,\%$
-per year. This corresponds to a change of $0.0153$ per year for the AOD
-of $340\,\text{nm}$ . Using the alpha Ångström coefficient of
-$\alpha = 1.6$, this translates to a change in Ångström beta coefficient
-of $\beta = 0.00272$ per year (or $\beta = 0.084$ in 1997 and
-$\beta = 0.059$ in 2005). By interpolating the resulting clear sky
-irradiance, we have a trend of $+ 0.21\,\%$ per year for the clear sky
-irradiance. For the period 2005 -- 2005 we used the mean monthly values
-from AERONET, with a similar simulation scheme. We computed the trend of
-clear sky radiation for each month of the year, which gave us a mean
-clear sky radiation trend of $+ 0.14\,\%$ per year. We applied this long
-term change to the clear sky irradiance, in order to create a more
-realistic representation of the irradiance for the whole study period
-(Figure).
+According to this study, in the period 1997 -- 2005, the mean AOD at
+$340\,\text{nm}$ $0.403$ with a trend of $- 3.8 \pm 0.93\,\%$ per year,
+corresponding to a change of $0.0153$ per year. Using an Ångström
+coefficient $\alpha = 1.6$, this translates to a change in the Ångström
+coefficient $\beta = 0.00272$ per year (or $\beta = 0.084$ in 1997 and
+$\beta = 0.059$ in 2005).
+
+Simulations with uvspec for the above Ångström coefficients, with WC of
+\$\`r round(BR\[year==1997, pw_avg_mm\],1)\`\\,\\text{mm}\$ and
+$15.4\,\text{mm}$ for 1997 and 2005 respectively and for a SZA of
+$55^{\circ}$
+
+By interpolating the resulting clear sky irradiance, we have a trend of
+$+ 0.21\,\%$ per year for the clear sky irradiance. For the period 2005
+-- 2005 we used the mean monthly values from AERONET, with a similar
+simulation scheme. We computed the trend of clear sky radiation for each
+month of the year, which gave us a mean clear sky radiation trend of
+$+ 0.14\,\%$ per year. We applied this long term change to the clear sky
+irradiance, in order to create a more realistic representation of the
+irradiance for the whole study period (Figure).
 
 ![Figure 2.1: Simulated long term change of the clear sky irradiance
 relevant to its climatological values, due to changed of

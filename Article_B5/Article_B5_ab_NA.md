@@ -228,7 +228,7 @@ $280$$2500\text{nm}$${0.2}^{\circ}$$500\text{nm}$$\tau_{500\text{nm}}$$\pm 1$$\p
 
 2.3.2 Long term change of clear sky irradiance
 
-The above clear sky reference valuesare based on the climatological AOD
+The above clear sky reference values are based on the climatological AOD
 and WC, hence they cannot describe accurately the long term variation of
 GHIref due to changes in the two atmospheric constituents, mainly AOD.
 As reported by Natsis, Bais, and Meleti (2023), there is a long term
@@ -246,23 +246,22 @@ with Libradtran. For both inputs, we used the AOD at $500\text{nm}$,
 which was inferred by the available Ångström coefficients. We choose the
 SZA of $55^{\circ}$ as a representative value for all the runs.
 
-According to this study, , in the period 1997 -- 2005 the mean AOD at
+According to this study, in the period 1997 -- 2005 the mean AOD at
 $340\text{nm}$ $0.403$ with a trend of $- 3.8 \pm 0.93\text{\%}$ per
-year, corresponding to a change of $0.0153$ per year$340\text{nm}$.
-Using an Ångström coefficient$\alpha = 1.6$, this translates to a change
-in the Ångström coefficient $\beta = 0.00272$ per year (or
-$\beta = 0.084$ in 1997 and $\beta = 0.059$ in 2005). Simulations with
-uvspec for the above Ångström coefficients, a fixed WC of XXX and for a
-SZA of 55° reveal a trend of $0.21\text{\%}$ per year in GHIref. The SZA
-of 55° was chosen as representative of all days in the year in order to
-get a rough estimate of the annually averaged change in clear sky
-irradiance. For the period 2005 -- 2023 we used the mean monthly values
-of AOD and WC from AERONET in a similar simulation scheme to calculate
-the monthly mean of clear sky irradiance, and finally the trend of
-$0.14\text{\%}$ per year. We applied these two long term changes (see
-Figure 2.1) to the climatological GHIref in order to create a more
-realistic representation of the clear-sky irradiance for the whole
-period of study.
+year, corresponding to a change of $0.0153$ per year . Using an Ångström
+coefficient $\alpha = 1.6$, this translates to a change in the Ångström
+coefficient $\beta = 0.00272$ per year (or $\beta = 0.084$ in 1997 and
+$\beta = 0.059$ in 2005). Simulations with uvspec for the above Ångström
+coefficients, a fixed WC of XXX and for a SZA of 55° reveal a trend of
+$0.21\text{\%}$ per year in GHIref. The SZA of 55° was chosen as
+representative of all days in the year in order to get a rough estimate
+of the annually averaged change in clear sky irradiance. For the period
+2005 -- 2023 we used the mean monthly values of AOD and WC from AERONET
+in a similar simulation scheme to calculate the monthly mean of clear
+sky irradiance, and finally the trend of $0.14\text{\%}$ per year. We
+applied these two long term changes (see Figure 2.1) to the
+climatological GHIref in order to create a more realistic representation
+of the clear-sky irradiance for the whole period of study.
 
 ![Figure 2.1: Simulated long term change of the clear sky irradiance
 relevant to its climatological values, due to changed of
