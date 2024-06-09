@@ -297,17 +297,12 @@ First, we evaluated the performance of the modelled
 $\text{GHI}_{\text{ref}}$ in relation to the measured GHI for different
 levels of atmospheric clearness, by using in the RTM the monthly
 climatological AOD and WC, less their respective standard deviations.
-the atmospheric level of clearness we have created as reference, in
-relation to the measured GHI data, and choose as a representative of the
-clear sky radiation, the case where
-$\tau_{\text{cs}} = \tau_{500\text{nm}} - 1\sigma$ and
-$w_{h\text{cs}} = w_{h} - 1\sigma$ ($\text{GHI}_{\text{CSm}}$). These
-values represent a typical atmosphere in Thessaloniki, with low load of
-aerosols and humidity, which are the main factor that attenuate the GHI,
-excluding clouds. To create the upper limit of CE identification, we
-used a value relative to clear sky irradiance ($4\,\%$) with an
-additional constant offset of $15\,\text{W}/\text{m}^{2}$, as described
-in Equation).
+These values represent typical atmosphere in Thessaloniki, with lower
+than average load of aerosols and humidity, which are the main factor
+that attenuate the GHI, excluding clouds. To create the upper limit of
+CE identification, we used a value relative to clear sky irradiance
+($4\,\%$) with an additional constant offset of
+$15\,\text{W}/\text{m}^{2}$, as described in Equation).
 
 $$\text{CE}:\text{E}_{\text{i}} > 15 + 1.04 \cdot \text{E}_{\text{CSm,i}}\,\,\left\lbrack \text{W}/\text{m}^{2} \right\rbrack$$
 
