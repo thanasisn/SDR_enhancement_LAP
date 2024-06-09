@@ -209,21 +209,35 @@ Main factors responsible for the attenuation of the broadband downward
 solar radiation under cloud free atmospheres are aerosols and water
 vapor. At Thessaloniki, such measurements are available since 2003 from
 the Cimel sun photometer that belongs to the Aerosol Robotic Network
-(AERONET) (Giles et al. 2019; Buis et al. 1998). The mean monthly AOD on
-different wavelengths are provided by AERONET, along with the equivalent
-water column height in the atmosphere.
+(AERONET) (Giles et al. 2019; Buis et al. 1998). From the observations
+in the period 2003 -- 2023 we calculated the monthly climatological
+means and standard deviation ($\sigma$) for the aerosol optical depth
+(AOD) at $500\,\text{nm}$ and the equivalent height of the water column
+(WC). The monthly climatological values of AOD and water column, as well
+as combinations with additional offsets of $\pm 1\sigma$ and
+$\pm 2\sigma$ , were used as inputs to the RTM in the construction of
+the LUT.
 
-For the atmospheric characteristics, we iterated on combinations of AOD
-at $500\,\text{nm}$ ($\tau_{500\text{nm}}$) with additional offsets of
-$\pm 1$ and $\pm 2\sigma$, and water column ($w$), also with offsets of
-$\pm 1$ and $\pm 2\sigma$.
+For each measurement of the dataset, we calculated from the LUT a
+$\text{GHI}_{\text{ref}}$ value for the respective season and SZA (by
+linear interpolation), and for the climatological values of AOD and WC
+of the respective month. The same procedure was followed for the
+estimation of the $\text{GHI}_{\text{ref}}$ for all combinations of the
+AOD and WC with the above mentioned standard deviation offsets. Finally,
+each $\text{GHI}_{\text{ref}}$ value was adjusted to the actual
+Sun-Earth distance derived by the Astropy software library (Astropy
+Collaboration et al. 2022).
 
 ### 2.3.2 Long term change of clear sky irradiance
 
-The above clear sky reference values are not enough to describe the long
-term variation, due to the changes of the atmospheric constituents,
-mainly AOD. As observed by Natsis, Bais, and Meleti (2023), there is a
-long term brightening effect, over Thessaloniki for the studied period.
+The above clear sky reference values are based on the climatological AOD
+and WC, hence they cannot describe accurately the long term variation of
+$\text{GHI}_{\text{ref}}$ due to changes in the two atmospheric
+constituents, mainly AOD. As reported by Natsis, Bais, and Meleti
+(2023), there is a long term brightening effect in the GHI data of
+Thessaloniki for the period 1993 -- 2023, which for clear-sky data was
+attributed to long-term changes in aerosol effects.
+
 In order to better incorporate this change, we used, estimations of AOD
 change derived from two sources. For 1993 -- 2005, Kazadzis et al.
 (2007) have found a change of $- 3.8\,\%$ per year at AOD on
@@ -564,6 +578,13 @@ the detected over irradiance (OIR) is color coded.
 Anderson, G. P., J. H. Chetwynd, S. A. Clough, E. P. Shettle, and F. X.
 Kneizys. 1986. "AFGL Atmospheric Constituent Profiles (0-120km)." Air
 Force Geophysics Laboratory, Optical Physics Division.
+
+Astropy Collaboration, Adrian M. Price-Whelan, Pey Lian Lim, Nicholas
+Earl, Nathaniel Starkman, Larry Bradley, David L. Shupe, et al. 2022.
+"The Astropy Project: Sustaining and Growing a Community-oriented
+Open-source Project and the Latest Major Release (v5.0) of the Core
+Package." *Astrophysical Journal* 935 (2): 167.
+<https://doi.org/10.3847/1538-4357/ac7c74>.
 
 Buis, J. P. P., A. Setzer, B. N. N. Holben, T. F. F. Eck, I. Slutsker,
 D. Tanre, E. Vermote, et al. 1998. "AERONET---a Federated Instrument
