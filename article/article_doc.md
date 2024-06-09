@@ -255,49 +255,51 @@ $340\,\text{nm}$ $0.403$ with a trend of $- 3.8 \pm 0.93\,\%$ per year,
 corresponding to a change of $0.0153$ per year. Using an Ångström
 coefficient $\alpha = 1.6$, this translates to a change in the Ångström
 coefficient $\beta = 0.00272$ per year (or $\beta = 0.084$ in 1997 and
-$\beta = 0.059$ in 2005).
+$\beta = 0.059$ in 2005). Simulations with uvspec for the above Ångström
+coefficients, with WC of $15.7\,\text{mm}$ and $15.4\,\text{mm}$ for
+1997 and 2005 respectively and for a SZA of $55^{\circ}$ reveal trend of
+$+ 0.21\,\%$ per year in $\text{GHI}_{\text{ref}}$. The SZA of
+$55^{\circ}$ was chosen as representative of all days in the year in
+order to get a rough estimate of the annually averaged change in clear
+sky irradiance. For the period 2005 -- 2023 we used the mean monthly
+values of AOD and WC from AERONET in a similar simulation scheme to
+calculate the monthly mean of clear sky irradiance, and finally the
+trend of $+ 0.14\,\%$ per year. We applied these two long term changes
+(see Figure) to the climatological $\text{GHI}_{\text{ref}}$, in order
+to create a more realistic representation of the clear-sky irradiance
+for the whole period of study.
 
-Simulations with uvspec for the above Ångström coefficients, with WC of
-\$\`r round(BR\[year==1997, pw_avg_mm\],1)\`\\,\\text{mm}\$ and
-$15.4\,\text{mm}$ for 1997 and 2005 respectively and for a SZA of
-$55^{\circ}$
+![Figure 2.1: Simulated long term change in clear sky irradiance
+relative to the climatological values due to changes in
+AOD.](media/rId25.pdf){width="5.833333333333333in"
+height="3.663617672790901in"}
 
-By interpolating the resulting clear sky irradiance, we have a trend of
-$+ 0.21\,\%$ per year for the clear sky irradiance. For the period 2005
--- 2005 we used the mean monthly values from AERONET, with a similar
-simulation scheme. We computed the trend of clear sky radiation for each
-month of the year, which gave us a mean clear sky radiation trend of
-$+ 0.14\,\%$ per year. We applied this long term change to the clear sky
-irradiance, in order to create a more realistic representation of the
-irradiance for the whole study period (Figure).
+Figure 2.1: Simulated long term change in clear sky irradiance relative
+to the climatological values due to changes in AOD.
 
-![Figure 2.1: Simulated long term change of the clear sky irradiance
-relevant to its climatological values, due to changed of
-AOD.](media/rId25.png){width="5.833333333333333in"
-height="3.651760717410324in"}
+## 2.4 Criteria for the identification of CE events
 
-Figure 2.1: Simulated long term change of the clear sky irradiance
-relevant to its climatological values, due to changed of AOD.
+In this study our main focus was to quantify over irradiance events
+related to CEs. A key issue for achieving this goal is to define a
+threshold for the CE identification, representative of the clear-sky
+irradiance at the time of each GHI measurement. This depends on the
+selection of the appropriate atmospheric parameterization for the RTM
+simulations. The implementation of the long term change of AOD,
+discussed in section, allows capturing a large part of the natural
+variability of clear-sky GHI. However, the short-term variability of AOD
+cannot be taken adequately into account when using monthly values for
+the model simulations. We tried different approaches to increase the
+robustness of the methodology and compensate for the limited accuracy of
+the RTM input data and the unpredictable natural variability of the
+atmosphere.
 
-## 2.4 CE Criteria investigation
-
-Our main focus was to positively identify over irradiance events related
-to CEs. For this reason we had to select an appropriate set of
-atmospheric parameterization, in Libradtran, and define an relevant
-threshold for the CE identification. The selection of the atmospheric
-parameterization will provide us with a reference, that has a good
-agreement with the clear sky conditions. Additional, with the
-implementation of the long term change of AOD, as described above, it
-will be able to align well with most of the natural variation of the
-physical quantity. The selection of adequate threshold, will allow us to
-have a robust method to distinguish the CE cases, which will compensate
-for the limited accuracy of the input data, and the natural variability
-of the atmosphere.
-
-First, we evaluated the performance of the modelled clear radiation, for
-each of the atmospheric level of clearness we have created as reference,
-in relation to the measured GHI data, and choose as a representative of
-the clear sky radiation, the case where
+First, we evaluated the performance of the modelled
+$\text{GHI}_{\text{ref}}$ in relation to the measured GHI for different
+levels of atmospheric clearness, by using in the RTM the monthly
+climatological AOD and WC, less their respective standard deviations.
+the atmospheric level of clearness we have created as reference, in
+relation to the measured GHI data, and choose as a representative of the
+clear sky radiation, the case where
 $\tau_{\text{cs}} = \tau_{500\text{nm}} - 1\sigma$ and
 $w_{h\text{cs}} = w_{h} - 1\sigma$ ($\text{GHI}_{\text{CSm}}$). These
 values represent a typical atmosphere in Thessaloniki, with low load of
