@@ -174,45 +174,49 @@ $\text{GHI}_{\text{ref}}$: The Haurwitz's model (Haurwitz 1945), which
 is a simple clear sky model and was already adjusted and applied to our
 data (Natsis, Bais, and Meleti 2023), and the total solar irradiance
 (TSI) at the top of the atmosphere, adjusted for the Sun-Earth distance.
-We have tested both cases by using an appropriate relative threshold
-and/or an additional constant offset. The initial results, showed that
-we can detect a big portion of the CE events. These results were
-helpful, as they are independent from unknown factors, and helped us to
-establish some criteria to further improve the CE identification. It was
-evident, by inspecting the daily plot of irradiance, that changes on the
-atmospheric conditions introduced numerous false positive and false
-negative results. To produce a more accurate reference, we had to take
-into account more factors that effect the clear sky radiation. So we
-used a radiation transfer model in order to include the effects of ADO
-and the water vapors.
+We have tested both methods by using an appropriate relative threshold
+and/or an additional constant offset. The initial results showed that we
+can detect a big portion of the CE events. However, by inspecting the
+daily plots of irradiance it became evident that changes in atmospheric
+conditions introduced numerous false positive and false negative
+results. The main reason for these discrepancies is the variability of
+the effects of aerosols and water vapor which were not taken into
+account in the two simple methods. To produce a more representative
+reference we included the effects of these factors through variables
+using a radiative transfer model (RTM). The applied methodology is
+discussed in section
 
 ## 2.3 Modeled clear Sky Irradiance
 
 ### 2.3.1 Climatology of clear sky irradiance
 
-We approximated the expected clear sky GHI by using the Libradtran
-radiation transfer model (Emde et al. 2016), a similar approach, was
-also used by Vamvakas, Salamalikis, and Kazantzidis (2020) for creating
-a clear sky reference for studding cloud enhancement events. Main
-factors responsible for the attenuation of the broadband downward solar
-radiation in the atmosphere are the aerosols and the water vapors.
-Because of the lack of observational data for the whole period, we used
-some long term climatological data to recreate the whole period.
-Fortunately, our site participates in the Aerosol Robotic Network
-(AERONET) (Giles et al. 2019; Buis et al. 1998), as there is in
-operation a Cimel photometer since 2003, collocated with the CM-21
-pyranometer. The mean monthly AOD on different wavelengths are provided
-by AERONET, along with the equivalent water column height in the
-atmosphere.
+We approximated the expected clear sky $\text{GHI}_{\text{ref}}$ with
+the radiative transfer model uvspec, part of libRadtran (Emde et al.
+2016), similarly to the approach used by Vamvakas, Salamalikis, and
+Kazantzidis (2020). In uvspec we used the solar spectrum of Kurucz
+(1994) in the range $280$ to $2500\,\text{nm}$, the radiative trasfer
+solver "disort" in "pseudospherical" geometry and the "LOWTRAN" gas
+parameterization. The model was run for a range of variables in order to
+create a look up table (LUT) for the estimation of the cloud-free
+reference irradiance for each individual observation of our dataset. In
+this context, the model was run for SZAs in the range $10$ --
+$90^{\circ}$ with a step of ${0.2}^{\circ}$ and for the atmospheric
+profiles of the Air Force Geophysics Laboratory (Anderson et al. 1986)
+midlatitude summer and midlatitude winter, representative of the warm
+and cold seasons.
+
+Main factors responsible for the attenuation of the broadband downward
+solar radiation under cloud free atmospheres are aerosols and water
+vapor. At Thessaloniki, such measurements are available since 2003 from
+the Cimel sun photometer that belongs to the Aerosol Robotic Network
+(AERONET) (Giles et al. 2019; Buis et al. 1998). The mean monthly AOD on
+different wavelengths are provided by AERONET, along with the equivalent
+water column height in the atmosphere.
 
 For the atmospheric characteristics, we iterated on combinations of AOD
 at $500\,\text{nm}$ ($\tau_{500\text{nm}}$) with additional offsets of
 $\pm 1$ and $\pm 2\sigma$, and water column ($w$), also with offsets of
-$\pm 1$ and $\pm 2\sigma$. We applied them on two atmospheric profiles,
-from the Air Force Geophysics Laboratory (AFGL). The "AFGL atmospheric
-constituent profile, midlatitude summer" (afglms) and the "AFGL
-atmospheric constituent profile, midlatitude winter" (afglmw) (Anderson
-et al. 1986). --\>
+$\pm 1$ and $\pm 2\sigma$.
 
 ### 2.3.2 Long term change of clear sky irradiance
 
@@ -648,6 +652,10 @@ Kazadzis, S., A. Bais, V. Amiridis, D. Balis, C. Meleti, N. Kouremeti,
 C. S. Zerefos, et al. 2007. "Nine Years of UV Aerosol Optical Depth
 Measurements at Thessaloniki, Greece." *Atmospheric Chemistry and
 Physics* 7 (8): 2091--101. <https://doi.org/cmjz23>.
+
+Kurucz, Robert L. 1994. "Synthetic Infrared Spectra." In *Infrared Solar
+Physics*, edited by D. M. Rabin, J. T. Jefferies, and C. Lindsey,
+523--31. Dordrecht: Springer Netherlands.
 
 Lappalainen, Kari, and Jan Kleissl. 2020. "Analysis of the Cloud
 Enhancement Phenomenon and Its Effects on Photovoltaic Generators Based
