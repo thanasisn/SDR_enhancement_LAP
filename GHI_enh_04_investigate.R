@@ -644,7 +644,7 @@ plot(ST_E_daily[, sum(GLB_ench.N), by = yday(Date)],
 
 
 #  monthly weight for all months
-ST_E_monthly[      , GLB_ench.N_MW := GLB_ench.N * (GLB_ench.N / All_N) ]
+ST_E_monthly[      , GLB_ench.N_MW := GLB_ench.N * (GLB_ench.N / All_ΝΒΙΟ) ]
 ST_extreme_monthly[, GLB_ench.N_MW := GLB_ench.N * (GLB_ench.N / All_N) ]
 
 
@@ -1318,7 +1318,7 @@ p4
 
 ##  create yearly from monthly data presence weight
 
-ST_monthly[ , MW := wattGLB.N/All_N]
+ST_monthly[ , MW := wattGLB.N/All_NBIO]
 
 
 # ST_monthly[ , .(MW, GLB_diff.N, GLB_diff.N_pos, GLB_diff.sumPOS) ]
