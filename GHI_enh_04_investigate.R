@@ -1738,7 +1738,11 @@ plot(ST_monthly[, All_N,          month], main = "All data")
 
 plot(ST_monthly[, GLB_ench.N_pos, month], main = "CE N")
 
+plot(ST_monthly[, All_NBIO,       month], main = "All data above elevation 12")
 
+plot(ST_monthly[, wattGLB.N, month], main = "GHI Observations")
+
+plot(ST_monthly[, wattGLB.N/All_NBIO,       month], main = "MW above elevation 12")
 
 
 #' **END**
