@@ -7,16 +7,19 @@
   10pt,
   a4paper,oneside]{article}
 \usepackage{amsmath,amssymb}
-\usepackage{lmodern}
 \usepackage{iftex}
 \ifPDFTeX
   \usepackage[T1]{fontenc}
   \usepackage[utf8]{inputenc}
   \usepackage{textcomp} % provide euro and other symbols
 \else % if luatex or xetex
-  \usepackage{unicode-math}
+  \usepackage{unicode-math} % this also loads fontspec
   \defaultfontfeatures{Scale=MatchLowercase}
   \defaultfontfeatures[\rmfamily]{Ligatures=TeX,Scale=1}
+\fi
+\usepackage{lmodern}
+\ifPDFTeX\else
+  % xetex/luatex font selection
 \fi
 % Use upquote if available, for straight quotes in verbatim environments
 \IfFileExists{upquote.sty}{\usepackage{upquote}}{}
@@ -35,18 +38,6 @@
   \KOMAoptions{parskip=half}}
 \makeatother
 \usepackage{xcolor}
-\IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
-\IfFileExists{bookmark.sty}{\usepackage{bookmark}}{\usepackage{hyperref}}
-\hypersetup{
-  pdftitle={Enhancement of SDR in Thessaloniki},
-  pdfauthor={Natsis Athanasios; Alkiviadis Bais},
-  colorlinks=true,
-  linkcolor={Maroon},
-  filecolor={Maroon},
-  citecolor={Blue},
-  urlcolor={Blue},
-  pdfcreator={LaTeX via pandoc}}
-\urlstyle{same} % disable monospaced font for URLs
 \usepackage[left=0.5in,right=0.5in,top=0.5in,bottom=0.5in]{geometry}
 \usepackage{longtable,booktabs,array}
 \usepackage{calc} % for calculating minipage widths
@@ -82,10 +73,22 @@
 \ifLuaTeX
   \usepackage{selnolig}  % disable illegal ligatures
 \fi
+\usepackage{bookmark}
+\IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
+\urlstyle{same}
+\hypersetup{
+  pdftitle={Enhancement of SDR in Thessaloniki},
+  pdfauthor={Natsis Athanasios; Alkiviadis Bais},
+  colorlinks=true,
+  linkcolor={Maroon},
+  filecolor={Maroon},
+  citecolor={Blue},
+  urlcolor={Blue},
+  pdfcreator={LaTeX via pandoc}}
 
 \title{Enhancement of SDR in Thessaloniki}
 \author{Natsis Athanasios\footnote{Laboratory of Atmospheric Physics, AUTH, \href{mailto:natsisphysicist@gmail.com}{\nolinkurl{natsisphysicist@gmail.com}}} \and Alkiviadis Bais\footnote{Laboratory of Atmospheric Physics, AUTH}}
-\date{2024-06-07}
+\date{2024-06-10}
 
 \begin{document}
 \maketitle
@@ -105,14 +108,12 @@ ST_daily ST_E_daily ST_E_daily_seas ST_extreme_daily
 \newpage
 \FloatBarrier
 
-\hypertarget{daily-trends}{%
-\subsubsection{Daily Trends}\label{daily-trends}}
+\subsubsection{Daily Trends}\label{daily-trends}
 
 \newpage
 \FloatBarrier
 
-\hypertarget{group-stats}{%
-\subsubsection{Group stats}\label{group-stats}}
+\subsubsection{Group stats}\label{group-stats}
 
 \begin{figure}[H]
 
@@ -130,8 +131,8 @@ Warning in scale_y_log10(): log-10 transformation introduced infinite values.
 \end{verbatim}
 
 \begin{verbatim}
-Warning: Removed 23 rows containing missing values or values outside the scale
-range (`geom_bar()`).
+Warning: Removed 23 rows containing missing values or values outside the scale range
+(`geom_bar()`).
 \end{verbatim}
 
 \begin{figure}[H]
@@ -144,10 +145,12 @@ range (`geom_bar()`).
 \end{figure}
 
 \begin{verbatim}
-Warning: A numeric `legend.position` argument in `theme()` was deprecated in ggplot2 3.5.0.
+Warning: A numeric `legend.position` argument in `theme()` was deprecated in ggplot2
+3.5.0.
 i Please use the `legend.position.inside` argument of `theme()` instead.
 This warning is displayed once every 8 hours.
-Call `lifecycle::last_lifecycle_warnings()` to see where this warning was generated.
+Call `lifecycle::last_lifecycle_warnings()` to see where this warning was
+generated.
 \end{verbatim}
 
 \begin{figure}[H]
@@ -183,8 +186,7 @@ Call `lifecycle::last_lifecycle_warnings()` to see where this warning was genera
 \caption{ - empty caption - }\label{fig:groups-6}
 \end{figure}
 
-\hypertarget{zhang2018}{%
-\subsection{@Zhang2018}\label{zhang2018}}
+\subsection{@Zhang2018}\label{zhang2018}
 
 \begin{figure}[H]
 
@@ -233,8 +235,8 @@ Warning: Removed 16 rows containing non-finite outside the scale range
 \end{verbatim}
 
 \begin{verbatim}
-Warning: Removed 1 row containing missing values or values outside the scale
-range (`geom_tile()`).
+Warning: Removed 1 row containing missing values or values outside the scale range
+(`geom_tile()`).
 \end{verbatim}
 
 \begin{figure}[H]
@@ -284,8 +286,7 @@ Warning: Removed 16 rows containing non-finite outside the scale range
 \caption{ - empty caption - }\label{fig:P-groups-bin2d-4}
 \end{figure}
 
-\hypertarget{climatoogy}{%
-\section{Climatoogy}\label{climatoogy}}
+\section{Climatoogy}\label{climatoogy}
 
 \begin{figure}[H]
 
@@ -328,14 +329,14 @@ Warning: Removed 16 rows containing non-finite outside the scale range
 \caption{ - empty caption - }\label{fig:clim-CE-month-norm-MAX-N-MW}
 \end{figure}
 
-\hypertarget{monthly-ce}{%
-\subsection{Monthly CE}\label{monthly-ce}}
+\subsection{Monthly CE}\label{monthly-ce}
 
 \begin{verbatim}
 Warning: The `fun.y` argument of `stat_summary()` is deprecated as of ggplot2 3.3.0.
 i Please use the `fun` argument instead.
 This warning is displayed once every 8 hours.
-Call `lifecycle::last_lifecycle_warnings()` to see where this warning was generated.
+Call `lifecycle::last_lifecycle_warnings()` to see where this warning was
+generated.
 \end{verbatim}
 
 \begin{figure}[H]
@@ -347,8 +348,7 @@ Call `lifecycle::last_lifecycle_warnings()` to see where this warning was genera
 \caption{ - empty caption - }\label{fig:clim-CE-month-norm-MAX-median-N}
 \end{figure}
 
-\hypertarget{monthly-weighted-ce}{%
-\subsection{Monthly weighted CE}\label{monthly-weighted-ce}}
+\subsection{Monthly weighted CE}\label{monthly-weighted-ce}
 
 \begin{figure}[H]
 
@@ -359,8 +359,7 @@ Call `lifecycle::last_lifecycle_warnings()` to see where this warning was genera
 \caption{ - empty caption - }\label{fig:clim-CE-month-norm-MAX-median-N-MW}
 \end{figure}
 
-\hypertarget{monthly-extreme-ce-raw}{%
-\subsection{Monthly extreme CE raw}\label{monthly-extreme-ce-raw}}
+\subsection{Monthly extreme CE raw}\label{monthly-extreme-ce-raw}
 
 \begin{figure}[H]
 
@@ -379,8 +378,7 @@ Call `lifecycle::last_lifecycle_warnings()` to see where this warning was genera
 \caption{ - empty caption - }\label{fig:climECEmonth-MW}
 \end{figure}
 
-\hypertarget{monthly-extreme-ce}{%
-\subsection{Monthly extreme CE}\label{monthly-extreme-ce}}
+\subsection{Monthly extreme CE}\label{monthly-extreme-ce}
 
 \begin{figure}[H]
 
@@ -399,8 +397,7 @@ Call `lifecycle::last_lifecycle_warnings()` to see where this warning was genera
 \caption{ - empty caption - }\label{fig:clim-ECE-month-norm-MAX-median-N-2}
 \end{figure}
 
-\hypertarget{monthly-weighted-extreme-ce}{%
-\subsection{Monthly weighted extreme CE}\label{monthly-weighted-extreme-ce}}
+\subsection{Monthly weighted extreme CE}\label{monthly-weighted-extreme-ce}
 
 \begin{figure}[H]
 
@@ -414,8 +411,7 @@ Call `lifecycle::last_lifecycle_warnings()` to see where this warning was genera
 \newpage
 \FloatBarrier
 
-\hypertarget{energy-contribution-of-enhancements}{%
-\subsubsection{Energy contribution of enhancements}\label{energy-contribution-of-enhancements}}
+\subsubsection{Energy contribution of enhancements}\label{energy-contribution-of-enhancements}
 
 \begin{figure}[H]
 
@@ -471,8 +467,7 @@ Call `lifecycle::last_lifecycle_warnings()` to see where this warning was genera
 
 \newpage
 
-\hypertarget{yearly-trends}{%
-\subsection{Yearly trends}\label{yearly-trends}}
+\subsection{Yearly trends}\label{yearly-trends}
 
 lmY: 116.8672 +/- 33.89196
 
@@ -520,8 +515,7 @@ lmY: 0.053059 +/- 0.041079
 
 \newpage
 
-\hypertarget{yearly-trends-month-weighted}{%
-\subsection{Yearly trends month weighted}\label{yearly-trends-month-weighted}}
+\subsection{Yearly trends month weighted}\label{yearly-trends-month-weighted}
 
 lmY: 95.37747 +/- 25.54612
 
@@ -619,11 +613,35 @@ lmY: 37.11864 +/- 8.427722
 
 \caption{ - empty caption - }\label{fig:rel-energy-9}
 \end{figure}
+\begin{figure}[H]
+
+{\centering \includegraphics[width=1\linewidth]{GHI_enh_04_investigate_files/figure-latex/rel-energy-10} 
+
+}
+
+\caption{ - empty caption - }\label{fig:rel-energy-10}
+\end{figure}
+\begin{figure}[H]
+
+{\centering \includegraphics[width=1\linewidth]{GHI_enh_04_investigate_files/figure-latex/rel-energy-11} 
+
+}
+
+\caption{ - empty caption - }\label{fig:rel-energy-11}
+\end{figure}
+\begin{figure}[H]
+
+{\centering \includegraphics[width=1\linewidth]{GHI_enh_04_investigate_files/figure-latex/rel-energy-12} 
+
+}
+
+\caption{ - empty caption - }\label{fig:rel-energy-12}
+\end{figure}
 
 \textbf{END}
 
 \begin{verbatim}
-2024-06-07 11:29:32.5 athan@tyler GHI_enh_04_investigate.R 2.023690 mins
+2024-06-10 07:18:04.5 athan@tyler GHI_enh_04_investigate.R 1.775136 mins
 \end{verbatim}
 
 \end{document}
