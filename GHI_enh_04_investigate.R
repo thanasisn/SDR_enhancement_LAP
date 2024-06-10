@@ -642,10 +642,9 @@ plot(ST_E_daily[, sum(GLB_ench.N), by = yday(Date)],
      main = "Enhancement cases Climatology")
 
 
-
 #  monthly weight for all months
-ST_E_monthly[      , GLB_ench.N_MW := GLB_ench.N * (GLB_ench.N / All_ΝΒΙΟ) ]
-ST_extreme_monthly[, GLB_ench.N_MW := GLB_ench.N * (GLB_ench.N / All_N) ]
+ST_E_monthly[      , GLB_ench.N_MW := GLB_ench.N * (GLB_ench.N / All_NBIO) ]
+ST_extreme_monthly[, GLB_ench.N_MW := GLB_ench.N * (GLB_ench.N / All_NBIO) ]
 
 
 
