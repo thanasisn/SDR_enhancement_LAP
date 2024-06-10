@@ -125,8 +125,14 @@ ALLDT <- ALLDT[V3 >= 0, ]
 dtrange <- DATA[, range(Date)]
 ALLDT   <- ALLDT[V1 <= dtrange[2] & V1 >= dtrange[1]]
 
-yr_cnt  <- ALLDT[, .(All_N = .N) , by =   year(V1)]
-mn_cnt  <- ALLDT[, .(All_N = .N) , by = .(year(V1), month(V1))]
+
+yr_cnt  <- ALLDT[, .(All_N    = .N,
+                     All_NBIO = sum(V3 >= BIO_ELEVA)),
+                 by =   year(V1)]
+
+mn_cnt  <- ALLDT[, .(All_N    = .N,
+                     All_NBIO = sum(V3 >= BIO_ELEVA)),
+                 by = .(year(V1), month(V1))]
 
 
 
