@@ -406,7 +406,7 @@ inputs, we used the AOD at $500\,\text{nm}$, which was inferred by the available
 Ångström coefficients. We choose the SZA of $55^\circ$ as a representative value for
 all the runs.
 
-According to this study, in the period 1997 -- 2005, the mean AOD at $340\,\text{nm}$
+According to this study, in the period 1997 -- 2005 the mean AOD at $340\,\text{nm}$
 $0.403$ with a trend of $-3.8\pm0.93\,\%$ per year, corresponding to a change of
 $0.0153$ per year.  Using an Ångström coefficient $\alpha = 1.6$, this translates to
 a change in the Ångström coefficient $\beta=0.00272$ per year (or $\beta=0.084$ in
@@ -463,15 +463,15 @@ in the RTM the monthly climatological AOD and WC, less their respective standard
 deviations.
 <!-- $\tau_{\text{cs}} = \tau_{500\text{nm}} - 1\sigma$ and $w_{h\text{cs}} = w_h - 1\sigma$
 ($\text{GHI}_\text{CSm}$). -->
-These values represent typical atmosphere in Thessaloniki, with lower than average load of
-aerosols and humidity, which are the main factor that attenuate the GHI, excluding
-clouds. 
-To create the upper limit of CE identification, we used a value relative to
-clear sky irradiance
+These values represent typical atmosphere in Thessaloniki, with lower than average
+load of aerosols and humidity, which are the main factor that attenuate the GHI,
+excluding clouds.  With this approach the simulated $\text{GHI}_\text{ref}$ should be
+generally greater than the measured GHI when aerosols are more abundant.  To
+compensate for this, we increased the $\text{GHI}_\text{ref}$ by 
 ($`r 100*(C4_cs_ref_ratio-1)`\,\%$)
 with an additional constant offset of
 $`r C4_GLB_diff_THRES`\,\text{W}/\text{m}^2$,
-as described in Equation\nobreakspace\ref{eq:CE4}).
+as described in Equation\nobreakspace\ref{eq:CE4}.
 \begin{equation}
 \text{CE} : \text{E}_\text{i} > `r C4_GLB_diff_THRES` + `r C4_cs_ref_ratio` \cdot \text{E}_\text{CSm,i} \,\,[\text{W}/\text{m}^2] \label{eq:CE4}
 \end{equation}
@@ -479,20 +479,20 @@ where: $\text{E}$ the measured irradiance, $\text{E}_\text{CSm}$ the selected
 modelled clear sky irradiance, and $i$ each of the one-minute observation.  This is
 the criterion of our CE identification.
 
-In the process of defining the above details, we implemented an empirical method, by
-manual inspection of the CE identification results, on selected days from the whole
-dataset.  We used seven sets of days, with characteristics relevant to the efficiency
-of the identification threshold.  These sets were random groups of about 20 to 30
+These values were determined through the implementation of an empirical method with
+manual inspection of the CE identification results  on selected days of the whole
+dataset.  We used seven sets of days with characteristics relevant to the efficiency
+of the identification threshold.  These sets were random groups of about 20 -- 30
 days with the following characteristics:
 (a) the strongest over irradiance CE events,
 (b) the largest daily total over irradiance,
 (c) absence of clouds (by implementing a clear sky identification algorithm as discussed in @Natsis2023),
 (d) absence of clouds and absence of EC events,
 (e) with at least $60\,\%$ of the day length without clouds and presence of EC events,
-(h) random selected days and
-(i) some manual selected days that were included during the manual inspection process.
-Where it was needed, for some of the edge cases, we also used images from a sky-cam,
-to further aid the decisions of the manual inspection.
+(h) randomly selected days and
+(i) manually selected days.
+Where needed in some of the edge cases, we also used images from a sky-camera
+to further aid the decision of the manual inspection.
 
 <!--
 \begin{equation}
@@ -548,15 +548,14 @@ irradiance, and $\text{GHI}_\text{mCSi}$ the selected modelled clear sky irradia
 - the effect of the sza uniform
 -->
 
-The definition of the CE events with this method, has a level of subjectivity. The
-actual clear sky irradiance, is not known, and can only be approximated. Although,
-because our main focus is to be able to identify the OIR created by the clouds, we
-expect that we were able to detect all the major events of OIR due to CE.  Where,
-some CE events, with very low OIR, may be not detected, these are few and their magnitude
-will not effect our results.
+The definition of the CE events with this method has a degree of subjectivity, since
+the actual clear sky irradiance, is not known, and can only be approximated.
+However, this method is capable in detecting all major CE events.  Where, some CE
+events, with very low OIR may be not detected, these are few with small
+over-irradiance and it is unlikely that will effect significantly our results.
 
 <!-- extreme cases criterion -->
-Another aspect of the CE events, that is often reported in the relative bibliography,
+A sub-category  of the CE events that is often discussed in the relevant bibliography,
 are cases of extreme cloud enhancement (ECE). These are cases of CE, where the
 measured intensity of the irradiance, exceeds the equivalent TSI on the top of the
 atmosphere, and detected according to the Equation\nobreakspace{}\ref{eq:ECE}.

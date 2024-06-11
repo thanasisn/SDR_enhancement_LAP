@@ -326,7 +326,7 @@ major CE events. Where some CE events with very low OIR may be not
 detected, these are few with small over-irradiance and it is unlikely
 that will effect significantly our results.
 
-A sub-category of the CE events that is often disused in the relevant
+A sub-category of the CE events that is often discussed in the relevant
 bibliography (ref), are the extreme cloud enhancement (ECE) events.
 These are cases of CE where the measured intensity of the irradiance
 exceeds the TSI at the top of the atmosphere:
