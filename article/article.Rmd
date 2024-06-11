@@ -629,14 +629,23 @@ The long-term trends were calculated using a first-order autoregressive model wi
 'stats' of the R programming language [@RCT2023]. All trends are reported together
 with their $2\sigma$ error. 
 
+Figure\nobreakspace{}\ref{fig:P-energy} shows the time series of the yearly number of
+CE cases (each with duration of one minute), the yearly mean OIR and the yearly
+excess irradiation  for the period 1993 -- 2023, together with corresponding linear
+trends. All three quantities show increasing trends, most pronounced for the
+frequency of occurrence 
+($`r round(yearlyCE[var == "GLB_diff.N", slope], 1)`\pm
+`r round(2 * yearlyCE[var == "GLB_diff.N", slope.sd], 1)`\,\text{cases}/\text{year}$)
+and the excess irradiation 
+($`r round(yearlyCE[var == "GLB_diff.sum", slope], 1)`\pm
+`r round(2 * yearlyCE[var == "GLB_diff.sum", slope.sd], 1)`\,\text{kJ}/\text{year}$),
+which are also statistically significant.
+In contrast the trend of the yearly mean OIR is negligible 
+($`r round(yearlyCE[var == "GLB_diff.mean", slope], 1)`\pm
+`r round(2 * yearlyCE[var == "GLB_diff.mean", slope.sd], 1)`\,\,\text{W}/\text{m}^2/\text{year}$)
+and of no statistical significance.
 
-We observed a negligible change of
-$`r round(dailyCE[var == "GLB_diff.mean", Tmod_Estimate], 3)`\pm
-`r round(2 * dailyCE[var == "GLB_diff.mean", Tmod_Std..Error], 3)`\,\text{W}/\text{m}^2/\text{year}$
-on the mean OIR.
-<!-- ```{r CEmeanDaily, echo=FALSE, fig.cap="Daily mean values and trend of the CE over irradiance."} -->
-<!-- knitr::include_graphics("../images/P_daily_trend-1.png") -->
-<!-- ``` -->
+
 Although, the previous result is closer to the raw data, we preferred to present the
 annual statistics, that give a more clear picture about the long term CE trends.
 Hence, we calculated the annual values from the one-minute measurements.  Despite the
@@ -647,7 +656,7 @@ $`r round(yearlyCE[var == "GLB_diff.N", slope], 1)`\pm
 (Figure\nobreakspace{}\ref{fig:P-energy-N}).
 Subsequently, the mean annual energy of the CE events is increasing with a rate of
 $`r round(yearlyCE[var == "GLB_diff.sum", slope], 1)`\pm
-`r round(2 * yearlyCE[var == "GLB_diff.sum", slope.sd], 1)`\,\text{kj}/\text{year}$
+`r round(2 * yearlyCE[var == "GLB_diff.sum", slope.sd], 1)`\,\text{kJ}/\text{year}$
 (Figure\ \ref{fig:P-energy-sum}), witch follows the trend of the number of CE
 occurrences.  We have to note that the energy related to the CE events can not be
 directly linked with the total energy balance of the atmosphere. The net solar
@@ -687,18 +696,17 @@ considerable level.
 <!-- knitr::include_graphics("../images/P_energy-8.png") -->
 <!-- ``` -->
 
-<!-- \FloatBarrier -->
 
 \begin{figure}% [h!]
         {\centering 
-            \subfloat[\label{fig:cusumnotrendmonthly-1}]
+            \subfloat[\label{fig:P-energy-mean}]
                 {\includegraphics[width=\linewidth]{../images/P-energy-3} }\\
             \subfloat[\label{fig:P-energy-N}]
                 {\includegraphics[width=\linewidth]{../images/P-energy-2} }\\
-            \subfloat[\label{fig:cusumnotrendmonthly-3}]
+            \subfloat[\label{fig:P-energy-sum}]
                 {\includegraphics[width=\linewidth]{../images/P-energy-1} }
         }
-    \caption{Time series for the period 1992 -- 2023 of (a) the yearly CE number of occurrences, (b) the yearly mean OIR and (c) the yearly excess irradiation. The black lines represent the linear trends on the yearly data.}\label{fig:cusumnotrendmonthly}
+    \caption{Time series for the period 1992 -- 2023 of (a) the yearly CE number of occurrences, (b) the yearly mean OIR and (c) the yearly excess irradiation. The black lines represent the linear trends on the yearly data.}\label{fig:P-energy}
 \end{figure}
 
 
