@@ -336,12 +336,12 @@ adjusted for the actual $r$Sun -- Earth distance, and $i$ each of the
 one-minute observation.
 
 An example of CE identification for a selected day is given in the
-Appendix (Figure), where the daily course of the clear sky reference
-irradiance and the CE and ECE identification thresholds are shown along
-with the actual GHI measurements. In addition, we provide an example
-scatter plot between the measured and the modeled clear-sky irradiance
-for one year, where the CE and ECE events are clearly grouped above the
-threshold of irradiance. (Appendix Figure).
+(Figure), where the daily course of the clear sky reference irradiance
+and the CE and ECE identification thresholds are shown along with the
+actual GHI measurements. In addition, we provide an example scatter plot
+between the measured and the modeled clear-sky irradiance for one year,
+where the CE and ECE events are clearly grouped above the threshold of
+irradiance. (Appendix Figure).
 
 # 3 Results
 
@@ -350,10 +350,10 @@ entire dataset (6.1 million of one-minute GHI measurements),
 $1.76\text{\%}$ were identified as CE events and $0.0\text{\%}$ as ECE
 events. The highest recorded GHI due to CE was $1416.6\frac{W}{m^{2}}$
 on 24 May 2007, corresponding to OIR of $345.9\frac{W}{m^{2}}$. The
-relative stronger CE event of $49.7\text{\%}$ above the clear sky
-threshold was observed on 28 October 2016. In the following sections we
-are discussing the long-term trends and variability of the CE events as
-well as of the corresponding OIR and excess irradiation .
+stronger CE event of $49.7\text{\%}$ above the clear sky threshold was
+observed on 28 October 2016. In the following sections we are discussing
+the long-term trends and variability of the CE events as well as of the
+corresponding OIR and excess irradiation .
 
 ## 3.1 Long-term trends
 

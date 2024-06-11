@@ -348,11 +348,12 @@ adjusted for the actual Sun -- Earth distance, and $i$ each of the
 one-minute observation.
 
 An example of CE identification for a selected day is given, in the
-Appendix (Figure), where the clear sky reference irradiance and the CE
-and ECE identification thresholds are shown along with the actual GHI
-measurements. Similar, we provided an example plot of data for one year,
-where the relation of the GHI and clear sky reference is shown, along
-with the OIR intensity (Appendix Figure).
+Figure, where the daily course of the clear sky reference irradiance and
+the CE and ECE identification thresholds are shown along with the actual
+GHI measurements. In addition, we provide an example scatter plot
+between the measured and the modeled clear-sky irradiance for one year,
+where the CE and ECE events are clearly grouped above the threshold of
+irradiance (Figure).
 
 ![Figure 2.2: Example of cloud identification for 2019-07-11. The green
 line with blue symbols depicts the measured GHI in one minute steps. The
@@ -383,14 +384,17 @@ black.
 
 # 3 Results
 
-Our dataset, after the data selection processing, consists of 6144534
-records of GHI measurements, of which $1.764\,\%$ were identified as CE
-events and $0.036\,\%$ as ECE events. The highest recorded GHI due to CE
-was $1416.6\,\text{W}/\text{m}^{2}$ on 24 May 2007, and had the maximum
-value of OIR at $345.9\,\text{W}/\text{m}^{2}$. The relative stronger CE
-event was $49.7\,\%$ above the clear sky threshold, on 28 October 2016.
+Following the application of the above discussed methodology to the
+entire dataset (6.1 million one-minute GHI measurements), $1.764\,\%$
+were identified as CE events and $0.036\,\%$ as ECE events. The highest
+recorded GHI due to CE was $1416.6\,\text{W}/\text{m}^{2}$ on 24 May
+2007, corresponding to OIR of $345.9\,\text{W}/\text{m}^{2}$. The
+stronger CE event of $49.7\,\%$ above the clear sky threshold was
+observed on 28 October 2016. In the following sections we are discussing
+the long-term trends and variability of the CE events as well as of the
+corresponding OIR and excess irradiation .
 
-## 3.1 Long term trends
+## 3.1 Long-term trends
 
 We computed the daily trend of the mean OIR of CE using a first-order
 autoregressive model with a lag of one day, with the 'maximum
@@ -415,24 +419,6 @@ This also is depicted by the "instantaneous" values of irradiance
 (average over one minute), that can exceed the equivalent clear sky
 irradiance to a considerable level.
 
-![Figure 3.1: Trends of the mean OIR per
-CE.](media/rId41.png){width="5.833333333333333in"
-height="3.6399048556430444in"}
-
-Figure 3.1: Trends of the mean OIR per CE.
-
-![Figure 3.2: Trend of yearly cloud enhancement
-occurrences.](media/rId45.png){width="5.833333333333333in"
-height="3.651760717410324in"}
-
-Figure 3.2: Trend of yearly cloud enhancement occurrences.
-
-![Figure 3.3: Trend of the yearly excess energy due to CE over
-irradiance](media/rId49.png){width="5.833333333333333in"
-height="3.6399048556430444in"}
-
-Figure 3.3: Trend of the yearly excess energy due to CE over irradiance
-
 ## 3.2 Cloud enhancements climatology
 
 Another interesting aspect of the CE cases occurrences, is their
@@ -448,13 +434,13 @@ relevant position of the sun during each season of the year.
 Unfortunately, the lack of detailed data on cloud formation, type and
 location is not allowing further analysis.
 
-![Figure 3.4: Seasonal statistics of the number of CE occurrences for
+![Figure 3.1: Seasonal statistics of the number of CE occurrences for
 each month, normalized to the maximum occurrences on June. The box
 represents the values of the low 25\\,\\% percentile to 75\\,\\%
 percentile, where the thick horizontal line inside is the mean, the
 vertical lines extend to the maximum and minimum values, the dots are
 outlier values, and the rhombus is the
-mean.](media/rId54.png){width="5.833333333333333in"
+mean.](media/rId42.png){width="5.833333333333333in"
 height="3.473915135608049in"}
 
 The distribution of the OIR intensity, follows an exponential decline
@@ -467,11 +453,11 @@ CE occurrences have been reported by Vamvakas, Salamalikis, and
 Kazantzidis (2020), where the magnitude of OIR were higher due to the
 location of the city of Patras, ${2.5}^{\circ}$ closer to the equator.
 
-![Figure 3.5: Distribution of CE over irradiance
-magnitude.](media/rId57.png){width="5.833333333333333in"
+![Figure 3.2: Distribution of CE over irradiance
+magnitude.](media/rId45.png){width="5.833333333333333in"
 height="3.7067202537182853in"}
 
-Figure 3.5: Distribution of CE over irradiance magnitude.
+Figure 3.2: Distribution of CE over irradiance magnitude.
 
 ## 3.3 Groups of cloud enhancement
 
@@ -486,11 +472,11 @@ conclude, that although we detected some CEG with durations longer than
 an hour, about $80\,\%$ of the CEG have a duration of less than 5
 minutes.
 
-![Figure 3.6: Distribution of CE groups duration in
-minutes.](media/rId62.png){width="5.833333333333333in"
+![Figure 3.3: Distribution of CE groups duration in
+minutes.](media/rId50.png){width="5.833333333333333in"
 height="3.6591983814523186in"}
 
-Figure 3.6: Distribution of CE groups duration in minutes.
+Figure 3.3: Distribution of CE groups duration in minutes.
 
 The relation between the duration and the mean OIR intensity of the
 groups have also been studied (Figure). We observed that the GCE events
@@ -499,12 +485,12 @@ strong enhancement and long duration are very rare. Similar results on
 this relation, have been reported by Zhang et al. (2018), on a study
 using a far higher sampling rate than ours.
 
-![Figure 3.7: Relation of the mean over irradiance and duration of GCE,
+![Figure 3.4: Relation of the mean over irradiance and duration of GCE,
 where the color scale denotes the frequency of the respected
-events.](media/rId66.png){width="5.833333333333333in"
+events.](media/rId54.png){width="5.833333333333333in"
 height="3.687330489938758in"}
 
-Figure 3.7: Relation of the mean over irradiance and duration of GCE,
+Figure 3.4: Relation of the mean over irradiance and duration of GCE,
 where the color scale denotes the frequency of the respected events.
 
 ## 3.4 Extreme cloud enhancement events
@@ -520,16 +506,16 @@ period in the late fall (September and October). This is probably
 related to the weather characteristics of these periods, where there are
 continuous alternations between clear sky periods and clouds.
 
-![Figure 3.8: Seasonal statistics of the number of ECE occurancies for
+![Figure 3.5: Seasonal statistics of the number of ECE occurancies for
 each month, normalized to the maximum occurancies on March. The box
 represents the values of the low 25\\,\\% percentile to 75\\,\\%
 percentile, where the thick horizontal line inside is the mean, the
 vertical lines extend to the max imum and minimum vales, the dots are
 outlier values, and the rhombus is the
-mean.](media/rId71.png){width="5.833333333333333in"
+mean.](media/rId59.png){width="5.833333333333333in"
 height="3.473915135608049in"}
 
-Figure 3.8: Seasonal statistics of the number of ECE occurancies for
+Figure 3.5: Seasonal statistics of the number of ECE occurancies for
 each month, normalized to the maximum occurancies on March. The box
 represents the values of the low $25\,\%$ percentile to $75\,\%$
 percentile, where the thick horizontal line inside is the mean, the
@@ -543,12 +529,12 @@ $200\,\text{W}/\text{m}^{2}$. Those finds are in accordance with results
 form Vamvakas, Salamalikis, and Kazantzidis (2020), with the difference
 that the OIR values are lower for Thessaloniki.
 
-![Figure 3.9: Distribution of ECE above clear sky threshold, for cases
+![Figure 3.6: Distribution of ECE above clear sky threshold, for cases
 that are exceeding the
-TSI.](media/rId75.png){width="5.833333333333333in"
+TSI.](media/rId63.png){width="5.833333333333333in"
 height="3.6591983814523186in"}
 
-Figure 3.9: Distribution of ECE above clear sky threshold, for cases
+Figure 3.6: Distribution of ECE above clear sky threshold, for cases
 that are exceeding the TSI.
 
 # 4 Discussion and conclusions

@@ -40,6 +40,8 @@ header-includes:
   - \usepackage{caption}
   - \usepackage{placeins}
   - \captionsetup{font=small}
+  - \usepackage{subcaption}
+
   
 keywords: 
   - cloud enhancement
@@ -566,19 +568,20 @@ the TSI at the top of the atmosphere:
 \end{equation}
 where: $\theta$ the solar zenith angle, $E_{\odot}$ the solar constant adjusted for the actual Sun -- Earth distance, and $i$ each of the one-minute observation.
 
-An example of CE identification for a selected day is given, in the Appendix
-(Figure\nobreakspace{}\ref{fig:example-day}), where the clear sky reference
-irradiance and the CE and ECE identification thresholds are shown along with the
-actual GHI measurements.  Similar, we provided an example plot of data for one year,
-where the relation of the GHI and clear sky reference is shown, along with the OIR
-intensity (Appendix Figure\nobreakspace{}\ref{fig:example-year}).
+An example of CE identification for a selected day is given, in the
+Figure\nobreakspace{}\ref{fig:example-day}, where the daily course of the clear sky
+reference irradiance and the CE and ECE identification thresholds are shown along
+with the actual GHI measurements.  In addition, we provide an example scatter plot
+between the measured and the modeled clear-sky irradiance for one year, where the CE
+and ECE events are clearly grouped above the threshold of irradiance
+(Figure\nobreakspace{}\ref{fig:example-year}).
 
 ```{r example-day, echo=FALSE, fig.cap="Example of cloud identification for 2019-07-11. The green line with blue symbols depicts the measured GHI in one minute steps. The red line shows the modelled threshold for the detection of CE events, which are denoted with red circles. The black curve represents the TSI at the top of the atmosphere, adjusted for the actual Sun-Earth distance and multiplied by the cosine of the cosine of SZA.", fig.pos='H'}
 knitr::include_graphics("../images/example-days-18.png")
 ```
 
 ```{r example-year, echo=FALSE, fig.cap="Example scatter plot of the measured GHI and the reference clear sky irradiance for the year 2005. The over-irradiance for CE and ECE events is color coded, while the remaining data points are shown in black.", fig.pos='H'}
-knitr::include_graphics("../images/example-years-13.png")
+knitr::include_graphics("../images/P-example-years-13.png")
 ```
 
 <!-- ```{r echo=F, include=T, warning=FALSE, message=FALSE} -->
@@ -594,24 +597,25 @@ knitr::include_graphics("../images/example-years-13.png")
 
 # Results
 
-Our dataset, after the data selection processing, consists of
-`r ST_total$wattGLB.N` records of GHI measurements, of which
+Following the application of the above discussed methodology to the entire dataset 
+(`r round(ST_total$wattGLB.N / 10^6,1)` million one-minute GHI measurements),
 $`r round(100*ST_total$GLB_diff.N_pos/ST_total$wattGLB.N, 3)`\,\%$ were identified as CE events and
 $`r round(100*ST_extreme_total$GLB_diff.N_pos/ST_total$wattGLB.N, 3)`\,\%$ as ECE events.
 The highest recorded GHI due to CE was
 $`r round(ST_daily[which.max(wattGLB.max), wattGLB.max],1)`\,\text{W}/\text{m}^2$
-on `r strftime(ST_daily[which.max(wattGLB.max), Date], "%d\\ %B %Y")`, and had
-the maximum value of OIR at $`r round(ST_daily[which.max(GLB_diff.max), GLB_diff.max], 1)`\,\text{W}/\text{m}^2$.
+on `r strftime(ST_daily[which.max(wattGLB.max), Date], "%d\\ %B %Y")`, corresponding
+to OIR of $`r round(ST_daily[which.max(GLB_diff.max), GLB_diff.max], 1)`\,\text{W}/\text{m}^2$.
 <!-- The absolute strongest CE event had an OIR of 
 <!-- $`r round(ST_daily[which.max(GLB_diff.max), GLB_diff.max], 2)`\,\text{W}/\text{m}^2$ on
 <!-- `r strftime(ST_daily[which.max(GLB_diff.max), Date], "%d\\ %B %Y")`. -->
-The relative stronger CE event was 
+The stronger CE event of
 $`r round(100*ST_daily[which.max(GLB_ench.max), GLB_ench.max],1)`\,\%$ above the 
-clear sky threshold, on 
+clear sky threshold was observed on 
 `r strftime(ST_daily[which.max(GLB_ench.max), Date], "%d\\ %B %Y")`.
+In the following sections we are discussing the long-term trends and variability of the CE events as well as of the corresponding OIR and excess irradiation .
 
 
-## Long term trends
+## Long-term trends
 
 We computed the daily trend of the mean OIR of CE <!--
 (Figure\nobreakspace{}\ref{fig:CEmeanDaily}), --> using a first-order autoregressive
@@ -658,33 +662,47 @@ considerable level.
 <!-- knitr::include_graphics("../images/energy-3.png") -->
 <!-- ``` -->
 
-```{r P-energy-mean, echo=FALSE, fig.cap="Trends of the mean OIR per CE."}
-knitr::include_graphics("../images/P-energy-3.png")
-```
+<!-- ```{r P-energy-mean, echo=FALSE, fig.cap="Trends of the mean OIR per CE."} -->
+<!-- knitr::include_graphics("../images/P-energy-3.png") -->
+<!-- ``` -->
 
 
 <!-- ```{r echo=FALSE, fig.cap="Trend of number of CE cases"} -->
 <!-- knitr::include_graphics("../images/energy-2.png") -->
 <!-- ``` -->
 
-```{r P-energy-N, echo=FALSE, fig.cap="Trend of yearly cloud enhancement occurrences."}
-knitr::include_graphics("../images/P-energy-2.png")
-```
+<!-- ```{r P-energy-N, echo=FALSE, fig.cap="Trend of yearly cloud enhancement occurrences."} -->
+<!-- knitr::include_graphics("../images/P-energy-2.png") -->
+<!-- ``` -->
 
 <!-- ```{r echo=FALSE, fig.cap="Trend of the yearly excess energy due to CE over irradiance"} -->
 <!-- knitr::include_graphics("../images/energy-1.png") -->
 <!-- ``` -->
 
-```{r P-energy-sum, echo=FALSE, fig.cap="Trend of the yearly excess energy due to CE over irradiance"}
-knitr::include_graphics("../images/P-energy-1.png")
-```
-
+<!-- ```{r P-energy-sum, echo=FALSE, fig.cap="Trend of the yearly excess energy due to CE over irradiance"} -->
+<!-- knitr::include_graphics("../images/P-energy-1.png") -->
+<!-- ``` -->
 
 <!-- ```{r P-energy-median, echo=FALSE, fig.cap="Trend of the yearly median over irradiance due to CE over irradiance"} -->
 <!-- knitr::include_graphics("../images/P_energy-8.png") -->
 <!-- ``` -->
 
 <!-- \FloatBarrier -->
+
+\begin{figure}[h!]
+        {\centering 
+            \subfloat[All skies.\label{fig:cusumnotrendmonthly-1}]
+                {\includegraphics[width=\linewidth]{../images/P-energy-3} }\\
+            \subfloat[Clear skies.\label{fig:cusumnotrendmonthly-2}]
+                {\includegraphics[width=\linewidth]{../images/P-energy-2} }\\
+            \subfloat[Cloudy skies.\label{fig:cusumnotrendmonthly-3}]
+                {\includegraphics[width=\linewidth]{../images/P-energy-1} }
+        }
+    \caption{Time series for the period 1992 -- 2023 of (a) the yearly CE number of occurrences, (b) the yearly mean OIR and (c) the yearly excess irradiation. The black lines represent the linear trends on the yearly data.}\label{fig:cusumnotrendmonthly}
+\end{figure}
+
+
+
 
 ## Cloud enhancements climatology
 
