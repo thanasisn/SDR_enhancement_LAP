@@ -257,8 +257,8 @@ coefficient $\alpha = 1.6$, this translates to a change in the Ångström
 coefficient $\beta = 0.00272$ per year (or $\beta = 0.084$ in 1997 and
 $\beta = 0.059$ in 2005). Simulations with uvspec for the above Ångström
 coefficients, with WC of $15.7\,\text{mm}$ and $15.4\,\text{mm}$ for
-1997 and 2005 respectively and for a SZA of $55^{\circ}$ reveal trend of
-$+ 0.21\,\%$ per year in $\text{GHI}_{\text{ref}}$. The SZA of
+1997 and 2005 respectively and for a SZA of $55^{\circ}$ reveal a trend
+of $+ 0.21\,\%$ per year in $\text{GHI}_{\text{ref}}$. The SZA of
 $55^{\circ}$ was chosen as representative of all days in the year in
 order to get a rough estimate of the annually averaged change in clear
 sky irradiance. For the period 2005 -- 2023 we used the mean monthly
@@ -297,7 +297,7 @@ First, we evaluated the performance of the modelled
 $\text{GHI}_{\text{ref}}$ in relation to the measured GHI for different
 levels of atmospheric clearness, by using in the RTM the monthly
 climatological AOD and WC, less their respective standard deviations.
-These values represent typical atmosphere in Thessaloniki, with lower
+These values represent typical atmosphere in Thessaloniki with lower
 than average load of aerosols and humidity, which are the main factor
 that attenuate the GHI, excluding clouds. With this approach the
 simulated $\text{GHI}_{\text{ref}}$ should be generally greater than the
@@ -328,9 +328,9 @@ images from a sky-camera to further aid the decision of the manual
 inspection.
 
 The definition of the CE events with this method has a degree of
-subjectivity, since the actual clear sky irradiance, is not known and
-can only be approximated. However, this method is capable in detecting
-all major CE events. Where, some CE events, with very low OIR may be not
+subjectivity, since the actual clear sky irradiance is not known and can
+only be approximated. However, this method is capable in detecting all
+major CE events. Where some CE events with very low OIR may be not
 detected, these are few with small over-irradiance and it is unlikely
 that will effect significantly our results.
 
@@ -338,7 +338,7 @@ A sub-category of the CE events that is often discussed in the relevant
 bibliography (Cordero et al. 2023; Martins, Mantelli, and Rüther 2022;
 Georgi Hristov Yordanov, Saetre, and Midtgård 2015), are the extreme
 cloud enhancement (ECE) events. These are cases of CE where the measured
-intensity of the irradiance, exceeds the TSI at the top of the
+intensity of the irradiance exceeds the TSI at the top of the
 atmosphere:
 
 $$\text{ECE}:\text{GHI}_{\text{i}} > \cos(\theta) \times E_{i \odot}/r_{i}^{2}$$
@@ -347,7 +347,7 @@ where: $\theta$ the solar zenith angle, $E_{\odot}$ the solar constant
 adjusted for the actual Sun -- Earth distance, and $i$ each of the
 one-minute observation.
 
-An example of CE identification for a selected day is given, in the
+An example of CE identification for a selected day is given in the
 Figure, where the daily course of the clear sky reference irradiance and
 the CE and ECE identification thresholds are shown along with the actual
 GHI measurements. In addition, we provide an example scatter plot
@@ -385,7 +385,7 @@ black.
 # 3 Results
 
 Following the application of the above discussed methodology to the
-entire dataset (6.1 million one-minute GHI measurements), $1.764\,\%$
+entire dataset (6.1 million of one-minute GHI measurements), $1.764\,\%$
 were identified as CE events and $0.036\,\%$ as ECE events. The highest
 recorded GHI due to CE was $1416.6\,\text{W}/\text{m}^{2}$ on 24 May
 2007, corresponding to OIR of $345.9\,\text{W}/\text{m}^{2}$. The
@@ -396,12 +396,22 @@ corresponding OIR and excess irradiation .
 
 ## 3.1 Long-term trends
 
-We computed the daily trend of the mean OIR of CE using a first-order
-autoregressive model with a lag of one day, with the 'maximum
-likelihood' fitting method (Gardner, Harvey, and Phillips 1980; Jones
-1980) by implementing the function 'arima' from the library 'stats' of
-the R programming language (R Core Team 2023). The trends are reported
-together with the $2\sigma$ error. We observed a negligible change of
+The main focus of this study is to investigate the time evolution of the
+CE events by analyzing the GHI measurements at Thessaloniki. Cloud
+enhancements can be influenced by different factors, such as the
+geometry, size and optical thickness of clouds, their height in the
+atmosphere and on local weather regimes **!!!(ref)!!!**. Some of these
+factors are related to changes in climate; hence it would be reasonable
+to expect capturing their contributions to the frequency of occurrence
+of CE events over Thessaloniki, as well as to the average OIR and excess
+irradiation. The long-term trends were calculated using a first-order
+autoregressive model with the 'maximum likelihood' fitting method
+(Gardner, Harvey, and Phillips 1980; Jones 1980), by implementing the
+function 'arima' from the library 'stats' of the R programming language
+(R Core Team 2023). All trends are reported together with their
+$2\sigma$ error.
+
+We observed a negligible change of
 $0.087 \pm 0.08\,\text{W}/\text{m}^{2}/\text{year}$ on the mean OIR.
 Although, the previous result is closer to the raw data, we preferred to
 present the annual statistics, that give a more clear picture about the
@@ -564,8 +574,6 @@ An interpretation of the CE trends, shows that the interaction of GHI
 with the clouds, through this 30 year period, is a dynamic phenomenon
 that's needs further investigation. Although, to approach it, we need
 more long term observations of AOD and clouds characteristics.
-
-# Appendix
 
 Anderson, G. P., J. H. Chetwynd, S. A. Clough, E. P. Shettle, and F. X.
 Kneizys. 1986. "AFGL Atmospheric Constituent Profiles (0-120km)." Air

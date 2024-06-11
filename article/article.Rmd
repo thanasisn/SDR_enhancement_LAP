@@ -416,7 +416,7 @@ a change in the Ångström coefficient $\beta=0.00272$ per year (or $\beta=0.084
 coefficients, with WC of
 $`r round(BR[year==1997,pw_avg_mm],1)`\,\text{mm}$ and 
 $`r round(BR[year==2005,pw_avg_mm],1)`\,\text{mm}$
-for 1997 and 2005 respectively and for a SZA of $55^\circ$ reveal trend of
+for 1997 and 2005 respectively and for a SZA of $55^\circ$ reveal a trend of
 $+0.21\,\%$ per year in $\text{GHI}_\text{ref}$. 
 The SZA of $55^\circ$ was chosen as representative of all days in the year in order
 to get a rough estimate of the annually averaged change in clear sky irradiance.  For
@@ -465,7 +465,7 @@ in the RTM the monthly climatological AOD and WC, less their respective standard
 deviations.
 <!-- $\tau_{\text{cs}} = \tau_{500\text{nm}} - 1\sigma$ and $w_{h\text{cs}} = w_h - 1\sigma$
 ($\text{GHI}_\text{CSm}$). -->
-These values represent typical atmosphere in Thessaloniki, with lower than average
+These values represent typical atmosphere in Thessaloniki with lower than average
 load of aerosols and humidity, which are the main factor that attenuate the GHI,
 excluding clouds.  With this approach the simulated $\text{GHI}_\text{ref}$ should be
 generally greater than the measured GHI when aerosols are more abundant.  To
@@ -543,7 +543,6 @@ irradiance, and $\text{GHI}_\text{mCSi}$ the selected modelled clear sky irradia
 
 <!--
 - can follow for clear days
-- this selection has some subjectivity
 - the most important are the thresholds
 - model have to be uniform on clear days
 - the level is adjusted by the threshold 
@@ -551,15 +550,15 @@ irradiance, and $\text{GHI}_\text{mCSi}$ the selected modelled clear sky irradia
 -->
 
 The definition of the CE events with this method has a degree of subjectivity, since
-the actual clear sky irradiance, is not known and can only be approximated.
-However, this method is capable in detecting all major CE events.  Where, some CE
-events, with very low OIR may be not detected, these are few with small
-over-irradiance and it is unlikely that will effect significantly our results.
+the actual clear sky irradiance is not known and can only be approximated.  However,
+this method is capable in detecting all major CE events.  Where some CE events with
+very low OIR may be not detected, these are few with small over-irradiance and it is
+unlikely that will effect significantly our results.
 
 <!-- extreme cases criterion -->
 A sub-category  of the CE events that is often discussed in the relevant bibliography
 [@Cordero2023; @Martins2022; @Yordanov2015], are the extreme cloud enhancement (ECE)
-events. These are cases of CE where the measured intensity of the irradiance, exceeds
+events. These are cases of CE where the measured intensity of the irradiance exceeds
 the TSI at the top of the atmosphere:
 <!--and detected according to the Equation\nobreakspace{}\ref{eq:ECE}.-->
 \begin{equation}
@@ -568,7 +567,7 @@ the TSI at the top of the atmosphere:
 \end{equation}
 where: $\theta$ the solar zenith angle, $E_{\odot}$ the solar constant adjusted for the actual Sun -- Earth distance, and $i$ each of the one-minute observation.
 
-An example of CE identification for a selected day is given, in the
+An example of CE identification for a selected day is given in the
 Figure\nobreakspace{}\ref{fig:example-day}, where the daily course of the clear sky
 reference irradiance and the CE and ECE identification thresholds are shown along
 with the actual GHI measurements.  In addition, we provide an example scatter plot
@@ -598,7 +597,7 @@ knitr::include_graphics("../images/P-example-years-13.png")
 # Results
 
 Following the application of the above discussed methodology to the entire dataset 
-(`r round(ST_total$wattGLB.N / 10^6,1)` million one-minute GHI measurements),
+(`r round(ST_total$wattGLB.N / 10^6,1)` million of one-minute GHI measurements),
 $`r round(100*ST_total$GLB_diff.N_pos/ST_total$wattGLB.N, 3)`\,\%$ were identified as CE events and
 $`r round(100*ST_extreme_total$GLB_diff.N_pos/ST_total$wattGLB.N, 3)`\,\%$ as ECE events.
 The highest recorded GHI due to CE was
@@ -617,12 +616,21 @@ In the following sections we are discussing the long-term trends and variability
 
 ## Long-term trends
 
-We computed the daily trend of the mean OIR of CE <!--
-(Figure\nobreakspace{}\ref{fig:CEmeanDaily}), --> using a first-order autoregressive
-model with a lag of one day, with the 'maximum likelihood' fitting method
-[@Gardner1980; @Jones1980] by implementing the function 'arima' from the library
-'stats' of the R programming language [@RCT2023]. The trends are reported together
-with the $2\sigma$ error.  We observed a negligible change of
+The main focus of this study is to investigate the time evolution of the CE events by
+analyzing the GHI measurements at Thessaloniki. Cloud enhancements can be influenced
+by different factors, such as the geometry, size and optical thickness of clouds,
+their height in the atmosphere and on local weather regimes **!!!(ref)!!!**.  Some of
+these factors are related to changes in climate; hence it would be reasonable to
+expect capturing their contributions to the frequency of occurrence of CE events over
+Thessaloniki, as well as to the average OIR and excess irradiation. 
+The long-term trends were calculated using a first-order autoregressive model with the
+'maximum likelihood' fitting method
+[@Gardner1980; @Jones1980], by implementing the function 'arima' from the library
+'stats' of the R programming language [@RCT2023]. All trends are reported together
+with their $2\sigma$ error. 
+
+
+We observed a negligible change of
 $`r round(dailyCE[var == "GLB_diff.mean", Tmod_Estimate], 3)`\pm
 `r round(2 * dailyCE[var == "GLB_diff.mean", Tmod_Std..Error], 3)`\,\text{W}/\text{m}^2/\text{year}$
 on the mean OIR.
@@ -657,45 +665,37 @@ considerable level.
 <!-- ```{r CEmeanDaily2, echo=FALSE, fig.cap="Trend of the daily excess energy due to CE"} -->
 <!-- knitr::include_graphics("../images/daily-12.png") -->
 <!-- ``` -->
-
 <!-- ```{r echo=FALSE, fig.cap="Treds of the mean over irradiance per CE"} -->
 <!-- knitr::include_graphics("../images/energy-3.png") -->
 <!-- ``` -->
-
 <!-- ```{r P-energy-mean, echo=FALSE, fig.cap="Trends of the mean OIR per CE."} -->
 <!-- knitr::include_graphics("../images/P-energy-3.png") -->
 <!-- ``` -->
-
-
 <!-- ```{r echo=FALSE, fig.cap="Trend of number of CE cases"} -->
 <!-- knitr::include_graphics("../images/energy-2.png") -->
 <!-- ``` -->
-
 <!-- ```{r P-energy-N, echo=FALSE, fig.cap="Trend of yearly cloud enhancement occurrences."} -->
 <!-- knitr::include_graphics("../images/P-energy-2.png") -->
 <!-- ``` -->
-
 <!-- ```{r echo=FALSE, fig.cap="Trend of the yearly excess energy due to CE over irradiance"} -->
 <!-- knitr::include_graphics("../images/energy-1.png") -->
 <!-- ``` -->
-
 <!-- ```{r P-energy-sum, echo=FALSE, fig.cap="Trend of the yearly excess energy due to CE over irradiance"} -->
 <!-- knitr::include_graphics("../images/P-energy-1.png") -->
 <!-- ``` -->
-
 <!-- ```{r P-energy-median, echo=FALSE, fig.cap="Trend of the yearly median over irradiance due to CE over irradiance"} -->
 <!-- knitr::include_graphics("../images/P_energy-8.png") -->
 <!-- ``` -->
 
 <!-- \FloatBarrier -->
 
-\begin{figure}[h!]
+\begin{figure}% [h!]
         {\centering 
-            \subfloat[All skies.\label{fig:cusumnotrendmonthly-1}]
+            \subfloat[\label{fig:cusumnotrendmonthly-1}]
                 {\includegraphics[width=\linewidth]{../images/P-energy-3} }\\
-            \subfloat[Clear skies.\label{fig:cusumnotrendmonthly-2}]
+            \subfloat[\label{fig:P-energy-N}]
                 {\includegraphics[width=\linewidth]{../images/P-energy-2} }\\
-            \subfloat[Cloudy skies.\label{fig:cusumnotrendmonthly-3}]
+            \subfloat[\label{fig:cusumnotrendmonthly-3}]
                 {\includegraphics[width=\linewidth]{../images/P-energy-1} }
         }
     \caption{Time series for the period 1992 -- 2023 of (a) the yearly CE number of occurrences, (b) the yearly mean OIR and (c) the yearly excess irradiation. The black lines represent the linear trends on the yearly data.}\label{fig:cusumnotrendmonthly}
@@ -889,11 +889,4 @@ characteristics.
 
 
 
-
-# Appendix {.unnumbered}
-
-
-
-
-<!-- # References {.unnumbered} -->
 
