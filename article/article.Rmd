@@ -577,7 +577,7 @@ intensity (Appendix Figure\nobreakspace{}\ref{fig:example-year}).
 knitr::include_graphics("../images/example-days-18.png")
 ```
 
-```{r example-year, echo=FALSE, fig.cap="Example of the relation of the measured GHI versus the reference clear sky irradiance for the year 2005, where the intensity of the detected over irradiance (OIR) is color coded.", fig.pos='H'}
+```{r example-year, echo=FALSE, fig.cap="Example scatter plot of the measured GHI and the reference clear sky irradiance for the year 2005. The over-irradiance for CE and ECE events is color coded, while the remaining data points are shown in black.", fig.pos='H'}
 knitr::include_graphics("../images/example-years-13.png")
 ```
 
