@@ -748,7 +748,7 @@ for (ii in 1:nrow(vec_days)) {
 #' \FloatBarrier
 #' # Plot years with enhancement cases
 #'
-#+ example-years, echo=F, include=T, results="asis"
+#+ P-example-years, echo=F, include=T, results="asis"
 
 ## TODO plot only enhancement cases
 ## DO it with base plot
@@ -759,7 +759,9 @@ if (TEST) {
     yearstodo <- sample(yearstodo, 3)
 }
 
-pyear <- 2018
+stop()
+
+pyear <- 2005
 for (pyear in yearstodo) {
     p <-
         ggplot(DATA[year(Date) == pyear],

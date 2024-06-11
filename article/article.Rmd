@@ -489,7 +489,7 @@ days with the following characteristics:
 (c) absence of clouds (by implementing a clear sky identification algorithm as discussed in @Natsis2023),
 (d) absence of clouds and absence of EC events,
 (e) with at least $60\,\%$ of the day length without clouds and presence of EC events,
-(h) randomly selected days and
+(h) randomly selected days, and
 (i) manually selected days.
 Where needed in some of the edge cases, we also used images from a sky-camera
 to further aid the decision of the manual inspection.
@@ -549,31 +549,37 @@ irradiance, and $\text{GHI}_\text{mCSi}$ the selected modelled clear sky irradia
 -->
 
 The definition of the CE events with this method has a degree of subjectivity, since
-the actual clear sky irradiance, is not known, and can only be approximated.
+the actual clear sky irradiance, is not known and can only be approximated.
 However, this method is capable in detecting all major CE events.  Where, some CE
 events, with very low OIR may be not detected, these are few with small
 over-irradiance and it is unlikely that will effect significantly our results.
 
 <!-- extreme cases criterion -->
-A sub-category  of the CE events that is often discussed in the relevant bibliography,
-are cases of extreme cloud enhancement (ECE). These are cases of CE, where the
-measured intensity of the irradiance, exceeds the equivalent TSI on the top of the
-atmosphere, and detected according to the Equation\nobreakspace{}\ref{eq:ECE}.
+A sub-category  of the CE events that is often discussed in the relevant bibliography
+[@Cordero2023; @Martins2022; @Yordanov2015], are the extreme cloud enhancement (ECE)
+events. These are cases of CE where the measured intensity of the irradiance, exceeds
+the TSI at the top of the atmosphere:
+<!--and detected according to the Equation\nobreakspace{}\ref{eq:ECE}.-->
 \begin{equation}
 \text{ECE}: \text{GHI}_\text{i} > \cos(\theta) \times E_{i\odot} / r_{i}^2
 \label{eq:ECE}
 \end{equation}
-where: $\theta$ the solar zenith angle, $E_{\odot}$ the solar constant, $r$ the Sun -- Earth distance, and $i$ each of the one-minute observation.
+where: $\theta$ the solar zenith angle, $E_{\odot}$ the solar constant adjusted for the actual Sun -- Earth distance, and $i$ each of the one-minute observation.
 
+An example of CE identification for a selected day is given, in the Appendix
+(Figure\nobreakspace{}\ref{fig:example-day}), where the clear sky reference
+irradiance and the CE and ECE identification thresholds are shown along with the
+actual GHI measurements.  Similar, we provided an example plot of data for one year,
+where the relation of the GHI and clear sky reference is shown, along with the OIR
+intensity (Appendix Figure\nobreakspace{}\ref{fig:example-year}).
 
-To give a better understanding of the CE identification procedure, we provided an
-example of the CE identification for a selected day, in the Appendix
-(Figure\nobreakspace{}\ref{fig:example-day}), where the use of the clear sky
-reference and the identification threshold are shown, along with the relevant
-measurements.  Similar, we provided an example plot of data for one year, where the
-relation of the GHI and clear sky reference is shown, along with the OIR intensity
-(Appendix Figure\nobreakspace{}\ref{fig:example-year}).
+```{r example-day, echo=FALSE, fig.cap="Example of cloud identification for 2019-07-11. The green line with blue symbols depicts the measured GHI in one minute steps. The red line shows the modelled threshold for the detection of CE events, which are denoted with red circles. The black curve represents the TSI at the top of the atmosphere, adjusted for the actual Sun-Earth distance and multiplied by the cosine of the cosine of SZA.", fig.pos='H'}
+knitr::include_graphics("../images/example-days-18.png")
+```
 
+```{r example-year, echo=FALSE, fig.cap="Example of the relation of the measured GHI versus the reference clear sky irradiance for the year 2005, where the intensity of the detected over irradiance (OIR) is color coded.", fig.pos='H'}
+knitr::include_graphics("../images/example-years-13.png")
+```
 
 <!-- ```{r echo=F, include=T, warning=FALSE, message=FALSE} -->
 <!-- ST_total -->
@@ -868,13 +874,6 @@ characteristics.
 
 # Appendix {.unnumbered}
 
-```{r example-day, echo=FALSE, fig.cap="Example of cloud identification data for 2019-07-11. Where are denoted with red circles all the detected CE events, the cloud interaction with the GHI (blue crosses), and the thresholds of CE and the threshold of ECE events with red and black line respectively.", fig.pos='H'}
-knitr::include_graphics("../images/example-days-18.png")
-```
-
-```{r example-year, echo=FALSE, fig.cap="Example of the relation of the measured GHI versus the reference clear sky irradiance for the year 2005, where the intensity of the detected over irradiance (OIR) is color coded.", fig.pos='H'}
-knitr::include_graphics("../images/example-years-13.png")
-```
 
 
 
