@@ -611,7 +611,7 @@ The stronger CE event of
 $`r round(100*ST_daily[which.max(GLB_ench.max), GLB_ench.max],1)`\,\%$ above the 
 clear sky threshold was observed on 
 `r strftime(ST_daily[which.max(GLB_ench.max), Date], "%d\\ %B %Y")`.
-In the following sections we are discussing the long-term trends and variability of the CE events as well as of the corresponding OIR and excess irradiation .
+In the following sections we are discussing the long-term trends and variability of the CE events as well as of the corresponding OIR and excess irradiation.
 
 
 ## Long-term trends
@@ -706,9 +706,11 @@ equivalent clear sky irradiance by a significant amount.
 
 ## Climatology of cloud enhancement events
 
-Another interesting aspect of the CE events, is their distribution within the year. In
-Figure\nobreakspace{}\ref{fig:relative-month-occurrences}, we have the monthly box plot
-(whisker plot), where the values have been normalized by the highest median value,
+!!! monthly weithe !!!
+
+Another interesting aspect of the CE events is their distribution within the year.
+Figure\nobreakspace{}\ref{fig:relative-month-occurrences} shows the monthly box 
+and whisker plot of the CE number of occurrence normalized with the highest median value,
 that occurs on June.  Although the number of occurrences has a wide spread throughout
 the study period, the most active period of CE occurrences is during May and June.
 During the Winter (December -- February) the CE cases are about $25\,\%$ of the maximum.

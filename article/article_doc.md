@@ -392,7 +392,7 @@ recorded GHI due to CE was $1416.6\,\text{W}/\text{m}^{2}$ on 24 May
 stronger CE event of $49.7\,\%$ above the clear sky threshold was
 observed on 28 October 2016. In the following sections we are discussing
 the long-term trends and variability of the CE events as well as of the
-corresponding OIR and excess irradiation .
+corresponding OIR and excess irradiation.
 
 ## 3.1 Long-term trends
 
@@ -437,18 +437,20 @@ by a significant amount.
 
 ## 3.2 Climatology of cloud enhancement events
 
-Another interesting aspect of the CE events, is their distribution
-within the year. In Figure, we have the monthly box plot (whisker plot),
-where the values have been normalized by the highest median value, that
-occurs on June. Although the number of occurrences has a wide spread
-throughout the study period, the most active period of CE occurrences is
-during May and June. During the Winter (December -- February) the CE
-cases are about $25\,\%$ of the maximum. For the rest months, the
-occurrences gradually ramp between the maximum and minimum. This
-seasonality is a combinations of the clouds occurrences, and the
-relevant position of the sun during each season of the year.
-Unfortunately, the lack of detailed data on cloud formation, type and
-location is not allowing further analysis.
+!!! monthly weithe !!!
+
+Another interesting aspect of the CE events is their distribution within
+the year. Figure shows the monthly box and whisker plot of the CE number
+of occurrence normalized with the highest median value, that occurs on
+June. Although the number of occurrences has a wide spread throughout
+the study period, the most active period of CE occurrences is during May
+and June. During the Winter (December -- February) the CE cases are
+about $25\,\%$ of the maximum. For the rest months, the occurrences
+gradually ramp between the maximum and minimum. This seasonality is a
+combinations of the clouds occurrences, and the relevant position of the
+sun during each season of the year. Unfortunately, the lack of detailed
+data on cloud formation, type and location is not allowing further
+analysis.
 
 ![Figure 3.1: Seasonal statistics of the number of CE occurrences for
 each month, normalized to the maximum occurrences on June. The box

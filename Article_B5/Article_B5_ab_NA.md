@@ -409,8 +409,6 @@ number of occurrences, (b) the yearly mean OIR and (c) the yearly excess
 irradiation. The black lines represent the linear trends on the yearly
 data.
 
-## 
-
 ## 3.2 Climatology of cloud enhancement events
 
 Another interesting aspect of the CE events is their distribution within
