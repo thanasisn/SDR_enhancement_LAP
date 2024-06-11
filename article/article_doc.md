@@ -370,15 +370,16 @@ which are denoted with red circles. The black curve represents the TSI
 at the top of the atmosphere, adjusted for the actual Sun-Earth distance
 and multiplied by the cosine of the cosine of SZA.
 
-![Figure 2.3: Example of the relation of the measured GHI versus the
-reference clear sky irradiance for the year 2005, where the intensity of
-the detected over irradiance (OIR) is color
-coded.](media/rId35.png){width="5.833333333333333in"
+![Figure 2.3: Example scatter plot of the measured GHI and the reference
+clear sky irradiance for the year 2005. The over-irradiance for CE and
+ECE events is color coded, while the remaining data points are shown in
+black.](media/rId35.png){width="5.833333333333333in"
 height="3.6280479002624673in"}
 
-Figure 2.3: Example of the relation of the measured GHI versus the
-reference clear sky irradiance for the year 2005, where the intensity of
-the detected over irradiance (OIR) is color coded.
+Figure 2.3: Example scatter plot of the measured GHI and the reference
+clear sky irradiance for the year 2005. The over-irradiance for CE and
+ECE events is color coded, while the remaining data points are shown in
+black.
 
 # 3 Results
 

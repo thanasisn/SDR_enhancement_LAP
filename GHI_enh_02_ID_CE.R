@@ -759,7 +759,6 @@ if (TEST) {
     yearstodo <- sample(yearstodo, 3)
 }
 
-stop()
 
 pyear <- 2005
 for (pyear in yearstodo) {
@@ -768,6 +767,7 @@ for (pyear in yearstodo) {
                aes(get(paste0(SelEnhanc,"_ref")), wattGLB)) +
         geom_point(data   = DATA[year(Date) == pyear & get(SelEnhanc) == FALSE,],
                    colour = "black",
+                   alpha  = .1,
                    na.rm  = TRUE,
                    size   = 0.2) +
         geom_point(data   = DATA[year(Date) == pyear & get(SelEnhanc) == TRUE,],
