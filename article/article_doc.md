@@ -411,8 +411,17 @@ function 'arima' from the library 'stats' of the R programming language
 (R Core Team 2023). All trends are reported together with their
 $2\sigma$ error.
 
-We observed a negligible change of
-$0.087 \pm 0.08\,\text{W}/\text{m}^{2}/\text{year}$ on the mean OIR.
+Figure shows the time series of the yearly number of CE cases (each with
+duration of one minute), the yearly mean OIR and the yearly excess
+irradiation for the period 1993 -- 2023, together with corresponding
+linear trends. All three quantities show increasing trends, most
+pronounced for the frequency of occurrence
+($45.6 \pm 21.9\,\text{cases}/\text{year}$) and the excess irradiation
+($116.9 \pm 67.8\,\text{kJ}/\text{year}$), which are also statistically
+significant. In contrast the trend of the yearly mean OIR is negligible
+($0.1 \pm 0.1\,\,\text{W}/\text{m}^{2}/\text{year}$) and of no
+statistical significance.
+
 Although, the previous result is closer to the raw data, we preferred to
 present the annual statistics, that give a more clear picture about the
 long term CE trends. Hence, we calculated the annual values from the
@@ -420,7 +429,7 @@ one-minute measurements. Despite the very weak statistical significance
 of the mean OIR trend, the annual number of CE occurrences shows a
 steady increase of $45.6 \pm 21.9\,\text{cases}/\text{year}$ (Figure).
 Subsequently, the mean annual energy of the CE events is increasing with
-a rate of $116.9 \pm 67.8\,\text{kj}/\text{year}$ (Figure ), witch
+a rate of $116.9 \pm 67.8\,\text{kJ}/\text{year}$ (Figure ), witch
 follows the trend of the number of CE occurrences. We have to note that
 the energy related to the CE events can not be directly linked with the
 total energy balance of the atmosphere. The net solar radiation of the
