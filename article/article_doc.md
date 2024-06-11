@@ -322,37 +322,63 @@ following characteristics: (a) the strongest over irradiance CE events,
 implementing a clear sky identification algorithm as discussed in
 Natsis, Bais, and Meleti (2023)), (d) absence of clouds and absence of
 EC events, (e) with at least $60\,\%$ of the day length without clouds
-and presence of EC events, (h) randomly selected days and (i) manually
+and presence of EC events, (h) randomly selected days, and (i) manually
 selected days. Where needed in some of the edge cases, we also used
 images from a sky-camera to further aid the decision of the manual
 inspection.
 
 The definition of the CE events with this method has a degree of
-subjectivity, since the actual clear sky irradiance, is not known, and
+subjectivity, since the actual clear sky irradiance, is not known and
 can only be approximated. However, this method is capable in detecting
 all major CE events. Where, some CE events, with very low OIR may be not
 detected, these are few with small over-irradiance and it is unlikely
 that will effect significantly our results.
 
 A sub-category of the CE events that is often discussed in the relevant
-bibliography, are cases of extreme cloud enhancement (ECE). These are
-cases of CE, where the measured intensity of the irradiance, exceeds the
-equivalent TSI on the top of the atmosphere, and detected according to
-the Equation.
+bibliography (Cordero et al. 2023; Martins, Mantelli, and Rüther 2022;
+Georgi Hristov Yordanov, Saetre, and Midtgård 2015), are the extreme
+cloud enhancement (ECE) events. These are cases of CE where the measured
+intensity of the irradiance, exceeds the TSI at the top of the
+atmosphere:
 
 $$\text{ECE}:\text{GHI}_{\text{i}} > \cos(\theta) \times E_{i \odot}/r_{i}^{2}$$
 
-where: $\theta$ the solar zenith angle, $E_{\odot}$ the solar constant,
-$r$ the Sun -- Earth distance, and $i$ each of the one-minute
-observation.
+where: $\theta$ the solar zenith angle, $E_{\odot}$ the solar constant
+adjusted for the actual Sun -- Earth distance, and $i$ each of the
+one-minute observation.
 
-To give a better understanding of the CE identification procedure, we
-provided an example of the CE identification for a selected day, in the
-Appendix (Figure), where the use of the clear sky reference and the
-identification threshold are shown, along with the relevant
+An example of CE identification for a selected day is given, in the
+Appendix (Figure), where the clear sky reference irradiance and the CE
+and ECE identification thresholds are shown along with the actual GHI
 measurements. Similar, we provided an example plot of data for one year,
 where the relation of the GHI and clear sky reference is shown, along
 with the OIR intensity (Appendix Figure).
+
+![Figure 2.2: Example of cloud identification for 2019-07-11. The green
+line with blue symbols depicts the measured GHI in one minute steps. The
+red line shows the modelled threshold for the detection of CE events,
+which are denoted with red circles. The black curve represents the TSI
+at the top of the atmosphere, adjusted for the actual Sun-Earth distance
+and multiplied by the cosine of the cosine of
+SZA.](media/rId31.png){width="5.833333333333333in"
+height="3.8333333333333335in"}
+
+Figure 2.2: Example of cloud identification for 2019-07-11. The green
+line with blue symbols depicts the measured GHI in one minute steps. The
+red line shows the modelled threshold for the detection of CE events,
+which are denoted with red circles. The black curve represents the TSI
+at the top of the atmosphere, adjusted for the actual Sun-Earth distance
+and multiplied by the cosine of the cosine of SZA.
+
+![Figure 2.3: Example of the relation of the measured GHI versus the
+reference clear sky irradiance for the year 2005, where the intensity of
+the detected over irradiance (OIR) is color
+coded.](media/rId35.png){width="5.833333333333333in"
+height="3.6280479002624673in"}
+
+Figure 2.3: Example of the relation of the measured GHI versus the
+reference clear sky irradiance for the year 2005, where the intensity of
+the detected over irradiance (OIR) is color coded.
 
 # 3 Results
 
@@ -389,19 +415,19 @@ This also is depicted by the "instantaneous" values of irradiance
 irradiance to a considerable level.
 
 ![Figure 3.1: Trends of the mean OIR per
-CE.](media/rId33.png){width="5.833333333333333in"
+CE.](media/rId41.png){width="5.833333333333333in"
 height="3.6399048556430444in"}
 
 Figure 3.1: Trends of the mean OIR per CE.
 
 ![Figure 3.2: Trend of yearly cloud enhancement
-occurrences.](media/rId37.png){width="5.833333333333333in"
+occurrences.](media/rId45.png){width="5.833333333333333in"
 height="3.651760717410324in"}
 
 Figure 3.2: Trend of yearly cloud enhancement occurrences.
 
 ![Figure 3.3: Trend of the yearly excess energy due to CE over
-irradiance](media/rId41.png){width="5.833333333333333in"
+irradiance](media/rId49.png){width="5.833333333333333in"
 height="3.6399048556430444in"}
 
 Figure 3.3: Trend of the yearly excess energy due to CE over irradiance
@@ -427,7 +453,7 @@ represents the values of the low 25\\,\\% percentile to 75\\,\\%
 percentile, where the thick horizontal line inside is the mean, the
 vertical lines extend to the maximum and minimum values, the dots are
 outlier values, and the rhombus is the
-mean.](media/rId46.png){width="5.833333333333333in"
+mean.](media/rId54.png){width="5.833333333333333in"
 height="3.473915135608049in"}
 
 The distribution of the OIR intensity, follows an exponential decline
@@ -441,7 +467,7 @@ Kazantzidis (2020), where the magnitude of OIR were higher due to the
 location of the city of Patras, ${2.5}^{\circ}$ closer to the equator.
 
 ![Figure 3.5: Distribution of CE over irradiance
-magnitude.](media/rId49.png){width="5.833333333333333in"
+magnitude.](media/rId57.png){width="5.833333333333333in"
 height="3.7067202537182853in"}
 
 Figure 3.5: Distribution of CE over irradiance magnitude.
@@ -460,7 +486,7 @@ an hour, about $80\,\%$ of the CEG have a duration of less than 5
 minutes.
 
 ![Figure 3.6: Distribution of CE groups duration in
-minutes.](media/rId54.png){width="5.833333333333333in"
+minutes.](media/rId62.png){width="5.833333333333333in"
 height="3.6591983814523186in"}
 
 Figure 3.6: Distribution of CE groups duration in minutes.
@@ -474,7 +500,7 @@ using a far higher sampling rate than ours.
 
 ![Figure 3.7: Relation of the mean over irradiance and duration of GCE,
 where the color scale denotes the frequency of the respected
-events.](media/rId58.png){width="5.833333333333333in"
+events.](media/rId66.png){width="5.833333333333333in"
 height="3.687330489938758in"}
 
 Figure 3.7: Relation of the mean over irradiance and duration of GCE,
@@ -499,7 +525,7 @@ represents the values of the low 25\\,\\% percentile to 75\\,\\%
 percentile, where the thick horizontal line inside is the mean, the
 vertical lines extend to the max imum and minimum vales, the dots are
 outlier values, and the rhombus is the
-mean.](media/rId63.png){width="5.833333333333333in"
+mean.](media/rId71.png){width="5.833333333333333in"
 height="3.473915135608049in"}
 
 Figure 3.8: Seasonal statistics of the number of ECE occurancies for
@@ -518,7 +544,7 @@ that the OIR values are lower for Thessaloniki.
 
 ![Figure 3.9: Distribution of ECE above clear sky threshold, for cases
 that are exceeding the
-TSI.](media/rId67.png){width="5.833333333333333in"
+TSI.](media/rId75.png){width="5.833333333333333in"
 height="3.6591983814523186in"}
 
 Figure 3.9: Distribution of ECE above clear sky threshold, for cases
@@ -553,28 +579,6 @@ that's needs further investigation. Although, to approach it, we need
 more long term observations of AOD and clouds characteristics.
 
 # Appendix
-
-![Figure 4.1: Example of cloud identification data for 2019-07-11. Where
-are denoted with red circles all the detected CE events, the cloud
-interaction with the GHI (blue crosses), and the thresholds of CE and
-the threshold of ECE events with red and black line
-respectively.](media/rId74.png){width="5.833333333333333in"
-height="3.8333333333333335in"}
-
-Figure 4.1: Example of cloud identification data for 2019-07-11. Where
-are denoted with red circles all the detected CE events, the cloud
-interaction with the GHI (blue crosses), and the thresholds of CE and
-the threshold of ECE events with red and black line respectively.
-
-![Figure 4.2: Example of the relation of the measured GHI versus the
-reference clear sky irradiance for the year 2005, where the intensity of
-the detected over irradiance (OIR) is color
-coded.](media/rId78.png){width="5.833333333333333in"
-height="3.6280479002624673in"}
-
-Figure 4.2: Example of the relation of the measured GHI versus the
-reference clear sky irradiance for the year 2005, where the intensity of
-the detected over irradiance (OIR) is color coded.
 
 Anderson, G. P., J. H. Chetwynd, S. A. Clough, E. P. Shettle, and F. X.
 Kneizys. 1986. "AFGL Atmospheric Constituent Profiles (0-120km)." Air
