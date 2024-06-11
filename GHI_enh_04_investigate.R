@@ -1119,7 +1119,7 @@ p1 <- ggplot(dataset,
              shape = 15,
              size  = 3) +
   geom_abline(intercept = lmY1$coefficients[1], slope = lmY1$coefficients[2]) +
-  ylab(bquote("CE" ~ .(varname(pvar1)) ~ .(staname(pvar1)) ~ group("[", MJ/m^2,"]"))) +
+  ylab(bquote("CE excess irradiation" ~ group("[", MJ/m^2,"]"))) +
   xlab("Date") +
   annotation_custom(grob) +
   scale_y_continuous(guide        = "axis_minor",
