@@ -642,28 +642,22 @@ and the excess irradiation
 which are also statistically significant.
 In contrast the trend of the yearly mean OIR is negligible 
 ($`r round(yearlyCE[var == "GLB_diff.mean", slope], 1)`\pm
-`r round(2 * yearlyCE[var == "GLB_diff.mean", slope.sd], 1)`\,\,\text{W}/\text{m}^2/\text{year}$)
+`r round(2 * yearlyCE[var == "GLB_diff.mean", slope.sd], 1)`\,\text{W}/\text{m}^2/\text{year}$)
 and of no statistical significance.
+The average OIR for the entire period is about
+$`r round(mean(ST_E_yearly$GLB_diff.mean), 1)`\,\text{W}/\text{m}^2$ with standard
+deviation of
+$`r round(sd(ST_E_yearly$GLB_diff.mean), 1)`\,\text{W}/\text{m}^2$.
+The interannual variability of the data about the trend lines is quite large.
+Furthermore, it tends to increase with time (at least for the quantities of panels b
+and c), suggesting a significant variability in cloud patterns over the area,
+possibly associated to changes in climate.
 
-
-Although, the previous result is closer to the raw data, we preferred to present the
-annual statistics, that give a more clear picture about the long term CE trends.
-Hence, we calculated the annual values from the one-minute measurements.  Despite the
-very weak statistical significance of the mean OIR trend, the annual number of CE
-occurrences shows a steady increase of
-$`r round(yearlyCE[var == "GLB_diff.N", slope], 1)`\pm
-`r round(2 * yearlyCE[var == "GLB_diff.N", slope.sd], 1)`\,\text{cases}/\text{year}$
-(Figure\nobreakspace{}\ref{fig:P-energy-N}).
-Subsequently, the mean annual energy of the CE events is increasing with a rate of
-$`r round(yearlyCE[var == "GLB_diff.sum", slope], 1)`\pm
-`r round(2 * yearlyCE[var == "GLB_diff.sum", slope.sd], 1)`\,\text{kJ}/\text{year}$
-(Figure\ \ref{fig:P-energy-sum}), witch follows the trend of the number of CE
-occurrences.  We have to note that the energy related to the CE events can not be
-directly linked with the total energy balance of the atmosphere. The net solar
-radiation of the region is not increased, but rather redistributed through the CE
-events.  This also is depicted by the "instantaneous" values of irradiance (average
-over one minute), that can exceed the equivalent clear sky irradiance to a
-considerable level.
+We have to note that the excess irradiation related to the CE events can not be
+directly linked to the total energy balance of the atmosphere. The net solar
+radiation of the region is not increased, but is rather redistributed through the CE
+events.  This is also depicted by the ECE irradiance values, which can exceed the
+equivalent clear sky irradiance by a significant amount.
 
 <!-- $`r round(yearlyCE[var == "GLB_diff.mean", slope], 2)`\pm -->
 <!-- `r round(2 * yearlyCE[var == "GLB_diff.mean", slope.sd], 2)`\,W/m^2/y$ -->
@@ -696,7 +690,6 @@ considerable level.
 <!-- knitr::include_graphics("../images/P_energy-8.png") -->
 <!-- ``` -->
 
-
 \begin{figure}% [h!]
         {\centering 
             \subfloat[\label{fig:P-energy-mean}]
@@ -711,10 +704,9 @@ considerable level.
 
 
 
+## Climatology of cloud enhancement events
 
-## Cloud enhancements climatology
-
-Another interesting aspect of the CE cases occurrences, is their seasonal cycle. In
+Another interesting aspect of the CE events, is their distribution within the year. In
 Figure\nobreakspace{}\ref{fig:relative-month-occurrences}, we have the monthly box plot
 (whisker plot), where the values have been normalized by the highest median value,
 that occurs on June.  Although the number of occurrences has a wide spread throughout

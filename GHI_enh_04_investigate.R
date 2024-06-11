@@ -1247,6 +1247,7 @@ p3
 
 
 
+
 ###  Median energy per year  ----------------------------------
 
 pvar4   <- "GLB_diff.median"
