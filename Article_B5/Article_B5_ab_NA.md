@@ -412,12 +412,12 @@ data.
 ## 3.2 Climatology of cloud enhancement events
 
 Another interesting aspect of the CE events is their distribution within
-the year.. Figure shows the monthly box and whisker plot of the CE
-number of occurrence normalized with the highest median value that
-occurs in June, depicting a clear seasonal cycle. Although CE events are
-present throughout the year, the most active period is during May and
-June. During winter (December -- February), the number of CE cases is
-about $25\text{\%}$ of the maximum, while in the intermediate months the
+the year. Figure shows the monthly box and whisker plot of the CE number
+of occurrence normalized with the highest median value that occurs in
+June, depicting a clear seasonal cycle. Although CE events are present
+throughout the year, the most active period is during May and June.
+During winter (December -- February), the number of CE cases is about
+$25\text{\%}$ of the maximum, while in the intermediate months the
 number of occurrences gradually ramps between the maximum and minimum.
 This seasonality is a combined effect of different factors, among them
 the types of clouds, their frequency of occurrence the seasonally

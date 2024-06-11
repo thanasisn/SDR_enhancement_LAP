@@ -689,7 +689,7 @@ ggplot(ST_E_monthly, aes(y = GLB_ench.N/max_median,
                                     labels = month.abb[1:12]))) +
   geom_boxplot(fill = varcol("GLB_diff"), outliers = FALSE) +
   xlab("") +
-  ylab("Relative monthly occurrences") +
+  ylab("Relative occurrence") +
   stat_summary(fun.y = mean, geom = "point", shape = 23, size = 3) +
   theme(
     panel.grid.major.x = element_blank(),
@@ -720,7 +720,7 @@ ggplot(ST_E_monthly, aes(y = GLB_ench.N_MW/max_median,
                                     labels = month.abb[1:12]))) +
   geom_boxplot(fill = varcol("GLB_diff"), outliers = FALSE) +
   xlab("") +
-  ylab("Relative monthly weighted occurrences") +
+  ylab("Relative occurrence") +
   stat_summary(fun.y = mean, geom = "point", shape = 23, size = 3) +
   theme(
     panel.grid.major.x = element_blank(),
