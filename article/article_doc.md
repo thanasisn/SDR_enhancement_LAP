@@ -472,18 +472,18 @@ shown in Figure. Apparently, there is an inverse relation between the
 frequency of CE events and OIR with an exponential-like decline. This is
 expected, as the stronger the CE events become, the rarer are the
 conditions favoring the occurrence of CE events. For the majority (over
-$62\%$) of the CE events the OIR is below the long term average of
-$39.9\,\text{W}/\text{m}^{2}$, while about $8.1\%$ of the events
+$62\,\%$) of the CE events the OIR is below the long term average of
+$39.9\,\text{W}/\text{m}^{2}$, while about $8.1\,\%$ of the events
 correspond to OIR larger than $100\,\text{W}/\text{m}^{2}$ and up to
 highest value of $412.4\,\text{W}/\text{m}^{2}$. This distribution is
 indicative of the magnitude and the probability of the expected CE
 events over Thessaloniki. Similar distribution of CE events, albeit with
 larger OIR values, has been reported by Vamvakas, Salamalikis, and
-Kazantzidis (2020), fot the city of Patras.This site is located
-${2.5}^{\circ}$ closer to the equator. south of Thessaloniki and is
-exposed to air masses coming mainly from the eastern Mediterranean
-resulting in different cloud patterns, that may affect the
-characteristics and magnitude of the CE events.
+Kazantzidis (2020), for the city of Patras.This site is located
+${2.5}^{\circ}$ south of Thessaloniki and is exposed to air masses
+coming mainly from the eastern Mediterranean resulting in different
+cloud patterns, that may affect the characteristics and magnitude of the
+CE events.
 
 ![Figure 3.2: Relative frequency distribution of CE events as a function
 of OIR.](media/rId45.png){width="5.833333333333333in"
@@ -501,16 +501,19 @@ duration in steps of one minute.
 
 We have identified 28468 groups of CE in the whole period of study,
 where the group with the longest duration lasted 140 minutes on 07 July
-2013. By examining the frequency distribution of the CEG durations
-(Figure), we can conclude, that although we detected some CEG with
-durations longer than an hour, about $80\,\%$ of the CEG have a duration
-of less than 5 minutes.
+2013.
 
-![Figure 3.3: Distribution of CE groups duration in
-minutes.](media/rId50.png){width="5.833333333333333in"
+Figure) shows the frequency distribution of the CE events according to
+their duration. We conclude that although some groups of events last for
+more than an hour about $80\,\%$ have duration of less than 5 minutes.
+
+![Figure 3.3: Relative frequency distribution of CE groups of consequent
+CE events according to their
+duration.](media/rId50.png){width="5.833333333333333in"
 height="3.6591983814523186in"}
 
-Figure 3.3: Distribution of CE groups duration in minutes.
+Figure 3.3: Relative frequency distribution of CE groups of consequent
+CE events according to their duration.
 
 The relation between the duration and the mean OIR intensity of the
 groups have also been studied (Figure). We observed that the GCE events
@@ -519,13 +522,15 @@ strong enhancement and long duration are very rare. Similar results on
 this relation, have been reported by Zhang et al. (2018), on a study
 using a far higher sampling rate than ours.
 
-![Figure 3.4: Relation of the mean over irradiance and duration of GCE,
-where the color scale denotes the frequency of the respected
+![Figure 3.4: Relation of excess irradiation of CE groups with their
+duration. The logarithmic color scale denotes the frequency of the
+respective groups of
 events.](media/rId54.png){width="5.833333333333333in"
 height="3.687330489938758in"}
 
-Figure 3.4: Relation of the mean over irradiance and duration of GCE,
-where the color scale denotes the frequency of the respected events.
+Figure 3.4: Relation of excess irradiation of CE groups with their
+duration. The logarithmic color scale denotes the frequency of the
+respective groups of events.
 
 ## 3.4 Extreme cloud enhancement events
 
