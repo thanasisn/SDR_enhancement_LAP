@@ -421,6 +421,10 @@ quantile(DATA[wattGLB > ETH, GLB_diff])
 
 
 
+
+
+
+
 #' **END**
 #+ include=T, echo=F
 tac <- Sys.time()

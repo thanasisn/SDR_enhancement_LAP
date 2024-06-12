@@ -545,7 +545,7 @@ bins      <- 60
 ggplot(data    = ST_G0,
        mapping = aes(x = GLB_ench.N, y = GLB_diff.sum/GLB_ench.N)) +
   xlab("Duration of enhancement group [min]") +
-  ylab(bquote("Mean group over irradiance" ~ group("[", kJ/m^2,"]"))) +
+  ylab(bquote("Excess irradiation of CE groups" ~ group("[", kJ/m^2,"]"))) +
   geom_bin_2d(bins = bins) +
   scale_fill_continuous(type = "viridis", transform = "log",
                         breaks = my_breaks, labels = my_breaks) +
@@ -565,7 +565,7 @@ ggplot(data    = ST_G0,
 ggplot(data    = ST_G0,
        mapping = aes(x = GLB_ench.N, y = GLB_diff.sum/GLB_ench.N)) +
   xlab("Duration of enhancement group [min]") +
-  ylab(bquote("Mean group over irradiance" ~ group("[", kJ/m^2,"]"))) +
+  ylab(bquote("Excess irradiation of CE groups" ~ group("[", kJ/m^2,"]"))) +
   geom_bin_2d(bins = 30) +
   scale_fill_viridis()  +
   # scale_fill_continuous(type = "viridis", transform = "log",
