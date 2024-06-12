@@ -746,12 +746,13 @@ Figure\nobreakspace{}\ref{fig:ovir-distribution}. Apparently, there is an invers
 relation between the frequency of CE events  and OIR with an exponential-like
 decline. This is expected, as the stronger the CE events become, the rarer are the
 conditions favoring the occurrence of CE events. For the majority (over $60\%$) of
-the CE events the OIR is below the long term average of $40\,\text{W}/\text{m}^2$,
+the CE events the OIR is below the long term average of
+$`r round(mean(ST_E_yearly$GLB_diff.mean), 1)`\,\text{W}/\text{m}^2$,
 while about $10\%$ of the events correspond to OIR larger than
-$100\,\text{W}/\text{m}^2$ and up to highest value of 300 W/m^2^ .
-particular atmospheric and sun conditions can
-occur. This fact, is indicative to the magnitude and the probability of the expected OIRs
-events over Thessaloniki. Similar distribution of CE occurrences have been reported
+$100\,\text{W}/\text{m}^2$ and up to highest value of 300 W/m^2^.
+This distribution is indicative of the magnitude and the probability of the expected
+CE
+events over Thessaloniki. Similar distribution of CE events, occurrences have been reported
 by @Vamvakas2020, where the magnitude of OIR were
 higher due to the location of the city of Patras, $2.5^\circ$ closer to the equator.
 
