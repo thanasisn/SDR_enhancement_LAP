@@ -472,34 +472,39 @@ shown in Figure. Apparently, there is an inverse relation between the
 frequency of CE events and OIR with an exponential-like decline. This is
 expected, as the stronger the CE events become, the rarer are the
 conditions favoring the occurrence of CE events. For the majority (over
-$60\%$) of the CE events the OIR is below the long term average of
-$39.9\,\text{W}/\text{m}^{2}$, while about $10\%$ of the events
+$62\%$) of the CE events the OIR is below the long term average of
+$39.9\,\text{W}/\text{m}^{2}$, while about $8.1\%$ of the events
 correspond to OIR larger than $100\,\text{W}/\text{m}^{2}$ and up to
-highest value of 300 W/m^2^. This distribution is indicative of the
-magnitude and the probability of the expected CE events over
-Thessaloniki. Similar distribution of CE events, occurrences have been
-reported by Vamvakas, Salamalikis, and Kazantzidis (2020), where the
-magnitude of OIR were higher due to the location of the city of Patras,
-${2.5}^{\circ}$ closer to the equator.
+highest value of $412.4\,\text{W}/\text{m}^{2}$. This distribution is
+indicative of the magnitude and the probability of the expected CE
+events over Thessaloniki. Similar distribution of CE events, albeit with
+larger OIR values, has been reported by Vamvakas, Salamalikis, and
+Kazantzidis (2020), fot the city of Patras.This site is located
+${2.5}^{\circ}$ closer to the equator. south of Thessaloniki and is
+exposed to air masses coming mainly from the eastern Mediterranean
+resulting in different cloud patterns, that may affect the
+characteristics and magnitude of the CE events.
 
-![Figure 3.2: Distribution of CE over irradiance
-magnitude.](media/rId45.png){width="5.833333333333333in"
+![Figure 3.2: Relative frequency distribution of CE events as a function
+of OIR.](media/rId45.png){width="5.833333333333333in"
 height="3.7067202537182853in"}
 
-Figure 3.2: Distribution of CE over irradiance magnitude.
+Figure 3.2: Relative frequency distribution of CE events as a function
+of OIR.
 
-## 3.3 Groups of cloud enhancement
+## 3.3 Duration of cloud enhancement events
 
-In order to study the total duration of the CE events, we grouped the
-one minute CE events to continuous CE groups (CEG). Thus, a CEG consists
-of one or more successive CE cases, and can represent cloud enhancement
-conditions spanning a duration of multiple minutes. We have identified
-28468 groups of CE in the whole period of study, where the group with
-the longest duration lasted 140 minutes on 07 July 2013. By examining
-the frequency distribution of the CEG durations (Figure), we can
-conclude, that although we detected some CEG with durations longer than
-an hour, about $80\,\%$ of the CEG have a duration of less than 5
-minutes.
+The duration of the CE events is variable and can last for several
+minutes or even more than an hour. In order to study the characteristics
+of these consecutive events, we grouped them into bins of increasing
+duration in steps of one minute.
+
+We have identified 28468 groups of CE in the whole period of study,
+where the group with the longest duration lasted 140 minutes on 07 July
+2013. By examining the frequency distribution of the CEG durations
+(Figure), we can conclude, that although we detected some CEG with
+durations longer than an hour, about $80\,\%$ of the CEG have a duration
+of less than 5 minutes.
 
 ![Figure 3.3: Distribution of CE groups duration in
 minutes.](media/rId50.png){width="5.833333333333333in"
