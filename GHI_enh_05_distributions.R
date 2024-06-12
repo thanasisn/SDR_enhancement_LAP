@@ -114,6 +114,7 @@ if (
 ##  Load Enhancement data  -----------------------------------------------------
 
 ## load statistics
+load("./data/GHI_enh_03_process.Rda")
 load("./data/GHI_enh_02_ID_CE.Rda")
 tic  <- Sys.time()
 
@@ -363,6 +364,23 @@ ggplot(data = DATA[GLB_diff > 0], aes(x = GLB_diff)) +
   labs(caption = bquote(paste("Bin width: ", .(binwidth)) ~ group("[", W/m^2,"]"))) #  +
   # inset_element(p1, left = 0.4, bottom = 0.4, right = 1, top = 1,
   #               align_to = "plot")
+
+
+cat(pander(summary(DATA[GLB_diff > 0, GLB_diff])),"\n")
+
+cat(pander(quantile(DATA[GLB_diff > 0, GLB_diff])),"\n")
+
+above <- 100
+per   <- 100 * DATA[GLB_diff > 0 & GLB_diff > above, .N] / DATA[GLB_diff > 0, .N]
+
+cat(paste("\n", per, "% of the values are above", above, "W/m^2\n\n" ))
+
+
+below <- mean(ST_E_yearly$GLB_diff.mean)
+per   <- 100 * DATA[GLB_diff > 0 & GLB_diff < below, .N] / DATA[GLB_diff > 0, .N]
+
+cat(paste("\n", per, "% of the values are below", below, "W/m^2\n\n" ))
+
 
 
 

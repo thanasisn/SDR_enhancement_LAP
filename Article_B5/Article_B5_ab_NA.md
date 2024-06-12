@@ -452,7 +452,7 @@ is expected, as the stronger the CE events become, the rarer are the
 conditions favoring the occurrence of CE events. For the majority (over
 60%) of the CE events the OIR is below the long term average of 40
 W/m^2^, while about 10% of the events correspond to OIR larger than 100
-W/m^2^ and up to highest value of 300 W/m^2^. . This distribution is
+W/m^2^ and up to highest value of 300 W/m^2^. This distribution is
 indicative of the magnitude and the probability of the expected CE
 events over Thessaloniki. Similar distribution of CE events, albeit with
 larger OIR values, has been reported by Vamvakas, Salamalikis, and
