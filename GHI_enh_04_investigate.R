@@ -427,7 +427,29 @@ ggplot(data = ST_G0, aes(x = GLB_ench.N)) +
 #   inset_element(p1, left = 0.3, bottom = 0.3, right = 1, top = 1,
 #                 align_to = "plot")
 
-ST_G0[GLB_ench.N <= 5, .N] / ST_G0[, .N]
+ggplot(data = ST_G0, aes(x = GLB_ench.N)) +
+  geom_histogram(aes(y = (after_stat(count))/sum(after_stat(count)) * 100),
+                 binwidth = 0.16,
+                 boundary = 0,
+                 color    = "black") +
+  # xlab(bquote(.(varname("GLB_diff")) ~ group("[", W/m^2,"]"))) +
+  xlab("Duration of enhancement group [min]") +
+  ylab("Relative frequency [%]") +
+  scale_x_log10()
+
+
+
+library(scales)
+
+ggplot(data = ST_G0, aes(x = GLB_ench.N)) +
+  stat_density(aes(y=..count..), color="black", fill="blue", alpha=0.3) +
+  xlab("Duration of enhancement group [min]") +
+  ylab("Relative frequency [%]") +
+  scale_x_continuous( trans="log1p" ) +
+  scale_y_continuous(breaks=c(0,125,250,375,500,625,750), expand=c(0,0))
+
+
+
 
 
 ggplot(data = ST_G0, aes(x = GLB_ench.N)) +
