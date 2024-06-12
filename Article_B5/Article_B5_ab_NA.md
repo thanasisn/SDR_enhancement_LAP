@@ -248,7 +248,7 @@ SZA of $55^{\circ}$ as a representative value for all the runs.
 
 According to this study, in the period 1997 -- 2005 the mean AOD at
 $340\text{nm}$ $0.403$ with a trend of $- 3.8 \pm 0.93\text{\%}$ per
-year, corresponding to a change of $0.0153$ per year . Using an Ångström
+year, corresponding to a change of $0.0153$ per year. Using an Ångström
 coefficient $\alpha = 1.6$, this translates to a change in the Ångström
 coefficient $\beta = 0.00272$ per year (or $\beta = 0.084$ in 1997 and
 $\beta = 0.059$ in 2005). Simulations with uvspec for the above Ångström

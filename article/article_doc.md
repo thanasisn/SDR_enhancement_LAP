@@ -15,7 +15,7 @@ transfer model, and aerosol optical depth (AOD) data, from the AERONET,
 and a collocated Brewer photospectrometer. We found that there is a
 trend of CE cases of $45.6 \pm 21.9\,\text{cases}/\text{year}$, and a
 mean total energy change, of the CE events by
-$116.9 \pm 67.8\,\text{kj}/\text{year}$ with the peak of the CE events
+$116.9 \pm 67.8\,\text{kJ}/\text{year}$ with the peak of the CE events
 are observed during May and June. An analysis of the total duration of
 CE events, showed that durations longer than 5 minutes are very rare,
 with exceptions lasting over an hour. We have detected enhancements over
@@ -184,7 +184,7 @@ the effects of aerosols and water vapor which were not taken into
 account in the two simple methods. To produce a more representative
 reference we included the effects of these factors through variables
 using a radiative transfer model (RTM). The applied methodology is
-discussed in section
+discussed in section..
 
 ## 2.3 Modeled clear Sky Irradiance
 
@@ -239,10 +239,9 @@ Thessaloniki for the period 1993 -- 2023, which for clear-sky data was
 attributed to long-term changes in aerosol effects. Therefore, an
 adjustment of the $\text{GHI}_{\text{ref}}$ used in this study is
 necessary. As AERONET data start only in 2003, we used for the period
-1993 --- 2005 estimates of changes in AOD at $340\,\text{nm}$ derived
-from a collocated Brewer spectrophotometer derived from two sources. For
-1993 -- 2005 (Kazadzis et al. 2007) to calculate the trend in
-$\text{GHI}_{\text{ref}}$ during this period.
+1993 -- 2005 estimates of changes in AOD at $340\,\text{nm}$ derived
+from a collocated Brewer spectrophotometer (Kazadzis et al. 2007) to
+calculate the trend in $\text{GHI}_{\text{ref}}$ during this period.
 
 To create a unified trend for the long term change of the clear sky
 irradiance, we simulated the values of AOD derived from those sources
@@ -385,7 +384,7 @@ black.
 # 3 Results
 
 Following the application of the above discussed methodology to the
-entire dataset (6.1 million of one-minute GHI measurements), $1.764\,\%$
+entire dataset (6.1 million of one-minute GHI measurements), $1.76\,\%$
 were identified as CE events and $0.036\,\%$ as ECE events. The highest
 recorded GHI due to CE was $1416.6\,\text{W}/\text{m}^{2}$ on 24 May
 2007, corresponding to OIR of $345.9\,\text{W}/\text{m}^{2}$. The
@@ -441,15 +440,15 @@ by a significant amount.
 
 Another interesting aspect of the CE events is their distribution within
 the year. Figure shows the monthly box and whisker plot of the CE number
-of occurrence normalized with the highest median value, that occurs in
+of occurrence normalized with the highest median value that occurs in
 June, depicting a clear seasonal cycle. Although CE events are present
 throughout the year, the most active period is during May and June.
-During the winter (December -- February), the number of CE cases is
-about $25\,\%$ of the maximum, while in the intermediate months, the
-number of occurrences gradually ramps between the maximum and minimum.
-This seasonality is a combined effect of different factors, among them
-the types of clouds, their frequency of occurrence the seasonally
-varying relative position of the sun, as well as the local landscape
+During winter (December -- February), the number of CE cases is about
+$25\,\%$ of the maximum, while in the intermediate months the number of
+occurrences gradually ramps between the maximum and minimum. This
+seasonality is a combined effect of different factors, among them the
+types of clouds, their frequency of occurrence the seasonally varying
+relative position of the sun, as well as the local landscape
 characteristics that may influence the formation of clouds.
 Unfortunately, lack of detailed data on cloud formation, type and
 location is not allowing further analysis. The interannual variability
@@ -460,7 +459,7 @@ monthly extremes, especially in the summer.
 to the maximum occurring in June, in the form of a box and whisker plot.
 The monthly values have been also normalized to the relative abundance
 of valid GHI observations. The box contains the data between the lower
-25\\,\\% and the upper 75\\,\\% percentiles,The thick horizontal line
+25\\,\\% and the upper 75\\,\\% percentiles. The thick horizontal line
 and the diamond symbol represent the median and the mean values,
 respectively. The vertical lines (whiskers) extend between the maximum
 and minimum monthly values and the solid circles are
@@ -479,7 +478,7 @@ highest value of $412.4\,\text{W}/\text{m}^{2}$. This distribution is
 indicative of the magnitude and the probability of the expected CE
 events over Thessaloniki. Similar distribution of CE events, albeit with
 larger OIR values, has been reported by Vamvakas, Salamalikis, and
-Kazantzidis (2020), for the city of Patras.This site is located
+Kazantzidis (2020) for the city of Patras. This site is located
 ${2.5}^{\circ}$ south of Thessaloniki and is exposed to air masses
 coming mainly from the eastern Mediterranean resulting in different
 cloud patterns, that may affect the characteristics and magnitude of the
@@ -515,12 +514,15 @@ height="3.6591983814523186in"}
 Figure 3.3: Relative frequency distribution of CE groups of consequent
 CE events according to their duration.
 
-The relation between the duration and the mean OIR intensity of the
-groups have also been studied (Figure). We observed that the GCE events
-tend to have either long duration, or large intensity. Events with
-strong enhancement and long duration are very rare. Similar results on
-this relation, have been reported by Zhang et al. (2018), on a study
-using a far higher sampling rate than ours.
+The relation between the duration of the CE groups and the excess
+irradiation of the groups has also been investigated (Figure).
+Evidently, evens of high excess irradiation have small duration and vice
+versa. The vast majority of grouped events are associated with small
+excess irradiation (e.g. $< 5\,\text{kJ}/\text{m}^{2}$) and small
+duration (e.g. $< 5\,\text{min}$) while groups with strong excess
+irradiation and long duration are rare. Similar results on this
+relation, have been reported by Zhang et al. (2018), on a study using a
+far higher sampling rate than ours.
 
 ![Figure 3.4: Relation of excess irradiation of CE groups with their
 duration. The logarithmic color scale denotes the frequency of the
@@ -583,7 +585,7 @@ long- and short-term variation of the expected clear sky GHI, we were
 able to identify cases of CE events. After analyzing the CE cases, we
 found an increase of $45.6 \pm 21.9\,\text{cases}/\text{year}$, with the
 mean annual total energy of the CE events increasing with a rate of
-$116.9 \pm 67.8\,\text{kj}/\text{year}$. The most active season of CE
+$116.9 \pm 67.8\,\text{kJ}/\text{year}$. The most active season of CE
 events over Thessaloniki is concentrated on early summer, on May and
 June.
 
