@@ -1,6 +1,6 @@
 ---
 abstract: Here will be the abstract.
-date: 2024-06-12
+date: 2024-06-13
 title: Long term cloud enhancement events of global solar irradiance
   over Thessaloniki, Greece
 ---
@@ -399,16 +399,17 @@ The main focus of this study is to investigate the time evolution of the
 CE events by analyzing the GHI measurements at Thessaloniki. Cloud
 enhancements can be influenced by different factors, such as the
 geometry, size and optical thickness of clouds, their height in the
-atmosphere and on local weather regimes **!!!(ref)!!!**. Some of these
-factors are related to changes in climate; hence it would be reasonable
-to expect capturing their contributions to the frequency of occurrence
-of CE events over Thessaloniki, as well as to the average OIR and excess
-irradiation. The long-term trends were calculated using a first-order
-autoregressive model with the 'maximum likelihood' fitting method
-(Gardner, Harvey, and Phillips 1980; Jones 1980), by implementing the
-function 'arima' from the library 'stats' of the R programming language
-(R Core Team 2023). All trends are reported together with their
-$2\sigma$ error.
+atmosphere and on local weather regimes (Mol, Knap, and Van Heerwaarden
+2023; Veerman, Van Stratum, and Van Heerwaarden 2022; Gristey et al.
+2022; Tzoumanikas et al. 2016). Some of these factors are related to
+changes in climate; hence it would be reasonable to expect capturing
+their contributions to the frequency of occurrence of CE events over
+Thessaloniki, as well as to the average OIR and excess irradiation. The
+long-term trends were calculated using a first-order autoregressive
+model with the 'maximum likelihood' fitting method (Gardner, Harvey, and
+Phillips 1980; Jones 1980), by implementing the function 'arima' from
+the library 'stats' of the R programming language (R Core Team 2023).
+All trends are reported together with their $2\sigma$ error.
 
 Figure shows the time series of the yearly number of CE cases (each with
 duration of one minute), the yearly mean OIR and the yearly excess
@@ -678,6 +679,12 @@ Gray, L. J., J. Beer, M. Geller, J. D. Haigh, M. Lockwood, K. Matthes,
 U. Cubasch, et al. 2010. "SOLAR INFLUENCES ON CLIMATE." *Reviews of
 Geophysics* 48 (4): RG4001. <https://doi.org/10.1029/2009RG000282>.
 
+Gristey, Jake J., Graham Feingold, K. Sebastian Schmidt, and Hong Chen.
+2022. "Influence of Aerosol Embedded in Shallow Cumulus Cloud Fields on
+the Surface Solar Irradiance." *Journal of Geophysical Research:
+Atmospheres* 127 (11): e2022JD036822.
+<https://doi.org/10.1029/2022JD036822>.
+
 Gueymard, Christian A. 2017. "Cloud and Albedo Enhancement Impacts on
 Solar Irradiance Using High-Frequency Measurements from Thermopile and
 Photodiode Radiometers. Part 1: Impacts on Global Horizontal
@@ -757,6 +764,11 @@ Thuillier, Gérard, Jean-Marie Perrin, Philippe Keckhut, and François
 Huppert. 2013. "Local Enhanced Solar Irradiance on the Ground Generated
 by Cirrus: Measurements and Interpretation." *Journal of Applied Remote
 Sensing* 7 (1): 073543. <https://doi.org/10.1117/1.JRS.7.073543>.
+
+Tzoumanikas, P., E. Nikitidou, A. F. Bais, and A. Kazantzidis. 2016.
+"The Effect of Clouds on Surface Solar Irradiance, Based on Data from an
+All-Sky Imaging System." *Renewable Energy* 95 (September): 314--22.
+<https://doi.org/10.1016/j.renene.2016.04.026>.
 
 Vamvakas, Ioannis, Vasileios Salamalikis, and Andreas Kazantzidis. 2020.
 "Evaluation of Enhancement Events of Global Horizontal Irradiance Due to
