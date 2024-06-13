@@ -618,15 +618,15 @@ In the following sections we are discussing the long-term trends and variability
 The main focus of this study is to investigate the time evolution of the CE events by
 analyzing the GHI measurements at Thessaloniki. Cloud enhancements can be influenced
 by different factors, such as the geometry, size and optical thickness of clouds,
-their height in the atmosphere and on local weather regimes **!!!(ref)!!!**.  Some of
-these factors are related to changes in climate; hence it would be reasonable to
-expect capturing their contributions to the frequency of occurrence of CE events over
-Thessaloniki, as well as to the average OIR and excess irradiation. 
-The long-term trends were calculated using a first-order autoregressive model with the
-'maximum likelihood' fitting method
-[@Gardner1980; @Jones1980], by implementing the function 'arima' from the library
-'stats' of the R programming language [@RCT2023]. All trends are reported together
-with their $2\sigma$ error. 
+their height in the atmosphere and on local weather regimes [@Mol2023; @Veerman2022;
+@Gristey2022; @Tzoumanikas2016].  Some of these factors are related to changes in
+climate; hence it would be reasonable to expect capturing their contributions to the
+frequency of occurrence of CE events over Thessaloniki, as well as to the average OIR
+and excess irradiation.  The long-term trends were calculated using a first-order
+autoregressive model with the 'maximum likelihood' fitting method [@Gardner1980;
+@Jones1980], by implementing the function 'arima' from the library 'stats' of the R
+programming language [@RCT2023]. All trends are reported together with their
+$2\sigma$ error. 
 
 Figure\nobreakspace{}\ref{fig:P-energy} shows the time series of the yearly number of
 CE cases (each with duration of one minute), the yearly mean OIR and the yearly
