@@ -137,18 +137,10 @@ long operation of the instrument. The manual screening was aided by a
 radiation data quality assurance procedure, adjusted for the site, which
 was based on the methods of Long and Shi (Long and Shi 2006, 2008).
 Thus, problematic recordings have been excluded from further processing.
-Although it is impossible to detect all false data, the large number of
-available data, and the aggregation scheme we used, ensures the quality
-of the radiation measurements used in this study. To preserve an
-unbiased representation of the data we applied a constraint, similar the
-one used by Castillejo-Cuberos and Escobar (2020). For each valid hour
-of day, there must exist at least 45 minutes of valid measurements,
-including nighttime, when near sunrise and sunset. Days with less than 5
-valid hours were rejected completely. Furthermore, due to the
-significant measurement uncertainty in GHI when the Sun is near the
-horizon, and due to some systematic obstructions by nearby buildings, we
-have excluded all measurements with solar zenith angle (SZA) greater
-than $78^{\circ}$.
+Furthermore, due to the significant measurement uncertainty in GHI when
+the Sun is near the horizon, and due to some systematic obstructions by
+nearby buildings, we have excluded all measurements with solar zenith
+angle (SZA) greater than $78^{\circ}$.
 
 Finally, images from a sky camera have been used in the manual
 inspection of the CE identification. The sky camera operates since 2012
@@ -167,9 +159,9 @@ evens with duration of at minimum one-minute.
 For the detection of CE cases we established a baseline of irradiance
 above which we characterized each data point as an enhancement event and
 calculated the over irradiance (OIR). The OIR is defined as the
-irradiance difference of the measured one-minute $\text{GHI}_{i}$ from
-the $\text{GHI}_{\text{ref}}$ corresponding to cloud-free atmosphere.
-First, we tested two simple approaches for the determination of
+irradiance difference of the measured one-minute GHI from the
+$\text{GHI}_{\text{ref}}$ corresponding to cloud-free atmosphere. First,
+we tested two simple approaches for the determination of
 $\text{GHI}_{\text{ref}}$: The Haurwitz's model (Haurwitz 1945), which
 is a simple clear sky model and was already adjusted and applied to our
 data (Natsis, Bais, and Meleti 2023), and the total solar irradiance
@@ -237,21 +229,16 @@ constituents, mainly AOD. As reported by Natsis, Bais, and Meleti
 (2023), there is a long term brightening effect in the GHI data of
 Thessaloniki for the period 1993 -- 2023, which for clear-sky data was
 attributed to long-term changes in aerosol effects. Therefore, an
-adjustment of the $\text{GHI}_{\text{ref}}$ used in this study is
-necessary. As AERONET data start only in 2003, we used for the period
+adjustment of the $\text{GHI}_{\text{ref}}$ during the period of study
+was made using simulation with the RTM based on the long-term variations
+of the AOD. As AERONET data start only in 2003, we used for the period
 1993 -- 2005 estimates of changes in AOD at $340\,\text{nm}$ derived
 from a collocated Brewer spectrophotometer (Kazadzis et al. 2007) to
 calculate the trend in $\text{GHI}_{\text{ref}}$ during this period.
 
-To create a unified trend for the long term change of the clear sky
-irradiance, we simulated the values of AOD derived from those sources
-with Libradtran. For both inputs, we used the AOD at $500\,\text{nm}$,
-which was inferred by the available Ångström coefficients. We choose the
-SZA of $55^{\circ}$ as a representative value for all the runs.
-
 According to this study, in the period 1997 -- 2005 the mean AOD at
-$340\,\text{nm}$ $0.403$ with a trend of $- 3.8 \pm 0.93\,\%$ per year,
-corresponding to a change of $0.0153$ per year. Using an Ångström
+$340\,\text{nm}$ is $0.403$ with a trend of $- 3.8 \pm 0.93\,\%$ per
+year, corresponding to a change of $0.0153$ per year. Using an Ångström
 coefficient $\alpha = 1.6$, this translates to a change in the Ångström
 coefficient $\beta = 0.00272$ per year (or $\beta = 0.084$ in 1997 and
 $\beta = 0.059$ in 2005). Simulations with uvspec for the above Ångström
@@ -296,8 +283,8 @@ First, we evaluated the performance of the modelled
 $\text{GHI}_{\text{ref}}$ in relation to the measured GHI for different
 levels of atmospheric clearness, by using in the RTM the monthly
 climatological AOD and WC, less their respective standard deviations.
-These values represent typical atmosphere in Thessaloniki with lower
-than average load of aerosols and humidity, which are the main factor
+These values represent typical atmospheres in Thessaloniki with lower
+than average load of aerosols and humidity, which are the main factors
 that attenuate the GHI, excluding clouds. With this approach the
 simulated $\text{GHI}_{\text{ref}}$ should be generally greater than the
 measured GHI when aerosols are more abundant. To compensate for this, we
@@ -322,9 +309,9 @@ implementing a clear sky identification algorithm as discussed in
 Natsis, Bais, and Meleti (2023)), (d) absence of clouds and absence of
 EC events, (e) with at least $60\,\%$ of the day length without clouds
 and presence of EC events, (h) randomly selected days, and (i) manually
-selected days. Where needed in some of the edge cases, we also used
-images from a sky-camera to further aid the decision of the manual
-inspection.
+selected days. For the latter case and where needed in some of the edge
+cases, we also used images from a sky-camera to further aid the decision
+of the manual inspection.
 
 The definition of the CE events with this method has a degree of
 subjectivity, since the actual clear sky irradiance is not known and can
@@ -334,11 +321,11 @@ detected, these are few with small over-irradiance and it is unlikely
 that will effect significantly our results.
 
 A sub-category of the CE events that is often discussed in the relevant
-bibliography (Cordero et al. 2023; Martins, Mantelli, and Rüther 2022;
+literature (Cordero et al. 2023; Martins, Mantelli, and Rüther 2022;
 Georgi Hristov Yordanov, Saetre, and Midtgård 2015), are the extreme
 cloud enhancement (ECE) events. These are cases of CE where the measured
 intensity of the irradiance exceeds the TSI at the top of the
-atmosphere:
+atmosphere. In this case the threshold EEEEEEEEEE:
 
 $$\text{ECE}:\text{GHI}_{\text{i}} > \cos(\theta) \times E_{i \odot}/r_{i}^{2}$$
 
