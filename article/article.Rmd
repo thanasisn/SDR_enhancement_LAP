@@ -223,13 +223,6 @@ cloud enhancements and we determined long term trends of the above mentioned met
 their climatology and some general characteristics.  To our knowledge there are no
 other studies that provide trends from such  long dataset.
 
-<!-- Define CE and ECE tomove? -->
-In this study, we define an event as CE when the measured GHI at ground level,
-exceeds the expected value under clear-sky conditions. Similarly, we define as
-extreme cloud enhancement events (ECE), the cases when GHI at ground level exceeds
-the Total Solar Irradiance (TSI). Although the duration of these bursts can vary from
-seconds to several minutes, here we are constrained by the temporal resolution of our
-data to identify evens with duration of at minimum one-minute.
 
 
 <!--
@@ -305,6 +298,14 @@ steps.
 
 
 ## Cloud enhancement detection
+
+<!-- Define CE and ECE tomove? -->
+In this study, we define an event as CE when the measured GHI at ground level,
+exceeds the expected value under clear-sky conditions. Similarly, we define as
+extreme cloud enhancement events (ECE), the cases when GHI at ground level exceeds
+the Total Solar Irradiance (TSI). Although the duration of these bursts can vary from
+seconds to several minutes, here we are constrained by the temporal resolution of our
+data to identify evens with duration of at minimum one-minute.
 
 For the detection of CE cases we established a baseline of irradiance above which we
 characterized each data point as an enhancement event and calculated the over

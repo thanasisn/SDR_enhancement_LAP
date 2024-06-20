@@ -106,14 +106,6 @@ determined long term trends of the above mentioned metrics, their
 climatology and some general characteristics. To our knowledge there are
 no other studies that provide trends from such long dataset.
 
-In this study, we define an event as CE when the measured GHI at ground
-level, exceeds the expected value under clear-sky conditions. Similarly,
-we define as extreme cloud enhancement events (ECE), the cases when GHI
-at ground level exceeds the Total Solar Irradiance (TSI). Although the
-duration of these bursts can vary from seconds to several minutes, here
-we are constrained by the temporal resolution of our data to identify
-evens with duration of at minimum one-minute.
-
 # 2 Data and methodology
 
 ## 2.1 Instrumentation and data
@@ -163,6 +155,14 @@ inspection of the CE identification. The sky camera operates since 2012
 and stores images in 5 min time steps.
 
 ## 2.2 Cloud enhancement detection
+
+In this study, we define an event as CE when the measured GHI at ground
+level, exceeds the expected value under clear-sky conditions. Similarly,
+we define as extreme cloud enhancement events (ECE), the cases when GHI
+at ground level exceeds the Total Solar Irradiance (TSI). Although the
+duration of these bursts can vary from seconds to several minutes, here
+we are constrained by the temporal resolution of our data to identify
+evens with duration of at minimum one-minute.
 
 For the detection of CE cases we established a baseline of irradiance
 above which we characterized each data point as an enhancement event and
