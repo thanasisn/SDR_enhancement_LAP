@@ -759,8 +759,9 @@ if (TEST) {
     yearstodo <- sample(yearstodo, 3)
 }
 
+stop("d")
 
-pyear <- 2005
+yearstodo <- 2005
 for (pyear in yearstodo) {
     p <-
         ggplot(DATA[year(Date) == pyear],
@@ -778,7 +779,7 @@ for (pyear in yearstodo) {
                               high     = "red",
                               na.value = NA) +
         labs(title = pyear) +
-        ylab(bquote("SDR" ~ group("[", W/m^2,"]"))) +
+        ylab(bquote("GHI" ~ group("[", W/m^2,"]"))) +
         xlab(bquote("Clear sky reference" ~ group("[", W/m^2,"]"))) +
         # xlab(paste0(SelEnhanc, "_ref")) +
         # labs(color = "Over\nIrradiance W/m^2") +
@@ -792,7 +793,8 @@ for (pyear in yearstodo) {
             legend.background    = element_rect(fill = "transparent"),
             legend.margin        = margin(6, 6, 6, 6) ) +
         scale_x_continuous(expand = expansion(mult = c(0.03, 0.03))) +
-        scale_y_continuous(breaks = scales::breaks_extended(n = 6),
+        scale_y_continuous(#breaks = scales::breaks_extended(n = 6),
+                           breaks = pretty(),
                            expand = expansion(mult = c(0.03, 0.03)))
     print(p)
 
@@ -805,7 +807,6 @@ for (pyear in yearstodo) {
     #     geom_point(data = DATA[year(Date) == 2018 & GLB_diff < 0], colour = "black", size = 0.5) +
     #     geom_point(data = DATA[year(Date) == 2018 & GLB_diff > 0], size = 0.5, aes(color = GLB_diff)) +
     #     scale_colour_gradient2(low = "black", mid = "yellow", high = "red", na.value = NA)
-
 }
 
 

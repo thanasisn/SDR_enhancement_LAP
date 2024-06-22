@@ -415,9 +415,9 @@ than average load of aerosols and humidity, which are the main factors
 that attenuate the GHI, excluding clouds. With this approach the
 simulated \(\text{GHI}_\text{ref}\) should be generally greater than the
 measured GHI when aerosols are more abundant. To compensate for this, we
-defined the following threshold \(\text{E}\) to compare the measured
+defined the following threshold \(E\) to compare the measured
 \(\text{GHI}\): \begin{equation}
-\text{CE} : \text{E} > 15 + 1.04 \cdot \text{GHI}_\text{ref} \,\,[\text{W}/\text{m}^2] \label{eq:CE4}
+\text{CE} : E > 15 + 1.04 \cdot \text{GHI}_\text{ref} \,\,[\text{W}/\text{m}^2] \label{eq:CE4}
 \end{equation} This is the criterion of our CE identification.
 
 These values were determined through the implementation of an empirical
@@ -445,12 +445,14 @@ A sub-category of the CE events that is often discussed in the relevant
 literature \citep{Cordero2023, Martins2022, Yordanov2015}, are the
 extreme cloud enhancement (ECE) events. These are cases of CE where the
 measured intensity of the irradiance exceeds the TSI at the top of the
-atmosphere. In this case the threshold EEEEEEEEEE: \begin{equation}
-\text{ECE}: \text{GHI}_\text{i} > \cos(\theta) \times E_{i\odot} / r_{i}^2
+atmosphere. In this case the threshold \(E\) is given by:
+\begin{equation}
+\text{ECE}: E > \cos(\theta) \cdot E_{\odot} \frac{r^2_\text{m}} {r^2}
 \label{eq:ECE}
 \end{equation} where: \(\theta\) the solar zenith angle, \(E_{\odot}\)
-the solar constant adjusted for the actual Sun -- Earth distance, and
-\(i\) each of the one-minute observation.
+the solar constant adjusted for the actual Sun -- Earth distance \(r\)
+and \(r_\text{m}\) is the mean Sun -- Earth distance of
+\(1.496\times10^8\,\text{km}\).
 
 An example of CE identification for a selected day is given in the
 Figure\nobreakspace{}\ref{fig:example-day}, where the daily course of
@@ -467,7 +469,7 @@ events are clearly grouped above the threshold of irradiance
 
 }
 
-\caption{Example of cloud identification for 2019-07-11. The green line with blue symbols depicts the measured GHI in one minute steps. The red line shows the modelled threshold for the detection of CE events, which are denoted with red circles. The black curve represents the TSI at the top of the atmosphere, adjusted for the actual Sun-Earth distance and multiplied by the cosine of the cosine of SZA.}\label{fig:example-day}
+\caption{Example of CE identification for 2019-07-11. The green line with blue symbols depicts the measured GHI in one minute steps. The red line shows the modelled threshold $E$ for the detection of CE events, which are denoted with red circles. The black curve represents the TSI at the top of the atmosphere, adjusted for the actual Sun-Earth distance and multiplied by the cosine of the cosine of SZA.}\label{fig:example-day}
 \end{figure}
 
 \begin{figure}[H]
