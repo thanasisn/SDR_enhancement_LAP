@@ -759,9 +759,8 @@ if (TEST) {
     yearstodo <- sample(yearstodo, 3)
 }
 
-stop("d")
 
-yearstodo <- 2005
+# yearstodo <- 2005
 for (pyear in yearstodo) {
     p <-
         ggplot(DATA[year(Date) == pyear],
@@ -777,6 +776,7 @@ for (pyear in yearstodo) {
                    aes(color = GLB_diff)) +
         scale_colour_gradient(low      = "blue",
                               high     = "red",
+                              limits   = c(0, NA),  ## always display zero
                               na.value = NA) +
         labs(title = pyear) +
         ylab(bquote("GHI" ~ group("[", W/m^2,"]"))) +
@@ -793,8 +793,7 @@ for (pyear in yearstodo) {
             legend.background    = element_rect(fill = "transparent"),
             legend.margin        = margin(6, 6, 6, 6) ) +
         scale_x_continuous(expand = expansion(mult = c(0.03, 0.03))) +
-        scale_y_continuous(#breaks = scales::breaks_extended(n = 6),
-                           breaks = pretty(),
+        scale_y_continuous(breaks = scales::breaks_extended(n = 6),
                            expand = expansion(mult = c(0.03, 0.03)))
     print(p)
 
