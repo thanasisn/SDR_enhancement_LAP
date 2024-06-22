@@ -241,7 +241,7 @@ coefficient $\alpha = 1.6$, this translates to a change in the Ångström
 coefficient $\beta = 0.00272$ per year (or $\beta = 0.084$ in 1997 and
 $\beta = 0.059$ in 2005). Simulations with uvspec for the above Ångström
 coefficients, with WC of $15.7\text{mm}$ and $15.4\text{mm}$ for 1997
-and 2005 respectively, also taken from AERONET, and for a SZA of
+and 2005 respectively, also taken from AERONET, jjjand for a SZA of
 $55^{\circ}$ reveal a trend of $+ 0.21\text{\%}$ per year in
 $\text{GHI}_{\text{ref}}$. The SZA of $55^{\circ}$ was chosen as
 representative of all days in the year in order to get a rough estimate

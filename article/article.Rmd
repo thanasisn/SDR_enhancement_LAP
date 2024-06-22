@@ -483,7 +483,7 @@ These values represent typical atmospheres in Thessaloniki with lower than avera
 load of aerosols and humidity, which are the main factors that attenuate the GHI,
 excluding clouds.  With this approach the simulated $\text{GHI}_\text{ref}$ should be
 generally greater than the measured GHI when aerosols are more abundant.  To
-compensate for this, we defined the following threshold $\text{E}$ to compare the
+compensate for this, we defined the following threshold $E$ to compare the
 measured $\text{GHI}$: 
 <!--
 ($`r 100*(C4_cs_ref_ratio-1)`\,\%$)
@@ -492,7 +492,7 @@ $`r C4_GLB_diff_THRES`\,\text{W}/\text{m}^2$,
 as described in Equation\nobreakspace\ref{eq:CE4}.
 -->
 \begin{equation}
-\text{CE} : \text{E} > `r C4_GLB_diff_THRES` + `r C4_cs_ref_ratio` \cdot \text{GHI}_\text{ref} \,\,[\text{W}/\text{m}^2] \label{eq:CE4}
+\text{CE} : E > `r C4_GLB_diff_THRES` + `r C4_cs_ref_ratio` \cdot \text{GHI}_\text{ref} \,\,[\text{W}/\text{m}^2] \label{eq:CE4}
 \end{equation}
 <!--
 where: $\text{E}$ the measured irradiance, $\text{E}_\text{CSm}$ the selected
@@ -548,7 +548,7 @@ irradiance, and $\text{GHI}_\text{mCSi}$ the selected modelled clear sky irradia
 <!-- irradiance, $\text{E}_\text{CSm}$ the selected modelled clear sky irradiance, and $i$ each of the one-minute observation. -->
 
 
-<!-- reasoning for cretria -->
+<!-- reasoning for criteria -->
 <!-- We have to note, that the differentiation of the threshold factor was needed, because
 <!-- of the high irradiance values we observed, early in the morning and late in the
 <!-- afternoon. 
@@ -579,13 +579,15 @@ unlikely that will effect significantly our results.
 A sub-category  of the CE events that is often discussed in the relevant literature
 [@Cordero2023; @Martins2022; @Yordanov2015], are the extreme cloud enhancement (ECE)
 events. These are cases of CE where the measured intensity of the irradiance exceeds
-the TSI at the top of the atmosphere. In this case the threshold EEEEEEEEEE:
+the TSI at the top of the atmosphere. In this case the threshold $E$ is given by:
 <!--and detected according to the Equation\nobreakspace{}\ref{eq:ECE}.-->
 \begin{equation}
-\text{ECE}: \text{GHI}_\text{i} > \cos(\theta) \times E_{i\odot} / r_{i}^2
+\text{ECE}: E > \cos(\theta) \cdot E_{\odot} \frac{r^2_\text{m}} {r^2}
 \label{eq:ECE}
 \end{equation}
-where: $\theta$ the solar zenith angle, $E_{\odot}$ the solar constant adjusted for the actual Sun -- Earth distance, and $i$ each of the one-minute observation.
+where: $\theta$ the solar zenith angle, $E_{\odot}$ the solar constant adjusted for
+the actual Sun -- Earth distance $r$ and $r_\text{m}$ is the mean Sun -- Earth
+distance of $1.496\times10^8\,\text{km}$.
 
 An example of CE identification for a selected day is given in the
 Figure\nobreakspace{}\ref{fig:example-day}, where the daily course of the clear sky
@@ -595,7 +597,7 @@ between the measured and the modeled clear-sky irradiance for one year, where th
 and ECE events are clearly grouped above the threshold of irradiance
 (Figure\nobreakspace{}\ref{fig:example-year}).
 
-```{r example-day, echo=FALSE, fig.cap="Example of cloud identification for 2019-07-11. The green line with blue symbols depicts the measured GHI in one minute steps. The red line shows the modelled threshold for the detection of CE events, which are denoted with red circles. The black curve represents the TSI at the top of the atmosphere, adjusted for the actual Sun-Earth distance and multiplied by the cosine of the cosine of SZA.", fig.pos='H'}
+```{r example-day, echo=FALSE, fig.cap="Example of CE identification for 2019-07-11. The green line with blue symbols depicts the measured GHI in one minute steps. The red line shows the modelled threshold $E$ for the detection of CE events, which are denoted with red circles. The black curve represents the TSI at the top of the atmosphere, adjusted for the actual Sun-Earth distance and multiplied by the cosine of the cosine of SZA.", fig.pos='H'}
 knitr::include_graphics("../images/example-days-18.png")
 ```
 
