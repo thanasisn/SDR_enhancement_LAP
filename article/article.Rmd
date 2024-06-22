@@ -1,5 +1,5 @@
 ---
-title: Long term cloud enhancement events of global solar irradiance over Thessaloniki, Greece
+title: Long-term cloud enhancement events of global solar irradiance over Thessaloniki, Greece
 
 author:
   - name:        Athanasios N. Natsis
@@ -206,7 +206,7 @@ events.
 Study of the mechanism has also been done with modeling of different cloud types and
 atmospheric conditions.  @Gueymard2017; @Veerman2022
 
-Instruments respose ....
+Instruments response ....
 @Martins2022
 -->
 
@@ -219,7 +219,7 @@ camera images [@Vamvakas2020; @Mol2023 and references therein].
 In this study, we evaluate the effects CE on GHI by investigating their frequency of
 occurrence, intensity, and duration in a thirty-year period of GHI observations at
 Thessaloniki, Greece.  We used modeled clear sky irradiance as a baseline to identify
-cloud enhancements and we determined long term trends of the above mentioned metrics,
+cloud enhancements and we determined long-term trends of the above mentioned metrics,
 their climatology and some general characteristics.  To our knowledge there are no
 other studies that provide trends from such  long dataset.
 
@@ -392,13 +392,13 @@ With this method, the modeled clear sky irradiances can be directly compared to 
 measured one-minute value of GHI, for different conditions of atmospheric clearness.
 -->
 
-### Long term change of clear sky irradiance
+### Long-term change of clear sky irradiance
 
 <!-- Aerosol change -->
 The above clear sky reference values are based on the climatological AOD and WC,
-hence they cannot describe accurately the long term variation of
+hence they cannot describe accurately the long-term variation of
 $\text{GHI}_\text{ref}$ due to changes in the two atmospheric constituents, mainly
-AOD.  As reported by @Natsis2023, there is a long term brightening effect in the GHI
+AOD.  As reported by @Natsis2023, there is a long-term brightening effect in the GHI
 data of Thessaloniki for the period 1993 -- 2023, which for clear-sky data was
 attributed to long-term changes in aerosol effects.  Therefore, an adjustment of the
 $\text{GHI}_\text{ref}$ during the period of study was made using simulation with the
@@ -412,7 +412,7 @@ $-3.8\,\%$ per year at AOD on $340\,\text{nm}$, using a Brewer spectrophotometer
 -->
 
 <!--
-To create a unified trend for the long term change of the clear sky irradiance, we
+To create a unified trend for the long-term change of the clear sky irradiance, we
 simulated the values of AOD derived from those sources with Libradtran. For both
 inputs, we used the AOD at $500\,\text{nm}$, which was inferred by the available
 Ångström coefficients. We choose the SZA of $55^\circ$ as a representative value for
@@ -427,18 +427,19 @@ a change in the Ångström coefficient $\beta=0.00272$ per year (or $\beta=0.084
 coefficients, with WC of
 $`r round(BR[year==1997,pw_avg_mm],1)`\,\text{mm}$ and 
 $`r round(BR[year==2005,pw_avg_mm],1)`\,\text{mm}$
-for 1997 and 2005 respectively and for a SZA of $55^\circ$ reveal a trend of
+for 1997 and 2005 respectively, also taken from AERONET, and for a SZA of $55^\circ$
+reveal a trend of
 $+0.21\,\%$ per year in $\text{GHI}_\text{ref}$. 
 The SZA of $55^\circ$ was chosen as representative of all days in the year in order
 to get a rough estimate of the annually averaged change in clear sky irradiance.  For
 the period 2005 -- 2023 we used the mean monthly values of AOD and WC from AERONET in
 a similar simulation scheme to calculate the monthly mean of clear sky irradiance,
-and finally the trend of $+0.14\,\%$ per year. We applied these two long term changes
+and finally the trend of $+0.14\,\%$ per year. We applied these two long-term changes
 (see Figure\nobreakspace{}\ref{fig:CS-change}) to the climatological
 $\text{GHI}_\text{ref}$, in order to create a more realistic representation of the
 clear-sky irradiance for the whole period of study.
 
-```{r CS-change, echo=FALSE, fig.cap="Simulated long term change in clear sky irradiance relative to the climatological values due to changes in AOD."}
+```{r CS-change, echo=FALSE, fig.cap="Simulated long-term change in clear sky irradiance relative to the climatological values due to changes in AOD."}
 knitr::include_graphics("../images/P-CS-change-1.pdf")
 ```
 
@@ -461,12 +462,12 @@ In this study our main focus was to quantify over irradiance events related to C
 key issue for achieving this goal is to  define a threshold for the CE
 identification, representative of the clear-sky irradiance at the time of each GHI
 measurement. This depends on the selection of the appropriate atmospheric
-parameterization for the RTM simulations. The implementation of the long term change
+parameterization for the RTM simulations. The implementation of the long-term change
 of AOD, discussed in section\nobreakspace{}\ref{rtmcs}, allows capturing a large part
 of the natural variability of clear-sky GHI. However, the short-term variability of
-AOD cannot be taken adequately into account when using monthly values for the model
-simulations. We tried different approaches to increase the robustness of the
-methodology and compensate for the limited accuracy of the RTM input data and the
+AOD cannot be taken adequately into account when using monthly values in the model
+simulations. We tried different approaches in order to strengthen the robustness of
+the methodology and compensate for the limited accuracy of the RTM input data and the
 unpredictable natural variability of the atmosphere.
 
 
@@ -474,23 +475,31 @@ First, we evaluated the performance of the modelled $\text{GHI}_\text{ref}$ in
 relation to the measured GHI for different levels of atmospheric clearness, by using
 in the RTM the monthly climatological AOD and WC, less their respective standard
 deviations.
-<!-- $\tau_{\text{cs}} = \tau_{500\text{nm}} - 1\sigma$ and $w_{h\text{cs}} = w_h - 1\sigma$
-($\text{GHI}_\text{CSm}$). -->
+<!--
+$\tau_{\text{cs}} = \tau_{500\text{nm}} - 1\sigma$ and $w_{h\text{cs}} = w_h - 1\sigma$
+($\text{GHI}_\text{CSm}$).
+-->
 These values represent typical atmospheres in Thessaloniki with lower than average
 load of aerosols and humidity, which are the main factors that attenuate the GHI,
 excluding clouds.  With this approach the simulated $\text{GHI}_\text{ref}$ should be
 generally greater than the measured GHI when aerosols are more abundant.  To
-compensate for this, we increased the $\text{GHI}_\text{ref}$ by 
+compensate for this, we defined the following threshold $\text{E}$ to compare the
+measured $\text{GHI}$: 
+<!--
 ($`r 100*(C4_cs_ref_ratio-1)`\,\%$)
 with an additional constant offset of
 $`r C4_GLB_diff_THRES`\,\text{W}/\text{m}^2$,
 as described in Equation\nobreakspace\ref{eq:CE4}.
+-->
 \begin{equation}
-\text{CE} : \text{E}_\text{i} > `r C4_GLB_diff_THRES` + `r C4_cs_ref_ratio` \cdot \text{E}_\text{CSm,i} \,\,[\text{W}/\text{m}^2] \label{eq:CE4}
+\text{CE} : \text{E} > `r C4_GLB_diff_THRES` + `r C4_cs_ref_ratio` \cdot \text{GHI}_\text{ref} \,\,[\text{W}/\text{m}^2] \label{eq:CE4}
 \end{equation}
+<!--
 where: $\text{E}$ the measured irradiance, $\text{E}_\text{CSm}$ the selected
 modelled clear sky irradiance, and $i$ each of the one-minute observation.  This is
 the criterion of our CE identification.
+-->
+This is the criterion of our CE identification.
 
 These values were determined through the implementation of an empirical method with
 manual inspection of the CE identification results  on selected days of the whole
@@ -504,8 +513,8 @@ days with the following characteristics:
 (e) with at least $60\,\%$ of the day length without clouds and presence of EC events,
 (h) randomly selected days, and
 (i) manually selected days.
-For the latter case and where needed in some of the edge cases, we also used images
-from a sky-camera to further aid the decision of the manual inspection.
+For the latter case and where needed, we also used images from a sky-camera to
+further aid the decision of the manual inspection.
 
 <!--
 \begin{equation}
@@ -758,7 +767,7 @@ Figure\nobreakspace{}\ref{fig:ovir-distribution}. Apparently, there is an invers
 relation between the frequency of CE events  and OIR with an exponential-like
 decline. This is expected, as the stronger the CE events become, the rarer are the
 conditions favoring the occurrence of CE events. For the majority (over $62\,\%$) of
-the CE events the OIR is below the long term average of
+the CE events the OIR is below the longnterm average of
 $`r round(mean(ST_E_yearly$GLB_diff.mean), 1)`\,\text{W}/\text{m}^2$,
 while about $8.1\,\%$ of the events correspond to OIR larger than
 $100\,\text{W}/\text{m}^2$ and up to highest value of $412.4\,\text{W}/\text{m}^2$.
@@ -906,7 +915,7 @@ by @Vamvakas2020, for a city southern of Thessaloniki, with the analogues differ
 An interpretation of the CE trends, shows that the interaction of GHI with the
 clouds,
 through this 30 year period, is a dynamic phenomenon that's needs further investigation.
-Although, to approach it, we need more long term observations of AOD and clouds
+Although, to approach it, we need more long-term observations of AOD and clouds
 characteristics.
 
 
