@@ -578,22 +578,21 @@ $116.9 \pm 67.8\,\text{kJ}/\text{year}$. The most active season of CE
 events over Thessaloniki is concentrated on early summer, on May and
 June.
 
-The magnitude of the ECE events does not exceeds the values reported for
+The magnitude of the ECE events does not exceed the values reported for
 sites with more favourable conditions for the phenomenon. The
 climatological characteristic of the ECE events, showed that the most
-active months are spread on half of the year (March -- June and
-September and October). We found that CE conditions, can have a duration
-of more than an hour in rare cases, with the bulk of the cases having a
-duration under 5 minutes. Some of the characteristics of CE and ECE
-events we analysed, have strong similarities with results by Vamvakas,
-Salamalikis, and Kazantzidis (2020), for a city southern of
-Thessaloniki, with the analogues differences on the intensity of the
-solar radiation.
+active months are spread in half of the year (March -- June, September
+and October). We found that CE conditions, can have a duration of more
+than an hour in rare cases, with the bulk of the cases having a duration
+under 5 minutes. Some of the characteristics of CE and ECE events we
+analysed have strong similarities with results by Vamvakas, Salamalikis,
+and Kazantzidis (2020) for the city of Patras, south of Thessaloniki,
+with analog differences on the intensity of the solar radiation.
 
-An interpretation of the CE trends, shows that the interaction of GHI
+An interpretation of the CE trends shows that the interaction of GHI
 with the clouds, through this 30 year period, is a dynamic phenomenon
-that's needs further investigation. Although, to approach it, we need
-more long-term observations of AOD and clouds characteristics.
+that needs further investigation. Although, to approach it, we need more
+long-term observations of AOD and clouds characteristics.
 
 Anderson, G. P., J. H. Chetwynd, S. A. Clough, E. P. Shettle, and F. X.
 Kneizys. 1986. "AFGL Atmospheric Constituent Profiles (0-120km)." Air
