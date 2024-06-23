@@ -449,6 +449,15 @@ and minimum monthly values and the solid circles are
 outliers.](media/rId42.png){width="5.833333333333333in"
 height="3.4976279527559053in"}
 
+Figure 3.1: Seasonal variability of the number of CE events normalized
+to the maximum occurring in June, in the form of a box and whisker plot.
+The monthly values have been also normalized to the relative abundance
+of valid GHI observations. The box contains the data between the lower
+$25\,\%$ and the upper $75\,\%$ percentiles, the thick horizontal line
+and the diamond symbol represent the median and the mean values,
+respectively. The vertical lines (whiskers) extend between the maximum
+and minimum monthly values and the solid circles are outliers.
+
 The distribution of the number of CE events as a function of OIR is
 shown in Figure. Apparently, there is an inverse relationship between
 the frequency of CE events and OIR with an exponential-like decline.
@@ -468,7 +477,7 @@ cloud patterns, that may affect the characteristics and magnitude of the
 CE events.
 
 ![Figure 3.2: Relative frequency distribution of CE events as a function
-of OIR.](media/rId45.png){width="5.833333333333333in"
+of OIR.](media/rId46.png){width="5.833333333333333in"
 height="3.7067202537182853in"}
 
 Figure 3.2: Relative frequency distribution of CE events as a function
@@ -479,38 +488,35 @@ of OIR.
 The duration of the CE events is variable and can last for several
 minutes or even more than an hour. In order to study the characteristics
 of these consecutive events, we grouped them into bins of increasing
-duration in steps of one minute.
-
-We have identified 28468 groups of CE in the whole period of study,
-where the group with the longest duration lasted 140 minutes on 07 July
-2013.
-
-Figure) shows the frequency distribution of the CE events according to
-their duration. We conclude that although some groups of events last for
-more than an hour about $80\,\%$ have duration of less than 5 minutes.
+duration in steps of one minute. We have identified 28468 groups of CE
+in the whole period of study, where the group of the longest duration of
+140 minutes occurred on 07 July 2013. Figure shows the frequency
+distribution of the CE events according to their duration. We conclude
+that although some groups of events last for more than an hour about
+$80\,\%$ have duration of less than 5 minutes.
 
 ![Figure 3.3: Relative frequency distribution of CE groups of consequent
 CE events according to their
-duration.](media/rId50.png){width="5.833333333333333in"
+duration.](media/rId51.png){width="5.833333333333333in"
 height="3.6591983814523186in"}
 
 Figure 3.3: Relative frequency distribution of CE groups of consequent
 CE events according to their duration.
 
-The relation between the duration of the CE groups and the excess
-irradiation of the groups has also been investigated (Figure).
-Evidently, evens of high excess irradiation have small duration and vice
-versa. The vast majority of grouped events are associated with small
-excess irradiation (e.g. $< 5\,\text{kJ}/\text{m}^{2}$) and small
-duration (e.g. $< 5\,\text{min}$) while groups with strong excess
-irradiation and long duration are rare. Similar results on this
-relation, have been reported by Zhang et al. (2018), on a study using a
-far higher sampling rate than ours.
+The relation between the duration and the mean OIR of the groups has
+also been studied (Figure). Evidently, evens of high excess irradiation
+have small duration and vice versa. The vast majority of grouped events
+are associated with small excess irradiation
+(e.g. $< 5\,\text{kJ}/\text{m}^{2}$) and small duration
+(e.g. $< 5\,\text{min}$) while groups with strong excess irradiation and
+long duration are very rare. Similar results of this relation have been
+reported by Zhang et al. (2018), on a study using a far higher sampling
+rate than ours.
 
 ![Figure 3.4: Relation of excess irradiation of CE groups with their
 duration. The logarithmic color scale denotes the frequency of the
 respective groups of
-events.](media/rId54.png){width="5.833333333333333in"
+events.](media/rId55.png){width="5.833333333333333in"
 height="3.687330489938758in"}
 
 Figure 3.4: Relation of excess irradiation of CE groups with their
@@ -530,21 +536,21 @@ period in the late fall (September and October). This is probably
 related to the weather characteristics of these periods, where there are
 continuous alternations between clear sky periods and clouds.
 
-![Figure 3.5: Seasonal statistics of the number of ECE occurancies for
-each month, normalized to the maximum occurancies on March. The box
-represents the values of the low 25\\,\\% percentile to 75\\,\\%
-percentile, where the thick horizontal line inside is the mean, the
-vertical lines extend to the max imum and minimum vales, the dots are
-outlier values, and the rhombus is the
-mean.](media/rId59.png){width="5.833333333333333in"
+![Figure 3.5: Seasonal variability of the number of ECE events
+normalized to the maximum occurring in March, in the form of a box and
+whisker plot. The box contains the data between the lower 25\\,\\% and
+the upper 75\\,\\% percentiles. The thick horizontal line and the
+diamond symbol represent the median and the mean values, respectively.
+The vertical lines (whiskers) extend between the maximum and minimum
+monthly values.](media/rId60.png){width="5.833333333333333in"
 height="3.473915135608049in"}
 
-Figure 3.5: Seasonal statistics of the number of ECE occurancies for
-each month, normalized to the maximum occurancies on March. The box
-represents the values of the low $25\,\%$ percentile to $75\,\%$
-percentile, where the thick horizontal line inside is the mean, the
-vertical lines extend to the max imum and minimum vales, the dots are
-outlier values, and the rhombus is the mean.
+Figure 3.5: Seasonal variability of the number of ECE events normalized
+to the maximum occurring in March, in the form of a box and whisker
+plot. The box contains the data between the lower $25\,\%$ and the upper
+$75\,\%$ percentiles. The thick horizontal line and the diamond symbol
+represent the median and the mean values, respectively. The vertical
+lines (whiskers) extend between the maximum and minimum monthly values.
 
 The distribution of the ECE events (Figure), shows that there are rare
 cases where the OIR can exceed the TSI even more than
@@ -555,13 +561,13 @@ that the OIR values are lower for Thessaloniki.
 
 ![Figure 3.6: Distribution of ECE above clear sky threshold, for cases
 that are exceeding the
-TSI.](media/rId63.png){width="5.833333333333333in"
+TSI.](media/rId64.png){width="5.833333333333333in"
 height="3.6591983814523186in"}
 
 Figure 3.6: Distribution of ECE above clear sky threshold, for cases
 that are exceeding the TSI.
 
-# 4 Discussion and conclusions
+# 4 Conclusions
 
 By creating a clear sky approximation of the GHI, which represents the
 long- and short-term variation of the expected clear sky GHI, we were
@@ -572,8 +578,8 @@ $116.9 \pm 67.8\,\text{kJ}/\text{year}$. The most active season of CE
 events over Thessaloniki is concentrated on early summer, on May and
 June.
 
-The magnitude of the ECE events doesn't exceeds the values reported from
-sites with more favourable conditions for the phenomenon. Although, the
+The magnitude of the ECE events does not exceeds the values reported for
+sites with more favourable conditions for the phenomenon. The
 climatological characteristic of the ECE events, showed that the most
 active months are spread on half of the year (March -- June and
 September and October). We found that CE conditions, can have a duration

@@ -746,6 +746,7 @@ manifested by the large monthly extremes, especially in the summer.
 ```{r relative-month-occurrences, echo=FALSE, fig.cap="Seasonal variability of the number of CE events normalized to the maximum occurring in June, in the form of a box and whisker plot. The monthly values have been also normalized to the relative abundance of valid GHI observations. The box contains the data between the lower $25\\,\\%$ and the upper $75\\,\\%$ percentiles, the thick horizontal line and the diamond symbol represent the median and the mean values, respectively. The vertical lines (whiskers) extend between the maximum and minimum monthly values and the solid circles are outliers."}
 knitr::include_graphics("../images/clim-CE-month-norm-MAX-median-N-MW-1.png")
 ```
+
 <!--
 ```{r echo=FALSE, fig.cap="Distribution of the number of CE cases"}
 knitr::include_graphics("../images/climCEmonth-1.png")
@@ -755,6 +756,7 @@ knitr::include_graphics("../images/climCEmonth-1.png")
 <!-- ```{r echo=FALSE, fig.cap="Distribution of CE above reference"} -->
 <!-- knitr::include_graphics("../images/relative_distributions-2.png") -->
 <!-- ``` -->
+
 <!--
 ```{r echo=FALSE, fig.cap="Distribution of CE above reference"}
 knitr::include_graphics("../images/relative_distributions-4.png")
@@ -767,7 +769,7 @@ relationship between the frequency of CE events and OIR with an exponential-like
 decline. This is expected, as the stronger the CE events are, the rarer the
 conditions favoring the occurrence of CE events. For the majority (over $62\,\%$) of
 the CE events the OIR is below the long-term average of
-$`r round(mean(ST_E_yearly$GLB_diff.mean), 1)`\,\text{W}/\text{m}^2$,
+$`r round(mean(ST_E_yearly$GLB_diff.mean), 1)` \, \text{W} / \text{m}^2$, 
 while about $8.1\,\%$ of the events correspond to OIR larger than
 $100\,\text{W}/\text{m}^2$ and up to the highest value of $412.4\,\text{W}/\text{m}^2$.
 This distribution is indicative of the magnitude and the probability of the expected
@@ -786,15 +788,12 @@ knitr::include_graphics("../images/P-relative-distribution-diff-1.png")
 
 The duration of the CE events is variable and can last for several minutes or even
 more than an hour. In order to study the characteristics of these consecutive events,
-we grouped them into bins of increasing duration in steps of one minute. 
-
-We have identified `r ST_G0[, .N]` groups of CE in the
-whole period of study, where the
-group with the longest duration lasted
-`r ST_G0[, max(GLB_diff.N)]` minutes on
+we grouped them into bins of increasing duration in steps of one minute.  We have
+identified `r ST_G0[, .N]` groups of CE in the whole period of study, where the group
+of the longest duration of
+`r ST_G0[, max(GLB_diff.N)]` minutes occurred on
 `r strftime(ST_G0[which.max(GLB_diff.N), Date], "%d\\ %B %Y")`.
-
-Figure\nobreakspace{}\ref{fig:ceg-duration-distribution}) shows the frequency
+Figure\nobreakspace{}\ref{fig:ceg-duration-distribution} shows the frequency
 distribution of the CE events according to their duration.  We conclude that although
 some groups of events last for more than an hour about $80\,\%$ have duration of less
 than 5 minutes.
@@ -803,14 +802,13 @@ than 5 minutes.
 knitr::include_graphics("../images/groups-1.png")
 ```
 
-The relation between the duration of the CE groups and the excess irradiation of the
-groups has also been investigated (Figure\nobreakspace{}\ref{fig:group-2d}).
-Evidently, evens of high excess irradiation have small duration and vice versa. The
-vast majority of grouped events are associated with small excess irradiation (e.g.
-$<5\,\text{kJ}/\text{m}^2$) and small duration (e.g. $<5\,\text{min}$) while groups
-with strong excess irradiation and long duration are rare.  Similar results on this
-relation, have been reported by @Zhang2018, on a study using a far higher sampling
-rate than ours.
+The relation between the duration and the mean OIR of the groups has also been
+studied (Figure\nobreakspace{}\ref{fig:group-2d}).  Evidently, evens of high excess
+irradiation have small duration and vice versa. The vast majority of grouped events
+are associated with small excess irradiation (e.g. $<5\,\text{kJ}/\text{m}^2$) and
+small duration (e.g. $<5\,\text{min}$) while groups with strong excess irradiation
+and long duration are very rare.  Similar results of this relation have been
+reported by @Zhang2018, on a study using a far higher sampling rate than ours.
 
 ```{r group-2d, echo=FALSE, fig.cap="Relation of excess irradiation of CE groups with their duration. The logarithmic color scale denotes the frequency of the respective groups of events."}
 knitr::include_graphics("../images/P-groups-bin2d-1.png")
@@ -819,12 +817,11 @@ knitr::include_graphics("../images/P-groups-bin2d-1.png")
 <!-- ```{r echo=FALSE, fig.cap="Relation of mean over irradiance and CE group duration"} -->
 <!-- knitr::include_graphics("../images/groups-4.png") -->
 <!-- ``` -->
+
 <!-- ```{r echo=FALSE, fig.cap="Relation of maximun over irradiance and CE group duration"} -->
 <!-- knitr::include_graphics("../images/groups-8.png") -->
 <!-- ``` -->
 
-
-<!-- \FloatBarrier -->
 
 ## Extreme cloud enhancement events
 
@@ -840,7 +837,7 @@ by a period in the late fall (September and October).  This is probably related 
 the weather characteristics of these periods, where there are continuous alternations
 between clear sky periods and clouds.
 
-```{r relative-month-occurancies-ECE, echo=FALSE, fig.cap="Seasonal statistics of the number of ECE occurancies for each month, normalized to the maximum occurancies on March. The box represents the values of the low $25\\,\\%$ percentile to $75\\,\\%$ percentile, where the thick horizontal line inside is the mean, the vertical lines extend to the max imum and minimum vales, the dots are outlier values, and the rhombus is the mean."}
+```{r relative-month-occurancies-ECE, echo=FALSE, fig.cap="Seasonal variability of the number of ECE events normalized to the maximum occurring in March, in the form of a box and whisker plot. The box contains the data between the lower $25\\,\\%$ and the upper $75\\,\\%$ percentiles. The thick horizontal line and the diamond symbol represent the median and the mean values, respectively. The vertical lines (whiskers) extend between the maximum and minimum monthly values."}
 knitr::include_graphics("../images/clim-ECE-month-norm-MAX-median-N-2.png")
 ```
 
@@ -864,18 +861,17 @@ knitr::include_graphics("../images/P-extreme-distribution-1.png")
 <!-- knitr::include_graphics("../images/extremedistributions-4.png") -->
 <!-- ``` -->
 
-<!-- -   SZA -->
-
-
-
+<!--  SZA -->
 
 <!-- ### Yearly plots relative to all GHI data. -->
 <!-- ```{r echo=FALSE, fig.cap=""} -->
 <!-- knitr::include_graphics("../images/rel_energy-1.png") -->
 <!-- ``` -->
+
 <!-- ```{r echo=FALSE, fig.cap=""} -->
 <!-- knitr::include_graphics("../images/rel_energy-2.png") -->
 <!-- ``` -->
+
 <!-- ```{r echo=FALSE, fig.cap=""} -->
 <!-- knitr::include_graphics("../images/rel_energy-3.png") -->
 <!-- ``` -->
@@ -884,8 +880,7 @@ knitr::include_graphics("../images/P-extreme-distribution-1.png")
 <!-- \FloatBarrier -->
 
 
-# Discussion and conclusions
-
+# Conclusions
 
 By creating a clear sky approximation of the GHI, which represents the long- and
 short-term variation of the expected clear sky GHI, we were able to identify cases of 
@@ -900,13 +895,13 @@ $`r round(yearlyCE[var == "GLB_diff.sum", slope], 1)`\pm
 The most active season of CE events over Thessaloniki is concentrated on early
 summer, on May and June.
 
-The magnitude of the ECE events doesn't exceeds the values reported from sites with
-more favourable conditions for the phenomenon. Although, the climatological
-characteristic of the ECE events, showed that the most active months are spread on
-half of the year (March -- June and September and October).
-We found that CE conditions, can have a duration of more than an hour in rare
-cases, with the bulk of the cases having a duration under 5 minutes.
-Some of the characteristics of CE and ECE events we analysed,
+The magnitude of the ECE events does not exceeds the values reported for sites with
+more favourable conditions for the phenomenon. The climatological characteristic of
+the ECE events, showed that the most active months are spread on half of the year
+(March -- June and September and October).  We found that CE conditions, can have a
+duration of more than an hour in rare cases, with the bulk of the cases having a
+duration under 5 minutes.  Some of the characteristics of CE and ECE events we
+analysed,
 have strong similarities with results
 by @Vamvakas2020, for a city southern of Thessaloniki, with the analogues differences on the
  intensity of the solar radiation.

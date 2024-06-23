@@ -477,7 +477,7 @@ minutes or even more than an hour. In order to study the characteristics
 of these consecutive events, we grouped them into bins of increasing
 duration in steps of one minute. We have identified 28468 groups of CE
 in the whole period of study, where the group of the longest duration of
-140 minutes occurred on 07 July 2013. Figure) shows the frequency
+140 minutes occurred on 07 July 2013. Figure shows the frequency
 distribution of the CE events according to their duration. We conclude
 that although some groups of events last for more than an hour about
 $80\text{\%}$ have duration of less than 5 minutes.
