@@ -1,6 +1,6 @@
 ---
 abstract: Here will be the abstract.
-date: 2024-06-23
+date: 2024-06-24
 title: Long-term cloud enhancement events of global solar irradiance
   over Thessaloniki, Greece
 ---
@@ -276,7 +276,7 @@ discussed in section, allows capturing a large part of the natural
 variability of clear-sky GHI. However, the short-term variability of AOD
 cannot be taken adequately into account when using monthly values in the
 model simulations. We tried different approaches in order to strengthen
-the robustness of the methodology and compensate for the limited
+the robustness of the methodology and to compensate for the limited
 accuracy of the RTM input data and the unpredictable natural variability
 of the atmosphere.
 
@@ -372,7 +372,7 @@ entire dataset (6.1 million of one-minute GHI measurements), $1.76\,\%$
 were identified as CE events and $0.036\,\%$ as ECE events. The highest
 recorded GHI due to CE was $1416.6\,\text{W}/\text{m}^{2}$ on 24 May
 2007, corresponding to OIR of $345.9\,\text{W}/\text{m}^{2}$. The
-stronger CE event of $49.7\,\%$ above the clear sky threshold was
+strongest CE event of $49.7\,\%$ above the clear sky threshold was
 observed on 28 October 2016. In the following sections we are discussing
 the long-term trends and variability of the CE events as well as of the
 corresponding OIR and excess irradiation.

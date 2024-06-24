@@ -467,8 +467,8 @@ of AOD, discussed in section\nobreakspace{}\ref{rtmcs}, allows capturing a large
 of the natural variability of clear-sky GHI. However, the short-term variability of
 AOD cannot be taken adequately into account when using monthly values in the model
 simulations. We tried different approaches in order to strengthen the robustness of
-the methodology and compensate for the limited accuracy of the RTM input data and the
-unpredictable natural variability of the atmosphere.
+the methodology and to compensate for the limited accuracy of the RTM input data and
+the unpredictable natural variability of the atmosphere.
 
 
 First, we evaluated the performance of the modelled $\text{GHI}_\text{ref}$ in
@@ -629,7 +629,7 @@ to OIR of $`r round(ST_daily[which.max(GLB_diff.max), GLB_diff.max], 1)`\,\text{
 <!-- The absolute strongest CE event had an OIR of 
 <!-- $`r round(ST_daily[which.max(GLB_diff.max), GLB_diff.max], 2)`\,\text{W}/\text{m}^2$ on
 <!-- `r strftime(ST_daily[which.max(GLB_diff.max), Date], "%d\\ %B %Y")`. -->
-The stronger CE event of
+The strongest CE event of
 $`r round(100*ST_daily[which.max(GLB_ench.max), GLB_ench.max],1)`\,\%$ above the 
 clear sky threshold was observed on 
 `r strftime(ST_daily[which.max(GLB_ench.max), Date], "%d\\ %B %Y")`.
