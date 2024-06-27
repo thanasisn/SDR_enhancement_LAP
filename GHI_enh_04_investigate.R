@@ -464,6 +464,53 @@ ggplot(data = ST_G0, aes(x = GLB_ench.N)) +
 
 
 
+breaks <- c(seq(0, 25, 2.5), seq(50, 150, 25))
+ggplot(data = ST_G0, aes(x = GLB_ench.N)) +
+  geom_histogram(aes(y = (after_stat(count))/sum(after_stat(count)) * 100),
+                 breaks   = breaks,
+                 boundary = 0,
+                 color    = "black") +
+  # xlab(bquote(.(varname("GLB_diff")) ~ group("[", W/m^2,"]"))) +
+  xlab("Duration of enhancement group [min]") +
+  ylab("Relative frequency [%]") +
+  labs(caption = paste("Bin width:", "2.5 or 25", "min"))
+
+
+breaks <- c(seq(0, 25, 2.5), seq(55, 150, 30))
+ggplot(data = ST_G0, aes(x = GLB_ench.N)) +
+  geom_histogram(aes(y = (after_stat(count))/sum(after_stat(count)) * 100),
+                 breaks   = breaks,
+                 boundary = 0,
+                 color    = "black") +
+  # xlab(bquote(.(varname("GLB_diff")) ~ group("[", W/m^2,"]"))) +
+  xlab("Duration of enhancement group [min]") +
+  ylab("Relative frequency [%]") +
+  labs(caption = paste("Bin width:", "2.5 or 30", "min"))
+
+
+breaks <- c(seq(0, 25, 2.5), seq(65, 150, 40))
+ggplot(data = ST_G0, aes(x = GLB_ench.N)) +
+  geom_histogram(aes(y = (after_stat(count))/sum(after_stat(count)) * 100),
+                 breaks   = breaks,
+                 boundary = 0,
+                 color    = "black") +
+  # xlab(bquote(.(varname("GLB_diff")) ~ group("[", W/m^2,"]"))) +
+  xlab("Duration of enhancement group [min]") +
+  ylab("Relative frequency [%]") +
+  labs(caption = paste("Bin width:", "2.5 or 40", "min"))
+
+
+breaks <- c(seq(0, 25, 2.5), seq(75, 175, 50))
+ggplot(data = ST_G0, aes(x = GLB_ench.N)) +
+  geom_histogram(aes(y = (after_stat(count))/sum(after_stat(count)) * 100),
+                 breaks   = breaks,
+                 boundary = 0,
+                 color    = "black") +
+  # xlab(bquote(.(varname("GLB_diff")) ~ group("[", W/m^2,"]"))) +
+  xlab("Duration of enhancement group [min]") +
+  ylab("Relative frequency [%]") +
+  labs(caption = paste("Bin width:", "2.5 or 50", "min"))
+
 
 
 
