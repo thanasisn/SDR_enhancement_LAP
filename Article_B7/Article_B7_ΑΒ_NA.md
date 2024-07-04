@@ -205,7 +205,7 @@ Collaboration et al. 2022).
 
 ### 2.3.2 Long-term change of clear sky irradiance
 
-The clear sky reference values discussed above are based on the
+The clear-sky reference values discussed above are based on the
 climatological AOD and WC; hence they cannot describe accurately the
 long-term variation of $\text{GHI}_{\text{ref}}$ due to long-term
 changes in the two atmospheric constituents, mainly AOD. As reported by

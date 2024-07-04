@@ -212,56 +212,58 @@ Natsis, Bais, and Meleti (2023), there is a long-term brightening effect
 in the GHI data of Thessaloniki for the period 1993 -- 2023, which for
 clear-sky data was attributed to long-term changes in aerosol effects.
 Therefore, an adjustment of the $\text{GHI}_{\text{ref}}$ during the
-period of study was made using simulation with the RTM based on the
+period of study was made using simulations with the RTM based on the
 long-term variations of the AOD. As AERONET data start only in 2003, we
 used for the period 1993 -- 2005 estimates of changes in AOD at
 $340\,\text{nm}$ derived from a collocated Brewer spectrophotometer
 (Kazadzis et al. 2007) to calculate the trend in
-$\text{GHI}_{\text{ref}}$ during this period.
+$\text{GHI}_{\text{ref}}$ due to aerosols during this period.
 
-According to this study, in the period 1997 -- 2005 the mean AOD at
-$340\,\text{nm}$ is $0.403$ with a trend of $- 3.8 \pm 0.93\,\%$ per
-year, corresponding to a change of $0.0153$ per year. Using an Ångström
-coefficient $\alpha = 1.6$, this translates to a change in the Ångström
-coefficient $\beta = 0.00272$ per year (or $\beta = 0.084$ in 1997 and
-$\beta = 0.059$ in 2005). Simulations with uvspec for the above Ångström
-coefficients, with WC of $15.7\,\text{mm}$ and $15.4\,\text{mm}$ for
-1997 and 2005 respectively, also taken from AERONET, and for a SZA of
-$55^{\circ}$ reveal a trend of $+ 0.21\,\%$ per year in
-$\text{GHI}_{\text{ref}}$. The SZA of $55^{\circ}$ was chosen as
-representative of all days in the year in order to get a rough estimate
-of the annually averaged change in clear sky irradiance. For the period
-2005 -- 2023 we used the mean monthly values of AOD and WC from AERONET
-in a similar simulation scheme to calculate the monthly mean of clear
-sky irradiance, and finally the trend of $+ 0.14\,\%$ per year. We
-applied these two long-term changes (see Figure) to the climatological
-$\text{GHI}_{\text{ref}}$, in order to create a more realistic
-representation of the clear-sky irradiance for the whole period of
-study.
+According to Kazadzis et al. (2007), in the period 1997 -- 2005 the mean
+AOD at $340\,\text{nm}$ is $0.403$ with a trend of $- 3.8 \pm 0.93\,\%$
+per year, corresponding to a change of $0.0153$ per year. Using an
+Ångström coefficient $\alpha = 1.6$, this translates to a change in the
+Ångström coefficient $\beta$ of $0.00272$ per year (or $\beta = 0.084$
+in 1997 and $\beta = 0.059$ in 2005). Simulations with uvspec for the
+above Ångström coefficients, with WC of $15.7\,\text{mm}$ and
+$15.4\,\text{mm}$ for 1997 and 2005 respectively, also taken from
+AERONET, and for a SZA of $55^{\circ}$ reveal a trend of $+ 0.21\,\%$
+per year in $\text{GHI}_{\text{ref}}$. The SZA of $55^{\circ}$ was
+chosen as representative of all days in the year in order to get a rough
+estimate of the annually averaged change in clear sky irradiance. For
+the period 2005 -- 2023 we used the mean monthly values of AOD and WC
+from AERONET in a similar simulation scheme to calculate the monthly
+mean clear-sky irradiance, and finally the trend of $+ 0.14\,\%$ per
+year. We applied these two long-term changes (see Figure) to the
+climatological $\text{GHI}_{\text{ref}}$, in order to create a more
+realistic representation of the clear-sky irradiance for the whole
+period of study.
 
 ![Figure 2.1: Simulated long-term change in clear sky irradiance
-relative to the climatological values due to changes in
-AOD.](media/rId24.pdf){width="5.833333333333333in"
+relative to the climatological values due to changes in AOD in
+Thessaloniki for the period 1992 --
+2023.](media/rId24.pdf){width="5.833333333333333in"
 height="3.663617672790901in"}
 
 Figure 2.1: Simulated long-term change in clear sky irradiance relative
-to the climatological values due to changes in AOD.
+to the climatological values due to changes in AOD in Thessaloniki for
+the period 1992 -- 2023.
 
 ## 2.4 Criteria for the identification of CE events
 
-In this study our main focus was to quantify over irradiance events
-related to CEs. A key issue for achieving this goal is to define a
-threshold for the CE identification, representative of the clear-sky
-irradiance at the time of each GHI measurement. This depends on the
-selection of the appropriate atmospheric parameterization for the RTM
-simulations. The implementation of the long-term change of AOD,
-discussed in section, allows capturing a large part of the natural
-variability of clear-sky GHI. However, the short-term variability of AOD
-cannot be taken adequately into account when using monthly values in the
-model simulations. We tried different approaches in order to strengthen
-the robustness of the methodology and to compensate for the limited
-accuracy of the RTM input data and the unpredictable natural variability
-of the atmosphere.
+In this study our main focus was to quantify the over irradiance related
+to CEs. A key issue for achieving this goal is to define a threshold for
+the CE identification, representative of the clear-sky irradiance at the
+time of each GHI measurement. This depends on the selection of the
+appropriate atmospheric parameterization for the RTM simulations. The
+implementation of the long-term change in AOD, discussed in section,
+allows capturing a large part of the natural variability of clear-sky
+GHI. However, the short-term variability of AOD cannot be taken
+adequately into account when using monthly values in the model
+simulations. We tried different approaches in order to strengthen the
+robustness of the methodology and to compensate for the limited accuracy
+of the RTM input data and the unpredictable natural variability of the
+atmosphere.
 
 First, we evaluated the performance of the modelled
 $\text{GHI}_{\text{ref}}$ in relation to the measured GHI for different
