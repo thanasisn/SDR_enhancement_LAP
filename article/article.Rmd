@@ -504,7 +504,6 @@ as described in Equation\nobreakspace\ref{eq:CE4}.
 \begin{equation}
 \text{CE} : E > `r C4_GLB_diff_THRES` + `r C4_cs_ref_ratio` \cdot \text{GHI}_\text{ref} \,\,[\text{W}/\text{m}^2] \label{eq:CE4}
 \end{equation}
-This is the criterion of our CE identification.
 
 <!--
 where: $\text{E}$ the measured irradiance, $\text{E}_\text{CSm}$ the selected
@@ -512,11 +511,12 @@ modelled clear sky irradiance, and $i$ each of the one-minute observation.  This
 the criterion of our CE identification.
 -->
 
-These values were determined through the implementation of an empirical method with
-manual inspection of the CE identification results on selected days of the whole
-dataset.  We used seven sets of days with characteristics relevant to the efficiency
-of the identification threshold.  These sets were random groups of about 20 -- 30
-days with the following characteristics:
+This is the criterion of our CE identification.  The constant terms were determined
+through the implementation of an empirical method with manual inspection of the CE
+identification results on selected days of the whole dataset.  We tested seven sets
+of days with different characteristics relevant to the efficiency of the
+identification threshold.  These sets were random groups of about 20 -- 30 days with
+the following characteristics:
 (a) the strongest over irradiance CE events,
 (b) the largest daily total over irradiance,
 (c) absence of clouds (by implementing a clear sky identification algorithm as discussed in @Natsis2023),
@@ -524,7 +524,7 @@ days with the following characteristics:
 (e) with at least $60\,\%$ of the day length without clouds and presence of EC events,
 (h) randomly selected days, and
 (i) manually selected days.
-For the latter case and where needed, we also used images from a sky-camera to
+For the latter case and where needed, we also used images from the sky-camera to
 further aid the decision of the manual inspection.
 
 <!--
@@ -582,9 +582,9 @@ irradiance, and $\text{GHI}_\text{mCSi}$ the selected modelled clear sky irradia
 
 The definition of the CE events with this method has a degree of subjectivity, since
 the actual clear sky irradiance is not known and can only be approximated.  However,
-this method is capable in detecting all major CE events.  Where some CE events with
-very low OIR may be not detected, these are few with small over-irradiance, and it is
-unlikely that will affect significantly our results.
+this method was proven capable in detecting all major CE events.  Where some CE
+events with very low OIR may be not detected, these are few with small
+over-irradiance, and it is unlikely that will affect significantly our results.
 
 <!-- extreme caces criterion -->
 A sub-category of the CE events that is often discussed in the relevant literature
@@ -608,11 +608,11 @@ between the measured and the modeled clear-sky irradiance for one year, where th
 and ECE events are clearly grouped above the threshold of irradiance
 (Figure\nobreakspace{}\ref{fig:example-year}).
 
-```{r example-day, echo=FALSE, fig.cap="Example of CE identification for 2019-07-11. The green line with blue symbols depicts the measured GHI in one minute steps. The red line shows the modelled threshold $E$ for the detection of CE events, which are denoted with red circles. The black curve represents the TSI at the top of the atmosphere, adjusted for the actual Sun-Earth distance and multiplied by the cosine of the cosine of SZA.", fig.pos='H'}
+```{r example-day, echo=FALSE, fig.cap="Example of CE identification in Thessaloniki for 2019-07-11. The green line with blue symbols depicts the measured GHI in one minute steps. The red line shows the modelled threshold $E$ for the detection of CE events, which are denoted with red circles. The black curve represents the TSI at the top of the atmosphere, adjusted for the actual Sun-Earth distance and multiplied by the cosine of SZA.", fig.pos='H'}
 knitr::include_graphics("../images/example-days-18.png")
 ```
 
-```{r example-year, echo=FALSE, fig.cap="Example scatter plot of the measured GHI and the reference clear sky irradiance for the year 2005. The over-irradiance for CE and ECE events is color coded, while the remaining data points are shown in black.", fig.pos='H'}
+```{r example-year, echo=FALSE, fig.cap="Example scatter plot of the measured GHI and the reference clear sky irradiance in Thessaloniki for the year 2005. The over-irradiance for CE and ECE events is color coded, while the remaining data points are shown in black.", fig.pos='H'}
 knitr::include_graphics("../images/P-example-years-13.png")
 ```
 
@@ -625,7 +625,6 @@ knitr::include_graphics("../images/P-example-years-13.png")
 <!-- plot(ST_daily$Date, ST_daily$GLB_diff.max) -->
 <!-- ``` -->
 
-<!-- \FloatBarrier -->
 
 # Results
 
@@ -650,18 +649,17 @@ the CE events as well as of the corresponding OIR and excess irradiation.
 
 ## Long-term trends
 
-The main focus of this study is to investigate the time evolution of the CE events by
+One aspect of this study is to investigate the time evolution of the CE events by
 analyzing the GHI measurements at Thessaloniki. Cloud enhancements can be influenced
 by different factors, such as the geometry, size and optical thickness of clouds,
-their height in the atmosphere and on local weather regimes [@Mol2023; @Veerman2022;
+their height in the atmosphere and local weather regimes [@Mol2023; @Veerman2022;
 @Gristey2022; @Tzoumanikas2016].  Some of these factors are related to changes in
-climate; hence it would be reasonable to expect capturing their contributions to the
-frequency of occurrence of CE events over Thessaloniki, as well as to the average OIR
-and excess irradiation.  The long-term trends were calculated using a first-order
-autoregressive model with the 'maximum likelihood' fitting method [@Gardner1980;
-@Jones1980], by implementing the function 'arima' from the library 'stats' of the R
-programming language [@RCT2023]. All trends are reported together with their
-$2\sigma$ error. 
+climate; hence it would be reasonable to expect contributing to the frequency of
+occurrence of CE events over Thessaloniki, as well as to the average OIR and excess
+irradiation.  The long-term trends were calculated using a first-order autoregressive
+model with the 'maximum likelihood' fitting method [@Gardner1980; @Jones1980], by
+implementing the function 'arima' from the library 'stats' of the R programming
+language [@RCT2023]. All trends are reported together with their $2\sigma$ error.
 
 Figure\nobreakspace{}\ref{fig:P-energy} shows the time series of the yearly number of
 CE cases (each with duration of one minute), the yearly mean OIR and the yearly
@@ -682,7 +680,7 @@ Furthermore, the spread tends to increase with time (at least for the quantities
 panels b and c), suggesting a significant variability in cloud patterns over the
 area, possibly associated to changes in climate.
 
-We have to note that the excess irradiation related to the CE events can not be
+We have to note that the excess irradiation related to the CE events cannot be
 directly linked to the total energy balance of the atmosphere. The net solar
 radiation of the region is not increased, but is rather redistributed through the CE
 events.  This is also depicted by the ECE irradiance values, which can exceed the
@@ -704,11 +702,11 @@ equivalent clear sky irradiance by a significant amount.
 
 ## Climatology of cloud enhancement events
 
-Another interesting aspect of the CE events is their distribution within the year.
+Next we investigated the distribution of the CE events within the year.
 Figure\nobreakspace{}\ref{fig:relative-month-occurrences} shows the monthly box and
-whisker plot of the CE number of occurrence normalized with the highest median value,
-that occurs in June, depicting a clear seasonal cycle.  Although CE events are
-present throughout the year, the most active months are May and June. During the
+whisker plot of the CE number of occurrences normalized with the highest median
+value, which occurs in June, depicting a clear seasonal cycle.  Although CE events
+are present throughout the year, the most active months are May and June. During the
 winter (December -- February), the number of CE cases is about $25\,\%$ of the
 maximum, while in the intermediate months, the number of occurrences gradually ramps
 between the maximum and minimum.  This seasonality is a combined effect of different
@@ -719,10 +717,9 @@ of detailed data on cloud formation, type and location is not allowing further
 analysis. The interannual variability of the monthly CE events is quite high as
 manifested by the large monthly extremes, especially in the summer.
 
-```{r relative-month-occurrences, echo=FALSE, fig.cap="Seasonal variability of the number of CE events normalized to the maximum occurring in June, in the form of a box and whisker plot. The monthly values have been also normalized to the relative abundance of valid GHI observations. The box contains the data between the lower $25\\,\\%$ and the upper $75\\,\\%$ percentiles, the thick horizontal line and the diamond symbol represent the median and the mean values, respectively. The vertical lines (whiskers) extend between the maximum and minimum monthly values and the solid circles are outliers."}
+```{r relative-month-occurrences, echo=FALSE, fig.cap="Seasonal variability of the number of CE events in Thessaloniki for the period 1992 -- 2023 normalized to the maximum occurring in June, in the form of a box and whisker plot. The monthly values have also been normalized to the relative abundance of valid GHI observations. The box contains the data between the lower $25\\,\\%$ and the upper $75\\,\\%$ percentiles, the thick horizontal line and the diamond symbol represent the median and the mean values, respectively. The vertical lines (whiskers) extend between the maximum and minimum monthly values."}
 knitr::include_graphics("../images/clim-CE-month-norm-MAX-median-N-MW-1.png")
 ```
-
 
 
 The distribution of the number of CE events as a function of OIR is shown in
@@ -741,7 +738,7 @@ located $2.5^\circ$ south of Thessaloniki and is exposed to air masses coming ma
 from the eastern Mediterranean resulting in different cloud patterns, that may affect
 the characteristics and magnitude of the CE events.
 
-```{r ovir-distribution, echo=FALSE, fig.cap="Relative frequency distribution of CE events as a function of OIR."}
+```{r ovir-distribution, echo=FALSE, fig.cap="Relative frequency distribution of CE events in Thessaloniki for the period 1992 -- 2023 as a function of OIR."}
 knitr::include_graphics("../images/P-relative-distribution-diff-1.png")
 ```
 
@@ -757,22 +754,23 @@ of the longest duration of
 `r strftime(ST_G0[which.max(GLB_diff.N), Date], "%d\\ %B %Y")`.
 Figure\nobreakspace{}\ref{fig:ceg-duration-distribution} shows the frequency
 distribution of the CE events according to their duration.  We conclude that although
-some groups of events last for more than an hour about $80\,\%$ have duration of less
-than 5 minutes.
+some groups of events last for more than an hour, about $80\,\%$ have duration of
+less than 5 minutes.
 
-```{r ceg-duration-distribution, echo=FALSE, fig.cap="Relative frequency distribution of CE groups of consequent CE events according to their duration."}
+```{r ceg-duration-distribution, echo=FALSE, fig.cap="Relative frequency distribution of CE groups of consequent CE events according to their duration for Thessaloniki in the period 1992 -- 2023."}
 knitr::include_graphics("../images/groups-1.png")
 ```
 
 The relation between the duration and the mean OIR of the groups has also been
 studied (Figure\nobreakspace{}\ref{fig:group-2d}).  Evidently, evens of high excess
 irradiation have small duration and vice versa. The vast majority of grouped events
-are associated with small excess irradiation (e.g. $<5\,\text{kJ}/\text{m}^2$) and
-small duration (e.g. $<5\,\text{min}$) while groups with strong excess irradiation
-and long duration are very rare.  Similar results of this relation have been
-reported by @Zhang2018, on a study using a far higher sampling rate than ours.
+are associated with small excess irradiation (e.g., $<5\,\text{kJ}/\text{m}^2$) and
+small duration (e.g., $<5\,\text{min}$) while groups with strong excess irradiation
+and long duration are very rare.  Similar results of this relation have been reported
+by @Zhang2018 in a study using a far higher sampling rate ($100\,\text{Hz}$) than
+ours.
 
-```{r group-2d, echo=FALSE, fig.cap="Relation of excess irradiation of CE groups with their duration. The logarithmic color scale denotes the frequency of the respective groups of events."}
+```{r group-2d, echo=FALSE, fig.cap="Relation of excess irradiation of CE groups with their duration for Thessaloniki in the period 1992 -- 2023. The logarithmic color scale denotes the frequency of the respective groups of events."}
 knitr::include_graphics("../images/P-groups-bin2d-1.png")
 ```
 
@@ -787,19 +785,19 @@ knitr::include_graphics("../images/P-groups-bin2d-1.png")
 
 ## Extreme cloud enhancement events
 
-An aspect of the CE events that is commonly reported and has some significance
-on the solar energy production infrastructure are the extreme CE events (ECE). Where
-solar irradiance exceeds the expected irradiance on top of the atmosphere
-(Equation\nobreakspace{}\ref{eq:ECE}).
-Analogous to Figure\nobreakspace{}\ref{fig:relative-month-occurrences} we have
-computed the distribution of the number of occurrences of ECE events by month in
+An aspect of the CE events that is commonly reported and has some significance on the
+solar energy production infrastructure are the extreme CE events (ECE), where solar
+irradiance exceeds the expected irradiance on top of the atmosphere
+(Equation\nobreakspace{}\ref{eq:ECE}).  Analogous to
+Figure\nobreakspace{}\ref{fig:relative-month-occurrences} we have computed the
+distribution of the number of occurrences of ECE events by month in
 Figure\nobreakspace{}\ref{fig:relative-month-occurancies-ECE}. The most active period
-for ECE events is in the spring and the start of the summer (March -- June), followed
-by a period in the late fall (September and October).  This is probably related to 
-the weather characteristics of these periods, where there are continuous alternations
-between clear sky periods and clouds.
+for ECE events is in spring and early summer (March -- June), followed by a
+period in late autumn (September and October).  This is probably related to the
+weather characteristics in these periods, with frequent alternations between clear
+sky periods and clouds.
 
-```{r relative-month-occurancies-ECE, echo=FALSE, fig.cap="Seasonal variability of the number of ECE events normalized to the maximum occurring in March, in the form of a box and whisker plot. The box contains the data between the lower $25\\,\\%$ and the upper $75\\,\\%$ percentiles. The thick horizontal line and the diamond symbol represent the median and the mean values, respectively. The vertical lines (whiskers) extend between the maximum and minimum monthly values."}
+```{r relative-month-occurancies-ECE, echo=FALSE, fig.cap="Seasonal variability of the number of ECE events in Thessaloniki for the period 1993 -- 2023 normalized to the maximum occurring in March, in the form of a box and whisker plot. The box contains the data between the lower $25\\,\\%$ and the upper $75\\,\\%$ percentiles. The thick horizontal line and the diamond symbol represent the median and the mean values, respectively. The vertical lines (whiskers) extend between the maximum and minimum monthly values."}
 knitr::include_graphics("../images/clim-ECE-month-norm-MAX-median-N-2.png")
 ```
 
@@ -807,15 +805,16 @@ knitr::include_graphics("../images/clim-ECE-month-norm-MAX-median-N-2.png")
 <!-- knitr::include_graphics("../images/climECEmonth-1.png") -->
 <!-- ``` -->
 
-The distribution of the ECE events (Figure\nobreakspace{}\ref{fig:P-extreme-distribution}),
-shows that there are rare cases where the OIR can exceed the TSI even more than
-$400\,\text{W}/\text{m}^2$, with the $75\,\%$ of the cases to be below
-$200\,\text{W}/\text{m}^2$. 
-Those finds are in accordance with results form @Vamvakas2020, 
-with the difference that the OIR values are lower for Thessaloniki.
+The distribution of the ECE events
+(Figure\nobreakspace{}\ref{fig:P-extreme-distribution}) shows that in rare cases the
+OIR can exceed the TSI even by more than $400\,\text{W}/\text{m}^2$, while in
+$75\,\%$ of the cases the OIR is below $200\,\text{W}/\text{m}^2$. The OIR for the
+most frequent ECEs ranges between $140$ and $180\,\text{W}/\text{m}^2$.  These
+findings are in accordance with the results of @Vamvakas2020, the only difference
+being that the OIR values reported for are higher than those for Thessaloniki.
 
 
-```{r P-extreme-distribution, echo=FALSE, fig.cap="Distribution of ECE above clear sky threshold, for cases that are exceeding the TSI."}
+```{r P-extreme-distribution, echo=FALSE, fig.cap="Distribution of ECE events in Thessaloniki for the period 1992 -- 2023."}
 knitr::include_graphics("../images/P-extreme-distribution-1.png")
 ```
 
@@ -841,34 +840,32 @@ knitr::include_graphics("../images/P-extreme-distribution-1.png")
 
 # Conclusions
 
-By creating a clear sky approximation of the GHI, which represents the long- and
-short-term variation of the expected clear sky GHI, we were able to identify cases of 
-CE events.
-After analyzing the CE cases, we found an increase of 
+By creating a clear sky approximation representing the long- and short-term
+variability of the expected clear sky GHI, we were able to identify cases of CE
+events in Thessaloniki for the period 1993 -- 2023.  After analyzing the CE cases, we
+found an increase of
 $`r round(yearlyCE[var == "GLB_diff.N", slope], 1)`\pm `r round(2 * yearlyCE[var == "GLB_diff.N", slope.sd], 1)`\,\text{cases}/\text{year}$,
-with the
-mean annual total energy of the CE events increasing with a rate of
+with the mean annual irradiation of the CE events increasing with a rate of
 $`r round(yearlyCE[var == "GLB_diff.sum", slope], 1)`\pm `r round(2 * yearlyCE[var == "GLB_diff.sum", slope.sd], 1)`\,\text{kJ}/\text{year}$.
-The most active season of CE events over Thessaloniki is concentrated on early
-summer, on May and June.
-We found that continuous CE events can last up to $140$ minutes, and $80\,\%$ of
-them bellow $5$ minutes.
+The most active months of CE events are May and June.  We found that continuous CE
+events can last up to $140$ minutes, while the duration of $80\,\%$ of them is bellow
+$5$ minutes.
 
-The magnitude of the ECE events does not exceed the values reported for sites with
-more favourable conditions for the phenomenon. We have observed cases exceeding the
-TSI by $400\,\text{W}/\text{m}^{2}$ with $75\,\%$ of the cases under
-$200\,\text{W}/\text{m}^{2}$. The climatological characteristic of the ECE events,
-showed that the most active months are spread in half of the year (March -- June,
-September and October). We found that CE conditions, can have a duration of more than
-an hour in rare cases, with the bulk of the cases having a duration under 5 minutes.
-Some of the characteristics of CE and ECE events we analysed have strong similarities
-with results by @Vamvakas2020 for the city of Patras, south of Thessaloniki, with
-analog differences on the intensity of the solar radiation.
+We have observed ECE cases exceeding the TSI by $400\,\text{W}/\text{m}^{2}$ with
+$75\,\%$ of the cases under $200\,\text{W}/\text{m}^{2}$. The climatological
+characteristics of the ECE events showed that the most active months are spread in
+half of the year and particularly in the periods March -- June, September and
+October.  The magnitude of the ECE events identified in Thessaloniki events does not
+exceed the values reported for sites with more favourable conditions for the
+phenomenon [e.g. @Cordero2023]. Some of the characteristics of CE and ECE events we
+analyzed have strong similarities with the results of @Vamvakas2020 for the city of
+Patras, south of Thessaloniki, albeit with differences in the magnitude of OIR.
 
 An interpretation of the CE trends shows that the interaction of GHI with the clouds,
 through this 30-year period, is a dynamic phenomenon that needs further
-investigation.  Although, to approach it, we need more long-term observations of AOD
-and clouds characteristics.
+investigation. For such studies it would be essential to have more detailed
+information on cloud characteristics, especially in order to investigate possible
+associations of the observed trends with changes in climate.
 
 
 
