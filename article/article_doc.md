@@ -279,11 +279,10 @@ $\text{GHI}$:
 
 $$\text{CE}:E > 15 + 1.04 \cdot \text{GHI}_{\text{ref}}\,\,\left\lbrack \text{W}/\text{m}^{2} \right\rbrack$$
 
-This is the criterion of our CE identification.
-
-These values were determined through the implementation of an empirical
-method with manual inspection of the CE identification results on
-selected days of the whole dataset. We used seven sets of days with
+This is the criterion of our CE identification. The constant terms were
+determined through the implementation of an empirical method with manual
+inspection of the CE identification results on selected days of the
+whole dataset. We tested seven sets of days with different
 characteristics relevant to the efficiency of the identification
 threshold. These sets were random groups of about 20 -- 30 days with the
 following characteristics: (a) the strongest over irradiance CE events,
@@ -293,14 +292,15 @@ Natsis, Bais, and Meleti (2023)), (d) absence of clouds and absence of
 EC events, (e) with at least $60\,\%$ of the day length without clouds
 and presence of EC events, (h) randomly selected days, and (i) manually
 selected days. For the latter case and where needed, we also used images
-from a sky-camera to further aid the decision of the manual inspection.
+from the sky-camera to further aid the decision of the manual
+inspection.
 
 The definition of the CE events with this method has a degree of
 subjectivity, since the actual clear sky irradiance is not known and can
-only be approximated. However, this method is capable in detecting all
-major CE events. Where some CE events with very low OIR may be not
-detected, these are few with small over-irradiance, and it is unlikely
-that will affect significantly our results.
+only be approximated. However, this method was proven capable in
+detecting all major CE events. Where some CE events with very low OIR
+may be not detected, these are few with small over-irradiance, and it is
+unlikely that will affect significantly our results.
 
 A sub-category of the CE events that is often discussed in the relevant
 literature (Cordero et al. 2023; Martins, Mantelli, and Rüther 2022;
@@ -323,32 +323,33 @@ between the measured and the modeled clear-sky irradiance for one year,
 where the CE and ECE events are clearly grouped above the threshold of
 irradiance (Figure).
 
-![Figure 2.2: Example of CE identification for 2019-07-11. The green
-line with blue symbols depicts the measured GHI in one minute steps. The
-red line shows the modelled threshold E for the detection of CE events,
-which are denoted with red circles. The black curve represents the TSI
-at the top of the atmosphere, adjusted for the actual Sun-Earth distance
-and multiplied by the cosine of the cosine of
+![Figure 2.2: Example of CE identification in Thessaloniki for
+2019-07-11. The green line with blue symbols depicts the measured GHI in
+one minute steps. The red line shows the modelled threshold E for the
+detection of CE events, which are denoted with red circles. The black
+curve represents the TSI at the top of the atmosphere, adjusted for the
+actual Sun-Earth distance and multiplied by the cosine of
 SZA.](media/rId30.png){width="5.833333333333333in"
 height="3.8333333333333335in"}
 
-Figure 2.2: Example of CE identification for 2019-07-11. The green line
-with blue symbols depicts the measured GHI in one minute steps. The red
-line shows the modelled threshold $E$ for the detection of CE events,
-which are denoted with red circles. The black curve represents the TSI
-at the top of the atmosphere, adjusted for the actual Sun-Earth distance
-and multiplied by the cosine of the cosine of SZA.
+Figure 2.2: Example of CE identification in Thessaloniki for 2019-07-11.
+The green line with blue symbols depicts the measured GHI in one minute
+steps. The red line shows the modelled threshold $E$ for the detection
+of CE events, which are denoted with red circles. The black curve
+represents the TSI at the top of the atmosphere, adjusted for the actual
+Sun-Earth distance and multiplied by the cosine of SZA.
 
 ![Figure 2.3: Example scatter plot of the measured GHI and the reference
-clear sky irradiance for the year 2005. The over-irradiance for CE and
-ECE events is color coded, while the remaining data points are shown in
+clear sky irradiance in Thessaloniki for the year 2005. The
+over-irradiance for CE and ECE events is color coded, while the
+remaining data points are shown in
 black.](media/rId34.png){width="5.833333333333333in"
 height="3.6280479002624673in"}
 
 Figure 2.3: Example scatter plot of the measured GHI and the reference
-clear sky irradiance for the year 2005. The over-irradiance for CE and
-ECE events is color coded, while the remaining data points are shown in
-black.
+clear sky irradiance in Thessaloniki for the year 2005. The
+over-irradiance for CE and ECE events is color coded, while the
+remaining data points are shown in black.
 
 # 3 Results
 
@@ -364,21 +365,21 @@ corresponding OIR and excess irradiation.
 
 ## 3.1 Long-term trends
 
-The main focus of this study is to investigate the time evolution of the
-CE events by analyzing the GHI measurements at Thessaloniki. Cloud
+One aspect of this study is to investigate the time evolution of the CE
+events by analyzing the GHI measurements at Thessaloniki. Cloud
 enhancements can be influenced by different factors, such as the
 geometry, size and optical thickness of clouds, their height in the
-atmosphere and on local weather regimes (Mol, Knap, and Van Heerwaarden
+atmosphere and local weather regimes (Mol, Knap, and Van Heerwaarden
 2023; Veerman, Van Stratum, and Van Heerwaarden 2022; Gristey et al.
 2022; Tzoumanikas et al. 2016). Some of these factors are related to
-changes in climate; hence it would be reasonable to expect capturing
-their contributions to the frequency of occurrence of CE events over
-Thessaloniki, as well as to the average OIR and excess irradiation. The
-long-term trends were calculated using a first-order autoregressive
-model with the 'maximum likelihood' fitting method (Gardner, Harvey, and
-Phillips 1980; Jones 1980), by implementing the function 'arima' from
-the library 'stats' of the R programming language (R Core Team 2023).
-All trends are reported together with their $2\sigma$ error.
+changes in climate; hence it would be reasonable to expect contributing
+to the frequency of occurrence of CE events over Thessaloniki, as well
+as to the average OIR and excess irradiation. The long-term trends were
+calculated using a first-order autoregressive model with the 'maximum
+likelihood' fitting method (Gardner, Harvey, and Phillips 1980; Jones
+1980), by implementing the function 'arima' from the library 'stats' of
+the R programming language (R Core Team 2023). All trends are reported
+together with their $2\sigma$ error.
 
 Figure shows the time series of the yearly number of CE cases (each with
 duration of one minute), the yearly mean OIR and the yearly excess
@@ -396,8 +397,8 @@ tends to increase with time (at least for the quantities of panels b and
 c), suggesting a significant variability in cloud patterns over the
 area, possibly associated to changes in climate.
 
-We have to note that the excess irradiation related to the CE events can
-not be directly linked to the total energy balance of the atmosphere.
+We have to note that the excess irradiation related to the CE events
+cannot be directly linked to the total energy balance of the atmosphere.
 The net solar radiation of the region is not increased, but is rather
 redistributed through the CE events. This is also depicted by the ECE
 irradiance values, which can exceed the equivalent clear sky irradiance
@@ -405,9 +406,9 @@ by a significant amount.
 
 ## 3.2 Climatology of cloud enhancement events
 
-Another interesting aspect of the CE events is their distribution within
-the year. Figure shows the monthly box and whisker plot of the CE number
-of occurrence normalized with the highest median value, that occurs in
+Next we investigated the distribution of the CE events within the year.
+Figure shows the monthly box and whisker plot of the CE number of
+occurrences normalized with the highest median value, which occurs in
 June, depicting a clear seasonal cycle. Although CE events are present
 throughout the year, the most active months are May and June. During the
 winter (December -- February), the number of CE cases is about $25\,\%$
@@ -422,25 +423,26 @@ location is not allowing further analysis. The interannual variability
 of the monthly CE events is quite high as manifested by the large
 monthly extremes, especially in the summer.
 
-![Figure 3.1: Seasonal variability of the number of CE events normalized
-to the maximum occurring in June, in the form of a box and whisker plot.
-The monthly values have been also normalized to the relative abundance
-of valid GHI observations. The box contains the data between the lower
-25\\,\\% and the upper 75\\,\\% percentiles, the thick horizontal line
-and the diamond symbol represent the median and the mean values,
-respectively. The vertical lines (whiskers) extend between the maximum
-and minimum monthly values and the solid circles are
-outliers.](media/rId41.png){width="5.833333333333333in"
+![Figure 3.1: Seasonal variability of the number of CE events in
+Thessaloniki for the period 1992 -- 2023 normalized to the maximum
+occurring in June, in the form of a box and whisker plot. The monthly
+values have also been normalized to the relative abundance of valid GHI
+observations. The box contains the data between the lower 25\\,\\% and
+the upper 75\\,\\% percentiles, the thick horizontal line and the
+diamond symbol represent the median and the mean values, respectively.
+The vertical lines (whiskers) extend between the maximum and minimum
+monthly values.](media/rId41.png){width="5.833333333333333in"
 height="3.4976279527559053in"}
 
-Figure 3.1: Seasonal variability of the number of CE events normalized
-to the maximum occurring in June, in the form of a box and whisker plot.
-The monthly values have been also normalized to the relative abundance
-of valid GHI observations. The box contains the data between the lower
-$25\,\%$ and the upper $75\,\%$ percentiles, the thick horizontal line
-and the diamond symbol represent the median and the mean values,
-respectively. The vertical lines (whiskers) extend between the maximum
-and minimum monthly values and the solid circles are outliers.
+Figure 3.1: Seasonal variability of the number of CE events in
+Thessaloniki for the period 1992 -- 2023 normalized to the maximum
+occurring in June, in the form of a box and whisker plot. The monthly
+values have also been normalized to the relative abundance of valid GHI
+observations. The box contains the data between the lower $25\,\%$ and
+the upper $75\,\%$ percentiles, the thick horizontal line and the
+diamond symbol represent the median and the mean values, respectively.
+The vertical lines (whiskers) extend between the maximum and minimum
+monthly values.
 
 The distribution of the number of CE events as a function of OIR is
 shown in Figure. Apparently, there is an inverse relationship between
@@ -460,12 +462,13 @@ coming mainly from the eastern Mediterranean resulting in different
 cloud patterns, that may affect the characteristics and magnitude of the
 CE events.
 
-![Figure 3.2: Relative frequency distribution of CE events as a function
-of OIR.](media/rId45.png){width="5.833333333333333in"
+![Figure 3.2: Relative frequency distribution of CE events in
+Thessaloniki for the period 1992 -- 2023 as a function of
+OIR.](media/rId45.png){width="5.833333333333333in"
 height="3.7067202537182853in"}
 
-Figure 3.2: Relative frequency distribution of CE events as a function
-of OIR.
+Figure 3.2: Relative frequency distribution of CE events in Thessaloniki
+for the period 1992 -- 2023 as a function of OIR.
 
 ## 3.3 Duration of cloud enhancement events
 
@@ -476,110 +479,117 @@ duration in steps of one minute. We have identified 28468 groups of CE
 in the whole period of study, where the group of the longest duration of
 140 minutes occurred on 07 July 2013. Figure shows the frequency
 distribution of the CE events according to their duration. We conclude
-that although some groups of events last for more than an hour about
+that although some groups of events last for more than an hour, about
 $80\,\%$ have duration of less than 5 minutes.
 
 ![Figure 3.3: Relative frequency distribution of CE groups of consequent
-CE events according to their
-duration.](media/rId50.png){width="5.833333333333333in"
+CE events according to their duration for Thessaloniki in the period
+1992 -- 2023.](media/rId50.png){width="5.833333333333333in"
 height="3.6591983814523186in"}
 
 Figure 3.3: Relative frequency distribution of CE groups of consequent
-CE events according to their duration.
+CE events according to their duration for Thessaloniki in the period
+1992 -- 2023.
 
 The relation between the duration and the mean OIR of the groups has
 also been studied (Figure). Evidently, evens of high excess irradiation
 have small duration and vice versa. The vast majority of grouped events
-are associated with small excess irradiation
-(e.g. $< 5\,\text{kJ}/\text{m}^{2}$) and small duration
-(e.g. $< 5\,\text{min}$) while groups with strong excess irradiation and
-long duration are very rare. Similar results of this relation have been
-reported by Zhang et al. (2018), on a study using a far higher sampling
-rate than ours.
+are associated with small excess irradiation (e.g.,
+$< 5\,\text{kJ}/\text{m}^{2}$) and small duration (e.g.,
+$< 5\,\text{min}$) while groups with strong excess irradiation and long
+duration are very rare. Similar results of this relation have been
+reported by Zhang et al. (2018) in a study using a far higher sampling
+rate ($100\,\text{Hz}$) than ours.
 
 ![Figure 3.4: Relation of excess irradiation of CE groups with their
-duration. The logarithmic color scale denotes the frequency of the
-respective groups of
+duration for Thessaloniki in the period 1992 -- 2023. The logarithmic
+color scale denotes the frequency of the respective groups of
 events.](media/rId54.png){width="5.833333333333333in"
 height="3.687330489938758in"}
 
 Figure 3.4: Relation of excess irradiation of CE groups with their
-duration. The logarithmic color scale denotes the frequency of the
-respective groups of events.
+duration for Thessaloniki in the period 1992 -- 2023. The logarithmic
+color scale denotes the frequency of the respective groups of events.
 
 ## 3.4 Extreme cloud enhancement events
 
 An aspect of the CE events that is commonly reported and has some
 significance on the solar energy production infrastructure are the
-extreme CE events (ECE). Where solar irradiance exceeds the expected
+extreme CE events (ECE), where solar irradiance exceeds the expected
 irradiance on top of the atmosphere (Equation). Analogous to Figure we
 have computed the distribution of the number of occurrences of ECE
 events by month in Figure. The most active period for ECE events is in
-the spring and the start of the summer (March -- June), followed by a
-period in the late fall (September and October). This is probably
-related to the weather characteristics of these periods, where there are
-continuous alternations between clear sky periods and clouds.
+spring and early summer (March -- June), followed by a period in late
+autumn (September and October). This is probably related to the weather
+characteristics in these periods, with frequent alternations between
+clear sky periods and clouds.
 
-![Figure 3.5: Seasonal variability of the number of ECE events
-normalized to the maximum occurring in March, in the form of a box and
-whisker plot. The box contains the data between the lower 25\\,\\% and
-the upper 75\\,\\% percentiles. The thick horizontal line and the
-diamond symbol represent the median and the mean values, respectively.
-The vertical lines (whiskers) extend between the maximum and minimum
-monthly values.](media/rId59.png){width="5.833333333333333in"
+![Figure 3.5: Seasonal variability of the number of ECE events in
+Thessaloniki for the period 1993 -- 2023 normalized to the maximum
+occurring in March, in the form of a box and whisker plot. The box
+contains the data between the lower 25\\,\\% and the upper 75\\,\\%
+percentiles. The thick horizontal line and the diamond symbol represent
+the median and the mean values, respectively. The vertical lines
+(whiskers) extend between the maximum and minimum monthly
+values.](media/rId59.png){width="5.833333333333333in"
 height="3.473915135608049in"}
 
-Figure 3.5: Seasonal variability of the number of ECE events normalized
-to the maximum occurring in March, in the form of a box and whisker
-plot. The box contains the data between the lower $25\,\%$ and the upper
-$75\,\%$ percentiles. The thick horizontal line and the diamond symbol
-represent the median and the mean values, respectively. The vertical
-lines (whiskers) extend between the maximum and minimum monthly values.
+Figure 3.5: Seasonal variability of the number of ECE events in
+Thessaloniki for the period 1993 -- 2023 normalized to the maximum
+occurring in March, in the form of a box and whisker plot. The box
+contains the data between the lower $25\,\%$ and the upper $75\,\%$
+percentiles. The thick horizontal line and the diamond symbol represent
+the median and the mean values, respectively. The vertical lines
+(whiskers) extend between the maximum and minimum monthly values.
 
-The distribution of the ECE events (Figure), shows that there are rare
-cases where the OIR can exceed the TSI even more than
-$400\,\text{W}/\text{m}^{2}$, with the $75\,\%$ of the cases to be below
-$200\,\text{W}/\text{m}^{2}$. Those finds are in accordance with results
-form Vamvakas, Salamalikis, and Kazantzidis (2020), with the difference
-that the OIR values are lower for Thessaloniki.
+The distribution of the ECE events (Figure) shows that in rare cases the
+OIR can exceed the TSI even by more than $400\,\text{W}/\text{m}^{2}$,
+while in $75\,\%$ of the cases the OIR is below
+$200\,\text{W}/\text{m}^{2}$. The OIR for the most frequent ECEs ranges
+between $140$ and $180\,\text{W}/\text{m}^{2}$. These findings are in
+accordance with the results of Vamvakas, Salamalikis, and Kazantzidis
+(2020), the only difference being that the OIR values reported for are
+higher than those for Thessaloniki.
 
-![Figure 3.6: Distribution of ECE above clear sky threshold, for cases
-that are exceeding the
-TSI.](media/rId63.png){width="5.833333333333333in"
+![Figure 3.6: Distribution of ECE events in Thessaloniki for the period
+1992 -- 2023.](media/rId63.png){width="5.833333333333333in"
 height="3.6591983814523186in"}
 
-Figure 3.6: Distribution of ECE above clear sky threshold, for cases
-that are exceeding the TSI.
+Figure 3.6: Distribution of ECE events in Thessaloniki for the period
+1992 -- 2023.
 
 # 4 Conclusions
 
-By creating a clear sky approximation of the GHI, which represents the
-long- and short-term variation of the expected clear sky GHI, we were
-able to identify cases of CE events. After analyzing the CE cases, we
-found an increase of $45.6 \pm 21.9\,\text{cases}/\text{year}$, with the
-mean annual total energy of the CE events increasing with a rate of
-$116.9 \pm 67.8\,\text{kJ}/\text{year}$. The most active season of CE
-events over Thessaloniki is concentrated on early summer, on May and
-June. We found that continuous CE events can last up to $140$ minutes,
-and $80\,\%$ of them bellow $5$ minutes.
+By creating a clear sky approximation representing the long- and
+short-term variability of the expected clear sky GHI, we were able to
+identify cases of CE events in Thessaloniki for the period 1993 -- 2023.
+After analyzing the CE cases, we found an increase of
+$45.6 \pm 21.9\,\text{cases}/\text{year}$, with the mean annual
+irradiation of the CE events increasing with a rate of
+$116.9 \pm 67.8\,\text{kJ}/\text{year}$. The most active months of CE
+events are May and June. We found that continuous CE events can last up
+to $140$ minutes, while the duration of $80\,\%$ of them is bellow $5$
+minutes.
 
-The magnitude of the ECE events does not exceed the values reported for
-sites with more favourable conditions for the phenomenon. We have
-observed cases exceeding the TSI by $400\,\text{W}/\text{m}^{2}$ with
-$75\,\%$ of the cases under $200\,\text{W}/\text{m}^{2}$. The
-climatological characteristic of the ECE events, showed that the most
-active months are spread in half of the year (March -- June, September
-and October). We found that CE conditions, can have a duration of more
-than an hour in rare cases, with the bulk of the cases having a duration
-under 5 minutes. Some of the characteristics of CE and ECE events we
-analysed have strong similarities with results by Vamvakas, Salamalikis,
-and Kazantzidis (2020) for the city of Patras, south of Thessaloniki,
-with analog differences on the intensity of the solar radiation.
+We have observed ECE cases exceeding the TSI by
+$400\,\text{W}/\text{m}^{2}$ with $75\,\%$ of the cases under
+$200\,\text{W}/\text{m}^{2}$. The climatological characteristics of the
+ECE events showed that the most active months are spread in half of the
+year and particularly in the periods March -- June, September and
+October. The magnitude of the ECE events identified in Thessaloniki
+events does not exceed the values reported for sites with more
+favourable conditions for the phenomenon (e.g. Cordero et al. 2023).
+Some of the characteristics of CE and ECE events we analyzed have strong
+similarities with the results of Vamvakas, Salamalikis, and Kazantzidis
+(2020) for the city of Patras, south of Thessaloniki, albeit with
+differences in the magnitude of OIR.
 
 An interpretation of the CE trends shows that the interaction of GHI
 with the clouds, through this 30-year period, is a dynamic phenomenon
-that needs further investigation. Although, to approach it, we need more
-long-term observations of AOD and clouds characteristics.
+that needs further investigation. For such studies it would be essential
+to have more detailed information on cloud characteristics, especially
+in order to investigate possible associations of the observed trends
+with changes in climate.
 
 Anderson, G. P., J. H. Chetwynd, S. A. Clough, E. P. Shettle, and F. X.
 Kneizys. 1986. "AFGL Atmospheric Constituent Profiles (0-120km)." Air
