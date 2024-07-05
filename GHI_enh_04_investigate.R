@@ -567,6 +567,7 @@ plot_grid(pa, pb, labels = c("(a)", "(b)"), greedy = TRUE)
 
 
 
+library(ggpubr)
 
 
 # Remove axis titles from all plots
@@ -574,22 +575,24 @@ p      <- list(pa, pb) |> map(~.x + labs(x=NULL, y=NULL, caption = NULL))
 yleft  <- textGrob("Relative frequency [%]", rot = 90)
 bottom <- textGrob("Duration of enhancement group [min]")
 
-grid.arrange(grobs = p, ncol = 2, nrow = 1,
-            left = yleft, bottom = bottom)
-
+# grid.arrange(grobs = p, ncol = 2, nrow = 1,
+#             left = yleft, bottom = bottom)
 
 margin = theme(plot.margin = unit(c(.1,.1,.1,.1), "cm"))
 grid.arrange(grobs = lapply(p, "+", margin), ncol = 2, nrow = 1,
              left = yleft, bottom = bottom)
 
-grid.arrange(grobs = lapply(p, "+", margin), ncol = 2, nrow = 1,
+pa1 <- pa + labs(x=NULL, y=NULL, caption = NULL)
+pa1 <- annotate_figure(pa1, fig.lab = "(a)")
+
+pb1 <- pb + labs(x=NULL, y=NULL, caption = NULL)
+pb1 <- annotate_figure(pb1, fig.lab = "(b)")
+
+p1 <- list(pa1, pb1)
+
+grid.arrange(grobs = lapply(p1, "+", margin), ncol = 2, nrow = 1,
              left = yleft, bottom = bottom)
 
-
-labels = c("a)","b)")
-library(ggpubr)
-
-ggarrange(pa, pb, ncol = 2, labels = c("a)","b)"))
 
 
 
