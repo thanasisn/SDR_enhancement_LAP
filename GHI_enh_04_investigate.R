@@ -79,7 +79,11 @@ suppressPackageStartupMessages({
   library(latex2exp     , quietly = TRUE, warn.conflicts = FALSE)
   library(ggpmisc       , quietly = TRUE, warn.conflicts = FALSE)
   library(cowplot       , quietly = TRUE, warn.conflicts = FALSE)
-  # library(patchwork     , quietly = TRUE, warn.conflicts = FALSE)
+
+  library(tidyverse     , quietly = TRUE, warn.conflicts = FALSE)
+  library(gridExtra     , quietly = TRUE, warn.conflicts = FALSE)
+  library(grid          , quietly = TRUE, warn.conflicts = FALSE)
+  # library(gridtext)
   # library(ggpubr        , quietly = TRUE, warn.conflicts = FALSE)
 })
 
@@ -559,23 +563,34 @@ pb <- ggplot(data = ST_G0, aes(x = GLB_ench.N)) +
 
 plot_grid(pa, pb, labels = c("(a)", "(b)"), greedy = TRUE)
 
-cowplot::plot_grid(pa, pb, labels = "AUTO")
+# cowplot::plot_grid(pa, pb, labels = "AUTO")
 
-library(patchwork)
-library(cowplot)
 
-library(tidyverse)
-library(gridExtra)
-library(grid)
-library(gridtext)
+
+
 
 # Remove axis titles from all plots
-p      <- list(pa, pb) |> map(~.x + labs(x=NULL, y=NULL))
-yleft  <- textGrob("Relative frequency [%]")
+p      <- list(pa, pb) |> map(~.x + labs(x=NULL, y=NULL, caption = NULL))
+yleft  <- textGrob("Relative frequency [%]", rot = 90)
 bottom <- textGrob("Duration of enhancement group [min]")
 
 grid.arrange(grobs = p, ncol = 2, nrow = 1,
             left = yleft, bottom = bottom)
+
+
+margin = theme(plot.margin = unit(c(.1,.1,.1,.1), "cm"))
+grid.arrange(grobs = lapply(p, "+", margin), ncol = 2, nrow = 1,
+             left = yleft, bottom = bottom)
+
+grid.arrange(grobs = lapply(p, "+", margin), ncol = 2, nrow = 1,
+             left = yleft, bottom = bottom)
+
+
+labels = c("a)","b)")
+library(ggpubr)
+
+ggarrange(pa, pb, ncol = 2, labels = c("a)","b)"))
+
 
 
 ## _ Use point density  --------------------------
