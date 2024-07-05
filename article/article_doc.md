@@ -562,7 +562,7 @@ Figure 3.6: Distribution of ECE events in Thessaloniki for the period
 
 By creating a clear sky approximation representing the long- and
 short-term variability of the expected clear sky GHI, we were able to
-identify cases of CE events in Thessaloniki for the period 1993 -- 2023.
+identify cases of CE events in Thessaloniki for the period 1992 -- 2023.
 After analyzing the CE cases, we found an increase of
 $45.6 \pm 21.9\,\text{cases}/\text{year}$, with the mean annual
 irradiation of the CE events increasing with a rate of
@@ -575,10 +575,10 @@ We have observed ECE cases exceeding the TSI by
 $400\,\text{W}/\text{m}^{2}$ with $75\,\%$ of the cases under
 $200\,\text{W}/\text{m}^{2}$. The climatological characteristics of the
 ECE events showed that the most active months are spread in half of the
-year and particularly in the periods March -- June, September and
+year and particularly in the periods March -- June and September --
 October. The magnitude of the ECE events identified in Thessaloniki
 events does not exceed the values reported for sites with more
-favourable conditions for the phenomenon (e.g. Cordero et al. 2023).
+favourable conditions for the phenomenon (e.g., Cordero et al. 2023).
 Some of the characteristics of CE and ECE events we analyzed have strong
 similarities with the results of Vamvakas, Salamalikis, and Kazantzidis
 (2020) for the city of Patras, south of Thessaloniki, albeit with
