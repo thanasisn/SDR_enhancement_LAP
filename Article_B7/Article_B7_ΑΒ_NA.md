@@ -148,19 +148,17 @@ $\text{GHI}_{\text{ref}}$ corresponding to cloud-free atmosphere. First,
 we tested two simple approaches for the determination of
 $\text{GHI}_{\text{ref}}$: The Haurwitz's model (Haurwitz 1945), which
 is a simple clear sky model and was already adjusted and applied to our
-data (Natsis, Bais, and Meleti 2023), and the total solar irradiance
-(TSI) at the top of the atmosphere, adjusted for the Sun-Earth distance.
-We have tested both methods by using an appropriate relative threshold
-and/or an additional constant offset. The initial results showed that we
-can detect a big portion of the actual CE events. However, by inspecting
-the daily plots of irradiance it became evident that changes in
-atmospheric conditions introduced numerous false positive or false
-negative results. The main reason for these discrepancies is the
-variability of the effects of aerosols and water vapor which were not
-taken into account in the two simple methods. To produce a more
-representative reference we included the effects of these factors using
-a radiative transfer model (RTM). The applied methodology is discussed
-in section.
+data (Natsis, Bais, and Meleti 2023) . We have tested both methods by
+using an appropriate relative threshold and/or an additional constant
+offset. The initial results showed that we can detect a big portion of
+the actual CE events. However, by inspecting the daily plots of
+irradiance it became evident that changes in atmospheric conditions
+introduced numerous false positive or false negative results. The main
+reason for these discrepancies is the variability of the effects of
+aerosols and water vapor which were not taken into account in the two
+simple methods. To produce a more representative reference we included
+the effects of these factors using a radiative transfer model (RTM). The
+applied methodology is discussed in section.
 
 ## 2.3 Modeled clear Sky Irradiance
 
@@ -227,18 +225,19 @@ $0.0153$ per year. Using an Ångström coefficient $\alpha = 1.6$, this
 translates to a change in the Ångström coefficient *β* of $0.00272$ per
 year (or $\beta = 0.084$ in 1997 and $\beta = 0.059$ in 2005).
 Simulations with uvspec for the above Ångström coefficients, with WC of
-$15.7\text{mm}$ and $15.4\text{mm}$ for 1997 and 2005 respectively, also
-taken from AERONET, and for a SZA of $55^{\circ}$ reveal a trend of
-$+ 0.21\text{\%}$ per year in $\text{GHI}_{\text{ref}}$. The SZA of
-$55^{\circ}$ was chosen as representative of all days in the year in
-order to get a rough estimate of the annually averaged change in clear
-sky irradiance. For the period 2005 -- 2023 we used the mean monthly
-values of AOD and WC from AERONET in a similar simulation scheme to
-calculate the monthly mean clear sky irradiance, and finally the trend
-of $+ 0.14\text{\%}$ per year. We applied these two long-term changes
-(see Figure) to the climatological $\text{GHI}_{\text{ref}}$, in order
-to create a more realistic representation of the clear-sky irradiance
-for the whole period of study.
+$15.7\text{mm}$ and $15.4\text{mm}$ for 1997 and 2005 respectively,
+where for 1997 we used the first available WC data (i.e. 2003) as a
+proxy, also taken from AERONET, and for a SZA of $55^{\circ}$ reveal a
+trend of $+ 0.21\text{\%}$ per year in $\text{GHI}_{\text{ref}}$. The
+SZA of $55^{\circ}$ was chosen as representative of all days in the year
+in order to get a rough estimate of the annually averaged change in
+clear sky irradiance. For the period 2005 -- 2023 we used the mean
+monthly values of AOD and WC from AERONET in a similar simulation scheme
+to calculate the monthly mean clear sky irradiance, and finally the
+trend of $+ 0.14\text{\%}$ per year. We applied these two long-term
+changes (see Figure) to the climatological $\text{GHI}_{\text{ref}}$, in
+order to create a more realistic representation of the clear-sky
+irradiance for the whole period of study.
 
 ![Figure 2.1: Simulated long-term change in clear sky irradiance
 relative to the climatological values due to changes in
@@ -247,7 +246,7 @@ height="3.6638888888888888in"}
 
 Figure 2.1: Simulated long-term change in clear sky irradiance relative
 to the climatological values due to changes in AOD in Thessaloniki for
-the period 1992-2023.
+the period 1993-2023.
 
 ## 2.4 Criteria for the identification of CE events
 
@@ -432,7 +431,7 @@ outliers.](media/image4.png){width="5.833333333333333in"
 height="3.497916666666667in"}
 
 Figure 3.1: Seasonal variability of the number of CE events in
-Thessaloniki for the period 1992-2023 normalized to the maximum
+Thessaloniki for the period 1993-2023 normalized to the maximum
 occurring in June, in the form of a box and whisker plot. The monthly
 values have also been normalized to the relative abundance of valid GHI
 observations. The box contains the data between the lower $25\text{\%}$
@@ -464,7 +463,7 @@ of OIR.](media/image5.png){width="5.833333333333333in"
 height="3.7069444444444444in"}
 
 Figure 3.2: Relative frequency distribution of CE events in Thessaloniki
-for the period 1992-2023 as a function of OIR.
+for the period 1993-2023 as a function of OIR.
 
 ## 3.3 Duration of cloud enhancement events
 
@@ -485,7 +484,7 @@ height="3.6590277777777778in"}
 
 Figure 3.3: Relative frequency distribution of CE groups of consequent
 CE events according to their duration for Thessaloniki in the period
-1992-2023.
+1993-2023.
 
 The relation between the duration and the mean OIR of the groups has
 also been studied (Figure). Evidently, evens of high excess irradiation
@@ -495,7 +494,7 @@ are associated with small excess irradiation
 (e.g., $5\text{min}$) while groups with strong excess irradiation and
 long duration are very rare. Similar results of this relation have been
 reported by Zhang et al. (2018) in a study using a far higher sampling
-rate (XX Hz) than ours.
+rate (100 Hz) than ours.
 
 ![Figure 3.4: Relation of excess irradiation of CE groups with their
 duration. The logarithmic color scale denotes the frequency of the
@@ -530,7 +529,7 @@ monthly values.](media/image8.png){width="5.833333333333333in"
 height="3.4743055555555555in"}
 
 Figure 3.5: Seasonal variability of the number of ECE events in
-Thessaloniki for the period 1992-2023 normalized to the maximum
+Thessaloniki for the period 1993-2023 normalized to the maximum
 occurring in March, in the form of a box and whisker plot. The box
 contains the data between the lower $25\text{\%}$ and the upper
 $75\text{\%}$ percentiles. The thick horizontal line and the diamond
@@ -542,10 +541,10 @@ The distribution of the ECE events (Figure) shows that in rare cases the
 OIR can exceed the TSI even by more than
 $400\frac{\text{W}}{\text{m}^{2}}$, while in $75\text{\%}$ of the cases
 the OIR is below $200\frac{\text{W}}{\text{m}^{2}}$. The OIR for the
-most frequent ECEs ranges between 140 and 180 W/m^2^. These finding s
-are in accordance with the results of Vamvakas, Salamalikis, and
-Kazantzidis (2020), the only difference being that the OIR values
-reported for are higher than those for Thessaloniki.
+most frequent ECEs ranges between 140 and 180 W/m^2^. These findings are
+in accordance with the results of Vamvakas, Salamalikis, and Kazantzidis
+(2020), the only difference being that the OIR values reported for are
+higher than those for Thessaloniki.
 
 ![Figure 3.6: Distribution of ECE above clear sky threshold, for cases
 that are exceeding the
@@ -553,13 +552,13 @@ TSI.](media/image9.png){width="5.833333333333333in"
 height="3.6590277777777778in"}
 
 Figure 3.6: Distribution of ECE events in Thessaloniki for the period
-1992-2023.
+1993 \-- 2023.
 
 # 4 Conclusions
 
 By creating a clear sky approximation representing the long- and
 short-term variability of the expected clear sky GHI, we were able to
-identify cases of CE events in Thessaloniki for the period 1992-2023.
+identify cases of CE events in Thessaloniki for the period 1993-2023.
 After analyzing the CE cases, we found an increase of
 $45.6 \pm 21.9\frac{\text{cases}}{\text{year}}$, with the mean annual
 irradiation of the CE events increasing with a rate of
@@ -573,7 +572,7 @@ $400\frac{\text{W}}{\text{m}^{2}}$ with $75\text{\%}$ of the cases under
 $200\frac{\text{W}}{\text{m}^{2}}$. The climatological characteristics
 of the ECE events showed that the most active months are spread in half
 of the year and particularly in the periods March -- June and September
--- October). The magnitude of the ECE events identified in Thessaloniki
+-- October. The magnitude of the ECE events identified in Thessaloniki
 events does not exceed the values reported for sites with more
 favourable conditions for the phenomenon (e.g., Cordero 2023). Some of
 the characteristics of CE and ECE events we analyzed have strong
