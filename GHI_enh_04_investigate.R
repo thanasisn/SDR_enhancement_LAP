@@ -395,24 +395,11 @@ dataset |>
 #      xlab = "Duration of enhancement [min]",
 #      main = "Duration of enhancement of CE groups cases groups")
 
+
+
+
 binwidth <- 2.5
-split <- 23.5
-
-p1 <- ggplot(data = ST_G0, aes(x = GLB_ench.N)) +
-  geom_histogram(aes(y = (after_stat(count))/sum(after_stat(count)) * 100),
-                 binwidth = binwidth,
-                 boundary = 0,
-                 color    = "black") +
-  xlab("[min]") +
-  ylab("[%]") +
-  coord_cartesian(xlim = c(split, max(ST_G0$GLB_ench.N)),
-                  ylim = c(0, .8)) +
-  theme(
-    axis.title = element_text(size = 9),
-    axis.text  = element_text(size = 9),
-    panel.grid = element_line(linetype = 2)
-  )
-
+split    <- 25
 
 
 ggplot(data = ST_G0, aes(x = GLB_ench.N)) +
@@ -424,8 +411,42 @@ ggplot(data = ST_G0, aes(x = GLB_ench.N)) +
   xlab("Duration of enhancement group [min]") +
   ylab("Relative frequency [%]") +
   labs(caption = paste("Bin width:", binwidth, "min"))
-#   inset_element(p1, left = 0.3, bottom = 0.3, right = 1, top = 1,
-#                 align_to = "plot")
+
+
+p1 <- ggplot(data = ST_G0, aes(x = GLB_ench.N)) +
+  geom_histogram(aes(y = (after_stat(count))/sum(after_stat(count)) * 100),
+                 binwidth = binwidth,
+                 boundary = 0,
+                 color    = "black") +
+  xlab("[min]") +
+  ylab("[%]") +
+  coord_cartesian(xlim = c(split, max(ST_G0$GLB_ench.N)),
+                  ylim = c(0, .2)) +
+  scale_x_continuous(
+    breaks = c(25, 50, 75, 100, 125, max(ST_G0$GLB_ench.N)),
+    expand = c(0,0)) +
+  theme(
+    axis.title = element_text(size = 9),
+    axis.text  = element_text(size = 9),
+    panel.grid = element_line(linetype = 2)
+  )
+
+
+ggplot(data = ST_G0, aes(x = GLB_ench.N)) +
+  geom_histogram(aes(y = (after_stat(count))/sum(after_stat(count)) * 100),
+                 binwidth = binwidth,
+                 boundary = 0,
+                 color    = "black") +
+  # xlab(bquote(.(varname("GLB_diff")) ~ group("[", W/m^2,"]"))) +
+  xlab("Duration of enhancement group [min]") +
+  ylab("Relative frequency [%]") +
+  scale_x_continuous(breaks = c(0, 25, 50, 75, 100, 125, max(ST_G0$GLB_ench.N))) +
+  labs(caption = paste("Bin width:", binwidth, "min")) +
+  inset_element(p1, left = 0.3, bottom = 0.3, right = 1, top = 1,
+                align_to = "plot") +
+  annotate("segment", x = 25, xend = 50, y = 3, yend = 15, colour = "pink", line=3, alpha=0.6, arrow=arrow())
+
+
 
 ggplot(data = ST_G0, aes(x = GLB_ench.N)) +
   geom_histogram(aes(y = (after_stat(count))/sum(after_stat(count)) * 100),
@@ -449,9 +470,6 @@ ggplot(data = ST_G0, aes(x = GLB_ench.N)) +
   scale_y_continuous(breaks=c(0,125,250,375,500,625,750), expand=c(0,0))
 
 
-
-
-
 ggplot(data = ST_G0, aes(x = GLB_ench.N)) +
   geom_histogram(binwidth = binwidth,
                  color    = "black") +
@@ -463,55 +481,101 @@ ggplot(data = ST_G0, aes(x = GLB_ench.N)) +
 
 
 
+# breaks <- c(seq(0, 25, 2.5), seq(50, 150, 25))
+# ggplot(data = ST_G0, aes(x = GLB_ench.N)) +
+#   geom_histogram(aes(y = (after_stat(count))/sum(after_stat(count)) * 100),
+#                  breaks   = breaks,
+#                  boundary = 0,
+#                  color    = "black") +
+#   # xlab(bquote(.(varname("GLB_diff")) ~ group("[", W/m^2,"]"))) +
+#   xlab("Duration of enhancement group [min]") +
+#   ylab("Relative frequency [%]") +
+#   labs(caption = paste("Bin width:", "2.5 or 25", "min"))
 
-breaks <- c(seq(0, 25, 2.5), seq(50, 150, 25))
-ggplot(data = ST_G0, aes(x = GLB_ench.N)) +
+
+# breaks <- c(seq(0, 25, 2.5), seq(55, 150, 30))
+# ggplot(data = ST_G0, aes(x = GLB_ench.N)) +
+#   geom_histogram(aes(y = (after_stat(count))/sum(after_stat(count)) * 100),
+#                  breaks   = breaks,
+#                  boundary = 0,
+#                  color    = "black") +
+#   # xlab(bquote(.(varname("GLB_diff")) ~ group("[", W/m^2,"]"))) +
+#   xlab("Duration of enhancement group [min]") +
+#   ylab("Relative frequency [%]") +
+#   labs(caption = paste("Bin width:", "2.5 or 30", "min"))
+
+
+# breaks <- c(seq(0, 25, 2.5), seq(65, 150, 40))
+# ggplot(data = ST_G0, aes(x = GLB_ench.N)) +
+#   geom_histogram(aes(y = (after_stat(count))/sum(after_stat(count)) * 100),
+#                  breaks   = breaks,
+#                  boundary = 0,
+#                  color    = "black") +
+#   # xlab(bquote(.(varname("GLB_diff")) ~ group("[", W/m^2,"]"))) +
+#   xlab("Duration of enhancement group [min]") +
+#   ylab("Relative frequency [%]") +
+#   labs(caption = paste("Bin width:", "2.5 or 40", "min"))
+
+
+# breaks <- c(seq(0, 25, 2.5), seq(75, 175, 50))
+# ggplot(data = ST_G0, aes(x = GLB_ench.N)) +
+#   geom_histogram(aes(y = (after_stat(count))/sum(after_stat(count)) * 100),
+#                  breaks   = breaks,
+#                  boundary = 0,
+#                  color    = "black") +
+#   # xlab(bquote(.(varname("GLB_diff")) ~ group("[", W/m^2,"]"))) +
+#   xlab("Duration of enhancement group [min]") +
+#   ylab("Relative frequency [%]") +
+#   labs(caption = paste("Bin width:", "2.5 or 50", "min"))
+
+
+
+
+
+pa <- ggplot(data = ST_G0, aes(x = GLB_ench.N)) +
   geom_histogram(aes(y = (after_stat(count))/sum(after_stat(count)) * 100),
-                 breaks   = breaks,
+                 binwidth = binwidth,
                  boundary = 0,
                  color    = "black") +
   # xlab(bquote(.(varname("GLB_diff")) ~ group("[", W/m^2,"]"))) +
   xlab("Duration of enhancement group [min]") +
   ylab("Relative frequency [%]") +
-  labs(caption = paste("Bin width:", "2.5 or 25", "min"))
+  labs(caption = paste("Bin width:", binwidth, "min")) +
+  scale_x_continuous(
+    # breaks = c(0, 25, 50, 75, 100, 125, max(ST_G0$GLB_ench.N)),
+    limits = c(0, 25))
 
-
-breaks <- c(seq(0, 25, 2.5), seq(55, 150, 30))
-ggplot(data = ST_G0, aes(x = GLB_ench.N)) +
+pb <- ggplot(data = ST_G0, aes(x = GLB_ench.N)) +
   geom_histogram(aes(y = (after_stat(count))/sum(after_stat(count)) * 100),
-                 breaks   = breaks,
+                 binwidth = binwidth,
                  boundary = 0,
                  color    = "black") +
-  # xlab(bquote(.(varname("GLB_diff")) ~ group("[", W/m^2,"]"))) +
   xlab("Duration of enhancement group [min]") +
-  ylab("Relative frequency [%]") +
-  labs(caption = paste("Bin width:", "2.5 or 30", "min"))
+  ylab("") +
+  labs(caption = paste("Bin width:", binwidth, "min")) +
+  scale_x_continuous(
+    breaks = c(0, 25, 50, 75, 100, 125, max(ST_G0$GLB_ench.N)),
+    limits = c(25, max(ST_G0$GLB_ench.N)))
 
+plot_grid(pa, pb, labels = c("(a)", "(b)"), greedy = TRUE)
 
-breaks <- c(seq(0, 25, 2.5), seq(65, 150, 40))
-ggplot(data = ST_G0, aes(x = GLB_ench.N)) +
-  geom_histogram(aes(y = (after_stat(count))/sum(after_stat(count)) * 100),
-                 breaks   = breaks,
-                 boundary = 0,
-                 color    = "black") +
-  # xlab(bquote(.(varname("GLB_diff")) ~ group("[", W/m^2,"]"))) +
-  xlab("Duration of enhancement group [min]") +
-  ylab("Relative frequency [%]") +
-  labs(caption = paste("Bin width:", "2.5 or 40", "min"))
+cowplot::plot_grid(pa, pb, labels = "AUTO")
 
+library(patchwork)
+library(cowplot)
 
-breaks <- c(seq(0, 25, 2.5), seq(75, 175, 50))
-ggplot(data = ST_G0, aes(x = GLB_ench.N)) +
-  geom_histogram(aes(y = (after_stat(count))/sum(after_stat(count)) * 100),
-                 breaks   = breaks,
-                 boundary = 0,
-                 color    = "black") +
-  # xlab(bquote(.(varname("GLB_diff")) ~ group("[", W/m^2,"]"))) +
-  xlab("Duration of enhancement group [min]") +
-  ylab("Relative frequency [%]") +
-  labs(caption = paste("Bin width:", "2.5 or 50", "min"))
+library(tidyverse)
+library(gridExtra)
+library(grid)
+library(gridtext)
 
+# Remove axis titles from all plots
+p      <- list(pa, pb) |> map(~.x + labs(x=NULL, y=NULL))
+yleft  <- textGrob("Relative frequency [%]")
+bottom <- textGrob("Duration of enhancement group [min]")
 
+grid.arrange(grobs = p, ncol = 2, nrow = 1,
+            left = yleft, bottom = bottom)
 
 
 ## _ Use point density  --------------------------
