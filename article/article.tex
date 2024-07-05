@@ -261,19 +261,17 @@ irradiance difference of the measured one-minute GHI from the
 we tested two simple approaches for the determination of
 \(\text{GHI}_\text{ref}\): The Haurwitz's model \citep{Haurwitz1945},
 which is a simple clear sky model and was already adjusted and applied
-to our data \citep{Natsis2023}, and the total solar irradiance (TSI) at
-the top of the atmosphere, adjusted for the Sun-Earth distance. We have
-tested both methods by using an appropriate relative threshold and/or an
-additional constant offset. The initial results showed that we can
-detect a big portion of the actual CE events. However, by inspecting the
-daily plots of irradiance it became evident that changes in atmospheric
-conditions introduced numerous false positive or false negative results.
-The main reason for these discrepancies is the variability of the
-effects of aerosols and water vapor which were not taken into account in
-the two simple methods. To produce a more representative reference we
-included the effects of these factors using a radiative transfer model
-(RTM). The applied methodology is discussed in
-section\nobreakspace{}\ref{rtmcs}.
+to our data \citep{Natsis2023}. We have tested both methods by using an
+appropriate relative threshold and/or an additional constant offset. The
+initial results showed that we can detect a big portion of the actual CE
+events. However, by inspecting the daily plots of irradiance it became
+evident that changes in atmospheric conditions introduced numerous false
+positive or false negative results. The main reason for these
+discrepancies is the variability of the effects of aerosols and water
+vapor which were not taken into account in the two simple methods. To
+produce a more representative reference we included the effects of these
+factors using a radiative transfer model (RTM). The applied methodology
+is discussed in section\nobreakspace{}\ref{rtmcs}.
 
 \hypertarget{rtmcs}{%
 \subsection{Modeled clear Sky Irradiance}\label{rtmcs}}
@@ -346,15 +344,17 @@ translates to a change in the Ångström coefficient \(\beta\) of
 \(0.00272\) per year (or \(\beta=0.084\) in 1997 and \(\beta=0.059\) in
 2005). Simulations with uvspec for the above Ångström coefficients, with
 WC of \(15.7\,\text{mm}\) and \(15.4\,\text{mm}\) for 1997 and 2005
-respectively, also taken from AERONET, and for a SZA of \(55^\circ\)
-reveal a trend of \(+0.21\,\%\) per year in \(\text{GHI}_\text{ref}\).
-The SZA of \(55^\circ\) was chosen as representative of all days in the
-year in order to get a rough estimate of the annually averaged change in
-clear sky irradiance. For the period 2005 -- 2023 we used the mean
-monthly values of AOD and WC from AERONET in a similar simulation scheme
-to calculate the monthly mean clear-sky irradiance, and finally the
-trend of \(+0.14\,\%\) per year. We applied these two long-term changes
-(see Figure\nobreakspace{}\ref{fig:CS-change}) to the climatological
+respectively, where for 1997 we used the first available WC data
+(i.e.~2003) as a proxy, also taken from AERONET, and for a SZA of
+\(55^\circ\) reveal a trend of \(+0.21\,\%\) per year in
+\(\text{GHI}_\text{ref}\). The SZA of \(55^\circ\) was chosen as
+representative of all days in the year in order to get a rough estimate
+of the annually averaged change in clear sky irradiance. For the period
+2005 -- 2023 we used the mean monthly values of AOD and WC from AERONET
+in a similar simulation scheme to calculate the monthly mean clear-sky
+irradiance, and finally the trend of \(+0.14\,\%\) per year. We applied
+these two long-term changes (see
+Figure\nobreakspace{}\ref{fig:CS-change}) to the climatological
 \(\text{GHI}_\text{ref}\), in order to create a more realistic
 representation of the clear-sky irradiance for the whole period of
 study.
@@ -365,7 +365,7 @@ study.
 
 }
 
-\caption{Simulated long-term change in clear sky irradiance relative to the climatological values due to changes in AOD in Thessaloniki for the period 1992 -- 2023.}\label{fig:CS-change}
+\caption{Simulated long-term change in clear sky irradiance relative to the climatological values due to changes in AOD in Thessaloniki for the period 1993 -- 2023.}\label{fig:CS-change}
 \end{figure}
 
 \hypertarget{criteria-for-the-identification-of-ce-events}{%
@@ -526,7 +526,7 @@ by a significant amount.
             \subfloat[\label{fig:P-energy-sum}]
                 {\includegraphics[width=\linewidth]{../images/P-energy-1} }
         }
-    \caption{Time series for the period 1992 -- 2023 of (a) the yearly CE number of occurrences, (b) the yearly mean OIR and (c) the yearly excess irradiation. The black lines represent the linear trends on the yearly data.}\label{fig:P-energy}
+    \caption{Time series for the period 1993 -- 2023 of (a) the yearly CE number of occurrences, (b) the yearly mean OIR and (c) the yearly excess irradiation. The black lines represent the linear trends on the yearly data.}\label{fig:P-energy}
 \end{figure}
 
 \hypertarget{climatology-of-cloud-enhancement-events}{%
@@ -556,7 +556,7 @@ manifested by the large monthly extremes, especially in the summer.
 
 }
 
-\caption{Seasonal variability of the number of CE events in Thessaloniki for the period 1992 -- 2023 normalized to the maximum occurring in June, in the form of a box and whisker plot. The monthly values have also been normalized to the relative abundance of valid GHI observations. The box contains the data between the lower $25\,\%$ and the upper $75\,\%$ percentiles, the thick horizontal line and the diamond symbol represent the median and the mean values, respectively. The vertical lines (whiskers) extend between the maximum and minimum monthly values.}\label{fig:relative-month-occurrences}
+\caption{Seasonal variability of the number of CE events in Thessaloniki for the period 1993 -- 2023 normalized to the maximum occurring in June, in the form of a box and whisker plot. The monthly values have also been normalized to the relative abundance of valid GHI observations. The box contains the data between the lower $25\,\%$ and the upper $75\,\%$ percentiles, the thick horizontal line and the diamond symbol represent the median and the mean values, respectively. The vertical lines (whiskers) extend between the maximum and minimum monthly values.}\label{fig:relative-month-occurrences}
 \end{figure}
 
 The distribution of the number of CE events as a function of OIR is
@@ -583,7 +583,7 @@ characteristics and magnitude of the CE events.
 
 }
 
-\caption{Relative frequency distribution of CE events in Thessaloniki for the period 1992 -- 2023 as a function of OIR.}\label{fig:ovir-distribution}
+\caption{Relative frequency distribution of CE events in Thessaloniki for the period 1993 -- 2023 as a function of OIR.}\label{fig:ovir-distribution}
 \end{figure}
 
 \hypertarget{duration-of-cloud-enhancement-events}{%
@@ -607,7 +607,7 @@ about \(80\,\%\) have duration of less than 5 minutes.
 
 }
 
-\caption{Relative frequency distribution of CE groups of consequent CE events according to their duration for Thessaloniki in the period 1992 -- 2023.}\label{fig:ceg-duration-distribution}
+\caption{Relative frequency distribution of CE groups of consequent CE events according to their duration for Thessaloniki in the period 1993 -- 2023.}\label{fig:ceg-duration-distribution}
 \end{figure}
 
 The relation between the duration and the mean OIR of the groups has
@@ -626,7 +626,7 @@ sampling rate (\(100\,\text{Hz}\)) than ours.
 
 }
 
-\caption{Relation of excess irradiation of CE groups with their duration for Thessaloniki in the period 1992 -- 2023. The logarithmic color scale denotes the frequency of the respective groups of events.}\label{fig:group-2d}
+\caption{Relation of excess irradiation of CE groups with their duration for Thessaloniki in the period 1993 -- 2023. The logarithmic color scale denotes the frequency of the respective groups of events.}\label{fig:group-2d}
 \end{figure}
 
 \hypertarget{extreme-cloud-enhancement-events}{%
@@ -672,7 +672,7 @@ those for Thessaloniki.
 
 }
 
-\caption{Distribution of ECE events in Thessaloniki for the period 1992 -- 2023.}\label{fig:P-extreme-distribution}
+\caption{Distribution of ECE events in Thessaloniki for the period 1993 -- 2023.}\label{fig:P-extreme-distribution}
 \end{figure}
 
 \hypertarget{conclusions}{%
@@ -680,7 +680,7 @@ those for Thessaloniki.
 
 By creating a clear sky approximation representing the long- and
 short-term variability of the expected clear sky GHI, we were able to
-identify cases of CE events in Thessaloniki for the period 1992 -- 2023.
+identify cases of CE events in Thessaloniki for the period 1993 -- 2023.
 After analyzing the CE cases, we found an increase of
 \(45.6\pm 21.9\,\text{cases}/\text{year}\), with the mean annual
 irradiation of the CE events increasing with a rate of
