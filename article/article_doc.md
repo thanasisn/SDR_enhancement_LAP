@@ -481,12 +481,15 @@ $80\,\%$ have duration of less than 5 minutes.
 
 ![Figure 3.3: Relative frequency distribution of CE groups of consequent
 CE events according to their duration for Thessaloniki in the period
-1993 -- 2023.](media/rId50.png){width="5.833333333333333in"
-height="3.6591983814523186in"}
+1993 -- 2023. The histogram was splited in two plots with differnt
+y-axis limits for better
+readability.](media/rId50.png){width="5.833333333333333in"
+height="3.745in"}
 
 Figure 3.3: Relative frequency distribution of CE groups of consequent
 CE events according to their duration for Thessaloniki in the period
-1993 -- 2023.
+1993 -- 2023. The histogram was splited in two plots with differnt
+y-axis limits for better readability.
 
 The relation between the duration and the mean OIR of the groups has
 also been studied (Figure). Evidently, evens of high excess irradiation
