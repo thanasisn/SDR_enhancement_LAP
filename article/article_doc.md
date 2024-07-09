@@ -16,7 +16,7 @@ abstract: In this study we investigate the characteristics of global
   $400\,\text{W}/\text{m}^{2}$, with the $75\,\%$ of the cases below
   $200\,\text{W}/\text{m}^{2}$. The most active period of these extreme
   events is spring -- early summer with a secondary peak in autumn.
-date: 2024-07-05
+date: 2024-07-09
 title: Long-term cloud enhancement events of global solar irradiance
   over Thessaloniki, Greece
 ---
@@ -223,20 +223,18 @@ per year, corresponding to a change of $0.0153$ per year. Using an
 Ångström coefficient $\alpha = 1.6$, this translates to a change in the
 Ångström coefficient $\beta$ of $0.00272$ per year (or $\beta = 0.084$
 in 1997 and $\beta = 0.059$ in 2005). Simulations with uvspec for the
-above Ångström coefficients, with WC of $15.7\,\text{mm}$ and
-$15.4\,\text{mm}$ for 1997 and 2005 respectively, where for 1997 we used
-the first available WC data (i.e. 2003) as a proxy, also taken from
-AERONET, and for a SZA of $55^{\circ}$ reveal a trend of $+ 0.21\,\%$
-per year in $\text{GHI}_{\text{ref}}$. The SZA of $55^{\circ}$ was
-chosen as representative of all days in the year in order to get a rough
-estimate of the annually averaged change in clear sky irradiance. For
-the period 2005 -- 2023 we used the mean monthly values of AOD and WC
-from AERONET in a similar simulation scheme to calculate the monthly
-mean clear-sky irradiance, and finally the trend of $+ 0.14\,\%$ per
-year. We applied these two long-term changes (see Figure) to the
-climatological $\text{GHI}_{\text{ref}}$, in order to create a more
-realistic representation of the clear-sky irradiance for the whole
-period of study.
+above Ångström coefficients, assuming constant WC of $15.6\,\text{mm}$
+taken from the Cimel, and for a SZA of $55^{\circ}$ reveal a trend of
+$+ 0.21\,\%$ per year in $\text{GHI}_{\text{ref}}$. The SZA of
+$55^{\circ}$ was chosen as representative of all days in the year in
+order to get a rough estimate of the annually averaged change in clear
+sky irradiance. For the period 2005 -- 2023 we used the mean monthly
+values of AOD and WC from AERONET in a similar simulation scheme to
+calculate the monthly mean clear-sky irradiance, and finally the trend
+of $+ 0.14\,\%$ per year. We applied these two long-term changes (see
+Figure) to the climatological $\text{GHI}_{\text{ref}}$, in order to
+create a more realistic representation of the clear-sky irradiance for
+the whole period of study.
 
 ![Figure 2.1: Simulated long-term change in clear sky irradiance
 relative to the climatological values due to changes in AOD in
