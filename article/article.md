@@ -63,7 +63,7 @@ keywords:
   - over irradiance
 
 journal:        "Atmospheric Research"
-date:           "`r Sys.Date()`"
+date:           "2024-07-10"
 linenumbers:    false
 numbersections: true
 bibliography:   bibliography.bib
@@ -101,41 +101,10 @@ output:
 ---
 
 
-```{r setup, echo=F, include=FALSE}
-rmarkdown::find_pandoc(dir = '/usr/lib/rstudio/resources/app/bin/quarto/bin/tools')
-# renv::load("~/MANUSCRIPTS/02_enhancement/", quiet = TRUE)
-## document configurations
-knitr::opts_chunk$set(comment    = ""      )
-# knitr::opts_chunk$set(dev        = "pdf"   )
-knitr::opts_chunk$set(out.width  = "100%"   )
-knitr::opts_chunk$set(fig.align  = "center")
-# knitr::opts_chunk$set(fig.pos    = 'h!'    )
-options(knitr.graphics.auto_pdf = FALSE)
-library(pander)
-library(data.table)
-library(kableExtra)
-library(dplyr)
-## load data from trends analysis
-source("~/MANUSCRIPTS/02_enhancement/GHI_enh_00_variables.R")
-load("~/MANUSCRIPTS/02_enhancement/data/GHI_enh_03_process.Rda")
-TSIinfo <- data.table(read.csv("~/MANUSCRIPTS/02_enhancement/figures/tbl_tsi_info.dat",
-                               strip.white = TRUE,
-                               sep = ";",
-                               header = TRUE))
-```
 
 
-```{r loadtrends, echo=F, include=T, warning=FALSE, message=FALSE}
-dailytrends <- data.table(
-  read.csv("~/MANUSCRIPTS/02_enhancement/figures/Daily_trends_byYear.csv"))
-dailyCE <- dailytrends[DATA == "ST_E_daily"]
-yearlytrends <- data.table(
-  read.csv("~/MANUSCRIPTS/02_enhancement/figures/Daily_trends_byYear_Proper.csv"))
-yearlyCE <- yearlytrends[DATA == "ST_E_yearly"]
 
-BR <- readRDS("~/MANUSCRIPTS/02_enhancement/data/Model_CS_trend.Rds")
-BR <-  unique(BR[typer == "BR SZA 55", .(year, pw_avg_mm, b, a)])
-```
+
 
 
 <!-- # Abstract {.unnumbered} -->
@@ -147,11 +116,11 @@ identified the cloud enhancement events (CE) by creating an appropriate clear sk
 irradiance reference with the use of a radiative transfer model and aerosol optical
 depth data from a collocated Cimel sun photometer and a Brewer spectrophotometer. We
 found a trend in CE events of
-$`r round(yearlyCE[var == "GLB_diff.N", slope], 1)`\pm
-`r round(2 * yearlyCE[var == "GLB_diff.N", slope.sd], 1)`\,\text{cases}/\text{year}$,
+$45.6\pm
+21.9\,\text{cases}/\text{year}$,
 and a trend in the CE events irradiation of 
-$`r round(yearlyCE[var == "GLB_diff.sum", slope], 1)`\pm
-`r round(2 * yearlyCE[var == "GLB_diff.sum", slope.sd], 1)`\,\text{kJ}/\text{year}$.
+$116.9\pm
+67.8\,\text{kJ}/\text{year}$.
 The peak of the CE events was observed during May and June.  An analysis of the total
 duration of CE events, showed that durations longer than 5 minutes are very rare,
 with exceptions lasting over an hour and up to 140 minutes.  Finally, we have detected enhancements above
@@ -265,8 +234,8 @@ The data used in this study were recorded at the monitoring site of the Laborato
 Atmospheric Physics, Aristotle University of Thessaloniki, in Thessaloniki, Greece
 (\(40^\circ\,38'\,\)N, \(22^\circ\,57'\,\)E, \(80\,\)m\ a.s.l.).  The GHI data were
 measured with a Kipp\ & Zonen CM-21 pyranometer and cover the period
-`r strftime(min(ST_daily$Date), "%d\\ %B %Y")` to
-`r strftime(max(ST_daily$Date), "%d\\ %B %Y")`.
+13\ April 1993 to
+31\ December 2023.
 <!-- Instrument -->
   During the study
 period, the pyranometer was independently calibrated three times at the
@@ -293,7 +262,7 @@ for the site, which was based on the methods of Long and Shi\ [@Long2006;
 processing.  Furthermore, due to the significant measurement uncertainty in GHI when
 the Sun is near the horizon, and due to some systematic obstructions by nearby
 buildings, we have excluded all measurements with solar zenith angle (SZA) greater
-than $`r 90 - BIO_ELEVA`^\circ$.  Finally, images from a sky camera have been used in
+than $78^\circ$.  Finally, images from a sky camera have been used in
 the manual inspection of the CE identification. The sky camera operates since 2012
 and stores images in 5 min time steps.
 <!--
@@ -442,8 +411,8 @@ a change in the Ångström coefficient $\beta$ of $0.00272$ per year (or $\beta=
 <!--
 Simulations with uvspec for the above Ångström
 coefficients, with WC of
-$`r round(BR[year==1997,pw_avg_mm],1)`\,\text{mm}$ and
-$`r round(BR[year==2005,pw_avg_mm],1)`\,\text{mm}$
+$15.7\,\text{mm}$ and
+$15.4\,\text{mm}$
 for 1997 and 2005 respectively, where for 1997 we used the first available WC data
 (i.e. 2003) as a proxy, also taken from AERONET, and for a SZA of $55^\circ$ reveal a
 trend of
@@ -461,9 +430,14 @@ and finally the trend of $+0.14\,\%$ per year. We applied these two long-term ch
 $\text{GHI}_\text{ref}$, in order to create a more realistic representation of the
 clear-sky irradiance for the whole period of study.
 
-```{r CS-change, echo=FALSE, fig.cap="Simulated long-term change in clear sky irradiance relative to the climatological values due to changes in AOD in Thessaloniki for the period 1993 -- 2023."}
-knitr::include_graphics("../images/P-CS-change-1.pdf")
-```
+\begin{figure}
+
+{\centering \includegraphics[width=1\linewidth]{../images/P-CS-change-1} 
+
+}
+
+\caption{Simulated long-term change in clear sky irradiance relative to the climatological values due to changes in AOD in Thessaloniki for the period 1993 -- 2023.}\label{fig:CS-change}
+\end{figure}
 
 <!-- 1997 0.0839901
 <!-- 2005 0.05496013
@@ -507,13 +481,13 @@ generally greater than the measured GHI when aerosols are more abundant.  To
 compensate for this, we defined the following threshold $E$ to compare the
 measured $\text{GHI}$: 
 <!--
-($`r 100*(C4_cs_ref_ratio-1)`\,\%$)
+($4\,\%$)
 with an additional constant offset of
-$`r C4_GLB_diff_THRES`\,\text{W}/\text{m}^2$,
+$15\,\text{W}/\text{m}^2$,
 as described in Equation\nobreakspace\ref{eq:CE4}.
 -->
 \begin{equation}
-\text{CE} : E > `r C4_GLB_diff_THRES` + `r C4_cs_ref_ratio` \cdot \text{GHI}_\text{ref} \,\,[\text{W}/\text{m}^2] \label{eq:CE4}
+\text{CE} : E > 15 + 1.04 \cdot \text{GHI}_\text{ref} \,\,[\text{W}/\text{m}^2] \label{eq:CE4}
 \end{equation}
 
 <!--
@@ -541,9 +515,9 @@ further aid the decision of the manual inspection.
 <!--
 \begin{equation}
 \text{CE}_\text{Threshold} = \begin{cases}
-`r C4_cs_ref_ratio`, & \text{$\theta \leq `r C4_lowcut_sza`^\circ$}\\
-\frac{`r C4_cs_ref_ratio` - `r C4_lowcut_ratio`}{`r C4_lowcut_sza` - `r 90 - BIO_ELEVA`} \cdot (\theta- `r 90 - BIO_ELEVA`) + `r C4_lowcut_ratio` , & \text{$ `r 90 - BIO_ELEVA`^\circ > \theta > `r C4_lowcut_sza`^\circ$}\\
-\text{Excluded measurements}, & \theta > `r 90 - BIO_ELEVA`^\circ
+1.04, & \text{$\theta \leq 90^\circ$}\\
+\frac{1.04 - 1.04}{90 - 78} \cdot (\theta- 78) + 1.04 , & \text{$ 78^\circ > \theta > 90^\circ$}\\
+\text{Excluded measurements}, & \theta > 78^\circ
 \end{cases}\label{eq:CE4a}
 \end{equation}
 where: $\theta$ solar zenith angle.
@@ -551,9 +525,9 @@ where: $\theta$ solar zenith angle.
 <!--
 \begin{equation}
 \text{CE} : \begin{cases}
- \text{GHI}_\text{i} > `r C4_cs_ref_ratio` \cdot \text{GHI}_\text{mCSi}, & \text{$\theta \leq `r C4_lowcut_sza`^\circ$}\\
-\text{GHI}_\text{i} > \left ({ `r C4_lowcut_ratio` + \frac{`r C4_cs_ref_ratio` - `r C4_lowcut_ratio`}{`r C4_lowcut_sza` - `r 90 - BIO_ELEVA`} \cdot (\theta- `r 90 - BIO_ELEVA`) } \right ) \cdot \text{GHI}_\text{mCSi}, & \text{$ `r 90 - BIO_ELEVA`^\circ > \theta > `r C4_lowcut_sza`^\circ$}\\
-\text{Excluded measurements}, & \theta > `r 90 - BIO_ELEVA`^\circ
+ \text{GHI}_\text{i} > 1.04 \cdot \text{GHI}_\text{mCSi}, & \text{$\theta \leq 90^\circ$}\\
+\text{GHI}_\text{i} > \left ({ 1.04 + \frac{1.04 - 1.04}{90 - 78} \cdot (\theta- 78) } \right ) \cdot \text{GHI}_\text{mCSi}, & \text{$ 78^\circ > \theta > 90^\circ$}\\
+\text{Excluded measurements}, & \theta > 78^\circ
 \end{cases}\label{eq:CE4b}
 \end{equation}
 where: $\theta$ is the solar zenith angle, $\text{GHI}_\text{i}$ the measured
@@ -561,9 +535,9 @@ irradiance, and $\text{GHI}_\text{mCSi}$ the selected modelled clear sky irradia
 -->
 <!-- \begin{equation} -->
 <!-- \text{CE} : \text{E}_\text{i} > \text{E}_\text{CSlim,i}, \text{where} \begin{cases} -->
-<!--  \text{E}_\text{CSlim,i} = `r C4_cs_ref_ratio` \cdot \text{E}_\text{CSm,i}, & \text{$\theta \leq `r C4_lowcut_sza`^\circ$}\\ -->
-<!-- \text{E}_\text{CSlim,i} = \left ({ `r C4_lowcut_ratio` + \frac{`r C4_cs_ref_ratio` - `r C4_lowcut_ratio`}{`r C4_lowcut_sza` - `r 90 - BIO_ELEVA`} \cdot (\theta- `r 90 - BIO_ELEVA`) } \right ) \cdot \text{E}_\text{CSm,i}, & \text{$ `r 90 - BIO_ELEVA`^\circ > \theta > `r C4_lowcut_sza`^\circ$}\\ -->
-<!-- \text{Excluded measurements}, & \theta > `r 90 - BIO_ELEVA`^\circ -->
+<!--  \text{E}_\text{CSlim,i} = 1.04 \cdot \text{E}_\text{CSm,i}, & \text{$\theta \leq 90^\circ$}\\ -->
+<!-- \text{E}_\text{CSlim,i} = \left ({ 1.04 + \frac{1.04 - 1.04}{90 - 78} \cdot (\theta- 78) } \right ) \cdot \text{E}_\text{CSm,i}, & \text{$ 78^\circ > \theta > 90^\circ$}\\ -->
+<!-- \text{Excluded measurements}, & \theta > 78^\circ -->
 <!-- \end{cases}\label{eq:CE4} -->
 <!-- \end{equation} -->
 <!-- where: $\theta$ is the solar zenith angle, $\text{E}$ the measured -->
@@ -619,13 +593,23 @@ between the measured and the modeled clear-sky irradiance for one year, where th
 and ECE events are clearly grouped above the threshold of irradiance
 (Figure\nobreakspace{}\ref{fig:example-year}).
 
-```{r example-day, echo=FALSE, fig.cap="Example of CE identification in Thessaloniki for 2019-07-11. The green line with blue symbols depicts the measured GHI in one minute steps. The red line shows the modelled threshold $E$ for the detection of CE events, which are denoted with red circles. The black curve represents the TSI at the top of the atmosphere, adjusted for the actual Sun-Earth distance and multiplied by the cosine of SZA.", fig.pos='H'}
-knitr::include_graphics("../images/example-days-18.png")
-```
+\begin{figure}[H]
 
-```{r example-year, echo=FALSE, fig.cap="Example scatter plot of the measured GHI and the reference clear sky irradiance in Thessaloniki for the year 2005. The over-irradiance for CE and ECE events is color coded, while the remaining data points are shown in black.", fig.pos='H'}
-knitr::include_graphics("../images/P-example-years-13.png")
-```
+{\centering \includegraphics[width=1\linewidth]{../images/example-days-18} 
+
+}
+
+\caption{Example of CE identification in Thessaloniki for 2019-07-11. The green line with blue symbols depicts the measured GHI in one minute steps. The red line shows the modelled threshold $E$ for the detection of CE events, which are denoted with red circles. The black curve represents the TSI at the top of the atmosphere, adjusted for the actual Sun-Earth distance and multiplied by the cosine of SZA.}\label{fig:example-day}
+\end{figure}
+
+\begin{figure}[H]
+
+{\centering \includegraphics[width=1\linewidth]{../images/P-example-years-13} 
+
+}
+
+\caption{Example scatter plot of the measured GHI and the reference clear sky irradiance in Thessaloniki for the year 2005. The over-irradiance for CE and ECE events is color coded, while the remaining data points are shown in black.}\label{fig:example-year}
+\end{figure}
 
 <!-- ```{r echo=F, include=T, warning=FALSE, message=FALSE} -->
 <!-- ST_total -->
@@ -640,20 +624,20 @@ knitr::include_graphics("../images/P-example-years-13.png")
 # Results
 
 Following the application of the above discussed methodology to the entire dataset 
-($`r round(ST_total$wattGLB.N / 10^6,1)`$ million of one-minute GHI measurements),
-$`r round(100*ST_total$GLB_diff.N_pos/ST_total$wattGLB.N, 2)`\,\%$ were identified as CE events and
-$`r round(100*ST_extreme_total$GLB_diff.N_pos/ST_total$wattGLB.N, 3)`\,\%$ as ECE events.
+($6.1$ million of one-minute GHI measurements),
+$1.76\,\%$ were identified as CE events and
+$0.036\,\%$ as ECE events.
 The highest recorded GHI due to CE was
-$`r round(ST_daily[which.max(wattGLB.max), wattGLB.max],1)`\,\text{W}/\text{m}^2$
-on `r strftime(ST_daily[which.max(wattGLB.max), Date], "%d\\ %B %Y")`, corresponding
-to OIR of $`r round(ST_daily[which.max(GLB_diff.max), GLB_diff.max], 1)`\,\text{W}/\text{m}^2$.
+$1416.6\,\text{W}/\text{m}^2$
+on 24\ May 2007, corresponding
+to OIR of $345.9\,\text{W}/\text{m}^2$.
 <!-- The absolute strongest CE event had an OIR of 
-<!-- $`r round(ST_daily[which.max(GLB_diff.max), GLB_diff.max], 2)`\,\text{W}/\text{m}^2$ on
-<!-- `r strftime(ST_daily[which.max(GLB_diff.max), Date], "%d\\ %B %Y")`. -->
+<!-- $345.86\,\text{W}/\text{m}^2$ on
+<!-- 24\ May 2007. -->
 The strongest CE event of
-$`r round(100*ST_daily[which.max(GLB_ench.max), GLB_ench.max],1)`\,\%$ above the 
+$49.7\,\%$ above the 
 clear sky threshold was observed on 
-`r strftime(ST_daily[which.max(GLB_ench.max), Date], "%d\\ %B %Y")`.
+28\ October 2016.
 In the following sections we are discussing the long-term trends and variability of
 the CE events as well as of the corresponding OIR and excess irradiation.
 
@@ -677,15 +661,15 @@ CE cases (each with duration of one minute), the yearly mean OIR and the yearly
 excess irradiation for the period 1993 -- 2023, together with corresponding linear
 trends. All three quantities show increasing trends, most pronounced for the
 frequency of occurrence 
-($`r round(yearlyCE[var == "GLB_diff.N", slope], 1)`\pm `r round(2 * yearlyCE[var == "GLB_diff.N", slope.sd], 1)`\,\text{cases}/\text{year}$)
+($45.6\pm 21.9\,\text{cases}/\text{year}$)
 and the excess irradiation 
-($`r round(yearlyCE[var == "GLB_diff.sum", slope], 1)` \pm `r round(2 * yearlyCE[var == "GLB_diff.sum", slope.sd], 1)`\,\text{kJ}/\text{year}$),
+($116.9 \pm 67.8\,\text{kJ}/\text{year}$),
 which are also statistically significant.
 In contrast the trend of the yearly mean OIR is negligible 
-($`r round(yearlyCE[var == "GLB_diff.mean", slope], 1)`\pm `r round(2 * yearlyCE[var == "GLB_diff.mean", slope.sd], 1)`\,\text{W}/\text{m}^2/\text{year}$)
+($0.1\pm 0.1\,\text{W}/\text{m}^2/\text{year}$)
 and of no statistical significance.
 The average OIR for the entire period is
-$`r round(mean(ST_E_yearly$GLB_diff.mean), 1)`\pm `r round(sd(ST_E_yearly$GLB_diff.mean),1)`\,\text{W}/\text{m}^2$.
+$39.9\pm 2.7\,\text{W}/\text{m}^2$.
 The interannual variability of the data about the trend lines is quite large.
 Furthermore, the spread tends to increase with time (at least for the quantities of
 panels b and c), suggesting a significant variability in cloud patterns over the
@@ -727,9 +711,14 @@ of detailed data on cloud formation, type and location is not allowing further
 analysis. The interannual variability of the monthly CE events is quite high as
 manifested by the large monthly extremes, especially in the summer.
 
-```{r relative-month-occurrences, echo=FALSE, fig.cap="Seasonal variability of the number of CE events in Thessaloniki for the period 1993 -- 2023 normalized to the maximum occurring in June, in the form of a box and whisker plot. The monthly values have also been normalized to the relative abundance of valid GHI observations. The box contains the data between the lower $25\\,\\%$ and the upper $75\\,\\%$ percentiles, the thick horizontal line and the diamond symbol represent the median and the mean values, respectively. The vertical lines (whiskers) extend between the maximum and minimum monthly values."}
-knitr::include_graphics("../images/clim-CE-month-norm-MAX-median-N-MW-1.png")
-```
+\begin{figure}
+
+{\centering \includegraphics[width=1\linewidth]{../images/clim-CE-month-norm-MAX-median-N-MW-1} 
+
+}
+
+\caption{Seasonal variability of the number of CE events in Thessaloniki for the period 1993 -- 2023 normalized to the maximum occurring in June, in the form of a box and whisker plot. The monthly values have also been normalized to the relative abundance of valid GHI observations. The box contains the data between the lower $25\,\%$ and the upper $75\,\%$ percentiles, the thick horizontal line and the diamond symbol represent the median and the mean values, respectively. The vertical lines (whiskers) extend between the maximum and minimum monthly values.}\label{fig:relative-month-occurrences}
+\end{figure}
 
 The distribution of the number of CE events as a function of OIR is shown in
 Figure\nobreakspace{}\ref{fig:ovir-distribution}.  Apparently, there is an inverse
@@ -737,7 +726,7 @@ relationship between the frequency of CE events and OIR with an exponential-like
 decline. This is expected, as the stronger the CE events are, the rarer the
 conditions favoring the occurrence of CE events.  For the majority (over $62\,\%$) of
 the CE events the OIR is below the long-term average of
-$`r round(mean(ST_E_yearly$GLB_diff.mean),1)`\,\text{W}/\text{m}^2$, while about
+$39.9\,\text{W}/\text{m}^2$, while about
 $8.1\,\%$ of the events correspond to OIR larger than $100\,\text{W}/\text{m}^2$ and
 up to the highest value of $412.4\,\text{W}/\text{m}^2$.  This distribution is
 indicative of the magnitude and the probability of the expected CE events over
@@ -747,9 +736,14 @@ $2.5^\circ$ south of Thessaloniki and is exposed to air masses coming mainly fro
 eastern Mediterranean resulting in different cloud patterns, that may affect the
 characteristics and magnitude of the CE events.
 
-```{r ovir-distribution, echo=FALSE, fig.cap="Relative frequency distribution of CE events in Thessaloniki for the period 1993 -- 2023 as a function of OIR."}
-knitr::include_graphics("../images/P-relative-distribution-diff-1.png")
-```
+\begin{figure}
+
+{\centering \includegraphics[width=1\linewidth]{../images/P-relative-distribution-diff-1} 
+
+}
+
+\caption{Relative frequency distribution of CE events in Thessaloniki for the period 1993 -- 2023 as a function of OIR.}\label{fig:ovir-distribution}
+\end{figure}
 
 
 ## Duration of cloud enhancement events
@@ -757,19 +751,23 @@ knitr::include_graphics("../images/P-relative-distribution-diff-1.png")
 The duration of the CE events is variable and can last for several minutes or even
 more than an hour. In order to study the characteristics of these consecutive events,
 we grouped them into bins of increasing duration in steps of one minute.  We have
-identified `r ST_G0[, .N]` groups of CE in the whole period of study, where the group
+identified 28468 groups of CE in the whole period of study, where the group
 of the longest duration of
-`r ST_G0[, max(GLB_diff.N)]` minutes occurred on
-`r strftime(ST_G0[which.max(GLB_diff.N), Date], "%d\\ %B %Y")`.
+140 minutes occurred on
+07\ July 2013.
 Figure\nobreakspace{}\ref{fig:ceg-duration-distribution} shows the frequency
 distribution of the CE events according to their duration.  We conclude that although
 some groups of events last for more than an hour, about $80\,\%$ have duration of
 less than 5 minutes.
 
-```{r ceg-duration-distribution, echo=FALSE, fig.cap="Relative frequency distribution of CE groups of consequent CE events according to their duration for Thessaloniki in the period 1993 -- 2023. The histogram was split in two plots with different y-axis scales for better readability."}
-# knitr::include_graphics("../images/groups-1.png")
-knitr::include_graphics("../images/groups-7.png")
-```
+\begin{figure}
+
+{\centering \includegraphics[width=1\linewidth]{../images/groups-7} 
+
+}
+
+\caption{Relative frequency distribution of CE groups of consequent CE events according to their duration for Thessaloniki in the period 1993 -- 2023. The histogram was split in two plots with different y-axis scales for better readability.}\label{fig:ceg-duration-distribution}
+\end{figure}
 
 The relation between the duration and the mean OIR of the groups has also been
 studied (Figure\nobreakspace{}\ref{fig:group-2d}).  Evidently, evens of high excess
@@ -780,9 +778,14 @@ and long duration are very rare.  Similar results of this relation have been rep
 by @Zhang2018 in a study using a far higher sampling rate ($100\,\text{Hz}$) than
 ours.
 
-```{r group-2d, echo=FALSE, fig.cap="Relation of excess irradiation of CE groups with their duration for Thessaloniki in the period 1993 -- 2023. The logarithmic color scale denotes the frequency of the respective groups of events."}
-knitr::include_graphics("../images/P-groups-bin2d-1.png")
-```
+\begin{figure}
+
+{\centering \includegraphics[width=1\linewidth]{../images/P-groups-bin2d-1} 
+
+}
+
+\caption{Relation of excess irradiation of CE groups with their duration for Thessaloniki in the period 1993 -- 2023. The logarithmic color scale denotes the frequency of the respective groups of events.}\label{fig:group-2d}
+\end{figure}
 
 <!-- ```{r echo=FALSE, fig.cap="Relation of mean over irradiance and CE group duration"} -->
 <!-- knitr::include_graphics("../images/groups-4.png") -->
@@ -807,9 +810,14 @@ period in late autumn (September and October).  This is probably related to the
 weather characteristics in these periods, with frequent alternations between clear
 sky periods and clouds.
 
-```{r relative-month-occurancies-ECE, echo=FALSE, fig.cap="Seasonal variability of the number of ECE events in Thessaloniki for the period 1993 -- 2023 normalized to the maximum occurring in March, in the form of a box and whisker plot. The box contains the data between the lower $25\\,\\%$ and the upper $75\\,\\%$ percentiles. The thick horizontal line and the diamond symbol represent the median and the mean values, respectively. The vertical lines (whiskers) extend between the maximum and minimum monthly values."}
-knitr::include_graphics("../images/clim-ECE-month-norm-MAX-median-N-2.png")
-```
+\begin{figure}
+
+{\centering \includegraphics[width=1\linewidth]{../images/clim-ECE-month-norm-MAX-median-N-2} 
+
+}
+
+\caption{Seasonal variability of the number of ECE events in Thessaloniki for the period 1993 -- 2023 normalized to the maximum occurring in March, in the form of a box and whisker plot. The box contains the data between the lower $25\,\%$ and the upper $75\,\%$ percentiles. The thick horizontal line and the diamond symbol represent the median and the mean values, respectively. The vertical lines (whiskers) extend between the maximum and minimum monthly values.}\label{fig:relative-month-occurancies-ECE}
+\end{figure}
 
 <!-- ```{r echo=FALSE, fig.cap="Distribution of the number of ECE cases"} -->
 <!-- knitr::include_graphics("../images/climECEmonth-1.png") -->
@@ -824,9 +832,14 @@ findings are in accordance with the results of @Vamvakas2020, the only differenc
 being that the OIR values reported for are higher than those for Thessaloniki.
 
 
-```{r P-extreme-distribution, echo=FALSE, fig.cap="Distribution of ECE events in Thessaloniki for the period 1993 -- 2023."}
-knitr::include_graphics("../images/P-extreme-distribution-1.png")
-```
+\begin{figure}
+
+{\centering \includegraphics[width=1\linewidth]{../images/P-extreme-distribution-1} 
+
+}
+
+\caption{Distribution of ECE events in Thessaloniki for the period 1993 -- 2023.}\label{fig:P-extreme-distribution}
+\end{figure}
 
 <!-- ```{r echo=FALSE, fig.cap="Distribution of ECE Irradiance above 'TSI'"} -->
 <!-- knitr::include_graphics("../images/extremedistributions-4.png") -->
@@ -854,9 +867,9 @@ By creating a clear sky approximation representing the long- and short-term
 variability of the expected clear sky GHI, we were able to identify cases of CE
 events in Thessaloniki for the period 1993 -- 2023.  After analyzing the CE cases, we
 found an increase of
-$`r round(yearlyCE[var == "GLB_diff.N", slope], 1)`\pm `r round(2 * yearlyCE[var == "GLB_diff.N", slope.sd], 1)`\,\text{cases}/\text{year}$,
+$45.6\pm 21.9\,\text{cases}/\text{year}$,
 with the mean annual irradiation of the CE events increasing with a rate of
-$`r round(yearlyCE[var == "GLB_diff.sum", slope], 1)`\pm `r round(2 * yearlyCE[var == "GLB_diff.sum", slope.sd], 1)`\,\text{kJ}/\text{year}$.
+$116.9\pm 67.8\,\text{kJ}/\text{year}$.
 The most active months of CE events are May and June.  We found that continuous CE
 events can last up to $140$ minutes, while the duration of $80\,\%$ of them is bellow
 $5$ minutes.
