@@ -63,7 +63,7 @@ keywords:
   - over irradiance
 
 journal:        "Atmospheric Research"
-date:           "2024-07-10"
+date:           "2024-08-23"
 linenumbers:    false
 numbersections: true
 bibliography:   bibliography.bib
@@ -159,7 +159,7 @@ clouds. In general, clouds can attenuate a fraction of solar irradiance, but und
 certain conditions, can lead to enhancement of the global horizontal irradiance (GHI)
 reaching the ground. This cloud enhancement (CE) effect can locally increase the
 observed GHI to levels even higher than the expected clear-sky irradiance
-[@Cordero2023; @Vamvakas2020; @CastillejoCuberos2020; @Vamvakas2020 and references
+[@Cordero2023; @Vamvakas2020; @CastillejoCuberos2020;  and references
 therein].
 
 Some of the proposed underling mechanisms of those enhancements, have been summarized
@@ -175,7 +175,7 @@ thickness, structure and type, and the relative position of the sun and the clou
 
 On multiple sites, cloud enhancements have been reported that exceed momentarily the
 solar constant, resulting in clearness indices above unit. A summary of extreme cloud
-enchantment (ECE) cases has been compiled by @Martins2022. Cloud enhancements can
+enhancement (ECE) cases has been compiled by @Martins2022. Cloud enhancements can
 have also some practical implications.  The intensity and duration of enhancements
 can affect the efficiency and stability of photovoltaic power production
 [@Lappalainen2020; @Jaervelae2020], while ECEs have the potential to compromise the
@@ -202,12 +202,12 @@ other statistical characteristics, and in some cases, with visual inspection of 
 camera images [@Vamvakas2020; @Mol2023 and references therein].
 
 <!-- our work -->
-In this study, we evaluate the effects CE on GHI by investigating their frequency of
-occurrence, intensity, and duration in a thirty-year period of GHI observations at
+In this study, we evaluate the effects of CE on GHI by investigating their frequency
+of occurrence, intensity, and duration in a thirty-year period of GHI observations at
 Thessaloniki, Greece.  We used modeled clear sky irradiance as a baseline to identify
-cloud enhancements, and we determined long-term trends of the above-mentioned metrics,
-their climatology and some general characteristics.  To our knowledge there are no
-other studies that provide trends from such long dataset.
+cloud enhancements, and we determined long-term trends of the above-mentioned
+metrics, their climatology and some general characteristics.  To our knowledge there
+are no other studies that provide trends from such long dataset.
 
 <!--
 Identification methods from bib
@@ -293,7 +293,7 @@ exceeds the expected value under clear-sky conditions. Similarly, we define as
 extreme cloud enhancement events (ECE), the cases when GHI at ground level exceeds
 the Total Solar Irradiance (TSI). Although the duration of these bursts can vary from
 seconds to several minutes, here we are constrained by the temporal resolution of our
-data to identify evens with duration of at minimum one-minute.
+data to identify events with duration of at minimum one-minute.
 
 For the detection of CE cases we established a baseline of irradiance above which we
 characterized each data point as an enhancement event and calculated the over
@@ -505,8 +505,8 @@ the following characteristics:
 (a) the strongest over irradiance CE events,
 (b) the largest daily total over irradiance,
 (c) absence of clouds (by implementing a clear sky identification algorithm as discussed in @Natsis2023),
-(d) absence of clouds and absence of EC events,
-(e) with at least $60\,\%$ of the day length without clouds and presence of EC events,
+(d) absence of clouds and absence of CE events,
+(e) with at least $60\,\%$ of the day length without clouds and presence of CE events,
 (h) randomly selected days, and
 (i) manually selected days.
 For the latter case and where needed, we also used images from the sky-camera to
@@ -661,15 +661,15 @@ CE cases (each with duration of one minute), the yearly mean OIR and the yearly
 excess irradiation for the period 1993 -- 2023, together with corresponding linear
 trends. All three quantities show increasing trends, most pronounced for the
 frequency of occurrence 
-($45.6\pm 21.9\,\text{cases}/\text{year}$)
+($+45.6\pm 21.9\,\text{cases}/\text{year}$)
 and the excess irradiation 
-($116.9 \pm 67.8\,\text{kJ}/\text{year}$),
+($+116.9 \pm 67.8\,\text{kJ}/\text{year}$),
 which are also statistically significant.
 In contrast the trend of the yearly mean OIR is negligible 
-($0.1\pm 0.1\,\text{W}/\text{m}^2/\text{year}$)
+($+0.1\pm 0.1\,\text{W}/\text{m}^2/\text{year}$)
 and of no statistical significance.
 The average OIR for the entire period is
-$39.9\pm 2.7\,\text{W}/\text{m}^2$.
+$+39.9\pm 2.7\,\text{W}/\text{m}^2$.
 The interannual variability of the data about the trend lines is quite large.
 Furthermore, the spread tends to increase with time (at least for the quantities of
 panels b and c), suggesting a significant variability in cloud patterns over the
@@ -770,7 +770,7 @@ less than 5 minutes.
 \end{figure}
 
 The relation between the duration and the mean OIR of the groups has also been
-studied (Figure\nobreakspace{}\ref{fig:group-2d}).  Evidently, evens of high excess
+studied (Figure\nobreakspace{}\ref{fig:group-2d}).  Evidently, events of high excess
 irradiation have small duration and vice versa. The vast majority of grouped events
 are associated with small excess irradiation (e.g., $<5\,\text{kJ}/\text{m}^2$) and
 small duration (e.g., $<5\,\text{min}$) while groups with strong excess irradiation
@@ -867,9 +867,9 @@ By creating a clear sky approximation representing the long- and short-term
 variability of the expected clear sky GHI, we were able to identify cases of CE
 events in Thessaloniki for the period 1993 -- 2023.  After analyzing the CE cases, we
 found an increase of
-$45.6\pm 21.9\,\text{cases}/\text{year}$,
+$+45.6\pm 21.9\,\text{cases}/\text{year}$,
 with the mean annual irradiation of the CE events increasing with a rate of
-$116.9\pm 67.8\,\text{kJ}/\text{year}$.
+$+116.9\pm 67.8\,\text{kJ}/\text{year}$.
 The most active months of CE events are May and June.  We found that continuous CE
 events can last up to $140$ minutes, while the duration of $80\,\%$ of them is bellow
 $5$ minutes.
