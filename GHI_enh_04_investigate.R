@@ -181,10 +181,10 @@ for (DBn in dbs) {
     } else if (grepl("\\.N$", avar)) {
       units <- ""
     } else {
-      units <- bquote(Watt/m^2)
-      units <- "Watt/m^2"
+      units <- bquote(W/m^2)
+      units <- "W/m^2"
       ## set units
-      # ylab = bquote("Deseas." ~ .(translate(avar)) ~ "[" ~ Watt/m^2 ~ "]" )
+      # ylab = bquote("Deseas." ~ .(translate(avar)) ~ "[" ~ W/m^2 ~ "]" )
     }
 
     cat("Units for", avar, ": ", paste(units), "\n\n")

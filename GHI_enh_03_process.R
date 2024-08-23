@@ -876,7 +876,7 @@ ST_monthly[season_Yqrt %% 1 == 0.75, Season := "Autumn"]
 # #+ excess, include=F, echo=F, fig.cap="Trend and mean radiation enhancement radiation, above threshold, per case."
 # plot( Enh_yearly$year, Enh_yearly$Ench_intesit,
 #       xlab = "Year",
-#       ylab = bquote("Mean enhancement intensity ["~ Watt~m^-2~N^-1~"]")
+#       ylab = bquote("Mean enhancement intensity ["~ W~m^-2~N^-1~"]")
 # )
 # abline( h = mean(Enh_yearly$Ench_intesit, na.rm = TRUE), lty = 2 )
 # lm1        <- lm( Enh_yearly$Ench_intesit ~ Enh_yearly$year )
@@ -889,7 +889,7 @@ ST_monthly[season_Yqrt %% 1 == 0.75, Season := "Autumn"]
 # #+ include=F, echo=F
 # plot( Enh_yearly$year, Enh_yearly$avg_Ench,
 #       xlab = "Year",
-#       ylab = bquote("Average enchantment intensity ["~ Watt~m^-2~"]")
+#       ylab = bquote("Average enchantment intensity ["~ W~m^-2~"]")
 # )
 #
 # plot(Enh_daily$Day, Enh_daily$sum_Diff)
