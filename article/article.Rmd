@@ -163,11 +163,6 @@ spring until early summer and autumn.
 -->
 
 <!--
-CE: cloud enhancement cases one minute
-
-ECE: extreme cloud enhancement cases one minute over TSI on horizontal plane
-
-CEG: cloud enhancement groups, cases events with consecutive CE
 
 $\text{GHI}_\text{i}$: measured one minute global horizontal irradiance 
 
