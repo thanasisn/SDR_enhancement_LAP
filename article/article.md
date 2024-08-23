@@ -572,7 +572,7 @@ events with very low OIR may be not detected, these are few with small
 over-irradiance, and it is unlikely that will affect significantly our results.
 
 <!-- extreme caces criterion -->
-A sub-category of the CE events that is often discussed in the relevant literature
+A sub-category of the CE events that is often discussed in the literature
 [@Cordero2023; @Martins2022; @Yordanov2015], are the extreme cloud enhancement (ECE)
 events. These are cases of CE where the measured intensity of the irradiance exceeds
 the TSI at the top of the atmosphere. In this case the threshold $E$ is given by:
@@ -745,7 +745,6 @@ characteristics and magnitude of the CE events.
 \caption{Relative frequency distribution of CE events in Thessaloniki for the period 1993 -- 2023 as a function of OIR.}\label{fig:ovir-distribution}
 \end{figure}
 
-
 ## Duration of cloud enhancement events
 
 The duration of the CE events is variable and can last for several minutes or even
@@ -800,7 +799,7 @@ ours.
 
 An aspect of the CE events that is commonly reported and has some significance on the
 solar energy production infrastructure are the extreme CE events (ECE), where solar
-irradiance exceeds the expected irradiance on top of the atmosphere
+irradiance exceeds the expected irradiance on top of the atmosphere at the same SZA
 (Equation\nobreakspace{}\ref{eq:ECE}).  Analogous to
 Figure\nobreakspace{}\ref{fig:relative-month-occurrences} we have computed the
 distribution of the number of occurrences of ECE events by month in

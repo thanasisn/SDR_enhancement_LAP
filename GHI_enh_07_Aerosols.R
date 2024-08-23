@@ -318,7 +318,7 @@ abline(lm1, col = "red")
 
 ## display trend on graph
 fit <- lm1[[1]]
-units <- "Watt/m^2"
+units <- "W/m^2"
 legend("top", lty = 1, bty = "n", lwd = 2, cex = 1,
        c(paste("Trend: ",
              if (fit[2] > 0) "+" else "-",
@@ -355,7 +355,7 @@ abline(lm_55, col = "red")
 
 ## display trend on graph
 fit <- lm_55[[1]]
-units <- "Watt/m^2"
+units <- "W/m^2"
 legend("top", lty = 1, bty = "n", lwd = 2, cex = 1,
        c(paste("Trend: ",
                if (fit[2] > 0) "+" else "-",
@@ -387,7 +387,7 @@ abline(lm_BR_55, col = "red")
 
 ## display trend on graph
 fit <- lm_BR_55[[1]]
-units <- "Watt/m^2"
+units <- "W/m^2"
 legend("top", lty = 1, bty = "n", lwd = 2, cex = 1,
        c(paste("Trend: ",
                if (fit[2] > 0) "+" else "-",
@@ -457,7 +457,7 @@ abline(lm_min, col = "red")
 
 ## display trend on graph
 fit <- lm_min[[1]]
-units <- "Watt/m^2"
+units <- "W/m^2"
 legend("top", lty = 1, bty = "n", lwd = 2, cex = 1,
        c(paste("Trend: ",
              if (fit[2] > 0) "+" else "-",
@@ -488,7 +488,7 @@ abline(lm_BR_min, col = "red")
 
 ## display trend on graph
 fit <- lm_BR_min[[1]]
-units <- "Watt/m^2"
+units <- "W/m^2"
 legend("top", lty = 1, bty = "n", lwd = 2, cex = 1,
        c(paste("Trend: ",
                if (fit[2] > 0) "+" else "-",
@@ -557,7 +557,7 @@ abline(lm_mean, col = "red")
 
 ## display trend on graph
 fit   <- lm_mean[[1]]
-units <- "Watt/m^2"
+units <- "W/m^2"
 legend("top", lty = 1, bty = "n", lwd = 2, cex = 1,
        c(paste("Trend: ",
                if (fit[2] > 0) "+" else "-",
@@ -594,7 +594,7 @@ abline(lm_BR_mean, col = "red")
 
 ## display trend on graph
 fit <- lm_BR_mean[[1]]
-units <- "Watt/m^2"
+units <- "W/m^2"
 legend("top", lty = 1, bty = "n", lwd = 2, cex = 1,
        c(paste("Trend: ",
                if (fit[2] > 0) "+" else "-",
@@ -638,7 +638,7 @@ abline(lm_median, col = "red")
 
 ## display trend on graph
 fit <- lm_median[[1]]
-units <- "Watt/m^2"
+units <- "W/m^2"
 legend("top", lty = 1, bty = "n", lwd = 2, cex = 1,
        c(paste("Trend: ",
                if (fit[2] > 0) "+" else "-",
@@ -678,7 +678,7 @@ abline(lm_BR_median, col = "red")
 
 ## display trend on graph
 fit <- lm_BR_median[[1]]
-units <- "Watt/m^2"
+units <- "W/m^2"
 legend("top", lty = 1, bty = "n", lwd = 2, cex = 1,
        c(paste("Trend: ",
                if (fit[2] > 0) "+" else "-",
@@ -733,7 +733,7 @@ for (atype in c("SZA min", "SZA mean", "SZA median", "SZA 55") ) {
 
     ## display trend on graph
     fit   <- lm1[[1]]
-    units <- "Watt/m^2"
+    units <- "W/m^2"
     legend("top", lty = 1, bty = "n", lwd = 2, cex = 1,
            c(paste("Trend: ",
                    if (fit[2] > 0) "+" else "-",
