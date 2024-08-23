@@ -599,7 +599,7 @@ for (ii in 1:nrow(vec_days)) {
         plot(temp$Date, temp$wattGLB, col = "green",
              pch  = ".", cex = 2,
              ylim = ylim,
-             ylab = expression(Watt/m^2), xlab = "Time (UTC)")
+             ylab = expression(W/m^2), xlab = "Time (UTC)")
         ## Global
         lines(temp$Date, temp$wattGLB, col = "green")
 
@@ -637,10 +637,10 @@ for (ii in 1:nrow(vec_days)) {
         title(main = paste(as.Date(aday, origin = "1970-01-01")))
 
         legend("topleft",
-                     c(  "GHI","CE threshold","TSI on ground","Cloud Enhancement","Clouds IDs"),
-               col = c("green",         "red",        "black",              "red",      "blue"),
-               pch = c(     NA,            NA,             NA,                 1 ,           3),
-               lty = c(      1,             1,              1,                NA ,          NA),
+                     c(  "GHI","CE threshold","TSI on horizontal plane","Cloud Enhancement","Clouds IDs"),
+               col = c("green",         "red",                  "black",              "red",      "blue"),
+               pch = c(     NA,            NA,                       NA,                 1 ,           3),
+               lty = c(      1,             1,                        1,                NA ,          NA),
                bty = "n",
                cex = 0.8
         )
@@ -783,7 +783,7 @@ for (pyear in yearstodo) {
         xlab(bquote("Clear sky reference" ~ group("[", W/m^2,"]"))) +
         # xlab(paste0(SelEnhanc, "_ref")) +
         # labs(color = "Over\nIrradiance W/m^2") +
-        labs(color = bquote("OIR" ~ group("[", W/m^2,"]"))) +
+        labs(color = bquote("OI" ~ group("[", W/m^2,"]"))) +
         theme(
             legend.title         = element_text(size = 10),
             legend.position      = c(.03, .97),
