@@ -695,7 +695,7 @@ area, possibly associated to changes in climate.
 We have to note that the excess irradiation related to the CE events cannot be
 directly linked to the total energy balance of the atmosphere. The net solar
 radiation of the region is not increased, but is rather redistributed through the CE
-events.  This is also depicted by the ECE irradiance values, which can exceed the
+events.  This is also depicted by the ECE irradiance values, which exceed the
 equivalent clear sky irradiance by a significant amount.
 
 \begin{figure}% [h!]
@@ -733,7 +733,7 @@ knitr::include_graphics("../images/clim-CE-month-norm-MAX-median-N-MW-1.png")
 ```
 
 The distribution of the number of CE events as a function of OIR is shown in
-Figure\nobreakspace{}\ref{fig:ovir-distribution}.  Apparently, there is an inverse
+Figure\nobreakspace{}\ref{fig:ovir-distribution}.  There is an inverse
 relationship between the frequency of CE events and OIR with an exponential-like
 decline. This is expected, as the stronger the CE events are, the rarer the
 conditions favoring the occurrence of CE events.  For the majority (over $62\,\%$) of
