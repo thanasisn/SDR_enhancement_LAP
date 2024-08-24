@@ -581,6 +581,8 @@ vec_days <- matrix(
     byrow = TRUE,
     ncol  = 2)
 
+solar_constant <- 1367
+
 ## Format to data frame
 vec_days <- data.frame(Data        = vec_days[,1],
                        Descriprion = vec_days[,2])
@@ -591,15 +593,22 @@ for (ii in 1:nrow(vec_days)) {
     temp    <- get(vec_days$Data[ii])
     daylist <- sort(temp$Day)
 
+    ##test
+    daylist <- "2019-07-11"
+
     for (aday in daylist) {
         temp <- DATA[Day == aday]
         par(mar = c(4, 4, 1, 1))
-        ylim <- range(0, temp$ETH, temp$wattGLB, na.rm = TRUE)
+        # ylim <- range(0, temp$ETH, temp$wattGLB, na.rm = TRUE)
+        ylim <- range(0, temp$ETH, temp$wattGLB, solar_constant, na.rm = TRUE)
 
         plot(temp$Date, temp$wattGLB, col = "green",
              pch  = ".", cex = 2,
              ylim = ylim,
              ylab = expression(W/m^2), xlab = "Time (UTC)")
+
+        abline(h = solar_constant, col = "orange", lty = 3)
+
         ## Global
         lines(temp$Date, temp$wattGLB, col = "green")
 
@@ -627,7 +636,9 @@ for (ii in 1:nrow(vec_days)) {
         #      line = 1.2, lwd = 0, lwd.ticks = 0, cex.axis = 0.8)
 
         ## Enchantment cases
-        points(temp[get(SelEnhanc) == TRUE, wattGLB, Date], col = "red")
+        points(temp[get(SelEnhanc) == TRUE & wattGLB <  ETH, wattGLB, Date], col = "red")
+        points(temp[get(SelEnhanc) == TRUE & wattGLB >= ETH, wattGLB, Date], col = "magenta")
+
 
         ## Cloud cases
         points(temp[TYPE == "Cloud", wattGLB, Date], col = "blue", pch = 3, cex = 0.3)
@@ -636,11 +647,11 @@ for (ii in 1:nrow(vec_days)) {
         # title(main = paste(as.Date(aday, origin = "1970-01-01"), temp[get(SelEnhanc) == TRUE, .N], temp[TYPE == "Cloud", .N], vec_days$Descriprion[ii]))
         title(main = paste(as.Date(aday, origin = "1970-01-01")))
 
-        legend("topleft",
-                     c(  "GHI","CE threshold","TSI on horizontal plane","Cloud Enhancement","Clouds IDs"),
-               col = c("green",         "red",                  "black",              "red",      "blue"),
-               pch = c(     NA,            NA,                       NA,                 1 ,           3),
-               lty = c(      1,             1,                        1,                NA ,          NA),
+        legend("bottomright", ncol = 2,
+                     c(  "GHI","CE threshold","TSI on horizontal plane","Solar Constant", "CE events","ECE events","Clouds IDs"),
+               col = c("green",         "red",                  "black",        "orange",       "red",   "magenta",      "blue"),
+               pch = c(     NA,            NA,                       NA,              NA,          1 ,          1 ,           3),
+               lty = c(      1,             1,                        1,               3,          NA,          NA,          NA),
                bty = "n",
                cex = 0.8
         )
