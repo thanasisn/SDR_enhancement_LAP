@@ -538,7 +538,7 @@ ggplot(data = ST_G0, aes(x = GLB_ench.N)) +
 sa        <- hist(ST_G0[GLB_ench.N <  split, GLB_ench.N], breaks = seq(0, 100, 2 * binwidth), plot = FALSE)
 sa_counts <- sum(sa$counts)
 
-sb        <- hist(ST_G0[GLB_ench.N >= split, GLB_ench.N], breaks = seq(split, 500, 12 * binwidth))
+sb        <- hist(ST_G0[GLB_ench.N >= split, GLB_ench.N], breaks = seq(split, 500, 12 * binwidth), plot = FALSE )
 sb_counts <- sum(sb$counts)
 
 sa_ratio <- sa_counts / (sa_counts + sb_counts)

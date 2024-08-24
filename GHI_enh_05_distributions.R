@@ -359,7 +359,7 @@ ggplot(data = DATA[GLB_diff > 0], aes(x = GLB_diff)) +
                  boundary = 0,
                  fill = varcol( "GLB_diff"),
                  color    = "black") +
-  xlab(bquote("Over Irradiance" ~ group("[", W/m^2,"]"))) +
+  xlab(bquote("OI" ~ group("[", W/m^2,"]"))) +
   ylab("Relative frequency [%]") +
   labs(caption = bquote(paste("Bin width: ", .(binwidth)) ~ group("[", W/m^2,"]"))) #  +
   # inset_element(p1, left = 0.4, bottom = 0.4, right = 1, top = 1,
@@ -382,51 +382,87 @@ per   <- 100 * DATA[GLB_diff > 0 & GLB_diff < below, .N] / DATA[GLB_diff > 0, .N
 cat(paste("\n", per, "% of the values are below", below, "W/m^2\n\n" ))
 
 
-stop()
 
 ## slipt histogram
-binwidth <- 2
-split    <- 24
+binwidth <- 30
+split    <- binwidth * 7
 
-sa        <- hist(ST_G0[GLB_ench.N <  split, GLB_ench.N], breaks = seq(0, 100, 2 * binwidth), plot = FALSE)
+sa        <- hist(DATA[GLB_diff > 0 & GLB_diff <  split, GLB_diff], breaks = seq(0, split, binwidth),    plot = FALSE)
 sa_counts <- sum(sa$counts)
 
-sb        <- hist(ST_G0[GLB_ench.N >= split, GLB_ench.N], breaks = seq(split, 500, 12 * binwidth))
+sb        <- hist(DATA[GLB_diff > 0 & GLB_diff >= split, GLB_diff], breaks = seq(split, 1500, binwidth), plot = FALSE)
 sb_counts <- sum(sb$counts)
 
 sa_ratio <- sa_counts / (sa_counts + sb_counts)
 sb_ratio <- sb_counts / (sa_counts + sb_counts)
-#
-#
-# pa <- ggplot(data = ST_G0, aes(x = GLB_ench.N)) +
-#   geom_histogram(aes(y = (sa_ratio * after_stat(count))/sum(after_stat(count)) * 100),
-#                  binwidth = binwidth,
-#                  boundary = 0,
-#                  color    = "black") +
-#   # xlab(bquote(.(varname("GLB_diff")) ~ group("[", W/m^2,"]"))) +
-#   xlab("Duration of enhancement group [min]") +
-#   ylab("Relative frequency [%]") +
-#   # labs(caption = paste("Bin width:", binwidth, "min")) +
-#   scale_x_continuous(
-#     breaks = seq(0, 100, 2 * binwidth),
-#     limits = c(0, split))
-#
-#
-# pb <- ggplot(data = ST_G0, aes(x = GLB_ench.N)) +
-#   geom_histogram(aes(y = (sb_ratio * after_stat(count))/sum(after_stat(count)) * 100),
-#                  binwidth = binwidth,
-#                  boundary = 0,
-#                  color    = "black") +
-#   xlab("Duration of enhancement group [min]") +
-#   ylab("") +
-#   # labs(caption = paste("Bin width:", binwidth, "min")) +
-#   scale_x_continuous(
-#     breaks = (seq(split, 120, 12 * binwidth), max(ST_G0$GLB_ench.N)),
-#     limits = c(split, max(ST_G0$GLB_ench.N)))
-#
-# plot_grid(pa, pb, labels = c("(a)", "(b)"), greedy = TRUE)
-#
-# # cowplot::plot_grid(pa, pb, labels = "AUTO")
+
+
+pa <- ggplot(data = DATA[GLB_diff > 0], aes(x = GLB_diff)) +
+  geom_histogram(aes(y = (sa_ratio * after_stat(count))/sum(after_stat(count)) * 100),
+                 binwidth = binwidth,
+                 boundary = 0,
+                 fill = varcol( "GLB_diff"),
+                 color    = "black") +
+  xlab(bquote("OI" ~ group("[", W/m^2,"]"))) +
+  ylab("Relative frequency [%]") +
+  scale_x_continuous(
+    breaks = seq(0, split + binwidth, binwidth),
+    limits = c(0, split))
+# print(pa)
+
+
+pb <- ggplot(data = DATA[GLB_diff > 0], aes(x = GLB_diff)) +
+  geom_histogram(aes(y = (sb_ratio * after_stat(count))/sum(after_stat(count)) * 100),
+                 binwidth = binwidth,
+                 boundary = 0,
+                 fill = varcol( "GLB_diff"),
+                 color    = "black") +
+  xlab(bquote("OI" ~ group("[", W/m^2,"]"))) +
+  ylab("Relative frequency [%]") +
+  scale_x_continuous(
+    breaks = c(seq(split, max(DATA[GLB_diff > 0, GLB_diff]), binwidth), ceiling(max(DATA[GLB_diff > 0, GLB_diff]))),
+    limits = c(split, ceiling(max(DATA[GLB_diff > 0, GLB_diff]))))
+# print(pb)
+
+
+
+## merge plots
+
+library(ggpubr)
+
+# Remove axis titles from all plots
+p      <- list(pa, pb) |> map(~.x + labs(x=NULL, y=NULL, caption = NULL))
+yleft  <- textGrob("Relative frequency [%]", rot = 90)
+bottom <- textGrob(bquote("OI" ~ group("[", W/m^2,"]")))
+
+
+margin = theme(plot.margin = unit(c(.1,.1,.1,.1), "cm"))
+
+## no labels
+grid.arrange(grobs = lapply(p, "+", margin), ncol = 2, nrow = 1,
+             left = yleft, bottom = bottom)
+
+pa1 <- pa + labs(x=NULL, y=NULL, caption = NULL)
+pa1 <- annotate_figure(pa1, fig.lab = "(a)")
+
+pb1 <- pb + labs(x=NULL, y=NULL, caption = NULL)
+pb1 <- annotate_figure(pb1, fig.lab = "(b)")
+
+p1 <- list(pa1, pb1)
+
+## with labels
+grid.arrange(grobs = lapply(p1, "+", margin), ncol = 2, nrow = 1,
+             left = yleft, bottom = bottom)
+
+
+
+
+
+
+
+
+
+
 
 
 
