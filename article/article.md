@@ -63,7 +63,7 @@ keywords:
   - over irradiance
 
 journal:        "Atmospheric Research"
-date:           "2024-08-24"
+date:           "2024-08-25"
 linenumbers:    false
 numbersections: true
 bibliography:   bibliography.bib
@@ -756,7 +756,7 @@ less than 5 minutes.
 
 \begin{figure}
 
-{\centering \includegraphics[width=1\linewidth]{../images/groups-8} 
+{\centering \includegraphics[width=1\linewidth]{../images/groups-7} 
 
 }
 
