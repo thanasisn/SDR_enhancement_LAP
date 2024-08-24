@@ -594,7 +594,7 @@ for (ii in 1:nrow(vec_days)) {
     daylist <- sort(temp$Day)
 
     ##test
-    daylist <- "2019-07-11"
+    # daylist <- "2019-07-11"
 
     for (aday in daylist) {
         temp <- DATA[Day == aday]
@@ -655,22 +655,7 @@ for (ii in 1:nrow(vec_days)) {
                bty = "n",
                cex = 0.8
         )
-        # legend("topleft",
-        #              c(  "GHI","CE threshold","TSI on horizontal plane","Cloud Enhancement", paste0(csmodel, ".glo"),"Clouds ID"),
-        #        col = c("green",          "red",                  "black",                  "red",              "magenta",    "blue"),
-        #        pch = c(     NA,             NA,                       NA,                     1 ,                     NA,         3),
-        #        lty = c(      1,              1,                        1,                    NA ,                      1,        NA),
-        #        bty = "n",
-        #        cex = 0.8
-        # )
-#         legend("topleft",
-#                c(  "GHI", "DNI","GHI threshold","TSI on horizontal level","GHI Enhancement event",paste0(csmodel, ".glo"),"CloudsID"),
-#                col = c("green","blue",          "red",                  "black",                  "red",              "magenta",    "blue"),
-#                pch = c(     NA,    NA,             NA,                       NA,                     1 ,                     NA,         3),
-#                lty = c(      1,     1,              1,                        1,                    NA ,                      1,        NA),
-#                bty = "n",
-#                cex = 0.8
-#         )
+
 
         ## ggplot
 
@@ -773,52 +758,53 @@ if (TEST) {
 
 # yearstodo <- 2005
 for (pyear in yearstodo) {
-    p <-
-        ggplot(DATA[year(Date) == pyear],
-               aes(get(paste0(SelEnhanc,"_ref")), wattGLB)) +
-        geom_point(data   = DATA[year(Date) == pyear & get(SelEnhanc) == FALSE,],
-                   colour = "black",
-                   alpha  = .1,
-                   na.rm  = TRUE,
-                   size   = 0.2) +
-        geom_point(data   = DATA[year(Date) == pyear & get(SelEnhanc) == TRUE,],
-                   na.rm  = TRUE,
-                   size   = 0.2,
-                   aes(color = GLB_diff)) +
-        scale_colour_gradient(low      = "blue",
-                              high     = "red",
-                              limits   = c(0, NA),  ## always display zero
-                              na.value = NA) +
-        labs(title = pyear) +
-        ylab(bquote("GHI" ~ group("[", W/m^2,"]"))) +
-        xlab(bquote("Clear sky reference" ~ group("[", W/m^2,"]"))) +
-        # xlab(paste0(SelEnhanc, "_ref")) +
-        # labs(color = "Over\nIrradiance W/m^2") +
-        labs(color = bquote("OI" ~ group("[", W/m^2,"]"))) +
-        theme(
-            legend.title         = element_text(size = 10),
-            legend.position      = c(.03, .97),
-            legend.justification = c("left", "top"),
-            legend.box.just      = "right",
-            legend.key           = element_blank(),
-            legend.background    = element_rect(fill = "transparent"),
-            legend.margin        = margin(6, 6, 6, 6) ) +
-        scale_x_continuous(expand = expansion(mult = c(0.03, 0.03))) +
-        scale_y_continuous(breaks = scales::breaks_extended(n = 6),
-                           expand = expansion(mult = c(0.03, 0.03)))
-    print(p)
+  p <-
+    ggplot(DATA[year(Date) == pyear],
+           aes(get(paste0(SelEnhanc,"_ref")), wattGLB)) +
+    geom_point(data   = DATA[year(Date) == pyear & get(SelEnhanc) == FALSE,],
+               colour = "black",
+               alpha  = .1,
+               na.rm  = TRUE,
+               size   = 0.2) +
+    geom_point(data   = DATA[year(Date) == pyear & get(SelEnhanc) == TRUE,],
+               na.rm  = TRUE,
+               size   = 0.2,
+               aes(color = GLB_diff)) +
+    scale_colour_gradient(low      = "blue",
+                          high     = "red",
+                          limits   = c(0, NA),  ## always display zero
+                          na.value = NA) +
+    # geom_abline(aes(intercept = 0, slope = 0, color = "X"), linetype = "dotted") +
+    labs(title = pyear) +
+    ylab(bquote("GHI" ~ group("[", W/m^2,"]"))) +
+    xlab(bquote("Clear sky reference" ~ group("[", W/m^2,"]"))) +
+    # xlab(paste0(SelEnhanc, "_ref")) +
+    # labs(color = "Over\nIrradiance W/m^2") +
+    labs(color = bquote("OI" ~ group("[", W/m^2,"]"))) +
+    theme(
+      legend.title         = element_text(size = 10),
+      legend.position      = c(.03, .97),
+      legend.justification = c("left", "top"),
+      legend.box.just      = "right",
+      legend.key           = element_blank(),
+      legend.background    = element_rect(fill = "transparent"),
+      legend.margin        = margin(6, 6, 6, 6) ) +
+    scale_x_continuous(expand = expansion(mult = c(0.03, 0.03))) +
+    scale_y_continuous(breaks = scales::breaks_extended(n = 6),
+                       expand = expansion(mult = c(0.03, 0.03)))
+    # scale_color_manual(values = c(X = 'grey', Y = 'black'))
+  print(p)
+  # stop()
+  # ggplot(DATA, aes(CS_ref, wattGLB)) +
+  #     geom_point(data = DATA[GLB_diff < 0], colour = "black", size = 0.5) +
+  #     geom_point(data = DATA[GLB_diff > 0], size = 0.5, aes(color = GLB_diff)) +
+  #     scale_colour_gradient(low = "blue", high = "red", na.value = NA)
 
-    # ggplot(DATA, aes(CS_ref, wattGLB)) +
-    #     geom_point(data = DATA[GLB_diff < 0], colour = "black", size = 0.5) +
-    #     geom_point(data = DATA[GLB_diff > 0], size = 0.5, aes(color = GLB_diff)) +
-    #     scale_colour_gradient(low = "blue", high = "red", na.value = NA)
-
-    # ggplot(DATA[year(Date) == 2018], aes(CS_ref, wattGLB)) +
-    #     geom_point(data = DATA[year(Date) == 2018 & GLB_diff < 0], colour = "black", size = 0.5) +
-    #     geom_point(data = DATA[year(Date) == 2018 & GLB_diff > 0], size = 0.5, aes(color = GLB_diff)) +
+  # ggplot(DATA[year(Date) == 2018], aes(CS_ref, wattGLB)) +
+  #     geom_point(data = DATA[year(Date) == 2018 & GLB_diff < 0], colour = "black", size = 0.5) +
+  #     geom_point(data = DATA[year(Date) == 2018 & GLB_diff > 0], size = 0.5, aes(color = GLB_diff)) +
     #     scale_colour_gradient2(low = "black", mid = "yellow", high = "red", na.value = NA)
 }
-
 
 
 
