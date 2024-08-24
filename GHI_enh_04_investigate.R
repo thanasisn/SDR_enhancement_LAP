@@ -921,6 +921,7 @@ ggplot(ST_extreme_monthly, aes(y = GLB_ench.N/max_median,
   )
 
 
+
 #'
 #' ## Monthly weighted extreme CE
 #'
@@ -1347,6 +1348,7 @@ p2
 
 pvar3   <- "GLB_diff.mean"
 dataset <- copy(ST_E_yearly)
+dataset <- dataset[year > 1993]
 
 ## linear model by year step
 lmY3 <- lm(dataset[[pvar3]] ~ dataset$year)
@@ -1382,7 +1384,8 @@ p3 <- ggplot(dataset,
              shape = 16,
              size  = 3) +
   geom_abline(intercept = lmY3$coefficients[1], slope = lmY3$coefficients[2]) +
-  ylab(bquote("CE" ~ .(varname(pvar3)) ~ .(staname(pvar3)) ~ group("[", W/m^2,"]"))) +
+  # ylab(bquote(.(stringr::str_to_title(staname(pvar3))) ~ "CE" ~ .(varname(pvar3)) ~ group("[", W/m^2,"]"))) +
+  ylab(bquote("Mean CE" ~ .(varname(pvar3)) ~ group("[", W/m^2,"]"))) +
   xlab("Date") +
   annotation_custom(grob) +
   scale_y_continuous(guide        = "axis_minor",
@@ -1403,6 +1406,7 @@ p3
 
 pvar4   <- "GLB_diff.median"
 dataset <- copy(ST_E_yearly)
+dataset <- dataset[year > 1993]
 
 ## linear model by year step
 lmY4 <- lm(dataset[[pvar4]] ~ dataset$year)
