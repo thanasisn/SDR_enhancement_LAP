@@ -763,7 +763,7 @@ less than 5 minutes.
 
 ```{r ceg-duration-distribution, echo=FALSE, fig.cap="Relative frequency distribution of CE groups of consequent CE events according to their duration for Thessaloniki in the period 1993 -- 2023. The histogram was split in two plots with different y-axis scales for better readability."}
 # knitr::include_graphics("../images/groups-1.png")
-knitr::include_graphics("../images/groups-7.png")
+knitr::include_graphics("../images/groups-8.png")
 ```
 
 The relation between the duration and the mean OI of the groups has also been

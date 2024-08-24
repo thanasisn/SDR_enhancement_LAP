@@ -382,6 +382,55 @@ per   <- 100 * DATA[GLB_diff > 0 & GLB_diff < below, .N] / DATA[GLB_diff > 0, .N
 cat(paste("\n", per, "% of the values are below", below, "W/m^2\n\n" ))
 
 
+stop()
+
+## slipt histogram
+binwidth <- 2
+split    <- 24
+
+sa        <- hist(ST_G0[GLB_ench.N <  split, GLB_ench.N], breaks = seq(0, 100, 2 * binwidth), plot = FALSE)
+sa_counts <- sum(sa$counts)
+
+sb        <- hist(ST_G0[GLB_ench.N >= split, GLB_ench.N], breaks = seq(split, 500, 12 * binwidth))
+sb_counts <- sum(sb$counts)
+
+sa_ratio <- sa_counts / (sa_counts + sb_counts)
+sb_ratio <- sb_counts / (sa_counts + sb_counts)
+#
+#
+# pa <- ggplot(data = ST_G0, aes(x = GLB_ench.N)) +
+#   geom_histogram(aes(y = (sa_ratio * after_stat(count))/sum(after_stat(count)) * 100),
+#                  binwidth = binwidth,
+#                  boundary = 0,
+#                  color    = "black") +
+#   # xlab(bquote(.(varname("GLB_diff")) ~ group("[", W/m^2,"]"))) +
+#   xlab("Duration of enhancement group [min]") +
+#   ylab("Relative frequency [%]") +
+#   # labs(caption = paste("Bin width:", binwidth, "min")) +
+#   scale_x_continuous(
+#     breaks = seq(0, 100, 2 * binwidth),
+#     limits = c(0, split))
+#
+#
+# pb <- ggplot(data = ST_G0, aes(x = GLB_ench.N)) +
+#   geom_histogram(aes(y = (sb_ratio * after_stat(count))/sum(after_stat(count)) * 100),
+#                  binwidth = binwidth,
+#                  boundary = 0,
+#                  color    = "black") +
+#   xlab("Duration of enhancement group [min]") +
+#   ylab("") +
+#   # labs(caption = paste("Bin width:", binwidth, "min")) +
+#   scale_x_continuous(
+#     breaks = (seq(split, 120, 12 * binwidth), max(ST_G0$GLB_ench.N)),
+#     limits = c(split, max(ST_G0$GLB_ench.N)))
+#
+# plot_grid(pa, pb, labels = c("(a)", "(b)"), greedy = TRUE)
+#
+# # cowplot::plot_grid(pa, pb, labels = "AUTO")
+
+
+
+
 
 
 ## Extreme CE distribution  -------

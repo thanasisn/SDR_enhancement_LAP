@@ -756,7 +756,7 @@ less than 5 minutes.
 
 \begin{figure}
 
-{\centering \includegraphics[width=1\linewidth]{../images/groups-7} 
+{\centering \includegraphics[width=1\linewidth]{../images/groups-8} 
 
 }
 

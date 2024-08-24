@@ -533,8 +533,9 @@ ggplot(data = ST_G0, aes(x = GLB_ench.N)) +
 #   labs(caption = paste("Bin width:", "2.5 or 50", "min"))
 
 
+## adjust relative area of the split
 
-sa        <- hist(ST_G0[GLB_ench.N <  split, GLB_ench.N], breaks = seq(0, 100, 2 * binwidth))
+sa        <- hist(ST_G0[GLB_ench.N <  split, GLB_ench.N], breaks = seq(0, 100, 2 * binwidth), plot = FALSE)
 sa_counts <- sum(sa$counts)
 
 sb        <- hist(ST_G0[GLB_ench.N >= split, GLB_ench.N], breaks = seq(split, 500, 12 * binwidth))
@@ -552,11 +553,10 @@ pa <- ggplot(data = ST_G0, aes(x = GLB_ench.N)) +
   # xlab(bquote(.(varname("GLB_diff")) ~ group("[", W/m^2,"]"))) +
   xlab("Duration of enhancement group [min]") +
   ylab("Relative frequency [%]") +
-  labs(caption = paste("Bin width:", binwidth, "min")) +
+  # labs(caption = paste("Bin width:", binwidth, "min")) +
   scale_x_continuous(
     breaks = seq(0, 100, 2 * binwidth),
     limits = c(0, split))
-print(pa)
 
 
 pb <- ggplot(data = ST_G0, aes(x = GLB_ench.N)) +
@@ -566,11 +566,10 @@ pb <- ggplot(data = ST_G0, aes(x = GLB_ench.N)) +
                  color    = "black") +
   xlab("Duration of enhancement group [min]") +
   ylab("") +
-  labs(caption = paste("Bin width:", binwidth, "min")) +
+  # labs(caption = paste("Bin width:", binwidth, "min")) +
   scale_x_continuous(
-    breaks = seq(split, 500, 12 * binwidth),
+    breaks = (seq(split, 120, 12 * binwidth), max(ST_G0$GLB_ench.N)),
     limits = c(split, max(ST_G0$GLB_ench.N)))
-print(pb)
 
 plot_grid(pa, pb, labels = c("(a)", "(b)"), greedy = TRUE)
 
@@ -601,8 +600,10 @@ pb1 <- annotate_figure(pb1, fig.lab = "(b)")
 
 p1 <- list(pa1, pb1)
 
+## this is prettier
 grid.arrange(grobs = lapply(p1, "+", margin), ncol = 2, nrow = 1,
              left = yleft, bottom = bottom)
+
 
 
 
