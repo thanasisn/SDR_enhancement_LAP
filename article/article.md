@@ -63,7 +63,7 @@ keywords:
   - over irradiance
 
 journal:        "Atmospheric Research"
-date:           "2024-08-23"
+date:           "2024-08-24"
 linenumbers:    false
 numbersections: true
 bibliography:   bibliography.bib
@@ -661,7 +661,7 @@ and the excess irradiation
 ($+116.9 \pm 67.8\,\text{kJ}/\text{year}$),
 which are also statistically significant.
 In contrast the trend of the yearly mean OI is negligible 
-($+0.1\pm 0.1\,\text{W}/\text{m}^2/\text{year}$)
+($+0\pm 0.1\,\text{W}/\text{m}^2/\text{year}$)
 and of no statistical significance.
 The average OI for the entire period is
 $+39.9\pm 2.7\,\text{W}/\text{m}^2$.
