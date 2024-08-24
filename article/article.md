@@ -131,11 +131,6 @@ spring until early summer and autumn.
 -->
 
 <!--
-CE: cloud enhancement cases one minute
-
-ECE: extreme cloud enhancement cases one minute over TSI on horizontal plane
-
-CEG: cloud enhancement groups, cases events with consecutive CE
 
 $\text{GHI}_\text{i}$: measured one minute global horizontal irradiance 
 
@@ -297,10 +292,10 @@ data to identify events with duration of at minimum one-minute.
 
 For the detection of CE cases we established a baseline of irradiance above which we
 characterized each data point as an enhancement event and calculated the over
-irradiance (OIR). The OIR is defined as the irradiance difference of the measured
+irradiance (OI). The OI is defined as the irradiance difference of the measured
 one-minute GHI from the $\text{GHI}_\text{ref}$ corresponding to cloud-free
 atmosphere.
-<!-- CE identification criterion ($\text{OIR}_i =
+<!-- CE identification criterion ($\text{OI}_i =
 \text{GHI}_i - \text{GHI}_\text{CSlim}$), as defined in
 Equation\nobreakspace\ref{eq:CE4}. -->
 First, we tested two simple approaches for the determination of
@@ -454,7 +449,7 @@ clear-sky irradiance for the whole period of study.
 
 ## Criteria for the identification of CE events
 
-In this study our main focus was to quantify the over irradiance related to CEs. A
+In this study our main focus was to quantify the OI related to CEs. A
 key issue for achieving this goal is to define a threshold for the CE
 identification, representative of the clear-sky irradiance at the time of each GHI
 measurement. This depends on the selection of the appropriate atmospheric
@@ -502,8 +497,8 @@ identification results on selected days of the whole dataset.  We tested seven s
 of days with different characteristics relevant to the efficiency of the
 identification threshold.  These sets were random groups of about 20 -- 30 days with
 the following characteristics:
-(a) the strongest over irradiance CE events,
-(b) the largest daily total over irradiance,
+(a) the strongest OI CE events,
+(b) the largest daily total OI,
 (c) absence of clouds (by implementing a clear sky identification algorithm as discussed in @Natsis2023),
 (d) absence of clouds and absence of CE events,
 (e) with at least $60\,\%$ of the day length without clouds and presence of CE events,
@@ -552,7 +547,7 @@ irradiance, and $\text{GHI}_\text{mCSi}$ the selected modelled clear sky irradia
 <!-- duration of elevated irradiance, either due to the clearness of the atmosphere, or some
 <!-- interferences by reflections on nearby bright surfaces. Although, these cases may
 <!-- mask some of the CE events. The actual CE events, produce higher irradiance and thus
-<!-- are identified as such. As a side effect, the reported OIR will be slight
+<!-- are identified as such. As a side effect, the reported OI will be slight
 <!-- underestimated for those SZAs, but the overall contribution of those cases to the
 <!-- total daily energy, is minimal due the low occurrences and the lower irradiances.
 -->
@@ -568,7 +563,7 @@ irradiance, and $\text{GHI}_\text{mCSi}$ the selected modelled clear sky irradia
 The definition of the CE events with this method has a degree of subjectivity, since
 the actual clear sky irradiance is not known and can only be approximated.  However,
 this method was proven capable in detecting all major CE events.  Where some CE
-events with very low OIR may be not detected, these are few with small
+events with very low OI may be not detected, these are few with small
 over-irradiance, and it is unlikely that will affect significantly our results.
 
 <!-- extreme caces criterion -->
@@ -630,8 +625,8 @@ $0.036\,\%$ as ECE events.
 The highest recorded GHI due to CE was
 $1416.6\,\text{W}/\text{m}^2$
 on 24\ May 2007, corresponding
-to OIR of $345.9\,\text{W}/\text{m}^2$.
-<!-- The absolute strongest CE event had an OIR of 
+to OI of $345.9\,\text{W}/\text{m}^2$.
+<!-- The absolute strongest CE event had an OI of 
 <!-- $345.86\,\text{W}/\text{m}^2$ on
 <!-- 24\ May 2007. -->
 The strongest CE event of
@@ -639,7 +634,7 @@ $49.7\,\%$ above the
 clear sky threshold was observed on 
 28\ October 2016.
 In the following sections we are discussing the long-term trends and variability of
-the CE events as well as of the corresponding OIR and excess irradiation.
+the CE events as well as of the corresponding OI and excess irradiation.
 
 
 ## Long-term trends
@@ -650,14 +645,14 @@ by different factors, such as the geometry, size and optical thickness of clouds
 their height in the atmosphere and local weather regimes [@Mol2023; @Veerman2022;
 @Gristey2022; @Tzoumanikas2016].  Some of these factors are related to changes in
 climate; hence it would be reasonable to expect contributing to the frequency of
-occurrence of CE events over Thessaloniki, as well as to the average OIR and excess
+occurrence of CE events over Thessaloniki, as well as to the average OI and excess
 irradiation.  The long-term trends were calculated using a first-order autoregressive
 model with the 'maximum likelihood' fitting method [@Gardner1980; @Jones1980], by
 implementing the function 'arima' from the library 'stats' of the R programming
 language [@RCT2023]. All trends are reported together with their $2\sigma$ error.
 
 Figure\nobreakspace{}\ref{fig:P-energy} shows the time series of the yearly number of
-CE cases (each with duration of one minute), the yearly mean OIR and the yearly
+CE cases (each with duration of one minute), the yearly mean OI and the yearly
 excess irradiation for the period 1993 -- 2023, together with corresponding linear
 trends. All three quantities show increasing trends, most pronounced for the
 frequency of occurrence 
@@ -665,10 +660,10 @@ frequency of occurrence
 and the excess irradiation 
 ($+116.9 \pm 67.8\,\text{kJ}/\text{year}$),
 which are also statistically significant.
-In contrast the trend of the yearly mean OIR is negligible 
+In contrast the trend of the yearly mean OI is negligible 
 ($+0.1\pm 0.1\,\text{W}/\text{m}^2/\text{year}$)
 and of no statistical significance.
-The average OIR for the entire period is
+The average OI for the entire period is
 $+39.9\pm 2.7\,\text{W}/\text{m}^2$.
 The interannual variability of the data about the trend lines is quite large.
 Furthermore, the spread tends to increase with time (at least for the quantities of
@@ -690,7 +685,7 @@ equivalent clear sky irradiance by a significant amount.
             \subfloat[\label{fig:P-energy-sum}]
                 {\includegraphics[width=\linewidth]{../images/P-energy-1} }
         }
-    \caption{Time series for the period 1993 -- 2023 of (a) the yearly CE number of occurrences, (b) the yearly mean OIR and (c) the yearly excess irradiation. The black lines represent the linear trends on the yearly data.}\label{fig:P-energy}
+    \caption{Time series for the period 1993 -- 2023 of (a) the yearly CE number of occurrences, (b) the yearly mean OI and (c) the yearly excess irradiation. The black lines represent the linear trends on the yearly data.}\label{fig:P-energy}
 \end{figure}
 
 
@@ -720,17 +715,17 @@ manifested by the large monthly extremes, especially in the summer.
 \caption{Seasonal variability of the number of CE events in Thessaloniki for the period 1993 -- 2023 normalized to the maximum occurring in June, in the form of a box and whisker plot. The monthly values have also been normalized to the relative abundance of valid GHI observations. The box contains the data between the lower $25\,\%$ and the upper $75\,\%$ percentiles, the thick horizontal line and the diamond symbol represent the median and the mean values, respectively. The vertical lines (whiskers) extend between the maximum and minimum monthly values.}\label{fig:relative-month-occurrences}
 \end{figure}
 
-The distribution of the number of CE events as a function of OIR is shown in
+The distribution of the number of CE events as a function of OI is shown in
 Figure\nobreakspace{}\ref{fig:ovir-distribution}.  There is an inverse
-relationship between the frequency of CE events and OIR with an exponential-like
+relationship between the frequency of CE events and OI with an exponential-like
 decline. This is expected, as the stronger the CE events are, the rarer the
 conditions favoring the occurrence of CE events.  For the majority (over $62\,\%$) of
-the CE events the OIR is below the long-term average of
+the CE events the OI is below the long-term average of
 $39.9\,\text{W}/\text{m}^2$, while about
-$8.1\,\%$ of the events correspond to OIR larger than $100\,\text{W}/\text{m}^2$ and
+$8.1\,\%$ of the events correspond to OI larger than $100\,\text{W}/\text{m}^2$ and
 up to the highest value of $412.4\,\text{W}/\text{m}^2$.  This distribution is
 indicative of the magnitude and the probability of the expected CE events over
-Thessaloniki.  Similar distribution of CE events, albeit with larger OIR values, has
+Thessaloniki.  Similar distribution of CE events, albeit with larger OI values, has
 been reported by @Vamvakas2020, for the city of Patras. This site is located
 $2.5^\circ$ south of Thessaloniki and is exposed to air masses coming mainly from the
 eastern Mediterranean resulting in different cloud patterns, that may affect the
@@ -742,7 +737,7 @@ characteristics and magnitude of the CE events.
 
 }
 
-\caption{Relative frequency distribution of CE events in Thessaloniki for the period 1993 -- 2023 as a function of OIR.}\label{fig:ovir-distribution}
+\caption{Relative frequency distribution of CE events in Thessaloniki for the period 1993 -- 2023 as a function of OI.}\label{fig:ovir-distribution}
 \end{figure}
 
 ## Duration of cloud enhancement events
@@ -768,7 +763,7 @@ less than 5 minutes.
 \caption{Relative frequency distribution of CE groups of consequent CE events according to their duration for Thessaloniki in the period 1993 -- 2023. The histogram was split in two plots with different y-axis scales for better readability.}\label{fig:ceg-duration-distribution}
 \end{figure}
 
-The relation between the duration and the mean OIR of the groups has also been
+The relation between the duration and the mean OI of the groups has also been
 studied (Figure\nobreakspace{}\ref{fig:group-2d}).  Evidently, events of high excess
 irradiation have small duration and vice versa. The vast majority of grouped events
 are associated with small excess irradiation (e.g., $<5\,\text{kJ}/\text{m}^2$) and
@@ -786,11 +781,11 @@ ours.
 \caption{Relation of excess irradiation of CE groups with their duration for Thessaloniki in the period 1993 -- 2023. The logarithmic color scale denotes the frequency of the respective groups of events.}\label{fig:group-2d}
 \end{figure}
 
-<!-- ```{r echo=FALSE, fig.cap="Relation of mean over irradiance and CE group duration"} -->
+<!-- ```{r echo=FALSE, fig.cap="Relation of mean OI and CE group duration"} -->
 <!-- knitr::include_graphics("../images/groups-4.png") -->
 <!-- ``` -->
 
-<!-- ```{r echo=FALSE, fig.cap="Relation of maximun over irradiance and CE group duration"} -->
+<!-- ```{r echo=FALSE, fig.cap="Relation of maximun OI and CE group duration"} -->
 <!-- knitr::include_graphics("../images/groups-8.png") -->
 <!-- ``` -->
 
@@ -824,11 +819,11 @@ sky periods and clouds.
 
 The distribution of the ECE events
 (Figure\nobreakspace{}\ref{fig:P-extreme-distribution}) shows that in rare cases the
-OIR can exceed the TSI even by more than $400\,\text{W}/\text{m}^2$, while in
-$75\,\%$ of the cases the OIR is below $200\,\text{W}/\text{m}^2$. The OIR for the
+OI can exceed the TSI even by more than $400\,\text{W}/\text{m}^2$, while in
+$75\,\%$ of the cases the OI is below $200\,\text{W}/\text{m}^2$. The OI for the
 most frequent ECEs ranges between $140$ and $180\,\text{W}/\text{m}^2$.  These
 findings are in accordance with the results of @Vamvakas2020, the only difference
-being that the OIR values reported for are higher than those for Thessaloniki.
+being that the OI values reported for are higher than those for Thessaloniki.
 
 
 \begin{figure}
@@ -881,7 +876,7 @@ October.  The magnitude of the ECE events identified in Thessaloniki events does
 exceed the values reported for sites with more favourable conditions for the
 phenomenon [e.g., @Cordero2023]. Some of the characteristics of CE and ECE events we
 analyzed have strong similarities with the results of @Vamvakas2020 for the city of
-Patras, south of Thessaloniki, albeit with differences in the magnitude of OIR.
+Patras, south of Thessaloniki, albeit with differences in the magnitude of OI.
 
 An interpretation of the CE trends shows that the interaction of GHI with the clouds,
 through this 30-year period, is a dynamic phenomenon that needs further
