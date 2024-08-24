@@ -568,7 +568,7 @@ pb <- ggplot(data = ST_G0, aes(x = GLB_ench.N)) +
   ylab("") +
   # labs(caption = paste("Bin width:", binwidth, "min")) +
   scale_x_continuous(
-    breaks = (seq(split, 120, 12 * binwidth), max(ST_G0$GLB_ench.N)),
+    breaks = c(seq(split, 120, 12 * binwidth), max(ST_G0$GLB_ench.N)),
     limits = c(split, max(ST_G0$GLB_ench.N)))
 
 plot_grid(pa, pb, labels = c("(a)", "(b)"), greedy = TRUE)

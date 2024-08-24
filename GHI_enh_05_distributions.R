@@ -70,6 +70,7 @@ if (!interactive()) {
 #+ echo=F, include=T
 library(data.table, quietly = TRUE, warn.conflicts = FALSE)
 library(pander    , quietly = TRUE, warn.conflicts = FALSE)
+library(purrr     , quietly = TRUE, warn.conflicts = FALSE)
 library(ggplot2   , quietly = TRUE, warn.conflicts = FALSE)
 library(patchwork , quietly = TRUE, warn.conflicts = FALSE)
 
