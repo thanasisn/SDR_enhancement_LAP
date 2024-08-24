@@ -594,7 +594,7 @@ and ECE events are clearly grouped above the threshold of irradiance
 
 }
 
-\caption{Example of CE identification in Thessaloniki for 2019-07-11. The green line with blue symbols depicts the measured GHI in one minute steps. The red line shows the modelled threshold $E$ for the detection of CE events, which are denoted with red circles. The black curve represents the TSI at the top of the atmosphere, adjusted for the actual Sun-Earth distance and multiplied by the cosine of SZA.}\label{fig:example-day}
+\caption{Example of CE identification in Thessaloniki for 2019-07-11. The green line with blue symbols depicts the measured GHI in one minute steps. Red line shows the modelled threshold $E$ for the detection of CE events, which are denoted with red circles.Black curve represents the TOA TSI on horizontal plane.}\label{fig:example-day}
 \end{figure}
 
 \begin{figure}[H]
