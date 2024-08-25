@@ -48,6 +48,7 @@ library(data.table)
 library(ggplot2)
 
 source("~/FUNCTIONS/R/data.R")
+source("~/CODE/R_myRtools/myRtools/R/write_.R")
 source("~/Aerosols/RlibRadtran/R/date_to_standard_atmosphere_file.R")
 
 
@@ -119,8 +120,8 @@ for (aty in types) {
 
 ##  store final lookup table  --------------------------------------------------
 LKUO[, wattGLB := NULL]
-saveRDS(LKUO, paste0("./data/", sub(".R", ".Rds", basename(Script.Name))))
-
+# saveRDS(LKUO, paste0("./data/", sub(".R", ".Rds", basename(Script.Name))))
+write_RDS(LKUO, paste0("./data/", sub(".R", ".Rds", basename(Script.Name))))
 
 summary(LKUO)
 
