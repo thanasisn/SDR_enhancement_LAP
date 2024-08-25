@@ -136,6 +136,7 @@ yearlyCE <- yearlytrends[DATA == "ST_E_yearly"]
 
 BR <- readRDS("~/MANUSCRIPTS/02_enhancement/data/Model_CS_trend.Rds")
 BR <-  unique(BR[typer == "BR SZA 55", .(year, pw_avg_mm, b, a)])
+MC <- readRDS("~/MANUSCRIPTS/02_enhancement/data/Max_cases.Rds")
 ```
 
 
@@ -635,14 +636,26 @@ knitr::include_graphics("../images/P-example-years-13.png")
 
 # Results
 
+
+$`r round(MC[Typ == "Max Glob", wattGLB],1)`\,\text{W}/\text{m}^2$
+$`r strftime(MC[Typ == "Max Glob", Date], "%d\\ %B %Y")`\,\text{W}/\text{m}^2$
+$`r round(MC[Typ == "Max Glob", GLB_diff],1)`\,\text{W}/\text{m}^2$
+$`r round(100*MC[Typ == "Max Glob", GLB_ench],1)`\,\%$
+
+$`r round(MC[Typ == "Max Enha", wattGLB],1)`\,\text{W}/\text{m}^2$
+$`r strftime(MC[Typ == "Max Enha", Date], "%d\\ %B %Y")`\,\text{W}/\text{m}^2$
+$`r round(MC[Typ == "Max Enha", GLB_diff],1)`\,\text{W}/\text{m}^2$
+$`r round(100*MC[Typ == "Max Enha", GLB_ench],1)`\,\%$
+
 Following the application of the above discussed methodology to the entire dataset 
 ($`r round(ST_total$wattGLB.N / 10^6,1)`$ million of one-minute GHI measurements),
 $`r round(100*ST_total$GLB_diff.N_pos/ST_total$wattGLB.N, 2)`\,\%$ were identified as CE events and
 $`r round(100*ST_extreme_total$GLB_diff.N_pos/ST_total$wattGLB.N, 3)`\,\%$ as ECE events.
 The highest recorded GHI due to CE was
-$`r round(ST_daily[which.max(wattGLB.max), wattGLB.max],1)`\,\text{W}/\text{m}^2$
-on `r strftime(ST_daily[which.max(wattGLB.max), Date], "%d\\ %B %Y")`, corresponding
-to OI of $`r round(ST_daily[which.max(GLB_diff.max), GLB_diff.max], 1)`\,\text{W}/\text{m}^2$.
+$`r round(ST_daily[which.max(wattGLB.max), wattGLB.max],1)`\,\text{W}/\text{m}^2$ on
+ `r strftime(ST_daily[which.max(wattGLB.max), Date], "%d\\ %B %Y")`, corresponding to OI of 
+$`r round(ST_daily[which.max(GLB_diff.max), GLB_diff.max], 1)`\,\text{W}/\text{m}^2$.
+!!!!$`r round(100*ST_daily[which.max(GLB_diff.max), GLB_ench.max], 1)`\,\%$.!!!!!
 <!-- The absolute strongest CE event had an OI of 
 <!-- $`r round(ST_daily[which.max(GLB_diff.max), GLB_diff.max], 2)`\,\text{W}/\text{m}^2$ on
 <!-- `r strftime(ST_daily[which.max(GLB_diff.max), Date], "%d\\ %B %Y")`. -->
@@ -650,6 +663,7 @@ The strongest CE event of
 $`r round(100*ST_daily[which.max(GLB_ench.max), GLB_ench.max],1)`\,\%$ above the 
 clear sky threshold was observed on 
 `r strftime(ST_daily[which.max(GLB_ench.max), Date], "%d\\ %B %Y")`.
+!!!$`r round(ST_daily[which.max(GLB_ench.max), wattGLB.max],1)`\,\text{W}/\text{m}^2$!!!!
 In the following sections we are discussing the long-term trends and variability of
 the CE events as well as of the corresponding OI and excess irradiation.
 
