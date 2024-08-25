@@ -155,8 +155,9 @@ $`r round(yearlyCE[var == "GLB_diff.sum", slope], 1)`\pm
 `r round(2 * yearlyCE[var == "GLB_diff.sum", slope.sd], 1)`\,\text{kJ}/\text{year}$.
 The peak of the CE events was observed during May and June.  An analysis of the total
 duration of CE events, showed that durations longer than 5 minutes are very rare,
-with exceptions lasting over an hour and up to 140 minutes.  Finally, we have detected enhancements above
-the total solar irradiance at the top of the atmosphere of up to
+with exceptions lasting over an hour and up to 140 minutes.  Finally, we have
+detected enhancements above the total solar irradiance at the top of the atmosphere
+for the same solar zenith angle of up to
 $400\,\text{W}/\text{m}^{2}$, with the $75\,\%$ of the cases below
 $200\,\text{W}/\text{m}^{2}$. The most active season of these extreme events is
 spring until early summer and autumn. 
@@ -330,23 +331,22 @@ atmosphere.
 <!-- CE identification criterion ($\text{OI}_i =
 \text{GHI}_i - \text{GHI}_\text{CSlim}$), as defined in
 Equation\nobreakspace\ref{eq:CE4}. -->
-First, we tested two simple approaches for the determination of
+First, we used a simple approach for the determination of
 $\text{GHI}_\text{ref}$: The Haurwitz's model [@Haurwitz1945], which is a simple
 clear sky model and was already adjusted and applied to our data [@Natsis2023].
 <!--
 , and the total solar irradiance (TSI) at the top of the atmosphere, adjusted for the
 Sun-Earth distance.
 -->
-We have tested both methods by using an appropriate relative
-threshold and/or an additional constant offset.  The initial results showed that we
-can detect a big portion of the actual CE events.  However, by inspecting the daily
-plots of irradiance it became evident that changes in atmospheric conditions
-introduced numerous false positive or false negative results. The main reason for
-these discrepancies is the variability of the effects of aerosols and water vapor
-which were not taken into account in the two simple methods.  To produce a more
-representative reference we included the effects of these factors using a radiative
-transfer model (RTM).  The applied methodology is discussed in
-section\nobreakspace{}\ref{rtmcs}.
+We created a threshold by using an appropriate relative and/or an additional constant
+offset.  The initial results showed that we can detect a big portion of the actual CE
+events.  However, by inspecting the daily plots of irradiance it became evident that
+changes in atmospheric conditions introduced numerous false positive or false
+negative results. The main reason for these discrepancies is the variability of the
+effects of aerosols and water vapor which were not taken into account in the two
+simple methods.  To produce a more representative reference we included the effects
+of these factors using a radiative transfer model (RTM).  The applied methodology is
+discussed in section\nobreakspace{}\ref{rtmcs}.
 
 ## Modeled clear Sky Irradiance {#rtmcs}
 
