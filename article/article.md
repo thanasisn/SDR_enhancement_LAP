@@ -733,11 +733,11 @@ characteristics and magnitude of the CE events.
 
 \begin{figure}
 
-{\centering \includegraphics[width=1\linewidth]{../images/P-relative-distribution-diff-1} 
+{\centering \includegraphics[width=1\linewidth]{../images/P-relative-distribution-diff-2} 
 
 }
 
-\caption{Relative frequency distribution of CE events in Thessaloniki for the period 1993 -- 2023 as a function of OI.}\label{fig:ovir-distribution}
+\caption{Relative frequency distribution of CE events in Thessaloniki for the period 1993 -- 2023 as a function of OI. The histogram was split in two plots with different y-axis scales for better readability.}\label{fig:ovir-distribution}
 \end{figure}
 
 ## Duration of cloud enhancement events

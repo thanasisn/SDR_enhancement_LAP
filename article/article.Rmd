@@ -743,8 +743,8 @@ $2.5^\circ$ south of Thessaloniki and is exposed to air masses coming mainly fro
 eastern Mediterranean resulting in different cloud patterns, that may affect the
 characteristics and magnitude of the CE events.
 
-```{r ovir-distribution, echo=FALSE, fig.cap="Relative frequency distribution of CE events in Thessaloniki for the period 1993 -- 2023 as a function of OI."}
-knitr::include_graphics("../images/P-relative-distribution-diff-1.png")
+```{r ovir-distribution, echo=FALSE, fig.cap="Relative frequency distribution of CE events in Thessaloniki for the period 1993 -- 2023 as a function of OI. The histogram was split in two plots with different y-axis scales for better readability."}
+knitr::include_graphics("../images/P-relative-distribution-diff-2.png")
 ```
 
 ## Duration of cloud enhancement events
