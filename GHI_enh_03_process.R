@@ -733,6 +733,11 @@ ST_monthly[season_Yqrt %% 1 == 0.75, Season := "Autumn"]
 
 
 
+
+DATA[which.max(wattGLB),  .(wattGLB, SZA, GLB_ench, GLB_diff, Day, CE = Enhanc_C_4, ECE = wattGLB > ETH)]
+DATA[which.max(GLB_ench), .(wattGLB, SZA, GLB_ench, GLB_diff, Day, CE = Enhanc_C_4, ECE = wattGLB > ETH)]
+
+
 # CONF_INTERV <- .95
 # conf_param  <- 1 - (1 - CONF_INTERV) / 2
 # suppressWarnings({

@@ -618,14 +618,26 @@ and ECE events are clearly grouped above the threshold of irradiance
 
 # Results
 
+
+$1416.6\,\text{W}/\text{m}^2$
+$24\ May 2007\,\text{W}/\text{m}^2$
+$345.9\,\text{W}/\text{m}^2$
+$32.3\,\%$
+
+$861.8\,\text{W}/\text{m}^2$
+$28\ October 2016\,\text{W}/\text{m}^2$
+$286.1\,\text{W}/\text{m}^2$
+$49.7\,\%$
+
 Following the application of the above discussed methodology to the entire dataset 
 ($6.1$ million of one-minute GHI measurements),
 $1.76\,\%$ were identified as CE events and
 $0.036\,\%$ as ECE events.
 The highest recorded GHI due to CE was
-$1416.6\,\text{W}/\text{m}^2$
-on 24\ May 2007, corresponding
-to OI of $345.9\,\text{W}/\text{m}^2$.
+$1416.6\,\text{W}/\text{m}^2$ on
+ 24\ May 2007, corresponding to OI of 
+$345.9\,\text{W}/\text{m}^2$.
+!!!!$32.3\,\%$.!!!!!
 <!-- The absolute strongest CE event had an OI of 
 <!-- $345.86\,\text{W}/\text{m}^2$ on
 <!-- 24\ May 2007. -->
@@ -633,6 +645,7 @@ The strongest CE event of
 $49.7\,\%$ above the 
 clear sky threshold was observed on 
 28\ October 2016.
+!!!$864\,\text{W}/\text{m}^2$!!!!
 In the following sections we are discussing the long-term trends and variability of
 the CE events as well as of the corresponding OI and excess irradiation.
 
