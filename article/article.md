@@ -230,7 +230,7 @@ The data used in this study were recorded at the monitoring site of the Laborato
 Atmospheric Physics, Aristotle University of Thessaloniki, in Thessaloniki, Greece
 (\(40^\circ\,38'\,\)N, \(22^\circ\,57'\,\)E, \(80\,\)m\ a.s.l.).  The GHI data were
 measured with a Kipp\ & Zonen CM-21 pyranometer and cover the period
-13\ April 1993 to
+01\ January 1994 to
 31\ December 2023.
 <!-- Instrument -->
   During the study
@@ -619,9 +619,9 @@ and ECE events are clearly grouped above the threshold of irradiance
 # Results
 
 Following the application of the above discussed methodology to the entire dataset 
-($6.1$ million of one-minute GHI measurements),
-$1.76\,\%$ were identified as CE events and
-$0.036\,\%$ as ECE events.
+($6$ million of one-minute GHI measurements),
+$1.78\,\%$ were identified as CE events and
+$0.037\,\%$ as ECE events.
 The highest recorded GHI due to CE was
 $1416.6\,\text{W}/\text{m}^2$ on
  24\ May 2007 at a SZA of
@@ -670,7 +670,7 @@ In contrast the trend of the yearly mean OI is negligible
 ($+0\pm 0.1\,\text{W}/\text{m}^2/\text{year}$)
 and of no statistical significance.
 The average OI for the entire period is
-$+39.9\pm 2.7\,\text{W}/\text{m}^2$.
+$+40.1\pm 2.5\,\text{W}/\text{m}^2$.
 The interannual variability of the data about the trend lines is quite large.
 Furthermore, the spread tends to increase with time (at least for the quantities of
 panels b and c), suggesting a significant variability in cloud patterns over the
@@ -727,7 +727,7 @@ relationship between the frequency of CE events and OI with an exponential-like
 decline. This is expected, as the stronger the CE events are, the rarer the
 conditions favoring the occurrence of CE events.  For the majority (over $62\,\%$) of
 the CE events the OI is below the long-term average of
-$39.9\,\text{W}/\text{m}^2$, while about
+$40.1\,\text{W}/\text{m}^2$, while about
 $8.1\,\%$ of the events correspond to OI larger than $100\,\text{W}/\text{m}^2$ and
 up to the highest value of $412.4\,\text{W}/\text{m}^2$.  This distribution is
 indicative of the magnitude and the probability of the expected CE events over
@@ -751,7 +751,7 @@ characteristics and magnitude of the CE events.
 The duration of the CE events is variable and can last for several minutes or even
 more than an hour. In order to study the characteristics of these consecutive events,
 we grouped them into bins of increasing duration in steps of one minute.  We have
-identified 28468 groups of CE in the whole period of study, where the group
+identified 28062 groups of CE in the whole period of study, where the group
 of the longest duration of
 140 minutes occurred on
 07\ July 2013.

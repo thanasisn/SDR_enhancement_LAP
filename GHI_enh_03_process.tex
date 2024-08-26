@@ -125,7 +125,7 @@
 
 \title{Enhancement of SDR in Thessaloniki}
 \author{Natsis Athanasios\footnote{Laboratory of Atmospheric Physics, AUTH, \href{mailto:natsisphysicist@gmail.com}{\nolinkurl{natsisphysicist@gmail.com}}} \and Alkiviadis Bais\footnote{Laboratory of Atmospheric Physics, AUTH}}
-\date{2024-08-25}
+\date{2024-08-26}
 
 \begin{document}
 \maketitle
@@ -140,12 +140,12 @@ Study of GHI enchantment.
 }
 \begin{verbatim}
    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
-   0.00   89.59  180.00  180.00  270.41  360.00 
+   0.00   89.59  180.00  180.00  270.42  360.00 
 \end{verbatim}
 
 \begin{verbatim}
     Min.  1st Qu.   Median     Mean  3rd Qu.     Max. 
--72.8133 -27.4719   0.7629   0.4279  28.2416  83.4876 
+-72.8133 -27.4717   0.7634   0.4285  28.2424  83.4876 
 \end{verbatim}
 
 Alpha * HAU is CS\_ref
@@ -160,11 +160,6 @@ interactive FALSE
 \FunctionTok{plot\_time\_series}\NormalTok{(ST\_daily, Date, wattGLB.mean, }\AttributeTok{.interactive =}\NormalTok{ isinter)}
 \end{Highlighting}
 \end{Shaded}
-
-\begin{verbatim}
-Warning: Removed 2 rows containing missing values or values outside the scale range (`geom_line()`).
-Removed 2 rows containing missing values or values outside the scale range (`geom_line()`).
-\end{verbatim}
 
 \begin{figure}[H]
 
@@ -181,11 +176,6 @@ Removed 2 rows containing missing values or values outside the scale range (`geo
 \end{Highlighting}
 \end{Shaded}
 
-\begin{verbatim}
-Warning: Removed 2 rows containing missing values or values outside the scale range (`geom_line()`).
-Removed 2 rows containing missing values or values outside the scale range (`geom_line()`).
-\end{verbatim}
-
 \begin{figure}[H]
 
 {\centering \includegraphics[width=1\linewidth]{GHI_enh_03_process_files/figure-latex/unnamed-chunk-6-2} 
@@ -200,11 +190,6 @@ Removed 2 rows containing missing values or values outside the scale range (`geo
 \FunctionTok{plot\_time\_series}\NormalTok{(ST\_daily, Date, wattGLB.max , }\AttributeTok{.interactive =}\NormalTok{ isinter)}
 \end{Highlighting}
 \end{Shaded}
-
-\begin{verbatim}
-Warning: Removed 2 rows containing missing values or values outside the scale range (`geom_line()`).
-Removed 2 rows containing missing values or values outside the scale range (`geom_line()`).
-\end{verbatim}
 
 \begin{figure}[H]
 
@@ -485,18 +470,18 @@ stats::lm(formula = .formula, data = df)
 
 Residuals:
     Min      1Q  Median      3Q     Max 
--319.48 -147.87  -56.18  101.04  719.45 
+-316.47 -148.10  -55.61  103.32  718.33 
 
 Coefficients:
-                  Estimate Std. Error t value Pr(>|t|)    
-(Intercept)      1.379e+02  4.559e+01   3.025 0.002663 ** 
-as.numeric(Date) 1.306e-07  3.650e-08   3.579 0.000391 ***
+                  Estimate Std. Error t value Pr(>|t|)   
+(Intercept)      1.520e+02  4.805e+01   3.164  0.00169 **
+as.numeric(Date) 1.205e-07  3.816e-08   3.157  0.00173 **
 ---
 Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 
-Residual standard error: 196.3 on 363 degrees of freedom
-Multiple R-squared:  0.03409,   Adjusted R-squared:  0.03143 
-F-statistic: 12.81 on 1 and 363 DF,  p-value: 0.0003913
+Residual standard error: 197.8 on 354 degrees of freedom
+Multiple R-squared:  0.02738,   Adjusted R-squared:  0.02463 
+F-statistic: 9.966 on 1 and 354 DF,  p-value: 0.001732
 \end{verbatim}
 
 \begin{figure}[H]
@@ -521,18 +506,18 @@ lm(formula = ST_E_monthly$wattGLB.N ~ ST_E_monthly$Date)
 
 Residuals:
     Min      1Q  Median      3Q     Max 
--319.48 -147.87  -56.18  101.04  719.45 
+-316.47 -148.10  -55.61  103.32  718.33 
 
 Coefficients:
-                   Estimate Std. Error t value Pr(>|t|)    
-(Intercept)       1.379e+02  4.559e+01   3.025 0.002663 ** 
-ST_E_monthly$Date 1.306e-07  3.650e-08   3.579 0.000391 ***
+                   Estimate Std. Error t value Pr(>|t|)   
+(Intercept)       1.520e+02  4.805e+01   3.164  0.00169 **
+ST_E_monthly$Date 1.205e-07  3.816e-08   3.157  0.00173 **
 ---
 Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 
-Residual standard error: 196.3 on 363 degrees of freedom
-Multiple R-squared:  0.03409,   Adjusted R-squared:  0.03143 
-F-statistic: 12.81 on 1 and 363 DF,  p-value: 0.0003913
+Residual standard error: 197.8 on 354 degrees of freedom
+Multiple R-squared:  0.02738,   Adjusted R-squared:  0.02463 
+F-statistic: 9.966 on 1 and 354 DF,  p-value: 0.001732
 \end{verbatim}
 
 \begin{Shaded}
@@ -704,7 +689,7 @@ ST_yearly
 \textbf{END}
 
 \begin{verbatim}
-2024-08-25 15:41:24.7 athan@tyler GHI_enh_03_process.R 7.859937 mins
+2024-08-26 19:50:18.2 athan@sagan GHI_enh_03_process.R 3.387402 mins
 \end{verbatim}
 
 \end{document}
