@@ -483,7 +483,7 @@ ggplot(data = DATA[wattGLB > ETH], aes(x = GLB_diff)) +
                  boundary = 0,
                  fill = "lightblue",
                  color    = "black") +
-  xlab(bquote("Over Irradiance" ~ group("[", W/m^2,"]"))) +
+  xlab(bquote("OI" ~ group("[", W/m^2,"]"))) +
   ylab("Relative frequency [%]") +
   labs(caption = bquote(paste("Bin width: ", .(binwidth)) ~ group("[", W/m^2,"]"))) #  +
 # inset_element(p1, left = 0.4, bottom = 0.4, right = 1, top = 1,
