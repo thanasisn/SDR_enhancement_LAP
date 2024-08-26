@@ -273,10 +273,6 @@ if (havetorun) {
     rm.cols.DT(DATA, "QCF_*", quiet = TRUE)
 
 
-    ## _ Set initial date to whole year  ---------------------------------------
-    DATA <- DATA[Date > as.Date("1994-01-01"), min(Date)]
-
-
     ## _ Data representation  --------------------------------------------------
 
     ## CastillejoCuberos2020
@@ -365,7 +361,6 @@ if (havetorun) {
     # DATA[, CS_ref_HOR         := NULL]
     DATA[, Elevat             := NULL]
     # DATA[, Glo_max_ref        := NULL]
-
 
 
 #    #  GLB Representation filtering  -------------------------------------------

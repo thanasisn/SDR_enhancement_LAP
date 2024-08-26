@@ -5,7 +5,8 @@
 #### Data range ####
 ## will not include the last/first day
 LAST_DAY                 <- as.POSIXct("2023-12-31 11:59:30") ## set the date of last NOAA TSI data
-FIRST_DAY                <- as.POSIXct("1900-07-01") ## include all available
+# FIRST_DAY                <- as.POSIXct("1900-07-01") ## include all available
+FIRST_DAY                <- as.POSIXct("1994-01-01") ## Set initial date to whole year
 
 
 #### Paths ####
