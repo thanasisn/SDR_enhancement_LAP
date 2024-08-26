@@ -273,6 +273,10 @@ if (havetorun) {
     rm.cols.DT(DATA, "QCF_*", quiet = TRUE)
 
 
+    ## _ Set initial date to whole year  ---------------------------------------
+    DATA <- DATA[Date > as.Date("1994-01-01"), min(Date)]
+
+
     ## _ Data representation  --------------------------------------------------
 
     ## CastillejoCuberos2020
