@@ -607,7 +607,7 @@ for (ii in 1:nrow(vec_days)) {
              ylim = ylim,
              ylab = expression(W/m^2), xlab = "Time (UTC)")
 
-        abline(h = solar_constant, col = "orange", lty = 3)
+        abline(h = solar_constant, col = "orange2", lty = 3)
 
         ## Global
         lines(temp$Date, temp$wattGLB, col = "green")
@@ -636,8 +636,8 @@ for (ii in 1:nrow(vec_days)) {
         #      line = 1.2, lwd = 0, lwd.ticks = 0, cex.axis = 0.8)
 
         ## Enchantment cases
-        points(temp[get(SelEnhanc) == TRUE & wattGLB <  ETH, wattGLB, Date], col = "red")
-        points(temp[get(SelEnhanc) == TRUE & wattGLB >= ETH, wattGLB, Date], col = "magenta")
+        points(temp[get(SelEnhanc) == TRUE & wattGLB <  ETH, wattGLB, Date], col = "palevioletred3")
+        points(temp[get(SelEnhanc) == TRUE & wattGLB >= ETH, wattGLB, Date], col = "red")
 
 
         ## Cloud cases
@@ -649,14 +649,14 @@ for (ii in 1:nrow(vec_days)) {
 
         legend("bottomright", ncol = 2,
                      c(  "GHI","CE threshold","TSI on horizontal plane","Solar Constant", "CE events","ECE events","Clouds IDs"),
-               col = c("green",         "red",                  "black",        "orange",       "red",   "magenta",      "blue"),
+               col = c("green",         "red",                  "black",       "orange2",       "palevioletred3",       "red",      "blue"),
                pch = c(     NA,            NA,                       NA,              NA,          1 ,          1 ,           3),
                lty = c(      1,             1,                        1,               3,          NA,          NA,          NA),
                bty = "n",
                cex = 0.8
         )
 
-
+stop()
         ## ggplot
 
         # cols <- brewer.pal(n = 9, name = 'Set1')
