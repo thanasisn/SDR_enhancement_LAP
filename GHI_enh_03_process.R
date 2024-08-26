@@ -241,6 +241,8 @@ enhanc.summary <- function(x, na.rm = FALSE)
         p_95   = quantile(x, 0.95, na.rm = TRUE),
         median = median(x,         na.rm = na.rm),
         sum    = sum   (x,         na.rm = na.rm),
+        first  = head(x, 1),
+        last   = tail(x, 1),
         N      = sum(!is.na(x))
     )
 
@@ -353,6 +355,7 @@ ST_E_daily_seas[, wattGLB.sum  := wattGLB.sum  * 60 / Energy_Div]
 ## Stats for variables
 my.cols.gr <- c(my.cols,
                 "SZA")
+setorder(DATA, Date)
 
 ST_G0 <- DATA[!is.na(C1Grp0),
               unlist(c(lapply(.SD, enhanc.summary, na.rm = FALSE),

@@ -613,7 +613,7 @@ grid.arrange(grobs = lapply(p1, "+", margin), ncol = 2, nrow = 1,
 ggplot(data    = ST_G0,
        mapping = aes(x = GLB_ench.N, y = ST_G0$GLB_diff.sum/ST_G0$GLB_ench.N)) +
   xlab("Duration of enhancement [min]") +
-  ylab(bquote("Mean Over Irradiance per minute" ~ group("[", W/m^2,"]"))) +
+  ylab(bquote("Mean OI per minute" ~ group("[", W/m^2,"]"))) +
   geom_pointdensity(aes(color = after_stat(log(n_neighbors))),
                     adjust = 1,
                     size   = 0.7) +
@@ -633,7 +633,7 @@ ggplot(data    = ST_G0,
 ggplot(data    = ST_G0,
        mapping = aes(x = GLB_ench.N, y = ST_G0$GLB_diff.sum/ST_G0$GLB_ench.N)) +
   xlab("Duration of enhancement [min]") +
-  ylab(bquote("Mean Over Irradiance per minute" ~ group("[", W/m^2,"]"))) +
+  ylab(bquote("Mean OI per minute" ~ group("[", W/m^2,"]"))) +
   geom_pointdensity(adjust = 10,
                     size   = 0.7) +
   scale_color_viridis() +
@@ -650,13 +650,13 @@ ggplot(data    = ST_G0,
 
 plot(ST_G0$GLB_ench.N, ST_G0$GLB_diff.mean,
      xlab = "Duration of enhancement [min]",
-     ylab = "Mean over Irradiance per minute")
+     ylab = "Mean OI per minute")
 
 
 ggplot(data    = ST_G0,
        mapping = aes(x = GLB_diff.N, y = GLB_diff.mean)) +
   xlab("Duration of enhancement [min]") +
-  ylab(bquote("Mean Over Irradiance" ~ group("[", W/m^2,"]"))) +
+  ylab(bquote("Mean OI" ~ group("[", W/m^2,"]"))) +
   geom_pointdensity(adjust = 10,
                     size   = 0.7) +
   scale_color_viridis()  +
@@ -677,13 +677,13 @@ cat( "## @Zhang2018 \n" )
 
 plot(ST_G0[, GLB_diff.max, GLB_diff.N ],
      xlab = "Duration of enhancement [min]",
-     ylab = "Maximum Over Irradiance")
+     ylab = "Maximum OI")
 
 
 ggplot(data    = ST_G0,
        mapping = aes(x = GLB_diff.N, y = GLB_diff.max)) +
   xlab("Duration of enhancement [min]") +
-  ylab(bquote("Maximum Over Irradiance" ~ group("[", W/m^2,"]"))) +
+  ylab(bquote("Maximum OI" ~ group("[", W/m^2,"]"))) +
   geom_pointdensity(adjust = 10,
                     size   = 0.7) +
   scale_color_viridis()  +
@@ -751,7 +751,7 @@ ggplot(data    = ST_G0,
 ggplot(data    = ST_G0,
        mapping = aes(x = GLB_ench.N, y = GLB_diff.sum)) +
   xlab("Duration of enhancement group [min]") +
-  ylab(bquote("Total group over irradiance" ~ group("[", kJ/m^2,"]"))) +
+  ylab(bquote("Total group OI" ~ group("[", kJ/m^2,"]"))) +
   geom_bin_2d(bins = 60) +
   # scale_fill_viridis()  +
   scale_fill_continuous(type = "viridis", transform = "log",
@@ -773,7 +773,7 @@ ggplot(data    = ST_G0,
 ggplot(data    = ST_G0[GLB_ench.N > 1,],
        mapping = aes(x = GLB_ench.N, y = GLB_diff.sum/GLB_ench.N)) +
   xlab("Duration of enhancement group [min]") +
-  ylab(bquote("Mean group over irradiance" ~ group("[", kJ/m^2,"]"))) +
+  ylab(bquote("Mean group OI" ~ group("[", kJ/m^2,"]"))) +
   geom_bin_2d(bins = 60) +
   scale_fill_continuous(type = "viridis",
                         transform = "log",
@@ -1002,7 +1002,7 @@ title("Climatology of CE cases per weak")
   lmD <- lm( ST_E_yearly[, year, GLB_diff.sum])
   abline(lmD)
 
-  title("Over Irradiance SUM")
+  title("OI SUM")
 
   ## display trend on graph
   fit <- lmD[[1]]
@@ -1040,7 +1040,7 @@ title("Climatology of CE cases per weak")
   lmD <- lm( ST_E_yearly[, year, GLB_diff.mean])
   abline(lmD)
 
-  title("Mean  of over irradiance per CE")
+  title("Mean  of OI per CE")
 
   ## display trend on graph
   fit <- lmD[[1]]
@@ -1060,7 +1060,7 @@ title("Climatology of CE cases per weak")
   lmD <- lm( ST_E_yearly[, year, GLB_diff.median])
   abline(lmD)
 
-  title("Median  of over irradiance per CE")
+  title("Median  of OI per CE")
 
   ## display trend on graph
   fit <- lmD[[1]]
@@ -1079,7 +1079,7 @@ title("Climatology of CE cases per weak")
 #   lmD <- lm( ST_E_yearly[, year, GLB_diff.p_5])
 #   abline(lmD)
 #
-#   title("p_5 of over irradiance per CE")
+#   title("p_5 of OI per CE")
 #
 #   ## display trend on graph
 #   fit <- lmD[[1]]
@@ -1098,7 +1098,7 @@ title("Climatology of CE cases per weak")
 #   lmD <- lm( ST_E_yearly[, year, GLB_diff.p_10])
 #   abline(lmD)
 #
-#   title("p_10 of over irradiance per CE")
+#   title("p_10 of OI per CE")
 #
 #   ## display trend on graph
 #   fit <- lmD[[1]]
@@ -1118,7 +1118,7 @@ title("Climatology of CE cases per weak")
 #   lmD <- lm( ST_E_yearly[, year, GLB_diff.p_90])
 #   abline(lmD)
 #
-#   title("p_90 of over irradiance per CE")
+#   title("p_90 of OI per CE")
 #
 #   ## display trend on graph
 #   fit <- lmD[[1]]
@@ -1138,7 +1138,7 @@ title("Climatology of CE cases per weak")
 #   lmD <- lm( ST_E_yearly[, year, GLB_diff.p_95])
 #   abline(lmD)
 #
-#   title("p_95 of over irradiance per CE")
+#   title("p_95 of OI per CE")
 #
 #   ## display trend on graph
 #   fit <- lmD[[1]]
@@ -1163,7 +1163,7 @@ title("Climatology of CE cases per weak")
   lmD <- lm( ST_E_yearly[, year, GLB_diff.sum/All_N])
   abline(lmD)
 
-  title("Over Irradiance SUM / total minutes")
+  title("OI SUM / total minutes")
 
   ## display trend on graph
   fit <- lmD[[1]]
@@ -1182,7 +1182,7 @@ title("Climatology of CE cases per weak")
   lmD <- lm( ST_E_yearly[, year, GLB_diff.sum/All_N])
   abline(lmD)
 
-  title("Over Irradiance SUM / total minutes")
+  title("OI SUM / total minutes")
 
   ## display trend on graph
   fit <- lmD[[1]]
@@ -1651,11 +1651,11 @@ write.csv(yeartrends, "./figures/Daily_trends_byYear_Proper.csv")
 {
   plot(ST_yearly[, 100 * (GLB_diff.sumPOS/wattGLB.sum), year],
        col = varcol("GLB_diff.sumPOS"),
-       ylab = "Over Irradiance fraction %")
+       ylab = "OI fraction %")
   lmD <- lm( ST_yearly[, year, 100 * (GLB_diff.sumPOS/wattGLB.sum)])
   abline(lmD)
 
-  title("CE Over Irradiance % of total energy")
+  title("CE OI % of total energy")
 
   ## display trend on graph
   fit <- lmD[[1]]
@@ -1718,7 +1718,7 @@ write.csv(yeartrends, "./figures/Daily_trends_byYear_Proper.csv")
   lmD <- lm( ST_yearly[, year, 100 * (GLB_diff.sumPOS/GLB_diff.N_pos) / (wattGLB.sumPOS/wattGLB.N_pos)])
   abline(lmD)
 
-  title("Mean Over irradiance % on mean Global Radiation")
+  title("Mean OI % on mean Global Radiation")
 
   ## display trend on graph
   fit <- lmD[[1]]
@@ -1756,7 +1756,7 @@ write.csv(yeartrends, "./figures/Daily_trends_byYear_Proper.csv")
 ##;        # col = varcol("GLB_diff.sum"),
 ##;        col = mcol[ST_E_monthly$month],
 ##;        ylab = "W/m^2")
-##;   title("Over Irradiance Energy to CE")
+##;   title("OI Energy to CE")
 ##;
 ##;   lmD <- lm( ST_E_monthly[, Date, GLB_diff.sum])
 ##;   abline(lmD)
@@ -1800,7 +1800,7 @@ write.csv(yeartrends, "./figures/Daily_trends_byYear_Proper.csv")
 ##;   lmD <- lm( ST_yearly[, year, GLB_diff.sumPOS/GLB_diff.N_pos])
 ##;   abline(lmD)
 ##;
-##;   title("Mean Energy of over irradiance per CE")
+##;   title("Mean Energy of OI per CE")
 ##;
 ##;   ## display trend on graph
 ##;   fit <- lmD[[1]]

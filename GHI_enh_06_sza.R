@@ -231,7 +231,7 @@ ST_E_sza_doy[ GLB_diff.max > lim] |>
   theme(legend.position      = c(0.99, 0.01),
         legend.justification = c(1, 0)) +
   theme(legend.background    = element_rect(fill = "white", colour = NA)) +
-  labs(title = "Maximum over irradiance") +
+  labs(title = "Maximum OI") +
   if(lim > 0) labs(caption = paste("Values under", lim, "are excluded for clarity"))
 
 
@@ -246,7 +246,7 @@ ST_E_sza_doy[ GLB_diff.sum > lim] |>
   theme(legend.position      = c(0.99, 0.01),
         legend.justification = c(1, 0)) +
   theme(legend.background    = element_rect(fill = "white", colour = NA)) +
-  labs(title = "Total over irradiance energy") +
+  labs(title = "Total OI energy") +
   if(lim > 0) labs(caption = paste("Values under", lim, "are excluded for clarity"))
 
 
@@ -260,7 +260,7 @@ ST_E_sza_doy[ GLB_diff.mean > lim] |>
   theme(legend.position      = c(0.99, 0.01),
         legend.justification = c(1, 0)) +
   theme(legend.background    = element_rect(fill = "white", colour = NA)) +
-  labs(title = "Mean over irradiance") +
+  labs(title = "Mean OI") +
   if(lim > 0) labs(caption = paste("Values under", lim, "are excluded for clarity"))
 
 
