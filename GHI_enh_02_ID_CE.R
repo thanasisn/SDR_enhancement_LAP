@@ -605,9 +605,10 @@ for (ii in 1:nrow(vec_days)) {
         plot(temp$Date, temp$wattGLB, col = "green",
              pch  = ".", cex = 2,
              ylim = ylim,
-             ylab = expression(W/m^2), xlab = "Time (UTC)")
+             ylab = bquote("GHI" ~ group("[", W/m^2,"]")),
+             xlab = "Time (UTC)")
 
-        abline(h = solar_constant, col = "orange2", lty = 3)
+        abline(h = solar_constant, col = "orange2", lty = 3, lwd = 2)
 
         ## Global
         lines(temp$Date, temp$wattGLB, col = "green")
@@ -621,14 +622,8 @@ for (ii in 1:nrow(vec_days)) {
         ## Active model reference
         lines(temp[, get(paste0(SelEnhanc, "_ref")), Date], col = "red" )
 
-        ## A test reference
-        # lines(temp[, Enhanc_C_4_ref_test, Date], col = "cyan" )
-
-        ## CS libradtran reference
-        # lines(temp[, get(paste0(csmodel, ".glo")), Date], col = "magenta" )
-
-        ## CS libradtran reference
-        # lines(temp[, CS_low * TSI_Kurudz_factor , Date], col = "pink" )
+        ## Clear sky ref
+        lines(temp[, get(paste0(csmodel,".glo")), Date], col = "cyan" )
 
         # ## add sza axis
         # aaa <- temp[Date %in% c(min(Date), (pretty(Date, 10) + 30), max(Date))  , ]
@@ -636,7 +631,7 @@ for (ii in 1:nrow(vec_days)) {
         #      line = 1.2, lwd = 0, lwd.ticks = 0, cex.axis = 0.8)
 
         ## Enchantment cases
-        points(temp[get(SelEnhanc) == TRUE & wattGLB <  ETH, wattGLB, Date], col = "palevioletred3")
+        points(temp[get(SelEnhanc) == TRUE & wattGLB <  ETH, wattGLB, Date], col = "burlywood4")
         points(temp[get(SelEnhanc) == TRUE & wattGLB >= ETH, wattGLB, Date], col = "red")
 
 
@@ -648,15 +643,15 @@ for (ii in 1:nrow(vec_days)) {
         title(main = paste(as.Date(aday, origin = "1970-01-01")))
 
         legend("bottomright", ncol = 2,
-                     c(  "GHI","CE threshold","TSI on horizontal plane","Solar Constant", "CE events","ECE events","Clouds IDs"),
-               col = c("green",         "red",                  "black",       "orange2",       "palevioletred3",       "red",      "blue"),
-               pch = c(     NA,            NA,                       NA,              NA,          1 ,          1 ,           3),
-               lty = c(      1,             1,                        1,               3,          NA,          NA,          NA),
+                     c(  "GHI","CE threshold","TSI on horizontal plane","Solar Constant", "CE events","ECE events","Identified clouds","Clear sky"),
+               col = c("green",         "red",                  "black",       "orange2","burlywood4",       "red",             "blue",    "cyan"),
+               pch = c(     NA,            NA,                       NA,              NA,          1 ,          1 ,                  3,        NA),
+               lty = c(      1,             1,                        1,               3,          NA,          NA,                 NA,         1),
+               lwd = c(      1,             1,                        1,               2,          NA,          NA,                 NA,         1),
                bty = "n",
                cex = 0.8
         )
 
-stop()
         ## ggplot
 
         # cols <- brewer.pal(n = 9, name = 'Set1')
@@ -760,7 +755,8 @@ if (TEST) {
 for (pyear in yearstodo) {
   p <-
     ggplot(DATA[year(Date) == pyear],
-           aes(get(paste0(SelEnhanc,"_ref")), wattGLB)) +
+           # aes(get(paste0(SelEnhanc, "_ref")), wattGLB)) + ## threshold
+           aes(get(paste0(csmodel,".glo")), wattGLB)) +    ## clear sky
     geom_point(data   = DATA[year(Date) == pyear & get(SelEnhanc) == FALSE,],
                colour = "black",
                alpha  = .1,
@@ -770,16 +766,15 @@ for (pyear in yearstodo) {
                na.rm  = TRUE,
                size   = 0.2,
                aes(color = GLB_diff)) +
+    geom_abline(aes(intercept = 0, slope = 1), colour = "green") +
+    # geom_abline(aes(intercept = C4_GLB_diff_THRES, slope = C4_cs_ref_ratio), colour = "green") +
     scale_colour_gradient(low      = "blue",
                           high     = "red",
                           limits   = c(0, NA),  ## always display zero
                           na.value = NA) +
-    # geom_abline(aes(intercept = 0, slope = 0, color = "X"), linetype = "dotted") +
     labs(title = pyear) +
     ylab(bquote("GHI" ~ group("[", W/m^2,"]"))) +
     xlab(bquote("Clear sky reference" ~ group("[", W/m^2,"]"))) +
-    # xlab(paste0(SelEnhanc, "_ref")) +
-    # labs(color = "Over\nIrradiance W/m^2") +
     labs(color = bquote("OI" ~ group("[", W/m^2,"]"))) +
     theme(
       legend.title         = element_text(size = 10),
@@ -792,18 +787,8 @@ for (pyear in yearstodo) {
     scale_x_continuous(expand = expansion(mult = c(0.03, 0.03))) +
     scale_y_continuous(breaks = scales::breaks_extended(n = 6),
                        expand = expansion(mult = c(0.03, 0.03)))
-    # scale_color_manual(values = c(X = 'grey', Y = 'black'))
-  print(p)
-  # stop()
-  # ggplot(DATA, aes(CS_ref, wattGLB)) +
-  #     geom_point(data = DATA[GLB_diff < 0], colour = "black", size = 0.5) +
-  #     geom_point(data = DATA[GLB_diff > 0], size = 0.5, aes(color = GLB_diff)) +
-  #     scale_colour_gradient(low = "blue", high = "red", na.value = NA)
 
-  # ggplot(DATA[year(Date) == 2018], aes(CS_ref, wattGLB)) +
-  #     geom_point(data = DATA[year(Date) == 2018 & GLB_diff < 0], colour = "black", size = 0.5) +
-  #     geom_point(data = DATA[year(Date) == 2018 & GLB_diff > 0], size = 0.5, aes(color = GLB_diff)) +
-    #     scale_colour_gradient2(low = "black", mid = "yellow", high = "red", na.value = NA)
+  print(p)
 }
 
 
