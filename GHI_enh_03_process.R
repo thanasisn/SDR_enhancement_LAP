@@ -363,6 +363,10 @@ ST_G0 <- DATA[!is.na(C1Grp0),
 ST_G0$Date <- as.POSIXct(ST_G0$Date, origin = "1970-01-01")
 
 
+stop()
+# min max SZA
+# first last SZA
+
 ## convert sum Irradiance to energy
 ## Σ(W/m^2) * 60 s = J/m^2
 ST_G0[, GLB_diff.sum  := GLB_diff.sum * 60 / Energy_Div]
