@@ -499,8 +499,8 @@ quantile(DATA[wattGLB > ETH, GLB_diff])
 
 saveRDS(
   rbind(
-    DATA[which.max(wattGLB),  .(Typ = "Max Glob", wattGLB, SZA, GLB_ench, GLB_diff, Date, CE = Enhanc_C_4, ECE = wattGLB > ETH)],
-    DATA[which.max(GLB_ench), .(Typ = "Max Enha", wattGLB, SZA, GLB_ench, GLB_diff, Date, CE = Enhanc_C_4, ECE = wattGLB > ETH)]
+    DATA[which.max(wattGLB),  .(Typ = "Max Glob", wattGLB, SZA, GLB_ench, GLB_diff, Date, ETH, CE = Enhanc_C_4, ECE = wattGLB > ETH)],
+    DATA[which.max(GLB_ench), .(Typ = "Max Enha", wattGLB, SZA, GLB_ench, GLB_diff, Date, ETH, CE = Enhanc_C_4, ECE = wattGLB > ETH)]
   ),
   "data/Max_cases.Rds"
 )
