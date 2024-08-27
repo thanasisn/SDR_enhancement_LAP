@@ -754,7 +754,9 @@ we grouped them into bins of increasing duration in steps of one minute.  We hav
 identified 28062 groups of CE in the whole period of study, where the group
 of the longest duration of
 140 minutes occurred on
-07\ July 2013.
+07\ July 2013 in a SZA range of 
+$52.1^\circ$ -- 
+$77.9^\circ$.
 Figure\nobreakspace{}\ref{fig:ceg-duration-distribution} shows the frequency
 distribution of the CE events according to their duration.  We conclude that although
 some groups of events last for more than an hour, about $80\,\%$ have duration of
@@ -806,7 +808,7 @@ Figure\nobreakspace{}\ref{fig:relative-month-occurrences} we have computed the
 distribution of the number of occurrences of ECE events by month in
 Figure\nobreakspace{}\ref{fig:relative-month-occurancies-ECE}. The most active period
 for ECE events is in spring and early summer (March -- June), followed by a
-period in late autumn (September and October).  This is probably related to the
+period in early autumn (September and October).  This is probably related to the
 weather characteristics in these periods, with frequent alternations between clear
 sky periods and clouds.
 

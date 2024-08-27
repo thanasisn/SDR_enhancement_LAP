@@ -762,7 +762,9 @@ we grouped them into bins of increasing duration in steps of one minute.  We hav
 identified `r ST_G0[, .N]` groups of CE in the whole period of study, where the group
 of the longest duration of
 `r ST_G0[, max(GLB_diff.N)]` minutes occurred on
-`r strftime(ST_G0[which.max(GLB_diff.N), Date], "%d\\ %B %Y")`.
+`r strftime(ST_G0[which.max(GLB_diff.N), Date], "%d\\ %B %Y")` in a SZA range of 
+$`r round(ST_G0[which.max(GLB_diff.N), SZA.min],1)`^\circ$ -- 
+$`r round(ST_G0[which.max(GLB_diff.N), SZA.max],1)`^\circ$.
 Figure\nobreakspace{}\ref{fig:ceg-duration-distribution} shows the frequency
 distribution of the CE events according to their duration.  We conclude that although
 some groups of events last for more than an hour, about $80\,\%$ have duration of
@@ -805,7 +807,7 @@ Figure\nobreakspace{}\ref{fig:relative-month-occurrences} we have computed the
 distribution of the number of occurrences of ECE events by month in
 Figure\nobreakspace{}\ref{fig:relative-month-occurancies-ECE}. The most active period
 for ECE events is in spring and early summer (March -- June), followed by a
-period in late autumn (September and October).  This is probably related to the
+period in early autumn (September and October).  This is probably related to the
 weather characteristics in these periods, with frequent alternations between clear
 sky periods and clouds.
 
