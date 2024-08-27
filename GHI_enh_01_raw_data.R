@@ -197,10 +197,15 @@ if (havetorun) {
 
 
     test <- readRDS("~/DATA/Broad_Band/Date_SZA_Azimuth.Rds")
-    ## check all days
-    missing_days <- length(seq.Date(min(DATA$Day), max(DATA$Day), by = "day")) - DATA[, length(unique(as.Date(Date)))]
 
-stop()
+    intersect(names(DATA), names(test))
+
+    DATA <- merge(DATA, test, all = T)
+
+    ## check all days
+    missing_days <- length(seq.Date(min(as.Date(DATA$Date)), max(as.Date(DATA$Date)), by = "day")) - DATA[, length(unique(as.Date(Date)))]
+    stopifnot(missing_days == 0)
+
     ## TODO warn duplicate dates
     if (sum(duplicated(DATA$Date)) > 0) {
         warning("There are duplicate dates in the data")
