@@ -513,11 +513,25 @@ saveRDS(
 
 #+  echo=F, include=T, results="asis"
 
-length(seq.Date(min(DATA$Day), max(DATA$Day), by = "day")) - DATA[, length(unique(Day))]
 
 
-DATA[, sum(is.na(wattGLB))]
 
+
+missing_days <- length(seq.Date(min(DATA$Day), max(DATA$Day), by = "day")) - DATA[, length(unique(Day))]
+total_days   <- length(seq.Date(min(DATA$Day), max(DATA$Day), by = "day"))
+
+cat("Missing days", 100 * missing_days/total_days, "%", missing_days, "from", total_days)
+
+## missing days by month
+
+DAYS <- data.table(Day = seq.Date(min(DATA$Day), max(DATA$Day), by = "day"))
+
+DAYS[, Missing_Day := !Day %in% DATA[, unique(Day)] ]
+
+DAYS <- merge(
+  DATA[, .(Missing_GLB = sum(is.na(wattGLB))), by = Day],
+  DAYS
+)
 
 
 
