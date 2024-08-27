@@ -22,11 +22,11 @@ fi
 #     echo "This runs only on sagan"
 # fi
 
-echo "Upload all pdfs"
-"${rclone}" ${otheropt} ${bwlimit} --verbose --config "$config" --max-depth 1 --include "*.{pdf}"                      copy "/home/athan/MANUSCRIPTS/02_enhancement/"        "lapauththanasis:/Enhance"
-"${rclone}" ${otheropt} ${bwlimit} --verbose --config "$config" --max-depth 1 --include "*.{pdf,odt,docx}"             copy "/home/athan/MANUSCRIPTS/02_enhancement/article" "lapauththanasis:/Enhance"
-"${rclone}" ${otheropt} ${bwlimit} --verbose --config "$config" --max-depth 2 --include "[Aa]rticle*/*.{pdf,odt,docx}" copy "/home/athan/MANUSCRIPTS/02_enhancement/"        "lapauththanasis:/Enhance"
-"${rclone}" ${otheropt} ${bwlimit} --verbose --config "$config" --max-depth 2 --include "./SUBMISSION_01/*.docx"       copy "/home/athan/MANUSCRIPTS/02_enhancement/"        "lapauththanasis:/Enhance"
+echo "Upload to lapauththanasis:/Enhance"
+"${rclone}" ${otheropt} ${bwlimit} --verbose --config "$config" --max-depth 1 --include "*.{pdf}"                       copy "/home/athan/MANUSCRIPTS/02_enhancement/"        "lapauththanasis:/Enhance"
+"${rclone}" ${otheropt} ${bwlimit} --verbose --config "$config" --max-depth 1 --include "*.{pdf,odt,docx}"              copy "/home/athan/MANUSCRIPTS/02_enhancement/article" "lapauththanasis:/Enhance"
+"${rclone}" ${otheropt} ${bwlimit} --verbose --config "$config" --max-depth 2 --include "[Aa]rticle*/*.{pdf,odt,docx}"  copy "/home/athan/MANUSCRIPTS/02_enhancement/"        "lapauththanasis:/Enhance"
+"${rclone}" ${otheropt} ${bwlimit} --verbose --config "$config" --max-depth 2 --include "SUBMISSION_*/*.{pdf,odt,docx}" copy "/home/athan/MANUSCRIPTS/02_enhancement/"        "lapauththanasis:/Enhance"
 
 #
 #"${rclone}" ${otheropt} ${bwlimit} --verbose --config "$config" --max-depth 2 --include "Article*/*.{pdf,odt,docx}"    copy "/home/athan/MANUSCRIPTS/02_enhancement/"        "lapauththanasis:/Enhance"

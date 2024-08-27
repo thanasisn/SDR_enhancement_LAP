@@ -494,8 +494,7 @@ quantile(DATA[wattGLB > ETH, GLB_diff])
 
 
 
-
-
+## stopre some date for max cases
 
 saveRDS(
   rbind(
@@ -504,6 +503,24 @@ saveRDS(
   ),
   "data/Max_cases.Rds"
 )
+
+
+
+
+
+## Test missing data  -------
+
+
+#+  echo=F, include=T, results="asis"
+
+length(seq.Date(min(DATA$Day), max(DATA$Day), by = "day")) - DATA[, length(unique(Day))]
+
+
+DATA[, sum(is.na(wattGLB))]
+
+
+
+
 
 
 
