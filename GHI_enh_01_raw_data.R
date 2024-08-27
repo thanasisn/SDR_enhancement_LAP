@@ -195,6 +195,8 @@ if (havetorun) {
     DATA  <- unique(DATA)
     dummy <- gc()
 
+
+    test <- readRDS("~/DATA/Broad_Band/Date_SZA_Azimuth.Rds")
     ## check all days
     missing_days <- length(seq.Date(min(DATA$Day), max(DATA$Day), by = "day")) - DATA[, length(unique(as.Date(Date)))]
 
