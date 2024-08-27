@@ -200,7 +200,18 @@ if (havetorun) {
 
     intersect(names(DATA), names(test))
 
-    DATA <- merge(DATA, test, all = T)
+    # DATA <- merge(DATA, test, all = T)
+
+    stop("ddddddd")
+    ## test unique
+    ## join
+
+    DATA <- rbind(
+      DATA,
+      test[!test$Date %in% DATA$Date],
+      fill = T
+    )
+
 
     ## check all days
     missing_days <- length(seq.Date(min(as.Date(DATA$Date)), max(as.Date(DATA$Date)), by = "day")) - DATA[, length(unique(as.Date(Date)))]
