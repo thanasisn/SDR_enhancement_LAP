@@ -276,7 +276,8 @@ if (havetorun) {
     ## _ Data representation  --------------------------------------------------
 
     ## CastillejoCuberos2020
-    ## valid data 45min /h and 5h / day
+
+    ## !! valid data: 45min /h and 5h / day  !!
 
     ## For global
     DATA[, floor_date := floor_date(DATA$Date, "1 hour")]
@@ -300,7 +301,8 @@ if (havetorun) {
 
     ## _ Keep only days with good global representation  -----------------------
     ## Keep days with at least 5 acceptable hours
-    DATA <- DATA[Day %in% days[GoodH_N > 5, Day], ]
+    DATA[Day %in% days[GoodH_N > 5, Day], wattGLB    := NA]
+    DATA[Day %in% days[GoodH_N > 5, Day], wattGLB_SD := NA]
     rm(days, hours)
 
 
