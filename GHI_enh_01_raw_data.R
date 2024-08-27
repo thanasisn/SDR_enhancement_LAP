@@ -301,8 +301,8 @@ if (havetorun) {
 
     ## _ Keep only days with good global representation  -----------------------
     ## Keep days with at least 5 acceptable hours
-    DATA[Day %in% days[GoodH_N > 5, Day], wattGLB    := NA]
-    DATA[Day %in% days[GoodH_N > 5, Day], wattGLB_SD := NA]
+    DATA[!Day %in% days[GoodH_N > 5, Day], wattGLB    := NA]
+    DATA[!Day %in% days[GoodH_N > 5, Day], wattGLB_SD := NA]
     rm(days, hours)
 
 
