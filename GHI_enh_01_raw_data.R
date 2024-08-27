@@ -195,6 +195,10 @@ if (havetorun) {
     DATA  <- unique(DATA)
     dummy <- gc()
 
+    ## check all days
+    missing_days <- length(seq.Date(min(DATA$Day), max(DATA$Day), by = "day")) - DATA[, length(unique(as.Date(Date)))]
+
+stop()
     ## TODO warn duplicate dates
     if (sum(duplicated(DATA$Date)) > 0) {
         warning("There are duplicate dates in the data")
