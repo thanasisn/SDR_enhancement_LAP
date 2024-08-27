@@ -603,7 +603,7 @@ and ECE events are clearly grouped above the threshold of irradiance
 
 }
 
-\caption{Example scatter plot of the measured GHI and the reference clear sky irradiance in Thessaloniki for the year 2005. The over-irradiance for CE and ECE events is color coded, while the remaining data points are shown in black.}\label{fig:example-year}
+\caption{Example scatter plot of the measured GHI and the reference clear sky irradiance in Thessaloniki for the year 2005. The over-irradiance for CE and ECE events is color coded, while the remaining data points are shown in black. The reference green line goes through the origin with a slope of one.}\label{fig:example-year}
 \end{figure}
 
 <!-- ```{r echo=F, include=T, warning=FALSE, message=FALSE} -->
