@@ -63,7 +63,7 @@ keywords:
   - over irradiance
 
 journal:        "Atmospheric Research"
-date:           "2024-08-26"
+date:           "2024-08-27"
 linenumbers:    false
 numbersections: true
 bibliography:   bibliography.bib
@@ -599,7 +599,7 @@ and ECE events are clearly grouped above the threshold of irradiance
 
 \begin{figure}[H]
 
-{\centering \includegraphics[width=1\linewidth]{../images/P-example-years-13} 
+{\centering \includegraphics[width=1\linewidth]{../images/P-example-years-12} 
 
 }
 
