@@ -50,6 +50,7 @@ diff: article/article_edits.pdf
 article/article_edits.pdf: article/article.tex
 	-latexdiff /home/athan/MANUSCRIPTS/02_enhancement/SUBMISSION_01/article/article.tex /home/athan/MANUSCRIPTS/02_enhancement/article/article.tex > /home/athan/MANUSCRIPTS/02_enhancement/article/article_edits.tex
 	-cd /home/athan/MANUSCRIPTS/02_enhancement/article; pdflatex -interaction=nonstopmode  article_edits.tex
+	@-rsync -a "$@" ${LIBRARY}
 
 
 ### Doc for spellining and merge  ############################
@@ -215,10 +216,6 @@ $(PDF): $(RMD)
 	@-rsync -a "$@" ${LIBRARY}
 	@#-touch article/article.qmd
 	@-touch article/article.Rmd
-
-
-
-
 
 
 
