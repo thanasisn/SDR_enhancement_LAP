@@ -198,7 +198,7 @@ if (havetorun) {
     ## add all the minutes
     test <- readRDS("~/DATA/Broad_Band/Date_SZA_Azimuth.Rds")
     add  <- test[!test$Date %in% DATA$Date]
-    DATA <- merge(DATA, add, all = T)
+    DATA <- rbind(DATA, add, fill = T)
     rm(test, add)
 
     ## check all days

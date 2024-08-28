@@ -724,8 +724,6 @@ for (ii in 1:nrow(vec_days)) {
         # plot(temp$Date, temp$GLB_ench)
         # plot(temp$Date, temp$GLB_diff)
         cat(' \n \n')
-# stop()
-
     }
 }
 #+ echo=F, include=T
@@ -826,7 +824,6 @@ DATA[C1G0 == FALSE, C1Grp0 := NA]
 ## and may need these
 DATA[, C1G0 := NULL]
 DATA[, C1G1 := NULL]
-
 
 
 ## Slow implementation
