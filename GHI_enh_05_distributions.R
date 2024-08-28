@@ -528,10 +528,10 @@ DAYS <- data.table(Day = seq.Date(min(DATA$Day), max(DATA$Day), by = "day"))
 
 DAYS[, Missing_Day := !Day %in% DATA[, unique(Day)] ]
 
-DAYS <- merge(
-  DATA[, .(Missing_GLB = sum(is.na(wattGLB))), by = Day],
-  DAYS
-)
+# DAYS <- merge(
+#   DATA[, .(Missing_GLB = sum(is.na(wattGLB))), by = Day],
+#   DAYS
+# )
 
 
 
