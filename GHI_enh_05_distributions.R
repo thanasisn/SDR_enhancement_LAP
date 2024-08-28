@@ -513,12 +513,11 @@ saveRDS(
 
 #+  echo=F, include=T, results="asis"
 
+## test missing days
+# DATA <- readRDS("data/CE_ID_Input.Rds")
 
-
-
-
-missing_days <- length(seq.Date(min(DATA$Day), max(DATA$Day), by = "day")) - DATA[, length(unique(Day))]
-total_days   <- length(seq.Date(min(DATA$Day), max(DATA$Day), by = "day"))
+missing_days <- length(seq.Date(min(as.Date(DATA$Date)), max(as.Date(DATA$Date)), by = "day")) - DATA[, length(unique(as.Date(DATA$Date)))]
+total_days   <- length(seq.Date(min(as.Date(DATA$Date)), max(as.Date(DATA$Date)), by = "day"))
 
 cat("Missing days", 100 * missing_days/total_days, "%", missing_days, "from", total_days)
 
@@ -528,16 +527,16 @@ DAYS <- data.table(Day = seq.Date(min(DATA$Day), max(DATA$Day), by = "day"))
 
 DAYS[, Missing_Day := !Day %in% DATA[, unique(Day)] ]
 
-# DAYS <- merge(
-#   DATA[, .(Missing_GLB = sum(is.na(wattGLB))), by = Day],
-#   DAYS
-# )
 
 
+COMPLETE_monthly      <- DATA[, .(Complete = sum(!is.na(wattGLB))/.N) , by = .(year(Date), month(Date))]
+COMPLETE_monthly$Date <- as.POSIXct(strptime(paste(COMPLETE_monthly$year, COMPLETE_monthly$month, "1"),"%Y %m %d"))
 
+summary(COMPLETE_monthly$Complete)
 
+quantile(COMPLETE_monthly$Complete, 0.05)
 
-
+plot(COMPLETE_monthly[, Complete, Date])
 
 
 

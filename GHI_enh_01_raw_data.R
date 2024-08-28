@@ -196,7 +196,6 @@ if (havetorun) {
     dummy <- gc()
 
 
-
     ## TODO warn duplicate dates
     if (sum(duplicated(DATA$Date)) > 0) {
         warning("There are duplicate dates in the data")
@@ -326,7 +325,8 @@ if (havetorun) {
 
     ## _ Use only data above the biology building  -----------------------------
     DATA <- DATA[Elevat > BIO_ELEVA]
-
+    DATA <- DATA[Date   < LAST_DAY ]
+    DATA <- DATA[Date   > FIRST_DAY]
 
     ## _ DROP MISSING RECORDS!! ------------------------------------------------
     # DATA <- DATA[ !(is.na(wattDIR) & is.na(wattGLB)) ]
