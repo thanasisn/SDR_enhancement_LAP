@@ -7,16 +7,19 @@
   10pt,
   a4paper,oneside]{article}
 \usepackage{amsmath,amssymb}
-\usepackage{lmodern}
 \usepackage{iftex}
 \ifPDFTeX
   \usepackage[T1]{fontenc}
   \usepackage[utf8]{inputenc}
   \usepackage{textcomp} % provide euro and other symbols
 \else % if luatex or xetex
-  \usepackage{unicode-math}
+  \usepackage{unicode-math} % this also loads fontspec
   \defaultfontfeatures{Scale=MatchLowercase}
   \defaultfontfeatures[\rmfamily]{Ligatures=TeX,Scale=1}
+\fi
+\usepackage{lmodern}
+\ifPDFTeX\else
+  % xetex/luatex font selection
 \fi
 % Use upquote if available, for straight quotes in verbatim environments
 \IfFileExists{upquote.sty}{\usepackage{upquote}}{}
@@ -35,18 +38,6 @@
   \KOMAoptions{parskip=half}}
 \makeatother
 \usepackage{xcolor}
-\IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
-\IfFileExists{bookmark.sty}{\usepackage{bookmark}}{\usepackage{hyperref}}
-\hypersetup{
-  pdftitle={Enhancement of SDR in Thessaloniki},
-  pdfauthor={Natsis Athanasios; Alkiviadis Bais},
-  colorlinks=true,
-  linkcolor={Maroon},
-  filecolor={Maroon},
-  citecolor={Blue},
-  urlcolor={Blue},
-  pdfcreator={LaTeX via pandoc}}
-\urlstyle{same} % disable monospaced font for URLs
 \usepackage[left=0.5in,right=0.5in,top=0.5in,bottom=0.5in]{geometry}
 \usepackage{longtable,booktabs,array}
 \usepackage{calc} % for calculating minipage widths
@@ -82,6 +73,18 @@
 \ifLuaTeX
   \usepackage{selnolig}  % disable illegal ligatures
 \fi
+\usepackage{bookmark}
+\IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
+\urlstyle{same}
+\hypersetup{
+  pdftitle={Enhancement of SDR in Thessaloniki},
+  pdfauthor={Natsis Athanasios; Alkiviadis Bais},
+  colorlinks=true,
+  linkcolor={Maroon},
+  filecolor={Maroon},
+  citecolor={Blue},
+  urlcolor={Blue},
+  pdfcreator={LaTeX via pandoc}}
 
 \title{Enhancement of SDR in Thessaloniki}
 \author{Natsis Athanasios\footnote{Laboratory of Atmospheric Physics, AUTH, \href{mailto:natsisphysicist@gmail.com}{\nolinkurl{natsisphysicist@gmail.com}}} \and Alkiviadis Bais\footnote{Laboratory of Atmospheric Physics, AUTH}}
@@ -99,6 +102,7 @@ Study of GHI enchantment.
 \tableofcontents
 }
 \begin{verbatim}
+
 Attaching package: 'zoo'
 \end{verbatim}
 
@@ -655,7 +659,7 @@ SZA 55 : 0.00139576531267693
   >{\centering\arraybackslash}p{(\columnwidth - 12\tabcolsep) * \real{0.1711}}
   >{\centering\arraybackslash}p{(\columnwidth - 12\tabcolsep) * \real{0.1579}}
   >{\centering\arraybackslash}p{(\columnwidth - 12\tabcolsep) * \real{0.1579}}@{}}
-\toprule
+\toprule\noalign{}
 \begin{minipage}[b]{\linewidth}\centering
 Intercept
 \end{minipage} & \begin{minipage}[b]{\linewidth}\centering
@@ -671,8 +675,10 @@ Zeropoint
 \end{minipage} & \begin{minipage}[b]{\linewidth}\centering
 SlopeRela
 \end{minipage} \\
-\midrule
+\midrule\noalign{}
 \endhead
+\bottomrule\noalign{}
+\endlastfoot
 -1102 & 0.8309 & 1 & 565.8 & SZA min & 2014 & 0.001469 \\
 -810.5 & 0.7648 & 2 & 721.8 & SZA min & 2015 & 0.00106 \\
 -6892 & 3.872 & 3 & 888.2 & SZA min & 2015 & 0.00436 \\
@@ -721,7 +727,6 @@ SlopeRela
 -1327 & 0.9475 & 10 & 576 & SZA 55 & 2015 & 0.001645 \\
 -2204 & 1.393 & 11 & 567.8 & SZA 55 & 2015 & 0.002453 \\
 -785.3 & 0.6983 & 12 & 618.3 & SZA 55 & 2014 & 0.001129 \\
-\bottomrule
 \end{longtable}
 
 \newpage
@@ -730,7 +735,7 @@ SlopeRela
   >{\centering\arraybackslash}p{(\columnwidth - 4\tabcolsep) * \real{0.0972}}
   >{\centering\arraybackslash}p{(\columnwidth - 4\tabcolsep) * \real{0.2222}}
   >{\centering\arraybackslash}p{(\columnwidth - 4\tabcolsep) * \real{0.1389}}@{}}
-\toprule
+\toprule\noalign{}
 \begin{minipage}[b]{\linewidth}\centering
 year
 \end{minipage} & \begin{minipage}[b]{\linewidth}\centering
@@ -738,8 +743,10 @@ typer
 \end{minipage} & \begin{minipage}[b]{\linewidth}\centering
 MeanGlo
 \end{minipage} \\
-\midrule
+\midrule\noalign{}
 \endhead
+\bottomrule\noalign{}
+\endlastfoot
 1997 & BR SZA median & 449.5 \\
 2005 & SZA median & 392.1 \\
 2005 & BR SZA median & 459.3 \\
@@ -759,7 +766,6 @@ MeanGlo
 2021 & SZA median & 506 \\
 2022 & SZA median & 554.9 \\
 2023 & SZA median & 522.8 \\
-\bottomrule
 \end{longtable}
 
 \begin{figure}[H]
@@ -777,7 +783,7 @@ MeanGlo
   >{\centering\arraybackslash}p{(\columnwidth - 4\tabcolsep) * \real{0.0972}}
   >{\centering\arraybackslash}p{(\columnwidth - 4\tabcolsep) * \real{0.1806}}
   >{\centering\arraybackslash}p{(\columnwidth - 4\tabcolsep) * \real{0.1389}}@{}}
-\toprule
+\toprule\noalign{}
 \begin{minipage}[b]{\linewidth}\centering
 year
 \end{minipage} & \begin{minipage}[b]{\linewidth}\centering
@@ -785,8 +791,10 @@ typer
 \end{minipage} & \begin{minipage}[b]{\linewidth}\centering
 MeanGlo
 \end{minipage} \\
-\midrule
+\midrule\noalign{}
 \endhead
+\bottomrule\noalign{}
+\endlastfoot
 1997 & BR SZA min & 1055 \\
 2005 & SZA min & 668.3 \\
 2005 & BR SZA min & 1064 \\
@@ -806,7 +814,6 @@ MeanGlo
 2021 & SZA min & 829.7 \\
 2022 & SZA min & 902.4 \\
 2023 & SZA min & 859.5 \\
-\bottomrule
 \end{longtable}
 
 \begin{figure}[H]
@@ -824,7 +831,7 @@ MeanGlo
   >{\centering\arraybackslash}p{(\columnwidth - 4\tabcolsep) * \real{0.0972}}
   >{\centering\arraybackslash}p{(\columnwidth - 4\tabcolsep) * \real{0.1944}}
   >{\centering\arraybackslash}p{(\columnwidth - 4\tabcolsep) * \real{0.1389}}@{}}
-\toprule
+\toprule\noalign{}
 \begin{minipage}[b]{\linewidth}\centering
 year
 \end{minipage} & \begin{minipage}[b]{\linewidth}\centering
@@ -832,8 +839,10 @@ typer
 \end{minipage} & \begin{minipage}[b]{\linewidth}\centering
 MeanGlo
 \end{minipage} \\
-\midrule
+\midrule\noalign{}
 \endhead
+\bottomrule\noalign{}
+\endlastfoot
 1997 & BR SZA mean & 497.3 \\
 2005 & SZA mean & 353.9 \\
 2005 & BR SZA mean & 507.1 \\
@@ -853,7 +862,6 @@ MeanGlo
 2021 & SZA mean & 473.5 \\
 2022 & SZA mean & 525.5 \\
 2023 & SZA mean & 490.7 \\
-\bottomrule
 \end{longtable}
 
 \begin{figure}[H]
@@ -871,7 +879,7 @@ MeanGlo
   >{\centering\arraybackslash}p{(\columnwidth - 4\tabcolsep) * \real{0.0972}}
   >{\centering\arraybackslash}p{(\columnwidth - 4\tabcolsep) * \real{0.1667}}
   >{\centering\arraybackslash}p{(\columnwidth - 4\tabcolsep) * \real{0.1667}}@{}}
-\toprule
+\toprule\noalign{}
 \begin{minipage}[b]{\linewidth}\centering
 year
 \end{minipage} & \begin{minipage}[b]{\linewidth}\centering
@@ -879,8 +887,10 @@ typer
 \end{minipage} & \begin{minipage}[b]{\linewidth}\centering
 MeanGlo
 \end{minipage} \\
-\midrule
+\midrule\noalign{}
 \endhead
+\bottomrule\noalign{}
+\endlastfoot
 1997 & BR SZA 55 & 578.9 \\
 2005 & SZA 55 & 576.4 \\
 2005 & BR SZA 55 & 588.4 \\
@@ -900,7 +910,6 @@ MeanGlo
 2021 & SZA 55 & 587.5 \\
 2022 & SZA 55 & 585.2 \\
 2023 & SZA 55 & 583 \\
-\bottomrule
 \end{longtable}
 
 \begin{figure}[H]
@@ -913,25 +922,20 @@ MeanGlo
 \end{figure}
 
 \begin{verbatim}
-Warning: A numeric `legend.position` argument in
-`theme()` was deprecated in ggplot2 3.5.0.
-i Please use the `legend.position.inside`
-  argument of `theme()` instead.
-This warning is displayed once every 8
-hours.
-Call `lifecycle::last_lifecycle_warnings()`
-to see where this warning was generated.
+Warning: A numeric `legend.position` argument in `theme()` was deprecated in ggplot2
+3.5.0.
+i Please use the `legend.position.inside` argument of `theme()` instead.
+This warning is displayed once every 8 hours.
+Call `lifecycle::last_lifecycle_warnings()` to see where this warning was
+generated.
 \end{verbatim}
 
 \begin{verbatim}
-Warning: The S3 guide system was deprecated in
-ggplot2 3.5.0.
-i It has been replaced by a ggproto system
-  that can be extended.
-This warning is displayed once every 8
-hours.
-Call `lifecycle::last_lifecycle_warnings()`
-to see where this warning was generated.
+Warning: The S3 guide system was deprecated in ggplot2 3.5.0.
+i It has been replaced by a ggproto system that can be extended.
+This warning is displayed once every 8 hours.
+Call `lifecycle::last_lifecycle_warnings()` to see where this warning was
+generated.
 \end{verbatim}
 
 \begin{figure}[H]
