@@ -195,15 +195,7 @@ if (havetorun) {
     DATA  <- unique(DATA)
     dummy <- gc()
 
-    ## add all the minutes
-    test <- readRDS("~/DATA/Broad_Band/Date_SZA_Azimuth.Rds")
-    add  <- test[!test$Date %in% DATA$Date]
-    DATA <- rbind(DATA, add, fill = T)
-    rm(test, add)
 
-    ## check all days
-    missing_days <- length(seq.Date(min(as.Date(DATA$Date)), max(as.Date(DATA$Date)), by = "day")) - DATA[, length(unique(as.Date(Date)))]
-    stopifnot(missing_days == 0)
 
     ## TODO warn duplicate dates
     if (sum(duplicated(DATA$Date)) > 0) {
@@ -218,6 +210,7 @@ if (havetorun) {
     test_vec <- DATA[is.na(wattGLB) &
                          (duplicated(DATA$Date) | duplicated(DATA$Date, fromLast = TRUE)),
                      which = TRUE]
+
     ## Drop some data
     DATA <- DATA[!test_vec]
 
@@ -228,7 +221,6 @@ if (havetorun) {
     ## FIXME do we still need this?
     ## this is used by old scripts
     setorder(DATA, Date)
-
 
     ## _ Skip data ranges for CM-21  -------------------------------------------
     cat("\n  Extra SKIP of CM-21 data!\n")
@@ -244,7 +236,6 @@ if (havetorun) {
     ## _ Set date range to use  ------------------------------------------------
     DATA <- DATA[Date < LAST_DAY ]
     DATA <- DATA[Date > FIRST_DAY]
-
 
     ## _ Keep near daylight only  ----------------------------------------------
     DATA <- DATA[Elevat >= -10, ]
@@ -291,7 +282,7 @@ if (havetorun) {
 
     ## For global
     DATA[, floor_date := floor_date(DATA$Date, "1 hour")]
-    DATA[, BAD_h := sum(!is.na(wattGLB)) < 45,
+    DATA[, BAD_h      := sum(!is.na(wattGLB)) < 45,
          by = floor_date]
 
     table(DATA[, sum(!is.na(wattGLB)),
@@ -316,27 +307,25 @@ if (havetorun) {
     rm(days, hours)
 
 
+    ## add all the minutes
+    test <- readRDS("~/DATA/Broad_Band/Date_SZA_Azimuth.Rds")
+    add  <- test[!test$Date %in% DATA$Date]
+    DATA <- rbind(DATA, add, fill = T)
+    rm(test, add)
+
+    ## check all days
+    missing_days <- length(seq.Date(min(as.Date(DATA$Date)), max(as.Date(DATA$Date)), by = "day")) - DATA[, length(unique(as.Date(Date)))]
+    stopifnot(missing_days == 0)
+
+
     ##_  Count daylight length  ------------------------------------------------
     ## Drop all night data
     DATA <- DATA[Elevat > 0]
+    DATA[, Day := as.Date(Date)]
     DATA[, DayLength := .N, by = Day]
 
     ## _ Use only data above the biology building  -----------------------------
     DATA <- DATA[Elevat > BIO_ELEVA]
-
-    # cat("\n  Keep Azimuth and Elevation according to Bais paper!\n")
-    # DATA[Azimuth > 35 & Azimuth < 120 & Elevat < 10, wattDIR     := NA ]
-    # DATA[Azimuth > 35 & Azimuth < 120 & Elevat < 10, wattDIR_sds := NA ]
-    # DATA[Azimuth > 35 & Azimuth < 120 & Elevat < 10, wattGLB     := NA ]
-    # DATA[Azimuth > 35 & Azimuth < 120 & Elevat < 10, wattGLB_sds := NA ]
-    # DATA[Azimuth > 35 & Azimuth < 120 & Elevat < 10, wattHOR     := NA ]
-    # DATA[Azimuth > 35 & Azimuth < 120 & Elevat < 10, wattHOR_sds := NA ]
-
-    ## show included data
-    # plot(DATA[ !is.na(wattGLB) ,Elevat, Azimuth])
-
-    ## Filter min elevation
-    # DATA <- DATA[Elevat >= MIN_ELEVA, ]
 
 
     ## _ DROP MISSING RECORDS!! ------------------------------------------------
