@@ -206,6 +206,10 @@ if (havetorun) {
     ## test unique
     ## join
 
+    aad <- test[!test$Date %in% DATA$Date]
+    nrow(merge(DATA, aad))
+
+
     DATA <- rbind(
       DATA,
       test[!test$Date %in% DATA$Date],
