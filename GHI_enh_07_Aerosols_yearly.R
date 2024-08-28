@@ -370,8 +370,7 @@ atype <- "Year BR SZA 55"
 
 sel1 <- AEM[, is.na(month) & atmosphere_file == aatm & typer == atype, ]
 
-plot(AEM[sel1, glo, tsy],
-     ylim = ylim)
+plot(AEM[sel1, glo, tsy])
 
 zeropointA <- min(AEM[sel1, tsy]) + (max(AEM[sel1, tsy]) - min(AEM[sel1, tsy])) / 2
 zeropointA <- 2005
@@ -386,7 +385,7 @@ abline(lm_BR_55, col = "red")
 ## display trend on graph
 fit <- lm_BR_55[[1]]
 units <- "W/m^2"
-legend("top", lty = 1, bty = "n", lwd = 2, cex = 1,
+legend("bottomright", lty = 1, bty = "n", lwd = 2, cex = 1,
        c(paste("Trend: ",
                if (fit[2] > 0) "+" else "-",
                signif(abs(fit[2]), 2) , bquote(.(units)), "/y"),
