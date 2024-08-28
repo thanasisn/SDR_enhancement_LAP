@@ -63,7 +63,7 @@ keywords:
   - over irradiance
 
 journal:        "Atmospheric Research"
-date:           "2024-08-27"
+date:           "2024-08-28"
 linenumbers:    false
 numbersections: true
 bibliography:   bibliography.bib
