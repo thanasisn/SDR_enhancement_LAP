@@ -534,9 +534,14 @@ COMPLETE_monthly$Date <- as.POSIXct(strptime(paste(COMPLETE_monthly$year, COMPLE
 
 summary(COMPLETE_monthly$Complete)
 
-quantile(COMPLETE_monthly$Complete, 0.05)
+quantile(COMPLETE_monthly$Complete, 0.04)
 
 plot(COMPLETE_monthly[, Complete, Date])
+
+hist(COMPLETE_monthly[, Complete])
+
+
+
 
 
 
