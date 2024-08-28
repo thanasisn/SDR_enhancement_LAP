@@ -195,27 +195,11 @@ if (havetorun) {
     DATA  <- unique(DATA)
     dummy <- gc()
 
-
+    ## add all the minutes
     test <- readRDS("~/DATA/Broad_Band/Date_SZA_Azimuth.Rds")
-
-    intersect(names(DATA), names(test))
-
-    # DATA <- merge(DATA, test, all = T)
-
-    stop("ddddddd")
-    ## test unique
-    ## join
-
-    aad <- test[!test$Date %in% DATA$Date]
-    nrow(merge(DATA, aad))
-
-
-    DATA <- rbind(
-      DATA,
-      test[!test$Date %in% DATA$Date],
-      fill = T
-    )
-
+    add  <- test[!test$Date %in% DATA$Date]
+    DATA <- merge(DATA, add, all = T)
+    rm(test, add)
 
     ## check all days
     missing_days <- length(seq.Date(min(as.Date(DATA$Date)), max(as.Date(DATA$Date)), by = "day")) - DATA[, length(unique(as.Date(Date)))]
