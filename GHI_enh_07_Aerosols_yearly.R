@@ -878,7 +878,7 @@ trend_median_adj <- function(tsy) {
   trend_median(tsy) - 0.01995656
 }
 
-trend_mean_adj <- function(tsy) {
+Exdenat=trend_mean_adj <- function(tsy) {
   trend_mean(tsy) - 0.01995656
 }
 
