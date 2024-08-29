@@ -581,7 +581,6 @@ vec_days <- matrix(
     byrow = TRUE,
     ncol  = 2)
 
-solar_constant <- 1367
 
 ## Format to data frame
 vec_days <- data.frame(Data        = vec_days[,1],

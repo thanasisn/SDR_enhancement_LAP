@@ -117,10 +117,10 @@ irradiance reference with the use of a radiative transfer model and aerosol opti
 depth data from a collocated Cimel sun photometer and a Brewer spectrophotometer. We
 found a trend in CE events of
 $45.6\pm
-21.9\,\text{cases}/\text{year}$,
+22\,\text{cases}/\text{year}$,
 and a trend in the CE events irradiation of 
-$116.9\pm
-67.8\,\text{kJ}/\text{year}$.
+$116.3\pm
+68.2\,\text{kJ}/\text{year}$.
 The peak of the CE events was observed during May and June.  An analysis of the total
 duration of CE events, showed that durations longer than 5 minutes are very rare,
 with exceptions lasting over an hour and up to 140 minutes.  Finally, we have
@@ -573,10 +573,10 @@ events. These are cases of CE where the measured intensity of the irradiance exc
 the TSI at the top of the atmosphere. In this case the threshold $E$ is given by:
 <!--and detected according to the Equation\nobreakspace{}\ref{eq:ECE}.-->
 \begin{equation}
-\text{ECE}: E > \cos(\theta) \cdot E_{\odot} \frac{r^2_\text{m}} {r^2}
+\text{ECE}: E > \cos(\text{SZA}) \cdot E_{\odot} \frac{r^2_\text{m}} {r^2}
 \label{eq:ECE}
 \end{equation}
-where: $\theta$ the solar zenith angle, $E_{\odot}$ the solar constant adjusted for
+where: $\text{SZA}$ the solar zenith angle, $E_{\odot}$ the solar constant adjusted for
 the actual Sun -- Earth distance $r$ and $r_\text{m}$ is the mean Sun -- Earth
 distance of $1.496\times10^8\,\text{km}$.
 
@@ -621,7 +621,7 @@ and ECE events are clearly grouped above the threshold of irradiance
 Following the application of the above discussed methodology to the entire dataset 
 ($6$ million of one-minute GHI measurements),
 $1.78\,\%$ were identified as CE events and
-$0.037\,\%$ as ECE events.
+$0.04\,\%$ as ECE events.
 The highest recorded GHI due to CE was
 $1416.6\,\text{W}/\text{m}^2$ on
  24\ May 2007 at a SZA of
@@ -636,8 +636,8 @@ $59.2^\circ$ with a GHI value of
 $861.8\,\text{W}/\text{m}^2$ and a OI of
 $286.1\,\text{W}/\text{m}^2$.
 Both cases are ECE events with
-$168.7\,\text{W}/\text{m}^2$ and
-$155.4\,\text{W}/\text{m}^2$ above the
+$136.8\,\text{W}/\text{m}^2$ and
+$164.5\,\text{W}/\text{m}^2$ above the
 TSI at TSI for the same SZA, respectively.
 In the following sections we are discussing the long-term trends and variability of
 the CE events as well as of the corresponding OI and excess irradiation.
@@ -662,9 +662,9 @@ CE cases (each with duration of one minute), the yearly mean OI and the yearly
 excess irradiation for the period 1993 -- 2023, together with corresponding linear
 trends. All three quantities show increasing trends, most pronounced for the
 frequency of occurrence 
-($+45.6\pm 21.9\,\text{cases}/\text{year}$)
+($+45.6\pm 22\,\text{cases}/\text{year}$)
 and the excess irradiation 
-($+116.9 \pm 67.8\,\text{kJ}/\text{year}$),
+($+116.3 \pm 68.2\,\text{kJ}/\text{year}$),
 which are also statistically significant.
 In contrast the trend of the yearly mean OI is negligible 
 ($+0\pm 0.1\,\text{W}/\text{m}^2/\text{year}$)
@@ -751,7 +751,7 @@ characteristics and magnitude of the CE events.
 The duration of the CE events is variable and can last for several minutes or even
 more than an hour. In order to study the characteristics of these consecutive events,
 we grouped them into bins of increasing duration in steps of one minute.  We have
-identified 28062 groups of CE in the whole period of study, where the group
+identified 28182 groups of CE in the whole period of study, where the group
 of the longest duration of
 140 minutes occurred on
 07\ July 2013 in a SZA range of 
@@ -869,9 +869,9 @@ By creating a clear sky approximation representing the long- and short-term
 variability of the expected clear sky GHI, we were able to identify cases of CE
 events in Thessaloniki for the period 1993 -- 2023.  After analyzing the CE cases, we
 found an increase of
-$+45.6\pm 21.9\,\text{cases}/\text{year}$,
+$+45.6\pm 22\,\text{cases}/\text{year}$,
 with the mean annual irradiation of the CE events increasing with a rate of
-$+116.9\pm 67.8\,\text{kJ}/\text{year}$.
+$+116.3\pm 68.2\,\text{kJ}/\text{year}$.
 The most active months of CE events are May and June.  We found that continuous CE
 events can last up to $140$ minutes, while the duration of $80\,\%$ of them is bellow
 $5$ minutes.

@@ -279,31 +279,31 @@ if (havetorun) {
 
     ## !! valid data: 45min /h and 5h / day  !!
 
-    ## For global
-    DATA[, floor_date := floor_date(DATA$Date, "1 hour")]
-    DATA[, BAD_h      := sum(!is.na(wattGLB)) < 45,
-         by = floor_date]
-
-    table(DATA[, sum(!is.na(wattGLB)),
-               by = floor_date]$V1)
-
-    hours <- DATA[, .(Good = sum(!is.na(wattGLB)) >= 45,
-                      N    = sum(!is.na(wattGLB))),
-                  by = .(Day, floor_date)]
-    days  <- hours[, .(GoodH_N = sum(Good)),
-                   by = Day]
-
-    table(days$GoodH_N)
-    table(hours$N)
-
-    hist(days$GoodH_N, main = "Valid hour per day")
-    hist(hours$N,      main = "Valid data per hour")
-
-    ## _ Keep only days with good global representation  -----------------------
-    ## Keep days with at least 5 acceptable hours
-    DATA[!Day %in% days[GoodH_N > 5, Day], wattGLB    := NA]
-    DATA[!Day %in% days[GoodH_N > 5, Day], wattGLB_SD := NA]
-    rm(days, hours)
+    # ## For global
+    # DATA[, floor_date := floor_date(DATA$Date, "1 hour")]
+    # DATA[, BAD_h      := sum(!is.na(wattGLB)) < 45,
+    #      by = floor_date]
+    #
+    # table(DATA[, sum(!is.na(wattGLB)),
+    #            by = floor_date]$V1)
+    #
+    # hours <- DATA[, .(Good = sum(!is.na(wattGLB)) >= 45,
+    #                   N    = sum(!is.na(wattGLB))),
+    #               by = .(Day, floor_date)]
+    # days  <- hours[, .(GoodH_N = sum(Good)),
+    #                by = Day]
+    #
+    # table(days$GoodH_N)
+    # table(hours$N)
+    #
+    # hist(days$GoodH_N, main = "Valid hour per day")
+    # hist(hours$N,      main = "Valid data per hour")
+    #
+    # ## _ Keep only days with good global representation  -----------------------
+    # ## Keep days with at least 5 acceptable hours
+    # DATA[!Day %in% days[GoodH_N > 5, Day], wattGLB    := NA]
+    # DATA[!Day %in% days[GoodH_N > 5, Day], wattGLB_SD := NA]
+    # rm(days, hours)
 
 
     ## add all the minutes
@@ -345,7 +345,8 @@ if (havetorun) {
 
     ## _ Create Clearness Index (BB may not filled yet) ------------------------
     DATA[, ClearnessIndex_kt := NA]
-    DATA[, ETH := cosde(SZA) * TSIextEARTH_comb ]  ## TSI at ground
+    # DATA[, ETH := cosde(SZA) * TSIextEARTH_comb ]  ## TSI at ground
+    DATA[, ETH := cosde(SZA) * solar_constant ]  ## TSI at ground
     DATA[, ClearnessIndex_kt := wattGLB / ETH ]
 
     # ## _ Move measurements to mean earth distance  -----------------------------
