@@ -601,10 +601,10 @@ events. These are cases of CE where the measured intensity of the irradiance exc
 the TSI at the top of the atmosphere. In this case the threshold $E$ is given by:
 <!--and detected according to the Equation\nobreakspace{}\ref{eq:ECE}.-->
 \begin{equation}
-\text{ECE}: E > \cos(\theta) \cdot E_{\odot} \frac{r^2_\text{m}} {r^2}
+\text{ECE}: E > \cos(\text{SZA}) \cdot E_{\odot} \frac{r^2_\text{m}} {r^2}
 \label{eq:ECE}
 \end{equation}
-where: $\theta$ the solar zenith angle, $E_{\odot}$ the solar constant adjusted for
+where: $\text{SZA}$ the solar zenith angle, $E_{\odot}$ the solar constant adjusted for
 the actual Sun -- Earth distance $r$ and $r_\text{m}$ is the mean Sun -- Earth
 distance of $1.496\times10^8\,\text{km}$.
 

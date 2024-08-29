@@ -804,6 +804,7 @@ month_trend_55 <- function(tsy) {
 
 
 
+
 year_trend_median <- function(tsy) {
   (-coef(lm_BR_median)[2] * zeropointA + tsy * coef(lm_BR_median)[2]) / mean_BR_median
 }
@@ -1034,6 +1035,7 @@ dataset <- rbind(
 )
 
 
+round(100 * slope_55,2)
 #+ P-CS-change, echo=F, include=T, results="asis"
 # p2 <-
 ggplot(dataset,

@@ -494,7 +494,34 @@ quantile(DATA[wattGLB > ETH, GLB_diff])
 
 
 
-## stopre some date for max cases
+binwidth = 10
+ggplot(data = DATA[wattGLB > ETH], aes(x = wattGLB - ETH)) +
+  geom_histogram(aes(y = (after_stat(count))/sum(after_stat(count)) * 100),
+                 binwidth = binwidth,
+                 boundary = 0,
+                 fill = "lightblue",
+                 color    = "black") +
+  xlab(bquote("Irradiance above TSI for the same SZA" ~ group("[", W/m^2,"]"))) +
+  ylab("Relative frequency [%]") # +
+  # labs(caption = bquote(paste("Bin width: ", .(binwidth)) ~ group("[", W/m^2,"]"))) #  +
+# inset_element(p1, left = 0.4, bottom = 0.4, right = 1, top = 1,
+#               align_to = "plot")
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+##  Store some date for max cases  ------------------------
 
 saveRDS(
   rbind(
@@ -583,6 +610,45 @@ ggplot(monthly, aes(y = Relative_enha_N,
     panel.grid.minor.x = element_blank()
   )
 
+
+
+
+## Check days for reviers
+
+
+
+keep_ratio <- 0.6
+
+
+Keep <- DATA[, sum(!is.na(wattGLB))/.N > keep_ratio, by = .(Day = as.Date(Date))]
+
+Keep[V1 == F, .N]/Keep[V1 == T, .N]
+
+cat("Keeping", keep_ratio, "of each day, removes", Keep[V1 == F, .N], "days of", Keep[V1 == T, .N], "total days or", 100*Keep[V1 == F, .N]/Keep[V1 == T, .N],"%\n")
+
+
+## Doys with data
+Keep[, doy := yday(Day)]
+
+cnt_doy <- Keep[, sum(V1 == T), by = doy]
+
+cnt_missing_doy <- Keep[, sum(V1 == F), by = doy]
+
+
+plot(cnt_missing_doy$doy, cnt_missing_doy$V1)
+
+
+
+cnt_missing_doy[V1 == 0, ]
+
+pander(cnt_missing_doy[V1 == 0, ], caption = paste("There are", nrow(cnt_missing_doy[V1 == 0, ]), "doys with all days no missing more than", 100*keep_ratio, "% data"))
+
+
+
+
+
+mean(DATA$tsi_1au_comb, na.rm = T)
+mean(DATA$TSIextEARTH_comb, na.rm = T)
 
 
 
