@@ -1247,7 +1247,6 @@ yeartrends <- data.table()
 pvar1   <- "GLB_diff.sum"
 dataset <- copy(ST_E_yearly)
 # partial year sum is not valid
-dataset <- dataset[year > 1993]
 
 ## linear model by year step
 lmY1 <- lm(dataset[[pvar1]] ~ dataset$year)
@@ -1382,7 +1381,7 @@ yeartrends <- rbind(yeartrends,
 grob <- grobTree(
   textGrob(
     label = TeX(
-      paste("Trend:  $", round(lmY3$coefficients[2], 1),
+      paste("Trend:  $", round(lmY3$coefficients[2], 2),
             "\\pm",      round(2 * d2[2,2],          2),      ## show 2 sigma
             "\\,W/m^2/year$")),
     x = 0.95,  y = 0.05, hjust = 1,

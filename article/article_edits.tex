@@ -1,7 +1,7 @@
 \documentclass[preprint, 5p,
 %DIF LATEXDIFF DIFFERENCE FILE
 %DIF DEL /home/athan/MANUSCRIPTS/02_enhancement/SUBMISSION_01/article/article.tex   Wed Jul 10 10:31:02 2024
-%DIF ADD /home/athan/MANUSCRIPTS/02_enhancement/article/article.tex                 Thu Aug 29 13:30:08 2024
+%DIF ADD /home/athan/MANUSCRIPTS/02_enhancement/article/article.tex                 Thu Aug 29 20:01:15 2024
 authoryear]{elsarticle} %review=doublespace preprint=single 5p=2 column
 %%% Begin My package additions %%%%%%%%%%%%%%%%%%%
 
@@ -522,8 +522,10 @@ atmosphere. In this case the threshold \(E\) is given by:
 \text{ECE}: E > \cos(\DIFdelbegin \DIFdel{\theta}\DIFdelend \DIFaddbegin \DIFadd{\text{SZA}}\DIFaddend ) \cdot E_{\odot} \frac{r^2_\text{m}}{r^2}
 \label{eq:ECE}
 \end{equation} where: \DIFdelbegin \DIFdel{\(\theta\) }\DIFdelend \DIFaddbegin \DIFadd{\(\text{SZA}\) }\DIFaddend the solar zenith angle,
-\(E_{\odot}\) the solar constant adjusted for the actual Sun -- Earth
-distance \(r\) and \(r_\text{m}\) is the mean Sun -- Earth distance of
+\(E_{\odot}\) \DIFaddbegin \DIFadd{is }\DIFaddend the solar constant \DIFdelbegin \DIFdel{adjusted for the actual Sun -- Earth distance
+}\DIFdelend \DIFaddbegin \DIFadd{at the mean Sun - Earth distance
+(\(1361\,\text{W}/\text{m}^2\)), }\DIFaddend \(r\) \DIFaddbegin \DIFadd{is the actual Sun - Earth
+distance }\DIFaddend and \(r_\text{m}\) is the mean Sun -- Earth distance of
 \(1.496\times10^8\,\text{km}\).
 
 An example of CE identification for a selected day is given in the
@@ -609,8 +611,8 @@ increasing trends, most pronounced for the frequency of occurrence
 (\DIFdelbegin \DIFdel{\(116.9 \pm 67.8\,\text{kJ}/\text{year}\)}\DIFdelend \DIFaddbegin \DIFadd{\(+116.3 \pm 68.2\,\text{kJ}/\text{year}\)}\DIFaddend ), which are also
 statistically significant. In contrast the trend of the yearly mean \DIFdelbegin \DIFdel{OIR
 }\DIFdelend \DIFaddbegin \DIFadd{OI
-}\DIFaddend is negligible (\DIFdelbegin \DIFdel{\(0.1\pm 0.1\,\text{W}/\text{m}^2/\text{year}\)}\DIFdelend \DIFaddbegin \DIFadd{\(+0\pm 0.1\,\text{W}/\text{m}^2/\text{year}\)}\DIFaddend ) and of no
-statistical significance. The average \DIFdelbegin \DIFdel{OIR }\DIFdelend \DIFaddbegin \DIFadd{OI }\DIFaddend for the entire period is
+}\DIFaddend is negligible (\DIFdelbegin \DIFdel{\(0.1\pm 0.1\,\text{W}/\text{m}^2/\text{year}\)}\DIFdelend \DIFaddbegin \DIFadd{\(+0.03\pm 0.1\,\text{W}/\text{m}^2/\text{year}\)}\DIFaddend ) and of
+no statistical significance. The average \DIFdelbegin \DIFdel{OIR }\DIFdelend \DIFaddbegin \DIFadd{OI }\DIFaddend for the entire period is
 \DIFdelbegin \DIFdel{\(39.9\pm 2.7\,\text{W}/\text{m}^2\)}\DIFdelend \DIFaddbegin \DIFadd{\(+40.1\pm 2.5\,\text{W}/\text{m}^2\)}\DIFaddend . The interannual variability of
 the data about the trend lines is quite large. Furthermore, the spread
 tends to increase with time (at least for the quantities of panels b and
@@ -783,11 +785,14 @@ for Thessaloniki.
 
 \begin{figure}
 
-{\centering \includegraphics[width=1\linewidth]{../images/P-extreme-distribution-1} 
+{\centering \DIFdelbeginFL %DIFDELCMD < \includegraphics[width=1\linewidth]{../images/P-extreme-distribution-1} 
+%DIFDELCMD < %%%
+\DIFdelendFL \DIFaddbeginFL \includegraphics[width=1\linewidth]{../images/P-extreme-distribution-2} 
+\DIFaddendFL 
 
 }
 
-\caption{Distribution of ECE events in Thessaloniki for the period 1993 -- 2023.}\label{fig:P-extreme-distribution}
+\caption{Distribution of ECE events in Thessaloniki for the period 1993 -- 2023. \DIFaddbeginFL \DIFaddFL{Measured as extra irradiance over TSI at TOA for the same SZA.}\DIFaddendFL }\label{fig:P-extreme-distribution}
 \end{figure}
 
 \hypertarget{conclusions}{%

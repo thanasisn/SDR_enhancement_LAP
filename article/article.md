@@ -576,9 +576,10 @@ the TSI at the top of the atmosphere. In this case the threshold $E$ is given by
 \text{ECE}: E > \cos(\text{SZA}) \cdot E_{\odot} \frac{r^2_\text{m}} {r^2}
 \label{eq:ECE}
 \end{equation}
-where: $\text{SZA}$ the solar zenith angle, $E_{\odot}$ the solar constant adjusted for
-the actual Sun -- Earth distance $r$ and $r_\text{m}$ is the mean Sun -- Earth
-distance of $1.496\times10^8\,\text{km}$.
+where: $\text{SZA}$ the solar zenith angle, $E_{\odot}$ is the solar constant at the
+mean Sun - Earth distance ($1361\,\text{W}/\text{m}^2$), $r$ is
+the actual Sun - Earth distance and $r_\text{m}$ is the mean Sun -- Earth distance of
+$1.496\times10^8\,\text{km}$.
 
 An example of CE identification for a selected day is given in the
 Figure\nobreakspace{}\ref{fig:example-day}, where the daily course of the clear sky
@@ -667,7 +668,7 @@ and the excess irradiation
 ($+116.3 \pm 68.2\,\text{kJ}/\text{year}$),
 which are also statistically significant.
 In contrast the trend of the yearly mean OI is negligible 
-($+0\pm 0.1\,\text{W}/\text{m}^2/\text{year}$)
+($+0.03\pm 0.1\,\text{W}/\text{m}^2/\text{year}$)
 and of no statistical significance.
 The average OI for the entire period is
 $+40.1\pm 2.5\,\text{W}/\text{m}^2$.
@@ -836,12 +837,19 @@ being that the OI values reported for are higher than those for Thessaloniki.
 
 \begin{figure}
 
-{\centering \includegraphics[width=1\linewidth]{../images/P-extreme-distribution-1} 
+{\centering \includegraphics[width=1\linewidth]{../images/P-extreme-distribution-2} 
 
 }
 
-\caption{Distribution of ECE events in Thessaloniki for the period 1993 -- 2023.}\label{fig:P-extreme-distribution}
+\caption{Distribution of ECE events in Thessaloniki for the period 1993 -- 2023. Measured as extra irradiance over TSI at TOA for the same SZA.}\label{fig:P-extreme-distribution}
 \end{figure}
+
+
+<!-- ```{r P-extreme-distribution, echo=FALSE, fig.cap="Distribution of ECE events in Thessaloniki for the period 1993 -- 2023."} -->
+<!-- knitr::include_graphics("../images/P-extreme-distribution-1.png") -->
+<!-- ``` -->
+
+
 
 <!-- ```{r echo=FALSE, fig.cap="Distribution of ECE Irradiance above 'TSI'"} -->
 <!-- knitr::include_graphics("../images/extremedistributions-4.png") -->
