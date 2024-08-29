@@ -24,7 +24,7 @@ fi
 
 echo "Upload to lapauththanasis:/Enhance"
 "${rclone}" ${otheropt} ${bwlimit} --verbose --config "$config" --max-depth 1 --include "*.{pdf}"                       copy "/home/athan/MANUSCRIPTS/02_enhancement/"        "lapauththanasis:/Enhance"
-"${rclone}" ${otheropt} ${bwlimit} --verbose --config "$config" --max-depth 1 --include "*.{pdf,odt,docx}"              copy "/home/athan/MANUSCRIPTS/02_enhancement/article" "lapauththanasis:/Enhance"
+# "${rclone}" ${otheropt} ${bwlimit} --verbose --config "$config" --max-depth 1 --include "*.{pdf,odt,docx}"              copy "/home/athan/MANUSCRIPTS/02_enhancement/article" "lapauththanasis:/Enhance"
 "${rclone}" ${otheropt} ${bwlimit} --verbose --config "$config" --max-depth 2 --include "[Aa]rticle*/*.{pdf,odt,docx}"  copy "/home/athan/MANUSCRIPTS/02_enhancement/"        "lapauththanasis:/Enhance"
 "${rclone}" ${otheropt} ${bwlimit} --verbose --config "$config" --max-depth 2 --include "SUBMISSION_*/*.{pdf}" copy "/home/athan/MANUSCRIPTS/02_enhancement/"        "lapauththanasis:/Enhance"
 
