@@ -253,8 +253,7 @@ ggplot(data = DATA[GLB_diff > 0,], aes(x = GLB_diff)) +
   theme_bw(base_size = 14) +
   theme(axis.text = element_text(face="bold"))
 
-#+
-  # scale_y_continuous(labels = function(x) paste0(x, "%"))
+# scale_y_continuous(labels = function(x) paste0(x, "%"))
 
 # print(p, vp = grid::viewport(gp=grid::gpar(cex=1.5)))
 # theme_gray(base_size = 18)
@@ -546,7 +545,7 @@ saveRDS(
 missing_days <- length(seq.Date(min(as.Date(DATA$Date)), max(as.Date(DATA$Date)), by = "day")) - DATA[, length(unique(as.Date(DATA$Date)))]
 total_days   <- length(seq.Date(min(as.Date(DATA$Date)), max(as.Date(DATA$Date)), by = "day"))
 
-cat("Missing days", 100 * missing_days/total_days, "%", missing_days, "from", total_days)
+cat("Missing days", 100 * missing_days/total_days, "%", missing_days, "from", total_days,"\n\n")
 
 ## missing days by month
 
@@ -569,10 +568,10 @@ hist(COMPLETE_monthly[, Complete])
 
 
 
+##  Climatology of CE   ----------------------------------------------
 
-
-monthly <- DATA[, .(Relative_enha_GLB = sum(Enhanc_C_4)/sum(!is.na(wattGLB)),
-                    Relative_enha_N   = sum(Enhanc_C_4)/.N),
+monthly <- DATA[, .(Relative_enha_GLB = sum(Enhanc_C_4, na.rm = T)/sum(!is.na(wattGLB), na.rm = T),
+                    Relative_enha_N   = sum(Enhanc_C_4, na.rm = T)/.N),
                 by = .(year(Date), month(Date)) ]
 
 
@@ -581,6 +580,7 @@ boxplot(monthly$Relative_enha_N ~ monthly$month)
 
 
 
+#+ P-CE-climatology-normlz,  echo=F, include=T, results="asis"
 
 ggplot(monthly, aes(y = Relative_enha_GLB,
                          x = factor(month,
@@ -609,7 +609,53 @@ ggplot(monthly, aes(y = Relative_enha_N,
     panel.grid.major.x = element_blank(),
     panel.grid.minor.x = element_blank()
   )
+#+ echo=F, include=T
 
+
+
+##  Climatology of ECE   ----------------------------------------------
+
+monthlyE <- DATA[, .(Relative_enha_GLB = sum(wattGLB > ETH, na.rm = T)/sum(!is.na(wattGLB), na.rm = T),
+                     Relative_enha_N   = sum(wattGLB > ETH, na.rm = T)/.N),
+                by = .(year(Date), month(Date)) ]
+
+
+boxplot(monthlyE$Relative_enha_GLB ~ monthlyE$month)
+boxplot(monthlyE$Relative_enha_N ~ monthlyE$month)
+
+
+
+#+ P-ECE-climatology-normlz, echo=F, include=T, results="asis"
+
+ggplot(monthlyE, aes(y = Relative_enha_GLB,
+                         x = factor(month,
+                                    levels = 1:12,
+                                    labels = month.abb[1:12]))) +
+  geom_boxplot(fill = varcol("GLB_diff"), outliers = FALSE) +
+  xlab("") +
+  ylab("CE relative to GLB") +
+  stat_summary(fun.y = mean, geom = "point", shape = 23, size = 3) +
+  theme(
+    panel.grid.major.x = element_blank(),
+    panel.grid.minor.x = element_blank()
+  )
+
+
+
+ggplot(monthlyE, aes(y = Relative_enha_N,
+                    x = factor(month,
+                               levels = 1:12,
+                               labels = month.abb[1:12]))) +
+  geom_boxplot(fill = varcol("GLB_diff"), outliers = FALSE) +
+  xlab("") +
+  ylab("CE relative to all minutes") +
+  stat_summary(fun.y = mean, geom = "point", shape = 23, size = 3) +
+  theme(
+    panel.grid.major.x = element_blank(),
+    panel.grid.minor.x = element_blank()
+  )
+
+#+ echo=F, include=T
 
 
 
