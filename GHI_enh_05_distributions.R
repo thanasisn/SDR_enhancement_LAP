@@ -631,7 +631,7 @@ ggplot(monthlyE, aes(y = Relative_enha_GLB,
                          x = factor(month,
                                     levels = 1:12,
                                     labels = month.abb[1:12]))) +
-  geom_boxplot(fill = varcol("GLB_diff"), outliers = FALSE) +
+  geom_boxplot(fill = "lightblue", outliers = FALSE) +
   xlab("") +
   ylab("CE relative to GLB") +
   stat_summary(fun.y = mean, geom = "point", shape = 23, size = 3) +
@@ -646,7 +646,7 @@ ggplot(monthlyE, aes(y = Relative_enha_N,
                     x = factor(month,
                                levels = 1:12,
                                labels = month.abb[1:12]))) +
-  geom_boxplot(fill = varcol("GLB_diff"), outliers = FALSE) +
+  geom_boxplot(fill = "lightblue", outliers = FALSE) +
   xlab("") +
   ylab("CE relative to all minutes") +
   stat_summary(fun.y = mean, geom = "point", shape = 23, size = 3) +
@@ -665,10 +665,7 @@ ggplot(monthlyE, aes(y = Relative_enha_N,
 
 keep_ratio <- 0.6
 
-
 Keep <- DATA[, sum(!is.na(wattGLB))/.N > keep_ratio, by = .(Day = as.Date(Date))]
-
-Keep[V1 == F, .N]/Keep[V1 == T, .N]
 
 cat("Keeping", keep_ratio, "of each day, removes", Keep[V1 == F, .N], "days of", Keep[V1 == T, .N], "total days or", 100*Keep[V1 == F, .N]/Keep[V1 == T, .N],"%\n")
 
@@ -680,18 +677,15 @@ cnt_doy <- Keep[, sum(V1 == T), by = doy]
 
 cnt_missing_doy <- Keep[, sum(V1 == F), by = doy]
 
-
 plot(cnt_missing_doy$doy, cnt_missing_doy$V1)
-
-
-
-cnt_missing_doy[V1 == 0, ]
 
 pander(cnt_missing_doy[V1 == 0, ], caption = paste("There are", nrow(cnt_missing_doy[V1 == 0, ]), "doys with all days no missing more than", 100*keep_ratio, "% data"))
 
 
 
 
+cat("Solar constant at 1au from NOAA TSI for the same data:",
+    mean(DATA$tsi_1au_comb, na.rm = T), "\n\n")
 
 mean(DATA$tsi_1au_comb, na.rm = T)
 mean(DATA$TSIextEARTH_comb, na.rm = T)
