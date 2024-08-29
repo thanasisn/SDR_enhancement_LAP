@@ -1044,7 +1044,7 @@ ggplot(dataset,
   ylab(bquote("Difference %" )) +
   xlab("Date") +
   annotate("text", x = 2000, y = dataset[year==2000, change],
-           label = "paste(\"+0.21 %/y\")", parse = TRUE,
+           label = "paste(\"+0.022 %/y\")", parse = TRUE,
            fontface = 2,
            size     = 5,
            hjust    = 1.1,

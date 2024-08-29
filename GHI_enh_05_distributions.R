@@ -544,6 +544,47 @@ hist(COMPLETE_monthly[, Complete])
 
 
 
+monthly <- DATA[, .(Relative_enha_GLB = sum(Enhanc_C_4)/sum(!is.na(wattGLB)),
+                    Relative_enha_N   = sum(Enhanc_C_4)/.N),
+                by = .(year(Date), month(Date)) ]
+
+
+boxplot(monthly$Relative_enha_GLB ~ monthly$month)
+boxplot(monthly$Relative_enha_N ~ monthly$month)
+
+
+
+
+ggplot(monthly, aes(y = Relative_enha_GLB,
+                         x = factor(month,
+                                    levels = 1:12,
+                                    labels = month.abb[1:12]))) +
+  geom_boxplot(fill = varcol("GLB_diff"), outliers = FALSE) +
+  xlab("") +
+  ylab("CE relative to GLB") +
+  stat_summary(fun.y = mean, geom = "point", shape = 23, size = 3) +
+  theme(
+    panel.grid.major.x = element_blank(),
+    panel.grid.minor.x = element_blank()
+  )
+
+
+
+ggplot(monthly, aes(y = Relative_enha_N,
+                    x = factor(month,
+                               levels = 1:12,
+                               labels = month.abb[1:12]))) +
+  geom_boxplot(fill = varcol("GLB_diff"), outliers = FALSE) +
+  xlab("") +
+  ylab("CE relative to all minutes") +
+  stat_summary(fun.y = mean, geom = "point", shape = 23, size = 3) +
+  theme(
+    panel.grid.major.x = element_blank(),
+    panel.grid.minor.x = element_blank()
+  )
+
+
+
 
 #' **END**
 #+ include=T, echo=F
