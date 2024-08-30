@@ -439,10 +439,36 @@ grid.arrange(pp[[1]], pp[[2]], pp[[3]],
 
 
 ## plot all data global
-DATA[, yts := (year(Date) - min(year(Date))) + ( yday(Date) - 1 ) / Hmisc::yearDays(Date)]
+DATA <- readRDS("data/CE_ID_Input.Rds")
+DATA[, yts := min(year(Date)) + (year(Date) - min(year(Date))) + ( yday(Date) - 1 ) / Hmisc::yearDays(Date)]
 pvar    <- "wattGLB"
 
-names(DATA)
+
+p <- ggplot(DATA, aes(x = yts,
+                         y = get(pvar))) +
+  geom_point(color = varcol(pvar),
+             size  = 1) +
+  geom_abline(intercept = unlist(Tint[1]), slope = unlist(Tres[1])) +
+  ylab(bquote("" ~ .(varname(pvar)) ~ group("[", W/m^2,"]"))) +
+  xlab("Date") +
+  # annotation_custom(grob) +
+  scale_y_continuous(guide        = "axis_minor",
+                     minor_breaks = seq(0, 500, by = 25)) +
+  scale_x_continuous(guide        = "axis_minor",
+                     breaks = c(
+                       min(floor(DATA[,yts])),
+                       pretty(DATA[,yts], n = 4),
+                       max(ceiling(DATA[,yts]))),
+                     minor_breaks = seq(1990, 2050, by = 1)) +
+  theme(plot.margin = margin(t = 0, r = 0.5 , b = 0.5, l = 0, "cm"))
+print(p)
+
+
+
+
+
+
+
 
 
 pp <- map(
@@ -455,7 +481,7 @@ pp <- map(
     ylab("") +
     xlab("") +
     scale_y_continuous(guide  = "axis_minor",
-                       limits = range(DATA[, get(pvar)]),
+                       limits = range(DATA[, get(pvar)], na.rm = T),
                        # breaks = pretty(dataset[, get(pvar)], n = 3)) +
                        breaks = seq(300, 1200, 300)) +
     scale_x_continuous(guide        = "axis_minor",
@@ -490,8 +516,6 @@ grid.arrange(pp[[1]], pp[[2]], pp[[3]],
 #   grid.newpage()
 #   grid.draw(rbind(g1, g2, g3))
 # }
-
-stop("ffff")
 
 
 
