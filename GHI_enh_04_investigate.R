@@ -472,12 +472,12 @@ print(p)
 
 
 pp <- map(
-  list(c(1994,2004), c(2004,2014), c(2014,2024)),
+  list(c(1994, 2004), c(2004, 2014), c(2014, 2024)),
   ~ DATA[yts >= .x[1] & yts <= .x[2]] |>
     ggplot(aes(x = yts,
                y = get(pvar))) +
     geom_point(color = varcol(pvar),
-               size  = 1) +
+               size  = .5) +
     ylab("") +
     xlab("") +
     scale_y_continuous(guide  = "axis_minor",
