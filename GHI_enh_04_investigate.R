@@ -360,7 +360,7 @@ dataset |>
   geom_abline(intercept = unlist(Tint[1]), slope = unlist(Tres[1])) +
   ylab(bquote("CE" ~ .(varname(pvar)) ~ group("[", W/m^2,"]"))) +
   xlab("Date") +
-  annotation_custom(grob) +
+  # annotation_custom(grob) +
   scale_y_continuous(guide        = "axis_minor",
                      minor_breaks = seq(0, 500, by = 25)) +
   scale_x_continuous(guide        = "axis_minor",
@@ -373,10 +373,60 @@ dataset |>
 
 
 
+## plot daiy GLOBAL
+
+pvar    <- "wattGLB.mean"
+dataset <- copy(ST_E_daily)
+dataset[, yts := yts + min(year(Date))]
+dataset[, decate := yts %/% 10]
 
 
+p <- ggplot(dataset, aes(x = yts,
+                         y = get(pvar))) +
+  geom_point(color = varcol(pvar),
+             size  = 1) +
+  geom_abline(intercept = unlist(Tint[1]), slope = unlist(Tres[1])) +
+  ylab(bquote("" ~ .(varname(pvar)) ~ group("[", W/m^2,"]"))) +
+  xlab("Date") +
+  # annotation_custom(grob) +
+  scale_y_continuous(guide        = "axis_minor",
+                     minor_breaks = seq(0, 500, by = 25)) +
+  scale_x_continuous(guide        = "axis_minor",
+                     breaks = c(
+                       min(floor(dataset[,yts])),
+                       pretty(dataset[,yts], n = 4),
+                       max(ceiling(dataset[,yts]))),
+                     minor_breaks = seq(1990, 2050, by = 1)) +
+  theme(plot.margin = margin(t = 0, r = 0.5 , b = 0.5, l = 0, "cm"))
 
 
+vv <- seq(dataset[, floor(min(yts))], dataset[, ceiling(max(yts))], 10)
+vv
+
+
+pp <- map(
+  list(c(1994,2004), c(2004,2014), c(2014,2024)),
+  ~ dataset[yts >= .x[1] & yts <= .x[2]] |>
+    ggplot(aes(x = yts,
+               y = get(pvar))) +
+    geom_point(color = varcol(pvar),
+               size  = 1) +
+    ylab(bquote("" ~ .(varname(pvar)) ~ group("[", W/m^2,"]"))) +
+    xlab("") +
+    # scale_y_continuous(guide        = "axis_minor",
+    #                    minor_breaks = seq(0, 500, by = 25)) +
+    scale_x_continuous(guide        = "axis_minor",
+                       breaks = c(
+                         .x[1],
+                         pretty(c(.x[1], .x[2]), n = 6),
+                         .x[2]),
+                       minor_breaks = seq(1990, 2050, by = 1)) +
+    theme(plot.margin = margin(t = 0, r = 0.5 , b = 0.5, l = 0, "cm"))
+
+)
+
+
+grid.arrange(pp[[1]], pp[[2]], pp[[3]], bottom = "Date")
 
 
 stop("ffff")
