@@ -582,13 +582,13 @@ boxplot(monthly$Relative_enha_N ~ monthly$month)
 
 #+ P-CE-climatology-normlz,  echo=F, include=T, results="asis"
 
-ggplot(monthly, aes(y = Relative_enha_GLB,
+ggplot(monthly, aes(y = 100 * Relative_enha_GLB,
                          x = factor(month,
                                     levels = 1:12,
                                     labels = month.abb[1:12]))) +
   geom_boxplot(fill = varcol("GLB_diff"), outliers = FALSE) +
   xlab("") +
-  ylab("CE relative to GLB") +
+  ylab("CE occurence frequency relative to GHI [%]") +
   stat_summary(fun.y = mean, geom = "point", shape = 23, size = 3) +
   theme(
     panel.grid.major.x = element_blank(),
@@ -597,19 +597,24 @@ ggplot(monthly, aes(y = Relative_enha_GLB,
 
 
 
-ggplot(monthly, aes(y = Relative_enha_N,
+ggplot(monthly, aes(y = 100 * Relative_enha_N,
                     x = factor(month,
                                levels = 1:12,
                                labels = month.abb[1:12]))) +
   geom_boxplot(fill = varcol("GLB_diff"), outliers = FALSE) +
   xlab("") +
-  ylab("CE relative to all minutes") +
+  ylab("CE occurence relative to all minutes [%]") +
   stat_summary(fun.y = mean, geom = "point", shape = 23, size = 3) +
   theme(
     panel.grid.major.x = element_blank(),
     panel.grid.minor.x = element_blank()
   )
 #+ echo=F, include=T
+
+
+
+
+
 
 
 
@@ -627,13 +632,13 @@ boxplot(monthlyE$Relative_enha_N ~ monthlyE$month)
 
 #+ P-ECE-climatology-normlz, echo=F, include=T, results="asis"
 
-ggplot(monthlyE, aes(y = Relative_enha_GLB,
+ggplot(monthlyE, aes(y = 100 * Relative_enha_GLB,
                          x = factor(month,
                                     levels = 1:12,
                                     labels = month.abb[1:12]))) +
   geom_boxplot(fill = "lightblue", outliers = FALSE) +
   xlab("") +
-  ylab("CE relative to GLB") +
+  ylab("ECE occurence frequency relative to GHI [%]") +
   stat_summary(fun.y = mean, geom = "point", shape = 23, size = 3) +
   theme(
     panel.grid.major.x = element_blank(),
@@ -648,7 +653,7 @@ ggplot(monthlyE, aes(y = Relative_enha_N,
                                labels = month.abb[1:12]))) +
   geom_boxplot(fill = "lightblue", outliers = FALSE) +
   xlab("") +
-  ylab("CE relative to all minutes") +
+  ylab("ECE relative to all minutes") +
   stat_summary(fun.y = mean, geom = "point", shape = 23, size = 3) +
   theme(
     panel.grid.major.x = element_blank(),
@@ -684,11 +689,39 @@ pander(cnt_missing_doy[V1 == 0, ], caption = paste("There are", nrow(cnt_missing
 
 
 
+
+
 cat("Solar constant at 1au from NOAA TSI for the same data:",
     mean(DATA$tsi_1au_comb, na.rm = T), "\n\n")
 
 mean(DATA$tsi_1au_comb, na.rm = T)
 mean(DATA$TSIextEARTH_comb, na.rm = T)
+
+
+
+## Solstice --------------------
+LUK <- readRDS("./data/lookuptable_datatable.Rds")
+LUK <- LUK[SZA > 17]
+
+solstis <- data.table()
+for (ay in unique(year(LUK$Date))) {
+  temp <- LUK[year(LUK$Date) == ay ]
+  aday <- temp[as.Date(Date) == temp[which.min(SZA), as.Date(Date)]]
+
+  energy <- sum(aday$Exact_B.Exact_W.edir + aday$Exact_B.Exact_W.edn) * 60 / Energy_Div / 1000
+
+  solstis <- rbind(solstis,
+  data.table(Date      = temp[which.min(SZA), as.Date(Date)],
+             SZA       = temp[which.min(SZA), SZA],
+             Enerhy_Kj = energy)
+  )
+
+}
+
+pander(solstis, caption = "Solstices from Libratran")
+
+max(solstis$Enerhy_Kj, na.rm = T)
+
 
 
 

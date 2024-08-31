@@ -35,7 +35,7 @@ address:
 #     text: "Another author footnote."
 abstract: |
   In this study we investigate the characteristics of global horizontal irradiance
-  enhancement events induced by clouds over Thessaloniki for the period 1993 -- 2023
+  enhancement events induced by clouds over Thessaloniki for the period 1994 -- 2023
   using data recorded every one minute. We identified the cloud enhancement (CE)
   events by creating an appropriate clear-sky irradiance reference with the use of a
   radiative transfer model and aerosol optical depth data from a collocated Cimel sun
@@ -145,16 +145,16 @@ MC <- readRDS("~/MANUSCRIPTS/02_enhancement/data/Max_cases.Rds")
 **Abstract temporary placed here for technical reasons**
 
 We studied the enhancement of the global horizontal irradiance induced by clouds over
-Thessaloniki for the period 1993 -- 2023 using data recorded every one minute.  We
+Thessaloniki for the period 1994 -- 2023 using data recorded every one minute.  We
 identified the cloud enhancement events (CE) by creating an appropriate clear sky
 irradiance reference with the use of a radiative transfer model and aerosol optical
 depth data from a collocated Cimel sun photometer and a Brewer spectrophotometer. We
 found a trend in CE events of
-$`r round(yearlyCE[var == "GLB_diff.N", slope], 0)`\pm
-`r round(2 * yearlyCE[var == "GLB_diff.N", slope.sd],0)`\,\text{cases}/\text{year}$,
+$`r plus_sign(round(yearlyCE[var=="GLB_diff.N",slope],0))`\pm
+`r round(2*yearlyCE[var=="GLB_diff.N",slope.sd],0)`\,\text{cases}/\text{year}$,
 and a trend in the CE events irradiation of 
-$`r round(yearlyCE[var == "GLB_diff.sum", slope], 1)`\pm
-`r round(2 * yearlyCE[var == "GLB_diff.sum", slope.sd], 1)`\,\text{kJ}/\text{year}$.
+$`r plus_sign(round(yearlyCE[var=="GLB_diff.sum",slope],1))`\pm
+`r round(2*yearlyCE[var=="GLB_diff.sum",slope.sd],1)`\,\text{kJ}/\text{year}$.
 The peak of the CE events was observed during May and June.  An analysis of the total
 duration of CE events, showed that durations longer than 5 minutes are very rare,
 with exceptions lasting over an hour and up to 140 minutes.  Finally, we have
@@ -162,7 +162,7 @@ detected enhancements above the total solar irradiance at the top of the atmosph
 for the same solar zenith angle of up to
 $400\,\text{W}/\text{m}^{2}$, with the $75\,\%$ of the cases below
 $200\,\text{W}/\text{m}^{2}$. The most active season of these extreme events is
-spring until early summer and autumn. 
+spring until early summer and autumn.
 
 
 <!--
@@ -313,6 +313,13 @@ otherwise all data for this day is flagged as invalid. There must be at least Th
 work valid data 45 min of valid data (Tests 1–7) for an hour to be flagged as valid,
 otherwise all minute data for this hour is flagged as invalid.
 -->
+An overview of the data analyzed for the study of the CE and ECE events is given in
+Figure\nobreakspace{}\ref{fig:CLB-daily}, as the daily mean of the measured GHI.
+
+```{r CLB-daily, echo=FALSE, fig.cap="Daily mean values of GHI in Thessaloniki for the period 1994 -- 2023."}
+knitr::include_graphics("../images/P_daily_trend-3.png")
+```
+
 
 
 ## Cloud enhancement detection
@@ -416,7 +423,7 @@ the GHI data of Thessaloniki for the period 1993 -- 2023, which for clear-sky da
 was attributed to long-term changes in aerosol effects.  Therefore, an adjustment of
 the $\text{GHI}_\text{ref}$ during the period of study was made using simulations
 with the RTM based on the long-term variations of the AOD. As AERONET data start only
-in 2003, we used for the period 1993 -- 2005 estimates of changes in AOD at
+in 2003, we used for the period 1994 -- 2005 estimates of changes in AOD at
 $340\,\text{nm}$ derived from a collocated Brewer spectrophotometer [@Kazadzis2007]
 to calculate the change in $\text{GHI}_\text{ref}$ due to aerosols during this period.
 
@@ -459,8 +466,8 @@ and finally the change of $+0.14\,\%$ per year. We applied these two long-term c
 $\text{GHI}_\text{ref}$, in order to create a more realistic representation of the
 clear-sky irradiance for the whole period of study.
 
-```{r CS-change, echo=FALSE, fig.cap="Simulated long-term change in clear sky irradiance relative to the climatological values due to changes in AOD in Thessaloniki for the period 1993 -- 2023."}
-knitr::include_graphics("../images/P-CS-change-1.pdf")
+```{r CS-change, echo=FALSE, fig.cap="Simulated long-term change in clear sky irradiance relative to the climatological values due to changes in AOD in Thessaloniki for the period 1994 -- 2023."}
+knitr::include_graphics("../images/P-CS-change-1.png")
 ```
 
 <!-- 1997 0.0839901
@@ -679,7 +686,7 @@ language [@RCT2023]. All trends are reported together with their $2\sigma$ error
 
 Figure\nobreakspace{}\ref{fig:P-energy} shows the time series of the yearly number of
 CE cases (each with duration of one minute), the yearly mean OI and the yearly
-excess irradiation for the period 1993 -- 2023, together with corresponding linear
+excess irradiation for the period 1994 -- 2023, together with corresponding linear
 trends. All three quantities show increasing trends, most pronounced for the
 frequency of occurrence 
 ($`r plus_sign(round(yearlyCE[var == "GLB_diff.N", slope], 0))`\pm `r round(2 * yearlyCE[var == "GLB_diff.N", slope.sd], 0)`\,\text{cases}/\text{year}$)
@@ -711,7 +718,7 @@ equivalent clear sky irradiance by a significant amount.
             \subfloat[\label{fig:P-energy-sum}]
                 {\includegraphics[width=\linewidth]{../images/P-energy-1} }
         }
-    \caption{Time series for the period 1993 -- 2023 of (a) the yearly CE number of occurrences, (b) the yearly mean OI and (c) the yearly excess irradiation. The black lines represent the linear trends on the yearly data.}\label{fig:P-energy}
+    \caption{Time series for the period 1994 -- 2023 of (a) the yearly CE number of occurrences, (b) the yearly mean OI and (c) the yearly excess irradiation. The black lines represent the linear trends on the yearly data.}\label{fig:P-energy}
 \end{figure}
 
 
@@ -732,7 +739,7 @@ of detailed data on cloud formation, type and location is not allowing further
 analysis. The interannual variability of the monthly CE events is quite high as
 manifested by the large monthly extremes, especially in the summer.
 
-```{r relative-month-occurrences, echo=FALSE, fig.cap="Seasonal variability of the number of CE events in Thessaloniki for the period 1993 -- 2023 normalized to the maximum occurring in June, in the form of a box and whisker plot. The monthly values have also been normalized to the relative abundance of valid GHI observations. The box contains the data between the lower $25\\,\\%$ and the upper $75\\,\\%$ percentiles, the thick horizontal line and the diamond symbol represent the median and the mean values, respectively. The vertical lines (whiskers) extend between the maximum and minimum monthly values."}
+```{r relative-month-occurrences, echo=FALSE, fig.cap="Seasonal variability of the number of CE events in Thessaloniki for the period 1994 -- 2023 normalized to the maximum occurring in June, in the form of a box and whisker plot. The monthly values have also been normalized to the relative abundance of valid GHI observations. The box contains the data between the lower $25\\,\\%$ and the upper $75\\,\\%$ percentiles, the thick horizontal line and the diamond symbol represent the median and the mean values, respectively. The vertical lines (whiskers) extend between the maximum and minimum monthly values."}
 knitr::include_graphics("../images/clim-CE-month-norm-MAX-median-N-MW-1.png")
 ```
 
@@ -752,7 +759,7 @@ $2.5^\circ$ south of Thessaloniki and is exposed to air masses coming mainly fro
 eastern Mediterranean resulting in different cloud patterns, that may affect the
 characteristics and magnitude of the CE events.
 
-```{r ovir-distribution, echo=FALSE, fig.cap="Relative frequency distribution of CE events in Thessaloniki for the period 1993 -- 2023 as a function of OI. The histogram was split in two plots with different y-axis scales for better readability."}
+```{r ovir-distribution, echo=FALSE, fig.cap="Relative frequency distribution of CE events in Thessaloniki for the period 1994 -- 2023 as a function of OI. The histogram was split in two plots with different y-axis scales for better readability."}
 knitr::include_graphics("../images/P-relative-distribution-diff-2.png")
 ```
 
@@ -772,7 +779,7 @@ distribution of the CE events according to their duration.  We conclude that alt
 some groups of events last for more than an hour, about $80\,\%$ have duration of
 less than 5 minutes.
 
-```{r ceg-duration-distribution, echo=FALSE, fig.cap="Relative frequency distribution of CE groups of consequent CE events according to their duration for Thessaloniki in the period 1993 -- 2023. The histogram was split in two plots with different y-axis scales for better readability."}
+```{r ceg-duration-distribution, echo=FALSE, fig.cap="Relative frequency distribution of CE groups of consequent CE events according to their duration for Thessaloniki in the period 1994 -- 2023. The histogram was split in two plots with different y-axis scales for better readability."}
 # knitr::include_graphics("../images/groups-1.png")
 knitr::include_graphics("../images/groups-7.png")
 ```
@@ -786,7 +793,7 @@ and long duration are very rare.  Similar results of this relation have been rep
 by @Zhang2018 in a study using a far higher sampling rate ($100\,\text{Hz}$) than
 ours.
 
-```{r group-2d, echo=FALSE, fig.cap="Relation of excess irradiation of CE groups with their duration for Thessaloniki in the period 1993 -- 2023. The logarithmic color scale denotes the frequency of the respective groups of events."}
+```{r group-2d, echo=FALSE, fig.cap="Relation of excess irradiation of CE groups with their duration for Thessaloniki in the period 1994 -- 2023. The logarithmic color scale denotes the frequency of the respective groups of events."}
 knitr::include_graphics("../images/P-groups-bin2d-1.png")
 ```
 
@@ -813,7 +820,7 @@ period in early autumn (September and October).  This is probably related to the
 weather characteristics in these periods, with frequent alternations between clear
 sky periods and clouds.
 
-```{r relative-month-occurancies-ECE, echo=FALSE, fig.cap="Seasonal variability of the number of ECE events in Thessaloniki for the period 1993 -- 2023 normalized to the maximum occurring in March, in the form of a box and whisker plot. The box contains the data between the lower $25\\,\\%$ and the upper $75\\,\\%$ percentiles. The thick horizontal line and the diamond symbol represent the median and the mean values, respectively. The vertical lines (whiskers) extend between the maximum and minimum monthly values."}
+```{r relative-month-occurancies-ECE, echo=FALSE, fig.cap="Seasonal variability of the number of ECE events in Thessaloniki for the period 1994 -- 2023 normalized to the maximum occurring in March, in the form of a box and whisker plot. The box contains the data between the lower $25\\,\\%$ and the upper $75\\,\\%$ percentiles. The thick horizontal line and the diamond symbol represent the median and the mean values, respectively. The vertical lines (whiskers) extend between the maximum and minimum monthly values."}
 knitr::include_graphics("../images/clim-ECE-month-norm-MAX-median-N-2.png")
 ```
 
@@ -830,12 +837,12 @@ findings are in accordance with the results of @Vamvakas2020, the only differenc
 being that the OI values reported for are higher than those for Thessaloniki.
 
 
-```{r P-extreme-distribution, echo=FALSE, fig.cap="Distribution of ECE events in Thessaloniki for the period 1993 -- 2023. Measured as extra irradiance over TSI at TOA for the same SZA."}
+```{r P-extreme-distribution, echo=FALSE, fig.cap="Distribution of ECE events in Thessaloniki for the period 1994 -- 2023. Measured as extra irradiance over TSI at TOA for the same SZA."}
 knitr::include_graphics("../images/P-extreme-distribution-2.png")
 ```
 
 
-<!-- ```{r P-extreme-distribution, echo=FALSE, fig.cap="Distribution of ECE events in Thessaloniki for the period 1993 -- 2023."} -->
+<!-- ```{r P-extreme-distribution, echo=FALSE, fig.cap="Distribution of ECE events in Thessaloniki for the period 1994 -- 2023."} -->
 <!-- knitr::include_graphics("../images/P-extreme-distribution-1.png") -->
 <!-- ``` -->
 
@@ -865,7 +872,7 @@ knitr::include_graphics("../images/P-extreme-distribution-2.png")
 
 By creating a clear sky approximation representing the long- and short-term
 variability of the expected clear sky GHI, we were able to identify cases of CE
-events in Thessaloniki for the period 1993 -- 2023.  After analyzing the CE cases, we
+events in Thessaloniki for the period 1994 -- 2023.  After analyzing the CE cases, we
 found an increase of
 $`r plus_sign(round(yearlyCE[var == "GLB_diff.N", slope], 1))`\pm `r round(2 * yearlyCE[var == "GLB_diff.N", slope.sd], 1)`\,\text{cases}/\text{year}$,
 with the mean annual irradiation of the CE events increasing with a rate of
