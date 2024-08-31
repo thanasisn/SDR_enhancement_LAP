@@ -1,7 +1,7 @@
 \documentclass[preprint, 5p,
 %DIF LATEXDIFF DIFFERENCE FILE
 %DIF DEL /home/athan/MANUSCRIPTS/02_enhancement/SUBMISSION_01/article/article.tex   Wed Jul 10 10:31:02 2024
-%DIF ADD /home/athan/MANUSCRIPTS/02_enhancement/article/article.tex                 Fri Aug 30 20:21:20 2024
+%DIF ADD /home/athan/MANUSCRIPTS/02_enhancement/article/article.tex                 Sat Aug 31 11:28:18 2024
 authoryear]{elsarticle} %review=doublespace preprint=single 5p=2 column
 %%% Begin My package additions %%%%%%%%%%%%%%%%%%%
 
@@ -47,7 +47,11 @@ authoryear]{elsarticle} %review=doublespace preprint=single 5p=2 column
 \hypersetup{breaklinks=true,
             bookmarks=true,
             pdfauthor={},
-            pdftitle={Long-term cloud enhancement events of global solar irradiance over Thessaloniki, Greece},
+%DIF 47c47
+%DIF <             pdftitle={Long-term cloud enhancement events of global solar irradiance over Thessaloniki, Greece},
+%DIF -------
+            pdftitle={Analysis of cloud enhancement events in a 30-year record of global solar irradiance at Thessaloniki, Greece}, %DIF > 
+%DIF -------
             colorlinks=false,
             urlcolor=blue,
             linkcolor=magenta,
@@ -169,8 +173,8 @@ authoryear]{elsarticle} %review=doublespace preprint=single 5p=2 column
 
 \begin{frontmatter}
 
-  \title{Long-term cloud enhancement events of global solar irradiance
-over Thessaloniki, Greece}
+  \title{\DIFdelbegin \DIFdel{Long-term }\DIFdelend \DIFaddbegin \DIFadd{Analysis of }\DIFaddend cloud enhancement events \DIFaddbegin \DIFadd{in a 30-year record }\DIFaddend of
+global solar irradiance \DIFdelbegin \DIFdel{over }\DIFdelend \DIFaddbegin \DIFadd{at }\DIFaddend Thessaloniki, Greece}
     \author[LAP]{Athanasios N. Natsis%
   \corref{cor1}%
   }
@@ -217,7 +221,36 @@ irradiance \sep
 
  \end{frontmatter}
 
-\hypertarget{introduction}{%
+\DIFaddbegin \hypertarget{abstract}{%
+\section*{Abstract}\label{abstract}}
+\addcontentsline{toc}{section}{\DIFadd{Abstract}}
+
+\textbf{\DIFadd{Abstract temporary placed here for technical reasons}}
+
+\DIFadd{We studied the enhancement of the global horizontal irradiance induced
+by clouds over Thessaloniki for the period 1993 -- 2023 using data
+recorded every one minute. We identified the cloud enhancement events
+(CE) by creating an appropriate clear sky irradiance reference with the
+use of a radiative transfer model and aerosol optical depth data from a
+collocated Cimel sun photometer and a Brewer spectrophotometer. We found
+a trend in CE events of %
+\mbox{%DIFAUXCMD
+\(46\pm 22\,\text{cases}/\text{year}\)
+}%DIFAUXCMD
+, and a
+trend in the CE events irradiation of
+\(116.3\pm 68.2\,\text{kJ}/\text{year}\). The peak of the CE events was
+observed during May and June. An analysis of the total duration of CE
+events, showed that durations longer than 5 minutes are very rare, with
+exceptions lasting over an hour and up to 140 minutes. Finally, we have
+detected enhancements above the total solar irradiance at the top of the
+atmosphere for the same solar zenith angle of up to
+\(400\,\text{W}/\text{m}^{2}\), with the \(75\,\%\) of the cases below
+\(200\,\text{W}/\text{m}^{2}\). The most active season of these extreme
+events is spring until early summer and autumn.
+}
+
+\DIFaddend \hypertarget{introduction}{%
 \section{Introduction}\label{introduction}}
 
 The shortwave solar radiation, reaching Earth's surface, is the main
@@ -605,7 +638,7 @@ increasing trends, most pronounced for the frequency of occurrence
 }%DIFAUXCMD
 }\DIFdelend \DIFaddbegin \DIFadd{%
 \mbox{%DIFAUXCMD
-\(+45.6\pm 22\,\text{cases}/\text{year}\)
+\(+46\pm 22\,\text{cases}/\text{year}\)
 }%DIFAUXCMD
 }\DIFaddend ) and the excess irradiation
 (\DIFdelbegin \DIFdel{\(116.9 \pm 67.8\,\text{kJ}/\text{year}\)}\DIFdelend \DIFaddbegin \DIFadd{\(+116.3 \pm 68.2\,\text{kJ}/\text{year}\)}\DIFaddend ), which are also
