@@ -120,6 +120,9 @@ for (aty in types) {
 
 ##  store final lookup table  --------------------------------------------------
 LKUO[, wattGLB := NULL]
+## drop non meaningful
+LKUO <- LKUO[SZA > 16]
+
 # saveRDS(LKUO, paste0("./data/", sub(".R", ".Rds", basename(Script.Name))))
 write_RDS(LKUO, paste0("./data/", sub(".R", ".Rds", basename(Script.Name))))
 
