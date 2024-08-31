@@ -1,5 +1,5 @@
 ---
-title: Long-term cloud enhancement events of global solar irradiance over Thessaloniki, Greece
+title: Analysis of cloud enhancement events in a 30-year record of global solar irradiance at Thessaloniki, Greece
 
 author:
   - name:        Athanasios N. Natsis
@@ -63,7 +63,7 @@ keywords:
   - over irradiance
 
 journal:        "Atmospheric Research"
-date:           "2024-08-30"
+date:           "2024-08-31"
 linenumbers:    false
 numbersections: true
 bibliography:   bibliography.bib
@@ -107,16 +107,17 @@ output:
 
 
 
-<!-- # Abstract {.unnumbered} -->
+# Abstract {.unnumbered} 
 
-<!--
+**Abstract temporary placed here for technical reasons**
+
 We studied the enhancement of the global horizontal irradiance induced by clouds over
 Thessaloniki for the period 1993 -- 2023 using data recorded every one minute.  We
 identified the cloud enhancement events (CE) by creating an appropriate clear sky
 irradiance reference with the use of a radiative transfer model and aerosol optical
 depth data from a collocated Cimel sun photometer and a Brewer spectrophotometer. We
 found a trend in CE events of
-$45.6\pm
+$46\pm
 22\,\text{cases}/\text{year}$,
 and a trend in the CE events irradiation of 
 $116.3\pm
@@ -129,7 +130,7 @@ for the same solar zenith angle of up to
 $400\,\text{W}/\text{m}^{2}$, with the $75\,\%$ of the cases below
 $200\,\text{W}/\text{m}^{2}$. The most active season of these extreme events is
 spring until early summer and autumn. 
--->
+
 
 <!--
 
@@ -663,7 +664,7 @@ CE cases (each with duration of one minute), the yearly mean OI and the yearly
 excess irradiation for the period 1993 -- 2023, together with corresponding linear
 trends. All three quantities show increasing trends, most pronounced for the
 frequency of occurrence 
-($+45.6\pm 22\,\text{cases}/\text{year}$)
+($+46\pm 22\,\text{cases}/\text{year}$)
 and the excess irradiation 
 ($+116.3 \pm 68.2\,\text{kJ}/\text{year}$),
 which are also statistically significant.

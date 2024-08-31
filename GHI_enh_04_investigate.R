@@ -1183,7 +1183,7 @@ title("Climatology of CE cases per weak")
   lmD <- lm( ST_E_yearly[, year, GLB_diff.mean])
   abline(lmD)
 
-  title("Mean  of OI per CE")
+  title("Mean of OI per CE")
 
   ## display trend on graph
   fit <- lmD[[1]]
@@ -1469,8 +1469,8 @@ yeartrends <- rbind(yeartrends,
 grob <- grobTree(
   textGrob(
     label = TeX(
-      paste("Trend:  $", round(lmY2$coefficients[2], 1),
-            "\\pm",      round(2 * d2[2,2],          1),   ## show 2 sigma
+      paste("Trend:  $", round(lmY2$coefficients[2], 0),
+            "\\pm",      round(2 * d2[2,2],          0),   ## show 2 sigma
             "\\,cases/year$")),
     x = 0.95,  y = 0.05, hjust = 1,
     gp = gpar(col = "black", fontsize = 13, fontface= "bold")
@@ -1722,8 +1722,8 @@ yeartrends <- rbind(yeartrends,
 grob <- grobTree(
   textGrob(
     label = TeX(
-      paste("Trend:  $", round(lmY2$coefficients[2], 1),
-            "\\pm",      round(2 * d2[2,2],          1),   ## show 2 sigma
+      paste("Trend:  $", round(lmY2$coefficients[2], 0),
+            "\\pm",      round(2 * d2[2,2],          0),   ## show 2 sigma
             "\\,cases/year$")),
     x = 0.95,  y = 0.05, hjust = 1,
     gp = gpar(col = "black", fontsize = 13, fontface= "bold")
