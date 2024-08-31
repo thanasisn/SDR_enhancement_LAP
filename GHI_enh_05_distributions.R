@@ -701,27 +701,32 @@ mean(DATA$TSIextEARTH_comb, na.rm = T)
 
 ## Solstice --------------------
 LUK <- readRDS("./data/lookuptable_datatable.Rds")
-LUK <- LUK[SZA > 17]
+# LUK <- LUK[SZA > 17]
 
 solstis <- data.table()
 for (ay in unique(year(LUK$Date))) {
   temp <- LUK[year(LUK$Date) == ay ]
   aday <- temp[as.Date(Date) == temp[which.min(SZA), as.Date(Date)]]
 
-  energy <- sum(aday$Exact_B.Exact_W.edir + aday$Exact_B.Exact_W.edn) * 60 / Energy_Div / 1000
+  energy <- sum(aday$Exact_B.Exact_W.edir + aday$Exact_B.Exact_W.edn) * 60 / 1000 /1000
 
   solstis <- rbind(solstis,
-  data.table(Date      = temp[which.min(SZA), as.Date(Date)],
-             SZA       = temp[which.min(SZA), SZA],
-             Enerhy_Kj = energy)
+                   data.table(Date      = temp[which.min(SZA), as.Date(Date)],
+                              SZA       = temp[which.min(SZA), SZA],
+                              Enerhy_Kj = energy)
   )
 
 }
 
 pander(solstis, caption = "Solstices from Libratran")
 
-max(solstis$Enerhy_Kj, na.rm = T)
 
+cat("Max for all period", max(solstis$Enerhy_Kj/1000, na.rm = T), "MJ", "\n\n")
+cat("Meas for all period", mean(solstis$Enerhy_Kj/1000, na.rm = T), "MJ", "\n\n")
+
+
+
+source("./GHI_enh_00_variables.R")
 
 
 
