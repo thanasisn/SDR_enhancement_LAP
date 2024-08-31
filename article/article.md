@@ -726,14 +726,27 @@ of detailed data on cloud formation, type and location is not allowing further
 analysis. The interannual variability of the monthly CE events is quite high as
 manifested by the large monthly extremes, especially in the summer.
 
+
+\begin{figure}
+
+{\centering \includegraphics[width=1\linewidth]{../images/P-CE-climatology-normlz-1} 
+
+}
+
+\caption{Seasonal variability of the number of CE events relative to the corresponding number of GHI measurements in Thessaloniki for the period 1994 -- 2023, in the form of a box and whisker plot. The box contains the data between the lower $25\,\%$ and the upper $75\,\%$ percentiles, the thick horizontal line and the diamond symbol represent the median and the mean values, respectively. The vertical lines (whiskers) extend between the maximum and minimum monthly values.}\label{fig:relative-month-occurrences}
+\end{figure}
+
+<!--
 \begin{figure}
 
 {\centering \includegraphics[width=1\linewidth]{../images/clim-CE-month-norm-MAX-median-N-MW-1} 
 
 }
 
-\caption{Seasonal variability of the number of CE events in Thessaloniki for the period 1994 -- 2023 normalized to the maximum occurring in June, in the form of a box and whisker plot. The monthly values have also been normalized to the relative abundance of valid GHI observations. The box contains the data between the lower $25\,\%$ and the upper $75\,\%$ percentiles, the thick horizontal line and the diamond symbol represent the median and the mean values, respectively. The vertical lines (whiskers) extend between the maximum and minimum monthly values.}\label{fig:relative-month-occurrences}
+\caption{Seasonal variability of the number of CE events in Thessaloniki for the period 1994 -- 2023 normalized to the maximum occurring in June, in the form of a box and whisker plot. The monthly values have also been normalized to the relative abundance of valid GHI observations. The box contains the data between the lower $25\,\%$ and the upper $75\,\%$ percentiles, the thick horizontal line and the diamond symbol represent the median and the mean values, respectively. The vertical lines (whiskers) extend between the maximum and minimum monthly values.}\label{fig:relative-month-occurrence}
 \end{figure}
+-->
+
 
 The distribution of the number of CE events as a function of OI is shown in
 Figure\nobreakspace{}\ref{fig:ovir-distribution}.  There is an inverse
@@ -828,12 +841,23 @@ sky periods and clouds.
 
 \begin{figure}
 
+{\centering \includegraphics[width=1\linewidth]{../images/P-ECE-climatology-normlz-1} 
+
+}
+
+\caption{Seasonal variability of the number of ECE events relative to the the corresponding number of GHI measurements in Thessaloniki for the period 1994 -- 2023, in the form of a box and whisker plot. The box contains the data between the lower $25\,\%$ and the upper $75\,\%$ percentiles. The thick horizontal line and the diamond symbol represent the median and the mean values, respectively. The vertical lines (whiskers) extend between the maximum and minimum monthly values.}\label{fig:relative-month-occurancies-ECE}
+\end{figure}
+
+<!--
+\begin{figure}
+
 {\centering \includegraphics[width=1\linewidth]{../images/clim-ECE-month-norm-MAX-median-N-2} 
 
 }
 
-\caption{Seasonal variability of the number of ECE events in Thessaloniki for the period 1994 -- 2023 normalized to the maximum occurring in March, in the form of a box and whisker plot. The box contains the data between the lower $25\,\%$ and the upper $75\,\%$ percentiles. The thick horizontal line and the diamond symbol represent the median and the mean values, respectively. The vertical lines (whiskers) extend between the maximum and minimum monthly values.}\label{fig:relative-month-occurancies-ECE}
+\caption{Seasonal variability of the number of ECE events in Thessaloniki for the period 1994 -- 2023 normalized to the maximum occurring in March, in the form of a box and whisker plot. The box contains the data between the lower $25\,\%$ and the upper $75\,\%$ percentiles. The thick horizontal line and the diamond symbol represent the median and the mean values, respectively. The vertical lines (whiskers) extend between the maximum and minimum monthly values.}\label{fig:relative-month-occurancies-ECEs}
 \end{figure}
+-->
 
 <!-- ```{r echo=FALSE, fig.cap="Distribution of the number of ECE cases"} -->
 <!-- knitr::include_graphics("../images/climECEmonth-1.png") -->
