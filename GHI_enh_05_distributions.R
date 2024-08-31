@@ -721,12 +721,8 @@ for (ay in unique(year(LUK$Date))) {
 pander(solstis, caption = "Solstices from Libratran")
 
 
-cat("Max for all period", max(solstis$Enerhy_Kj/1000, na.rm = T), "MJ", "\n\n")
-cat("Meas for all period", mean(solstis$Enerhy_Kj/1000, na.rm = T), "MJ", "\n\n")
-
-
-
-source("./GHI_enh_00_variables.R")
+cat("Solstice max for all period", max(solstis$Enerhy_Kj/1000, na.rm = T), "MJ", "\n\n")
+cat("Solstice mean for all period", mean(solstis$Enerhy_Kj/1000, na.rm = T), "MJ", "\n\n")
 
 
 
