@@ -118,7 +118,7 @@ cat("Ignore SZA\n")
 
 
 
-cat("Drop empy columns\n")
+cat("Drop empty columns\n")
 BAOD      <- janitor::remove_empty(BAOD, which = "cols")
 BAOD$Date <- as.POSIXct(strptime(paste(BAOD$Year, BAOD$DOY), "%Y %j"))
 
@@ -139,7 +139,7 @@ BAOD <- BAOD |> mutate(
   )
 )
 
-cat("Drop 1997\n")
+cat("Drop year 1997\n")
 BAOD <- BAOD[Year != 1997]
 
 
@@ -151,7 +151,8 @@ count <- BAOD |> summarise(
   )
 )
 
-which.max(count)
+cat("Max N data for", which.max(count), "\n")
+
 
 
 ## select some AODs to plot
@@ -171,20 +172,51 @@ for (var in vars) {
 ## use below 361
 
 for (var in vars) {
-  # var <- "AOD_360"
 
   monthly <- BAOD[, mean(get(var), na.rm = T), by = .(year(Date), month(Date)) ]
 
   monthly[, Date := as.Date(paste(year, month,1), "%Y %m %d")]
 
 
-  llm <- lm(monthly[, V1, Date])
+  llm <- lm(monthly[, Date, V1])
 
   plot(monthly[, V1, Date],
        ylab = "",
        main = paste("Mean monthly", var) )
   abline(llm, col = "red")
+
+  ## display trend on graph
+  legend("top", pch = NA, lty = 1, bty = "n", lwd = 2, cex = 1,
+         col = c("red"),
+         c(paste(if (coef(llm)[2] / mean(monthly$V1, na.rm = T) > 0) "+" else "-",
+                 signif(12 * abs(100 * coef(llm)[2] / mean(monthly$V1, na.rm = T)), 2), "%/y")
+         )
+  )
 }
+
+
+## get all trenda
+vars <- grep("AOD_", names(BAOD), value = T)
+gather <- data.table()
+for (var in vars) {
+
+  monthly <- BAOD[, mean(get(var), na.rm = T), by = .(year(Date), month(Date)) ]
+
+  monthly[, Date := as.Date(paste(year, month,1), "%Y %m %d")]
+
+
+  llm <- lm(monthly[, Date, V1])
+
+  gather <- rbind(gather,
+                  data.frame(slope_pCpY = 12 * abs(100 * coef(llm)[2] / mean(monthly$V1, na.rm = T)),
+                             AOD = var)
+  )
+
+}
+
+pander::pander(gather, caption = "AOD change %/y")
+
+cat("range", range(gather$slope_pCpY),"\n\n")
 
 
 
