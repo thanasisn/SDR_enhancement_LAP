@@ -33,22 +33,22 @@ address:
 #     text: "This is the first author footnote."
 #   - code: 2
 #     text: "Another author footnote."
-abstract: |
-  In this study we investigate the characteristics of global horizontal irradiance
-  enhancement events induced by clouds over Thessaloniki for the period 1994 -- 2023
-  using data recorded every one minute. We identified the cloud enhancement (CE)
-  events by creating an appropriate clear-sky irradiance reference with the use of a
-  radiative transfer model and aerosol optical depth data from a collocated Cimel sun
-  photometer and a Brewer spectrophotometer. We found a trend in CE events of
-  \(45.6\pm 21.9\,\text{cases}/\text{year}\), and a trend in the CE events
-  irradiation of \(116.9\pm 67.8\,\text{kJ}/\text{year}\). The peak of the CE events
-  was observed during May and June. The analysis of the total duration of CE events
-  showed that durations longer than 5 minutes are very rare, with exceptions lasting
-  over an hour and up to 140 minutes. Finally, we have detected enhancements above
-  the total solar irradiance at the top of the atmosphere of up to
-  \(400\,\text{W}/\text{m}^{2}\), with the \(75\,\%\) of the cases below
-  \(200\,\text{W}/\text{m}^{2}\). The most active period of these extreme events is
-  spring -- early summer with a secondary peak in autumn.
+# abstract: |
+#   In this study we investigate the characteristics of global horizontal irradiance
+#   enhancement events induced by clouds over Thessaloniki for the period 1994 -- 2023
+#   using data recorded every one minute. We identified the cloud enhancement (CE)
+#   events by creating an appropriate clear-sky irradiance reference with the use of a
+#   radiative transfer model and aerosol optical depth data from a collocated Cimel sun
+#   photometer and a Brewer spectrophotometer. We found a trend in CE events of
+#   \(45.6\pm 21.9\,\text{cases}/\text{year}\), and a trend in the CE events
+#   irradiation of \(116.9\pm 67.8\,\text{kJ}/\text{year}\). The peak of the CE events
+#   was observed during May and June. The analysis of the total duration of CE events
+#   showed that durations longer than 5 minutes are very rare, with exceptions lasting
+#   over an hour and up to 140 minutes. Finally, we have detected enhancements above
+#   the total solar irradiance at the top of the atmosphere of up to
+#   \(400\,\text{W}/\text{m}^{2}\), with the \(75\,\%\) of the cases below
+#   \(200\,\text{W}/\text{m}^{2}\). The most active period of these extreme events is
+#   spring -- early summer with a secondary peak in autumn.
 
 header-includes:
   - \usepackage{caption}
@@ -63,7 +63,7 @@ keywords:
   - over irradiance
 
 journal:        "Atmospheric Research"
-date:           "2024-08-31"
+date:           "2024-09-02"
 linenumbers:    false
 numbersections: true
 bibliography:   bibliography.bib
@@ -300,9 +300,10 @@ Figure\nobreakspace{}\ref{fig:CLB-daily}, as the daily mean of the measured GHI.
 In this study, we define an event as CE when the measured GHI at ground level,
 exceeds the expected value under clear-sky conditions. Similarly, we define as
 extreme cloud enhancement events (ECE), the cases when GHI at ground level exceeds
-the Total Solar Irradiance (TSI). Although the duration of these bursts can vary from
-seconds to several minutes, here we are constrained by the temporal resolution of our
-data to identify events with duration of at minimum one-minute.
+the Total Solar Irradiance (TSI) at the top of the atmosphere (TOA) for the same SZA.
+Although the duration of these bursts can vary from seconds to several minutes, here
+we are constrained by the temporal resolution of our data to identify events with
+duration of at minimum one-minute.
 
 For the detection of CE cases we established a baseline of irradiance above which we
 characterized each data point as an enhancement event and calculated the over
@@ -652,7 +653,7 @@ $286.1\,\text{W}/\text{m}^2$.
 Both cases are ECE events with
 $136.8\,\text{W}/\text{m}^2$ and
 $164.5\,\text{W}/\text{m}^2$ above the
-TSI at TSI for the same SZA, respectively.
+TSI at TOA for the same SZA, respectively.
 In the following sections we are discussing the long-term trends and variability of
 the CE events as well as of the corresponding OI and excess irradiation.
 
@@ -798,13 +799,16 @@ less than 5 minutes.
 \caption{Relative frequency distribution of CE groups of consequent CE events according to their duration for Thessaloniki in the period 1994 -- 2023. The histogram was split in two plots with different y-axis scales for better readability.}\label{fig:ceg-duration-distribution}
 \end{figure}
 
-The relation between the duration and the mean OI of the groups has also been
-studied (Figure\nobreakspace{}\ref{fig:group-2d}).  Evidently, events of high excess
+The relation between the duration and the mean OI of the groups has also been studied
+(Figure\nobreakspace{}\ref{fig:group-2d}).  Evidently, events of high excess
 irradiation have small duration and vice versa. The vast majority of grouped events
-are associated with small excess irradiation (e.g., $<5\,\text{kJ}/\text{m}^2$) and
-small duration (e.g., $<5\,\text{min}$) while groups with strong excess irradiation
-and long duration are very rare.  Similar results of this relation have been reported
-by @Zhang2018 in a study using a far higher sampling rate ($100\,\text{Hz}$) than
+are associated with small excess irradiation ($<5\,\text{kJ}/\text{m}^2$) and small
+duration ($<5\,\text{min}$). For example the extra energy flux of
+$5\,\text{kJ}/\text{m}^2$ for $5\,\text{min}$ is equivalent to OI of
+$\sim17\,\text{W}/\text{m}^2$ for the same duration. While groups with strong excess
+irradiation and long duration are very rare.  Similar results of this relation have
+been reported by @Zhang2018 in a study using a far higher sampling rate
+($100\,\text{Hz}$) than
 ours.
 
 \begin{figure}
@@ -815,14 +819,6 @@ ours.
 
 \caption{Relation of excess irradiation of CE groups with their duration for Thessaloniki in the period 1994 -- 2023. The logarithmic color scale denotes the frequency of the respective groups of events.}\label{fig:group-2d}
 \end{figure}
-
-<!-- ```{r echo=FALSE, fig.cap="Relation of mean OI and CE group duration"} -->
-<!-- knitr::include_graphics("../images/groups-4.png") -->
-<!-- ``` -->
-
-<!-- ```{r echo=FALSE, fig.cap="Relation of maximun OI and CE group duration"} -->
-<!-- knitr::include_graphics("../images/groups-8.png") -->
-<!-- ``` -->
 
 
 ## Extreme cloud enhancement events
@@ -859,17 +855,15 @@ sky periods and clouds.
 \end{figure}
 -->
 
-<!-- ```{r echo=FALSE, fig.cap="Distribution of the number of ECE cases"} -->
-<!-- knitr::include_graphics("../images/climECEmonth-1.png") -->
-<!-- ``` -->
 
 The distribution of the ECE events
 (Figure\nobreakspace{}\ref{fig:P-extreme-distribution}) shows that in rare cases the
-OI can exceed the TSI even by more than $400\,\text{W}/\text{m}^2$, while in
-$75\,\%$ of the cases the OI is below $200\,\text{W}/\text{m}^2$. The OI for the
-most frequent ECEs ranges between $140$ and $180\,\text{W}/\text{m}^2$.  These
-findings are in accordance with the results of @Vamvakas2020, the only difference
-being that the OI values reported for are higher than those for Thessaloniki.
+OI can exceed the TSI at TOA for the same SZA even by more than
+$400\,\text{W}/\text{m}^2$, while in $75\,\%$ of the cases the OI is below
+$200\,\text{W}/\text{m}^2$. The OI for the most frequent ECEs ranges between $140$
+and $180\,\text{W}/\text{m}^2$.  These findings are in accordance with the results of
+@Vamvakas2020, the only difference being that the OI values reported for are higher
+than those for Thessaloniki.
 
 
 \begin{figure}
@@ -880,32 +874,6 @@ being that the OI values reported for are higher than those for Thessaloniki.
 
 \caption{Distribution of ECE events in Thessaloniki for the period 1994 -- 2023. Measured as extra irradiance over TSI at TOA for the same SZA.}\label{fig:P-extreme-distribution}
 \end{figure}
-
-
-<!-- ```{r P-extreme-distribution, echo=FALSE, fig.cap="Distribution of ECE events in Thessaloniki for the period 1994 -- 2023."} -->
-<!-- knitr::include_graphics("../images/P-extreme-distribution-1.png") -->
-<!-- ``` -->
-
-
-
-<!-- ```{r echo=FALSE, fig.cap="Distribution of ECE Irradiance above 'TSI'"} -->
-<!-- knitr::include_graphics("../images/extremedistributions-4.png") -->
-<!-- ``` -->
-
-<!--  SZA -->
-
-<!-- ### Yearly plots relative to all GHI data. -->
-<!-- ```{r echo=FALSE, fig.cap=""} -->
-<!-- knitr::include_graphics("../images/rel_energy-1.png") -->
-<!-- ``` -->
-
-<!-- ```{r echo=FALSE, fig.cap=""} -->
-<!-- knitr::include_graphics("../images/rel_energy-2.png") -->
-<!-- ``` -->
-
-<!-- ```{r echo=FALSE, fig.cap=""} -->
-<!-- knitr::include_graphics("../images/rel_energy-3.png") -->
-<!-- ``` -->
 
 
 # Conclusions
