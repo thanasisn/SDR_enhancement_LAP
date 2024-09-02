@@ -241,9 +241,9 @@ AE1 <- clean_names(AE1)
 AE1[, c("Year", "Month") := tstrsplit(date, "-")]
 AE1[, Year  := as.numeric(Year)]
 AE1[, Month := match(Month, toupper(month.abb))]
-AE1[, tsy := Year + (Month - 1) / 12]
-
 AE1$Date <- as.Date(strptime(AE1[, paste(Year, Month, 1)], "%Y %m %d"))
+AE1[, tsy := year(Date) + (month(Date) - 1) / 12]
+
 
 ## Change units
 AE1$pw_mm                 <- AE1$precipitable_water_cm * 10
@@ -269,17 +269,21 @@ points(monthly$tsy, monthly$V1, col = "green")
 title("Brewer and Cimel AOD at 340")
 
 
-lmC <- lm(AE1$aod_340nm, AE1$tsy)
-lmB <- lm(monthly$tsy, monthly$V1)
+lmC <- lm(AE1$aod_340nm ~ AE1$tsy)
+lmB <- lm(monthly$V1    ~ monthly$tsy)
 
 abline(lmC, lwd = 2, col = "blue")
+abline(lmB, lwd = 2, col = "green")
 
 
 ## display trend on graph
-legend("top", pch = NA, lty = 1, bty = "n", lwd = 2, cex = 1,
-       col = c("blue"),
-       c(paste(if (coef(llm)[2] / mean(monthly$V1, na.rm = T) > 0) "+" else "-",
-               signif(12 * abs(100 * coef(llm)[2] / mean(monthly$V1, na.rm = T)), 2), "%/y")
+legend("top", pch = NA, lty = c(1,1), bty = "n", lwd = 2, cex = 1,
+       col = c("blue", "green"),
+       c(
+         paste(if (coef(lmC)[2] / mean(AE1$aod_340nm, na.rm = T) > 0) "+" else "-",
+               signif(abs(100 * coef(lmC)[2] / mean(AE1$aod_340nm, na.rm = T)), 2), "%/y Cimel"),
+         paste(if (coef(lmB)[2] / mean(monthly$V1, na.rm = T) > 0) "+" else "-",
+               signif(abs(100 * coef(lmB)[2] / mean(monthly$V1, na.rm = T)), 2), "%/y Brewer")
        )
 )
 
