@@ -70,6 +70,7 @@ setwd("~/MANUSCRIPTS/02_enhancement/")
 require(data.table, quietly = TRUE, warn.conflicts = FALSE)
 require(dplyr,      quietly = TRUE, warn.conflicts = FALSE)
 require(rmatio,     quietly = TRUE, warn.conflicts = FALSE)
+require(janitor,    quietly = TRUE, warn.conflicts = FALSE)
 
 #'
 #' dinfo
@@ -156,17 +157,17 @@ cat("Max N data for", which.max(count), "\n")
 
 
 ## select some AODs to plot
-vars <- grep("AOD_3[56]", names(BAOD), value = T)
+vars <- grep("AOD_", names(BAOD), value = T)
 
 
 
-for (var in vars) {
-
-  plot(BAOD[, get(var), Date],
-       ylab = "",
-       main = paste("", var))
-
-}
+# for (var in vars) {
+#
+#   plot(BAOD[, get(var), Date],
+#        ylab = "",
+#        main = paste("", var))
+#
+# }
 
 
 ## use below 361
@@ -204,7 +205,6 @@ for (var in vars) {
 
   monthly[, Date := as.Date(paste(year, month,1), "%Y %m %d")]
 
-
   llm <- lm(monthly[, Date, V1])
 
   gather <- rbind(gather,
@@ -217,6 +217,72 @@ for (var in vars) {
 pander::pander(gather, caption = "AOD change %/y")
 
 cat("range", range(gather$slope_pCpY),"\n\n")
+
+
+
+
+
+
+
+##  Load and prepare data  -----------------------------------------------------
+AEin1 <- "~/DATA/Aeronet/Thessaloniki_Monthly/20030101_20241231_Thessaloniki.lev20"
+AE1   <- fread(AEin1, skip = 6, fill = T, na.strings = "-999")
+
+names(AE1)[names(AE1) == "Month"] <- "Date"
+
+AE1 <- AE1[, lapply(.SD, function(x) replace(x, which(x < -998), NA))]
+AE1 <- remove_constant(AE1)
+AE1 <- remove_empty(AE1, which = "cols")
+AE1 <- clean_names(AE1)
+
+# AEin2 <- "~/DATA/Aeronet/Thessaloniki_Monthly/20030101_20241231_Thessaloniki.tot_lev20"
+# AE2 <- fread(AEin2, skip = 6, fill = T, na.strings = "-999")
+
+AE1[, c("Year", "Month") := tstrsplit(date, "-")]
+AE1[, Year  := as.numeric(Year)]
+AE1[, Month := match(Month, toupper(month.abb))]
+AE1[, tsy := Year + (Month - 1) / 12]
+
+AE1$Date <- as.Date(strptime(AE1[, paste(Year, Month, 1)], "%Y %m %d"))
+
+## Change units
+AE1$pw_mm                 <- AE1$precipitable_water_cm * 10
+AE1$precipitable_water_cm <- NULL
+
+
+
+monthly <- BAOD[, mean(AOD_340, na.rm = T), by = .(year(Date), month(Date)) ]
+monthly[, Date := as.Date(paste(year, month,1), "%Y %m %d")]
+monthly[, tsy := year(Date) + (month(Date) - 1) / 12]
+
+
+
+ylim <- range(AE1$aod_340nm, monthly$V1, na.rm = T)
+xlim <- range(AE1$tsy,       monthly$tsy, na.rm = T)
+
+plot(AE1$tsy, AE1$aod_440nm, col = "blue",
+     ylim = ylim,
+     xlim = xlim,
+     xlab = "",
+     ylab = "AOD 340nm")
+points(monthly$tsy, monthly$V1, col = "green")
+title("Brewer and Cimel AOD at 340")
+
+
+lmC <- lm(AE1$aod_340nm, AE1$tsy)
+lmB <- lm(monthly$tsy, monthly$V1)
+
+abline(lmC, lwd = 2, col = "blue")
+
+
+## display trend on graph
+legend("top", pch = NA, lty = 1, bty = "n", lwd = 2, cex = 1,
+       col = c("blue"),
+       c(paste(if (coef(llm)[2] / mean(monthly$V1, na.rm = T) > 0) "+" else "-",
+               signif(12 * abs(100 * coef(llm)[2] / mean(monthly$V1, na.rm = T)), 2), "%/y")
+       )
+)
+
 
 
 
