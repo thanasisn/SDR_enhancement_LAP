@@ -382,7 +382,7 @@ the $\text{GHI}_\text{ref}$ during the period of study was made using simulation
 with the RTM to account for the long-term variations of the AOD. As AERONET data
 start only in 2003, we used for the period 1994 -- 2005 estimates of changes in AOD
 at $340\,\text{nm}$ derived from a collocated Brewer spectrophotometer
-[@Kazadzis2007] to calculate the change in $\text{GHI}_\text{ref}$ due to aerosols
+[@Kazadzis2007] to calculate the trend in $\text{GHI}_\text{ref}$ due to aerosols
 during this period.
 
 <!--
@@ -421,8 +421,11 @@ the period 2005 -- 2023 we used the mean monthly values of AOD and WC from AERON
 a similar simulation scheme to calculate the monthly mean clear-sky irradiance,
 and finally the change of $+0.14\,\%$ per year. We applied these two long-term changes
 (see Figure\nobreakspace{}\ref{fig:CS-change}) to the climatological
-$\text{GHI}_\text{ref}$, in order to create a more realistic representation of the
-clear-sky irradiance for the whole period of study.
+$\text{GHI}_\text{ref}$, to create a more realistic representation of the clear-sky
+irradiance for the whole period of study.  The rate of changes in the two subperiods
+are different, but reasonable, since the effect of the enforced air pollution
+abatement measures in the area in the 1990s had greater effects in the first years of
+application.
 
 \begin{figure}
 
@@ -456,7 +459,7 @@ parameterization for the RTM simulations. The implementation of the long-term ch
 in AOD, discussed in section\nobreakspace{}\ref{rtmcs}, allows capturing a large part
 of the natural variability of clear-sky GHI. However, the short-term variability of
 AOD cannot be taken adequately into account when using monthly values in the model
-simulations. We tried different approaches in order to strengthen the robustness of
+simulations. We tried different approaches to strengthen the robustness of
 the methodology and to compensate for the limited accuracy of the RTM input data and
 the unpredictable natural variability of the atmosphere.
 
