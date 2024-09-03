@@ -155,6 +155,9 @@ count <- BAOD |> summarise(
 cat("Max N data for", which.max(count), "\n")
 
 
+cat("Drop data with clouds\n")
+BAOD <- BAOD[Cloudiness == 0]
+
 
 ## select some AODs to plot
 vars <- grep("AOD_", names(BAOD), value = T)
@@ -287,7 +290,7 @@ legend("top", pch = NA, lty = c(1,1), bty = "n", lwd = 2, cex = 1,
        )
 )
 
-
+write.csv(BAOD, "./data/AOD_Brewer.csv")
 
 
 #' **END**
