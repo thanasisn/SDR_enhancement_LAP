@@ -7,16 +7,19 @@
   10pt,
   a4paper,oneside]{article}
 \usepackage{amsmath,amssymb}
-\usepackage{lmodern}
 \usepackage{iftex}
 \ifPDFTeX
   \usepackage[T1]{fontenc}
   \usepackage[utf8]{inputenc}
   \usepackage{textcomp} % provide euro and other symbols
 \else % if luatex or xetex
-  \usepackage{unicode-math}
+  \usepackage{unicode-math} % this also loads fontspec
   \defaultfontfeatures{Scale=MatchLowercase}
   \defaultfontfeatures[\rmfamily]{Ligatures=TeX,Scale=1}
+\fi
+\usepackage{lmodern}
+\ifPDFTeX\else
+  % xetex/luatex font selection
 \fi
 % Use upquote if available, for straight quotes in verbatim environments
 \IfFileExists{upquote.sty}{\usepackage{upquote}}{}
@@ -35,18 +38,6 @@
   \KOMAoptions{parskip=half}}
 \makeatother
 \usepackage{xcolor}
-\IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
-\IfFileExists{bookmark.sty}{\usepackage{bookmark}}{\usepackage{hyperref}}
-\hypersetup{
-  pdftitle={Enhancement of SDR in Thessaloniki},
-  pdfauthor={Natsis Athanasios; Alkiviadis Bais},
-  colorlinks=true,
-  linkcolor={Maroon},
-  filecolor={Maroon},
-  citecolor={Blue},
-  urlcolor={Blue},
-  pdfcreator={LaTeX via pandoc}}
-\urlstyle{same} % disable monospaced font for URLs
 \usepackage[left=0.5in,right=0.5in,top=0.5in,bottom=0.5in]{geometry}
 \usepackage{longtable,booktabs,array}
 \usepackage{calc} % for calculating minipage widths
@@ -82,10 +73,22 @@
 \ifLuaTeX
   \usepackage{selnolig}  % disable illegal ligatures
 \fi
+\usepackage{bookmark}
+\IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
+\urlstyle{same}
+\hypersetup{
+  pdftitle={Enhancement of SDR in Thessaloniki},
+  pdfauthor={Natsis Athanasios; Alkiviadis Bais},
+  colorlinks=true,
+  linkcolor={Maroon},
+  filecolor={Maroon},
+  citecolor={Blue},
+  urlcolor={Blue},
+  pdfcreator={LaTeX via pandoc}}
 
 \title{Enhancement of SDR in Thessaloniki}
 \author{Natsis Athanasios\footnote{Laboratory of Atmospheric Physics, AUTH, \href{mailto:natsisphysicist@gmail.com}{\nolinkurl{natsisphysicist@gmail.com}}} \and Alkiviadis Bais\footnote{Laboratory of Atmospheric Physics, AUTH}}
-\date{2024-08-31}
+\date{2024-09-03}
 
 \begin{document}
 \maketitle
@@ -108,8 +111,7 @@ Enhancemnet criteria: Enhanc_C_4
 
 \FloatBarrier
 
-\hypertarget{frequency-distributions}{%
-\subsubsection{Frequency Distributions}\label{frequency-distributions}}
+\subsubsection{Frequency Distributions}\label{frequency-distributions}
 
 \begin{figure}[H]
 
@@ -138,8 +140,7 @@ Enhancemnet criteria: Enhanc_C_4
 
 \FloatBarrier
 
-\hypertarget{distributions}{%
-\subsubsection{Distributions}\label{distributions}}
+\subsubsection{Distributions}\label{distributions}
 
 \begin{verbatim}
 Warning in hist.default(DATA[GLB_diff > 0, GLB_ench], breaks = breaks, freq =
@@ -187,7 +188,8 @@ FALSE, : arguments 'freq', 'col', 'main', 'xlab' are not made use of
 Warning: The dot-dot notation (`..count..`) was deprecated in ggplot2 3.4.0.
 i Please use `after_stat(count)` instead.
 This warning is displayed once every 8 hours.
-Call `lifecycle::last_lifecycle_warnings()` to see where this warning was generated.
+Call `lifecycle::last_lifecycle_warnings()` to see where this warning was
+generated.
 \end{verbatim}
 
 \begin{figure}[H]
@@ -201,8 +203,7 @@ Call `lifecycle::last_lifecycle_warnings()` to see where this warning was genera
 
 \FloatBarrier
 
-\hypertarget{extreme-cases-distributions}{%
-\subsubsection{Extreme cases Distributions}\label{extreme-cases-distributions}}
+\subsubsection{Extreme cases Distributions}\label{extreme-cases-distributions}
 
 \begin{figure}[H]
 
@@ -238,7 +239,7 @@ Call `lifecycle::last_lifecycle_warnings()` to see where this warning was genera
 \end{figure}
 
 Enhanc\_C\_4
-6412331
+6412330
 
 \begin{figure}[H]
 
@@ -280,7 +281,7 @@ Enhanc\_C\_4
   >{\raggedleft\arraybackslash}p{(\columnwidth - 10\tabcolsep) * \real{0.1111}}
   >{\raggedleft\arraybackslash}p{(\columnwidth - 10\tabcolsep) * \real{0.1389}}
   >{\raggedleft\arraybackslash}p{(\columnwidth - 10\tabcolsep) * \real{0.1389}}@{}}
-\toprule
+\toprule\noalign{}
 \begin{minipage}[b]{\linewidth}\raggedleft
 Min.
 \end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
@@ -294,10 +295,11 @@ Mean
 \end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
 Max.
 \end{minipage} \\
-\midrule
+\midrule\noalign{}
 \endhead
+\bottomrule\noalign{}
+\endlastfoot
 0.0007673 & 11.96 & 28.67 & 40.26 & 56.44 & 412.4 \\
-\bottomrule
 \end{longtable}
 
 \begin{longtable}[]{@{}
@@ -306,7 +308,7 @@ Max.
   >{\raggedleft\arraybackslash}p{(\columnwidth - 8\tabcolsep) * \real{0.1111}}
   >{\raggedleft\arraybackslash}p{(\columnwidth - 8\tabcolsep) * \real{0.1111}}
   >{\raggedleft\arraybackslash}p{(\columnwidth - 8\tabcolsep) * \real{0.1111}}@{}}
-\toprule
+\toprule\noalign{}
 \begin{minipage}[b]{\linewidth}\raggedleft
 0\%
 \end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
@@ -318,10 +320,11 @@ Max.
 \end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
 100\%
 \end{minipage} \\
-\midrule
+\midrule\noalign{}
 \endhead
+\bottomrule\noalign{}
+\endlastfoot
 0.0007673 & 11.96 & 28.67 & 56.44 & 412.4 \\
-\bottomrule
 \end{longtable}
 
 8.16692005633645 \% of the values are above 100 W/m\^{}2
@@ -339,8 +342,8 @@ Warning: Removed 106810 rows containing non-finite outside the scale range
 \end{verbatim}
 
 \begin{verbatim}
-Warning: Removed 1 row containing missing values or values outside the scale
-range (`geom_bar()`).
+Warning: Removed 1 row containing missing values or values outside the scale range
+(`geom_bar()`).
 \end{verbatim}
 
 \begin{figure}[H]
@@ -363,8 +366,8 @@ Warning: Removed 106810 rows containing non-finite outside the scale range
 \end{verbatim}
 
 \begin{verbatim}
-Warning: Removed 1 row containing missing values or values outside the scale
-range (`geom_bar()`).
+Warning: Removed 1 row containing missing values or values outside the scale range
+(`geom_bar()`).
 \end{verbatim}
 
 \begin{figure}[H]
@@ -440,7 +443,8 @@ Min. 1st Qu. Median Mean 3rd Qu. Max.
 Warning: The `fun.y` argument of `stat_summary()` is deprecated as of ggplot2 3.3.0.
 i Please use the `fun` argument instead.
 This warning is displayed once every 8 hours.
-Call `lifecycle::last_lifecycle_warnings()` to see where this warning was generated.
+Call `lifecycle::last_lifecycle_warnings()` to see where this warning was
+generated.
 \end{verbatim}
 
 \begin{figure}[H]
@@ -491,6 +495,22 @@ Call `lifecycle::last_lifecycle_warnings()` to see where this warning was genera
 
 \caption{ - empty caption - }\label{fig:P-ECE-climatology-normlz-2}
 \end{figure}
+\begin{figure}[H]
+
+{\centering \includegraphics[width=1\linewidth]{GHI_enh_05_distributions_files/figure-latex/unnamed-chunk-7-1} 
+
+}
+
+\caption{ - empty caption - }\label{fig:unnamed-chunk-7-1}
+\end{figure}
+\begin{figure}[H]
+
+{\centering \includegraphics[width=1\linewidth]{GHI_enh_05_distributions_files/figure-latex/unnamed-chunk-7-2} 
+
+}
+
+\caption{ - empty caption - }\label{fig:unnamed-chunk-7-2}
+\end{figure}
 
 \begin{verbatim}
 Keeping 0.6 of each day, removes 704 days of 10253 total days or 6.866283 %
@@ -498,33 +518,35 @@ Keeping 0.6 of each day, removes 704 days of 10253 total days or 6.866283 %
 
 \begin{figure}[H]
 
-{\centering \includegraphics[width=1\linewidth]{GHI_enh_05_distributions_files/figure-latex/unnamed-chunk-7-1} 
+{\centering \includegraphics[width=1\linewidth]{GHI_enh_05_distributions_files/figure-latex/unnamed-chunk-7-3} 
 
 }
 
-\caption{ - empty caption - }\label{fig:unnamed-chunk-7}
+\caption{ - empty caption - }\label{fig:unnamed-chunk-7-3}
 \end{figure}
 
 \begin{longtable}[]{@{}
   >{\raggedleft\arraybackslash}p{(\columnwidth - 2\tabcolsep) * \real{0.0833}}
   >{\raggedleft\arraybackslash}p{(\columnwidth - 2\tabcolsep) * \real{0.0833}}@{}}
 \caption{There are 49 doys with all days no missing more than 60 \% data}\tabularnewline
-\toprule
+\toprule\noalign{}
 \begin{minipage}[b]{\linewidth}\raggedleft
 doy
 \end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
 V1
 \end{minipage} \\
-\midrule
+\midrule\noalign{}
 \endfirsthead
-\toprule
+\toprule\noalign{}
 \begin{minipage}[b]{\linewidth}\raggedleft
 doy
 \end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
 V1
 \end{minipage} \\
-\midrule
+\midrule\noalign{}
 \endhead
+\bottomrule\noalign{}
+\endlastfoot
 62 & 0 \\
 63 & 0 \\
 64 & 0 \\
@@ -574,7 +596,6 @@ V1
 309 & 0 \\
 314 & 0 \\
 366 & 0 \\
-\bottomrule
 \end{longtable}
 
 \begin{verbatim}
@@ -594,7 +615,7 @@ Solar constant at 1au from NOAA TSI for the same data: 1361.028
   >{\raggedleft\arraybackslash}p{(\columnwidth - 4\tabcolsep) * \real{0.1111}}
   >{\raggedleft\arraybackslash}p{(\columnwidth - 4\tabcolsep) * \real{0.1667}}@{}}
 \caption{Solstices from Libratran}\tabularnewline
-\toprule
+\toprule\noalign{}
 \begin{minipage}[b]{\linewidth}\raggedleft
 Date
 \end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
@@ -602,9 +623,9 @@ SZA
 \end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
 Enerhy\_Kj
 \end{minipage} \\
-\midrule
+\midrule\noalign{}
 \endfirsthead
-\toprule
+\toprule\noalign{}
 \begin{minipage}[b]{\linewidth}\raggedleft
 Date
 \end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
@@ -612,8 +633,10 @@ SZA
 \end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
 Enerhy\_Kj
 \end{minipage} \\
-\midrule
+\midrule\noalign{}
 \endhead
+\bottomrule\noalign{}
+\endlastfoot
 1994-06-21 & 17.19 & 30726 \\
 1995-06-21 & 17.19 & 30726 \\
 1996-06-21 & 17.19 & 30726 \\
@@ -644,21 +667,20 @@ Enerhy\_Kj
 2021-06-21 & 17.19 & 30725 \\
 2022-06-21 & 17.19 & 30725 \\
 2023-06-21 & 17.19 & 30725 \\
-\bottomrule
 \end{longtable}
 
 \begin{verbatim}
-Max for all period 30.73569 MJ 
+Solstice max for all period 30.73569 MJ 
 \end{verbatim}
 
 \begin{verbatim}
-Meas for all period 30.72609 MJ 
+Solstice mean for all period 30.72609 MJ 
 \end{verbatim}
 
 \textbf{END}
 
 \begin{verbatim}
-2024-08-31 11:15:18.7 athan@tyler GHI_enh_05_distributions.R 2.044074 mins
+2024-09-03 06:37:11.3 athan@tyler GHI_enh_05_distributions.R 1.786440 mins
 \end{verbatim}
 
 \end{document}
