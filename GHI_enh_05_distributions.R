@@ -575,6 +575,8 @@ monthly <- DATA[, .(Relative_enha_GLB = sum(Enhanc_C_4, na.rm = T)/sum(!is.na(wa
                 by = .(year(Date), month(Date)) ]
 
 
+
+
 boxplot(monthly$Relative_enha_GLB ~ monthly$month)
 boxplot(monthly$Relative_enha_N ~ monthly$month)
 
@@ -610,7 +612,6 @@ ggplot(monthly, aes(y = 100 * Relative_enha_N,
     panel.grid.minor.x = element_blank()
   )
 #+ echo=F, include=T
-
 
 
 
@@ -661,6 +662,19 @@ ggplot(monthlyE, aes(y = Relative_enha_N,
   )
 
 #+ echo=F, include=T
+
+
+mont <- DATA[Enhanc_C_4 == T,
+             .(CE_OI = sum(GLB_diff, na.rm = F),
+               OI_N  = length(GLB_diff>0)),
+             by = .(year(Date), month(Date)) ]
+
+boxplot(DATA[Enhanc_C_4 == T, GLB_diff] ~  DATA[Enhanc_C_4 == T, month])
+title("Mean OI")
+
+
+boxplot(mont[, CE_OI/OI_N] ~ mont$month)
+title("Mean monthly OI")
 
 
 
