@@ -677,7 +677,6 @@ boxplot(mont[, CE_OI/OI_N] ~ mont$month)
 title("Mean monthly OI")
 
 
-
 ## Check days for reviers
 
 
