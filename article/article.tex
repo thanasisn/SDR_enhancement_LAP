@@ -151,9 +151,10 @@ governs the climate \citep{Gray2010}. It has direct practical
 application in industries related to energy and agricultural production.
 The variability of its intensity can impose difficulties in predicting
 the yield and in designing the specifications of the appropriate
-equipment. Significant portion of research has been focused on
-predicting the renewable energy production in a fine timescale and in
-near real-time \citep[for a review see][]{Inman2013, Graabak2016}.
+equipment. A significant portion of the relevant research has been
+focused on predicting the renewable energy production in a fine
+timescale and in near real-time \citep[for a review
+see][]{Inman2013, Graabak2016}.
 
 An important aspect of the variability of solar radiation is its
 interaction with the clouds. In general, clouds can attenuate a fraction
@@ -164,7 +165,7 @@ observed GHI to levels even higher than the expected clear-sky
 irradiance {[}\citet{Cordero2023}; \citet{Vamvakas2020};
 \citet{CastillejoCuberos2020}; and references therein{]}.
 
-Some of the proposed underling mechanisms of those enhancements, have
+Some of the proposed underling mechanisms of those enhancements have
 been summarized by \citet{Gueymard2017}; the most important being the
 scattering of radiation on the edges of cumulus clouds. It has been also
 suggested that enhancement of GHI can be produced by thin cirrus clouds
@@ -173,9 +174,9 @@ investigation with radiative transfer modeling and observations pointed
 as the prevailing mechanism, the strong forward Mie scattering through
 clouds of low optical depth
 \citep{Pecenak2016, Thuillier2013, Yordanov2013, Yordanov2015}. Overall,
-enhancement events depend on different interactive factors, which
-include cloud thickness, structure and type, and the relative position
-of the sun and the clouds \citep{Gueymard2017, Veerman2022}.
+the appearance of CE events depend on different interactive factors,
+which include cloud thickness, structure and type, and the relative
+position of the sun and the clouds \citep{Gueymard2017, Veerman2022}.
 
 On multiple sites, cloud enhancements have been reported that exceed
 momentarily the solar constant, resulting in clearness indices above
@@ -192,7 +193,7 @@ affected cloud coverage in the last few decades. \citet{Liu2023}
 reported increases in cloud cover over the tropical and subtropical
 oceans and decreases over most continents, while \citet{Dong2023}
 reported decreases over North America and Europe. To our knowledge,
-there is no evidence on whether this trend has affected also the number
+there is no evidence of whether this trend has affected also the number
 and strength of CE events.
 
 Methods of identification of CE events usually include the use of
@@ -201,13 +202,14 @@ threshold or some other statistical characteristics, and in some cases,
 with visual inspection of sky camera images \citep[ and references
 therein]{Vamvakas2020, Mol2023}.
 
-In this study, we evaluate the effects of CE on GHI by investigating
-their frequency of occurrence, intensity, and duration in a thirty-year
-period of GHI observations at Thessaloniki, Greece. We used modeled
-clear sky irradiance as a baseline to identify cloud enhancements, and
-we determined long-term trends of the above-mentioned metrics, their
-climatology and some general characteristics. To our knowledge there are
-no other studies that provide trends from such long dataset.
+In this study, we evaluate the effects of CE events on GHI by
+investigating their frequency of occurrence, intensity, and duration in
+a thirty-year record of GHI observations at Thessaloniki, Greece. We
+used modeled clear sky irradiance as a baseline to identify cloud
+enhancements, and we determined long-term trends of the above-mentioned
+metrics, their climatology and some general characteristics. To our
+knowledge there are no other studies that provide trends from such a
+long dataset.
 
 \hypertarget{data-and-methodology}{%
 \section{Data and methodology}\label{data-and-methodology}}
@@ -232,12 +234,19 @@ signal'' in volts), which was calculated by averaging all measurements
 recorded for a period of \(3\,\text{h}\), before (morning) or after
 (evening) the Sun reaches an elevation angle of \(-10^\circ\). The
 signal was converted to irradiance using the ramped value of the
-instrument's sensitivity between subsequent calibrations.
+instrument's sensitivity between subsequent calibrations. We note that
+the specific model of the pyranometer is not capable in recording the
+instrument's temperature, therefore any temperature changes that may
+occur during the day (including those due to sudden increases or
+decreases in incidence irradiance) were not considered in the data
+reduction procedure. However, the sensitivity of the instrument to
+temperature is less than \(\pm1\,\%\) for its operational range
+(\(-20^\circ\) -- \(50^\circ\)C).
 
 To further improve the quality of the irradiance data, a manual
-screening was performed, in order to remove inconsistent and erroneous
-recordings that can occur stochastically or systematically during the
-long operation of the instrument. The manual screening was aided by a
+screening was performed, to remove inconsistent and erroneous recordings
+that can occur stochastically or systematically during the long
+operation of the instrument. The manual screening was aided by a
 radiation data quality assurance procedure, adjusted for the site, which
 was based on the methods of Long and Shi~\citep{Long2006, Long2008a}.
 Thus, problematic recordings have been excluded from further processing.
@@ -265,7 +274,7 @@ the measured GHI.
 detection}\label{cloud-enhancement-detection}}
 
 In this study, we define an event as CE when the measured GHI at ground
-level, exceeds the expected value under clear-sky conditions. Similarly,
+level exceeds the expected value under clear-sky conditions. Similarly,
 we define as extreme cloud enhancement events (ECE), the cases when GHI
 at ground level exceeds the Total Solar Irradiance (TSI) at the top of
 the atmosphere (TOA) for the same SZA. Although the duration of these
@@ -273,7 +282,7 @@ bursts can vary from seconds to several minutes, here we are constrained
 by the temporal resolution of our data to identify events with duration
 of at minimum one-minute.
 
-For the detection of CE cases we established a baseline of irradiance
+For the detection of CE cases, we established a baseline of irradiance
 above which we characterized each data point as an enhancement event and
 calculated the over irradiance (OI). The OI is defined as the irradiance
 difference of the measured one-minute GHI from the
@@ -288,10 +297,10 @@ However, by inspecting the daily plots of irradiance it became evident
 that changes in atmospheric conditions introduced numerous false
 positive or false negative results. The main reason for these
 discrepancies is the variability of the effects of aerosols and water
-vapor which were not taken into account in the two simple methods. To
-produce a more representative reference we included the effects of these
-factors using a radiative transfer model (RTM). The applied methodology
-is discussed in section\nobreakspace{}\ref{rtmcs}.
+vapor which were not considered in the simple method. To produce a more
+representative reference we included the effects of these factors using
+a radiative transfer model (RTM). The applied methodology is discussed
+in section\nobreakspace{}\ref{rtmcs}.
 
 \hypertarget{rtmcs}{%
 \subsection{Modeled clear Sky Irradiance}\label{rtmcs}}
@@ -307,18 +316,18 @@ the radiative transfer model uvspec, part of libRadtran
 \citet{Kurucz1994} in the range \(280\) to \(2500\,\text{nm}\), the
 radiative transfer solver ``disort'' in ``pseudospherical'' geometry and
 the ``LOWTRAN'' gas parameterization. The model was run for a range of
-variables in order to create a look-up table (LUT) for the estimation of
-the cloud-free reference irradiance for each individual observation of
-our dataset. In this context, the model was run for SZAs in the range
-\(10\) -- \(90^\circ\) with a step of \(0.2^\circ\) and for the
-atmospheric profiles of the Air Force Geophysics Laboratory
-\citep{Anderson1986} midlatitude summer and midlatitude winter,
-representative of the warm and cold seasons.
+variables to create a look-up table (LUT) for the estimation of the
+cloud-free reference irradiance for each individual observation of our
+dataset. In this context, the model was run for SZAs in the range \(10\)
+-- \(90^\circ\) with a step of \(0.2^\circ\) and for the atmospheric
+profiles of the Air Force Geophysics Laboratory \citep{Anderson1986}
+midlatitude summer and midlatitude winter, representative of the warm
+and cold seasons.
 
 Main factors responsible for the attenuation of the broadband downward
 solar radiation under cloud free atmospheres are aerosols and water
 vapor. At Thessaloniki, such measurements are available since 2003 from
-the Cimel sun photometer that belongs to the Aerosol Robotic Network
+a Cimel sun photometer which is part of the Aerosol Robotic Network
 (AERONET) \citep{Giles2019, Buis1998}. From the observations in the
 period 2003 -- 2023 we calculated the monthly climatological means and
 standard deviation (\(\sigma\)) for the aerosol optical depth (AOD) at
@@ -349,9 +358,9 @@ changes in the two atmospheric constituents, mainly AOD. As reported by
 data of Thessaloniki for the period 1993 -- 2023, which for clear-sky
 data was attributed to long-term changes in aerosol effects. Therefore,
 an adjustment of the \(\text{GHI}_\text{ref}\) during the period of
-study was made using simulations with the RTM based on the long-term
-variations of the AOD. As AERONET data start only in 2003, we used for
-the period 1994 -- 2005 estimates of changes in AOD at
+study was made using simulations with the RTM to account for the
+long-term variations of the AOD. As AERONET data start only in 2003, we
+used for the period 1994 -- 2005 estimates of changes in AOD at
 \(340\,\text{nm}\) derived from a collocated Brewer spectrophotometer
 \citep{Kazadzis2007} to calculate the change in
 \(\text{GHI}_\text{ref}\) due to aerosols during this period.
