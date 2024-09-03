@@ -279,6 +279,17 @@ abline(lmC, lwd = 2, col = "blue")
 abline(lmB, lwd = 2, col = "green")
 
 
+export <- rbind(
+  data.table(Year_frac    = AE1$tsy,
+             Cimel_AOD340 = AE1$aod_340nm),
+  data.table(Year_frac     = monthly$tsy,
+             Brewer_AOD340 = monthly$V1),
+  fill = T
+)
+
+export <- export[!is.na(Cimel_AOD340) | !is.na(Brewer_AOD340)]
+
+
 ## display trend on graph
 legend("top", pch = NA, lty = c(1,1), bty = "n", lwd = 2, cex = 1,
        col = c("blue", "green"),
@@ -290,7 +301,13 @@ legend("top", pch = NA, lty = c(1,1), bty = "n", lwd = 2, cex = 1,
        )
 )
 
-write.csv(BAOD, "./data/AOD_Brewer.csv")
+write.csv(export, "./data/AOD_340.csv")
+
+
+
+
+
+
 
 
 #' **END**
