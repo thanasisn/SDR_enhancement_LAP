@@ -220,7 +220,7 @@ clear-sky data was attributed to long-term changes in aerosol effects.
 Therefore, an adjustment of the $\text{GHI}_{\text{ref}}$ during the
 period of study was made using simulations with the RTM to account for
 the long-term variations of the AOD. As AERONET data start only in 2003,
-we used for the period 1993 -- 2005 estimates of changes in AOD at
+we used for the period 1994 -- 2005 estimates of changes in AOD at
 $340\text{nm}$ derived from a collocated Brewer spectrophotometer
 (Kazadzis et al. 2007) to calculate the trend in
 $\text{GHI}_{\text{ref}}$ due to aerosols during this period.

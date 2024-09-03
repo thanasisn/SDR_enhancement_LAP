@@ -236,7 +236,7 @@ period of study was made using simulations with the RTM to account for
 the long-term variations of the AOD. As AERONET data start only in 2003,
 we used for the period 1994 -- 2005 estimates of changes in AOD at
 $340\,\text{nm}$ derived from a collocated Brewer spectrophotometer
-(Kazadzis et al. 2007) to calculate the change in
+(Kazadzis et al. 2007) to calculate the trend in
 $\text{GHI}_{\text{ref}}$ due to aerosols during this period.
 
 According to Kazadzis et al. (2007), in the period 1997 -- 2005 the mean
@@ -254,9 +254,12 @@ sky irradiance. For the period 2005 -- 2023 we used the mean monthly
 values of AOD and WC from AERONET in a similar simulation scheme to
 calculate the monthly mean clear-sky irradiance, and finally the change
 of $+ 0.14\,\%$ per year. We applied these two long-term changes (see
-Figure) to the climatological $\text{GHI}_{\text{ref}}$, in order to
-create a more realistic representation of the clear-sky irradiance for
-the whole period of study.
+Figure) to the climatological $\text{GHI}_{\text{ref}}$, to create a
+more realistic representation of the clear-sky irradiance for the whole
+period of study. The rate of changes in the two subperiods are
+different, but reasonable, since the effect of the enforced air
+pollution abatement measures in the area in the 1990s had greater
+effects in the first years of application.
 
 ![Figure 2.2: Simulated long-term change in clear sky irradiance
 relative to the climatological values due to changes in AOD in
@@ -279,10 +282,9 @@ implementation of the long-term change in AOD, discussed in section,
 allows capturing a large part of the natural variability of clear-sky
 GHI. However, the short-term variability of AOD cannot be taken
 adequately into account when using monthly values in the model
-simulations. We tried different approaches in order to strengthen the
-robustness of the methodology and to compensate for the limited accuracy
-of the RTM input data and the unpredictable natural variability of the
-atmosphere.
+simulations. We tried different approaches to strengthen the robustness
+of the methodology and to compensate for the limited accuracy of the RTM
+input data and the unpredictable natural variability of the atmosphere.
 
 First, we evaluated the performance of the modelled
 $\text{GHI}_{\text{ref}}$ in relation to the measured GHI for different
