@@ -163,6 +163,15 @@ BAOD <- BAOD[Cloudiness == 0]
 vars <- grep("AOD_", names(BAOD), value = T)
 
 
+## limit the maximum AOD
+aod_limit <- 0.8
+cat("Limit max AOD to ", aod_limit, "\n\n")
+for (var in vars) {
+  BAOD[get(var) > aod_limit, eval(var) := NA]
+}
+
+
+
 
 # for (var in vars) {
 #
@@ -180,7 +189,6 @@ for (var in vars) {
   monthly <- BAOD[, mean(get(var), na.rm = T), by = .(year(Date), month(Date)) ]
 
   monthly[, Date := as.Date(paste(year, month,1), "%Y %m %d")]
-
 
   llm <- lm(monthly[, Date, V1])
 
@@ -279,16 +287,6 @@ abline(lmC, lwd = 2, col = "blue")
 abline(lmB, lwd = 2, col = "green")
 
 
-export <- rbind(
-  data.table(Year_frac    = AE1$tsy,
-             Cimel_AOD340 = AE1$aod_340nm),
-  data.table(Year_frac     = monthly$tsy,
-             Brewer_AOD340 = monthly$V1),
-  fill = T
-)
-
-export <- export[!is.na(Cimel_AOD340) | !is.na(Brewer_AOD340)]
-
 
 ## display trend on graph
 legend("top", pch = NA, lty = c(1,1), bty = "n", lwd = 2, cex = 1,
@@ -301,11 +299,80 @@ legend("top", pch = NA, lty = c(1,1), bty = "n", lwd = 2, cex = 1,
        )
 )
 
+
+
+
+A <- data.table(Cimel_AOD340  = AE1$aod_340nm,
+                Date          = AE1$Date)
+A <- A[!is.na(Cimel_AOD340)]
+
+B <- data.table(Brewer_AOD340 = monthly$V1,
+                Date          = monthly$Date)
+B <- B[!is.na(Brewer_AOD340)]
+
+export <- merge(A, B, all = T )
+
+
+
+# export <- rbind(
+#   data.table(Year_frac     = AE1$tsy,
+#              Cimel_AOD340  = AE1$aod_340nm,
+#              Date          = AE1$Date,
+#              Source        = "AERONET"),
+#   data.table(Year_frac     = monthly$tsy,
+#              Brewer_AOD340 = monthly$V1,
+#              Date          = monthly$Date,
+#              Source        = "Brewer"),
+#   fill = T
+# )
+# export <- export[!is.na(Cimel_AOD340) | !is.na(Brewer_AOD340)]
+
+
+## adjust BREWER and cimel
+
+plot(export$Cimel_AOD340, export$Brewer_AOD340)
+lmm1 <- lm(export$Brewer_AOD340 ~ export$Cimel_AOD340)
+abline(lmm1, col = "red")
+
+lmm2 <- lm(export$Brewer_AOD340 ~ 0 + export$Cimel_AOD340)
+abline(lmm2, col = "blue")
+
+summary(lmm1)
+
+summary(lmm2)
+
+
+com <- cor(export$Brewer_AOD340, export$Cimel_AOD340, use = "complete.obs" )
+abline(b = com, a = 0, col = "green")
+
+pp <- seq(0.1, 0.8, 0.1)
+points(pp, pp*com, col = "green", pch = 19)
+
+
+
+
+
+
+"1993-01-01"
+
+ylim <- range(export$Cimel_AOD340, export$Brewer_AOD340, na.rm = T)
+xlim <- range(as.Date("1993-01-01"), export$Date, na.rm = T)
+
+plot(export$Date, export$Cimel_AOD340, col = "blue",
+     ylim = ylim,
+     xlim = xlim,
+     xlab = "",
+     ylab = "AOD 340nm")
+points(export$Date, export$Brewer_AOD340 / com, col = "green")
+title("Brewer and Cimel AOD at 340 adjusted to Cimel")
+
+
+
+export$Brewer_AOD340_adj <- export$Brewer_AOD340 / com
+
+
+
 write.csv(export, "./data/AOD_340.csv")
-
-
-
-
 
 
 
