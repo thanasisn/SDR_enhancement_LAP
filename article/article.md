@@ -398,7 +398,7 @@ all the runs.
 -->
 
 According to @Kazadzis2007, in the period 1997 -- 2005 the mean AOD at $340\,\text{nm}$
-is $0.403$ with a change of $-3.8\pm0.93\,\%$ per year, corresponding to a change of
+is $0.4$ with a change of $-3.8\pm0.93\,\%$ per year, corresponding to a change of
 $0.0153$ per year.  Using an Ångström coefficient $\alpha = 1.6$, this translates to
 a change in the Ångström coefficient $\beta$ of $0.00272$ per year (or $\beta=0.084$ in
 1997 and $\beta=0.059$ in 2005).
