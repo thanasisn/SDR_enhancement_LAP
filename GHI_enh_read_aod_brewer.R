@@ -342,18 +342,15 @@ summary(lmm1)
 summary(lmm2)
 
 
-com <- cor(export$Brewer_AOD340, export$Cimel_AOD340, use = "complete.obs" )
-abline(b = com, a = 0, col = "green")
+# com <- cor(export$Brewer_AOD340, export$Cimel_AOD340, use = "complete.obs" )
+# abline(b = com, a = 0, col = "green")
 
 pp <- seq(0.1, 0.8, 0.1)
-points(pp, pp*com, col = "green", pch = 19)
+points(pp, pp * coef(lmm2)[1], col = "red", pch = 19)
 
 
 
 
-
-
-"1993-01-01"
 
 ylim <- range(export$Cimel_AOD340, export$Brewer_AOD340, na.rm = T)
 xlim <- range(as.Date("1993-01-01"), export$Date, na.rm = T)
@@ -363,12 +360,12 @@ plot(export$Date, export$Cimel_AOD340, col = "blue",
      xlim = xlim,
      xlab = "",
      ylab = "AOD 340nm")
-points(export$Date, export$Brewer_AOD340 / com, col = "green")
+points(export$Date, export$Brewer_AOD340 / coef(lmm2)[1], col = "green")
 title("Brewer and Cimel AOD at 340 adjusted to Cimel")
 
 
 
-export$Brewer_AOD340_adj <- export$Brewer_AOD340 / com
+export$Brewer_AOD340_adj <- export$Brewer_AOD340 / coef(lmm2)[1]
 
 
 
