@@ -164,8 +164,8 @@ trans_AOD   <- function(tsy = tsy, a. = coef(lm_AOD_trend)[2], b. = t) {
 
 
 write.csv(
-  data.frame(year  = 1993:2023,
-             trans = trans_trend(1993:2023))
+  data.frame(year  = 1994:2023,
+             trans = trans_trend(1994:2023))
   ,"./figures/transparency_trend.csv",
   row.names = F)
 
@@ -174,7 +174,7 @@ write.csv(
 plot(AE1[, exp(-AOD_500nm), tsy],
      ylab = "exp(-AOD_500nm)")
 abline(lm_transp_trend)
-plot(1993:2024, trans_trend(1993:2024), col = "red")
+plot(1994:2024, trans_trend(1994:2024), col = "red")
 
 
 
@@ -182,7 +182,9 @@ plot(min(AE1$tsy):max(AE1$tsy), trans_AOD(min(AE1$tsy):max(AE1$tsy)), col = "red
 
 
 
-CS <- readRDS("./data/Model_CS_2.Rds")
+# CS <- readRDS("./data/Model_CS_2.Rds")
+CS <- readRDS("~/LibRadTranG/Clear_sky_model_AERONET_monthly/Model_CS_trend_fix.Rds")
+
 CS$hostname <- NULL
 CS$ticTime  <- NULL
 CS$tacTime  <- NULL
@@ -220,7 +222,8 @@ title("Yearly means and median")
 
 ## Libradtran for monthly AERONET ---------------
 
-AEM          <- readRDS("./data/Model_CS_trend.Rds")
+# AEM          <- readRDS("./data/Model_CS_trend.Rds")
+AEM          <- readRDS("./data/Model_CS_trend_fix.Rds")
 AEM$ID       <- NULL
 AEM$hostname <- NULL
 AEM$ticTime  <- NULL
@@ -299,33 +302,33 @@ atype <- "Month Exact"
 # unique(AEM$typer)
 
 
-sel <- AEM[, sza == asza & atmosphere_file == aatm & typer == atype]
-
-ylim <- range(AEM[sel, glo])
-ylim[2] <- ylim[2] * 1.05
-
-plot(AEM[sel, glo, tsy],
-     ylim = ylim)
-
-lm1   <- lm(  AEM[sel, tsy, glo])
-amean <- mean(AEM[sel, glo])
-
-title(paste("sza:", asza, "atm:", aatm, "type:", atype))
-
-abline(lm1, col = "red")
-
-## display trend on graph
-fit <- lm1[[1]]
-units <- "W/m^2"
-legend("top", lty = 1, bty = "n", lwd = 2, cex = 1,
-       c(paste("Trend: ",
-             if (fit[2] > 0) "+" else "-",
-             signif(abs(fit[2]), 2) , bquote(.(units)), "/y"),
-         paste("Trend: ",
-               if (fit[2] > 0) "+" else "-",
-               signif(abs(100 * fit[2] / amean), 2) , "%/y")
-         )
-)
+# sel <- AEM[, sza == asza & atmosphere_file == aatm & typer == atype]
+#
+# ylim <- range(AEM[sel, glo])
+# ylim[2] <- ylim[2] * 1.05
+#
+# plot(AEM[sel, glo, tsy],
+#      ylim = ylim)
+#
+# lm1   <- lm(  AEM[sel, tsy, glo])
+# amean <- mean(AEM[sel, glo])
+#
+# title(paste("sza:", asza, "atm:", aatm, "type:", atype))
+#
+# abline(lm1, col = "red")
+#
+# ## display trend on graph
+# fit <- lm1[[1]]
+# units <- "W/m^2"
+# legend("top", lty = 1, bty = "n", lwd = 2, cex = 1,
+#        c(paste("Trend: ",
+#              if (fit[2] > 0) "+" else "-",
+#              signif(abs(fit[2]), 2) , bquote(.(units)), "/y"),
+#          paste("Trend: ",
+#                if (fit[2] > 0) "+" else "-",
+#                signif(abs(100 * fit[2] / amean), 2) , "%/y")
+#          )
+# )
 
 
 
@@ -412,7 +415,7 @@ global_sza_55 <- function(tsy   = tsy,
   return( (b. + a. * tsy) / mean. )
 }
 
-tsy <- 1993:2024
+tsy <- 1994:2024
 
 global_sza_55 <- function(tsy) {
   tsyA <- tsy[tsy <  AEM[sel2, min(tsy)]]
@@ -513,7 +516,7 @@ global_sza_min <- function(tsy   = tsy,
   return( (b. + a. * tsy) / mean. )
 }
 
-tsy <- 1993:2024
+tsy <- 1994:2024
 
 global_sza_min <- function(tsy) {
     tsyA <- tsy[tsy <  AEM[sel2, min(tsy)]]
@@ -573,7 +576,7 @@ global_sza_mean <- function(tsy   = tsy,
   return( (b. + a. * tsy) / mean. )
 }
 
-plot(1993:2024, global_sza_mean(1993:2024), col = "red")
+plot(1994:2024, global_sza_mean(1994:2024), col = "red")
 
 
 ## BR SZA mean ------------
@@ -655,7 +658,7 @@ global_sza_median <- function(tsy   = tsy,
   return( (b. + a. * tsy) / mean. )
 }
 
-plot(1993:2024, global_sza_median(1993:2024), col = "red")
+plot(1994:2024, global_sza_median(1994:2024), col = "red")
 
 
 ## BR SZA median ------------
@@ -898,17 +901,17 @@ aa <- AEM[typer %in% c("SZA median", "BR SZA median"), .(MeanGlo = mean(glo)), b
 pander::pander(setorder(aa, year))
 
 
-xlim <- range(1993:2024)
+xlim <- range(1994:2024)
 ylim <- range(year_trend_median(xlim), month_trend_median(xlim), trend_median_adj(xlim))
 
-plot(  1993:2005, year_trend_median(1993:2005), col = "red",
+plot(  1994:2005, year_trend_median(1994:2005), col = "red",
        xlim = xlim,
        ylim = ylim,
        xlab = "",
        ylab = "")
 points(2005:2024, month_trend_median(2005:2024), col = "blue")
 
-points(1993:2024, trend_median_adj(1993:2024), col = "magenta")
+points(1994:2024, trend_median_adj(1994:2024), col = "magenta")
 
 legend("top", pch = 1, lty = NA, bty = "n", lwd = 2, cex = 1,
        col = c("red", "blue"),
@@ -930,17 +933,17 @@ aa <- AEM[typer %in% c("SZA min", "BR SZA min"), .(MeanGlo = mean(glo)), by = .(
 pander::pander(setorder(aa, year))
 
 
-xlim <- range(1993:2024)
+xlim <- range(1994:2024)
 ylim <- range(year_trend_min(xlim), month_trend_min(xlim))
 
-plot(  1993:2005, year_trend_min(1993:2005), col = "red",
+plot(  1994:2005, year_trend_min(1994:2005), col = "red",
        xlim = xlim,
        ylim = ylim,
        xlab = "",
        ylab = "")
 points(2005:2024, month_trend_min(2005:2024), col = "blue")
 
-points(1993:2024, trend_min(1993:2024), col = "magenta")
+points(1994:2024, trend_min(1994:2024), col = "magenta")
 
 legend("top", pch = 1, lty = NA, bty = "n", lwd = 2, cex = 1,
        col = c("red", "blue"),
@@ -964,17 +967,17 @@ aa <- AEM[typer %in% c("SZA mean", "BR SZA mean"), .(MeanGlo = mean(glo)), by = 
 pander::pander(setorder(aa, year))
 
 
-xlim <- range(1993:2024)
+xlim <- range(1994:2024)
 ylim <- range(c(year_trend_mean(xlim), month_trend_mean(xlim), trend_mean_adj(xlim)))
 
-plot(  1993:2005, year_trend_mean(1993:2005), col = "red",
+plot(  1994:2005, year_trend_mean(1994:2005), col = "red",
        xlim = xlim,
        ylim = ylim,
        xlab = "",
        ylab = "")
 points(2005:2024, month_trend_mean(2005:2024), col = "blue")
 
-points(1993:2024, trend_mean_adj(1993:2024), col = "magenta")
+points(1994:2024, trend_mean_adj(1994:2024), col = "magenta")
 
 legend("top", pch = 1, lty = NA, bty = "n", lwd = 2, cex = 1,
        col = c("red", "blue"),
@@ -1001,17 +1004,17 @@ aa <- AEM[typer %in% c("SZA 55", "BR SZA 55"), .(MeanGlo = mean(glo)), by = .(ye
 pander::pander(setorder(aa, year))
 
 
-xlim <- range(1993:2024)
+xlim <- range(1994:2024)
 ylim <- range(c(year_trend_55(xlim), month_trend_55(xlim), trend_55_adj(xlim)))
 
-plot(  1993:2005, year_trend_55(1993:2005), col = "red",
+plot(  1994:2005, year_trend_55(1994:2005), col = "red",
        xlim = xlim,
        ylim = ylim,
        xlab = "",
        ylab = "")
 points(2005:2024, month_trend_55(2005:2024), col = "blue")
 
-points(1993:2024, trend_55_adj(1993:2024), col = "magenta")
+points(1994:2024, trend_55_adj(1994:2024), col = "magenta")
 
 legend("top", pch = 1, lty = NA, bty = "n", lwd = 2, cex = 1,
        col = c("red", "blue"),
@@ -1025,8 +1028,8 @@ legend("top", pch = 1, lty = NA, bty = "n", lwd = 2, cex = 1,
 title("55 SZA")
 
 dataset <- rbind(
-  data.table(year   = 1993:2005,
-             change = 100 * trend_55_adj(1993:2005),
+  data.table(year   = 1994:2005,
+             change = 100 * trend_55_adj(1994:2005),
              Source = "Brewer"),
   data.table(year   = 2005:2024,
              change = 100 * trend_55_adj(2005:2024),
@@ -1061,9 +1064,9 @@ ggplot(dataset,
         legend.key           = element_blank(),
         legend.background    = element_rect(fill = "transparent")) +
   scale_x_continuous(guide  = "axis_minor",
-                     limits = c(1993, NA),
+                     limits = c(1994, NA),
                      breaks = c(
-                       1993,
+                       1994,
                        pretty(dataset[, year], n = 4),
                        max(ceiling(dataset[, year]))),
                      minor_breaks = seq(1990, 2050, by = 1) )
@@ -1073,9 +1076,9 @@ ggplot(dataset,
 #   scale_y_continuous(guide        = "axis_minor",
 #                      minor_breaks = seq(0, 500, by = 25)) +
 #   scale_x_continuous(guide        = "axis_minor",
-#                      limits = c(1993, NA),
+#                      limits = c(1994, NA),
 #                      breaks = c(
-#                        1993,
+#                        1994,
 #                        pretty(dataset[,year], n = 4),
 #                        max(ceiling(dataset[,year]))),
 #                      minor_breaks = seq(1990, 2050, by = 1) )
@@ -1098,7 +1101,7 @@ ggplot(dataset,
 # 30	844	865
 # 15	968	988
 #
-# Μπορούμε να διαμορφώσουμε τα thresholds με αυτό το trend για την περίοδο 1993-2005 και το αντίστοιχα από το cimel για την περίοδο 2004-2024.
+# Μπορούμε να διαμορφώσουμε τα thresholds με αυτό το trend για την περίοδο 1994-2005 και το αντίστοιχα από το cimel για την περίοδο 2004-2024.
 # Αν οι διαφορές στην noon-GHI φαίνονται λογικές, μπορούμε να το σκεφτούμε πως θα αντιμετωπίσουμε και τις υπόλοιπες γωνίες στην κατασκευή του reference
 
 

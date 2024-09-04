@@ -1,5 +1,5 @@
 ---
-date: 2024-09-03
+date: 2024-09-04
 title: Analysis of cloud enhancement events in a 30-year record of
   global solar irradiance at Thessaloniki, Greece
 ---
@@ -265,7 +265,7 @@ effects in the first years of application.
 relative to the climatological values due to changes in AOD in
 Thessaloniki for the period 1994 --
 2023.](media/rId29.png){width="5.833333333333333in"
-height="3.6591983814523186in"}
+height="3.651760717410324in"}
 
 Figure 2.2: Simulated long-term change in clear sky irradiance relative
 to the climatological values due to changes in AOD in Thessaloniki for
