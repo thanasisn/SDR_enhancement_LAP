@@ -240,7 +240,7 @@ $340\,\text{nm}$ derived from a collocated Brewer spectrophotometer
 $\text{GHI}_{\text{ref}}$ due to aerosols during this period.
 
 According to Kazadzis et al. (2007), in the period 1997 -- 2005 the mean
-AOD at $340\,\text{nm}$ is $0.403$ with a change of $- 3.8 \pm 0.93\,\%$
+AOD at $340\,\text{nm}$ is $0.4$ with a change of $- 3.8 \pm 0.93\,\%$
 per year, corresponding to a change of $0.0153$ per year. Using an
 Ångström coefficient $\alpha = 1.6$, this translates to a change in the
 Ångström coefficient $\beta$ of $0.00272$ per year (or $\beta = 0.084$
@@ -265,7 +265,7 @@ effects in the first years of application.
 relative to the climatological values due to changes in AOD in
 Thessaloniki for the period 1994 --
 2023.](media/rId29.png){width="5.833333333333333in"
-height="3.651760717410324in"}
+height="3.6591983814523186in"}
 
 Figure 2.2: Simulated long-term change in clear sky irradiance relative
 to the climatological values due to changes in AOD in Thessaloniki for
