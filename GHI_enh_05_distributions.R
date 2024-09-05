@@ -529,11 +529,20 @@ MC <-   rbind(
 MC[ , DOY := yday(Date)]
 MC[ , Localtime := paste(as.POSIXlt(Date, tz = "Europe/Athens"))]
 
-pander::pander(MC)
 
 saveRDS(MC, "data/Max_cases.Rds")
 
 
+pander::pander(MC, caption = "Max enhancements")
+
+MC2 <- ST_G0[which.max(GLB_diff.N), .(Date, GLB_diff.N)]
+MC2[ , DOY := yday(Date)]
+MC2[ , Localtime := paste(as.POSIXlt(Date, tz = "Europe/Athens"))]
+
+pander::pander(
+  MC2,
+  caption = "Max duration"
+)
 
 
 ## Test missing data  -------
