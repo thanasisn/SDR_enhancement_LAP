@@ -591,7 +591,7 @@ ggplot(monthly, aes(y = 100 * Relative_enha_GLB,
   geom_boxplot(fill = varcol("GLB_diff"), outliers = FALSE) +
   xlab("") +
   ylab("CE occurence frequency relative to GHI [%]") +
-  stat_summary(fun.y = mean, geom = "point", shape = 23, size = 3) +
+  # stat_summary(fun.y = mean, geom = "point", shape = 23, size = 3) +
   theme(
     panel.grid.major.x = element_blank(),
     panel.grid.minor.x = element_blank()
@@ -606,7 +606,7 @@ ggplot(monthly, aes(y = 100 * Relative_enha_N,
   geom_boxplot(fill = varcol("GLB_diff"), outliers = FALSE) +
   xlab("") +
   ylab("CE occurence relative to all minutes [%]") +
-  stat_summary(fun.y = mean, geom = "point", shape = 23, size = 3) +
+  # stat_summary(fun.y = mean, geom = "point", shape = 23, size = 3) +
   theme(
     panel.grid.major.x = element_blank(),
     panel.grid.minor.x = element_blank()
@@ -640,7 +640,7 @@ ggplot(monthlyE, aes(y = 100 * Relative_enha_GLB,
   geom_boxplot(fill = "lightblue", outliers = FALSE) +
   xlab("") +
   ylab("ECE occurence frequency relative to GHI [%]") +
-  stat_summary(fun.y = mean, geom = "point", shape = 23, size = 3) +
+  # stat_summary(fun.y = mean, geom = "point", shape = 23, size = 3) +
   theme(
     panel.grid.major.x = element_blank(),
     panel.grid.minor.x = element_blank()
@@ -655,7 +655,7 @@ ggplot(monthlyE, aes(y = Relative_enha_N,
   geom_boxplot(fill = "lightblue", outliers = FALSE) +
   xlab("") +
   ylab("ECE relative to all minutes") +
-  stat_summary(fun.y = mean, geom = "point", shape = 23, size = 3) +
+  # stat_summary(fun.y = mean, geom = "point", shape = 23, size = 3) +
   theme(
     panel.grid.major.x = element_blank(),
     panel.grid.minor.x = element_blank()
