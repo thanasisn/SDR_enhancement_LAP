@@ -267,8 +267,20 @@ if (APPLY_TRANS) {
   cat("USING TRASPARENCY TREND\n")
   ## choose function
   # trans_trend <- trend_median
-  trans_trend <- trend_median_adj
+  # trans_trend <- trend_median_adj
   trans_trend <- trend_55_adj
+
+
+  trans_trend(1995)
+  trend_55_adj(c(1995,1996))
+
+
+  source("./GHI_enh_07_Aerosols_BR_CIM.R")
+
+  polyf_rel(c(1995,1996))
+  polyf_rel(1995)
+
+  stop()
 } else {
   trans_trend <- function(x) {x * 0}
 }
