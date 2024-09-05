@@ -522,14 +522,16 @@ ggplot(data = DATA[wattGLB > ETH], aes(x = wattGLB - ETH)) +
 
 ##  Store some date for max cases  ------------------------
 
-saveRDS(
-  rbind(
-    DATA[which.max(wattGLB),  .(Typ = "Max Glob", wattGLB, SZA, GLB_ench, GLB_diff, Date, ETH, CE = Enhanc_C_4, ECE = wattGLB > ETH)],
-    DATA[which.max(GLB_ench), .(Typ = "Max Enha", wattGLB, SZA, GLB_ench, GLB_diff, Date, ETH, CE = Enhanc_C_4, ECE = wattGLB > ETH)]
-  ),
-  "data/Max_cases.Rds"
+MC <-   rbind(
+  DATA[which.max(wattGLB),  .(Typ = "Max Glob", wattGLB, SZA, GLB_ench, GLB_diff, Date, ETH, CE = Enhanc_C_4, ECE = wattGLB > ETH)],
+  DATA[which.max(GLB_ench), .(Typ = "Max Enha", wattGLB, SZA, GLB_ench, GLB_diff, Date, ETH, CE = Enhanc_C_4, ECE = wattGLB > ETH)]
 )
+MC[ , DOY := yday(Date)]
+MC[ , Localtime := paste(as.POSIXlt(Date, tz = "Europe/Athens"))]
 
+pander::pander(MC)
+
+saveRDS(MC, "data/Max_cases.Rds")
 
 
 
