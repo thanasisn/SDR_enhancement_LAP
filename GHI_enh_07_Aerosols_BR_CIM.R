@@ -85,6 +85,7 @@ library(ggh4x         , quietly = TRUE, warn.conflicts = FALSE)
 library(grid          , quietly = TRUE, warn.conflicts = FALSE)
 library(latex2exp     , quietly = TRUE, warn.conflicts = FALSE)
 library(cowplot       , quietly = TRUE, warn.conflicts = FALSE)
+library(lubridate     , quietly = TRUE, warn.conflicts = FALSE)
 
 source("./GHI_enh_00_variables.R")
 source("./GHI_enh_00_dictionary.R")
@@ -97,7 +98,7 @@ CS <- readRDS("~/LibRadTranG/Clear_sky_model_AERONET_monthly/Model_CS_trend_fix_
 
 CS <- CS[, .(year, month, sza, edir, edn, typer, atmosphere_file)]
 CS[, glo := (edir + edn) / 1000 ]
-CS[, tsy := year + (month - 1) / 12]
+CS[, tsy := decimal_date(Date)]
 
 CS[, Date := as.POSIXct(as.Date(paste(year, month, 1), "%Y %m %d")) ]
 
@@ -144,7 +145,8 @@ legend("topleft", pch = 1, lty = NA, bty = "n", lwd = 2, cex = 1,
 ## create mean of each month for continuity
 
 COM <- CS[, .(glo = mean(glo)), by = Date]
-COM[, tsy := year(Date) + (month(Date) - 1) / 12]
+# COM[, tsy := year(Date) + (month(Date) - 1) / 12]
+COM[, tsy := decimal_date(Date)]
 
 
 
@@ -153,10 +155,36 @@ ggplot(data = COM, aes(x = tsy, y = glo)) +
   geom_point()
 
 
-plot(COM[, glo, tsy])
-lmm <- lm(COM[, glo] ~ COM[, tsy])
+xlim <- range(1994, COM[, tsy])
+plot(COM[, glo, tsy],
+     xlim = xlim)
+
+lmm  <- lm(    COM[, glo]  ~ COM[, tsy])
+logm <- lm(log(COM[, glo]) ~ COM[, tsy])
+polm <- lm(COM[, glo] ~ poly(COM[, tsy], 2, raw=TRUE))
+
+logm_C <- coef(logm)
+polym_C <- coef(polm)
+
+summary(polm)
 
 abline(lmm, col = "green")
+
+
+## create range to plot
+t <- (tsy = seq(1994, 2024, 0.1))
+
+
+dataset       <- data.table(tsy = t)
+dataset$expon <- exp(logm_C[1])*exp(logm_C[2]*t)
+dataset$secon <- polym_C[1] + polym_C[2] * t + polym_C[3] * t^2
+
+
+lines(dataset[, expon, tsy], col = "dodgerblue", lwd = 2)
+
+lines(dataset[, secon, tsy], col = "dodgerblue4", lwd = 2)
+
+
 legend("topleft", pch = NA, lty = 1, bty = "n", lwd = 2, cex = 1,
        col = c("green"),
        c(paste(if (coef(lmm)[2] / mean(COM[, glo], na.rm = T) > 0) "+" else "-",
@@ -165,7 +193,55 @@ legend("topleft", pch = NA, lty = 1, bty = "n", lwd = 2, cex = 1,
 )
 
 
-## Todo exponetian and second order
+## select zero point
+tzero      <- 2015
+polyf_zero <- dataset[tsy == tzero, expon]
+
+## function to apply to GHI
+trend_polyf <- function(tsy) {
+  ((polym_C[1] + polym_C[2] * tsy + polym_C[3] * tsy^2) / polyf_zero)
+}
+
+
+relativ <- copy(dataset)
+
+relativ[, trend_polyf(tsy)]
+
+relativ[, secon := 100 * (trend_polyf(tsy) - 1)]
+
+
+#+ P-CS-change-poly, echo=F, include=T, results="asis"
+ggplot(relativ,
+       aes(x = tsy,
+           y = secon)) +
+  geom_line(linewidth = 1.3) +
+  ylab(bquote("Cloud-free GHI change %" )) +
+  xlab("Date") +
+  # annotate("text", x = 2000, y = relativ[tsy==1995, secon],
+  #          label = "paste(\"+0.21 %/y\")", parse = TRUE,
+  #          fontface = 2,
+  #          size     = 5,
+  #          hjust    = 0,
+  #          vjust    = 0)
+  # annotate("text", x = 2015, y = dataset[year==2015, change],
+  #          label = "paste(\"+0.14 %/y\")", parse = TRUE,
+  #          fontface = 2,
+  #          size     = 5,
+  #          hjust    = 1.1,
+  #          vjust    = 0) +
+  theme(legend.justification = c(0, 1),
+        legend.title         = element_text(size=10),
+        legend.position      = c(0.01, .99),
+        legend.key           = element_blank(),
+        legend.background    = element_rect(fill = "transparent")) +
+  scale_x_continuous(guide  = "axis_minor",
+                     limits = c(1994, NA),
+                     breaks = c(
+                       1994,
+                       pretty(relativ[, tsy], n = 4),
+                       max(ceiling(relativ[, tsy]))),
+                     minor_breaks = seq(1990, 2050, by = 1) )
+
 
 
 
