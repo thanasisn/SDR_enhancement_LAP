@@ -7,19 +7,16 @@
   10pt,
   a4paper,oneside]{article}
 \usepackage{amsmath,amssymb}
+\usepackage{lmodern}
 \usepackage{iftex}
 \ifPDFTeX
   \usepackage[T1]{fontenc}
   \usepackage[utf8]{inputenc}
   \usepackage{textcomp} % provide euro and other symbols
 \else % if luatex or xetex
-  \usepackage{unicode-math} % this also loads fontspec
+  \usepackage{unicode-math}
   \defaultfontfeatures{Scale=MatchLowercase}
   \defaultfontfeatures[\rmfamily]{Ligatures=TeX,Scale=1}
-\fi
-\usepackage{lmodern}
-\ifPDFTeX\else
-  % xetex/luatex font selection
 \fi
 % Use upquote if available, for straight quotes in verbatim environments
 \IfFileExists{upquote.sty}{\usepackage{upquote}}{}
@@ -38,6 +35,18 @@
   \KOMAoptions{parskip=half}}
 \makeatother
 \usepackage{xcolor}
+\IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
+\IfFileExists{bookmark.sty}{\usepackage{bookmark}}{\usepackage{hyperref}}
+\hypersetup{
+  pdftitle={Enhancement of SDR in Thessaloniki},
+  pdfauthor={Natsis Athanasios; Alkiviadis Bais},
+  colorlinks=true,
+  linkcolor={Maroon},
+  filecolor={Maroon},
+  citecolor={Blue},
+  urlcolor={Blue},
+  pdfcreator={LaTeX via pandoc}}
+\urlstyle{same} % disable monospaced font for URLs
 \usepackage[left=0.5in,right=0.5in,top=0.5in,bottom=0.5in]{geometry}
 \usepackage{longtable,booktabs,array}
 \usepackage{calc} % for calculating minipage widths
@@ -73,22 +82,10 @@
 \ifLuaTeX
   \usepackage{selnolig}  % disable illegal ligatures
 \fi
-\usepackage{bookmark}
-\IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
-\urlstyle{same}
-\hypersetup{
-  pdftitle={Enhancement of SDR in Thessaloniki},
-  pdfauthor={Natsis Athanasios; Alkiviadis Bais},
-  colorlinks=true,
-  linkcolor={Maroon},
-  filecolor={Maroon},
-  citecolor={Blue},
-  urlcolor={Blue},
-  pdfcreator={LaTeX via pandoc}}
 
 \title{Enhancement of SDR in Thessaloniki}
 \author{Natsis Athanasios\footnote{Laboratory of Atmospheric Physics, AUTH, \href{mailto:natsisphysicist@gmail.com}{\nolinkurl{natsisphysicist@gmail.com}}} \and Alkiviadis Bais\footnote{Laboratory of Atmospheric Physics, AUTH}}
-\date{2024-09-04}
+\date{2024-09-05}
 
 \begin{document}
 \maketitle
@@ -102,7 +99,6 @@ Study of GHI enchantment.
 \tableofcontents
 }
 \begin{verbatim}
-
 Attaching package: 'zoo'
 \end{verbatim}
 
@@ -123,7 +119,6 @@ Loading required package: lubridate
 \end{verbatim}
 
 \begin{verbatim}
-
 Attaching package: 'lubridate'
 \end{verbatim}
 
@@ -193,6 +188,26 @@ The following objects are masked from 'package:base':
 
 \caption{ - empty caption - }\label{fig:unnamed-chunk-4-3}
 \end{figure}
+
+\begin{verbatim}
+Call:
+lm(formula = COM[, glo] ~ poly(COM[, tsy], 2, raw = TRUE))
+
+Residuals:
+     Min       1Q   Median       3Q      Max 
+-30.0174  -7.5325   0.1346   8.2761  30.8290 
+
+Coefficients:
+                                   Estimate Std. Error t value Pr(>|t|)
+(Intercept)                      -6.831e+04  5.483e+04  -1.246    0.214
+poly(COM[, tsy], 2, raw = TRUE)1  6.818e+01  5.454e+01   1.250    0.212
+poly(COM[, tsy], 2, raw = TRUE)2 -1.687e-02  1.356e-02  -1.244    0.214
+
+Residual standard error: 11.51 on 287 degrees of freedom
+Multiple R-squared:  0.04677,   Adjusted R-squared:  0.04013 
+F-statistic: 7.041 on 2 and 287 DF,  p-value: 0.001034
+\end{verbatim}
+
 \begin{figure}[H]
 
 {\centering \includegraphics[width=1\linewidth]{GHI_enh_07_Aerosols_BR_CIM_files/figure-latex/unnamed-chunk-4-4} 

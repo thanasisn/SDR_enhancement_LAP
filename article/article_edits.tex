@@ -1,7 +1,7 @@
 \documentclass[preprint, 5p,
 %DIF LATEXDIFF DIFFERENCE FILE
 %DIF DEL /home/athan/MANUSCRIPTS/02_enhancement/SUBMISSION_01/article/article.tex   Wed Jul 10 10:31:02 2024
-%DIF ADD /home/athan/MANUSCRIPTS/02_enhancement/article/article.tex                 Tue Sep  3 21:38:46 2024
+%DIF ADD /home/athan/MANUSCRIPTS/02_enhancement/article/article.tex                 Thu Sep  5 08:49:57 2024
 authoryear]{elsarticle} %review=doublespace preprint=single 5p=2 column
 %%% Begin My package additions %%%%%%%%%%%%%%%%%%%
 
@@ -331,8 +331,8 @@ a thirty-year \DIFdelbegin \DIFdel{period
 used modeled clear sky irradiance as a baseline to identify cloud
 enhancements, and we determined long-term trends of the above-mentioned
 metrics, their climatology and some general characteristics. To our
-knowledge there are no other studies that provide trends from such long
-dataset.
+knowledge there are no other studies that provide trends from such \DIFaddbegin \DIFadd{a
+}\DIFaddend long dataset.
 
 \hypertarget{data-and-methodology}{%
 \section{Data and methodology}\label{data-and-methodology}}
@@ -357,12 +357,20 @@ signal'' in volts), which was calculated by averaging all measurements
 recorded for a period of \(3\,\text{h}\), before (morning) or after
 (evening) the Sun reaches an elevation angle of \(-10^\circ\). The
 signal was converted to irradiance using the ramped value of the
-instrument's sensitivity between subsequent calibrations.
+instrument's sensitivity between subsequent calibrations. \DIFaddbegin \DIFadd{We note that
+the specific model of the pyranometer is not capable in recording the
+instrument's temperature, therefore any temperature changes that may
+occur during the day (including those due to sudden increases or
+decreases in incidence irradiance) were not considered in the data
+reduction procedure. However, the sensitivity of the instrument to
+temperature is less than \(\pm1\,\%\) for its operational range
+(\(-20^\circ\) -- \(50^\circ\)C).
+}\DIFaddend 
 
 To further improve the quality of the irradiance data, a manual
-screening was performed, in order to remove inconsistent and erroneous
-recordings that can occur stochastically or systematically during the
-long operation of the instrument. The manual screening was aided by a
+screening was performed, \DIFdelbegin \DIFdel{in order }\DIFdelend to remove inconsistent and erroneous recordings
+that can occur stochastically or systematically during the long
+operation of the instrument. The manual screening was aided by a
 radiation data quality assurance procedure, adjusted for the site, which
 was based on the methods of Long and Shi~\citep{Long2006, Long2008a}.
 Thus, problematic recordings have been excluded from further processing.
@@ -392,7 +400,7 @@ the measured GHI.
 detection}\label{cloud-enhancement-detection}}
 
 In this study, we define an event as CE when the measured GHI at ground
-level, exceeds the expected value under clear-sky conditions. Similarly,
+level \DIFdelbegin \DIFdel{, }\DIFdelend exceeds the expected value under clear-sky conditions. Similarly,
 we define as extreme cloud enhancement events (ECE), the cases when GHI
 at ground level exceeds the Total Solar Irradiance (TSI) \DIFaddbegin \DIFadd{at the top of
 the atmosphere (TOA) for the same SZA}\DIFaddend . Although the duration of these
@@ -400,7 +408,7 @@ bursts can vary from seconds to several minutes, here we are constrained
 by the temporal resolution of our data to identify \DIFdelbegin \DIFdel{evens }\DIFdelend \DIFaddbegin \DIFadd{events }\DIFaddend with duration
 of at minimum one-minute.
 
-For the detection of CE cases we established a baseline of irradiance
+For the detection of CE cases\DIFaddbegin \DIFadd{, }\DIFaddend we established a baseline of irradiance
 above which we characterized each data point as an enhancement event and
 calculated the over irradiance (\DIFdelbegin \DIFdel{OIR}\DIFdelend \DIFaddbegin \DIFadd{OI}\DIFaddend ). The \DIFdelbegin \DIFdel{OIR }\DIFdelend \DIFaddbegin \DIFadd{OI }\DIFaddend is defined as the irradiance
 difference of the measured one-minute GHI from the
@@ -415,10 +423,10 @@ However, by inspecting the daily plots of irradiance it became evident
 that changes in atmospheric conditions introduced numerous false
 positive or false negative results. The main reason for these
 discrepancies is the variability of the effects of aerosols and water
-vapor which were not taken into account in the two simple methods. To
-produce a more representative reference we included the effects of these
-factors using a radiative transfer model (RTM). The applied methodology
-is discussed in section\nobreakspace{}\ref{rtmcs}.
+vapor which were not \DIFdelbegin \DIFdel{taken into account in the two simple methods}\DIFdelend \DIFaddbegin \DIFadd{considered in the simple method}\DIFaddend . To produce a more
+representative reference we included the effects of these factors using
+a radiative transfer model (RTM). The applied methodology is discussed
+in section\nobreakspace{}\ref{rtmcs}.
 
 \hypertarget{rtmcs}{%
 \subsection{Modeled clear Sky Irradiance}\label{rtmcs}}
@@ -434,18 +442,18 @@ the radiative transfer model uvspec, part of libRadtran
 \citet{Kurucz1994} in the range \(280\) to \(2500\,\text{nm}\), the
 radiative transfer solver ``disort'' in ``pseudospherical'' geometry and
 the ``LOWTRAN'' gas parameterization. The model was run for a range of
-variables in order to create a look-up table (LUT) for the estimation of
-the cloud-free reference irradiance for each individual observation of
-our dataset. In this context, the model was run for SZAs in the range
-\(10\) -- \(90^\circ\) with a step of \(0.2^\circ\) and for the
-atmospheric profiles of the Air Force Geophysics Laboratory
-\citep{Anderson1986} midlatitude summer and midlatitude winter,
-representative of the warm and cold seasons.
+variables \DIFdelbegin \DIFdel{in order }\DIFdelend to create a look-up table (LUT) for the estimation of the
+cloud-free reference irradiance for each individual observation of our
+dataset. In this context, the model was run for SZAs in the range \(10\)
+-- \(90^\circ\) with a step of \(0.2^\circ\) and for the atmospheric
+profiles of the Air Force Geophysics Laboratory \citep{Anderson1986}
+midlatitude summer and midlatitude winter, representative of the warm
+and cold seasons.
 
 Main factors responsible for the attenuation of the broadband downward
 solar radiation under cloud free atmospheres are aerosols and water
 vapor. At Thessaloniki, such measurements are available since 2003 from
-the Cimel sun photometer that belongs to the Aerosol Robotic Network
+\DIFdelbegin \DIFdel{the }\DIFdelend \DIFaddbegin \DIFadd{a }\DIFaddend Cimel sun photometer \DIFdelbegin \DIFdel{that belongs to }\DIFdelend \DIFaddbegin \DIFadd{which is part of }\DIFaddend the Aerosol Robotic Network
 (AERONET) \citep{Giles2019, Buis1998}. From the observations in the
 period 2003 -- 2023 we calculated the monthly climatological means and
 standard deviation (\(\sigma\)) for the aerosol optical depth (AOD) at
@@ -476,15 +484,15 @@ changes in the two atmospheric constituents, mainly AOD. As reported by
 data of Thessaloniki for the period 1993 -- 2023, which for clear-sky
 data was attributed to long-term changes in aerosol effects. Therefore,
 an adjustment of the \(\text{GHI}_\text{ref}\) during the period of
-study was made using simulations with the RTM based on the long-term
-variations of the AOD. As AERONET data start only in 2003, we used for
-the period \DIFdelbegin \DIFdel{1993 }\DIFdelend \DIFaddbegin \DIFadd{1994 }\DIFaddend -- 2005 estimates of changes in AOD at
+study was made using simulations with the RTM \DIFdelbegin \DIFdel{based on }\DIFdelend \DIFaddbegin \DIFadd{to account for }\DIFaddend the
+long-term variations of the AOD. As AERONET data start only in 2003, we
+used for the period \DIFdelbegin \DIFdel{1993 }\DIFdelend \DIFaddbegin \DIFadd{1994 }\DIFaddend -- 2005 estimates of changes in AOD at
 \(340\,\text{nm}\) derived from a collocated Brewer spectrophotometer
-\citep{Kazadzis2007} to calculate the \DIFdelbegin \DIFdel{trend }\DIFdelend \DIFaddbegin \DIFadd{change }\DIFaddend in
-\(\text{GHI}_\text{ref}\) due to aerosols during this period.
+\citep{Kazadzis2007} to calculate the trend in \(\text{GHI}_\text{ref}\)
+due to aerosols during this period.
 
 According to \citet{Kazadzis2007}, in the period 1997 -- 2005 the mean
-AOD at \(340\,\text{nm}\) is \(0.403\) with a \DIFdelbegin \DIFdel{trend }\DIFdelend \DIFaddbegin \DIFadd{change }\DIFaddend of
+AOD at \(340\,\text{nm}\) is \DIFdelbegin \DIFdel{\(0.403\) with a trend }\DIFdelend \DIFaddbegin \DIFadd{\(0.4\) with a change }\DIFaddend of
 \(-3.8\pm0.93\,\%\) per year, corresponding to a change of \(0.0153\)
 per year. Using an Ångström coefficient \(\alpha = 1.6\), this
 translates to a change in the Ångström coefficient \(\beta\) of
@@ -500,9 +508,12 @@ in a similar simulation scheme to calculate the monthly mean clear-sky
 irradiance, and finally the \DIFdelbegin \DIFdel{trend }\DIFdelend \DIFaddbegin \DIFadd{change }\DIFaddend of \(+0.14\,\%\) per year. We applied
 these two long-term changes (see
 Figure\nobreakspace{}\ref{fig:CS-change}) to the climatological
-\(\text{GHI}_\text{ref}\), in order to create a more realistic
-representation of the clear-sky irradiance for the whole period of
-study.
+\(\text{GHI}_\text{ref}\), \DIFdelbegin \DIFdel{in order }\DIFdelend to create a more realistic representation of
+the clear-sky irradiance for the whole period of study. \DIFaddbegin \DIFadd{The rate of
+changes in the two subperiods are different, but reasonable, since the
+effect of the enforced air pollution abatement measures in the area in
+the 1990s had greater effects in the first years of application.
+}\DIFaddend 
 
 \begin{figure}
 
@@ -527,9 +538,9 @@ section\nobreakspace{}\ref{rtmcs}, allows capturing a large part of the
 natural variability of clear-sky GHI. However, the short-term
 variability of AOD cannot be taken adequately into account when using
 monthly values in the model simulations. We tried different approaches
-in order to strengthen the robustness of the methodology and to
-compensate for the limited accuracy of the RTM input data and the
-unpredictable natural variability of the atmosphere.
+\DIFdelbegin \DIFdel{in order }\DIFdelend to strengthen the robustness of the methodology and to compensate for
+the limited accuracy of the RTM input data and the unpredictable natural
+variability of the atmosphere.
 
 First, we evaluated the performance of the modelled
 \(\text{GHI}_\text{ref}\) in relation to the measured GHI for different
