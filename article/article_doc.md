@@ -1,5 +1,5 @@
 ---
-date: 2024-09-04
+date: 2024-09-05
 title: Analysis of cloud enhancement events in a 30-year record of
   global solar irradiance at Thessaloniki, Greece
 ---
@@ -14,9 +14,9 @@ recorded every one minute. We identified the cloud enhancement events
 (CE) by creating an appropriate clear sky irradiance reference with the
 use of a radiative transfer model and aerosol optical depth data from a
 collocated Cimel sun photometer and a Brewer spectrophotometer. We found
-a trend in CE events of $+ 46 \pm 22\,\text{cases}/\text{year}$, and a
+a trend in CE events of $+ 85 \pm 20\,\text{cases}/\text{year}$, and a
 trend in the CE events irradiation of
-$+ 116.3 \pm 68.2\,\text{kJ}/\text{year}$. The peak of the CE events was
+$+ 226.4 \pm 62.6\,\text{kJ}/\text{year}$. The peak of the CE events was
 observed during May and June. An analysis of the total duration of CE
 events, showed that durations longer than 5 minutes are very rare, with
 exceptions lasting over an hour and up to 140 minutes. Finally, we have
@@ -145,7 +145,7 @@ given in Figure, as the daily mean of the measured GHI.
 
 ![Figure 2.1: Daily mean values of GHI in Thessaloniki for the period
 1994 -- 2023.](media/rId22.png){width="5.833333333333333in"
-height="3.6210903324584427in"}
+height="3.6283333333333334in"}
 
 Figure 2.1: Daily mean values of GHI in Thessaloniki for the period 1994
 -- 2023.
@@ -273,7 +273,7 @@ the period 1994 -- 2023.
 
 ## 2.4 Criteria for the identification of CE events
 
-In this study our main focus was to quantify the OI related to CEs. A
+One of the goals of this study was to quantify the OI related to CEs. A
 key issue for achieving this goal is to define a threshold for the CE
 identification, representative of the clear-sky irradiance at the time
 of each GHI measurement. This depends on the selection of the
@@ -326,8 +326,8 @@ A sub-category of the CE events that is often discussed in the
 literature (Cordero et al. 2023; Martins, Mantelli, and Rüther 2022;
 Georgi Hristov Yordanov, Saetre, and Midtgård 2015), are the extreme
 cloud enhancement (ECE) events. These are cases of CE where the measured
-intensity of the irradiance exceeds the TSI at the top of the
-atmosphere. In this case the threshold $E$ is given by:
+intensity of the irradiance exceeds the TSI on horizontal plane at TOA.
+In this case the threshold $E$ is given by:
 
 $$\text{ECE}:E > \cos\left( \text{SZA} \right) \cdot E_{\odot}\frac{r_{\text{m}}^{2}}{r^{2}}$$
 
@@ -365,7 +365,7 @@ over-irradiance for CE and ECE events is color coded, while the
 remaining data points are shown in black. The reference green line goes
 through the origin with a slope of
 one.](media/rId39.png){width="5.833333333333333in"
-height="3.6280479002624673in"}
+height="3.635437445319335in"}
 
 Figure 2.4: Example scatter plot of the measured GHI and the reference
 clear sky irradiance in Thessaloniki for the year 2005. The
@@ -376,15 +376,15 @@ through the origin with a slope of one.
 # 3 Results
 
 Following the application of the above discussed methodology to the
-entire dataset ($6$ million of one-minute GHI measurements), $1.78\,\%$
+entire dataset ($6$ million of one-minute GHI measurements), $1.68\,\%$
 were identified as CE events and $0.04\,\%$ as ECE events. The highest
 recorded GHI due to CE was $1416.6\,\text{W}/\text{m}^{2}$ on 24 May
 2007 at a SZA of ${19.9}^{\circ}$ corresponding to OI of
-$345.9\,\text{W}/\text{m}^{2}$ or $32.3\,\%$ above the threshold. The
-strongest CE event of $49.7\,\%$ above the clear sky threshold was
+$338.4\,\text{W}/\text{m}^{2}$ or $31.4\,\%$ above the threshold. The
+strongest CE event of $49.9\,\%$ above the clear sky threshold was
 observed on 28 October 2016 at a SZA of ${59.2}^{\circ}$ with a GHI
 value of $861.8\,\text{W}/\text{m}^{2}$ and a OI of
-$286.1\,\text{W}/\text{m}^{2}$. Both cases are ECE events with
+$286.9\,\text{W}/\text{m}^{2}$. Both cases are ECE events with
 $136.8\,\text{W}/\text{m}^{2}$ and $164.5\,\text{W}/\text{m}^{2}$ above
 the TSI at TOA for the same SZA, respectively. In the following sections
 we are discussing the long-term trends and variability of the CE events
@@ -413,12 +413,12 @@ duration of one minute), the yearly mean OI and the yearly excess
 irradiation for the period 1994 -- 2023, together with corresponding
 linear trends. All three quantities show increasing trends, most
 pronounced for the frequency of occurrence
-($+ 46 \pm 22\,\text{cases}/\text{year}$) and the excess irradiation
-($+ 116.3 \pm 68.2\,\text{kJ}/\text{year}$), which are also
+($+ 85 \pm 20\,\text{cases}/\text{year}$) and the excess irradiation
+($+ 226.4 \pm 62.6\,\text{kJ}/\text{year}$), which are also
 statistically significant. In contrast the trend of the yearly mean OI
-is negligible ($+ 0.03 \pm 0.1\,\text{W}/\text{m}^{2}/\text{year}$) and
+is negligible ($+ 0.12 \pm 0.1\,\text{W}/\text{m}^{2}/\text{year}$) and
 of no statistical significance. The average OI for the entire period is
-$+ 40.1 \pm 2.5\,\text{W}/\text{m}^{2}$. The interannual variability of
+$+ 39.7 \pm 2.8\,\text{W}/\text{m}^{2}$. The interannual variability of
 the data about the trend lines is quite large. Furthermore, the spread
 tends to increase with time (at least for the quantities of panels b and
 c), suggesting a significant variability in cloud patterns over the
@@ -474,7 +474,7 @@ events and OI with an exponential-like decline. This is expected, as the
 stronger the CE events are, the rarer the conditions favoring the
 occurrence of CE events. For the majority (over $62\,\%$) of the CE
 events the OI is below the long-term average of
-$40.1\,\text{W}/\text{m}^{2}$, while about $8.1\,\%$ of the events
+$39.7\,\text{W}/\text{m}^{2}$, while about $8.1\,\%$ of the events
 correspond to OI larger than $100\,\text{W}/\text{m}^{2}$ and up to the
 highest value of $412.4\,\text{W}/\text{m}^{2}$. This distribution is
 indicative of the magnitude and the probability of the expected CE
@@ -501,7 +501,7 @@ in two plots with different y-axis scales for better readability.
 The duration of the CE events is variable and can last for several
 minutes or even more than an hour. In order to study the characteristics
 of these consecutive events, we grouped them into bins of increasing
-duration in steps of one minute. We have identified 28182 groups of CE
+duration in steps of one minute. We have identified 26837 groups of CE
 in the whole period of study, where the group of the longest duration of
 140 minutes occurred on 07 July 2013 in a SZA range of ${52.1}^{\circ}$
 -- ${77.9}^{\circ}$. Figure shows the frequency distribution of the CE
@@ -514,7 +514,7 @@ CE events according to their duration for Thessaloniki in the period
 1994 -- 2023. The histogram was split in two plots with different y-axis
 scales for better
 readability.](media/rId55.png){width="5.833333333333333in"
-height="3.7375240594925634in"}
+height="3.7608114610673664in"}
 
 Figure 3.3: Relative frequency distribution of CE groups of consequent
 CE events according to their duration for Thessaloniki in the period
@@ -537,7 +537,7 @@ than ours.
 duration for Thessaloniki in the period 1994 -- 2023. The logarithmic
 color scale denotes the frequency of the respective groups of
 events.](media/rId59.png){width="5.833333333333333in"
-height="3.687330489938758in"}
+height="3.6948403324584427in"}
 
 Figure 3.4: Relation of excess irradiation of CE groups with their
 duration for Thessaloniki in the period 1994 -- 2023. The logarithmic
@@ -598,9 +598,9 @@ By creating a clear sky approximation representing the long- and
 short-term variability of the expected clear sky GHI, we were able to
 identify cases of CE events in Thessaloniki for the period 1994 -- 2023.
 After analyzing the CE cases, we found an increase of
-$+ 45.6 \pm 22\,\text{cases}/\text{year}$, with the mean annual
+$+ 85.3 \pm 20\,\text{cases}/\text{year}$, with the mean annual
 irradiation of the CE events increasing with a rate of
-$+ 116.3 \pm 68.2\,\text{kJ}/\text{year}$. The most active months of CE
+$+ 226.4 \pm 62.6\,\text{kJ}/\text{year}$. The most active months of CE
 events are May and June. We found that continuous CE events can last up
 to $140$ minutes, while the duration of $80\,\%$ of them is bellow $5$
 minutes.
