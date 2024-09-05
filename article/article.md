@@ -117,11 +117,11 @@ identified the cloud enhancement events (CE) by creating an appropriate clear sk
 irradiance reference with the use of a radiative transfer model and aerosol optical
 depth data from a collocated Cimel sun photometer and a Brewer spectrophotometer. We
 found a trend in CE events of
-$+46\pm
-22\,\text{cases}/\text{year}$,
+$+85\pm
+20\,\text{cases}/\text{year}$,
 and a trend in the CE events irradiation of
-$+116.3\pm
-68.2\,\text{kJ}/\text{year}$.
+$+226.4\pm
+62.6\,\text{kJ}/\text{year}$.
 The peak of the CE events was observed during May and June.  An analysis of the total
 duration of CE events, showed that durations longer than 5 minutes are very rare,
 with exceptions lasting over an hour and up to 140 minutes.  Finally, we have
@@ -451,17 +451,17 @@ application.
 
 ## Criteria for the identification of CE events
 
-In this study our main focus was to quantify the OI related to CEs. A
-key issue for achieving this goal is to define a threshold for the CE
-identification, representative of the clear-sky irradiance at the time of each GHI
-measurement. This depends on the selection of the appropriate atmospheric
-parameterization for the RTM simulations. The implementation of the long-term change
-in AOD, discussed in section\nobreakspace{}\ref{rtmcs}, allows capturing a large part
-of the natural variability of clear-sky GHI. However, the short-term variability of
-AOD cannot be taken adequately into account when using monthly values in the model
-simulations. We tried different approaches to strengthen the robustness of
-the methodology and to compensate for the limited accuracy of the RTM input data and
-the unpredictable natural variability of the atmosphere.
+One of the goals of this study was to quantify the OI related to CEs. A key issue for
+achieving this goal is to define a threshold for the CE identification,
+representative of the clear-sky irradiance at the time of each GHI measurement. This
+depends on the selection of the appropriate atmospheric parameterization for the RTM
+simulations. The implementation of the long-term change in AOD, discussed in
+section\nobreakspace{}\ref{rtmcs}, allows capturing a large part of the natural
+variability of clear-sky GHI. However, the short-term variability of AOD cannot be
+taken adequately into account when using monthly values in the model simulations. We
+tried different approaches to strengthen the robustness of the methodology and to
+compensate for the limited accuracy of the RTM input data and the unpredictable
+natural variability of the atmosphere.
 
 First, we evaluated the performance of the modelled $\text{GHI}_\text{ref}$ in
 relation to the measured GHI for different levels of atmospheric clearness, by using
@@ -541,7 +541,7 @@ over-irradiance, and it is unlikely that will affect significantly our results.
 A sub-category of the CE events that is often discussed in the literature
 [@Cordero2023; @Martins2022; @Yordanov2015], are the extreme cloud enhancement (ECE)
 events. These are cases of CE where the measured intensity of the irradiance exceeds
-the TSI at the top of the atmosphere. In this case the threshold $E$ is given by:
+the TSI on horizontal plane at TOA. In this case the threshold $E$ is given by:
 \begin{equation}
 \text{ECE}: E > \cos(\text{SZA}) \cdot E_{\odot} \frac{r^2_\text{m}} {r^2}
 \label{eq:ECE}
@@ -591,21 +591,21 @@ and ECE events are clearly grouped above the threshold of irradiance
 
 Following the application of the above discussed methodology to the entire dataset 
 ($6$ million of one-minute GHI measurements),
-$1.78\,\%$ were identified as CE events and
+$1.68\,\%$ were identified as CE events and
 $0.04\,\%$ as ECE events.
 The highest recorded GHI due to CE was
 $1416.6\,\text{W}/\text{m}^2$ on
  24\ May 2007 at a SZA of
 $19.9^\circ$ corresponding to OI of
-$345.9\,\text{W}/\text{m}^2$ or
-$32.3\,\%$ above the threshold.
+$338.4\,\text{W}/\text{m}^2$ or
+$31.4\,\%$ above the threshold.
 The strongest CE event of
-$49.7\,\%$ above the 
+$49.9\,\%$ above the 
 clear sky threshold was observed on 
 28\ October 2016 at a SZA of
 $59.2^\circ$ with a GHI value of 
 $861.8\,\text{W}/\text{m}^2$ and a OI of
-$286.1\,\text{W}/\text{m}^2$.
+$286.9\,\text{W}/\text{m}^2$.
 Both cases are ECE events with
 $136.8\,\text{W}/\text{m}^2$ and
 $164.5\,\text{W}/\text{m}^2$ above the
@@ -633,15 +633,15 @@ CE cases (each with duration of one minute), the yearly mean OI and the yearly
 excess irradiation for the period 1994 -- 2023, together with corresponding linear
 trends. All three quantities show increasing trends, most pronounced for the
 frequency of occurrence 
-($+46\pm 22\,\text{cases}/\text{year}$)
+($+85\pm 20\,\text{cases}/\text{year}$)
 and the excess irradiation 
-($+116.3 \pm 68.2\,\text{kJ}/\text{year}$),
+($+226.4 \pm 62.6\,\text{kJ}/\text{year}$),
 which are also statistically significant.
 In contrast the trend of the yearly mean OI is negligible 
-($+0.03\pm 0.1\,\text{W}/\text{m}^2/\text{year}$)
+($+0.12\pm 0.1\,\text{W}/\text{m}^2/\text{year}$)
 and of no statistical significance.
 The average OI for the entire period is
-$+40.1\pm 2.5\,\text{W}/\text{m}^2$.
+$+39.7\pm 2.8\,\text{W}/\text{m}^2$.
 The interannual variability of the data about the trend lines is quite large.
 Furthermore, the spread tends to increase with time (at least for the quantities of
 panels b and c), suggesting a significant variability in cloud patterns over the
@@ -711,7 +711,7 @@ relationship between the frequency of CE events and OI with an exponential-like
 decline. This is expected, as the stronger the CE events are, the rarer the
 conditions favoring the occurrence of CE events.  For the majority (over $62\,\%$) of
 the CE events the OI is below the long-term average of
-$40.1\,\text{W}/\text{m}^2$, while about
+$39.7\,\text{W}/\text{m}^2$, while about
 $8.1\,\%$ of the events correspond to OI larger than $100\,\text{W}/\text{m}^2$ and
 up to the highest value of $412.4\,\text{W}/\text{m}^2$.  This distribution is
 indicative of the magnitude and the probability of the expected CE events over
@@ -735,7 +735,7 @@ characteristics and magnitude of the CE events.
 The duration of the CE events is variable and can last for several minutes or even
 more than an hour. In order to study the characteristics of these consecutive events,
 we grouped them into bins of increasing duration in steps of one minute.  We have
-identified 28182 groups of CE in the whole period of study, where the group
+identified 26837 groups of CE in the whole period of study, where the group
 of the longest duration of
 140 minutes occurred on
 07\ July 2013 in a SZA range of 
@@ -838,9 +838,9 @@ By creating a clear sky approximation representing the long- and short-term
 variability of the expected clear sky GHI, we were able to identify cases of CE
 events in Thessaloniki for the period 1994 -- 2023.  After analyzing the CE cases, we
 found an increase of
-$+45.6\pm 22\,\text{cases}/\text{year}$,
+$+85.3\pm 20\,\text{cases}/\text{year}$,
 with the mean annual irradiation of the CE events increasing with a rate of
-$+116.3\pm 68.2\,\text{kJ}/\text{year}$.
+$+226.4\pm 62.6\,\text{kJ}/\text{year}$.
 The most active months of CE events are May and June.  We found that continuous CE
 events can last up to $140$ minutes, while the duration of $80\,\%$ of them is bellow
 $5$ minutes.

@@ -69,6 +69,7 @@ if (!interactive()) {
 suppressPackageStartupMessages({
   library(data.table    , quietly = TRUE, warn.conflicts = FALSE)
   library(pander        , quietly = TRUE, warn.conflicts = FALSE)
+  library(ggpmisc       , quietly = TRUE, warn.conflicts = FALSE)
   library(ggplot2       , quietly = TRUE, warn.conflicts = FALSE)
   library(lmtest        , quietly = TRUE, warn.conflicts = FALSE)
   library(viridis       , quietly = TRUE, warn.conflicts = FALSE)
@@ -77,9 +78,7 @@ suppressPackageStartupMessages({
   library(ggh4x         , quietly = TRUE, warn.conflicts = FALSE)
   library(grid          , quietly = TRUE, warn.conflicts = FALSE)
   library(latex2exp     , quietly = TRUE, warn.conflicts = FALSE)
-  library(ggpmisc       , quietly = TRUE, warn.conflicts = FALSE)
   library(cowplot       , quietly = TRUE, warn.conflicts = FALSE)
-
   library(tidyverse     , quietly = TRUE, warn.conflicts = FALSE)
   library(gridExtra     , quietly = TRUE, warn.conflicts = FALSE)
   library(grid          , quietly = TRUE, warn.conflicts = FALSE)
@@ -1762,6 +1761,267 @@ p2
 
 
 
+
+
+
+
+
+
+## Yearly trends with data completeness  ---------------------------------------
+
+#' \newpage
+#' ## Yearly trends with data completeness
+#'
+#+ P-energy-complete, echo=F, include=T, results="asis"
+
+
+## add data completeness to yearly
+COMPLETE_yearly <- DATA[, .(Data_Complete = sum(!is.na(wattGLB))/.N) , by = .(year(Date))]
+ST_E_yearly     <- merge(ST_E_yearly, COMPLETE_yearly)
+
+
+### Total energy per year  -------------------
+
+
+pvar1   <- "GLB_diff.sum"
+dataset <- copy(ST_E_yearly)
+## apply data completeness
+dataset[, eval(pvar1) := get(pvar1) / Data_Complete]
+
+
+## linear model by year step
+lmY1 <- lm(dataset[[pvar1]] ~ dataset$year)
+d2   <- summary(lmY1)$coefficients
+cat("lmY:     ", round(lmY1$coefficients[2], 6) , "+/-", round(d2[2,2], 6) ,"\n\n")
+## correlation test by day step
+corY <- cor.test(x = dataset[[pvar1]], y = as.numeric(dataset$year), method = 'pearson')
+# capture lm for table
+yeartrends <- rbind(yeartrends,
+                    data.frame(
+                      linear_fit_stats(lmY1, confidence_interval = 0.99),
+                      cor_test_stats(corY),
+                      DATA       = "ST_E_yearly_Complete",
+                      var        = pvar1,
+                      N          = sum(!is.na(dataset[[pvar1]]))
+                    )
+)
+
+grob <- grobTree(
+  textGrob(
+    label = TeX(
+      paste("Trend:  $", round(lmY1$coefficients[2], 1),
+            "\\pm",      round(2 * d2[2,2],          1),       ## show 2 sigma
+            "\\,kJ/m^2/year$")),
+    x = 0.95,  y = 0.05, hjust = 1,
+    gp = gpar(col = "black", fontsize = 13, fontface = "bold")
+  ))
+
+p1 <- ggplot(dataset,
+             aes(x = year,
+                 y = get(pvar1))) +
+  geom_point(color = varcol(pvar1),
+             shape = 15,
+             size  = 3) +
+  geom_abline(intercept = lmY1$coefficients[1], slope = lmY1$coefficients[2]) +
+  ylab(bquote("CE excess irradiation" ~ group("[", MJ/m^2,"]"))) +
+  xlab("Date") +
+  annotation_custom(grob) +
+  scale_y_continuous(guide        = "axis_minor",
+                     labels = function(x) x / 1000,
+                     minor_breaks = seq(0, 500, by = 25)) +
+  scale_x_continuous(guide        = "axis_minor",
+                     limits = c(1993, NA),
+                     breaks = c(
+                       1993,
+                       pretty(dataset[, year], n = 4),
+                       max(ceiling(dataset[, year]))),
+                     minor_breaks = seq(1990, 2050, by = 1) )
+p1
+
+
+
+### Number of cases per year  -----------------------
+
+pvar2   <- "GLB_diff.N"
+dataset <- copy(ST_E_yearly)
+## apply data completeness
+dataset[, eval(pvar2) := get(pvar2) / Data_Complete]
+
+## linear model by year step
+lmY2 <- lm(dataset[[pvar2]] ~ dataset$year)
+d2   <- summary(lmY2)$coefficients
+cat("lmY:     ", round(lmY2$coefficients[2], 6) , "+/-", round(d2[2,2], 6) ,"\n\n")
+## correlation test by day step
+corY <- cor.test(x = dataset[[pvar2]], y = as.numeric(dataset$year), method = 'pearson')
+# capture lm for table
+yeartrends <- rbind(yeartrends,
+                    data.frame(
+                      linear_fit_stats(lmY2, confidence_interval = 0.99),
+                      cor_test_stats(corY),
+                      DATA       = "ST_E_yearly_Complete",
+                      var        = pvar2,
+                      N          = sum(!is.na(dataset[[pvar2]]))
+                    )
+)
+
+grob <- grobTree(
+  textGrob(
+    label = TeX(
+      paste("Trend:  $", round(lmY2$coefficients[2], 0),
+            "\\pm",      round(2 * d2[2,2],          0),   ## show 2 sigma
+            "\\,cases/year$")),
+    x = 0.95,  y = 0.05, hjust = 1,
+    gp = gpar(col = "black", fontsize = 13, fontface= "bold")
+  ))
+
+p2 <- ggplot(dataset,
+             aes(x = year,
+                 y = get(pvar2))) +
+  geom_point(color = varcol(pvar2),
+             shape = 17,
+             size  = 3) +
+  geom_abline(intercept = lmY2$coefficients[1], slope = lmY2$coefficients[2]) +
+  ylab(bquote("CE" ~ .(varname(pvar2)) ~ .(staname(pvar2)))) +
+  xlab("Date") +
+  annotation_custom(grob) +
+  scale_y_continuous(guide        = "axis_minor",
+                     minor_breaks = seq(0, 500, by = 25)) +
+  scale_x_continuous(guide        = "axis_minor",
+                     limits = c(1993, NA),
+                     breaks = c(
+                       1993,
+                       pretty(dataset[,year], n = 4),
+                       max(ceiling(dataset[,year]))),
+                     minor_breaks = seq(1990, 2050, by = 1) )
+p2
+
+
+###  Mean OIR energy per year -------------
+
+pvar3   <- "GLB_diff.mean"
+dataset <- copy(ST_E_yearly)
+## apply data completeness
+dataset[, eval(pvar3) := get(pvar3) / Data_Complete]
+
+## linear model by year step
+lmY3 <- lm(dataset[[pvar3]] ~ dataset$year)
+d2   <- summary(lmY3)$coefficients
+cat("lmY:     ", round(lmY3$coefficients[2], 6) , "+/-", round(d2[2,2], 6) ,"\n\n")
+## correlation test by day step
+corY <- cor.test(x = dataset[[pvar3]], y = as.numeric(dataset$year), method = 'pearson')
+# capture lm for table
+yeartrends <- rbind(yeartrends,
+                    data.frame(
+                      linear_fit_stats(lmY3, confidence_interval = 0.99),
+                      cor_test_stats(corY),
+                      DATA       = "ST_E_yearly_Complete",
+                      var        = pvar3,
+                      N          = sum(!is.na(dataset[[pvar3]]))
+                    )
+)
+
+grob <- grobTree(
+  textGrob(
+    label = TeX(
+      paste("Trend:  $", round(lmY3$coefficients[2], 2),
+            "\\pm",      round(2 * d2[2,2],          2),      ## show 2 sigma
+            "\\,W/m^2/year$")),
+    x = 0.95,  y = 0.05, hjust = 1,
+    gp = gpar(col = "black", fontsize = 13, fontface= "bold")
+  ))
+
+p3 <- ggplot(dataset,
+             aes(x = year,
+                 y = get(pvar3))) +
+  geom_point(color = varcol(pvar3),
+             shape = 16,
+             size  = 3) +
+  geom_abline(intercept = lmY3$coefficients[1], slope = lmY3$coefficients[2]) +
+  # ylab(bquote(.(stringr::str_to_title(staname(pvar3))) ~ "CE" ~ .(varname(pvar3)) ~ group("[", W/m^2,"]"))) +
+  ylab(bquote("Mean CE" ~ .(varname(pvar3)) ~ group("[", W/m^2,"]"))) +
+  xlab("Date") +
+  annotation_custom(grob) +
+  scale_y_continuous(guide        = "axis_minor",
+                     minor_breaks = seq(0, 500, by = 25)) +
+  scale_x_continuous(guide        = "axis_minor",
+                     limits = c(1993, NA),
+                     breaks = c(
+                       1993,
+                       pretty(dataset[,year], n = 4),
+                       max(ceiling(dataset[,year]))),
+                     minor_breaks = seq(1990, 2050, by = 1) )
+p3
+
+
+
+
+###  Median energy per year  ----------------------------------
+
+pvar4   <- "GLB_diff.median"
+dataset <- copy(ST_E_yearly)
+## apply data completeness
+dataset[, eval(pvar4) := get(pvar4) / Data_Complete]
+
+## linear model by year step
+lmY4 <- lm(dataset[[pvar4]] ~ dataset$year)
+d2   <- summary(lmY4)$coefficients
+cat("lmY:     ", round(lmY4$coefficients[2], 6) , "+/-", round(d2[2,2], 6) ,"\n\n")
+## correlation test by day step
+corY <- cor.test(x = dataset[[pvar4]], y = as.numeric(dataset$year), method = 'pearson')
+# capture lm for table
+yeartrends <- rbind(yeartrends,
+                    data.frame(
+                      linear_fit_stats(lmY4, confidence_interval = 0.99),
+                      cor_test_stats(corY),
+                      DATA       = "ST_E_yearly_Complete",
+                      var        = pvar4,
+                      N          = sum(!is.na(dataset[[pvar4]]))
+                    )
+)
+
+grob <- grobTree(
+  textGrob(
+    label = TeX(
+      paste("Trend:  $", round(lmY4$coefficients[2], 1),
+            "\\pm",      round(2 * d2[2,2], 1),          ## show 2 sigma
+            "\\,W/m^2/year$")),
+    x = 0.95,  y = 0.05, hjust = 1,
+    gp = gpar(col = "black", fontsize = 13, fontface = "bold")
+  ))
+
+p4 <- ggplot(dataset,
+             aes(x = year,
+                 y = get(pvar4))) +
+  # geom_errorbar(aes(ymin = get(pvar4) - GLB_diff.SD,     ## error bars too big
+  #                   ymax = get(pvar4) + GLB_diff.SD)) +
+  geom_point(color = varcol(pvar4),
+             shape = 16,
+             size  = 3) +
+  geom_abline(intercept = lmY4$coefficients[1], slope = lmY4$coefficients[2]) +
+  ylab(bquote("CE" ~ .(varname(pvar4)) ~ .(staname(pvar4)) ~ group("[", W/m^2,"]"))) +
+  xlab("Date") +
+  annotation_custom(grob) +
+  scale_y_continuous(guide        = "axis_minor",
+                     minor_breaks = seq(0, 500, by = 25)) +
+  scale_x_continuous(guide        = "axis_minor",
+                     limits = c(1993, NA),
+                     breaks = c(
+                       1993,
+                       pretty(dataset[,year], n = 4),
+                       max(ceiling(dataset[,year]))),
+                     minor_breaks = seq(1990, 2050, by = 1) )
+p4
+
+
+write.csv(yeartrends, "./figures/Daily_trends_byYear_Proper.csv")
+
+
+
+
+
+
+
+
 ### Multiple plots -----
 
 # aligned <- align_plots(p1, p2, p3, p4, align = "v")
@@ -1778,7 +2038,7 @@ p2
 # plot_grid(p1, p2, p3, labels = c('A', 'B', "(C)"), ncol = 1, align = "v")
 # #+ echo=F, include=T
 
-write.csv(yeartrends, "./figures/Daily_trends_byYear_Proper.csv")
+
 
 
 
