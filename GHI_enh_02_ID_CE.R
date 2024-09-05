@@ -263,24 +263,19 @@ csmodel <- "Low_B.Low_W"
 
 
 if (APPLY_TRANS) {
-  source("./GHI_enh_07_Aerosols.R")
   cat("USING TRASPARENCY TREND\n")
+
+  # source("./GHI_enh_07_Aerosols.R")
   ## choose function
   # trans_trend <- trend_median
   # trans_trend <- trend_median_adj
-  trans_trend <- trend_55_adj
-
-
-  trans_trend(1995)
-  trend_55_adj(c(1995,1996))
-
+  # trans_trend <- trend_55_adj
 
   source("./GHI_enh_07_Aerosols_BR_CIM.R")
+  # trend_polyf(1994:2024)
+  # plot(trend_polyf(1994:2024), trend_55_adj(1994:2024))
+  trans_trend <- trend_polyf
 
-  polyf_rel(c(1995,1996))
-  polyf_rel(1995)
-
-  stop()
 } else {
   trans_trend <- function(x) {x * 0}
 }

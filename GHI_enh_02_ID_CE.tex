@@ -125,7 +125,7 @@
 
 \title{Enhancement of SDR in Thessaloniki}
 \author{Natsis Athanasios\footnote{Laboratory of Atmospheric Physics, AUTH, \href{mailto:natsisphysicist@gmail.com}{\nolinkurl{natsisphysicist@gmail.com}}} \and Alkiviadis Bais\footnote{Laboratory of Atmospheric Physics, AUTH}}
-\date{2024-09-02}
+\date{2024-09-05}
 
 \begin{document}
 \maketitle
@@ -237,12 +237,19 @@ Alpha * HAU is CS\_ref
 
 
 \ControlFlowTok{if}\NormalTok{ (APPLY\_TRANS) \{}
-  \FunctionTok{source}\NormalTok{(}\StringTok{"./GHI\_enh\_07\_Aerosols.R"}\NormalTok{)}
   \FunctionTok{cat}\NormalTok{(}\StringTok{"USING TRASPARENCY TREND}\SpecialCharTok{\textbackslash{}n}\StringTok{"}\NormalTok{)}
+
+  \CommentTok{\# source("./GHI\_enh\_07\_Aerosols.R")}
   \DocumentationTok{\#\# choose function}
   \CommentTok{\# trans\_trend \textless{}{-} trend\_median}
-\NormalTok{  trans\_trend }\OtherTok{\textless{}{-}}\NormalTok{ trend\_median\_adj}
-\NormalTok{  trans\_trend }\OtherTok{\textless{}{-}}\NormalTok{ trend\_55\_adj}
+  \CommentTok{\# trans\_trend \textless{}{-} trend\_median\_adj}
+  \CommentTok{\# trans\_trend \textless{}{-} trend\_55\_adj}
+
+  \FunctionTok{source}\NormalTok{(}\StringTok{"./GHI\_enh\_07\_Aerosols\_BR\_CIM.R"}\NormalTok{)}
+  \CommentTok{\# trend\_polyf(1994:2024)}
+  \CommentTok{\# plot(trend\_polyf(1994:2024), trend\_55\_adj(1994:2024))}
+\NormalTok{  trans\_trend }\OtherTok{\textless{}{-}}\NormalTok{ trend\_polyf}
+
 \NormalTok{\} }\ControlFlowTok{else}\NormalTok{ \{}
 \NormalTok{  trans\_trend }\OtherTok{\textless{}{-}} \ControlFlowTok{function}\NormalTok{(x) \{x }\SpecialCharTok{*} \DecValTok{0}\NormalTok{\}}
 \NormalTok{\}}
@@ -250,7 +257,7 @@ Alpha * HAU is CS\_ref
 \end{Shaded}
 
 \begin{verbatim}
-Cross over point: 2005 
+USING TRASPARENCY TREND
 \end{verbatim}
 
 \begin{figure}[H]
@@ -261,571 +268,6 @@ Cross over point: 2005
 
 \caption{ - empty caption - }\label{fig:unnamed-chunk-9-1}
 \end{figure}
-\begin{figure}[H]
-
-{\centering \includegraphics[width=1\linewidth]{GHI_enh_02_ID_CE_files/figure-latex/unnamed-chunk-9-2} 
-
-}
-
-\caption{ - empty caption - }\label{fig:unnamed-chunk-9-2}
-\end{figure}
-\begin{figure}[H]
-
-{\centering \includegraphics[width=1\linewidth]{GHI_enh_02_ID_CE_files/figure-latex/unnamed-chunk-9-3} 
-
-}
-
-\caption{ - empty caption - }\label{fig:unnamed-chunk-9-3}
-\end{figure}
-\begin{figure}[H]
-
-{\centering \includegraphics[width=1\linewidth]{GHI_enh_02_ID_CE_files/figure-latex/unnamed-chunk-9-4} 
-
-}
-
-\caption{ - empty caption - }\label{fig:unnamed-chunk-9-4}
-\end{figure}
-\begin{figure}[H]
-
-{\centering \includegraphics[width=1\linewidth]{GHI_enh_02_ID_CE_files/figure-latex/unnamed-chunk-9-5} 
-
-}
-
-\caption{ - empty caption - }\label{fig:unnamed-chunk-9-5}
-\end{figure}
-\begin{figure}[H]
-
-{\centering \includegraphics[width=1\linewidth]{GHI_enh_02_ID_CE_files/figure-latex/unnamed-chunk-9-6} 
-
-}
-
-\caption{ - empty caption - }\label{fig:unnamed-chunk-9-6}
-\end{figure}
-\begin{figure}[H]
-
-{\centering \includegraphics[width=1\linewidth]{GHI_enh_02_ID_CE_files/figure-latex/unnamed-chunk-9-7} 
-
-}
-
-\caption{ - empty caption - }\label{fig:unnamed-chunk-9-7}
-\end{figure}
-\begin{figure}[H]
-
-{\centering \includegraphics[width=1\linewidth]{GHI_enh_02_ID_CE_files/figure-latex/unnamed-chunk-9-8} 
-
-}
-
-\caption{ - empty caption - }\label{fig:unnamed-chunk-9-8}
-\end{figure}
-\begin{figure}[H]
-
-{\centering \includegraphics[width=1\linewidth]{GHI_enh_02_ID_CE_files/figure-latex/unnamed-chunk-9-9} 
-
-}
-
-\caption{ - empty caption - }\label{fig:unnamed-chunk-9-9}
-\end{figure}
-\begin{figure}[H]
-
-{\centering \includegraphics[width=1\linewidth]{GHI_enh_02_ID_CE_files/figure-latex/unnamed-chunk-9-10} 
-
-}
-
-\caption{ - empty caption - }\label{fig:unnamed-chunk-9-10}
-\end{figure}
-\begin{figure}[H]
-
-{\centering \includegraphics[width=1\linewidth]{GHI_enh_02_ID_CE_files/figure-latex/unnamed-chunk-9-11} 
-
-}
-
-\caption{ - empty caption - }\label{fig:unnamed-chunk-9-11}
-\end{figure}
-\begin{figure}[H]
-
-{\centering \includegraphics[width=1\linewidth]{GHI_enh_02_ID_CE_files/figure-latex/unnamed-chunk-9-12} 
-
-}
-
-\caption{ - empty caption - }\label{fig:unnamed-chunk-9-12}
-\end{figure}
-\begin{figure}[H]
-
-{\centering \includegraphics[width=1\linewidth]{GHI_enh_02_ID_CE_files/figure-latex/unnamed-chunk-9-13} 
-
-}
-
-\caption{ - empty caption - }\label{fig:unnamed-chunk-9-13}
-\end{figure}
-\begin{figure}[H]
-
-{\centering \includegraphics[width=1\linewidth]{GHI_enh_02_ID_CE_files/figure-latex/unnamed-chunk-9-14} 
-
-}
-
-\caption{ - empty caption - }\label{fig:unnamed-chunk-9-14}
-\end{figure}
-\begin{figure}[H]
-
-{\centering \includegraphics[width=1\linewidth]{GHI_enh_02_ID_CE_files/figure-latex/unnamed-chunk-9-15} 
-
-}
-
-\caption{ - empty caption - }\label{fig:unnamed-chunk-9-15}
-\end{figure}
-\begin{figure}[H]
-
-{\centering \includegraphics[width=1\linewidth]{GHI_enh_02_ID_CE_files/figure-latex/unnamed-chunk-9-16} 
-
-}
-
-\caption{ - empty caption - }\label{fig:unnamed-chunk-9-16}
-\end{figure}
-\begin{figure}[H]
-
-{\centering \includegraphics[width=1\linewidth]{GHI_enh_02_ID_CE_files/figure-latex/unnamed-chunk-9-17} 
-
-}
-
-\caption{ - empty caption - }\label{fig:unnamed-chunk-9-17}
-\end{figure}
-\begin{figure}[H]
-
-{\centering \includegraphics[width=1\linewidth]{GHI_enh_02_ID_CE_files/figure-latex/unnamed-chunk-9-18} 
-
-}
-
-\caption{ - empty caption - }\label{fig:unnamed-chunk-9-18}
-\end{figure}
-\begin{figure}[H]
-
-{\centering \includegraphics[width=1\linewidth]{GHI_enh_02_ID_CE_files/figure-latex/unnamed-chunk-9-19} 
-
-}
-
-\caption{ - empty caption - }\label{fig:unnamed-chunk-9-19}
-\end{figure}
-\begin{figure}[H]
-
-{\centering \includegraphics[width=1\linewidth]{GHI_enh_02_ID_CE_files/figure-latex/unnamed-chunk-9-20} 
-
-}
-
-\caption{ - empty caption - }\label{fig:unnamed-chunk-9-20}
-\end{figure}
-\begin{figure}[H]
-
-{\centering \includegraphics[width=1\linewidth]{GHI_enh_02_ID_CE_files/figure-latex/unnamed-chunk-9-21} 
-
-}
-
-\caption{ - empty caption - }\label{fig:unnamed-chunk-9-21}
-\end{figure}
-\begin{figure}[H]
-
-{\centering \includegraphics[width=1\linewidth]{GHI_enh_02_ID_CE_files/figure-latex/unnamed-chunk-9-22} 
-
-}
-
-\caption{ - empty caption - }\label{fig:unnamed-chunk-9-22}
-\end{figure}
-\begin{figure}[H]
-
-{\centering \includegraphics[width=1\linewidth]{GHI_enh_02_ID_CE_files/figure-latex/unnamed-chunk-9-23} 
-
-}
-
-\caption{ - empty caption - }\label{fig:unnamed-chunk-9-23}
-\end{figure}
-\begin{figure}[H]
-
-{\centering \includegraphics[width=1\linewidth]{GHI_enh_02_ID_CE_files/figure-latex/unnamed-chunk-9-24} 
-
-}
-
-\caption{ - empty caption - }\label{fig:unnamed-chunk-9-24}
-\end{figure}
-\begin{figure}[H]
-
-{\centering \includegraphics[width=1\linewidth]{GHI_enh_02_ID_CE_files/figure-latex/unnamed-chunk-9-25} 
-
-}
-
-\caption{ - empty caption - }\label{fig:unnamed-chunk-9-25}
-\end{figure}
-\begin{figure}[H]
-
-{\centering \includegraphics[width=1\linewidth]{GHI_enh_02_ID_CE_files/figure-latex/unnamed-chunk-9-26} 
-
-}
-
-\caption{ - empty caption - }\label{fig:unnamed-chunk-9-26}
-\end{figure}
-\begin{figure}[H]
-
-{\centering \includegraphics[width=1\linewidth]{GHI_enh_02_ID_CE_files/figure-latex/unnamed-chunk-9-27} 
-
-}
-
-\caption{ - empty caption - }\label{fig:unnamed-chunk-9-27}
-\end{figure}
-\begin{figure}[H]
-
-{\centering \includegraphics[width=1\linewidth]{GHI_enh_02_ID_CE_files/figure-latex/unnamed-chunk-9-28} 
-
-}
-
-\caption{ - empty caption - }\label{fig:unnamed-chunk-9-28}
-\end{figure}
-
-\begin{verbatim}
-SZA min : 0.00137165912186399 
-\end{verbatim}
-
-\begin{figure}[H]
-
-{\centering \includegraphics[width=1\linewidth]{GHI_enh_02_ID_CE_files/figure-latex/unnamed-chunk-9-29} 
-
-}
-
-\caption{ - empty caption - }\label{fig:unnamed-chunk-9-29}
-\end{figure}
-\begin{figure}[H]
-
-{\centering \includegraphics[width=1\linewidth]{GHI_enh_02_ID_CE_files/figure-latex/unnamed-chunk-9-30} 
-
-}
-
-\caption{ - empty caption - }\label{fig:unnamed-chunk-9-30}
-\end{figure}
-\begin{figure}[H]
-
-{\centering \includegraphics[width=1\linewidth]{GHI_enh_02_ID_CE_files/figure-latex/unnamed-chunk-9-31} 
-
-}
-
-\caption{ - empty caption - }\label{fig:unnamed-chunk-9-31}
-\end{figure}
-\begin{figure}[H]
-
-{\centering \includegraphics[width=1\linewidth]{GHI_enh_02_ID_CE_files/figure-latex/unnamed-chunk-9-32} 
-
-}
-
-\caption{ - empty caption - }\label{fig:unnamed-chunk-9-32}
-\end{figure}
-\begin{figure}[H]
-
-{\centering \includegraphics[width=1\linewidth]{GHI_enh_02_ID_CE_files/figure-latex/unnamed-chunk-9-33} 
-
-}
-
-\caption{ - empty caption - }\label{fig:unnamed-chunk-9-33}
-\end{figure}
-\begin{figure}[H]
-
-{\centering \includegraphics[width=1\linewidth]{GHI_enh_02_ID_CE_files/figure-latex/unnamed-chunk-9-34} 
-
-}
-
-\caption{ - empty caption - }\label{fig:unnamed-chunk-9-34}
-\end{figure}
-\begin{figure}[H]
-
-{\centering \includegraphics[width=1\linewidth]{GHI_enh_02_ID_CE_files/figure-latex/unnamed-chunk-9-35} 
-
-}
-
-\caption{ - empty caption - }\label{fig:unnamed-chunk-9-35}
-\end{figure}
-\begin{figure}[H]
-
-{\centering \includegraphics[width=1\linewidth]{GHI_enh_02_ID_CE_files/figure-latex/unnamed-chunk-9-36} 
-
-}
-
-\caption{ - empty caption - }\label{fig:unnamed-chunk-9-36}
-\end{figure}
-\begin{figure}[H]
-
-{\centering \includegraphics[width=1\linewidth]{GHI_enh_02_ID_CE_files/figure-latex/unnamed-chunk-9-37} 
-
-}
-
-\caption{ - empty caption - }\label{fig:unnamed-chunk-9-37}
-\end{figure}
-\begin{figure}[H]
-
-{\centering \includegraphics[width=1\linewidth]{GHI_enh_02_ID_CE_files/figure-latex/unnamed-chunk-9-38} 
-
-}
-
-\caption{ - empty caption - }\label{fig:unnamed-chunk-9-38}
-\end{figure}
-\begin{figure}[H]
-
-{\centering \includegraphics[width=1\linewidth]{GHI_enh_02_ID_CE_files/figure-latex/unnamed-chunk-9-39} 
-
-}
-
-\caption{ - empty caption - }\label{fig:unnamed-chunk-9-39}
-\end{figure}
-\begin{figure}[H]
-
-{\centering \includegraphics[width=1\linewidth]{GHI_enh_02_ID_CE_files/figure-latex/unnamed-chunk-9-40} 
-
-}
-
-\caption{ - empty caption - }\label{fig:unnamed-chunk-9-40}
-\end{figure}
-
-\begin{verbatim}
-SZA mean : 0.0020024477410843 
-\end{verbatim}
-
-\begin{figure}[H]
-
-{\centering \includegraphics[width=1\linewidth]{GHI_enh_02_ID_CE_files/figure-latex/unnamed-chunk-9-41} 
-
-}
-
-\caption{ - empty caption - }\label{fig:unnamed-chunk-9-41}
-\end{figure}
-\begin{figure}[H]
-
-{\centering \includegraphics[width=1\linewidth]{GHI_enh_02_ID_CE_files/figure-latex/unnamed-chunk-9-42} 
-
-}
-
-\caption{ - empty caption - }\label{fig:unnamed-chunk-9-42}
-\end{figure}
-\begin{figure}[H]
-
-{\centering \includegraphics[width=1\linewidth]{GHI_enh_02_ID_CE_files/figure-latex/unnamed-chunk-9-43} 
-
-}
-
-\caption{ - empty caption - }\label{fig:unnamed-chunk-9-43}
-\end{figure}
-\begin{figure}[H]
-
-{\centering \includegraphics[width=1\linewidth]{GHI_enh_02_ID_CE_files/figure-latex/unnamed-chunk-9-44} 
-
-}
-
-\caption{ - empty caption - }\label{fig:unnamed-chunk-9-44}
-\end{figure}
-\begin{figure}[H]
-
-{\centering \includegraphics[width=1\linewidth]{GHI_enh_02_ID_CE_files/figure-latex/unnamed-chunk-9-45} 
-
-}
-
-\caption{ - empty caption - }\label{fig:unnamed-chunk-9-45}
-\end{figure}
-\begin{figure}[H]
-
-{\centering \includegraphics[width=1\linewidth]{GHI_enh_02_ID_CE_files/figure-latex/unnamed-chunk-9-46} 
-
-}
-
-\caption{ - empty caption - }\label{fig:unnamed-chunk-9-46}
-\end{figure}
-\begin{figure}[H]
-
-{\centering \includegraphics[width=1\linewidth]{GHI_enh_02_ID_CE_files/figure-latex/unnamed-chunk-9-47} 
-
-}
-
-\caption{ - empty caption - }\label{fig:unnamed-chunk-9-47}
-\end{figure}
-\begin{figure}[H]
-
-{\centering \includegraphics[width=1\linewidth]{GHI_enh_02_ID_CE_files/figure-latex/unnamed-chunk-9-48} 
-
-}
-
-\caption{ - empty caption - }\label{fig:unnamed-chunk-9-48}
-\end{figure}
-\begin{figure}[H]
-
-{\centering \includegraphics[width=1\linewidth]{GHI_enh_02_ID_CE_files/figure-latex/unnamed-chunk-9-49} 
-
-}
-
-\caption{ - empty caption - }\label{fig:unnamed-chunk-9-49}
-\end{figure}
-\begin{figure}[H]
-
-{\centering \includegraphics[width=1\linewidth]{GHI_enh_02_ID_CE_files/figure-latex/unnamed-chunk-9-50} 
-
-}
-
-\caption{ - empty caption - }\label{fig:unnamed-chunk-9-50}
-\end{figure}
-\begin{figure}[H]
-
-{\centering \includegraphics[width=1\linewidth]{GHI_enh_02_ID_CE_files/figure-latex/unnamed-chunk-9-51} 
-
-}
-
-\caption{ - empty caption - }\label{fig:unnamed-chunk-9-51}
-\end{figure}
-\begin{figure}[H]
-
-{\centering \includegraphics[width=1\linewidth]{GHI_enh_02_ID_CE_files/figure-latex/unnamed-chunk-9-52} 
-
-}
-
-\caption{ - empty caption - }\label{fig:unnamed-chunk-9-52}
-\end{figure}
-
-\begin{verbatim}
-SZA median : 0.00184853525463023 
-\end{verbatim}
-
-\begin{figure}[H]
-
-{\centering \includegraphics[width=1\linewidth]{GHI_enh_02_ID_CE_files/figure-latex/unnamed-chunk-9-53} 
-
-}
-
-\caption{ - empty caption - }\label{fig:unnamed-chunk-9-53}
-\end{figure}
-\begin{figure}[H]
-
-{\centering \includegraphics[width=1\linewidth]{GHI_enh_02_ID_CE_files/figure-latex/unnamed-chunk-9-54} 
-
-}
-
-\caption{ - empty caption - }\label{fig:unnamed-chunk-9-54}
-\end{figure}
-\begin{figure}[H]
-
-{\centering \includegraphics[width=1\linewidth]{GHI_enh_02_ID_CE_files/figure-latex/unnamed-chunk-9-55} 
-
-}
-
-\caption{ - empty caption - }\label{fig:unnamed-chunk-9-55}
-\end{figure}
-\begin{figure}[H]
-
-{\centering \includegraphics[width=1\linewidth]{GHI_enh_02_ID_CE_files/figure-latex/unnamed-chunk-9-56} 
-
-}
-
-\caption{ - empty caption - }\label{fig:unnamed-chunk-9-56}
-\end{figure}
-\begin{figure}[H]
-
-{\centering \includegraphics[width=1\linewidth]{GHI_enh_02_ID_CE_files/figure-latex/unnamed-chunk-9-57} 
-
-}
-
-\caption{ - empty caption - }\label{fig:unnamed-chunk-9-57}
-\end{figure}
-\begin{figure}[H]
-
-{\centering \includegraphics[width=1\linewidth]{GHI_enh_02_ID_CE_files/figure-latex/unnamed-chunk-9-58} 
-
-}
-
-\caption{ - empty caption - }\label{fig:unnamed-chunk-9-58}
-\end{figure}
-\begin{figure}[H]
-
-{\centering \includegraphics[width=1\linewidth]{GHI_enh_02_ID_CE_files/figure-latex/unnamed-chunk-9-59} 
-
-}
-
-\caption{ - empty caption - }\label{fig:unnamed-chunk-9-59}
-\end{figure}
-\begin{figure}[H]
-
-{\centering \includegraphics[width=1\linewidth]{GHI_enh_02_ID_CE_files/figure-latex/unnamed-chunk-9-60} 
-
-}
-
-\caption{ - empty caption - }\label{fig:unnamed-chunk-9-60}
-\end{figure}
-\begin{figure}[H]
-
-{\centering \includegraphics[width=1\linewidth]{GHI_enh_02_ID_CE_files/figure-latex/unnamed-chunk-9-61} 
-
-}
-
-\caption{ - empty caption - }\label{fig:unnamed-chunk-9-61}
-\end{figure}
-\begin{figure}[H]
-
-{\centering \includegraphics[width=1\linewidth]{GHI_enh_02_ID_CE_files/figure-latex/unnamed-chunk-9-62} 
-
-}
-
-\caption{ - empty caption - }\label{fig:unnamed-chunk-9-62}
-\end{figure}
-\begin{figure}[H]
-
-{\centering \includegraphics[width=1\linewidth]{GHI_enh_02_ID_CE_files/figure-latex/unnamed-chunk-9-63} 
-
-}
-
-\caption{ - empty caption - }\label{fig:unnamed-chunk-9-63}
-\end{figure}
-\begin{figure}[H]
-
-{\centering \includegraphics[width=1\linewidth]{GHI_enh_02_ID_CE_files/figure-latex/unnamed-chunk-9-64} 
-
-}
-
-\caption{ - empty caption - }\label{fig:unnamed-chunk-9-64}
-\end{figure}
-
-\begin{verbatim}
-SZA 55 : 0.00139576531267693 
-
-
-\newpage
-\end{verbatim}
-
-\begin{figure}[H]
-
-{\centering \includegraphics[width=1\linewidth]{GHI_enh_02_ID_CE_files/figure-latex/unnamed-chunk-9-65} 
-
-}
-
-\caption{ - empty caption - }\label{fig:unnamed-chunk-9-65}
-\end{figure}
-
-\begin{verbatim}
-\newpage
-\end{verbatim}
-
-\begin{figure}[H]
-
-{\centering \includegraphics[width=1\linewidth]{GHI_enh_02_ID_CE_files/figure-latex/unnamed-chunk-9-66} 
-
-}
-
-\caption{ - empty caption - }\label{fig:unnamed-chunk-9-66}
-\end{figure}
-
-\begin{verbatim}
-\newpage
-\end{verbatim}
-
-\begin{figure}[H]
-
-{\centering \includegraphics[width=1\linewidth]{GHI_enh_02_ID_CE_files/figure-latex/unnamed-chunk-9-67} 
-
-}
-
-\caption{ - empty caption - }\label{fig:unnamed-chunk-9-67}
-\end{figure}
-
-\begin{verbatim}
-\newpage
-\end{verbatim}
 
 \begin{verbatim}
 Warning: A numeric `legend.position` argument in `theme()` was deprecated in ggplot2 3.5.0.
@@ -834,9 +276,14 @@ This warning is displayed once every 8 hours.
 Call `lifecycle::last_lifecycle_warnings()` to see where this warning was generated.
 \end{verbatim}
 
-\begin{verbatim}
-USING TRASPARENCY TREND
-\end{verbatim}
+\begin{figure}[H]
+
+{\centering \includegraphics[width=1\linewidth]{GHI_enh_02_ID_CE_files/figure-latex/unnamed-chunk-9-2} 
+
+}
+
+\caption{ - empty caption - }\label{fig:unnamed-chunk-9-2}
+\end{figure}
 
 \hypertarget{use-libradtran-low_b.low_w-as-reference-for-clear-sky.}{%
 \subsection{\texorpdfstring{4. Use libradtran \textbf{Low\_B.Low\_W} as reference for Clear sky.}{4. Use libradtran Low\_B.Low\_W as reference for Clear sky.}}\label{use-libradtran-low_b.low_w-as-reference-for-clear-sky.}}
@@ -1077,7 +524,7 @@ TRUE
 \end{minipage} \\
 \midrule
 \endhead
-6305117 & 107213 \\
+6311268 & 101062 \\
 \bottomrule
 \end{longtable}
 
@@ -2004,6 +1451,11 @@ TRUE
 \caption{ - empty caption - }\label{fig:example-days-73}
 \end{figure}
 
+\FloatBarrier
+
+\hypertarget{days-with-cloudy-day}{%
+\subsection{Days with cloudy day}\label{days-with-cloudy-day}}
+
 \begin{figure}[H]
 
 {\centering \includegraphics[width=1\linewidth]{GHI_enh_02_ID_CE_files/figure-latex/example-days-74} 
@@ -2021,11 +1473,6 @@ TRUE
 
 \caption{ - empty caption - }\label{fig:example-days-75}
 \end{figure}
-
-\FloatBarrier
-
-\hypertarget{days-with-cloudy-day}{%
-\subsection{Days with cloudy day}\label{days-with-cloudy-day}}
 
 \begin{figure}[H]
 
@@ -2189,6 +1636,11 @@ TRUE
 \caption{ - empty caption - }\label{fig:example-days-93}
 \end{figure}
 
+\FloatBarrier
+
+\hypertarget{days-with-random-day}{%
+\subsection{Days with random day}\label{days-with-random-day}}
+
 \begin{figure}[H]
 
 {\centering \includegraphics[width=1\linewidth]{GHI_enh_02_ID_CE_files/figure-latex/example-days-94} 
@@ -2206,11 +1658,6 @@ TRUE
 
 \caption{ - empty caption - }\label{fig:example-days-95}
 \end{figure}
-
-\FloatBarrier
-
-\hypertarget{days-with-random-day}{%
-\subsection{Days with random day}\label{days-with-random-day}}
 
 \begin{figure}[H]
 
@@ -2464,6 +1911,11 @@ TRUE
 \caption{ - empty caption - }\label{fig:example-days-123}
 \end{figure}
 
+\FloatBarrier
+
+\hypertarget{days-with-manual-test-days}{%
+\subsection{Days with manual test days}\label{days-with-manual-test-days}}
+
 \begin{figure}[H]
 
 {\centering \includegraphics[width=1\linewidth]{GHI_enh_02_ID_CE_files/figure-latex/example-days-124} 
@@ -2482,11 +1934,6 @@ TRUE
 \caption{ - empty caption - }\label{fig:example-days-125}
 \end{figure}
 
-\FloatBarrier
-
-\hypertarget{days-with-manual-test-days}{%
-\subsection{Days with manual test days}\label{days-with-manual-test-days}}
-
 \begin{figure}[H]
 
 {\centering \includegraphics[width=1\linewidth]{GHI_enh_02_ID_CE_files/figure-latex/example-days-126} 
@@ -2503,24 +1950,6 @@ TRUE
 }
 
 \caption{ - empty caption - }\label{fig:example-days-127}
-\end{figure}
-
-\begin{figure}[H]
-
-{\centering \includegraphics[width=1\linewidth]{GHI_enh_02_ID_CE_files/figure-latex/example-days-128} 
-
-}
-
-\caption{ - empty caption - }\label{fig:example-days-128}
-\end{figure}
-
-\begin{figure}[H]
-
-{\centering \includegraphics[width=1\linewidth]{GHI_enh_02_ID_CE_files/figure-latex/example-days-129} 
-
-}
-
-\caption{ - empty caption - }\label{fig:example-days-129}
 \end{figure}
 
 \newpage
@@ -2773,7 +2202,7 @@ TRUE
 \textbf{END}
 
 \begin{verbatim}
-2024-09-02 07:22:18.8 athan@tyler GHI_enh_02_ID_CE.R 33.329873 mins
+2024-09-05 07:55:22.1 athan@sagan GHI_enh_02_ID_CE.R 19.142145 mins
 \end{verbatim}
 
 \end{document}

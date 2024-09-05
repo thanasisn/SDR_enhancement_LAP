@@ -97,10 +97,10 @@ CS <- readRDS("~/LibRadTranG/Clear_sky_model_AERONET_monthly/Model_CS_trend_fix_
 
 
 CS <- CS[, .(year, month, sza, edir, edn, typer, atmosphere_file)]
-CS[, glo := (edir + edn) / 1000 ]
+CS[, glo  := (edir + edn) / 1000 ]
+CS[, Date := as.POSIXct(as.Date(paste(year, month, 1), "%Y %m %d")) ]
 CS[, tsy := decimal_date(Date)]
 
-CS[, Date := as.POSIXct(as.Date(paste(year, month, 1), "%Y %m %d")) ]
 
 ## select proper atmosphere file
 CS <- CS[date_to_standard_atmosphere_file(CS$Date) == CS$atmosphere_file, ]
@@ -199,15 +199,13 @@ polyf_zero <- dataset[tsy == tzero, expon]
 
 ## function to apply to GHI
 trend_polyf <- function(tsy) {
-  ((polym_C[1] + polym_C[2] * tsy + polym_C[3] * tsy^2) / polyf_zero)
+  ((polym_C[1] + polym_C[2] * tsy + polym_C[3] * tsy^2) / polyf_zero) - 1
 }
 
 
 relativ <- copy(dataset)
 
-relativ[, trend_polyf(tsy)]
-
-relativ[, secon := 100 * (trend_polyf(tsy) - 1)]
+relativ[, secon := 100 * (trend_polyf(tsy))]
 
 
 #+ P-CS-change-poly, echo=F, include=T, results="asis"

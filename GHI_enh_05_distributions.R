@@ -566,6 +566,12 @@ plot(COMPLETE_monthly[, Complete, Date])
 
 hist(COMPLETE_monthly[, Complete])
 
+COMPLETE_yearly      <- DATA[, .(Complete = sum(!is.na(wattGLB))/.N) , by = .(year(Date))]
+# COMPLETE_monthly$Date <- as.POSIXct(strptime(paste(COMPLETE_monthly$year, COMPLETE_monthly$month, "1"),"%Y %m %d"))
+
+
+
+
 
 
 ##  Climatology of CE   ----------------------------------------------
