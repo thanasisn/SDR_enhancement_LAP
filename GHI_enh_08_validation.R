@@ -318,6 +318,12 @@ print(cor.test(KEEP$wattGLB, KEEP$Low_B.Low_W.glo, method = c("pearson")))
 print(lm(KEEP[, wattGLB, Low_B.Low_W.glo]))
 
 
+
+
+
+
+
+
 #' \newpage
 #+ echo=F, include=T
 
@@ -330,6 +336,52 @@ abline(a = 0, b = 1, col = "green")
 print(cor.test(KEEP$wattGLB, KEEP$Enhanc_C_4_ref, method = c("pearson")))
 
 print(lm(KEEP[, wattGLB, Enhanc_C_4_ref]))
+
+
+library(ggplot2)
+library(ggpmisc)
+
+
+lm_eqn <- function(x, y){
+  m <- lm(y ~ x);
+  eq <- substitute(italic(y) == a + b %.% italic(x)*","~~italic(r)^2~"="~r2,
+                   list(a = format(unname(coef(m)[1]), digits = 2),
+                        b = format(unname(coef(m)[2]), digits = 2),
+                        r2 = format(summary(m)$r.squared, digits = 3)))
+  as.character(as.expression(eq));
+}
+
+
+
+ggplot(KEEP, aes(wattGLB, Enhanc_C_4_ref)) +
+  geom_point(colour = "black",
+             alpha  = .1,
+             na.rm  = TRUE,
+             size   = 0.3) +
+  geom_abline(aes(intercept = 0, slope = 1), colour = "green") +
+  ylab(bquote("CE threshold" ~ group("[", W/m^2,"]"))) +
+  xlab(bquote("GHI" ~ group("[", W/m^2,"]"))) +
+  labs(color = bquote("OI" ~ group("[", W/m^2,"]"))) +
+  # stat_poly_line() +
+  # stat_poly_eq(use_label(c("eq", "R2"))) +
+  geom_text(x = 300, y = 300, label = lm_eqn(KEEP$wattGLB, KEEP$Enhanc_C_4_ref), parse = TRUE)
+  # theme(
+  #   legend.title         = element_text(size = 10),
+  #   legend.position      = c(.03, .97),
+  #   legend.justification = c("left", "top"),
+  #   legend.box.just      = "right",
+  #   legend.key           = element_blank(),
+  #   legend.background    = element_rect(fill = "transparent"),
+  #   legend.margin        = margin(6, 6, 6, 6) ) +
+#   scale_x_continuous(expand = expansion(mult = c(0.03, 0.03))) +
+#   scale_y_continuous(breaks = scales::breaks_extended(n = 6),
+#                      expand = expansion(mult = c(0.03, 0.03)))
+
+
+
+
+
+
 
 
 
