@@ -91,10 +91,10 @@ source("./GHI_enh_00_dictionary.R")
 
 ## Override notification function
 options(error = function() {
-    if (interactive()) {
-        system("mplayer /usr/share/sounds/freedesktop/stereo/dialog-warning.oga", ignore.stdout = T, ignore.stderr = T)
-        system(paste("notify-send -u normal -t 30000 ", Script.Name, " 'An error occurred!'"))
-    }
+  if (interactive()) {
+    system("mplayer /usr/share/sounds/freedesktop/stereo/dialog-warning.oga", ignore.stdout = T, ignore.stderr = T)
+    system(paste("notify-send -u normal -t 30000 ", Script.Name, " 'An error occurred!'"))
+  }
 })
 
 
@@ -111,10 +111,10 @@ set.seed(RANDOM_SEED)
 
 
 
-cat("Drop all enhacement cases")
+cat("Drop all enhacement cases\n\n")
 DATA <- DATA[Enhanc_C_4 == F]
 
-cat("Drop all clouds")
+cat("Drop all clouds\n\n")
 DATA <- DATA[TYPE == "Clear"]
 
 
@@ -123,15 +123,18 @@ DATA <- janitor::remove_empty(DATA, which = "cols")
 
 COMPLETE <- DATA[, .(Completeness = sum(!is.na(wattGLB)) / DayLength) , by = Day ]
 
+## ??
+# DATA[, Completeness := sum(!is.na(wattGLB)) / DayLength , by = Day ]
 
-day_fill <- 0.7
+
+day_fill <- 0.8
 
 KEEP <- DATA[Day %in% COMPLETE[Completeness > day_fill, Day], ]
+# KEEP <- DATA[Completeness > day_fill, ]
+
+
 
 hist(COMPLETE$Completeness)
-
-
-
 
 
 
@@ -144,41 +147,41 @@ sunny_days <- KEEP[, .(Sunshine = sum(TYPE == "Clear") / max(DayLength, na.rm = 
 
 
 ## days with maximum values
-setorder(enh_days, -Enh_diff_max)
-maxenhd <- enh_days[1:400]
+# setorder(enh_days, -Enh_diff_max)
+# maxenhd <- enh_days[1:400]
 
 ## strong total enhancement days
-setorder(enh_days, -Enh_sum)
-daylist <- enh_days[1:400]
-daylist <- daylist[!Day %in% maxenhd$Day]
-# enhsnd  <- daylist[sample(1:nrow(daylist), 300)]
-enhsnd  <- daylist
+# setorder(enh_days, -Enh_sum)
+# daylist <- enh_days[1:400]
+# daylist <- daylist[!Day %in% maxenhd$Day]
+# # enhsnd  <- daylist[sample(1:nrow(daylist), 300)]
+# enhsnd  <- daylist
 
 ## select some sunny days
 sunnyd  <- sunny_days[Sunshine > 0.79 & Energy > 0.74]
-sunnyd  <- sunnyd[!Day %in% maxenhd$Day & !Day %in% enhsnd$Day]
+# sunnyd  <- sunnyd[!Day %in% maxenhd$Day & !Day %in% enhsnd$Day]
 sunnyd  <- sunnyd[sample(1:nrow(sunnyd), 400, replace = T)]
 
 ## sunny with enhancements
 sunnyenh <- sunny_days[Sunshine > 0.77 & Energy > 0.73 & EC > 0]
-sunnyenh <- sunnyenh[!Day %in% maxenhd$Day & !Day %in% enhsnd$Day & !Day %in% sunnyd$Day]
+# sunnyenh <- sunnyenh[!Day %in% maxenhd$Day & !Day %in% enhsnd$Day & !Day %in% sunnyd$Day]
 
 ## cloudy days
 clouds <- sunny_days[Sunshine > 0.6 & Energy > 0.6 & EC > 2 & Cloud > 5]
-clouds <- clouds[!Day %in% sunnyenh$Day & !Day %in% maxenhd$Day & !Day %in% enhsnd$Day & !Day %in% sunnyd$Day]
+# clouds <- clouds[!Day %in% sunnyenh$Day & !Day %in% maxenhd$Day & !Day %in% enhsnd$Day & !Day %in% sunnyd$Day]
 clouds <- clouds[sample(1:nrow(clouds), 400, replace = T)]
 
 ## some random days
 all_days <- data.table(Day = unique(KEEP[, Day]))
-all_days <- all_days[!Day %in% sunnyenh$Day & !Day %in% maxenhd$Day & !Day %in% enhsnd$Day & !Day %in% sunnyd$Day & !Day %in% clouds]
+# all_days <- all_days[!Day %in% sunnyenh$Day & !Day %in% maxenhd$Day & !Day %in% enhsnd$Day & !Day %in% sunnyd$Day & !Day %in% clouds]
 all_days <- all_days[sample(1:nrow(all_days), 300)]
 
 ## manual selection
 testdays <- data.table(Day = c(
-    "2000-07-14",
-    "2007-07-06",
-    "2013-05-27",
-    "2016-08-29"
+  "2000-07-14",
+  "2007-07-06",
+  "2013-05-27",
+  "2016-08-29"
 ))
 
 
@@ -191,17 +194,18 @@ testdays <- data.table(Day = c(
 #+ example-days, echo=F, include=T, results="asis"
 
 vec_days <- matrix(
-    ##   Data      Description
-    c("maxenhd",  "extreme cases day",
-      "enhsnd",   "strong enhancement day",
-      "sunnyd",   "sunny day",
-      "sunnyenh", "sunny enhancement day",
-      "clouds",   "cloudy day",
-      "all_days", "random day",
-      "testdays", "manual test days",
-      NULL),
-    byrow = TRUE,
-    ncol  = 2)
+  ##   Data      Description
+  c(
+    # "maxenhd",  "extreme cases day",
+    # "enhsnd",   "strong enhancement day",
+    "sunnyd",   "sunny day",
+    "sunnyenh", "sunny enhancement day",
+    "clouds",   "cloudy day",
+    "all_days", "random day",
+    "testdays", "manual test days",
+    NULL),
+  byrow = TRUE,
+  ncol  = 2)
 
 
 ## Format to data frame
@@ -308,6 +312,31 @@ title(paste("Days:", length(unique(KEEP[, Day])), "Day fill:", day_fill, "Points
 abline(a = 0, b = 1, col = "green")
 
 
+plot(KEEP[, Low_B.Low_W.glo, wattGLB ])
+abline(a = 0, b = 1, col = "green", xlab = "Cloud free GHI")
+title(paste("Days:", length(unique(KEEP[, Day])), "Day fill:", day_fill, "Points:", KEEP[, sum(!is.na(wattGLB))]))
+
+
+
+plot(KEEP[, Enhanc_C_4_ref, wattGLB ])
+abline(a = 0, b = 1, col = "green", xlab = "CE threshold")
+title(paste("Days:", length(unique(KEEP[, Day])), "Day fill:", day_fill, "Points:", KEEP[, sum(!is.na(wattGLB))]))
+
+
+
+
+cor(KEEP$wattGLB, KEEP$Low_B.Low_W.glo, method = c("pearson"))
+cor.test(KEEP$wattGLB, KEEP$Low_B.Low_W.glo, method = c("pearson"))
+
+
+# cor(KEEP$wattGLB, KEEP$Low_B.Low_W.glo, method = c("kendall"))
+# cor.test(KEEP$wattGLB, KEEP$Low_B.Low_W.glo, method = c("kendall"))
+
+# cor(KEEP$wattGLB, KEEP$Low_B.Low_W.glo, method = c("spearman"))
+# cor.test(KEEP$wattGLB, KEEP$Low_B.Low_W.glo, method = c("spearman"))
+
+
+
 
 #' **END**
 #+ include=T, echo=F
@@ -315,6 +344,6 @@ tac <- Sys.time()
 cat(sprintf("%s %s@%s %s %f mins\n\n", Sys.time(), Sys.info()["login"],
             Sys.info()["nodename"], basename(Script.Name), difftime(tac,tic,units = "mins")))
 if (difftime(tac,tic,units = "sec") > 30) {
-    system("mplayer /usr/share/sounds/freedesktop/stereo/dialog-warning.oga", ignore.stdout = T, ignore.stderr = T)
-    system(paste("notify-send -u normal -t 30000 ", Script.Name, " 'R script ended'"))
+  system("mplayer /usr/share/sounds/freedesktop/stereo/dialog-warning.oga", ignore.stdout = T, ignore.stderr = T)
+  system(paste("notify-send -u normal -t 30000 ", Script.Name, " 'R script ended'"))
 }
