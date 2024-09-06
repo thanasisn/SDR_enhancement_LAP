@@ -265,7 +265,7 @@ for (ii in 1:nrow(gather_days)) {
   ## Active model reference
   lines(temp[, get(paste0(SelEnhanc, "_ref")), Date], col = "red" )
 
-  ## Clear sky ref
+  ## Cloud-free ref
   lines(temp[, get(paste0(csmodel,".glo")), Date], col = "darkorchid" )
 
   # ## add sza axis
@@ -286,7 +286,7 @@ for (ii in 1:nrow(gather_days)) {
   title(main = paste(as.Date(aday, origin = "1970-01-01"), doy , type))
 
   legend("bottomright", ncol = 2,
-         c(  "GHI","CE threshold","TSI at TOA on horizontal plane","Solar Constant", "CE events","ECE events","Identified clouds",  "Clear sky"),
+         c(  "GHI","CE threshold","TSI at TOA on horizontal plane","Solar Constant", "CE events","ECE events","Identified clouds",  "Cloud-free"),
          col = c("green",         "red",                  "black",       "orange2","burlywood4",       "red",             "blue","darkorchid"),
          pch = c(     NA,            NA,                       NA,              NA,          1 ,          1 ,                  3,           NA),
          lty = c(      1,             1,                        1,               1,          NA,          NA,                 NA,            1),
@@ -309,7 +309,7 @@ for (ii in 1:nrow(gather_days)) {
 #+ echo=F, include=T
 
 
-plot(KEEP[, Low_B.Low_W.glo, wattGLB], xlab = "Low_B.Low_W.glo Clear Sky")
+plot(KEEP[, Low_B.Low_W.glo, wattGLB], xlab = "Low_B.Low_W.glo Cloud-free")
 title(paste("Days:", length(unique(KEEP[, Day])), "Day fill:", day_fill, "Points:", KEEP[, sum(!is.na(wattGLB))]))
 abline(a = 0, b = 1, col = "green")
 

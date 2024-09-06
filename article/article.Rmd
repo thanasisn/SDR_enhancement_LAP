@@ -37,7 +37,7 @@ address:
 #   In this study we investigate the characteristics of global horizontal irradiance
 #   enhancement events induced by clouds over Thessaloniki for the period 1994 -- 2023
 #   using data recorded every one minute. We identified the cloud enhancement (CE)
-#   events by creating an appropriate clear-sky irradiance reference with the use of a
+#   events by creating an appropriate cloud-free irradiance reference with the use of a
 #   radiative transfer model and aerosol optical depth data from a collocated Cimel sun
 #   photometer and a Brewer spectrophotometer. We found a trend in CE events of
 #   \(45.6\pm 21.9\,\text{cases}/\text{year}\), and a trend in the CE events
@@ -146,7 +146,7 @@ MC <- readRDS("~/MANUSCRIPTS/02_enhancement/data/Max_cases.Rds")
 
 We studied the enhancement of the global horizontal irradiance induced by clouds over
 Thessaloniki for the period 1994 -- 2023 using data recorded every one minute.  We
-identified the cloud enhancement events (CE) by creating an appropriate clear sky
+identified the cloud enhancement events (CE) by creating an appropriate cloud-free
 irradiance reference with the use of a radiative transfer model and aerosol optical
 depth data from a collocated Cimel sun photometer and a Brewer spectrophotometer. We
 found a trend in CE events of
@@ -181,7 +181,7 @@ An important aspect of the variability of solar radiation is its interaction wit
 clouds. In general, clouds can attenuate a fraction of solar irradiance, but under
 certain conditions, can lead to enhancement of the global horizontal irradiance (GHI)
 reaching the ground. This cloud enhancement (CE) effect can locally increase the
-observed GHI to levels even higher than the expected clear-sky irradiance
+observed GHI to levels even higher than the expected cloud-free irradiance
 [@Cordero2023; @Vamvakas2020; @CastillejoCuberos2020;  and references
 therein].
 
@@ -219,15 +219,14 @@ Instruments response ....
 @Martins2022
 -->
 
-Methods of identification of CE events usually include the use of simulated clear
-sky irradiance as baseline, combined with an appropriate threshold or some
+Methods of identification of CE events usually include the use of simulated cloud-free irradiance as baseline, combined with an appropriate threshold or some
 other statistical characteristics, and in some cases, with visual inspection of sky
 camera images [@Vamvakas2020; @Mol2023 and references therein].
 
 <!-- our work -->
 In this study, we evaluate the effects of CE events on GHI by investigating their
 frequency of occurrence, intensity, and duration in a thirty-year record of GHI
-observations at Thessaloniki, Greece.  We used modeled clear sky irradiance as a
+observations at Thessaloniki, Greece.  We used modeled cloud-free irradiance as a
 baseline to identify cloud enhancements, and we determined long-term trends of the
 above-mentioned metrics, their climatology and some general characteristics.  To our
 knowledge there are no other studies that provide trends from such a long dataset.
@@ -310,7 +309,7 @@ knitr::include_graphics("../images/P_daily_trend-3.png")
 
 <!-- Define CE and ECE tomove? -->
 In this study, we define an event as CE when the measured GHI at ground level
-exceeds the expected value under clear-sky conditions. Similarly, we define as
+exceeds the expected value under cloud-free conditions. Similarly, we define as
 extreme cloud enhancement events (ECE), the cases when GHI at ground level exceeds
 the Total Solar Irradiance (TSI) at the top of the atmosphere (TOA) for the same SZA.
 Although the duration of these bursts can vary from seconds to several minutes, here
@@ -327,7 +326,7 @@ atmosphere.
 Equation\nobreakspace\ref{eq:CE4}. -->
 First, we used a simple approach for the determination of
 $\text{GHI}_\text{ref}$: The Haurwitz's model [@Haurwitz1945], which is a simple
-clear sky model and was already adjusted and applied to our data [@Natsis2023].
+cloud-free model and was already adjusted and applied to our data [@Natsis2023].
 <!--
 , and the total solar irradiance (TSI) at the top of the atmosphere, adjusted for the
 Sun-Earth distance.
@@ -342,12 +341,12 @@ To produce a more representative reference we included the effects of these fact
 using a radiative transfer model (RTM).  The applied methodology is discussed in
 section\nobreakspace{}\ref{rtmcs}.
 
-## Modeled clear Sky Irradiance {#rtmcs}
+## Modeled cloud-free Irradiance {#rtmcs}
 
-### Climatology of clear sky irradiance
+### Climatology of cloud-free irradiance
 
 <!-- Libradtran options -->
-We approximated the expected clear sky $\text{GHI}_\text{ref}$ with the radiative
+We approximated the expected cloud-free $\text{GHI}_\text{ref}$ with the radiative
 transfer model uvspec, part of libRadtran [@Emde2016], similarly to the approach used
 by @Vamvakas2020.  In uvspec we used the solar spectrum of @Kurucz1994 in the range
 $280$ to $2500\,\text{nm}$, the radiative transfer solver "disort" in
@@ -390,21 +389,21 @@ we account for the effect of the Earth -- Sun distance on the irradiance, by usi
 the distance calculated by the Astropy [@AstropyCollaboration2022] software library.
 As needed, we interpolate the resulting irradiances to the SZA of our
 measurements.  For each period of the year, we used the appropriate atmospheric
-profile (afglms or afglmw).  Finally, we calculated the clear sky irradiance value at
+profile (afglms or afglmw).  Finally, we calculated the cloud-free irradiance value at
 the horizontal plane.  Thus, we were able to emulate different atmospheric condition
 and levels of atmospheric clearness for the climatological conditions of the site.
-With this method, the modeled clear sky irradiances can be directly compared to each
+With this method, the modeled cloud-free irradiances can be directly compared to each
 measured one-minute value of GHI, for different conditions of atmospheric clearness.
 -->
 
-### Long-term change of clear sky irradiance
+### Long-term change of cloud-free irradiance
 
 <!-- Aerosol change -->
-The clear-sky reference values discussed above are based on the climatological AOD
+The cloud-free reference values discussed above are based on the climatological AOD
 and WC; hence they cannot describe accurately the long-term variation of
 $\text{GHI}_\text{ref}$ due to long-term changes in the two atmospheric constituents,
 mainly AOD.  As reported by @Natsis2023, there is a long-term brightening effect in
-the GHI data of Thessaloniki for the period 1993 -- 2023, which for clear-sky data
+the GHI data of Thessaloniki for the period 1993 -- 2023, which for cloud-free data
 was attributed to long-term changes in aerosol effects.  Therefore, an adjustment of
 the $\text{GHI}_\text{ref}$ during the period of study was made using simulations
 with the RTM to account for the long-term variations of the AOD. As AERONET data
@@ -418,7 +417,7 @@ $-3.8\,\%$ per year at AOD on $340\,\text{nm}$, using a Brewer spectrophotometer
 -->
 
 <!--
-To create a unified trend for the long-term change of the clear sky irradiance, we
+To create a unified trend for the long-term change of the cloud-free irradiance, we
 simulated the values of AOD derived from those sources with Libradtran. For both
 inputs, we used the AOD at $500\,\text{nm}$, which was inferred by the available
 Ångström coefficients. We choose the SZA of $55^\circ$ as a representative value for
@@ -444,18 +443,18 @@ Simulations with uvspec for the above Ångström coefficients, assuming constant
 $15.6\,\text{mm}$ taken from the Cimel, and for a SZA of $55^\circ$ reveal a change of
 $+0.21\,\%$ per year in $\text{GHI}_\text{ref}$.  The SZA of $55^\circ$ was chosen as
 representative of all days in the year in order
-to get a rough estimate of the annually averaged change in clear sky irradiance.  For
+to get a rough estimate of the annually averaged change in cloud-free irradiance.  For
 the period 2005 -- 2023 we used the mean monthly values of AOD and WC from AERONET in
-a similar simulation scheme to calculate the monthly mean clear-sky irradiance,
+a similar simulation scheme to calculate the monthly mean cloud-free irradiance,
 and finally the change of $+0.14\,\%$ per year. We applied these two long-term changes
 (see Figure\nobreakspace{}\ref{fig:CS-change}) to the climatological
-$\text{GHI}_\text{ref}$, to create a more realistic representation of the clear-sky
+$\text{GHI}_\text{ref}$, to create a more realistic representation of the cloud-free
 irradiance for the whole period of study.  The rate of changes in the two subperiods
 are different, but reasonable, since the effect of the enforced air pollution
 abatement measures in the area in the 1990s had greater effects in the first years of
 application.
 
-```{r CS-change, echo=FALSE, fig.cap="Simulated long-term change in clear sky irradiance relative to the climatological values due to changes in AOD in Thessaloniki for the period 1994 -- 2023."}
+```{r CS-change, echo=FALSE, fig.cap="Simulated long-term change in cloud-free irradiance relative to the climatological values due to changes in AOD in Thessaloniki for the period 1994 -- 2023."}
 knitr::include_graphics("../images/P-CS-change-1.png")
 ```
 
@@ -476,11 +475,11 @@ knitr::include_graphics("../images/P-CS-change-1.png")
 
 One of the goals of this study was to quantify the OI related to CEs. A key issue for
 achieving this goal is to define a threshold for the CE identification,
-representative of the clear-sky irradiance at the time of each GHI measurement. This
+representative of the cloud-free irradiance at the time of each GHI measurement. This
 depends on the selection of the appropriate atmospheric parameterization for the RTM
 simulations. The implementation of the long-term change in AOD, discussed in
 section\nobreakspace{}\ref{rtmcs}, allows capturing a large part of the natural
-variability of clear-sky GHI. However, the short-term variability of AOD cannot be
+variability of cloud-free GHI. However, the short-term variability of AOD cannot be
 taken adequately into account when using monthly values in the model simulations. We
 tried different approaches to strengthen the robustness of the methodology and to
 compensate for the limited accuracy of the RTM input data and the unpredictable
@@ -512,7 +511,7 @@ as described in Equation\nobreakspace\ref{eq:CE4}.
 
 <!--
 where: $\text{E}$ the measured irradiance, $\text{E}_\text{CSm}$ the selected
-modelled clear sky irradiance, and $i$ each of the one-minute observation.  This is
+modelled cloud-free irradiance, and $i$ each of the one-minute observation.  This is
 the criterion of our CE identification.
 -->
 
@@ -524,7 +523,7 @@ identification threshold.  These sets were random groups of about 20 -- 30 days 
 the following characteristics:
 (a) the strongest OI CE events,
 (b) the largest daily total OI,
-(c) absence of clouds (by implementing a clear sky identification algorithm as discussed in @Natsis2023),
+(c) absence of clouds (by implementing a cloud-free identification algorithm as discussed in @Natsis2023),
 (d) absence of clouds and absence of CE events,
 (e) with at least $60\,\%$ of the day length without clouds and presence of CE events,
 (h) randomly selected days, and
@@ -555,7 +554,7 @@ further aid the decision of the manual inspection.
 -->
 
 The definition of the CE events with this method has a degree of subjectivity, since
-the actual clear sky irradiance is not known and can only be approximated.  However,
+the actual cloud-free irradiance is not known and can only be approximated.  However,
 this method was proven capable in detecting all major CE events.  Where some CE
 events with very low OI may be not detected, these are few with small
 over-irradiance, and it is unlikely that will affect significantly our results.
@@ -575,10 +574,10 @@ the actual Sun - Earth distance and $r_\text{m}$ is the mean Sun -- Earth distan
 $1.496\times10^8\,\text{km}$.
 
 An example of CE identification for a selected day is given in the
-Figure\nobreakspace{}\ref{fig:example-day}, where the daily course of the clear sky
+Figure\nobreakspace{}\ref{fig:example-day}, where the daily course of the cloud-free
 reference irradiance and the CE and ECE identification thresholds are shown along
 with the actual GHI measurements.  In addition, we provide an example scatter plot
-between the measured and the modeled clear-sky irradiance for one year, where the CE
+between the measured and the modeled cloud-free irradiance for one year, where the CE
 and ECE events are clearly grouped above the threshold of irradiance
 (Figure\nobreakspace{}\ref{fig:example-year}).
 
@@ -586,7 +585,7 @@ and ECE events are clearly grouped above the threshold of irradiance
 knitr::include_graphics("../images/example-days-18.png")
 ```
 
-```{r example-year, echo=FALSE, fig.cap="Example scatter plot of the measured GHI and the reference clear sky irradiance in Thessaloniki for the year 2005. The over-irradiance for CE and ECE events is color coded, while the remaining data points are shown in black. The reference green line goes through the origin with a slope of one.", fig.pos='H'}
+```{r example-year, echo=FALSE, fig.cap="Example scatter plot of the measured GHI and the reference cloud-free irradiance in Thessaloniki for the year 2005. The over-irradiance for CE and ECE events is color coded, while the remaining data points are shown in black. The reference green line goes through the origin with a slope of one.", fig.pos='H'}
 knitr::include_graphics("../images/P-example-years-12.png")
 ```
 
@@ -614,7 +613,7 @@ $`r round(MC[Typ == "Max Glob", GLB_diff],1)`\,\text{W}/\text{m}^2$ or
 $`r round(100*MC[Typ == "Max Glob", GLB_ench],1)`\,\%$ above the threshold.
 The strongest CE event of
 $`r round(100*MC[Typ == "Max Enha", GLB_ench],1)`\,\%$ above the 
-clear sky threshold was observed on 
+cloud-free threshold was observed on 
 `r strftime(MC[Typ == "Max Enha", Date], "%d\\ %B %Y")` at a SZA of
 $`r round(MC[Typ == "Max Enha", SZA],1)`^\circ$ with a GHI value of 
 $`r round(MC[Typ == "Max Enha", wattGLB],1)`\,\text{W}/\text{m}^2$ and a OI of
@@ -664,7 +663,7 @@ We have to note that the excess irradiation related to the CE events cannot be
 directly linked to the total energy balance of the atmosphere. The net solar
 radiation of the region is not increased, but is rather redistributed through the CE
 events.  This is also depicted by the ECE irradiance values, which exceed the
-equivalent clear sky irradiance by a significant amount.
+equivalent cloud-free irradiance by a significant amount.
 
 \begin{figure}% [h!]
         {\centering 
@@ -777,8 +776,7 @@ distribution of the number of occurrences of ECE events by month in
 Figure\nobreakspace{}\ref{fig:relative-month-occurancies-ECE}. The most active period
 for ECE events is in spring and early summer (March -- June), followed by a
 period in early autumn (September and October).  This is probably related to the
-weather characteristics in these periods, with frequent alternations between clear
-sky periods and clouds.
+weather characteristics in these periods, with frequent alternations between cloud-free periods and clouds.
 
 ```{r relative-month-occurancies-ECE, echo=FALSE, fig.cap="Seasonal variability of the number of ECE events relative to the the corresponding number of GHI measurements in Thessaloniki for the period 1994 -- 2023, in the form of a box and whisker plot. The box contains the data between the lower $25\\,\\%$ and the upper $75\\,\\%$ percentiles. The thick horizontal line and the diamond symbol represent the median and the mean values, respectively. The vertical lines (whiskers) extend between the maximum and minimum monthly values."}
 knitr::include_graphics("../images/P-ECE-climatology-normlz-1.png")
@@ -808,8 +806,8 @@ knitr::include_graphics("../images/P-extreme-distribution-2.png")
 
 # Conclusions
 
-By creating a clear sky approximation representing the long- and short-term
-variability of the expected clear sky GHI, we were able to identify cases of CE
+By creating a cloud-free approximation representing the long- and short-term
+variability of the expected cloud-free GHI, we were able to identify cases of CE
 events in Thessaloniki for the period 1994 -- 2023.  After analyzing the CE cases, we
 found an increase of
 $`r plus_sign(round(yearlyCE[var == "GLB_diff.N", slope], 1))`\pm `r round(2 * yearlyCE[var == "GLB_diff.N", slope.sd], 1)`\,\text{cases}/\text{year}$,
