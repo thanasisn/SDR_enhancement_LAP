@@ -465,13 +465,7 @@ load of aerosols and humidity, which are the main factors that attenuate the GHI
 excluding clouds.  With this approach the simulated $\text{GHI}_\text{ref}$ should be
 generally greater than the measured GHI when aerosols are more abundant.  To
 compensate for this, we defined the following threshold $E$ to compare the
-measured $\text{GHI}$: 
-<!--
-($`r 100*(C4_cs_ref_ratio-1)`\,\%$)
-with an additional constant offset of
-$`r C4_GLB_diff_THRES`\,\text{W}/\text{m}^2$,
-as described in Equation\nobreakspace\ref{eq:CE4}.
--->
+measured $\text{GHI}$:
 \begin{equation}
 \text{CE} : E > `r C4_GLB_diff_THRES` + `r C4_cs_ref_ratio` \cdot \text{GHI}_\text{ref} \,\,[\text{W}/\text{m}^2] \label{eq:CE4}
 \end{equation}
@@ -512,14 +506,6 @@ further aid the decision of the manual inspection.
 <!-- total daily energy, is minimal due the low occurrences and the lower irradiances.
 -->
 
-<!--
-- can follow for clear days
-- the most important are the thresholds
-- model have to be uniform on clear days
-- the level is adjusted by the threshold 
-- the effect of the sza uniform
--->
-
 The definition of the CE events with this method has a degree of subjectivity, since
 the actual cloud-free irradiance is not known and can only be approximated.  However,
 this method was proven capable in detecting all major CE events.  Where some CE
@@ -540,7 +526,7 @@ mean Sun - Earth distance ($`r round(solar_constant)`\,\text{W}/\text{m}^2$), $r
 the actual Sun - Earth distance and $r_\text{m}$ is the mean Sun -- Earth distance of
 $1.496\times10^8\,\text{km}$.
 
-An example of CE identification for a selected day is given in the
+An example of the identification of CE events for a selected day is given in the
 Figure\nobreakspace{}\ref{fig:example-day}, where the daily course of the cloud-free
 reference irradiance and the CE and ECE identification thresholds are shown along
 with the actual GHI measurements.  In addition, we provide an example scatter plot
