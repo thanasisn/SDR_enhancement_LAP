@@ -185,7 +185,7 @@ DATA[, CEC := SelEnhanc ]
 
 
 #'
-#' ## 1. Use TSI as reference for Clear sky.
+#' ## 1. Use TSI as reference for Cloud-free.
 #'
 #+ echo=TRUE, include=TRUE
 
@@ -212,7 +212,7 @@ DATA[, CEC := SelEnhanc ]
 
 
 #'
-#' ## 2. Use TSI as reference for Clear sky.
+#' ## 2. Use TSI as reference for Cloud-free.
 #'
 #+ echo=TRUE, include=TRUE
 
@@ -235,7 +235,7 @@ DATA[, CEC := SelEnhanc ]
 
 
 #'
-#' ## 3. Use Haurwitz as reference for Clear sky.
+#' ## 3. Use Haurwitz as reference for Cloud-free.
 #'
 #+ echo=TRUE, include=TRUE
 
@@ -282,7 +282,7 @@ if (APPLY_TRANS) {
 
 
 #'
-#' ## 4. Use libradtran **`r csmodel`** as reference for Clear sky.
+#' ## 4. Use libradtran **`r csmodel`** as reference for Cloud-free.
 #'
 #+ echo=TRUE, include=TRUE
 cat("\n USING CSMODE:",    csmodel,     "\n\n")
@@ -627,7 +627,7 @@ for (ii in 1:nrow(vec_days)) {
         ## Active model reference
         lines(temp[, get(paste0(SelEnhanc, "_ref")), Date], col = "red" )
 
-        ## Clear sky ref
+        ## Cloud-free ref
         lines(temp[, get(paste0(csmodel,".glo")), Date], col = "darkorchid" )
 
         # ## add sza axis
@@ -648,7 +648,7 @@ for (ii in 1:nrow(vec_days)) {
         title(main = paste(as.Date(aday, origin = "1970-01-01")))
 
         legend("bottomright", ncol = 2,
-                     c(  "GHI","CE threshold","TSI at TOA on horizontal plane","Solar Constant", "CE events","ECE events","Identified clouds",  "Clear sky"),
+                     c(  "GHI","CE threshold","TSI at TOA on horizontal plane","Solar Constant", "CE events","ECE events","Identified clouds",  "Cloud-free"),
                col = c("green",         "red",                  "black",       "orange2","burlywood4",       "red",             "blue","darkorchid"),
                pch = c(     NA,            NA,                       NA,              NA,          1 ,          1 ,                  3,           NA),
                lty = c(      1,             1,                        1,               1,          NA,          NA,                 NA,            1),
@@ -759,7 +759,7 @@ for (pyear in yearstodo) {
   p <-
     ggplot(DATA[year(Date) == pyear],
            # aes(get(paste0(SelEnhanc, "_ref")), wattGLB)) + ## threshold
-           aes(get(paste0(csmodel,".glo")), wattGLB)) +    ## clear sky
+           aes(get(paste0(csmodel,".glo")), wattGLB)) +    ## Cloud-free
     geom_point(data   = DATA[year(Date) == pyear & get(SelEnhanc) == FALSE,],
                colour = "black",
                alpha  = .1,
@@ -777,7 +777,7 @@ for (pyear in yearstodo) {
                           na.value = NA) +
     labs(title = pyear) +
     ylab(bquote("GHI" ~ group("[", W/m^2,"]"))) +
-    xlab(bquote("Clear sky reference" ~ group("[", W/m^2,"]"))) +
+    xlab(bquote("Cloud-free reference" ~ group("[", W/m^2,"]"))) +
     labs(color = bquote("OI" ~ group("[", W/m^2,"]"))) +
     theme(
       legend.title         = element_text(size = 10),

@@ -196,7 +196,7 @@ Energy_Div <- 1000
 ##;  #' where the enhancement cases and the role of the other physical quantities are visualized.
 ##;  #'
 ##;  #' \begin{equation}
-##;  #' \text{GHI}_\text{Clear Sky} = `r signif(gather_results$alpha[gather_results$CS_models=="HAU"],digits = 3 )` \times 1098 \times \cos( \text{SZA} ) \times \exp \left( \frac{ - 0.057}{\cos(\text{SZA})} \right)  (\#eq:ahau)
+##;  #' \text{GHI}_\text{Cloud-free} = `r signif(gather_results$alpha[gather_results$CS_models=="HAU"],digits = 3 )` \times 1098 \times \cos( \text{SZA} ) \times \exp \left( \frac{ - 0.057}{\cos(\text{SZA})} \right)  (\#eq:ahau)
 ##;  #' \end{equation}
 ##;  #'
 

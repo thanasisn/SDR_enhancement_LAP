@@ -136,7 +136,7 @@ havetorun <- !file.exists(raw_input_data)                              |
 if (havetorun) {
     cat(paste("\n !! Create raw input data ->", raw_input_data), "\n")
 
-    ## _ Get data from Clear sky id data  --------------------------------------
+    ## _ Get data from Cloud-free id data  --------------------------------------
     input_files <- list.files(path       = CLEARdir,
                               pattern    = inpatern,
                               full.names = T )
@@ -150,7 +150,7 @@ if (havetorun) {
 
     cat(paste("\n    Will read", length(input_files), "input files\n"))
 
-    cat(paste("\n    Load data from Clear Sky process from original\n\n"))
+    cat(paste("\n    Load data from Cloud-free process from original\n\n"))
     DATA <- data.table()
     for (af in input_files) {
         cat("READING:", af, "\n")
@@ -392,7 +392,7 @@ if (havetorun) {
 
     #  Mark data Clear / cloud sky  --------------------------------------------
     #
-    #  Method based and adapted from: Identification of Periods of Clear Sky
+    #  Method based and adapted from: Identification of Periods of Cloud-free
     #  Irradiance in Time Series of GHI Measurements _Matthew J. Reno and
     #  Clifford W. Hansen.
     #
