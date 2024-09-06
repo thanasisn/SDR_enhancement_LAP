@@ -7,16 +7,19 @@
   10pt,
   a4paper,oneside]{article}
 \usepackage{amsmath,amssymb}
-\usepackage{lmodern}
 \usepackage{iftex}
 \ifPDFTeX
   \usepackage[T1]{fontenc}
   \usepackage[utf8]{inputenc}
   \usepackage{textcomp} % provide euro and other symbols
 \else % if luatex or xetex
-  \usepackage{unicode-math}
+  \usepackage{unicode-math} % this also loads fontspec
   \defaultfontfeatures{Scale=MatchLowercase}
   \defaultfontfeatures[\rmfamily]{Ligatures=TeX,Scale=1}
+\fi
+\usepackage{lmodern}
+\ifPDFTeX\else
+  % xetex/luatex font selection
 \fi
 % Use upquote if available, for straight quotes in verbatim environments
 \IfFileExists{upquote.sty}{\usepackage{upquote}}{}
@@ -35,19 +38,47 @@
   \KOMAoptions{parskip=half}}
 \makeatother
 \usepackage{xcolor}
-\IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
-\IfFileExists{bookmark.sty}{\usepackage{bookmark}}{\usepackage{hyperref}}
-\hypersetup{
-  pdftitle={Enhancement of SDR in Thessaloniki},
-  pdfauthor={Natsis Athanasios; Alkiviadis Bais},
-  colorlinks=true,
-  linkcolor={Maroon},
-  filecolor={Maroon},
-  citecolor={Blue},
-  urlcolor={Blue},
-  pdfcreator={LaTeX via pandoc}}
-\urlstyle{same} % disable monospaced font for URLs
 \usepackage[left=0.5in,right=0.5in,top=0.5in,bottom=0.5in]{geometry}
+\usepackage{color}
+\usepackage{fancyvrb}
+\newcommand{\VerbBar}{|}
+\newcommand{\VERB}{\Verb[commandchars=\\\{\}]}
+\DefineVerbatimEnvironment{Highlighting}{Verbatim}{commandchars=\\\{\}}
+% Add ',fontsize=\small' for more characters per line
+\usepackage{framed}
+\definecolor{shadecolor}{RGB}{248,248,248}
+\newenvironment{Shaded}{\begin{snugshade}}{\end{snugshade}}
+\newcommand{\AlertTok}[1]{\textcolor[rgb]{0.94,0.16,0.16}{#1}}
+\newcommand{\AnnotationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\AttributeTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{#1}}
+\newcommand{\BaseNTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\BuiltInTok}[1]{#1}
+\newcommand{\CharTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\CommentTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textit{#1}}}
+\newcommand{\CommentVarTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\ConstantTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{#1}}
+\newcommand{\ControlFlowTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
+\newcommand{\DataTypeTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{#1}}
+\newcommand{\DecValTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\DocumentationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\ErrorTok}[1]{\textcolor[rgb]{0.64,0.00,0.00}{\textbf{#1}}}
+\newcommand{\ExtensionTok}[1]{#1}
+\newcommand{\FloatTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\FunctionTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
+\newcommand{\ImportTok}[1]{#1}
+\newcommand{\InformationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\KeywordTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
+\newcommand{\NormalTok}[1]{#1}
+\newcommand{\OperatorTok}[1]{\textcolor[rgb]{0.81,0.36,0.00}{\textbf{#1}}}
+\newcommand{\OtherTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{#1}}
+\newcommand{\PreprocessorTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textit{#1}}}
+\newcommand{\RegionMarkerTok}[1]{#1}
+\newcommand{\SpecialCharTok}[1]{\textcolor[rgb]{0.81,0.36,0.00}{\textbf{#1}}}
+\newcommand{\SpecialStringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\StringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\VariableTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\VerbatimStringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\WarningTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
 \usepackage{longtable,booktabs,array}
 \usepackage{calc} % for calculating minipage widths
 % Correct order of tables after \paragraph or \subparagraph
@@ -82,6 +113,18 @@
 \ifLuaTeX
   \usepackage{selnolig}  % disable illegal ligatures
 \fi
+\usepackage{bookmark}
+\IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
+\urlstyle{same}
+\hypersetup{
+  pdftitle={Enhancement of SDR in Thessaloniki},
+  pdfauthor={Natsis Athanasios; Alkiviadis Bais},
+  colorlinks=true,
+  linkcolor={Maroon},
+  filecolor={Maroon},
+  citecolor={Blue},
+  urlcolor={Blue},
+  pdfcreator={LaTeX via pandoc}}
 
 \title{Enhancement of SDR in Thessaloniki}
 \author{Natsis Athanasios\footnote{Laboratory of Atmospheric Physics, AUTH, \href{mailto:natsisphysicist@gmail.com}{\nolinkurl{natsisphysicist@gmail.com}}} \and Alkiviadis Bais\footnote{Laboratory of Atmospheric Physics, AUTH}}
@@ -117,33 +160,27 @@ Drop all clouds
 
 \FloatBarrier
 
-\hypertarget{plot-some-days-with-strong-enhancement-cases}{%
-\section{Plot some days with strong enhancement cases}\label{plot-some-days-with-strong-enhancement-cases}}
+\section{Plot some days with strong enhancement cases}\label{plot-some-days-with-strong-enhancement-cases}
 
 \FloatBarrier
 
-\hypertarget{days-with-sunny-day}{%
-\subsection{Days with sunny day}\label{days-with-sunny-day}}
+\subsection{Days with sunny day}\label{days-with-sunny-day}
 
 \FloatBarrier
 
-\hypertarget{days-with-sunny-enhancement-day}{%
-\subsection{Days with sunny enhancement day}\label{days-with-sunny-enhancement-day}}
+\subsection{Days with sunny enhancement day}\label{days-with-sunny-enhancement-day}
 
 \FloatBarrier
 
-\hypertarget{days-with-cloudy-day}{%
-\subsection{Days with cloudy day}\label{days-with-cloudy-day}}
+\subsection{Days with cloudy day}\label{days-with-cloudy-day}
 
 \FloatBarrier
 
-\hypertarget{days-with-random-day}{%
-\subsection{Days with random day}\label{days-with-random-day}}
+\subsection{Days with random day}\label{days-with-random-day}
 
 \FloatBarrier
 
-\hypertarget{days-with-manual-test-days}{%
-\subsection{Days with manual test days}\label{days-with-manual-test-days}}
+\subsection{Days with manual test days}\label{days-with-manual-test-days}
 
 \begin{figure}[H]
 
@@ -190,81 +227,33 @@ Drop all clouds
 \caption{ - empty caption - }\label{fig:example-days-5}
 \end{figure}
 
-\begin{figure}[H]
+\newpage
 
-{\centering \includegraphics[width=1\linewidth]{GHI_enh_08_validation_files/figure-latex/example-days-6} 
-
-}
-
-\caption{ - empty caption - }\label{fig:example-days-6}
-\end{figure}
-
-\begin{figure}[H]
-
-{\centering \includegraphics[width=1\linewidth]{GHI_enh_08_validation_files/figure-latex/example-days-7} 
-
-}
-
-\caption{ - empty caption - }\label{fig:example-days-7}
-\end{figure}
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{plot}\NormalTok{(KEEP[, Low\_B.Low\_W.glo, wattGLB], }\AttributeTok{xlab =} \StringTok{"Low\_B.Low\_W.glo Clear Sky"}\NormalTok{)}
+\FunctionTok{title}\NormalTok{(}\FunctionTok{paste}\NormalTok{(}\StringTok{"Days:"}\NormalTok{, }\FunctionTok{length}\NormalTok{(}\FunctionTok{unique}\NormalTok{(KEEP[, Day])), }\StringTok{"Day fill:"}\NormalTok{, day\_fill, }\StringTok{"Points:"}\NormalTok{, KEEP[, }\FunctionTok{sum}\NormalTok{(}\SpecialCharTok{!}\FunctionTok{is.na}\NormalTok{(wattGLB))]))}
+\FunctionTok{abline}\NormalTok{(}\AttributeTok{a =} \DecValTok{0}\NormalTok{, }\AttributeTok{b =} \DecValTok{1}\NormalTok{, }\AttributeTok{col =} \StringTok{"green"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
 
 \begin{figure}[H]
 
-{\centering \includegraphics[width=1\linewidth]{GHI_enh_08_validation_files/figure-latex/example-days-8} 
+{\centering \includegraphics[width=1\linewidth]{GHI_enh_08_validation_files/figure-latex/unnamed-chunk-6-1} 
 
 }
 
-\caption{ - empty caption - }\label{fig:example-days-8}
+\caption{ - empty caption - }\label{fig:unnamed-chunk-6}
 \end{figure}
 
-\begin{figure}[H]
-
-{\centering \includegraphics[width=1\linewidth]{GHI_enh_08_validation_files/figure-latex/example-days-9} 
-
-}
-
-\caption{ - empty caption - }\label{fig:example-days-9}
-\end{figure}
-
-\begin{figure}[H]
-
-{\centering \includegraphics[width=1\linewidth]{GHI_enh_08_validation_files/figure-latex/example-days-10} 
-
-}
-
-\caption{ - empty caption - }\label{fig:example-days-10}
-\end{figure}
-
-\begin{figure}[H]
-
-{\centering \includegraphics[width=1\linewidth]{GHI_enh_08_validation_files/figure-latex/unnamed-chunk-5-1} 
-
-}
-
-\caption{ - empty caption - }\label{fig:unnamed-chunk-5-1}
-\end{figure}
-\begin{figure}[H]
-
-{\centering \includegraphics[width=1\linewidth]{GHI_enh_08_validation_files/figure-latex/unnamed-chunk-5-2} 
-
-}
-
-\caption{ - empty caption - }\label{fig:unnamed-chunk-5-2}
-\end{figure}
-\begin{figure}[H]
-
-{\centering \includegraphics[width=1\linewidth]{GHI_enh_08_validation_files/figure-latex/unnamed-chunk-5-3} 
-
-}
-
-\caption{ - empty caption - }\label{fig:unnamed-chunk-5-3}
-\end{figure}
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{print}\NormalTok{(}\FunctionTok{cor.test}\NormalTok{(KEEP}\SpecialCharTok{$}\NormalTok{wattGLB, KEEP}\SpecialCharTok{$}\NormalTok{Low\_B.Low\_W.glo, }\AttributeTok{method =} \FunctionTok{c}\NormalTok{(}\StringTok{"pearson"}\NormalTok{)))}
+\end{Highlighting}
+\end{Shaded}
 
 \begin{verbatim}
-[1] 0.9972485
-\end{verbatim}
 
-\begin{verbatim}
     Pearson's product-moment correlation
 
 data:  KEEP$wattGLB and KEEP$Low_B.Low_W.glo
@@ -277,10 +266,81 @@ sample estimates:
 0.9972485 
 \end{verbatim}
 
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{print}\NormalTok{(}\FunctionTok{lm}\NormalTok{(KEEP[, wattGLB, Low\_B.Low\_W.glo]))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+
+Call:
+lm(formula = KEEP[, wattGLB, Low_B.Low_W.glo])
+
+Coefficients:
+(Intercept)      wattGLB  
+     18.357        1.038  
+\end{verbatim}
+
+\newpage
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{plot}\NormalTok{(KEEP[, Enhanc\_C\_4\_ref, wattGLB], }\AttributeTok{xlab =} \StringTok{"CE threshold"}\NormalTok{)}
+\FunctionTok{title}\NormalTok{(}\FunctionTok{paste}\NormalTok{(}\StringTok{"Days:"}\NormalTok{, }\FunctionTok{length}\NormalTok{(}\FunctionTok{unique}\NormalTok{(KEEP[, Day])), }\StringTok{"Day fill:"}\NormalTok{, day\_fill, }\StringTok{"Points:"}\NormalTok{, KEEP[, }\FunctionTok{sum}\NormalTok{(}\SpecialCharTok{!}\FunctionTok{is.na}\NormalTok{(wattGLB))]))}
+\FunctionTok{abline}\NormalTok{(}\AttributeTok{a =} \DecValTok{0}\NormalTok{, }\AttributeTok{b =} \DecValTok{1}\NormalTok{, }\AttributeTok{col =} \StringTok{"green"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{figure}[H]
+
+{\centering \includegraphics[width=1\linewidth]{GHI_enh_08_validation_files/figure-latex/unnamed-chunk-7-1} 
+
+}
+
+\caption{ - empty caption - }\label{fig:unnamed-chunk-7}
+\end{figure}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{print}\NormalTok{(}\FunctionTok{cor.test}\NormalTok{(KEEP}\SpecialCharTok{$}\NormalTok{wattGLB, KEEP}\SpecialCharTok{$}\NormalTok{Enhanc\_C\_4\_ref, }\AttributeTok{method =} \FunctionTok{c}\NormalTok{(}\StringTok{"pearson"}\NormalTok{)))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+
+    Pearson's product-moment correlation
+
+data:  KEEP$wattGLB and KEEP$Enhanc_C_4_ref
+t = 7938, df = 345175, p-value < 2.2e-16
+alternative hypothesis: true correlation is not equal to 0
+95 percent confidence interval:
+ 0.9972540 0.9972904
+sample estimates:
+      cor 
+0.9972722 
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{print}\NormalTok{(}\FunctionTok{lm}\NormalTok{(KEEP[, wattGLB, Enhanc\_C\_4\_ref]))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+
+Call:
+lm(formula = KEEP[, wattGLB, Enhanc_C_4_ref])
+
+Coefficients:
+(Intercept)      wattGLB  
+     34.056        1.078  
+\end{verbatim}
+
 \textbf{END}
 
 \begin{verbatim}
-2024-09-06 09:06:13.6 athan@sagan GHI_enh_08_validation.R 2.489076 mins
+2024-09-06 09:43:14.1 athan@sagan GHI_enh_08_validation.R 2.207945 mins
 \end{verbatim}
 
 \end{document}
