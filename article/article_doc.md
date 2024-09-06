@@ -11,7 +11,7 @@ title: Analysis of cloud enhancement events in a 30-year record of
 We studied the enhancement of the global horizontal irradiance induced
 by clouds over Thessaloniki for the period 1994 -- 2023 using data
 recorded every one minute. We identified the cloud enhancement events
-(CE) by creating an appropriate clear sky irradiance reference with the
+(CE) by creating an appropriate cloud-free irradiance reference with the
 use of a radiative transfer model and aerosol optical depth data from a
 collocated Cimel sun photometer and a Brewer spectrophotometer. We found
 a trend in CE events of $+ 111 \pm 27\,\text{cases}/\text{year}$, and a
@@ -44,7 +44,7 @@ interaction with the clouds. In general, clouds can attenuate a fraction
 of solar irradiance, but under certain conditions, can lead to
 enhancement of the global horizontal irradiance (GHI) reaching the
 ground. This cloud enhancement (CE) effect can locally increase the
-observed GHI to levels even higher than the expected clear-sky
+observed GHI to levels even higher than the expected cloud-free
 irradiance \[Cordero et al. (2023); Vamvakas, Salamalikis, and
 Kazantzidis (2020); Castillejo-Cuberos and Escobar (2020); and
 references therein\].
@@ -82,16 +82,16 @@ America and Europe. To our knowledge, there is no evidence of whether
 this trend has affected also the number and strength of CE events.
 
 Methods of identification of CE events usually include the use of
-simulated clear sky irradiance as baseline, combined with an appropriate
-threshold or some other statistical characteristics, and in some cases,
-with visual inspection of sky camera images (Vamvakas, Salamalikis, and
-Kazantzidis 2020; Mol, Knap, and Van Heerwaarden 2023 and references
-therein).
+simulated cloud-free irradiance as baseline, combined with an
+appropriate threshold or some other statistical characteristics, and in
+some cases, with visual inspection of sky camera images (Vamvakas,
+Salamalikis, and Kazantzidis 2020; Mol, Knap, and Van Heerwaarden 2023
+and references therein).
 
 In this study, we evaluate the effects of CE events on GHI by
 investigating their frequency of occurrence, intensity, and duration in
 a thirty-year record of GHI observations at Thessaloniki, Greece. We
-used modeled clear sky irradiance as a baseline to identify cloud
+used modeled cloud-free irradiance as a baseline to identify cloud
 enhancements, and we determined long-term trends of the above-mentioned
 metrics, their climatology and some general characteristics. To our
 knowledge there are no other studies that provide trends from such a
@@ -153,7 +153,7 @@ Figure 2.1: Daily mean values of GHI in Thessaloniki for the period 1994
 ## 2.2 Cloud enhancement detection
 
 In this study, we define an event as CE when the measured GHI at ground
-level exceeds the expected value under clear-sky conditions. Similarly,
+level exceeds the expected value under cloud-free conditions. Similarly,
 we define as extreme cloud enhancement events (ECE), the cases when GHI
 at ground level exceeds the Total Solar Irradiance (TSI) at the top of
 the atmosphere (TOA) for the same SZA. Although the duration of these
@@ -168,7 +168,7 @@ difference of the measured one-minute GHI from the
 $\text{GHI}_{\text{ref}}$ corresponding to cloud-free atmosphere. First,
 we used a simple approach for the determination of
 $\text{GHI}_{\text{ref}}$: The Haurwitz's model (Haurwitz 1945), which
-is a simple clear sky model and was already adjusted and applied to our
+is a simple cloud-free model and was already adjusted and applied to our
 data (Natsis, Bais, and Meleti 2023). We created a threshold by using an
 appropriate relative and/or an additional constant offset. The initial
 results showed that we can detect a big portion of the actual CE events.
@@ -181,11 +181,11 @@ representative reference we included the effects of these factors using
 a radiative transfer model (RTM). The applied methodology is discussed
 in section.
 
-## 2.3 Modeled clear Sky Irradiance
+## 2.3 Modeled cloud-free Irradiance
 
-### 2.3.1 Climatology of clear sky irradiance
+### 2.3.1 Climatology of cloud-free irradiance
 
-We approximated the expected clear sky $\text{GHI}_{\text{ref}}$ with
+We approximated the expected cloud-free $\text{GHI}_{\text{ref}}$ with
 the radiative transfer model uvspec, part of libRadtran (Emde et al.
 2016), similarly to the approach used by Vamvakas, Salamalikis, and
 Kazantzidis (2020). In uvspec we used the solar spectrum of Kurucz
@@ -222,15 +222,15 @@ each $\text{GHI}_{\text{ref}}$ value was adjusted to the actual
 Sun-Earth distance derived by the Astropy software library (Astropy
 Collaboration et al. 2022).
 
-### 2.3.2 Long-term change of clear sky irradiance
+### 2.3.2 Long-term change of cloud-free irradiance
 
-The clear-sky reference values discussed above are based on the
+The cloud-free reference values discussed above are based on the
 climatological AOD and WC; hence they cannot describe accurately the
 long-term variation of $\text{GHI}_{\text{ref}}$ due to long-term
 changes in the two atmospheric constituents, mainly AOD. As reported by
 Natsis, Bais, and Meleti (2023), there is a long-term brightening effect
 in the GHI data of Thessaloniki for the period 1993 -- 2023, which for
-clear-sky data was attributed to long-term changes in aerosol effects.
+cloud-free data was attributed to long-term changes in aerosol effects.
 Therefore, an adjustment of the $\text{GHI}_{\text{ref}}$ during the
 period of study was made using simulations with the RTM to account for
 the long-term variations of the AOD. As AERONET data start only in 2003,
@@ -249,25 +249,25 @@ above Ångström coefficients, assuming constant WC of $15.6\,\text{mm}$
 taken from the Cimel, and for a SZA of $55^{\circ}$ reveal a change of
 $+ 0.21\,\%$ per year in $\text{GHI}_{\text{ref}}$. The SZA of
 $55^{\circ}$ was chosen as representative of all days in the year in
-order to get a rough estimate of the annually averaged change in clear
-sky irradiance. For the period 2005 -- 2023 we used the mean monthly
-values of AOD and WC from AERONET in a similar simulation scheme to
-calculate the monthly mean clear-sky irradiance, and finally the change
-of $+ 0.14\,\%$ per year. We applied these two long-term changes (see
-Figure) to the climatological $\text{GHI}_{\text{ref}}$, to create a
-more realistic representation of the clear-sky irradiance for the whole
-period of study. The rate of changes in the two subperiods are
+order to get a rough estimate of the annually averaged change in
+cloud-free irradiance. For the period 2005 -- 2023 we used the mean
+monthly values of AOD and WC from AERONET in a similar simulation scheme
+to calculate the monthly mean cloud-free irradiance, and finally the
+change of $+ 0.14\,\%$ per year. We applied these two long-term changes
+(see Figure) to the climatological $\text{GHI}_{\text{ref}}$, to create
+a more realistic representation of the cloud-free irradiance for the
+whole period of study. The rate of changes in the two subperiods are
 different, but reasonable, since the effect of the enforced air
 pollution abatement measures in the area in the 1990s had greater
 effects in the first years of application.
 
-![Figure 2.2: Simulated long-term change in clear sky irradiance
+![Figure 2.2: Simulated long-term change in cloud-free irradiance
 relative to the climatological values due to changes in AOD in
 Thessaloniki for the period 1994 --
 2023.](media/rId29.png){width="5.833333333333333in"
 height="3.6591983814523186in"}
 
-Figure 2.2: Simulated long-term change in clear sky irradiance relative
+Figure 2.2: Simulated long-term change in cloud-free irradiance relative
 to the climatological values due to changes in AOD in Thessaloniki for
 the period 1994 -- 2023.
 
@@ -275,11 +275,11 @@ the period 1994 -- 2023.
 
 One of the goals of this study was to quantify the OI related to CEs. A
 key issue for achieving this goal is to define a threshold for the CE
-identification, representative of the clear-sky irradiance at the time
+identification, representative of the cloud-free irradiance at the time
 of each GHI measurement. This depends on the selection of the
 appropriate atmospheric parameterization for the RTM simulations. The
 implementation of the long-term change in AOD, discussed in section,
-allows capturing a large part of the natural variability of clear-sky
+allows capturing a large part of the natural variability of cloud-free
 GHI. However, the short-term variability of AOD cannot be taken
 adequately into account when using monthly values in the model
 simulations. We tried different approaches to strengthen the robustness
@@ -307,17 +307,17 @@ whole dataset. We tested seven sets of days with different
 characteristics relevant to the efficiency of the identification
 threshold. These sets were random groups of about 20 -- 30 days with the
 following characteristics: (a) the strongest OI CE events, (b) the
-largest daily total OI, (c) absence of clouds (by implementing a clear
-sky identification algorithm as discussed in Natsis, Bais, and Meleti
-(2023)), (d) absence of clouds and absence of CE events, (e) with at
-least $60\,\%$ of the day length without clouds and presence of CE
+largest daily total OI, (c) absence of clouds (by implementing a
+cloud-free identification algorithm as discussed in Natsis, Bais, and
+Meleti (2023)), (d) absence of clouds and absence of CE events, (e) with
+at least $60\,\%$ of the day length without clouds and presence of CE
 events, (h) randomly selected days, and (i) manually selected days. For
 the latter case and where needed, we also used images from the
 sky-camera to further aid the decision of the manual inspection.
 
 The definition of the CE events with this method has a degree of
-subjectivity, since the actual clear sky irradiance is not known and can
-only be approximated. However, this method was proven capable in
+subjectivity, since the actual cloud-free irradiance is not known and
+can only be approximated. However, this method was proven capable in
 detecting all major CE events. Where some CE events with very low OI may
 be not detected, these are few with small over-irradiance, and it is
 unlikely that will affect significantly our results.
@@ -338,10 +338,10 @@ and $r_{\text{m}}$ is the mean Sun -- Earth distance of
 $1.496 \times 10^{8}\,\text{km}$.
 
 An example of CE identification for a selected day is given in the
-Figure, where the daily course of the clear sky reference irradiance and
-the CE and ECE identification thresholds are shown along with the actual
-GHI measurements. In addition, we provide an example scatter plot
-between the measured and the modeled clear-sky irradiance for one year,
+Figure, where the daily course of the cloud-free reference irradiance
+and the CE and ECE identification thresholds are shown along with the
+actual GHI measurements. In addition, we provide an example scatter plot
+between the measured and the modeled cloud-free irradiance for one year,
 where the CE and ECE events are clearly grouped above the threshold of
 irradiance (Figure).
 
@@ -360,7 +360,7 @@ events, which are denoted with red circles.Black curve represents the
 TOA TSI on horizontal plane.
 
 ![Figure 2.4: Example scatter plot of the measured GHI and the reference
-clear sky irradiance in Thessaloniki for the year 2005. The
+cloud-free irradiance in Thessaloniki for the year 2005. The
 over-irradiance for CE and ECE events is color coded, while the
 remaining data points are shown in black. The reference green line goes
 through the origin with a slope of
@@ -368,7 +368,7 @@ one.](media/rId39.png){width="5.833333333333333in"
 height="3.635437445319335in"}
 
 Figure 2.4: Example scatter plot of the measured GHI and the reference
-clear sky irradiance in Thessaloniki for the year 2005. The
+cloud-free irradiance in Thessaloniki for the year 2005. The
 over-irradiance for CE and ECE events is color coded, while the
 remaining data points are shown in black. The reference green line goes
 through the origin with a slope of one.
@@ -381,7 +381,7 @@ were identified as CE events and $0.04\,\%$ as ECE events. The highest
 recorded GHI due to CE was $1416.6\,\text{W}/\text{m}^{2}$ on 24 May
 2007 at a SZA of ${19.9}^{\circ}$ corresponding to OI of
 $369.3\,\text{W}/\text{m}^{2}$ or $35.3\,\%$ above the threshold. The
-strongest CE event of $53\,\%$ above the clear sky threshold was
+strongest CE event of $53\,\%$ above the cloud-free threshold was
 observed on 28 October 2016 at a SZA of ${59.2}^{\circ}$ with a GHI
 value of $861.8\,\text{W}/\text{m}^{2}$ and a OI of
 $298.4\,\text{W}/\text{m}^{2}$. Both cases are ECE events with
@@ -428,8 +428,8 @@ We have to note that the excess irradiation related to the CE events
 cannot be directly linked to the total energy balance of the atmosphere.
 The net solar radiation of the region is not increased, but is rather
 redistributed through the CE events. This is also depicted by the ECE
-irradiance values, which exceed the equivalent clear sky irradiance by a
-significant amount.
+irradiance values, which exceed the equivalent cloud-free irradiance by
+a significant amount.
 
 ## 3.2 Climatology of cloud enhancement events
 
@@ -554,7 +554,7 @@ occurrences of ECE events by month in Figure. The most active period for
 ECE events is in spring and early summer (March -- June), followed by a
 period in early autumn (September and October). This is probably related
 to the weather characteristics in these periods, with frequent
-alternations between clear sky periods and clouds.
+alternations between cloud-free periods and clouds.
 
 ![Figure 3.5: Seasonal variability of the number of ECE events relative
 to the the corresponding number of GHI measurements in Thessaloniki for
@@ -594,8 +594,8 @@ SZA.
 
 # 4 Conclusions
 
-By creating a clear sky approximation representing the long- and
-short-term variability of the expected clear sky GHI, we were able to
+By creating a cloud-free approximation representing the long- and
+short-term variability of the expected cloud-free GHI, we were able to
 identify cases of CE events in Thessaloniki for the period 1994 -- 2023.
 After analyzing the CE cases, we found an increase of
 $+ 111 \pm 26.9\,\text{cases}/\text{year}$, with the mean annual
