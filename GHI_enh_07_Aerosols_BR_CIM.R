@@ -199,7 +199,9 @@ polyf_zero <- dataset[tsy == tzero, expon]
 
 ## function to apply to GHI
 trend_polyf <- function(tsy) {
-  ((polym_C[1] + polym_C[2] * tsy + polym_C[3] * tsy^2) / polyf_zero) - 1
+  (polym_C[1] / polyf_zero) - 1 +
+  (polym_C[2] / polyf_zero) * tsy  +
+  (polym_C[3] / polyf_zero) * tsy^2
 }
 
 
@@ -207,10 +209,21 @@ cat("GHI_model (abs) =", polym_C[1], "+",
                          polym_C[2], "* year_frac +",
                          polym_C[3], "* year_frac^2", "\n\n")
 
-cat("GHI_model (rat) =", polym_C[1] / polyf_zero, "+",
-                         polym_C[2] / polyf_zero, "* year_frac +",
-                         polym_C[3] / polyf_zero, "* year_frac^2", "\n\n")
+cat("GHI_model (rat) =",
+     signif((polym_C[1] / polyf_zero) - 1, digits = 4), "+",
+     signif(polym_C[2] / polyf_zero,       digits = 4), "* year_frac +",
+     signif(polym_C[3] / polyf_zero,       digits = 4), "* year_frac^2", "\n\n")
 
+cat("GHI_model (%)   =",
+    signif(100 * ((polym_C[1] / polyf_zero) - 1), digits = 4), "+",
+    signif(100 * polym_C[2] / polyf_zero,         digits = 4), "* year_frac +",
+    signif(100 * polym_C[3] / polyf_zero,         digits = 4), "* year_frac^2", "\n\n")
+
+
+cat("GHI_model (%)   =",
+    round(100 * ((polym_C[1] / polyf_zero) - 1), digits = 4), "+",
+    round(100 * polym_C[2] / polyf_zero,         digits = 4), "* year_frac +",
+    round(100 * polym_C[3] / polyf_zero,         digits = 4), "* year_frac^2", "\n\n")
 
 
 
