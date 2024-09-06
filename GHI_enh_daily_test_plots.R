@@ -147,11 +147,11 @@ sunny_days <- DATA[, .(Sunshine = sum(TYPE == "Clear") / max(DayLength, na.rm = 
 
 ## days with maximum values
 setorder(enh_days, -Enh_diff_max)
-maxenhd <- enh_days[1:300]
+maxenhd <- enh_days[1:400]
 
 ## strong total enhancement days
 setorder(enh_days, -Enh_sum)
-daylist <- enh_days[1:300]
+daylist <- enh_days[1:400]
 daylist <- daylist[!Day %in% maxenhd$Day]
 # enhsnd  <- daylist[sample(1:nrow(daylist), 300)]
 enhsnd  <- daylist
@@ -159,7 +159,7 @@ enhsnd  <- daylist
 ## select some sunny days
 sunnyd  <- sunny_days[Sunshine > 0.79 & Energy > 0.74]
 sunnyd  <- sunnyd[!Day %in% maxenhd$Day & !Day %in% enhsnd$Day]
-sunnyd  <- sunnyd[sample(1:nrow(sunnyd), 300, replace = T)]
+sunnyd  <- sunnyd[sample(1:nrow(sunnyd), 400, replace = T)]
 
 ## sunny with enhancements
 sunnyenh <- sunny_days[Sunshine > 0.77 & Energy > 0.73 & EC > 0]
@@ -168,12 +168,12 @@ sunnyenh <- sunnyenh[!Day %in% maxenhd$Day & !Day %in% enhsnd$Day & !Day %in% su
 ## cloudy days
 clouds <- sunny_days[Sunshine > 0.6 & Energy > 0.6 & EC > 2 & Cloud > 5]
 clouds <- clouds[!Day %in% sunnyenh$Day & !Day %in% maxenhd$Day & !Day %in% enhsnd$Day & !Day %in% sunnyd$Day]
-clouds <- clouds[sample(1:nrow(clouds), 300, replace = T)]
+clouds <- clouds[sample(1:nrow(clouds), 400, replace = T)]
 
 ## some random days
-all_days <- data.table(Day = unique(DATA[, Day]))
-all_days <- all_days[!Day %in% sunnyenh$Day & !Day %in% maxenhd$Day & !Day %in% enhsnd$Day & !Day %in% sunnyd$Day & !Day %in% clouds]
-all_days <- all_days[sample(1:nrow(all_days), 300)]
+# all_days <- data.table(Day = unique(DATA[, Day]))
+# all_days <- all_days[!Day %in% sunnyenh$Day & !Day %in% maxenhd$Day & !Day %in% enhsnd$Day & !Day %in% sunnyd$Day & !Day %in% clouds]
+# all_days <- all_days[sample(1:nrow(all_days), 300)]
 
 ## manual selection
 testdays <- data.table(Day = c(
@@ -199,7 +199,7 @@ vec_days <- matrix(
       "sunnyd",   "sunny day",
       "sunnyenh", "sunny enhancement day",
       "clouds",   "cloudy day",
-      "all_days", "random day",
+      # "all_days", "random day",
       "testdays", "manual test days",
       NULL),
     byrow = TRUE,
