@@ -125,7 +125,7 @@
 
 \title{Enhancement of SDR in Thessaloniki}
 \author{Natsis Athanasios\footnote{Laboratory of Atmospheric Physics, AUTH, \href{mailto:natsisphysicist@gmail.com}{\nolinkurl{natsisphysicist@gmail.com}}} \and Alkiviadis Bais\footnote{Laboratory of Atmospheric Physics, AUTH}}
-\date{2024-09-05}
+\date{2024-09-06}
 
 \begin{document}
 \maketitle
@@ -145,7 +145,7 @@ Study of GHI enchantment.
 
 \begin{verbatim}
     Min.  1st Qu.   Median     Mean  3rd Qu.     Max. 
--72.8133 -27.4706   0.7672   0.4338  28.2495  83.4876 
+-72.8133 -27.4706   0.7675   0.4342  28.2501  83.4876 
 \end{verbatim}
 
 Alpha * HAU is CS\_ref
@@ -470,18 +470,18 @@ stats::lm(formula = .formula, data = df)
 
 Residuals:
     Min      1Q  Median      3Q     Max 
--333.34 -132.29  -52.26   96.74  664.64 
+-440.00 -199.37  -79.04  137.06  963.22 
 
 Coefficients:
                   Estimate Std. Error t value Pr(>|t|)    
-(Intercept)      7.113e+00  4.604e+01   0.155    0.877    
-as.numeric(Date) 2.252e-07  3.656e-08   6.160 1.98e-09 ***
+(Intercept)      3.300e+01  6.644e+01   0.497     0.62    
+as.numeric(Date) 2.926e-07  5.276e-08   5.546 5.73e-08 ***
 ---
 Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 
-Residual standard error: 189.5 on 354 degrees of freedom
-Multiple R-squared:  0.09681,   Adjusted R-squared:  0.09426 
-F-statistic: 37.94 on 1 and 354 DF,  p-value: 1.979e-09
+Residual standard error: 273.5 on 354 degrees of freedom
+Multiple R-squared:  0.07994,   Adjusted R-squared:  0.07734 
+F-statistic: 30.76 on 1 and 354 DF,  p-value: 5.728e-08
 \end{verbatim}
 
 \begin{figure}[H]
@@ -506,18 +506,18 @@ lm(formula = ST_E_monthly$wattGLB.N ~ ST_E_monthly$Date)
 
 Residuals:
     Min      1Q  Median      3Q     Max 
--333.34 -132.29  -52.26   96.74  664.64 
+-440.00 -199.37  -79.04  137.06  963.22 
 
 Coefficients:
                    Estimate Std. Error t value Pr(>|t|)    
-(Intercept)       7.113e+00  4.604e+01   0.155    0.877    
-ST_E_monthly$Date 2.252e-07  3.656e-08   6.160 1.98e-09 ***
+(Intercept)       3.300e+01  6.644e+01   0.497     0.62    
+ST_E_monthly$Date 2.926e-07  5.276e-08   5.546 5.73e-08 ***
 ---
 Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 
-Residual standard error: 189.5 on 354 degrees of freedom
-Multiple R-squared:  0.09681,   Adjusted R-squared:  0.09426 
-F-statistic: 37.94 on 1 and 354 DF,  p-value: 1.979e-09
+Residual standard error: 273.5 on 354 degrees of freedom
+Multiple R-squared:  0.07994,   Adjusted R-squared:  0.07734 
+F-statistic: 30.76 on 1 and 354 DF,  p-value: 5.728e-08
 \end{verbatim}
 
 \begin{Shaded}
@@ -666,7 +666,7 @@ ST_yearly
 \textbf{END}
 
 \begin{verbatim}
-2024-09-05 19:30:15.8 athan@sagan GHI_enh_03_process.R 3.894151 mins
+2024-09-06 10:16:28.4 athan@sagan GHI_enh_03_process.R 3.892410 mins
 \end{verbatim}
 
 \end{document}
