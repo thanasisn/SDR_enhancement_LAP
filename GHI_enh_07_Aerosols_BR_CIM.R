@@ -99,7 +99,7 @@ CS <- readRDS("~/LibRadTranG/Clear_sky_model_AERONET_monthly/Model_CS_trend_fix_
 CS <- CS[, .(year, month, sza, edir, edn, typer, atmosphere_file)]
 CS[, glo  := (edir + edn) / 1000 ]
 CS[, Date := as.POSIXct(as.Date(paste(year, month, 1), "%Y %m %d")) ]
-CS[, tsy := decimal_date(Date)]
+CS[, tsy  := decimal_date(Date)]
 
 
 ## select proper atmosphere file
@@ -201,6 +201,17 @@ polyf_zero <- dataset[tsy == tzero, expon]
 trend_polyf <- function(tsy) {
   ((polym_C[1] + polym_C[2] * tsy + polym_C[3] * tsy^2) / polyf_zero) - 1
 }
+
+
+cat("GHI_model (abs) =", polym_C[1], "+",
+                         polym_C[2], "* year_frac +",
+                         polym_C[3], "* year_frac^2", "\n\n")
+
+cat("GHI_model (rat) =", polym_C[1] / polyf_zero, "+",
+                         polym_C[2] / polyf_zero, "* year_frac +",
+                         polym_C[3] / polyf_zero, "* year_frac^2", "\n\n")
+
+
 
 
 relativ <- copy(dataset)

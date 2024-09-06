@@ -525,8 +525,9 @@ ggplot(data = DATA[wattGLB > ETH], aes(x = wattGLB - ETH)) +
 DATA[, GL]
 
 MC <-   rbind(
-  DATA[which.max(wattGLB),  .(Typ = "Max Glob", wattGLB, SZA, GLB_ench, GLB_diff, Date, TSI_ref = ETH, TSI_OI = wattGLB - ETH)],
-  DATA[which.max(GLB_ench), .(Typ = "Max Enha", wattGLB, SZA, GLB_ench, GLB_diff, Date, TSI_ref = ETH, TSI_OI = wattGLB - ETH)]
+  DATA[which.max(wattGLB),  .(Typ = "Max Global",  wattGLB, SZA, GLB_ench, GLB_diff, GLB_rati, Date, TSI_ref = ETH, TSI_OI = wattGLB - ETH)],
+  DATA[which.max(GLB_ench), .(Typ = "Max Enh abs", wattGLB, SZA, GLB_ench, GLB_diff, GLB_rati, Date, TSI_ref = ETH, TSI_OI = wattGLB - ETH)],
+  DATA[which.max(GLB_ench), .(Typ = "Max Enh rat", wattGLB, SZA, GLB_ench, GLB_diff, GLB_rati, Date, TSI_ref = ETH, TSI_OI = wattGLB - ETH)]
 )
 MC[, DOY := yday(Date)]
 MC[, Localtime := paste(as.POSIXlt(Date, tz = "Europe/Athens"))]
@@ -537,7 +538,7 @@ saveRDS(MC, "data/Max_cases.Rds")
 
 pander::pander(MC, caption = "Max enhancements")
 
-MC2 <- ST_G0[which.max(GLB_diff.N), .(Date, GLB_diff.N)]
+MC2 <- ST_G0[which.max(GLB_diff.N), .(Date, GLB_diff.N, SZA.first, SZA.last, SZA.min, SZA.max)]
 MC2[ , DOY := yday(Date)]
 MC2[ , Localtime := paste(as.POSIXlt(Date, tz = "Europe/Athens"))]
 
