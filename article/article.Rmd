@@ -35,18 +35,6 @@ address:
 #     text: "Another author footnote."
 # abstract: |
 #   In this study we investigate the characteristics of global horizontal irradiance
-#   enhancement events induced by clouds over Thessaloniki for the period 1994 -- 2023
-#   using data recorded every one minute. We identified the cloud enhancement (CE)
-#   events by creating an appropriate cloud-free irradiance reference with the use of a
-#   radiative transfer model and aerosol optical depth data from a collocated Cimel sun
-#   photometer and a Brewer spectrophotometer. We found a trend in CE events of
-#   \(45.6\pm 21.9\,\text{cases}/\text{year}\), and a trend in the CE events
-#   irradiation of \(116.9\pm 67.8\,\text{kJ}/\text{year}\). The peak of the CE events
-#   was observed during May and June. The analysis of the total duration of CE events
-#   showed that durations longer than 5 minutes are very rare, with exceptions lasting
-#   over an hour and up to 140 minutes. Finally, we have detected enhancements above
-#   the total solar irradiance at the top of the atmosphere of up to
-#   \(400\,\text{W}/\text{m}^{2}\), with the \(75\,\%\) of the cases below
 #   \(200\,\text{W}/\text{m}^{2}\). The most active period of these extreme events is
 #   spring -- early summer with a secondary peak in autumn.
 
@@ -73,7 +61,6 @@ biblio-style:   elsarticle-num-names # elsarticle-harv author year style for nat
 classoption:    preprint, 5p, authoryear # remove authoryear is not using `elsarticle-harv`
 # Use a CSL with `citation_package = "default"`
 # csl: https://www.zotero.org/styles/elsevier-harvard
-
 
 output: 
   rticles::elsevier_article:
@@ -125,7 +112,6 @@ TSIinfo <- data.table(read.csv("~/MANUSCRIPTS/02_enhancement/figures/tbl_tsi_inf
 plus_sign <- function(x) ifelse(x >= 0, paste0("+", x), x)
 ```
 
-
 ```{r loadtrends, echo=F, include=T, warning=FALSE, message=FALSE}
 dailytrends <- data.table(
   read.csv("~/MANUSCRIPTS/02_enhancement/figures/Daily_trends_byYear.csv"))
@@ -139,30 +125,29 @@ BR <-  unique(BR[typer == "BR SZA 55", .(year, pw_avg_mm, b, a)])
 MC <- readRDS("~/MANUSCRIPTS/02_enhancement/data/Max_cases.Rds")
 ```
 
-
-# Abstract {.unnumbered} 
+# Abstract {.unnumbered}
 
 **Abstract temporary placed here for technical reasons**
 
-We studied the enhancement of the global horizontal irradiance induced by clouds over
-Thessaloniki for the period 1994 -- 2023 using data recorded every one minute.  We
-identified the cloud enhancement events (CE) by creating an appropriate cloud-free
-irradiance reference with the use of a radiative transfer model and aerosol optical
-depth data from a collocated Cimel sun photometer and a Brewer spectrophotometer. We
-found a trend in CE events of
+In this study, we investigate the characteristics of global horizontal irradiance
+enhancement events induced by clouds over Thessaloniki for the period 1994 -- 2023
+using data recorded every one minute.  We identified the cloud enhancement (CE)
+events by creating an appropriate cloud-free irradiance reference using a radiative
+transfer model and aerosol optical depth data from a collocated Cimel sun photometer
+and a Brewer spectrophotometer. We found a trend in CE events of
 $`r plus_sign(round(yearlyCE[var=="GLB_diff.N",slope],0))`\pm
 `r round(2*yearlyCE[var=="GLB_diff.N",slope.sd],0)`\,\text{cases}/\text{year}$,
-and a trend in the CE events irradiation of
+and a trend in the corresponding irradiation of
 $`r plus_sign(round(yearlyCE[var=="GLB_diff.sum",slope],1))`\pm
 `r round(2*yearlyCE[var=="GLB_diff.sum",slope.sd],1)`\,\text{kJ}/\text{year}$.
 The peak of the CE events was observed during May and June.  An analysis of the total
-duration of CE events, showed that durations longer than 5 minutes are very rare,
+duration of CE events, showed that with durations longer than 5 minutes are very rare,
 with exceptions lasting over an hour and up to 140 minutes.  Finally, we have
 detected enhancements above the total solar irradiance at the top of the atmosphere
 for the same solar zenith angle of up to
 $400\,\text{W}/\text{m}^{2}$, with the $75\,\%$ of the cases below
-$200\,\text{W}/\text{m}^{2}$. The most active season of these extreme events is
-spring until early summer and autumn.
+$200\,\text{W}/\text{m}^{2}$. Most of these  extreme events occur in
+spring -- early summer, with a secondary peak in autumn.
 
 
 
@@ -276,30 +261,12 @@ processing.  Furthermore, due to the significant measurement uncertainty in GHI 
 the Sun is near the horizon, and due to some systematic obstructions by nearby
 buildings, we have excluded all measurements with solar zenith angle (SZA) greater
 than $`r 90 - BIO_ELEVA`^\circ$.  Finally, images from a sky camera have been used in
-the manual inspection of the CE identification. The sky camera operates since 2012
-and stores images in 5 min time steps.
-<!--
-Although it is impossible to detect all false data, the large number of
-available data, and the aggregation scheme we used, ensures the quality of the
-radiation measurements used in this study.
--->
-<!-- Data selection -->
-<!--
-To preserve an unbiased representation of the data we applied a constraint, similar
-the one used by @CastillejoCuberos2020. For each valid hour of day, there must exist
-at least 45 minutes of valid measurements, including nighttime, when near sunrise and
-sunset. Days with less than 5 valid hours were rejected completely.
--->
-<!--
-# CastillejoCuberos2020 There must be at least 5 h of valid data (Tests 1–7),
-otherwise all data for this day is flagged as invalid. There must be at least This
-work valid data 45 min of valid data (Tests 1–7) for an hour to be flagged as valid,
-otherwise all minute data for this hour is flagged as invalid.
--->
-An overview of the data analyzed for the study of the CE and ECE events is given in
-Figure\nobreakspace{}\ref{fig:CLB-daily}, as the daily mean of the measured GHI.
+the manual inspection of the CE identification. The sky camera has been operating
+since 2012 and stores images in 5 min time steps.  An overview of the GHI data used
+in this study is given in
+Figure\nobreakspace{}\ref{fig:CLB-daily}, as the daily means.
 
-```{r CLB-daily, echo=FALSE, fig.cap="Daily mean values of GHI in Thessaloniki for the period 1994 -- 2023."}
+```{r CLB-daily, echo=FALSE, fig.cap="Timeseries of daily mean GHI measured at Thessaloniki for the period 1994 -- 2023."}
 knitr::include_graphics("../images/P_daily_trend-3.png")
 ```
 
@@ -680,7 +647,7 @@ equivalent cloud-free irradiance by a significant amount.
 
 ## Climatology of cloud enhancement events
 
-Next we investigated the distribution of the CE events within the year.
+Next, we investigated the distribution of the CE events within the year.
 Figure\nobreakspace{}\ref{fig:relative-month-occurrences} shows the monthly box and
 whisker plot of the CE number of occurrences normalized with the highest median
 value, which occurs in June, depicting a clear seasonal cycle.  Although CE events
