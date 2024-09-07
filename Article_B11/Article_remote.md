@@ -140,7 +140,7 @@ steps. An overview of the GHI data used in this study is given in Figure
 least 60% of data availability; however, all available one-minute
 measurements have been used for the detection of CE events.
 
-![](media/image6.png){width="3.03125in" height="1.9375in"}
+![](media/image2.png){width="3.03125in" height="1.9375in"}
 
 Figure 1: Timeseries of daily mean GHI measured at Thessaloniki for the
 period 1994 -- 2023.
@@ -162,17 +162,17 @@ calculated the over irradiance (OI). The OI is defined as the irradiance
 difference of the measured one-minute GHI from the ${GHI}_{ref}$
 corresponding to cloud-free atmosphere. First, we used a simple approach
 for the determination of ${GHI}_{ref}$: The Haurwitz's model (Haurwitz
-1945), which is a simple clear sky model and was already adjusted and
-applied to our data (Natsis, Bais, and Meleti 2023). We created a
-threshold by using an appropriate relative and/or an additional constant
-offset. The initial results showed that we can detect a big portion of
-the actual CE events. However, by inspecting the daily plots of
-irradiance, it became evident that changes in atmospheric conditions
-introduced numerous false positive or false negative results. The main
-reason for these discrepancies is the variability of the effects of
-aerosols and water vapour which were not considered in the simple
-method. To produce a more representative reference we included the
-effects of these factors using a radiative transfer model (RTM). The
+1945), which is a simple clear sky radiation model and was already
+adjusted and applied to our data (Natsis, Bais, and Meleti 2023). We
+created a threshold by using an appropriate relative and/or an
+additional constant offset. The initial results showed that we can
+detect a big portion of the actual CE events. However, by inspecting the
+daily plots of irradiance, it became evident that changes in atmospheric
+conditions introduced numerous false positive or false negative results.
+The main reason for these discrepancies is the variability of the
+effects of aerosols and water vapour which were not considered in the
+simple method. To produce a more representative reference we included
+the effects of these factors using a radiative transfer model (RTM). The
 applied methodology is discussed in section.
 
 ## 2.3 Modeled cloud-free Irradiance
@@ -228,20 +228,20 @@ using RTM simulations to account for the long-term variations of the
 AOD. High quality AOD data with a Cimel sun-photometer (part of AERONET)
 at Thessaloniki start only in 2003, while spectral AOD measurements
 using direct-sun observations with a MKIII Brewer spectrophotometer are
-available for the period 1997- 2017. These data are taken sporadically
+available for the period 1997--2017. These data are taken sporadically
 during each day and are less dense compared to the AERONET data. By
 comparing monthly AOD data at 340 nm of the two instruments for the
 common periods of operation we adjusted the Brewer data and filled the
-missing months of the Cimel record. data with Brewer data. Using the
+missing months of the Cimel record data with Brewer data. Using the
 monthly time series of AOD at 340 nm, as well as monthly climatological
 values of the Angstrom exponent and constant WC of $$ derived from the
 Cimel record, we simulated with the RTM the cloud-free GHI at SZA of
-${}^{}$for each month in the period 1197-2023. The SZA of ${}^{}$ was
+${}^{}$for each month in the period 1997-2023. The SZA of ${}^{}$ was
 chosen as representative of all days in the year to get a rough estimate
 of the annually averaged change in cloud-free GHI. A second-degree
-polynomial fit was applied on the simulated yearly averaged GHI to
-derive the long-term change in GHI due to aerosols. $$${}_{}$ According
-to Kazadzis et al. (2007), in the period 1997 -- 2005 the mean AOD at
+polynomial fit was applied to the simulated yearly averaged GHI to
+derive the long-term change in GHI due to aerosols. ${}_{}$According to
+Kazadzis et al. (2007), in the period 1997 -- 2005 the mean AOD at
 $$$$$$$$$$$$$$$$$$$$${}^{}$$$${}_{}$${}^{}$$$Finally, we applied these
 long-term changes (see Figure 2) to the climatological ${GHI}_{ref}$, to
 create a more realistic representation of the cloud-free irradiance for
@@ -253,7 +253,7 @@ for the long-term changes in AOD is relatively small, up to 1.5%.
 ![Figure 2.1: Simulated long-term change in clear sky irradiance
 relative to the climatological values due to changes in AOD in
 Thessaloniki for the period 1993 --
-2023.](media/image5.png){width="5.833333333333333in"
+2023.](media/image9.png){width="5.833333333333333in"
 height="3.6638888888888888in"}
 
 *Figure 2.1: Simulated long-term change in cloud-free irradiance
@@ -347,7 +347,7 @@ corresponds also to cases with thin cirrus clouds causing weak
 attenuation of GHI, often indistinguishable from the attenuation by
 aerosols.
 
-![](media/image11.png){width="6.5in" height="4.121527777777778in"}
+![](media/image6.png){width="6.5in" height="4.121527777777778in"}
 
 *Figure 2.2: Example of CE identification in Thessaloniki for
 2019-07-11. The green line with blue symbols depicts the measured GHI
@@ -363,7 +363,7 @@ clear sky irradiance in Thessaloniki for the year 2005. The
 over-irradiance for CE and ECE events is color coded, while the
 remaining data points are shown in black. The reference green line goes
 through the origin with a slope of
-one.](media/image8.png){width="5.833333333333333in"
+one.](media/image10.png){width="5.833333333333333in"
 height="3.6354166666666665in"}
 
 *Figure 2.3: Example scatter plot of the measured GHI and the reference
@@ -382,7 +382,7 @@ of ${19.9}^{\circ}$ corresponding to OI of $345.9\frac{W}{m^{2}}$ or
 $32.3\%$ above the threshold. The strongest CE event with GHI of ${}^{}$
 and OI of ${}^{}$ $$ above the cloud-free threshold was observed on
 28 October 2016 at SZA of ${59.2}^{\circ}$. This even is $$ above the
-clear sky threshold. ${}^{}$${}^{}$ Both cases are ECE events exceeding
+cloud-free threshold. ${}^{}$${}^{}$ Both cases are ECE events exceeding
 the TSI on horizontal plane by $168.7\frac{W}{m^{2}}$ and
 $155.4\frac{W}{m^{2}}$, respectively. In the following sections we are
 discussing the long-term trends and variability of the CE events as well
@@ -436,7 +436,7 @@ increased by the OI but is rather redistributed through the CE events.
 This is also depicted by the ECE irradiance values, which exceed the
 equivalent cloud-free irradiance by a significant amount.
 
-![](media/image10.png){width="3.15625in" height="6.15625in"}
+![](media/image8.png){width="3.15625in" height="6.15625in"}
 
 Figure 5: Time series of (a) the yearly CE number of occurrences, (b)
 the yearly mean OI and (c) the yearly excess irradiation at Thessaloniki
@@ -470,7 +470,7 @@ circulation (Chiacchio and Wild, 2010), or to the observed decreasing
 trend in cloud cover as a result of global warming (e.g.,
 Sanchez-Lorenzo et al, 2017).
 
-![](media/image4.png){width="5.03125in" height="3.0625in"}
+![](media/image5.png){width="5.03125in" height="3.0625in"}
 
 *Figure 3.1: Seasonal variability of the relative occurrence* *of CE
 events in Thessaloniki for the period 1994 -- 2023, in the form of a box
@@ -499,7 +499,7 @@ characteristics and magnitude of the CE events.
 ![Figure 3.2: Relative frequency distribution of CE events in
 Thessaloniki for the period 1993 -- 2023 as a function of OI. The
 histogram was split in two plots with different y-axis scales for better
-readability.](media/image2.png){width="5.833333333333333in"
+readability.](media/image7.png){width="5.833333333333333in"
 height="3.702777777777778in"}
 
 *Figure 3.2: Relative frequency distribution of CE events in
@@ -524,7 +524,7 @@ than 5 minutes.
 CE events according to their duration for Thessaloniki in the period
 1993 -- 2023. The histogram was split in two plots with different y-axis
 scales for better
-readability.](media/image9.png){width="5.833333333333333in"
+readability.](media/image11.png){width="5.833333333333333in"
 height="3.7375in"}
 
 *Figure 3.3: Relative frequency distribution of CE groups of consequent
@@ -547,7 +547,7 @@ far higher sampling rate ($100Hz$) than ours.
 ![Figure 3.4: Relation of excess irradiation of CE groups with their
 duration for Thessaloniki in the period 1993 -- 2023. The logarithmic
 color scale denotes the frequency of the respective groups of
-events.](media/image7.png){width="5.833333333333333in"
+events.](media/image1.png){width="5.833333333333333in"
 height="3.6951388888888888in"}
 
 *Figure 3.4: Relation of excess irradiation of CE groups with their
@@ -578,7 +578,7 @@ well below 0.1 % of the data, therefore on average it would not affect
 the production of solar energy. However, during short, isolated periods
 extreme enhancements of GHI can be of concern.
 
-![](media/image3.png){width="5.177083333333333in"
+![](media/image4.png){width="5.177083333333333in"
 height="3.1930555555555555in"} Figure 3.5: Seasonal variability of the
 relative occurrence of ECE events in Thessaloniki for the period 1994 --
 2023, in the form of a box and whisker plot. The box contains the data
@@ -595,7 +595,7 @@ with the results of Vamvakas, Salamalikis, and Kazantzidis (2020), the
 only difference being that the OI values reported for are higher than
 those for Thessaloniki.
 
-![](media/image1.png){width="4.0625in" height="2.526388888888889in"}
+![](media/image3.png){width="4.0625in" height="2.526388888888889in"}
 
 *Figure 3.6: Relative frequency distribution of ECE events in
 Thessaloniki for the period 1994 -- 2023.*

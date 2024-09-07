@@ -51,7 +51,7 @@ references therein\].
 
 Some of the proposed underling mechanisms of those enhancements have
 been summarized by Gueymard (2017); the most important being the
-scattering of radiation on the edges of cumulus clouds. It has been also
+scattering of radiation on the edges of cumulus clouds. It has also been
 suggested that enhancement of GHI can be produced by thin cirrus clouds
 though refraction and scattering (Thuillier et al. 2013). Further
 investigation with radiative transfer modeling and observations pointed
@@ -94,7 +94,7 @@ a thirty-year record of GHI observations at Thessaloniki, Greece. We
 used modeled cloud-free irradiance as a baseline to identify cloud
 enhancements, and we determined long-term trends of the above-mentioned
 metrics, their climatology and some general characteristics. To our
-knowledge there are no other studies that provide trends from such a
+knowledge, there are no other studies that provide trends from such a
 long dataset.
 
 # 2 Data and methodology
@@ -147,7 +147,7 @@ one-minute measurements have been used for the detection of CE events.
 
 ![Figure 2.1: Timeseries of daily mean GHI measured at Thessaloniki for
 the period 1994 -- 2023.](media/rId22.png){width="5.833333333333333in"
-height="3.6399989063867015in"}
+height="3.5861603237095365in"}
 
 Figure 2.1: Timeseries of daily mean GHI measured at Thessaloniki for
 the period 1994 -- 2023.
@@ -160,8 +160,8 @@ we define as extreme cloud enhancement events (ECE), the cases when GHI
 at ground level exceeds the Total Solar Irradiance (TSI) at the top of
 the atmosphere (TOA) for the same SZA. Although the duration of these
 bursts can vary from seconds to several minutes, here we are constrained
-by the temporal resolution of our data to identify events with duration
-of at minimum one-minute.
+by the temporal resolution of our data to identify events with a
+duration of at minimum one-minute.
 
 For the detection of CE cases, we established a baseline of irradiance
 above which we characterized each data point as an enhancement event and
@@ -170,18 +170,18 @@ difference of the measured one-minute GHI from the
 $\text{GHI}_{\text{ref}}$ corresponding to cloud-free atmosphere. First,
 we used a simple approach for the determination of
 $\text{GHI}_{\text{ref}}$: The Haurwitz's model (Haurwitz 1945), which
-is a simple cloud-free model and was already adjusted and applied to our
-data (Natsis, Bais, and Meleti 2023). We created a threshold by using an
-appropriate relative and/or an additional constant offset. The initial
-results showed that we can detect a big portion of the actual CE events.
-However, by inspecting the daily plots of irradiance it became evident
-that changes in atmospheric conditions introduced numerous false
-positive or false negative results. The main reason for these
-discrepancies is the variability of the effects of aerosols and water
-vapor which were not considered in the simple method. To produce a more
-representative reference we included the effects of these factors using
-a radiative transfer model (RTM). The applied methodology is discussed
-in section.
+is a simple clear sky radiation model and was already adjusted and
+applied to our data (Natsis, Bais, and Meleti 2023). We created a
+threshold by using an appropriate relative and/or an additional constant
+offset. The initial results showed that we can detect a big portion of
+the actual CE events. However, by inspecting the daily plots of
+irradiance it became evident that changes in atmospheric conditions
+introduced numerous false positive or false negative results. The main
+reason for these discrepancies is the variability of the effects of
+aerosols and water vapor which were not considered in the simple method.
+To produce a more representative reference we included the effects of
+these factors using a radiative transfer model (RTM). The applied
+methodology is discussed in section.
 
 ## 2.3 Modeled cloud-free Irradiance
 
@@ -205,7 +205,7 @@ seasons.
 Main factors responsible for the attenuation of the broadband downward
 solar radiation under cloud free atmospheres are aerosols and water
 vapor. At Thessaloniki, such measurements are available since 2003 from
-a Cimel sun photometer which is part of the Aerosol Robotic Network
+a Cimel sun photometer, which is part of the Aerosol Robotic Network
 (AERONET) (Giles et al. 2019; Buis et al. 1998). From the observations
 in the period 2003 -- 2023 we calculated the monthly climatological
 means and standard deviation ($\sigma$) for the aerosol optical depth
@@ -234,12 +234,30 @@ Natsis, Bais, and Meleti (2023), there is a long-term brightening effect
 in the GHI data of Thessaloniki for the period 1993 -- 2023, which for
 cloud-free data was attributed to long-term changes in aerosol effects.
 Therefore, an adjustment of the $\text{GHI}_{\text{ref}}$ during the
-period of study was made using simulations with the RTM to account for
-the long-term variations of the AOD. As AERONET data start only in 2003,
-we used for the period 1994 -- 2005 estimates of changes in AOD at
-$340\,\text{nm}$ derived from a collocated Brewer spectrophotometer
-(Kazadzis et al. 2007) to calculate the trend in
-$\text{GHI}_{\text{ref}}$ due to aerosols during this period.
+period of study was made using RTM simulations to account for the
+long-term variations of the AOD. High quality AOD data with a Cimel
+sun-photometer (part of AERONET) at Thessaloniki start only in 2003,
+while spectral AOD measurements using direct-sun observations with a
+MKIII Brewer spectrophotometer are available for the period 1997 --
+2017. These data are taken sporadically during each day and are less
+dense compared to the AERONET data. By comparing monthly AOD data at
+$340\,\text{nm}$ of the two instruments for the common periods of
+operation we adjusted the Brewer data and filled the missing months of
+the Cimel record data with Brewer data. Using the monthly time series of
+AOD at $340\,\text{nm}$, as well as monthly climatological values of the
+Angstrom exponent and constant WC of $15.6\,\text{mm}$ derived from the
+Cimel record, we simulated with the RTM the cloud-free GHI at SZA of
+$55^{\circ}$ for each month in the period 1997 -- 2023. The SZA of
+$55^{\circ}$ was chosen as representative of all days in the year to get
+a rough estimate of the annually averaged change in cloud-free GHI. A
+second-degree polynomial fit was applied to the simulated yearly
+averaged GHI to derive the long-term change in GHI due to aerosols.
+
+As AERONET data start only in 2003, we used for the period 1994 -- 2005
+estimates of changes in AOD at $340\,\text{nm}$ derived from a
+collocated Brewer spectrophotometer (Kazadzis et al. 2007) to calculate
+the trend in $\text{GHI}_{\text{ref}}$ due to aerosols during this
+period.
 
 According to Kazadzis et al. (2007), in the period 1997 -- 2005 the mean
 AOD at $340\,\text{nm}$ is $0.4$ with a change of $- 3.8 \pm 0.93\,\%$
@@ -272,6 +290,10 @@ height="3.6591983814523186in"}
 Figure 2.2: Simulated long-term change in cloud-free irradiance relative
 to the climatological values due to changes in AOD in Thessaloniki for
 the period 1994 -- 2023.
+
+$$\text{AOD\ change}\lbrack\Delta\%\rbrack: - 12170 + 12.05 \cdot y + - 0.002981 \cdot y^{2}$$
+
+where $y$ the date as a decimal fraction of the year
 
 ## 2.4 Criteria for the identification of CE events
 
@@ -539,7 +561,7 @@ than ours.
 duration for Thessaloniki in the period 1994 -- 2023. The logarithmic
 color scale denotes the frequency of the respective groups of
 events.](media/rId59.png){width="5.833333333333333in"
-height="3.6948403324584427in"}
+height="3.687330489938758in"}
 
 Figure 3.4: Relation of excess irradiation of CE groups with their
 duration for Thessaloniki in the period 1994 -- 2023. The logarithmic
