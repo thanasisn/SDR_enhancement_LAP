@@ -73,7 +73,8 @@ library(ggplot2     , quietly = TRUE, warn.conflicts = FALSE)
 library(RColorBrewer, quietly = TRUE, warn.conflicts = FALSE)
 library(pracma      , quietly = TRUE, warn.conflicts = FALSE)
 library(lubridate   , quietly = TRUE, warn.conflicts = FALSE)
-
+library(ggpmisc     , quietly = TRUE, warn.conflicts = FALSE)
+library(latex2exp   , quietly = TRUE, warn.conflicts = FALSE)
 
 panderOptions("table.alignment.default", "right")
 panderOptions("table.split.table",        120   )
@@ -301,22 +302,60 @@ for (ii in 1:nrow(gather_days)) {
 #+ echo=F, include=T
 
 
-cat(rep("TEST\n\n", 10))
-KEEP <- KEEP[sample(1:nrow(KEEP), 2000), ]
+# cat(rep("TEST\n\n", 10))
+# KEEP <- KEEP[sample(1:nrow(KEEP), 2000), ]
+
+
+
+
+
+
+
 
 
 #' \newpage
-#+ echo=F, include=T
+#+ P-validation-cloudfree-GHI, echo=F, include=T
 
 
-plot(KEEP[, Low_B.Low_W.glo, wattGLB], xlab = "Low_B.Low_W.glo Cloud-free")
-title(paste("Days:", length(unique(KEEP[, Day])), "Day fill:", day_fill, "Points:", KEEP[, sum(!is.na(wattGLB))]))
-abline(a = 0, b = 1, col = "green")
+fit <- lm(KEEP$Low_B.Low_W.glo ~ KEEP$wattGLB)
+caption <- paste0(KEEP[, sum(!is.na(wattGLB))], " data points from ", length(unique(KEEP[, Day])), " days with >", 100 * day_fill, "% data available")
+
+ggplot(KEEP, aes(wattGLB, Low_B.Low_W.glo)) +
+  geom_point(colour = "black",
+             alpha  = .1,
+             na.rm  = TRUE,
+             size   = 0.3) +
+  geom_abline(aes(intercept = 0, slope = 1,                       colour = "green")) +
+  geom_abline(aes(intercept = coef(fit)[1], slope = coef(fit)[2], colour = "blue")) +
+  ylab(bquote("Cloud-free modeled GHI" ~ group("[", W/m^2,"]"))) +
+  xlab(bquote("GHI" ~ group("[", W/m^2,"]"))) +
+  labs(caption = caption) +
+  scale_color_manual(values = c("blue", "green"),
+                     labels = unname(TeX(c(
+                       paste("$y =", signif(coef(fit)[1], 3),
+                             "+",     signif(coef(fit)[2], 4),
+                             "\\cdot x $, ",
+                             "$R^2 = ",
+                             signif(summary(fit)$r.squared, 3),
+                             "$"),
+                       "$y = x$")))) +
+  theme(
+    legend.title         = element_blank(),
+    legend.position      = c(.03, .97),
+    legend.justification = c("left", "top"),
+    legend.text          = element_text(size = 14, face = "bold"),
+    legend.key            = element_blank(),
+    legend.background     = element_blank(),
+    legend.box.background = element_rect(color = NA, fill = NA),
+  )
+
 
 print(cor.test(KEEP$wattGLB, KEEP$Low_B.Low_W.glo, method = c("pearson")))
-
 print(lm(KEEP[, wattGLB, Low_B.Low_W.glo]))
 
+# plot(KEEP[, Low_B.Low_W.glo, wattGLB], xlab = "Low_B.Low_W.glo Cloud-free")
+# title(paste("Days:", length(unique(KEEP[, Day])), "Day fill:", day_fill, "Points:", KEEP[, sum(!is.na(wattGLB))]))
+# abline(a = 0, b = 1, col = "green")
 
 
 
@@ -325,69 +364,43 @@ print(lm(KEEP[, wattGLB, Low_B.Low_W.glo]))
 
 
 #' \newpage
-#+ echo=F, include=T
-
-
-plot(KEEP[, Enhanc_C_4_ref, wattGLB], xlab = "CE threshold")
-title(paste("Days:", length(unique(KEEP[, Day])), "Day fill:", day_fill, "Points:", KEEP[, sum(!is.na(wattGLB))]))
-abline(a = 0, b = 1, col = "green")
-
-
-print(cor.test(KEEP$wattGLB, KEEP$Enhanc_C_4_ref, method = c("pearson")))
-
-print(lm(KEEP[, wattGLB, Enhanc_C_4_ref]))
-
-
-library(ggplot2)
-library(ggpmisc)
-library(latex2exp)
-
-
-lm_eqn <- function(x, y){
-  m <- lm(y ~ x);
-  eq <- substitute(italic(y) == a + b %.% italic(x)*","~~italic(r)^2~"="~r2,
-                   list(a = format(unname(coef(m)[1]), digits = 2),
-                        b = format(unname(coef(m)[2]), digits = 2),
-                        r2 = format(summary(m)$r.squared, digits = 3)))
-  as.character(as.expression(eq));
-}
-
-
+#+ P-validation-threshold-GHI, echo=F, include=T
 
 fit <- lm(KEEP$Enhanc_C_4_ref ~ KEEP$wattGLB)
-coef(fit)[1]
+caption <- paste0(KEEP[, sum(!is.na(wattGLB))], " data points from ", length(unique(KEEP[, Day])), " days with >", 100 * day_fill, "% data available")
 
 ggplot(KEEP, aes(wattGLB, Enhanc_C_4_ref)) +
   geom_point(colour = "black",
              alpha  = .1,
              na.rm  = TRUE,
              size   = 0.3) +
-  geom_abline(aes(intercept = 0, slope = 1, colour = "y = x")) +
-  geom_abline(aes(intercept = coef(fit)[1], slope = coef(fit)[2], colour = "ddd")) +
+  geom_abline(aes(intercept = 0, slope = 1,                       colour = "green")) +
+  geom_abline(aes(intercept = coef(fit)[1], slope = coef(fit)[2], colour = "blue")) +
   ylab(bquote("CE threshold" ~ group("[", W/m^2,"]"))) +
   xlab(bquote("GHI" ~ group("[", W/m^2,"]"))) +
-  # labs(color = bquote("OI" ~ group("[", W/m^2,"]"))) +
+  labs(caption = caption) +
   scale_color_manual(values = c("blue", "green"),
                      labels = unname(TeX(c(
                        paste("$y =", signif(coef(fit)[1], 3),
                               "+",     signif(coef(fit)[2], 4),
-                              "\\cdot x $"),
+                              "\\cdot x $, ",
+                             "$R^2 = ",
+                             signif(summary(fit)$r.squared, 3),
+                             "$"),
                        "$y = x$")))) +
   theme(
     legend.title         = element_blank(),
     legend.position      = c(.03, .97),
     legend.justification = c("left", "top"),
-    legend.text          = element_text(size = 12, face = "bold"),
-    # legend.box.just      = "right",
-    legend.key           = element_blank(),
-    # legend.background    = element_rect(color = NA),
-    # legend.margin        = margin(6, 6, 6, 6)
+    legend.text          = element_text(size = 14, face = "bold"),
+    legend.key            = element_blank(),
+    legend.background     = element_blank(),
+    legend.box.background = element_rect(color = NA, fill = NA),
     )
-#   scale_x_continuous(expand = expansion(mult = c(0.03, 0.03))) +
-#   scale_y_continuous(breaks = scales::breaks_extended(n = 6),
-#                      expand = expansion(mult = c(0.03, 0.03)))
 
-expression(y=x)
+
+print(cor.test(KEEP$wattGLB, KEEP$Enhanc_C_4_ref, method = c("pearson")))
+print(lm(KEEP[, wattGLB, Enhanc_C_4_ref]))
 
 
 
