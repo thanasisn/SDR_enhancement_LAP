@@ -141,7 +141,7 @@ and a trend in the corresponding irradiation of
 $`r plus_sign(round(yearlyCE[var=="GLB_diff.sum",slope],1))`\pm
 `r round(2*yearlyCE[var=="GLB_diff.sum",slope.sd],1)`\,\text{kJ}/\text{year}$.
 The peak of the CE events was observed during May and June. CE events with duration
-longer than 5\nobreakspacemin are very rare, with exceptions lasting over an hour and up to
+longer than 5\nobreakspace{}min are very rare, with exceptions lasting over an hour and up to
 140 minutes.  Finally, we have detected enhancements above the total solar irradiance
 at the top of the atmosphere for the same solar zenith angle of up to
 $400\,\text{W}/\text{m}^{2}$, with the $75\,\%$ of the cases below
@@ -558,21 +558,21 @@ Following the application of the above discussed methodology to the entire datas
 $`r round(100*ST_total$GLB_diff.N_pos/ST_total$wattGLB.N, 2)`\,\%$ were identified as CE events and
 $`r round(100*ST_extreme_total$GLB_diff.N_pos/ST_total$wattGLB.N, 3)`\,\%$ as ECE events.
 The highest recorded GHI due to CE was
-$`r round(MC[Typ == "Max Glob", wattGLB],1)`\,\text{W}/\text{m}^2$ on
- `r strftime(MC[Typ == "Max Glob", Date], "%d\\ %B %Y")` at a SZA of
-$`r round(MC[Typ == "Max Glob", SZA],1)`^\circ$ corresponding to OI of
-$`r round(MC[Typ == "Max Glob", GLB_diff],1)`\,\text{W}/\text{m}^2$ or
-$`r round(100*MC[Typ == "Max Glob", GLB_ench],1)`\,\%$ above the threshold.
+$`r round(MC[Typ == "Max Global", wattGLB],1)`\,\text{W}/\text{m}^2$ on
+ `r strftime(MC[Typ == "Max Global", Date], "%d\\ %B %Y")` at a SZA of
+$`r round(MC[Typ == "Max Global", SZA],1)`^\circ$ corresponding to OI of
+$`r round(MC[Typ == "Max Global", GLB_diff],1)`\,\text{W}/\text{m}^2$ or
+$`r round(100*MC[Typ == "Max Global", GLB_ench],1)`\,\%$ above the threshold.
 The strongest CE event of
 $`r round(100*MC[Typ == "Max Enha", GLB_ench],1)`\,\%$ above the 
 cloud-free threshold was observed on 
-`r strftime(MC[Typ == "Max Enha", Date], "%d\\ %B %Y")` at a SZA of
-$`r round(MC[Typ == "Max Enha", SZA],1)`^\circ$ with a GHI value of 
-$`r round(MC[Typ == "Max Enha", wattGLB],1)`\,\text{W}/\text{m}^2$ and a OI of
-$`r round(MC[Typ == "Max Enha", GLB_diff],1)`\,\text{W}/\text{m}^2$.
+`r strftime(MC[Typ == "Max Enh abs", Date], "%d\\ %B %Y")` at a SZA of
+$`r round(MC[Typ == "Max Enh abs", SZA],1)`^\circ$ with a GHI value of 
+$`r round(MC[Typ == "Max Enh abs", wattGLB],1)`\,\text{W}/\text{m}^2$ and a OI of
+$`r round(MC[Typ == "Max Enh abs", GLB_diff],1)`\,\text{W}/\text{m}^2$.
 Both cases are ECE events with
-$`r round(MC[Typ == "Max Glob", wattGLB - ETH],1)`\,\text{W}/\text{m}^2$ and
-$`r round(MC[Typ == "Max Enha", wattGLB - ETH],1)`\,\text{W}/\text{m}^2$ above the
+$`r round(MC[Typ == "Max Global", TSI_OI],1)`\,\text{W}/\text{m}^2$ and
+$`r round(MC[Typ == "Max Enh abs", TSI_OI],1)`\,\text{W}/\text{m}^2$ above the
 TSI at TOA for the same SZA, respectively.
 In the following sections we are discussing the long-term trends and variability of
 the CE events as well as of the corresponding OI and excess irradiation.
