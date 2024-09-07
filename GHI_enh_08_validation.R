@@ -111,10 +111,10 @@ set.seed(RANDOM_SEED)
 
 
 
-cat("Drop all enhacement cases")
+cat("Drop all enhacement cases\n\n")
 DATA <- DATA[Enhanc_C_4 == F]
 
-cat("Drop all clouds")
+cat("Drop all clouds\n\n")
 DATA <- DATA[TYPE == "Clear"]
 
 
@@ -301,8 +301,8 @@ for (ii in 1:nrow(gather_days)) {
 #+ echo=F, include=T
 
 
-
-
+cat(rep("TEST\n\n", 10))
+KEEP <- KEEP[sample(1:nrow(KEEP), 5000), ]
 
 
 #' \newpage
@@ -362,8 +362,8 @@ ggplot(KEEP, aes(wattGLB, Enhanc_C_4_ref)) +
   ylab(bquote("CE threshold" ~ group("[", W/m^2,"]"))) +
   xlab(bquote("GHI" ~ group("[", W/m^2,"]"))) +
   labs(color = bquote("OI" ~ group("[", W/m^2,"]"))) +
-  # stat_poly_line() +
-  # stat_poly_eq(use_label(c("eq", "R2"))) +
+  stat_poly_line() +
+  stat_poly_eq(use_label(c("eq", "R2"))) +
   geom_text(x = 300, y = 300, label = lm_eqn(KEEP$wattGLB, KEEP$Enhanc_C_4_ref), parse = TRUE)
   # theme(
   #   legend.title         = element_text(size = 10),
