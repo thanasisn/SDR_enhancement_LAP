@@ -782,7 +782,8 @@ pander::pander(DT_example)
 library(magick)
 
 
-left  <- image_read("/home/folder/LAP_skycam/skycam/2019/1922019/ 1922019100002.JPEG")
+# left  <- image_read("/home/folder/LAP_skycam/skycam/2019/1922019/ 1922019100002.JPEG")
+left  <- image_read("/home/folder/LAP_skycam/skycam/2019/1922019/ 1922019101501.JPEG")
 right <- image_read("/home/folder/LAP_skycam/skycam/2019/1922019/ 1922019103001.JPEG")
 
 # print(left)
@@ -803,8 +804,8 @@ rr <- image_scale(
 
 A <- image_ggplot(ll) +
   annotate(geom = "text", x = 10, y = 15,  label = "(a)",       hjust = 0, vjust = 0, size =  7, colour = "orange") +
-  annotate(geom = "text", x = 15, y = 585, label = "10:00 UTC", hjust = 0, vjust = 1, size =  7, colour = "orange")
-date_A <- as.POSIXct(strptime(paste(example_day,   "10:00"), "%F %H:%M"))
+  annotate(geom = "text", x = 15, y = 585, label = "10:15 UTC", hjust = 0, vjust = 1, size =  7, colour = "orange")
+date_A <- as.POSIXct(strptime(paste(example_day,   "10:15"), "%F %H:%M"))
 
 B <- image_ggplot(rr) +
   annotate(geom = "text", x = 10, y = 15,  label = "(b)",       hjust = 0, vjust = 0, size =  7, colour = "orange") +
@@ -847,8 +848,8 @@ plot(temp$Date, temp$wattGLB, col = "green",
 abline(v = date_A, col = "grey", lwd = 2, lty = 2)
 abline(v = date_B, col = "grey", lwd = 2, lty = 2)
 
-text(x = date_A, y = 200, "(a)", col = "gray")
-text(x = date_B, y = 200, "(b)", col = "gray")
+text(x = date_A, y = 200, "(a)", pos = 2, offset = 1, col = "gray")
+text(x = date_B, y = 200, "(b)", pos = 4, offset = 1, col = "gray")
 
 
 abline(h = solar_constant, col = "orange2", lty = 1, lwd = 2)

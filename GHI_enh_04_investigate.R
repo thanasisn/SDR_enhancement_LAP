@@ -69,6 +69,7 @@ if (!interactive()) {
 suppressPackageStartupMessages({
   library(data.table    , quietly = TRUE, warn.conflicts = FALSE)
   library(pander        , quietly = TRUE, warn.conflicts = FALSE)
+  library(lubridate     , quietly = TRUE, warn.conflicts = FALSE)
   library(ggpmisc       , quietly = TRUE, warn.conflicts = FALSE)
   library(ggplot2       , quietly = TRUE, warn.conflicts = FALSE)
   library(lmtest        , quietly = TRUE, warn.conflicts = FALSE)
@@ -372,10 +373,82 @@ dataset |>
 
 
 
-## plot daily GLOBAL
+
+## plot daily mean GLOBAL all data -------------------------------------------
 
 pvar    <- "wattGLB.mean"
-dataset <- copy(ST_E_daily)
+dataset <- copy(ST_daily)
+dataset[, yts := yts + min(year(Date))]
+dataset[, decate := yts %/% 10]
+
+
+p <- ggplot(dataset, aes(x = yts,
+                         y = get(pvar))) +
+  geom_point(color = varcol(pvar),
+             size  = 1) +
+  geom_abline(intercept = unlist(Tint[1]), slope = unlist(Tres[1])) +
+  ylab(bquote("" ~ .(varname(pvar)) ~ group("[", W/m^2,"]"))) +
+  xlab("Date") +
+  # annotation_custom(grob) +
+  scale_y_continuous(guide        = "axis_minor",
+                     minor_breaks = seq(0, 500, by = 25)) +
+  scale_x_continuous(guide        = "axis_minor",
+                     breaks = c(
+                       min(floor(dataset[,yts])),
+                       pretty(dataset[,yts], n = 4),
+                       max(ceiling(dataset[,yts]))),
+                     minor_breaks = seq(1990, 2050, by = 1)) +
+  theme(plot.margin = margin(t = 0, r = 0.5 , b = 0.5, l = 0, "cm"))
+print(p)
+
+
+
+
+pp <- map(
+  list(c(1994,2004), c(2004,2014), c(2014,2024)),
+  ~ dataset[yts >= .x[1] & yts <= .x[2]] |>
+    ggplot(aes(x = yts,
+               y = get(pvar))) +
+    geom_point(color = varcol(pvar),
+               size  = 1) +
+    ylab("") +
+    xlab("") +
+    scale_y_continuous(guide  = "axis_minor",
+                       limits = range(dataset[, get(pvar)]),
+                       # breaks = pretty(dataset[, get(pvar)], n = 3)) +
+                       breaks = seq(300, 1200, 300)) +
+    scale_x_continuous(guide        = "axis_minor",
+                       breaks = c(
+                         .x[1],
+                         pretty(c(.x[1], .x[2]), n = 6),
+                         .x[2]),
+                       minor_breaks = seq(1990, 2050, by = 1)) +
+    theme(plot.margin = margin(t = .0, r = .0 , b = - 0.3, l = 0, "cm"))
+
+)
+
+yleft <- textGrob(expression(paste("GHI [W/m"^"2"*"]")),
+                  rot = 90,
+                  gp = gpar(fontsize = 16))
+
+grid.arrange(pp[[1]], pp[[2]], pp[[3]],
+             vp = viewport(height = 0.96),
+             left   =  yleft,
+             bottom = "Date")
+
+
+###  Plot only complete days  -------------------------
+
+keep_ratio <- 0.6
+DATA <- readRDS("data/CE_ID_Input.Rds")
+Keep <- DATA[, sum(!is.na(wattGLB))/.N > keep_ratio, by = .(Day = as.Date(Date))]
+cat("Keeping", keep_ratio, "of each day, removes", Keep[V1 == F, .N], "days of", Keep[V1 == T, .N], "total days or", 100*Keep[V1 == F, .N]/Keep[V1 == T, .N],"%\n")
+
+
+pvar    <- "wattGLB.mean"
+dataset <- copy(ST_daily)
+dataset <- dataset[Date %in% Keep[V1 == T, Day]]
+
 dataset[, yts := yts + min(year(Date))]
 dataset[, decate := yts %/% 10]
 
@@ -437,70 +510,71 @@ grid.arrange(pp[[1]], pp[[2]], pp[[3]],
 
 
 
+
 ## plot all data global
-DATA <- readRDS("data/CE_ID_Input.Rds")
-DATA[, yts := min(year(Date)) + (year(Date) - min(year(Date))) + ( yday(Date) - 1 ) / Hmisc::yearDays(Date)]
+
+DATA[, yts := decimal_date(Date)]
 pvar    <- "wattGLB"
 
 
-p <- ggplot(DATA, aes(x = yts,
-                         y = get(pvar))) +
-  geom_point(color = varcol(pvar),
-             size  = 1) +
-  geom_abline(intercept = unlist(Tint[1]), slope = unlist(Tres[1])) +
-  ylab(bquote("" ~ .(varname(pvar)) ~ group("[", W/m^2,"]"))) +
-  xlab("Date") +
-  # annotation_custom(grob) +
-  scale_y_continuous(guide        = "axis_minor",
-                     minor_breaks = seq(0, 500, by = 25)) +
-  scale_x_continuous(guide        = "axis_minor",
-                     breaks = c(
-                       min(floor(DATA[,yts])),
-                       pretty(DATA[,yts], n = 4),
-                       max(ceiling(DATA[,yts]))),
-                     minor_breaks = seq(1990, 2050, by = 1)) +
-  theme(plot.margin = margin(t = 0, r = 0.5 , b = 0.5, l = 0, "cm"))
-print(p)
+# p <- ggplot(DATA, aes(x = yts,
+#                          y = get(pvar))) +
+#   geom_point(color = varcol(pvar),
+#              size  = 1) +
+#   geom_abline(intercept = unlist(Tint[1]), slope = unlist(Tres[1])) +
+#   ylab(bquote("" ~ .(varname(pvar)) ~ group("[", W/m^2,"]"))) +
+#   xlab("Date") +
+#   # annotation_custom(grob) +
+#   scale_y_continuous(guide        = "axis_minor",
+#                      minor_breaks = seq(0, 500, by = 25)) +
+#   scale_x_continuous(guide        = "axis_minor",
+#                      breaks = c(
+#                        min(floor(DATA[,yts])),
+#                        pretty(DATA[,yts], n = 4),
+#                        max(ceiling(DATA[,yts]))),
+#                      minor_breaks = seq(1990, 2050, by = 1)) +
+#   theme(plot.margin = margin(t = 0, r = 0.5 , b = 0.5, l = 0, "cm"))
+# print(p)
+
+
+
+
+# pp <- map(
+#   list(c(1994, 2004), c(2004, 2014), c(2014, 2024)),
+#   ~ DATA[yts >= .x[1] & yts <= .x[2]] |>
+#     ggplot(aes(x = yts,
+#                y = get(pvar))) +
+#     geom_point(color = varcol(pvar),
+#                size  = .5) +
+#     ylab("") +
+#     xlab("") +
+#     scale_y_continuous(guide  = "axis_minor",
+#                        limits = range(DATA[, get(pvar)], na.rm = T),
+#                        # breaks = pretty(dataset[, get(pvar)], n = 3)) +
+#                        breaks = seq(300, 1200, 300)) +
+#     scale_x_continuous(guide        = "axis_minor",
+#                        breaks = c(
+#                          .x[1],
+#                          pretty(c(.x[1], .x[2]), n = 6),
+#                          .x[2]),
+#                        minor_breaks = seq(1990, 2050, by = 1)) +
+#     theme(plot.margin = margin(t = .0, r = .0 , b = - 0.3, l = 0, "cm"))
+#
+# )
+#
+# yleft <- textGrob(expression(paste("GHI [W/m"^"2"*"]")),
+#                   rot = 90,
+#                   gp = gpar(fontsize = 16))
+#
+# grid.arrange(pp[[1]], pp[[2]], pp[[3]],
+#              vp = viewport(height = 0.96),
+#              left   =  yleft,
+#              bottom = "Date")
 
 
 
 
 
-
-
-
-
-pp <- map(
-  list(c(1994, 2004), c(2004, 2014), c(2014, 2024)),
-  ~ DATA[yts >= .x[1] & yts <= .x[2]] |>
-    ggplot(aes(x = yts,
-               y = get(pvar))) +
-    geom_point(color = varcol(pvar),
-               size  = .5) +
-    ylab("") +
-    xlab("") +
-    scale_y_continuous(guide  = "axis_minor",
-                       limits = range(DATA[, get(pvar)], na.rm = T),
-                       # breaks = pretty(dataset[, get(pvar)], n = 3)) +
-                       breaks = seq(300, 1200, 300)) +
-    scale_x_continuous(guide        = "axis_minor",
-                       breaks = c(
-                         .x[1],
-                         pretty(c(.x[1], .x[2]), n = 6),
-                         .x[2]),
-                       minor_breaks = seq(1990, 2050, by = 1)) +
-    theme(plot.margin = margin(t = .0, r = .0 , b = - 0.3, l = 0, "cm"))
-
-)
-
-yleft <- textGrob(expression(paste("GHI [W/m"^"2"*"]")),
-                  rot = 90,
-                  gp = gpar(fontsize = 16))
-
-grid.arrange(pp[[1]], pp[[2]], pp[[3]],
-             vp = viewport(height = 0.96),
-             left   =  yleft,
-             bottom = "Date")
 
 
 
