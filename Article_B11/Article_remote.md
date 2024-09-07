@@ -140,7 +140,7 @@ steps. An overview of the GHI data used in this study is given in Figure
 least 60% of data availability; however, all available one-minute
 measurements have been used for the detection of CE events.
 
-![](media/image3.png){width="3.03125in" height="1.9375in"}
+![](media/image1.png){width="3.03125in" height="1.9375in"}
 
 Figure 1: Timeseries of daily mean GHI measured at Thessaloniki for the
 period 1994 -- 2023.
@@ -246,19 +246,7 @@ these long-term changes (see Figure 2) to the climatological
 ${GHI}_{ref}$, to create a more realistic representation of the
 cloud-free irradiance for the entire period of study. For the period
 1994-1996 where no AOD data are available, we assumed that the changes
-in GHI follow the same polynomial fit. From Figure 2 it appears that the
-adjustment of GHI~ref~ for the long-term changes in AOD is relatively
-small, up to 1.5%.
-
-![Figure 2.1: Simulated long-term change in clear sky irradiance
-relative to the climatological values due to changes in AOD in
-Thessaloniki for the period 1993 --
-2023.](media/image10.png){width="5.833333333333333in"
-height="3.6638888888888888in"}
-
-*Figure 2.1: Simulated long-term change in cloud-free irradiance
-relative to the climatological values due to changes in AOD in
-Thessaloniki for the period 1994 -- 2023.*
+in GHI follow the same polynomial fit. F
 
 ## 2.4 Criteria for the identification of CE events
 
@@ -327,13 +315,13 @@ $1.496 \times 10^{8}km$.
 An example of the identification of CE events for a selected day is
 given in the Figure, where the daily course of the cloud-free reference
 irradiance and the CE and ECE thresholds are shown along with the actual
-GHI measurements. The GHI data in the periods 7:30--8:30 and after 14:00
-are very close to the modeled cloud-free GHI (light blue line) thus were
-identified as cloud-free instances. There is some ambiguity for the data
-points laying between the CE threshold and the cloud-free irradiance,
-which are not identified as CE events. These data points correspond to
-cases either with AOD below the one assumed in the model, or with very
-small OI.
+GHI measurements. The GHI data in the periods 7:30 -- 8:30 and after
+14:00 are very close to the modeled cloud-free GHI (light blue line)
+thus were identified as cloud-free instances. There is some ambiguity
+for the data points laying between the CE threshold and the cloud-free
+irradiance, which are not identified as CE events. These data points
+correspond to cases either with AOD below the one assumed in the model,
+or with very small OI.
 
 In addition, we provide in Figure 4 an example scatter plot between the
 measured GHI and the modeled cloud-free irradiance for one year (2005),
@@ -347,7 +335,7 @@ corresponds also to cases with thin cirrus clouds causing weak
 attenuation of GHI, often indistinguishable from the attenuation by
 aerosols.
 
-![](media/image11.png){width="6.5in" height="4.121527777777778in"}
+![](media/image10.png){width="6.5in" height="4.121527777777778in"}
 
 *Figure 2.2: Example of CE identification in Thessaloniki for
 2019-07-11. The green line with blue symbols depicts the measured GHI
@@ -363,7 +351,7 @@ clear sky irradiance in Thessaloniki for the year 2005. The
 over-irradiance for CE and ECE events is color coded, while the
 remaining data points are shown in black. The reference green line goes
 through the origin with a slope of
-one.](media/image6.png){width="5.833333333333333in"
+one.](media/image4.png){width="5.833333333333333in"
 height="3.6354166666666665in"}
 
 *Figure 2.3: Example scatter plot of the measured GHI and the reference
@@ -409,7 +397,7 @@ together with their $2\sigma$ error.
 Figure shows the time series of the yearly number of CE cases (each with
 duration of one minute), the yearly mean OI and the yearly excess
 irradiation for the period 1994 -- 2023, together with corresponding
-linear trends. To account for missing data all three quantities have
+linear trends. To account for missing data, all three quantities have
 been divided with the fraction of the valid GHI observations in each
 month. Statistically significant (at the 95% confidence level)
 increasing trends appear for the yearly number of CE events
@@ -436,7 +424,7 @@ increased by the OI but is rather redistributed through the CE events.
 This is also depicted by the ECE irradiance values, which exceed the
 equivalent cloud-free irradiance by a significant amount.
 
-![](media/image5.png){width="3.15625in" height="6.15625in"}
+![](media/image3.png){width="3.15625in" height="6.15625in"}
 
 Figure 5: Time series of (a) the yearly CE number of occurrences, (b)
 the yearly mean OI and (c) the yearly excess irradiation at Thessaloniki
@@ -470,9 +458,9 @@ circulation (Chiacchio and Wild, 2010), or to the observed decreasing
 trend in cloud cover as a result of global warming (e.g.,
 Sanchez-Lorenzo et al, 2017).
 
-![](media/image4.png){width="5.03125in" height="3.0625in"}
+![](media/image9.png){width="5.03125in" height="3.0625in"}
 
-*Figure 3.1: Seasonal variability of the relative occurrence* *of CE
+*Figure 3.1: Seasonal variability of the relative occurrence of CE
 events in Thessaloniki for the period 1994 -- 2023, in the form of a box
 and whisker plot.* *The box contains the data between the lower* $25\%$
 *and the upper* $75\%$ *percentileswith* *the thick horizontal line*
@@ -493,13 +481,13 @@ distribution of CE events, albeit with larger OI values, has been
 reported by Vamvakas, Salamalikis, and Kazantzidis (2020), for the city
 of Patras. This site is located ${2.5}^{\circ}$ south of Thessaloniki
 and is exposed to air masses coming mainly from the eastern
-Mediterranean resulting in different cloud patterns, that may affect the
-characteristics and magnitude of the CE events.
+Mediterranean, resulting in different cloud patterns, that may affect
+the characteristics and magnitude of the CE events.
 
 ![Figure 3.2: Relative frequency distribution of CE events in
 Thessaloniki for the period 1993 -- 2023 as a function of OI. The
 histogram was split in two plots with different y-axis scales for better
-readability.](media/image7.png){width="5.833333333333333in"
+readability.](media/image2.png){width="5.833333333333333in"
 height="3.702777777777778in"}
 
 *Figure 3.2: Relative frequency distribution of CE events in
@@ -524,7 +512,7 @@ than 5 minutes.
 CE events according to their duration for Thessaloniki in the period
 1993 -- 2023. The histogram was split in two plots with different y-axis
 scales for better
-readability.](media/image1.png){width="5.833333333333333in"
+readability.](media/image11.png){width="5.833333333333333in"
 height="3.7375in"}
 
 *Figure 3.3: Relative frequency distribution of CE groups of consequent
@@ -547,7 +535,7 @@ far higher sampling rate ($100Hz$) than ours.
 ![Figure 3.4: Relation of excess irradiation of CE groups with their
 duration for Thessaloniki in the period 1993 -- 2023. The logarithmic
 color scale denotes the frequency of the respective groups of
-events.](media/image2.png){width="5.833333333333333in"
+events.](media/image8.png){width="5.833333333333333in"
 height="3.6951388888888888in"}
 
 *Figure 3.4: Relation of excess irradiation of CE groups with their
@@ -578,7 +566,7 @@ well below 0.1 % of the data, therefore on average it would not affect
 the production of solar energy. However, during short, isolated periods
 extreme enhancements of GHI can be of concern.
 
-![](media/image9.png){width="5.177083333333333in"
+![](media/image5.png){width="5.177083333333333in"
 height="3.1930555555555555in"} Figure 3.5: Seasonal variability of the
 relative occurrence of ECE events in Thessaloniki for the period 1994 --
 2023, in the form of a box and whisker plot. The box contains the data
@@ -595,7 +583,7 @@ with the results of Vamvakas, Salamalikis, and Kazantzidis (2020), the
 only difference being that the OI values reported for are higher than
 those for Thessaloniki.
 
-![](media/image8.png){width="4.0625in" height="2.526388888888889in"}
+![](media/image7.png){width="4.0625in" height="2.526388888888889in"}
 
 *Figure 3.6: Relative frequency distribution of ECE events in
 Thessaloniki for the period 1994 -- 2023.*

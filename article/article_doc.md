@@ -282,19 +282,11 @@ different, but reasonable, since the effect of the enforced air
 pollution abatement measures in the area in the 1990s had greater
 effects in the first years of application.
 
-![Figure 2.2: Simulated long-term change in cloud-free irradiance
-relative to the climatological values due to changes in AOD in
-Thessaloniki for the period 1994 --
-2023.](media/rId29.png){width="5.833333333333333in"
-height="3.6591983814523186in"}
+$$\Delta\left( \text{AOD} \right)\lbrack\%\rbrack = - 12170 + 12.05 \cdot y + - 0.002981 \cdot y^{2}$$
 
-Figure 2.2: Simulated long-term change in cloud-free irradiance relative
-to the climatological values due to changes in AOD in Thessaloniki for
-the period 1994 -- 2023.
-
-$$\Delta\left( \text{AOD} \right) = - 12170 + 12.05 \cdot y + - 0.002981 \cdot y^{2}\lbrack\%\rbrack$$
-
-where $y$ the date as a decimal fraction of the year
+where $y$ the date as a decimal fraction of the year. For the period of
+the study the relative change of AOD ranges between $- 1.88$ and
+$- 0.23\,\%$.
 
 ## 2.4 Criteria for the identification of CE events
 
@@ -324,6 +316,21 @@ defined the following threshold $E$ to compare the measured
 $\text{GHI}$:
 
 $$\text{CE}:E > 25 + 1 \cdot \text{GHI}_{\text{ref}}\,\,\left\lbrack \text{W}/\text{m}^{2} \right\rbrack$$
+
+To assess the validity of the threshold, we tested the correlation of
+the measured GHI with those of the cloud-free irradiance (Figure), for
+only cloud-free measurements of days with data availability of greater
+than 80%. Due to the selection of the simulations with lower AOD and WC,
+these values have a positive bias of more than
+$18\,\text{W}/\text{m}^{2}$. This bias was desired, so that together
+with the CE criterion, could achieve a clear distinction of CE cases.
+
+![Figure 2.2: The reference green line goes through the origin with a
+slope of one.](media/rId31.png){width="5.833333333333333in"
+height="3.687330489938758in"}
+
+Figure 2.2: The reference green line goes through the origin with a
+slope of one.
 
 This is the criterion of our CE identification. The constant terms were
 determined through the implementation of an empirical method with manual
@@ -364,11 +371,19 @@ $1.496 \times 10^{8}\,\text{km}$.
 
 An example of the identification of CE events for a selected day is
 given in the Figure, where the daily course of the cloud-free reference
-irradiance and the CE and ECE identification thresholds are shown along
-with the actual GHI measurements. In addition, we provide an example
-scatter plot between the measured and the modeled cloud-free irradiance
-for one year, where the CE and ECE events are clearly grouped above the
-threshold of irradiance (Figure).
+irradiance and the CE and ECE thresholds are shown along with the actual
+GHI measurements. The GHI data in the periods 7:30 -- 8:30 and after
+14:00 are very close to the modeled cloud-free GHI (light blue line)
+thus were identified as cloud-free instances. There is some ambiguity
+for the data points laying between the CE threshold and the cloud-free
+irradiance, which are not identified as CE events. These data points
+correspond to cases either with AOD below the one assumed in the model,
+or with very small OI.
+
+In addition, we provide in Figure an example scatter plot between the
+measured GHI and the modeled cloud-free irradiance for one year (2005),
+where the CE and ECE events are clearly grouped above the cloud-free
+irradiance (approximated with the green line). (Figure).
 
 ![Figure 2.3: Example of CE identification in Thessaloniki for
 2019-07-11. The green line with blue symbols depicts the measured GHI in

@@ -204,6 +204,10 @@ trend_polyf <- function(tsy) {
   (polym_C[3] / polyf_zero) * tsy^2
 }
 
+cat("Range of delta(AOD):", signif(100 * range(trend_polyf(seq(1994, 2024, 0.01))), 2), "\n\n")
+
+cat("Range of delta(AOD):", round(100 * range(trend_polyf(seq(1994, 2024, 0.01))), 2), "\n\n")
+
 
 cat("GHI_model (abs) =", polym_C[1], "+",
                          polym_C[2], "* year_frac +",
