@@ -302,7 +302,7 @@ for (ii in 1:nrow(gather_days)) {
 
 
 cat(rep("TEST\n\n", 10))
-KEEP <- KEEP[sample(1:nrow(KEEP), 5000), ]
+KEEP <- KEEP[sample(1:nrow(KEEP), 2000), ]
 
 
 #' \newpage
@@ -340,6 +340,7 @@ print(lm(KEEP[, wattGLB, Enhanc_C_4_ref]))
 
 library(ggplot2)
 library(ggpmisc)
+library(latex2exp)
 
 
 lm_eqn <- function(x, y){
@@ -353,32 +354,40 @@ lm_eqn <- function(x, y){
 
 
 
+fit <- lm(KEEP$Enhanc_C_4_ref ~ KEEP$wattGLB)
+coef(fit)[1]
+
 ggplot(KEEP, aes(wattGLB, Enhanc_C_4_ref)) +
   geom_point(colour = "black",
              alpha  = .1,
              na.rm  = TRUE,
              size   = 0.3) +
-  geom_abline(aes(intercept = 0, slope = 1), colour = "green") +
+  geom_abline(aes(intercept = 0, slope = 1, colour = "y = x")) +
+  geom_abline(aes(intercept = coef(fit)[1], slope = coef(fit)[2], colour = "ddd")) +
   ylab(bquote("CE threshold" ~ group("[", W/m^2,"]"))) +
   xlab(bquote("GHI" ~ group("[", W/m^2,"]"))) +
-  labs(color = bquote("OI" ~ group("[", W/m^2,"]"))) +
-  stat_poly_line() +
-  stat_poly_eq(use_label(c("eq", "R2"))) +
-  geom_text(x = 300, y = 300, label = lm_eqn(KEEP$wattGLB, KEEP$Enhanc_C_4_ref), parse = TRUE)
-  # theme(
-  #   legend.title         = element_text(size = 10),
-  #   legend.position      = c(.03, .97),
-  #   legend.justification = c("left", "top"),
-  #   legend.box.just      = "right",
-  #   legend.key           = element_blank(),
-  #   legend.background    = element_rect(fill = "transparent"),
-  #   legend.margin        = margin(6, 6, 6, 6) ) +
+  # labs(color = bquote("OI" ~ group("[", W/m^2,"]"))) +
+  scale_color_manual(values = c("blue", "green"),
+                     labels = unname(TeX(c(
+                       paste("$y =", signif(coef(fit)[1], 3),
+                              "+",     signif(coef(fit)[2], 4),
+                              "\\cdot x $"),
+                       "$y = x$")))) +
+  theme(
+    legend.title         = element_blank(),
+    legend.position      = c(.03, .97),
+    legend.justification = c("left", "top"),
+    legend.text          = element_text(size = 12, face = "bold"),
+    # legend.box.just      = "right",
+    legend.key           = element_blank(),
+    # legend.background    = element_rect(color = NA),
+    # legend.margin        = margin(6, 6, 6, 6)
+    )
 #   scale_x_continuous(expand = expansion(mult = c(0.03, 0.03))) +
 #   scale_y_continuous(breaks = scales::breaks_extended(n = 6),
 #                      expand = expansion(mult = c(0.03, 0.03)))
 
-
-
+expression(y=x)
 
 
 
