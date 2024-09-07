@@ -848,8 +848,8 @@ plot(temp$Date, temp$wattGLB, col = "green",
 abline(v = date_A, col = "grey", lwd = 2, lty = 2)
 abline(v = date_B, col = "grey", lwd = 2, lty = 2)
 
-text(x = date_A, y = 200, "(a)", pos = 2, offset = 1, col = "gray")
-text(x = date_B, y = 200, "(b)", pos = 4, offset = 1, col = "gray")
+text(x = date_A, y = 200, "(a)", pos = 2, offset = 0.4, col = "gray")
+text(x = date_B, y = 200, "(b)", pos = 4, offset = 0.4, col = "gray")
 
 
 abline(h = solar_constant, col = "orange2", lty = 1, lwd = 2)

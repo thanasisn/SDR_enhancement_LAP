@@ -318,7 +318,7 @@ for (ii in 1:nrow(gather_days)) {
 
 
 fit <- lm(KEEP$Low_B.Low_W.glo ~ KEEP$wattGLB)
-caption <- paste0(KEEP[, sum(!is.na(wattGLB))], " data points from ", length(unique(KEEP[, Day])), " days with >", 100 * day_fill, "% data available")
+caption <- paste0(KEEP[, sum(!is.na(wattGLB))], " data points from ", length(unique(KEEP[, Day])), " clear days with >", 100 * day_fill, "% data available")
 
 ggplot(KEEP, aes(wattGLB, Low_B.Low_W.glo)) +
   geom_point(colour = "black",
@@ -367,7 +367,7 @@ print(lm(KEEP[, wattGLB, Low_B.Low_W.glo]))
 #+ P-validation-threshold-GHI, echo=F, include=T
 
 fit <- lm(KEEP$Enhanc_C_4_ref ~ KEEP$wattGLB)
-caption <- paste0(KEEP[, sum(!is.na(wattGLB))], " data points from ", length(unique(KEEP[, Day])), " days with >", 100 * day_fill, "% data available")
+caption <- paste0(KEEP[, sum(!is.na(wattGLB))], " data points from ", length(unique(KEEP[, Day])), " clear days with >", 100 * day_fill, "% data available")
 
 ggplot(KEEP, aes(wattGLB, Enhanc_C_4_ref)) +
   geom_point(colour = "black",
