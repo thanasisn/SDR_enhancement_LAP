@@ -758,6 +758,19 @@ cat("Solstice mean for all period", mean(solstis$Enerhy_Kj/1000, na.rm = T), "MJ
 
 
 
+## Print example day -----------
+
+example_day <- "2019-07-11"
+DT_example <- DATA[Day == example_day, .(Date, wattGLB, TYPE, Enhanc_C_4, GLB_diff, TSI_OI = wattGLB - ETH)]
+
+DT_example[  TSI_OI < 0,   TSI_OI := NA]
+DT_example[GLB_diff < 0, GLB_diff := NA]
+
+cat("doy", unique(yday(DT_example$Date)), "\n\n")
+
+pander::pander(DT_example)
+
+
 #' **END**
 #+ include=T, echo=F
 tac <- Sys.time()
