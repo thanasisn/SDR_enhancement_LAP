@@ -385,7 +385,7 @@ cat(paste("\n", per, "% of the values are below", below, "W/m^2\n\n" ))
 
 
 
-## slipt histogram
+## split histogram
 binwidth <- 30
 split    <- binwidth * 7
 
@@ -550,7 +550,6 @@ pander::pander(
 ## Test missing data  -------
 
 
-#+  echo=F, include=T, results="asis"
 
 ## test missing days
 # DATA <- readRDS("data/CE_ID_Input.Rds")
@@ -758,15 +757,21 @@ cat("Solstice mean for all period", mean(solstis$Enerhy_Kj/1000, na.rm = T), "MJ
 
 
 
-## Print example day -----------
+## Print example day -----------------------------------------------------------
+#'
+#' ## Example day
+#'
+#+ P-example-day,  echo=F, include=T
 
+## select day
 example_day <- "2019-07-11"
+
 DT_example <- DATA[Day == example_day, .(Date, wattGLB, TYPE, Enhanc_C_4, GLB_diff, TSI_OI = wattGLB - ETH)]
 
 DT_example[  TSI_OI < 0,   TSI_OI := NA]
 DT_example[GLB_diff < 0, GLB_diff := NA]
 
-cat("doy", unique(yday(DT_example$Date)), "\n\n")
+cat("Doy", unique(yday(DT_example$Date)), "\n\n")
 
 pander::pander(DT_example)
 
@@ -777,25 +782,114 @@ pander::pander(DT_example)
 library(magick)
 
 
-left  <- image_read("/home/folder/LAP_skycam/skycam/2019/1922019/ 1922019101501.JPEG")
+left  <- image_read("/home/folder/LAP_skycam/skycam/2019/1922019/ 1922019100002.JPEG")
 right <- image_read("/home/folder/LAP_skycam/skycam/2019/1922019/ 1922019103001.JPEG")
 
-print(left)
+# print(left)
 
 
-image_info(left)
+# image_info(left)
 
 
-dd <- image_crop(left,
-           geometry = "960x1200+180+0")
-image_info(dd)
-
-
-image_scale(
+ll <- image_scale(
   image_crop(left,
-             geometry = "960x960+150+0"),
-  "400"
+             geometry = "960x1200+180+0"),
+  "600")
+rr <- image_scale(
+  image_crop(right,
+                 geometry = "960x1200+180+0"),
+  "600")
+
+
+A <- image_ggplot(ll) +
+  annotate(geom = "text", x = 10, y = 15,  label = "(a)",       hjust = 0, vjust = 0, size =  7, colour = "orange") +
+  annotate(geom = "text", x = 15, y = 585, label = "10:00 UTC", hjust = 0, vjust = 1, size =  7, colour = "orange")
+date_A <- as.POSIXct(strptime(paste(example_day,   "10:00"), "%F %H:%M"))
+
+B <- image_ggplot(rr) +
+  annotate(geom = "text", x = 10, y = 15,  label = "(b)",       hjust = 0, vjust = 0, size =  7, colour = "orange") +
+  annotate(geom = "text", x = 15, y = 585, label = "10:30 UTC", hjust = 0, vjust = 1, size =  7, colour = "orange")
+date_B <- as.POSIXct(strptime(paste(example_day,   "10:30"), "%F %H:%M"))
+
+
+grid.arrange(A, B, nrow = 1)
+
+
+# library(grid)
+# library(gridExtra)
+#
+# image_info(ll)
+#
+# a <- rasterGrob(ll)
+# b <- rasterGrob(rr)
+#
+# grid.arrange(a, b, nrow = 1, labels = c("a", "b"))
+#
+# library(ggpubr)
+# ggarrange(a, b, ncol = 2, labels = c("a)","b)"))
+
+
+
+
+
+temp <- DATA[Day == example_day]
+par(mar = c(4, 4, 1, 1))
+# ylim <- range(0, temp$ETH, temp$wattGLB, na.rm = TRUE)
+ylim <- range(0, temp$ETH, temp$wattGLB, solar_constant, na.rm = TRUE)
+
+plot(temp$Date, temp$wattGLB, col = "green",
+     pch  = ".", cex = 2,
+     ylim = ylim,
+     ylab = bquote("GHI" ~ group("[", W/m^2,"]")),
+     xlab = "Time (UTC)")
+
+## mark photos
+abline(v = date_A, col = "grey", lwd = 2, lty = 2)
+abline(v = date_B, col = "grey", lwd = 2, lty = 2)
+
+text(x = date_A, y = 200, "(a)", col = "gray")
+text(x = date_B, y = 200, "(b)", col = "gray")
+
+
+abline(h = solar_constant, col = "orange2", lty = 1, lwd = 2)
+
+## Global
+lines(temp$Date, temp$wattGLB, col = "green")
+
+## TSI on ground
+lines(temp$Date, temp$ETH)
+
+## Active model reference
+lines(temp[, get(paste0(SelEnhanc, "_ref")), Date], col = "red" )
+
+## Cloud-free ref
+lines(temp[, get(paste0(csmodel,".glo")), Date], col = "darkorchid" )
+
+
+## Enchantment cases
+points(temp[get(SelEnhanc) == TRUE & wattGLB <  ETH, wattGLB, Date], col = "burlywood4")
+points(temp[get(SelEnhanc) == TRUE & wattGLB >= ETH, wattGLB, Date], col = "red")
+
+
+## Cloud cases
+points(temp[TYPE == "Cloud", wattGLB, Date], col = "blue", pch = 3, cex = 0.3)
+
+## Decorations
+# title(main = paste(as.Date(aday, origin = "1970-01-01"), temp[get(SelEnhanc) == TRUE, .N], temp[TYPE == "Cloud", .N], vec_days$Descriprion[ii]))
+title(main = paste(as.Date(example_day, origin = "1970-01-01")))
+
+legend("bottomright", ncol = 2,
+       c(  "GHI","CE threshold","TSI at TOA on horizontal plane","Solar Constant", "CE events","ECE events","Identified clouds",  "Cloud-free"),
+       col = c("green",         "red",                  "black",       "orange2","burlywood4",       "red",             "blue","darkorchid"),
+       pch = c(     NA,            NA,                       NA,              NA,          1 ,          1 ,                  3,           NA),
+       lty = c(      1,             1,                        1,               1,          NA,          NA,                 NA,            1),
+       lwd = c(      1,             1,                        1,               2,          NA,          NA,                 NA,            1),
+       bty = "n",
+       cex = 0.8
 )
+
+
+
 
 
 
