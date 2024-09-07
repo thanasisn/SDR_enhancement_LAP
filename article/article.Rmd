@@ -263,7 +263,9 @@ than $`r 90 - BIO_ELEVA`^\circ$.  Finally, images from a sky camera have been us
 the manual inspection of the CE identification. The sky camera has been operating
 since 2012 and stores images in 5 min time steps.  An overview of the GHI data used
 in this study is given in
-Figure\nobreakspace{}\ref{fig:CLB-daily}, as the daily means.
+Figure\nobreakspace{}\ref{fig:CLB-daily}, as the daily means.  Daily means were
+calculated only for days with at least $60\,\%$ of data availability; however, all
+available one-minute measurements have been used for the detection of CE events.
 
 ```{r CLB-daily, echo=FALSE, fig.cap="Timeseries of daily mean GHI measured at Thessaloniki for the period 1994 -- 2023."}
 knitr::include_graphics("../images/P_daily_trend-3.png")

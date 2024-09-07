@@ -1,5 +1,5 @@
 ---
-date: 2024-09-06
+date: 2024-09-07
 title: Analysis of cloud enhancement events in a 30-year record of
   global solar irradiance at Thessaloniki, Greece
 ---
@@ -17,14 +17,14 @@ aerosol optical depth data from a collocated Cimel sun photometer and a
 Brewer spectrophotometer. We found a trend in CE events of
 $+ 111 \pm 27\,\text{cases}/\text{year}$, and a trend in the
 corresponding irradiation of $+ 325.2 \pm 88\,\text{kJ}/\text{year}$.
-The peak of the CE events was observed during May and June. An analysis
-of the total duration of CE events, showed that with durations longer
-than 5 minutes are very rare, with exceptions lasting over an hour and
-up to 140 minutes. Finally, we have detected enhancements above the
-total solar irradiance at the top of the atmosphere for the same solar
-zenith angle of up to $400\,\text{W}/\text{m}^{2}$, with the $75\,\%$ of
-the cases below $200\,\text{W}/\text{m}^{2}$. Most of these extreme
-events occur in spring -- early summer, with a secondary peak in autumn.
+The peak of the CE events was observed during May and June. CE events
+with duration longer than 5min are very rare, with exceptions lasting
+over an hour and up to 140 minutes. Finally, we have detected
+enhancements above the total solar irradiance at the top of the
+atmosphere for the same solar zenith angle of up to
+$400\,\text{W}/\text{m}^{2}$, with the $75\,\%$ of the cases below
+$200\,\text{W}/\text{m}^{2}$. Most of these extreme events occur in
+spring -- early summer, with a secondary peak in autumn.
 
 # 1 Introduction
 
@@ -141,7 +141,9 @@ angle (SZA) greater than $78^{\circ}$. Finally, images from a sky camera
 have been used in the manual inspection of the CE identification. The
 sky camera has been operating since 2012 and stores images in 5 min time
 steps. An overview of the GHI data used in this study is given in
-Figure, as the daily means.
+Figure, as the daily means. Daily means were calculated only for days
+with at least $60\,\%$ of data availability; however, all available
+one-minute measurements have been used for the detection of CE events.
 
 ![Figure 2.1: Timeseries of daily mean GHI measured at Thessaloniki for
 the period 1994 -- 2023.](media/rId22.png){width="5.833333333333333in"
@@ -337,13 +339,13 @@ constant at the mean Sun - Earth distance
 and $r_{\text{m}}$ is the mean Sun -- Earth distance of
 $1.496 \times 10^{8}\,\text{km}$.
 
-An example of CE identification for a selected day is given in the
-Figure, where the daily course of the cloud-free reference irradiance
-and the CE and ECE identification thresholds are shown along with the
-actual GHI measurements. In addition, we provide an example scatter plot
-between the measured and the modeled cloud-free irradiance for one year,
-where the CE and ECE events are clearly grouped above the threshold of
-irradiance (Figure).
+An example of the identification of CE events for a selected day is
+given in the Figure, where the daily course of the cloud-free reference
+irradiance and the CE and ECE identification thresholds are shown along
+with the actual GHI measurements. In addition, we provide an example
+scatter plot between the measured and the modeled cloud-free irradiance
+for one year, where the CE and ECE events are clearly grouped above the
+threshold of irradiance (Figure).
 
 ![Figure 2.3: Example of CE identification in Thessaloniki for
 2019-07-11. The green line with blue symbols depicts the measured GHI in
@@ -381,9 +383,9 @@ were identified as CE events and $0.04\,\%$ as ECE events. The highest
 recorded GHI due to CE was $1416.6\,\text{W}/\text{m}^{2}$ on 24 May
 2007 at a SZA of ${19.9}^{\circ}$ corresponding to OI of
 $369.3\,\text{W}/\text{m}^{2}$ or $35.3\,\%$ above the threshold. The
-strongest CE event of $53\,\%$ above the cloud-free threshold was
-observed on 28 October 2016 at a SZA of ${59.2}^{\circ}$ with a GHI
-value of $861.8\,\text{W}/\text{m}^{2}$ and a OI of
+strongest CE event of $\,\%$ above the cloud-free threshold was observed
+on 28 October 2016 at a SZA of ${59.2}^{\circ}$ with a GHI value of
+$861.8\,\text{W}/\text{m}^{2}$ and a OI of
 $298.4\,\text{W}/\text{m}^{2}$. Both cases are ECE events with
 $136.8\,\text{W}/\text{m}^{2}$ and $164.5\,\text{W}/\text{m}^{2}$ above
 the TSI at TOA for the same SZA, respectively. In the following sections
