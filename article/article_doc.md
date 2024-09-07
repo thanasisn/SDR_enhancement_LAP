@@ -251,7 +251,8 @@ $55^{\circ}$ for each month in the period 1997 -- 2023. The SZA of
 $55^{\circ}$ was chosen as representative of all days in the year to get
 a rough estimate of the annually averaged change in cloud-free GHI. A
 second-degree polynomial fit was applied to the simulated yearly
-averaged GHI to derive the long-term change in GHI due to aerosols.
+averaged GHI to derive the long-term change in GHI due to aerosols
+(Equation).
 
 As AERONET data start only in 2003, we used for the period 1994 -- 2005
 estimates of changes in AOD at $340\,\text{nm}$ derived from a
@@ -291,7 +292,7 @@ Figure 2.2: Simulated long-term change in cloud-free irradiance relative
 to the climatological values due to changes in AOD in Thessaloniki for
 the period 1994 -- 2023.
 
-$$\text{AOD\ change}\lbrack\Delta\%\rbrack: - 12170 + 12.05 \cdot y + - 0.002981 \cdot y^{2}$$
+$$\Delta\left( \text{AOD} \right) = - 12170 + 12.05 \cdot y + - 0.002981 \cdot y^{2}\lbrack\%\rbrack$$
 
 where $y$ the date as a decimal fraction of the year
 
@@ -435,11 +436,13 @@ together with their $2\sigma$ error.
 Figure shows the time series of the yearly number of CE cases (each with
 duration of one minute), the yearly mean OI and the yearly excess
 irradiation for the period 1994 -- 2023, together with corresponding
-linear trends. All three quantities show increasing trends, most
-pronounced for the frequency of occurrence
-($+ 111 \pm 27\,\text{cases}/\text{year}$) and the excess irradiation
-($+ 325.2 \pm 88\,\text{kJ}/\text{year}$), which are also statistically
-significant. In contrast the trend of the yearly mean OI is negligible
+linear trends. To account for missing data all three quantities have
+been divided with the fraction of the valid GHI observations in each
+month. All three quantities show increasing trends, most pronounced for
+the frequency of occurrence ($+ 111 \pm 27\,\text{cases}/\text{year}$)
+and the excess irradiation ($+ 325.2 \pm 88\,\text{kJ}/\text{year}$),
+which are also statistically significant. In contrast the trend of the
+yearly mean OI is negligible
 ($+ 0.14 \pm 0.1\,\text{W}/\text{m}^{2}/\text{year}$) and of no
 statistical significance. The average OI for the entire period is
 $+ 42.6 \pm 2.8\,\text{W}/\text{m}^{2}$. The interannual variability of

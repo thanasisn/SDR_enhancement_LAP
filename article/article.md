@@ -350,7 +350,7 @@ the RTM the cloud-free GHI at SZA of $55^\circ$ for each month in the period 199
 2023. The SZA of $55^\circ$ was chosen as representative of all days in the year to
 get a rough estimate of the annually averaged change in cloud-free GHI. A
 second-degree polynomial fit was applied to the simulated yearly averaged GHI
-to derive the long-term change in GHI due to aerosols.
+to derive the long-term change in GHI due to aerosols (Equation\nobreakspace{}\ref{eq:AODchange}).
 
 As AERONET data
 start only in 2003, we used for the period 1994 -- 2005 estimates of changes in AOD
@@ -372,16 +372,6 @@ is $0.4$ with a change of $-3.8\pm0.93\,\%$ per year, corresponding to a change 
 $0.0153$ per year.  Using an Ångström coefficient $\alpha = 1.6$, this translates to
 a change in the Ångström coefficient $\beta$ of $0.00272$ per year (or $\beta=0.084$ in
 1997 and $\beta=0.059$ in 2005).
-<!--
-Simulations with uvspec for the above Ångström
-coefficients, with WC of
-$15.7\,\text{mm}$ and
-$15.4\,\text{mm}$
-for 1997 and 2005 respectively, where for 1997 we used the first available WC data
-(i.e. 2003) as a proxy, also taken from AERONET, and for a SZA of $55^\circ$ reveal a
-change of
-$+0.21\,\%$ per year in $\text{GHI}_\text{ref}$. 
--->
 Simulations with uvspec for the above Ångström coefficients, assuming constant WC of
 $15.6\,\text{mm}$ taken from the Cimel, and for a SZA of $55^\circ$ reveal a change of
 $+0.21\,\%$ per year in $\text{GHI}_\text{ref}$.  The SZA of $55^\circ$ was chosen as
@@ -412,7 +402,7 @@ GHI_model (%)
 -->
 
 \begin{equation}
-\text{AOD change} [\Delta\%] :  -12170 + 12.05 \cdot y + -0.002981 \cdot y^2  \label{eq:AODchange}
+\Delta(\text{AOD}) = -12170 + 12.05 \cdot y + -0.002981 \cdot y^2 [\%] \label{eq:AODchange}
 \end{equation}
 where $y$ the date as a decimal fraction of the year
 
@@ -448,6 +438,13 @@ measured $\text{GHI}$:
 \begin{equation}
 \text{CE} : E > 25 + 1 \cdot \text{GHI}_\text{ref} \,\,[\text{W}/\text{m}^2] \label{eq:CE4}
 \end{equation}
+
+To assess the validity of the threshold, we tested the correlation of the measured
+GHI with those of the cloud-free irradiance (Figure), for only cloud-free
+measurements of days with data availability of greater than 80%. Due to the selection
+of the simulations with lower AOD and WC, these values have a positive
+bias of more than   (Correlation). This was desired so that together with the PSE criterion,
+we could achieve a clear distinction of PSE cases.
 
 <!--
 where: $\text{E}$ the measured irradiance, $\text{E}_\text{CSm}$ the selected
@@ -515,7 +512,7 @@ and ECE events are clearly grouped above the threshold of irradiance
 
 \begin{figure}[H]
 
-{\centering \includegraphics[width=1\linewidth]{../images/example-days-18} 
+{\centering \includegraphics[width=1\linewidth]{../images/P-example-day-2} 
 
 }
 
@@ -583,9 +580,11 @@ implementing the function 'arima' from the library 'stats' of the R programming
 language [@RCT2023]. All trends are reported together with their $2\sigma$ error.
 
 Figure\nobreakspace{}\ref{fig:P-energy} shows the time series of the yearly number of
-CE cases (each with duration of one minute), the yearly mean OI and the yearly
-excess irradiation for the period 1994 -- 2023, together with corresponding linear
-trends. All three quantities show increasing trends, most pronounced for the
+CE cases (each with duration of one minute), the yearly mean OI and the yearly excess
+irradiation for the period 1994 -- 2023, together with corresponding linear trends.
+To account for missing data all three quantities have been divided with the fraction
+of the valid GHI observations in each month.
+All three quantities show increasing trends, most pronounced for the
 frequency of occurrence 
 ($+111\pm 27\,\text{cases}/\text{year}$)
 and the excess irradiation 
