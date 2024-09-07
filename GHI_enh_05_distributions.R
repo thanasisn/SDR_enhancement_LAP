@@ -522,7 +522,6 @@ ggplot(data = DATA[wattGLB > ETH], aes(x = wattGLB - ETH)) +
 
 ##  Store some date for max cases  ------------------------
 
-DATA[, GL]
 
 MC <-   rbind(
   DATA[which.max(wattGLB),  .(Typ = "Max Global",  wattGLB, SZA, GLB_ench, GLB_diff, GLB_rati, Date, TSI_ref = ETH, TSI_OI = wattGLB - ETH)],
