@@ -771,6 +771,35 @@ cat("doy", unique(yday(DT_example$Date)), "\n\n")
 pander::pander(DT_example)
 
 
+## display sky cam images ---------
+
+
+library(magick)
+
+
+left  <- image_read("/home/folder/LAP_skycam/skycam/2019/1922019/ 1922019101501.JPEG")
+right <- image_read("/home/folder/LAP_skycam/skycam/2019/1922019/ 1922019103001.JPEG")
+
+print(left)
+
+
+image_info(left)
+
+
+dd <- image_crop(left,
+           geometry = "960x1200+180+0")
+image_info(dd)
+
+
+image_scale(
+  image_crop(left,
+             geometry = "960x960+150+0"),
+  "400"
+)
+
+
+
+
 #' **END**
 #+ include=T, echo=F
 tac <- Sys.time()
