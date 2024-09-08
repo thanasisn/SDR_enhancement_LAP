@@ -569,7 +569,7 @@ causing weak attenuation of GHI, often indistinguishable from the attenuation by
 aerosols.
 
 
-```{r example-day, echo=FALSE, fig.cap="Example of CE identification in Thessaloniki for 2019-07-11. The green line with blue symbols depicts the measured GHI in one-minute steps. The red line shows the modelled threshold for the detection of CE events, which are denoted with red circles. The black line represents the TOA TSI on a horizontal plane, equivalent to the threshold for the identification of ECE events, shown with red circles. The purple line is the modeled cloud-free irradiance. The dark yellow line is the solar constant of $1367\\,\\text{W}/\\text{m}^{2}$", fig.pos='H'}
+```{r example-day, echo=FALSE, fig.cap="Example of CE identification in Thessaloniki for 2019-07-11. The green line with blue symbols depicts the measured GHI in one-minute steps. The red line shows the modelled threshold for the detection of CE events, which are denoted with red circles. The black line represents the TOA TSI on a horizontal plane, equivalent to the threshold for the identification of ECE events, shown with red circles. The purple line is the modeled cloud-free irradiance. The dark yellow line is the solar constant of $1367\\,\\text{W}/\\text{m}^{2}$.", fig.pos='H'}
 knitr::include_graphics("../images/P-example-day-5.png")
 ```
 
@@ -654,27 +654,22 @@ trend lines is quite large for the number of CE cases and the excess irradiation
 suggesting a significant variability in cloud patterns over the area, possibly
 associated to changes in climate.
 
-The interannual variability of the data about the trend lines is quite large.
-Furthermore, the spread tends to increase with time (at least for the quantities of
-panels b and c), suggesting a significant variability in cloud patterns over the
-area, possibly associated to changes in climate.
-
-We have to note that the excess irradiation related to the CE events cannot be
-directly linked to the total energy balance of the atmosphere. The net solar
-radiation of the region is not increased, but is rather redistributed through the CE
-events.  This is also depicted by the ECE irradiance values, which exceed the
-equivalent cloud-free irradiance by a significant amount.
+We must note that the excess irradiation from the CE events that is received at the
+surface does not affect the balance of the energy budget in the atmosphere. The
+incoming solar radiation in the region is not increased by the OI but is rather
+redistributed through the CE events.  This is also depicted by the ECE irradiance
+values, which exceed the equivalent cloud-free irradiance by a significant amount.
 
 \begin{figure}% [h!]
-        {\centering 
-            \subfloat[\label{fig:P-energy-mean}]
-                {\includegraphics[width=\linewidth]{../images/P-energy-complete-3} }\\
+        {\centering
             \subfloat[\label{fig:P-energy-N}]
                 {\includegraphics[width=\linewidth]{../images/P-energy-complete-2} }\\
+            \subfloat[\label{fig:P-energy-mean}]
+                {\includegraphics[width=\linewidth]{../images/P-energy-complete-3} }\\
             \subfloat[\label{fig:P-energy-sum}]
                 {\includegraphics[width=\linewidth]{../images/P-energy-complete-1} }
         }
-    \caption{Time series for the period 1994 -- 2023 of (a) the yearly CE number of occurrences, (b) the yearly mean OI and (c) the yearly excess irradiation. The black lines represent the linear trends on the yearly data.}\label{fig:P-energy}
+    \caption{Time series of (a) the yearly CE number of occurrences, (b) the yearly mean OI and (c) the yearly excess irradiation at Thessaloniki for the period 1994 – 2023. The black lines represent the linear trends on the yearly data.}\label{fig:P-energy}
 \end{figure}
 
 
@@ -682,19 +677,24 @@ equivalent cloud-free irradiance by a significant amount.
 
 Next, we investigated the distribution of the CE events within the year.
 Figure\nobreakspace{}\ref{fig:relative-month-occurrences} shows the monthly box and
-whisker plot of the CE number of occurrences normalized with the highest median
-value, which occurs in June, depicting a clear seasonal cycle.  Although CE events
-are present throughout the year, the most active months are May and June. During the
-winter (December -- February), the number of CE cases is about $25\,\%$ of the
-maximum, while in the intermediate months, the number of occurrences gradually ramps
-between the maximum and minimum.  This seasonality is a combined effect of different
-factors, among them the types of clouds, their frequency of occurrence, the
-seasonally varying relative position of the sun, as well as the local landscape
-characteristics that may influence the formation of the clouds.  Unfortunately, lack
-of detailed data on cloud formation, type and location is not allowing further
-analysis. The interannual variability of the monthly CE events is quite high as
-manifested by the large monthly extremes, especially in the summer.
-
+whisker plot of the number of occurrences of the CE events in percent, calculated
+relative to the available one-minute data in each month.  Although CE events are
+present throughout the year, showing a clear seasonal cycle, the most active months
+are May and June, with their median representing about $3\,\%$ of the data.  The
+least frequent events (about $1\,\%$) occur in August and during winter (December --
+February).  This seasonality is a combined effect of different factors, among them
+the types of clouds, their frequency of occurrence, the seasonally varying relative
+position of the sun, as well as the local landscape characteristics that may
+influence the formation of the clouds.  For example, during May and June the frequent
+formation of cumulus clouds in the area leads to a significant increase in the CE
+events.  However, the lack of detailed data in the area on cloud characteristics does
+not allow further analysis. Finally, the interannual variability of the monthly CE
+events is quite high as manifested by the size of the boxes and the large monthly
+extremes, especially in the summer. Investigation of the causes of this variability
+is beyond the scope of this study. It could possibly be related to the cloud cover
+variability in winter and autumn over southern Europe, associated with the North
+Atlantic Oscillation (NAO)
+circulation 
 
 ```{r relative-month-occurrences, echo=FALSE, fig.cap="Seasonal variability of the number of CE events relative to the corresponding number of GHI measurements in Thessaloniki for the period 1994 -- 2023, in the form of a box and whisker plot. The box contains the data between the lower $25\\,\\%$ and the upper $75\\,\\%$ percentiles, the thick horizontal line and the diamond symbol represent the median and the mean values, respectively. The vertical lines (whiskers) extend between the maximum and minimum monthly values."}
 knitr::include_graphics("../images/P-CE-climatology-normlz-1.png")

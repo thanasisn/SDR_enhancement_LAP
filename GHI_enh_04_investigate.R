@@ -1919,7 +1919,7 @@ p1 <- ggplot(dataset,
                        pretty(dataset[, year], n = 4),
                        max(ceiling(dataset[, year]))),
                      minor_breaks = seq(1990, 2050, by = 1) )
-p1
+p1 + theme(aspect.ratio = 0.34)
 
 
 
@@ -1964,7 +1964,8 @@ p2 <- ggplot(dataset,
              shape = 17,
              size  = 3) +
   geom_abline(intercept = lmY2$coefficients[1], slope = lmY2$coefficients[2]) +
-  ylab(bquote("CE" ~ .(varname(pvar2)) ~ .(staname(pvar2)))) +
+  # ylab(bquote("CE" ~ .(varname(pvar2)) ~ .(staname(pvar2)))) +
+  ylab("Number of CE events") +
   xlab("Date") +
   annotation_custom(grob) +
   scale_y_continuous(guide        = "axis_minor",
@@ -1976,7 +1977,7 @@ p2 <- ggplot(dataset,
                        pretty(dataset[,year], n = 4),
                        max(ceiling(dataset[,year]))),
                      minor_breaks = seq(1990, 2050, by = 1) )
-p2
+p2 + theme(aspect.ratio = 0.35)
 
 
 ###  Mean OIR energy per year -------------
@@ -2033,7 +2034,7 @@ p3 <- ggplot(dataset,
                        pretty(dataset[,year], n = 4),
                        max(ceiling(dataset[,year]))),
                      minor_breaks = seq(1990, 2050, by = 1) )
-p3
+p3 + theme(aspect.ratio = 0.35)
 
 
 
@@ -2093,7 +2094,7 @@ p4 <- ggplot(dataset,
                        pretty(dataset[,year], n = 4),
                        max(ceiling(dataset[,year]))),
                      minor_breaks = seq(1990, 2050, by = 1) )
-p4
+p4 + theme(aspect.ratio = 0.35)
 
 
 write.csv(yeartrends, "./figures/Daily_trends_byYear_Proper.csv")
