@@ -242,7 +242,7 @@ ${}^{}$for each month in the period 1997-2023. The SZA of ${}^{}$ was
 chosen as representative of all days in the year to get a rough estimate
 of the annually averaged change in cloud-free GHI. A second-degree
 polynomial fit was applied to the simulated yearly averaged GHI to
-derive the long-term change in GHI due to aerosols \[Equation inserted
+derive the long-term change in GHI due to aerosols: \[Equation inserted
 here\]. ${}_{}$$$$$$$$$$$$$$$$$$$$$${}^{}$$$${}_{}$${}^{}$$$Finally, we
 applied these long-term changes by Equation to the climatological
 ${GHI}_{ref}$, to create a more realistic representation of the
@@ -271,22 +271,27 @@ clearness, by using in the RTM the monthly climatological AOD and WC,
 less their respective standard deviations. These values represent
 typical atmospheres in Thessaloniki with lower-than-average load of
 aerosols and humidity, which are the main factors that attenuate the
-GHI, excluding clouds. With this approach the simulated ${GHI}_{ref}$
+GHI, excluding clouds. With this approach, the simulated ${GHI}_{ref}$
 should be generally greater than the measured GHI when aerosols are more
-abundant. To compensate for this, we defined the following threshold $E$
-to compare the measured $GHI$:
+abundant. The correlation of the \$\\text{GHI}\_{\\text{ref}}\$ with the
+GHI was tested for a subset of cloud-free days with more than 80% data
+availability (Figure) and found to have a positive bias of more than 18
+W/m\^2 across all levels of radiation. To achieve a robust and clear
+distinction of CE cases, we set the criteria of CE detection 25 W/m\^2
+above the \$\\text{GHI}\_{\\text{ref}}\$.
 
-$CE:E > 15 + 1.04 \cdot {GHI}_{ref}\left\lbrack \frac{W}{m^{2}} \right\rbrack$
+\[Figure inserted\]
 
-This is the criterion of our CE identification. The constant terms were
-determined through the implementation of an empirical method with manual
-inspection of the CE identification results on selected days of the
-whole dataset. We tested seven sets of days with different
+$E$$GHI$
+$CE:E > 15 + 1.04 \cdot {}_{ref}\left\lbrack \frac{}{{}^{2}} \right\rbrack$
+To further ensure the effectiveness of this CE criterion, we implement a
+manual inspection of the CE identification results on selected days of
+the whole dataset. We tested seven sets of days with different
 characteristics relevant to the efficiency of the identification
 threshold. These sets were random groups of about 20 -- 30 days with the
 following characteristics: (a) the strongest OI CE events, (b) the
-largest daily total OI, (c) absence of clouds (by implementing a clear
-sky identification algorithm as discussed in Natsis, Bais, and Meleti
+largest daily total OI, (c) absence of clouds (by implementing a cloud
+identification algorithm as discussed in Natsis, Bais, and Meleti
 (2023)), (d) absence of clouds and absence of CE events, (e) with at
 least $60\%$ of the day length without clouds and presence of CE events,
 (h) randomly selected days, and (i) manually selected days. For the
@@ -328,32 +333,32 @@ or with very small OI.
 In addition, we provide in Figure 4 an example scatter plot between the
 measured GHI and the modeled cloud-free irradiance for one year (2005),
 where the CE and ECE events are clearly grouped above the cloud-free
-irradiance (green line). The grey colored data points above this line
-correspond to the ambiguous data points discussed above. Finally, the
-black belt just below the green line is formed from data measured mainly
-under cloud-free conditions with the spread likely caused by the
-short-term variability of AOD. A small fraction of these data
-corresponds also to cases with thin cirrus clouds causing weak
+irradiance (approximated with the green line). The grey colored data
+points above this line correspond to the ambiguous data points discussed
+above. Finally, the black belt just below the green line is formed from
+data measured mainly under cloud-free conditions, with the spread likely
+caused by the short-term variability of AOD. A small fraction of these
+data corresponds also to cases with thin cirrus clouds causing weak
 attenuation of GHI, often indistinguishable from the attenuation by
 aerosols.
 
-![](media/image7.png){width="6.5in" height="4.121527777777778in"}
+![](media/image8.png){width="6.5in" height="4.121527777777778in"}
 
 *Figure 2.2: Example of CE identification in Thessaloniki for
-2019-07-11. The green line with blue symbols depicts the measured GHI
-in* *one-minute steps. The* *red line shows the modelled threshold* $E$
-*for the detection of CE events, which are denoted with red circles.*
-*The* *black line* *represents the TOA TSI on a* *horizontal plane,
-equivalent to the threshold for the identification of ECE events, shown
-with red circles.* *The purple line is the modeled cloud-free
-irradiance. The dark yellow line is the solar constant of 1361 W/m^2^*
+2019-07-11. The green line with blue symbols depicts the measured GHI in
+one-minute steps. The red line shows the modelled threshold* $E$*for the
+detection of CE events, which are denoted with red circles. The black
+line represents the TOA TSI on a horizontal plane, equivalent to the
+threshold for the identification of ECE events, shown with red circles.*
+*The purple line is the modeled cloud-free irradiance. The dark yellow
+line is the solar constant of 1361 W/m^2^*
 
 ![Figure 2.3: Example scatter plot of the measured GHI and the reference
 clear sky irradiance in Thessaloniki for the year 2005. The
 over-irradiance for CE and ECE events is color coded, while the
 remaining data points are shown in black. The reference green line goes
 through the origin with a slope of
-one.](media/image10.png){width="5.833333333333333in"
+one.](media/image6.png){width="5.833333333333333in"
 height="3.6354166666666665in"}
 
 *Figure 2.3: Example scatter plot of the measured GHI and the reference
@@ -426,7 +431,7 @@ increased by the OI but is rather redistributed through the CE events.
 This is also depicted by the ECE irradiance values, which exceed the
 equivalent cloud-free irradiance by a significant amount.
 
-![](media/image8.png){width="3.15625in" height="6.15625in"}
+![](media/image10.png){width="3.15625in" height="6.15625in"}
 
 Figure 5: Time series of (a) the yearly CE number of occurrences, (b)
 the yearly mean OI and (c) the yearly excess irradiation at Thessaloniki
@@ -460,7 +465,7 @@ circulation (Chiacchio and Wild, 2010), or to the observed decreasing
 trend in cloud cover as a result of global warming (e.g.,
 Sanchez-Lorenzo et al, 2017).
 
-![](media/image3.png){width="5.03125in" height="3.0625in"}
+![](media/image7.png){width="5.03125in" height="3.0625in"}
 
 *Figure 3.1: Seasonal variability of the relative occurrence of CE
 events in Thessaloniki for the period 1994 -- 2023, in the form of a box
@@ -489,7 +494,7 @@ the characteristics and magnitude of the CE events.
 ![Figure 3.2: Relative frequency distribution of CE events in
 Thessaloniki for the period 1993 -- 2023 as a function of OI. The
 histogram was split in two plots with different y-axis scales for better
-readability.](media/image6.png){width="5.833333333333333in"
+readability.](media/image5.png){width="5.833333333333333in"
 height="3.702777777777778in"}
 
 *Figure 3.2: Relative frequency distribution of CE events in
@@ -514,7 +519,7 @@ than 5 minutes.
 CE events according to their duration for Thessaloniki in the period
 1993 -- 2023. The histogram was split in two plots with different y-axis
 scales for better
-readability.](media/image5.png){width="5.833333333333333in"
+readability.](media/image3.png){width="5.833333333333333in"
 height="3.7375in"}
 
 *Figure 3.3: Relative frequency distribution of CE groups of consequent
@@ -568,7 +573,7 @@ well below 0.1 % of the data, therefore on average it would not affect
 the production of solar energy. However, during short, isolated periods
 extreme enhancements of GHI can be of concern.
 
-![](media/image9.png){width="5.177083333333333in"
+![](media/image1.png){width="5.177083333333333in"
 height="3.1930555555555555in"} Figure 3.5: Seasonal variability of the
 relative occurrence of ECE events in Thessaloniki for the period 1994 --
 2023, in the form of a box and whisker plot. The box contains the data
@@ -585,7 +590,7 @@ with the results of Vamvakas, Salamalikis, and Kazantzidis (2020), the
 only difference being that the OI values reported for are higher than
 those for Thessaloniki.
 
-![](media/image4.png){width="4.0625in" height="2.526388888888889in"}
+![](media/image9.png){width="4.0625in" height="2.526388888888889in"}
 
 *Figure 3.6: Relative frequency distribution of ECE events in
 Thessaloniki for the period 1994 -- 2023.*
