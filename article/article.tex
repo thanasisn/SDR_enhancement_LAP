@@ -295,7 +295,7 @@ which is a simple clear sky radiation model and was already adjusted and
 applied to our data \citep{Natsis2023}. We created a threshold by using
 an appropriate relative and/or an additional constant offset. The
 initial results showed that we can detect a big portion of the actual CE
-events. However, by inspecting the daily plots of irradiance it became
+events. However, by inspecting the daily plots of irradiance, it became
 evident that changes in atmospheric conditions introduced numerous false
 positive or false negative results. The main reason for these
 discrepancies is the variability of the effects of aerosols and water
@@ -347,6 +347,27 @@ AOD and WC with the above-mentioned standard deviation offsets. Finally,
 each \(\text{GHI}_\text{ref}\) value was adjusted to the actual
 Sun-Earth distance derived by the Astropy software library
 \citep{AstropyCollaboration2022}.
+
+\textbf{to edit}
+
+The variable parameters of LUT consists of the month along with the
+relevant seasonal atmospheric profile, the climatological values of the
+alpha, beta parameters of the Ångström equation for 500nm derived from
+the 340nm, the WC, with the perturbation as described above, and the SZA
+of the simulation.
+
+For the application of the LUT, to account for the Sun's variability, in
+our one-minute GHI measurements, we adapted each modeled value by
+scaling the model's input spectrum integral, to the corresponding TSI,
+provided by NOAA \citep{Coddington2005}. Also, we account for the effect
+of the Earth -- Sun distance on the irradiance, by using the distance
+calculated by the Astropy \citep{AstropyCollaboration2022} software
+library. As needed, we interpolate the resulting irradiances to the SZA
+of our measurements. For each period of the year, we used the
+appropriate atmospheric profile (afglms or afglmw). Finally, we
+calculated the cloud-free irradiance value at the horizontal plane. With
+this method, the modeled cloud-free irradiances schemes can be directly
+compared to each measured one-minute value of GHI.
 
 \hypertarget{long-term-change-of-cloud-free-irradiance}{%
 \subsubsection{Long-term change of cloud-free

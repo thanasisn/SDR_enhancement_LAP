@@ -268,7 +268,7 @@ clear sky radiation model and was already adjusted and applied to our data
 [@Natsis2023].  We created a threshold by using an appropriate relative and/or an
 additional constant offset.  The initial results showed that we can detect a big
 portion of the actual CE events.  However, by inspecting the daily plots of
-irradiance it became evident that changes in atmospheric conditions introduced
+irradiance, it became evident that changes in atmospheric conditions introduced
 numerous false positive or false negative results. The main reason for these
 discrepancies is the variability of the effects of aerosols and water vapor which
 were not considered in the simple method.  To produce a more representative reference
@@ -292,6 +292,7 @@ of $0.2^\circ$ and for the atmospheric profiles of the Air Force Geophysics
 Laboratory [@Anderson1986] midlatitude summer and midlatitude winter, representative
 of the warm and cold seasons.
 
+
 Main factors responsible for the attenuation of the broadband downward solar
 radiation under cloud free atmospheres are aerosols and water vapor.  At
 Thessaloniki, such measurements are available since 2003 from a Cimel sun photometer,
@@ -314,21 +315,25 @@ library [@AstropyCollaboration2022].
 
 
 <!-- Lookup table -->
-<!-- 
-To create a look-up table, that aligns with our dataset, we applied some adjustments.
-To account for the Sun's variability, in our one-minute GHI measurements, we adapted
-each modeled value by scaling the model's input spectrum integral, to the
-corresponding TSI, provided by NOAA [@Coddington2005].  Also,
-we account for the effect of the Earth -- Sun distance on the irradiance, by using
-the distance calculated by the Astropy [@AstropyCollaboration2022] software library.
-As needed, we interpolate the resulting irradiances to the SZA of our
-measurements.  For each period of the year, we used the appropriate atmospheric
-profile (afglms or afglmw).  Finally, we calculated the cloud-free irradiance value at
-the horizontal plane.  Thus, we were able to emulate different atmospheric condition
-and levels of atmospheric clearness for the climatological conditions of the site.
-With this method, the modeled cloud-free irradiances can be directly compared to each
-measured one-minute value of GHI, for different conditions of atmospheric clearness.
--->
+**to edit**
+
+The variable parameters of LUT consists of the month along with the relevant seasonal
+atmospheric profile, the climatological values of the alpha, beta parameters of the
+Ångström equation for 500nm derived from the 340nm, the WC, with the perturbation as
+described above, and the SZA of the simulation.
+
+For the application of  the LUT, to account for the Sun's variability, in our
+one-minute GHI measurements, we adapted each modeled value by scaling the model's
+input spectrum integral, to the corresponding TSI, provided by NOAA
+[@Coddington2005].  Also, we account for the effect of the Earth -- Sun distance on
+the irradiance, by using the distance calculated by the Astropy
+[@AstropyCollaboration2022] software library.  As needed, we interpolate the
+resulting irradiances to the SZA of our measurements.  For each period of the year,
+we used the appropriate atmospheric profile (afglms or afglmw).  Finally, we
+calculated the cloud-free irradiance value at the horizontal plane.  With this
+method, the modeled cloud-free irradiances schemes can be directly compared to each
+measured one-minute value of GHI.
+
 
 ### Long-term change of cloud-free irradiance
 

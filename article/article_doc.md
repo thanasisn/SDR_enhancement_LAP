@@ -202,11 +202,6 @@ Air Force Geophysics Laboratory (Anderson et al. 1986) midlatitude
 summer and midlatitude winter, representative of the warm and cold
 seasons.
 
-The variable parameters of LUT consists of the month along with the
-relevant seasonal atmospheric profile, the climatological values of the
-alpha, beta parameters of the Ångström equation for 500nm derived from
-the 340nm, the WC and the SZA of the simulation.
-
 Main factors responsible for the attenuation of the broadband downward
 solar radiation under cloud free atmospheres are aerosols and water
 vapor. At Thessaloniki, such measurements are available since 2003 from
@@ -228,6 +223,27 @@ AOD and WC with the above-mentioned standard deviation offsets. Finally,
 each $\text{GHI}_{\text{ref}}$ value was adjusted to the actual
 Sun-Earth distance derived by the Astropy software library (Astropy
 Collaboration et al. 2022).
+
+**to edit**
+
+The variable parameters of LUT consists of the month along with the
+relevant seasonal atmospheric profile, the climatological values of the
+alpha, beta parameters of the Ångström equation for 500nm derived from
+the 340nm, the WC, with the perturbation as described above, and the SZA
+of the simulation.
+
+For the application of the LUT, to account for the Sun's variability, in
+our one-minute GHI measurements, we adapted each modeled value by
+scaling the model's input spectrum integral, to the corresponding TSI,
+provided by NOAA (Coddington et al. 2005). Also, we account for the
+effect of the Earth -- Sun distance on the irradiance, by using the
+distance calculated by the Astropy (Astropy Collaboration et al. 2022)
+software library. As needed, we interpolate the resulting irradiances to
+the SZA of our measurements. For each period of the year, we used the
+appropriate atmospheric profile (afglms or afglmw). Finally, we
+calculated the cloud-free irradiance value at the horizontal plane. With
+this method, the modeled cloud-free irradiances schemes can be directly
+compared to each measured one-minute value of GHI.
 
 ### 2.3.2 Long-term change of cloud-free irradiance
 
@@ -692,6 +708,11 @@ Castillejo-Cuberos, Armando, and Rodrigo Escobar. 2020. "Detection and
 Characterization of Cloud Enhancement Events for Solar Irradiance Using
 a Model-Independent, Statistically-Driven Approach." *Solar Energy* 209
 (October): 547--67. <https://doi.org/10.1016/j.solener.2020.09.046>.
+
+Coddington, Odele, Judith L. Lean, Doug Lindholm, Peter Pilewskie,
+Martin Snow, and NOAA CDR Program. 2005. "NOAA Climate Data Record (CDR)
+of Total Solar Irradiance (TSI), NRLTSI Version 2. Daily."
+<https://doi.org/10.7289/V55B00C1>.
 
 Cordero, Raúl R., Sarah Feron, Alessandro Damiani, Edgardo Sepúlveda,
 Jose Jorquera, Alberto Redondas, Gunther Seckmeyer, Jorge Carrasco,
