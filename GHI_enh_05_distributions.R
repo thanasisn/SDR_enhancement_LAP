@@ -75,6 +75,8 @@ library(grid      , quietly = TRUE, warn.conflicts = FALSE)
 library(gridExtra , quietly = TRUE, warn.conflicts = FALSE)
 library(ggplot2   , quietly = TRUE, warn.conflicts = FALSE)
 library(patchwork , quietly = TRUE, warn.conflicts = FALSE)
+library(cowplot)
+library(gridGraphics)
 
 panderOptions("table.alignment.default", "right")
 panderOptions("table.split.table",        120   )
@@ -783,37 +785,48 @@ library(magick)
 
 
 # left  <- image_read("/home/folder/LAP_skycam/skycam/2019/1922019/ 1922019100002.JPEG")
-left  <- image_read("/home/folder/LAP_skycam/skycam/2019/1922019/ 1922019101501.JPEG")
-right <- image_read("/home/folder/LAP_skycam/skycam/2019/1922019/ 1922019103001.JPEG")
+left   <- image_read("/home/folder/LAP_skycam/skycam/2019/1922019/ 1922019101501.JPEG")
+right  <- image_read("/home/folder/LAP_skycam/skycam/2019/1922019/ 1922019103001.JPEG")
+left1  <- image_read("/home/folder/LAP_skycam/skycam/2019/1922019/ 1922019093002.JPEG")
+
 
 # print(left)
 
 
 # image_info(left)
 
-
+ll1 <- image_scale(
+  image_crop(left1,
+             geometry = "960x1200+180+0"),
+  "600")
 ll <- image_scale(
   image_crop(left,
              geometry = "960x1200+180+0"),
   "600")
 rr <- image_scale(
   image_crop(right,
-                 geometry = "960x1200+180+0"),
+             geometry = "960x1200+180+0"),
   "600")
 
 
-A <- image_ggplot(ll) +
-  annotate(geom = "text", x = 10, y = 15,  label = "(a)",       hjust = 0, vjust = 0, size =  7, colour = "orange") +
-  annotate(geom = "text", x = 15, y = 585, label = "10:15 UTC", hjust = 0, vjust = 1, size =  7, colour = "orange")
-date_A <- as.POSIXct(strptime(paste(example_day,   "10:15"), "%F %H:%M"))
-
-B <- image_ggplot(rr) +
-  annotate(geom = "text", x = 10, y = 15,  label = "(b)",       hjust = 0, vjust = 0, size =  7, colour = "orange") +
-  annotate(geom = "text", x = 15, y = 585, label = "10:30 UTC", hjust = 0, vjust = 1, size =  7, colour = "orange")
-date_B <- as.POSIXct(strptime(paste(example_day,   "10:30"), "%F %H:%M"))
+A <- image_ggplot(ll1) +
+  annotate(geom = "text", x = 10, y = 15,  label = "(a)",       hjust = 0, vjust = 0, size =  6, colour = "orange") +
+  annotate(geom = "text", x = 15, y = 585, label = "09:30 UTC", hjust = 0, vjust = 1, size =  6, colour = "orange")
+date_A <- as.POSIXct(strptime(paste(example_day,   "09:30"), "%F %H:%M"))
 
 
-grid.arrange(A, B, nrow = 1)
+B <- image_ggplot(ll) +
+  annotate(geom = "text", x = 10, y = 15,  label = "(b)",       hjust = 0, vjust = 0, size =  6, colour = "orange") +
+  annotate(geom = "text", x = 15, y = 585, label = "10:15 UTC", hjust = 0, vjust = 1, size =  6, colour = "orange")
+date_B <- as.POSIXct(strptime(paste(example_day,   "10:15"), "%F %H:%M"))
+
+
+C <- image_ggplot(rr) +
+  annotate(geom = "text", x = 10, y = 15,  label = "(c)",       hjust = 0, vjust = 0, size =  6, colour = "orange") +
+  annotate(geom = "text", x = 15, y = 585, label = "10:30 UTC", hjust = 0, vjust = 1, size =  6, colour = "orange")
+date_C <- as.POSIXct(strptime(paste(example_day,   "10:30"), "%F %H:%M"))
+
+grid.arrange(A, B, C, nrow = 1)
 
 
 # library(grid)
@@ -847,9 +860,12 @@ plot(temp$Date, temp$wattGLB, col = "green",
 ## mark photos
 abline(v = date_A, col = "grey", lwd = 2, lty = 2)
 abline(v = date_B, col = "grey", lwd = 2, lty = 2)
+abline(v = date_C, col = "grey", lwd = 2, lty = 2)
 
-text(x = date_A, y = 200, "(a)", pos = 2, offset = 0.4, col = "gray")
-text(x = date_B, y = 200, "(b)", pos = 4, offset = 0.4, col = "gray")
+
+text(x = date_A, y = 200, "(a)", pos = 2, offset = 0.2, col = "gray")
+text(x = date_B, y = 200, "(b)", pos = 2, offset = 0.2, col = "gray")
+text(x = date_C, y = 200, "(c)", pos = 4, offset = 0.2, col = "gray")
 
 
 abline(h = solar_constant, col = "orange2", lty = 1, lwd = 2)
@@ -887,6 +903,80 @@ legend("bottomright", ncol = 2,
        lwd = c(      1,             1,                        1,               2,          NA,          NA,                 NA,            1),
        bty = "n",
        cex = 0.8
+)
+
+
+
+p1 <- recordPlot()
+
+
+
+# par(mar = c(4, 4, 1, 1))
+# # ylim <- range(0, temp$ETH, temp$wattGLB, na.rm = TRUE)
+# ylim <- range(0, temp$ETH, temp$wattGLB, solar_constant, na.rm = TRUE)
+#
+# plot(temp$Date, temp$wattGLB, col = "green",
+#      pch  = ".", cex = 2,
+#      ylim = ylim,
+#      ylab = bquote("GHI" ~ group("[", W/m^2,"]")),
+#      xlab = "Time (UTC)")
+#
+# ## mark photos
+# abline(v = date_A, col = "grey", lwd = 2, lty = 2)
+# abline(v = date_B, col = "grey", lwd = 2, lty = 2)
+#
+# text(x = date_A, y = 200, "(a)", pos = 2, offset = 0.4, col = "gray")
+# text(x = date_B, y = 200, "(b)", pos = 4, offset = 0.4, col = "gray")
+#
+#
+# abline(h = solar_constant, col = "orange2", lty = 1, lwd = 2)
+#
+# ## Global
+# lines(temp$Date, temp$wattGLB, col = "green")
+#
+# ## TSI on ground
+# lines(temp$Date, temp$ETH)
+#
+# ## Active model reference
+# lines(temp[, get(paste0(SelEnhanc, "_ref")), Date], col = "red" )
+#
+# ## Cloud-free ref
+# lines(temp[, get(paste0(csmodel,".glo")), Date], col = "darkorchid" )
+#
+#
+# ## Enchantment cases
+# points(temp[get(SelEnhanc) == TRUE & wattGLB <  ETH, wattGLB, Date], col = "burlywood4")
+# points(temp[get(SelEnhanc) == TRUE & wattGLB >= ETH, wattGLB, Date], col = "red")
+#
+#
+# ## Cloud cases
+# points(temp[TYPE == "Cloud", wattGLB, Date], col = "blue", pch = 3, cex = 0.3)
+#
+# ## Decorations
+# # title(main = paste(as.Date(aday, origin = "1970-01-01"), temp[get(SelEnhanc) == TRUE, .N], temp[TYPE == "Cloud", .N], vec_days$Descriprion[ii]))
+# title(main = paste(as.Date(example_day, origin = "1970-01-01")))
+#
+# legend("bottomright", ncol = 2,
+#        c(  "GHI","CE threshold","TSI at TOA on horizontal plane","Solar Constant", "CE events","ECE events","Identified clouds",  "Cloud-free"),
+#        col = c("green",         "red",                  "black",       "orange2","burlywood4",       "red",             "blue","darkorchid"),
+#        pch = c(     NA,            NA,                       NA,              NA,          1 ,          1 ,                  3,           NA),
+#        lty = c(      1,             1,                        1,               1,          NA,          NA,                 NA,            1),
+#        lwd = c(      1,             1,                        1,               2,          NA,          NA,                 NA,            1),
+#        bty = "n",
+#        cex = 0.8
+# )
+
+
+
+
+
+bt <- grid.arrange(A, B, C, nrow = 1)
+
+
+plot_grid(
+  p1, bt,
+  nrow = 2,
+  rel_heights = c(2,1)
 )
 
 
