@@ -185,14 +185,15 @@ transfer model uvspec, part of libRadtran (Emde et al. 2016), similarly
 to the approach used by Vamvakas, Salamalikis, and Kazantzidis (2020).
 In uvspec we used the solar spectrum of Kurucz (1994) in the range $280$
 to $2500nm$, the radiative transfer solver "disort" in "pseudospherical"
-geometry and the "LOWTRAN" gas parameterization. The model was run for a
-range of variables to create a look-up table (LUT) for the estimation of
-the cloud-free reference irradiance for each individual observation of
-our dataset. In this context, the model was run for SZAs in the range
-$10$ -- $90^{\circ}$ with a step of ${0.2}^{\circ}$ and for the
-atmospheric profiles of the Air Force Geophysics Laboratory (Anderson et
-al. 1986) midlatitude summer and midlatitude winter, representative of
-the warm and cold seasons.
+geometry and the "LOWTRAN" gas parameterization. The model was run for
+climatological values of the Angstrom coefficients, water column (WC),
+SZA and the appropriate seasonal atmospheric profile to create a look-up
+table (LUT) for the estimation of the cloud-free reference irradiance
+for each individual observation of our dataset. In this context, the
+model was run for SZAs in the range $10$ -- $90^{\circ}$ with a step of
+${0.2}^{\circ}$ and for the atmospheric profiles of the Air Force
+Geophysics Laboratory (Anderson et al. 1986) midlatitude summer and
+midlatitude winter, representative of the warm and cold seasons.
 
 Main factors responsible for the attenuation of the broadband downward
 solar radiation under cloud free atmospheres are aerosols and water
@@ -201,7 +202,7 @@ a Cimel sun photometer, which is part of the Aerosol Robotic Network
 (AERONET) (Giles et al. 2019; Buis et al. 1998). From the observations
 in the period 2003 -- 2023 we calculated the monthly climatological
 means and standard deviation ($\sigma$) for the aerosol optical depth
-(AOD) at $500nm$ and the equivalent height of the water column (WC). The
+(AOD) at $500nm$ and the equivalent height of the water column. The
 monthly climatological values of AOD and WC, as well as combinations
 with additional offsets of $\pm 1\sigma$ and $\pm 2\sigma$, were used as
 inputs to the RTM in the construction of the LUT.
@@ -336,7 +337,7 @@ corresponds also to cases with thin cirrus clouds causing weak
 attenuation of GHI, often indistinguishable from the attenuation by
 aerosols.
 
-![](media/image10.png){width="6.5in" height="4.121527777777778in"}
+![](media/image3.png){width="6.5in" height="4.121527777777778in"}
 
 *Figure 2.2: Example of CE identification in Thessaloniki for
 2019-07-11. The green line with blue symbols depicts the measured GHI
@@ -352,7 +353,7 @@ clear sky irradiance in Thessaloniki for the year 2005. The
 over-irradiance for CE and ECE events is color coded, while the
 remaining data points are shown in black. The reference green line goes
 through the origin with a slope of
-one.](media/image4.png){width="5.833333333333333in"
+one.](media/image2.png){width="5.833333333333333in"
 height="3.6354166666666665in"}
 
 *Figure 2.3: Example scatter plot of the measured GHI and the reference
@@ -425,7 +426,7 @@ increased by the OI but is rather redistributed through the CE events.
 This is also depicted by the ECE irradiance values, which exceed the
 equivalent cloud-free irradiance by a significant amount.
 
-![](media/image6.png){width="3.15625in" height="6.15625in"}
+![](media/image5.png){width="3.15625in" height="6.15625in"}
 
 Figure 5: Time series of (a) the yearly CE number of occurrences, (b)
 the yearly mean OI and (c) the yearly excess irradiation at Thessaloniki
@@ -459,7 +460,7 @@ circulation (Chiacchio and Wild, 2010), or to the observed decreasing
 trend in cloud cover as a result of global warming (e.g.,
 Sanchez-Lorenzo et al, 2017).
 
-![](media/image2.png){width="5.03125in" height="3.0625in"}
+![](media/image7.png){width="5.03125in" height="3.0625in"}
 
 *Figure 3.1: Seasonal variability of the relative occurrence of CE
 events in Thessaloniki for the period 1994 -- 2023, in the form of a box
@@ -488,7 +489,7 @@ the characteristics and magnitude of the CE events.
 ![Figure 3.2: Relative frequency distribution of CE events in
 Thessaloniki for the period 1993 -- 2023 as a function of OI. The
 histogram was split in two plots with different y-axis scales for better
-readability.](media/image5.png){width="5.833333333333333in"
+readability.](media/image11.png){width="5.833333333333333in"
 height="3.702777777777778in"}
 
 *Figure 3.2: Relative frequency distribution of CE events in
@@ -513,7 +514,7 @@ than 5 minutes.
 CE events according to their duration for Thessaloniki in the period
 1993 -- 2023. The histogram was split in two plots with different y-axis
 scales for better
-readability.](media/image1.png){width="5.833333333333333in"
+readability.](media/image6.png){width="5.833333333333333in"
 height="3.7375in"}
 
 *Figure 3.3: Relative frequency distribution of CE groups of consequent
@@ -536,7 +537,7 @@ far higher sampling rate ($100Hz$) than ours.
 ![Figure 3.4: Relation of excess irradiation of CE groups with their
 duration for Thessaloniki in the period 1993 -- 2023. The logarithmic
 color scale denotes the frequency of the respective groups of
-events.](media/image3.png){width="5.833333333333333in"
+events.](media/image10.png){width="5.833333333333333in"
 height="3.6951388888888888in"}
 
 *Figure 3.4: Relation of excess irradiation of CE groups with their
@@ -567,7 +568,7 @@ well below 0.1 % of the data, therefore on average it would not affect
 the production of solar energy. However, during short, isolated periods
 extreme enhancements of GHI can be of concern.
 
-![](media/image11.png){width="5.177083333333333in"
+![](media/image9.png){width="5.177083333333333in"
 height="3.1930555555555555in"} Figure 3.5: Seasonal variability of the
 relative occurrence of ECE events in Thessaloniki for the period 1994 --
 2023, in the form of a box and whisker plot. The box contains the data
@@ -584,7 +585,7 @@ with the results of Vamvakas, Salamalikis, and Kazantzidis (2020), the
 only difference being that the OI values reported for are higher than
 those for Thessaloniki.
 
-![](media/image7.png){width="4.0625in" height="2.526388888888889in"}
+![](media/image1.png){width="4.0625in" height="2.526388888888889in"}
 
 *Figure 3.6: Relative frequency distribution of ECE events in
 Thessaloniki for the period 1994 -- 2023.*
