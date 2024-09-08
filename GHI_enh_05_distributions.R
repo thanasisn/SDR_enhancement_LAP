@@ -276,7 +276,7 @@ DATA[, TSI_OI := wattGLB - ETH]
 cat("Maximum TSI OI:", round(max(DATA[TSI_OI > 0, TSI_OI]), 1), "W/m^2\n\n")
 
 cat("Quantiles of TSI OI:\n")
-print(round(quantile(DATA[TSI_OI > 0, TSI_OI]), 1))
+pander::pander(quantile(DATA[TSI_OI > 0, TSI_OI]))
 
 
 
@@ -537,18 +537,22 @@ ggplot(data = DATA[wattGLB > ETH], aes(x = wattGLB - ETH)) +
 
 
 MC <-   rbind(
-  DATA[which.max(wattGLB),  .(Typ = "Max Global",  wattGLB, SZA, GLB_ench, GLB_diff, GLB_rati, Date, TSI_ref = ETH, TSI_OI = wattGLB - ETH)],
-  DATA[which.max(GLB_ench), .(Typ = "Max Enh abs", wattGLB, SZA, GLB_ench, GLB_diff, GLB_rati, Date, TSI_ref = ETH, TSI_OI = wattGLB - ETH)],
-  DATA[which.max(GLB_ench), .(Typ = "Max Enh rat", wattGLB, SZA, GLB_ench, GLB_diff, GLB_rati, Date, TSI_ref = ETH, TSI_OI = wattGLB - ETH)]
+  DATA[which.max(wattGLB),  .(Typ = "Max Global",  wattGLB, SZA, GLB_ench, GLB_diff, GLB_rati, Date, TSI_ref = ETH, TSI_OI)],
+  DATA[which.max(GLB_ench), .(Typ = "Max Enh abs", wattGLB, SZA, GLB_ench, GLB_diff, GLB_rati, Date, TSI_ref = ETH, TSI_OI)],
+  DATA[which.max(GLB_ench), .(Typ = "Max Enh rat", wattGLB, SZA, GLB_ench, GLB_diff, GLB_rati, Date, TSI_ref = ETH, TSI_OI)],
+  DATA[which.max(TSI_OI),   .(Typ = "Max ECE",     wattGLB, SZA, GLB_ench, GLB_diff, GLB_rati, Date, TSI_ref = ETH, TSI_OI)]
 )
 MC[, DOY := yday(Date)]
 MC[, Localtime := paste(as.POSIXlt(Date, tz = "Europe/Athens"))]
+
+
 
 
 saveRDS(MC, "data/Max_cases.Rds")
 
 
 pander::pander(MC, caption = "Max enhancements")
+
 
 MC2 <- ST_G0[which.max(GLB_diff.N), .(Date, GLB_diff.N, SZA.first, SZA.last, SZA.min, SZA.max)]
 MC2[ , DOY := yday(Date)]
@@ -914,7 +918,7 @@ points(temp[TYPE == "Cloud", wattGLB, Date], col = "blue", pch = 3, cex = 0.3)
 title(main = paste(as.Date(example_day, origin = "1970-01-01")))
 
 legend("bottom", ncol = 2,
-       c(  "GHI","CE threshold","TSI at TOA on horizontal plane","Solar Constant", "CE events   ","ECE events     ","Identified clouds    ",  "Cloud-free    "),
+       c(  "GHI","CE threshold","TOA TSI on horiz. plane             ","Solar Constant", "CE events   ","ECE events     ","Identified clouds    ",  "Cloud-free    "),
        col = c("green",         "red",                  "black",       "orange2","burlywood4",       "red",             "blue","darkorchid"),
        pch = c(     NA,            NA,                       NA,              NA,          1 ,          1 ,                  3,           NA),
        lty = c(      1,             1,                        1,               1,          NA,          NA,                 NA,            1),

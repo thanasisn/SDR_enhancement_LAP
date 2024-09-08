@@ -1911,7 +1911,7 @@ p1 <- ggplot(dataset,
   annotation_custom(grob) +
   scale_y_continuous(guide        = "axis_minor",
                      labels = function(x) x / 1000,
-                     minor_breaks = seq(0, 500, by = 25)) +
+                     minor_breaks = seq(0, 50000, by = 500)) +
   scale_x_continuous(guide        = "axis_minor",
                      limits = c(1993, NA),
                      breaks = c(
@@ -1968,7 +1968,7 @@ p2 <- ggplot(dataset,
   xlab("Date") +
   annotation_custom(grob) +
   scale_y_continuous(guide        = "axis_minor",
-                     minor_breaks = seq(0, 500, by = 25)) +
+                     minor_breaks = seq(0, 50000, by = 200)) +
   scale_x_continuous(guide        = "axis_minor",
                      limits = c(1993, NA),
                      breaks = c(
@@ -2025,7 +2025,7 @@ p3 <- ggplot(dataset,
   xlab("Date") +
   annotation_custom(grob) +
   scale_y_continuous(guide        = "axis_minor",
-                     minor_breaks = seq(0, 500, by = 25)) +
+                     minor_breaks = seq(0, 500, by = 1)) +
   scale_x_continuous(guide        = "axis_minor",
                      limits = c(1993, NA),
                      breaks = c(
@@ -2085,7 +2085,7 @@ p4 <- ggplot(dataset,
   xlab("Date") +
   annotation_custom(grob) +
   scale_y_continuous(guide        = "axis_minor",
-                     minor_breaks = seq(0, 500, by = 25)) +
+                     minor_breaks = seq(0, 500, by = 1)) +
   scale_x_continuous(guide        = "axis_minor",
                      limits = c(1993, NA),
                      breaks = c(

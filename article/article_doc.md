@@ -15,14 +15,14 @@ identified the cloud enhancement (CE) events by creating an appropriate
 cloud-free irradiance reference using a radiative transfer model and
 aerosol optical depth data from a collocated Cimel sun photometer and a
 Brewer spectrophotometer. We found a trend in CE events of
-$+ 111 \pm 27\,\text{cases}/\text{year}$, and a trend in the
-corresponding irradiation of $+ 325.2 \pm 88\,\text{kJ}/\text{year}$.
+$+ 112 \pm 35\,\text{cases}/\text{year}$, and a trend in the
+corresponding irradiation of $+ 329.9 \pm 112\,\text{kJ}/\text{year}$.
 The peak of the CE events was observed during May and June. CE events
 with duration longer than 10min are very rare ($< 8\,\%$), with
 exceptions lasting over an hour and up to 140 minutes. Finally, we have
 detected enhancements above the total solar irradiance at the top of the
 atmosphere for the same solar zenith angle of up to
-$209\,\text{W}/\text{m}^{2}$, with the $75\,\%$ of the cases below
+$204\,\text{W}/\text{m}^{2}$, with the $75\,\%$ of the cases below
 $40\,\text{W}/\text{m}^{2}$. Most of these extreme events occur in
 spring -- early summer, with a secondary peak in autumn.
 
@@ -147,7 +147,7 @@ one-minute measurements have been used for the detection of CE events.
 
 ![Figure 2.1: Timeseries of daily mean GHI measured at Thessaloniki for
 the period 1994 -- 2023.](media/rId22.png){width="5.833333333333333in"
-height="3.593332239720035in"}
+height="3.5861603237095365in"}
 
 Figure 2.1: Timeseries of daily mean GHI measured at Thessaloniki for
 the period 1994 -- 2023.
@@ -404,10 +404,10 @@ were identified as CE events and $0.036\,\%$ as ECE events. The highest
 recorded GHI due to CE was $1416.6\,\text{W}/\text{m}^{2}$ on 24 May
 2007 at a SZA of ${19.9}^{\circ}$ corresponding to OI of
 $369.3\,\text{W}/\text{m}^{2}$ or $35.3\,\%$ above the threshold. The
-strongest CE event of $\,\%$ above the cloud-free threshold was observed
-on 28 October 2016 at a SZA of ${59.2}^{\circ}$ with a GHI value of
-$861.8\,\text{W}/\text{m}^{2}$ and a OI of
-$298.4\,\text{W}/\text{m}^{2}$. Both cases are ECE events with
+strongest CE event of $53\,\%$ above the cloud-free threshold was
+observed on 28 October 2016 at a SZA of ${59.2}^{\circ}$ with a GHI
+value of $861.8\,\text{W}/\text{m}^{2}$ and a OI of
+$298.4\,\text{W}/\text{m}^{2}$. Both cases are also ECE events with
 $131.2\,\text{W}/\text{m}^{2}$ and $161.5\,\text{W}/\text{m}^{2}$ above
 the TSI at TOA for the same SZA, respectively. In the following sections
 we are discussing the long-term trends and variability of the CE events
@@ -438,16 +438,29 @@ linear trends. To account for missing data, all three quantities have
 been divided with the fraction of the valid GHI observations in each
 month. Statistically significant (at the $95\,\%$ confidence level)
 increasing trends appear for the yearly number of CE events
-($+ 111 \pm 27\,\text{cases}/\text{year}$) and the excess irradiation
-($+ 325.2 \pm 88\,\text{kJ}/\text{year}$), while the the trend in the
+($+ 112 \pm 35\,\text{cases}/\text{year}$) and the excess irradiation
+($+ 329.9 \pm 112\,\text{kJ}/\text{year}$), while the the trend in the
 yearly mean OI is negligible
-($+ 0.14 \pm 0.1\,\text{W}/\text{m}^{2}/\text{year}$) and of no
+($+ 0.11 \pm 0.2\,\text{W}/\text{m}^{2}/\text{year}$) and of no
 statistical significance. The average OI for the entire period is
-$+ 42.6 \pm 2.8\,\text{W}/\text{m}^{2}$. The interannual variability of
-the data about the trend lines is quite large. Furthermore, the spread
-tends to increase with time (at least for the quantities of panels b and
-c), suggesting a significant variability in cloud patterns over the
-area, possibly associated to changes in climate.
+$+ 42.6 \pm 2.8\,\text{W}/\text{m}^{2}$. The yearly excess irradiation
+due to CE events ranges between about $8$ and
+$24\,\text{MJ}/\text{m}^{2}$. On average, it is about one half of the
+highest daily irradiation of \~31 MJ/m^2^ under cloud-free conditions
+recorded at the summer solstice in Thessaloniki. Therefore, from solar
+energy perspective the yearly excess irradiation is only a tiny fraction
+of the available solar energy. Although the interannual variability of
+the mean OI is rather weak, the variability about the trend lines is
+quite large for the number of CE cases and the excess irradiation
+(panels b and c). For these two quantities the spread tends to increase
+with time, suggesting a significant variability in cloud patterns over
+the area, possibly associated to changes in climate.
+
+The interannual variability of the data about the trend lines is quite
+large. Furthermore, the spread tends to increase with time (at least for
+the quantities of panels b and c), suggesting a significant variability
+in cloud patterns over the area, possibly associated to changes in
+climate.
 
 We have to note that the excess irradiation related to the CE events
 cannot be directly linked to the total energy balance of the atmosphere.
@@ -562,7 +575,7 @@ than ours.
 duration for Thessaloniki in the period 1994 -- 2023. The logarithmic
 color scale denotes the frequency of the respective groups of
 events.](media/rId59.png){width="5.833333333333333in"
-height="3.6948403324584427in"}
+height="3.687330489938758in"}
 
 Figure 3.4: Relation of excess irradiation of CE groups with their
 duration for Thessaloniki in the period 1994 -- 2023. The logarithmic
@@ -623,9 +636,9 @@ By creating a cloud-free approximation representing the long- and
 short-term variability of the expected cloud-free GHI, we were able to
 identify cases of CE events in Thessaloniki for the period 1994 -- 2023.
 After analyzing the CE cases, we found an increase of
-$+ 111 \pm 26.9\,\text{cases}/\text{year}$, with the mean annual
+$+ 112.1 \pm 34.9\,\text{cases}/\text{year}$, with the mean annual
 irradiation of the CE events increasing with a rate of
-$+ 325.2 \pm 88\,\text{kJ}/\text{year}$. The most active months of CE
+$+ 329.9 \pm 112\,\text{kJ}/\text{year}$. The most active months of CE
 events are May and June. We found that continuous CE events can last up
 to $140$ minutes, while the duration of $80\,\%$ of them is bellow $5$
 minutes.
