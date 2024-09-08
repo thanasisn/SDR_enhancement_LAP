@@ -145,6 +145,13 @@ Figure, as the daily means. Daily means were calculated only for days
 with at least $60\,\%$ of data availability; however, all available
 one-minute measurements have been used for the detection of CE events.
 
+![Figure 2.1: Timeseries of daily mean GHI measured at Thessaloniki for
+the period 1994 -- 2023.](media/rId22.png){width="5.833333333333333in"
+height="3.5861603237095365in"}
+
+Figure 2.1: Timeseries of daily mean GHI measured at Thessaloniki for
+the period 1994 -- 2023.
+
 ## 2.2 Cloud enhancement detection
 
 In this study, we define an event as CE when the measured GHI at ground
@@ -288,6 +295,14 @@ across all levels of radiation. To achieve a robust and clear
 distinction of CE cases, we set the criteria of CE detection
 $25\,\text{W}/\text{m}^{2}$ above the $\text{GHI}_{\text{ref}}$.
 
+![Figure 2.2: The corelation GHI with \\text{GHI}\_\\text{ref}, for
+cloud-free data of days with data availability more than
+80\\,\\%.](media/rId31.png){width="5.833333333333333in"
+height="3.6948403324584427in"}
+
+Figure 2.2: The corelation GHI with $\text{GHI}_{\text{ref}}$, for
+cloud-free data of days with data availability more than $80\,\%$.
+
 To further ensure the effectiveness of this CE criterion, we implement a
 manual inspection of the CE identification results on selected days of
 the whole dataset. We tested seven sets of days with different
@@ -346,6 +361,40 @@ spread likely caused by the short-term variability of AOD. A small
 fraction of these data corresponds also to cases with thin cirrus clouds
 causing weak attenuation of GHI, often indistinguishable from the
 attenuation by aerosols.
+
+![Figure 2.3: Example of CE identification in Thessaloniki for
+2019-07-11. The green line with blue symbols depicts the measured GHI in
+one-minute steps. The red line shows the modelled threshold for the
+detection of CE events, which are denoted with red circles. The black
+line represents the TOA TSI on a horizontal plane, equivalent to the
+threshold for the identification of ECE events, shown with red circles.
+The purple line is the modeled cloud-free irradiance. The dark yellow
+line is the solar constant of
+1367\\,\\text{W}/\\text{m}\^{2}.](media/rId35.png){width="4.436619641294838in"
+height="4.54929571303587in"}
+
+Figure 2.3: Example of CE identification in Thessaloniki for 2019-07-11.
+The green line with blue symbols depicts the measured GHI in one-minute
+steps. The red line shows the modelled threshold for the detection of CE
+events, which are denoted with red circles. The black line represents
+the TOA TSI on a horizontal plane, equivalent to the threshold for the
+identification of ECE events, shown with red circles. The purple line is
+the modeled cloud-free irradiance. The dark yellow line is the solar
+constant of $1367\,\text{W}/\text{m}^{2}$.
+
+![Figure 2.4: Example scatter plot of the measured GHI and the reference
+cloud-free irradiance in Thessaloniki for the year 2005. The
+over-irradiance for CE and ECE events is colour coded, while the
+remaining data points are shown in black. The reference green line goes
+through the origin with a slope of
+one.](media/rId39.png){width="5.833333333333333in"
+height="3.635437445319335in"}
+
+Figure 2.4: Example scatter plot of the measured GHI and the reference
+cloud-free irradiance in Thessaloniki for the year 2005. The
+over-irradiance for CE and ECE events is colour coded, while the
+remaining data points are shown in black. The reference green line goes
+through the origin with a slope of one.
 
 # 3 Results
 
@@ -430,32 +479,63 @@ sun, as well as the local landscape characteristics that may influence
 the formation of the clouds. For example, during May and June the
 frequent formation of cumulus clouds in the area leads to a significant
 increase in the CE events. However, the lack of detailed data in the
-area on cloud characteristics does not allow further analysis. Finally,
+area of cloud characteristics does not allow further analysis. Finally,
 the interannual variability of the monthly CE events is quite high as
 manifested by the size of the boxes and the large monthly extremes,
 especially in the summer. Investigation of the causes of this
 variability is beyond the scope of this study. It could possibly be
 related to the cloud cover variability in winter and autumn over
 southern Europe, associated with the North Atlantic Oscillation (NAO)
-circulation
+circulation (Chiacchio and Wild 2010), or to the observed decreasing
+trend in cloud cover as a result of global warming (e.g.,
+Sanchez-Lorenzo et al. 2017).
+
+![Figure 3.1: Seasonal variability of the relative occurrence of CE
+events in Thessaloniki for the period 1994 -- 2023, in the form of a box
+and whisker plot. The box contains the data between the lower 25\\,\\%
+and the upper 75\\,\\% percentiles, with the thick horizontal line
+representing the median. The vertical lines (whiskers) extend between
+the maximum and minimum monthly
+values.](media/rId46.png){width="5.833333333333333in"
+height="3.480990813648294in"}
+
+Figure 3.1: Seasonal variability of the relative occurrence of CE events
+in Thessaloniki for the period 1994 -- 2023, in the form of a box and
+whisker plot. The box contains the data between the lower $25\,\%$ and
+the upper $75\,\%$ percentiles, with the thick horizontal line
+representing the median. The vertical lines (whiskers) extend between
+the maximum and minimum monthly values.
 
 The distribution of the number of CE events as a function of OI is shown
 in Figure. There is an inverse relationship between the frequency of CE
 events and OI with an exponential-like decline. This is expected, as the
 stronger the CE events are, the rarer the conditions favoring the
-occurrence of CE events. For the majority (over $62\,\%$) of the CE
-events the OI is below the long-term average of
-$42.6\,\text{W}/\text{m}^{2}$, while about $8.1\,\%$ of the events
-correspond to OI larger than $100\,\text{W}/\text{m}^{2}$ and up to the
-highest value of $412.4\,\text{W}/\text{m}^{2}$. This distribution is
-indicative of the magnitude and the probability of the expected CE
-events over Thessaloniki. Similar distribution of CE events, albeit with
-larger OI values, has been reported by Vamvakas, Salamalikis, and
-Kazantzidis (2020), for the city of Patras. This site is located
-${2.5}^{\circ}$ south of Thessaloniki and is exposed to air masses
-coming mainly from the eastern Mediterranean resulting in different
-cloud patterns, that may affect the characteristics and magnitude of the
-CE events.
+occurrence of CE events.
+
+!!!!
+
+For the majority (over $62\,\%$) of the CE events the OI is below the
+long-term average of $42.6\,\text{W}/\text{m}^{2}$, while about
+$8.1\,\%$ of the events correspond to OI larger than
+$100\,\text{W}/\text{m}^{2}$ and up to the highest value of
+$412.4\,\text{W}/\text{m}^{2}$. This distribution is indicative of the
+magnitude and the probability of the expected CE events over
+Thessaloniki. Similar distribution of CE events, albeit with larger OI
+values, has been reported by Vamvakas, Salamalikis, and Kazantzidis
+(2020), for the city of Patras. This site is located ${2.5}^{\circ}$
+south of Thessaloniki and is exposed to air masses coming mainly from
+the eastern Mediterranean resulting in different cloud patterns, that
+may affect the characteristics and magnitude of the CE events.
+
+![Figure 3.2: Relative frequency distribution of CE events in
+Thessaloniki for the period 1994 -- 2023 as a function of OI. The
+histogram was split in two plots with different y-axis scales for better
+readability.](media/rId50.png){width="5.833333333333333in"
+height="3.702594050743657in"}
+
+Figure 3.2: Relative frequency distribution of CE events in Thessaloniki
+for the period 1994 -- 2023 as a function of OI. The histogram was split
+in two plots with different y-axis scales for better readability.
 
 ## 3.3 Duration of cloud enhancement events
 
@@ -470,6 +550,18 @@ events according to their duration. We conclude that although some
 groups of events last for more than an hour, about $80\,\%$ have
 duration of less than 5 minutes.
 
+![Figure 3.3: Relative frequency distribution of CE groups of consequent
+CE events according to their duration for Thessaloniki in the period
+1994 -- 2023. The histogram was split in two plots with different y-axis
+scales for better
+readability.](media/rId55.png){width="5.833333333333333in"
+height="3.7375240594925634in"}
+
+Figure 3.3: Relative frequency distribution of CE groups of consequent
+CE events according to their duration for Thessaloniki in the period
+1994 -- 2023. The histogram was split in two plots with different y-axis
+scales for better readability.
+
 The relation between the duration and the mean OI of the groups has also
 been studied (Figure). Evidently, events of high excess irradiation have
 small duration and vice versa. The vast majority of grouped events are
@@ -481,6 +573,16 @@ groups with strong excess irradiation and long duration are very rare.
 Similar results of this relation have been reported by Zhang et al.
 (2018) in a study using a far higher sampling rate ($100\,\text{Hz}$)
 than ours.
+
+![Figure 3.4: Relation of excess irradiation of CE groups with their
+duration for Thessaloniki in the period 1994 -- 2023. The logarithmic
+color scale denotes the frequency of the respective groups of
+events.](media/rId59.png){width="5.833333333333333in"
+height="3.687330489938758in"}
+
+Figure 3.4: Relation of excess irradiation of CE groups with their
+duration for Thessaloniki in the period 1994 -- 2023. The logarithmic
+color scale denotes the frequency of the respective groups of events.
 
 ## 3.4 Extreme cloud enhancement events
 
@@ -495,6 +597,24 @@ period in early autumn (September and October). This is probably related
 to the weather characteristics in these periods, with frequent
 alternations between cloud-free periods and clouds.
 
+![Figure 3.5: Seasonal variability of the number of ECE events relative
+to the the corresponding number of GHI measurements in Thessaloniki for
+the period 1994 -- 2023, in the form of a box and whisker plot. The box
+contains the data between the lower 25\\,\\% and the upper 75\\,\\%
+percentiles. The thick horizontal line and the diamond symbol represent
+the median and the mean values, respectively. The vertical lines
+(whiskers) extend between the maximum and minimum monthly
+values.](media/rId64.png){width="5.833333333333333in"
+height="3.5285126859142606in"}
+
+Figure 3.5: Seasonal variability of the number of ECE events relative to
+the the corresponding number of GHI measurements in Thessaloniki for the
+period 1994 -- 2023, in the form of a box and whisker plot. The box
+contains the data between the lower $25\,\%$ and the upper $75\,\%$
+percentiles. The thick horizontal line and the diamond symbol represent
+the median and the mean values, respectively. The vertical lines
+(whiskers) extend between the maximum and minimum monthly values.
+
 The distribution of the ECE events (Figure) shows that in rare cases the
 OI can exceed the TSI at TOA for the same SZA even by more than
 $400\,\text{W}/\text{m}^{2}$, while in $75\,\%$ of the cases the OI is
@@ -503,6 +623,15 @@ ranges between $140$ and $180\,\text{W}/\text{m}^{2}$. These findings
 are in accordance with the results of Vamvakas, Salamalikis, and
 Kazantzidis (2020), the only difference being that the OI values
 reported for are higher than those for Thessaloniki.
+
+![Figure 3.6: Distribution of ECE events in Thessaloniki for the period
+1994 -- 2023. Measured as extra irradiance over TSI at TOA for the same
+SZA.](media/rId68.png){width="5.833333333333333in"
+height="3.647317366579178in"}
+
+Figure 3.6: Distribution of ECE events in Thessaloniki for the period
+1994 -- 2023. Measured as extra irradiance over TSI at TOA for the same
+SZA.
 
 # 4 Conclusions
 
@@ -557,6 +686,11 @@ Castillejo-Cuberos, Armando, and Rodrigo Escobar. 2020. "Detection and
 Characterization of Cloud Enhancement Events for Solar Irradiance Using
 a Model-Independent, Statistically-Driven Approach." *Solar Energy* 209
 (October): 547--67. <https://doi.org/10.1016/j.solener.2020.09.046>.
+
+Chiacchio, Marc, and Martin Wild. 2010. "Influence of NAO and Clouds on
+Long‐term Seasonal Variations of Surface Solar Radiation in Europe."
+*Journal of Geophysical Research: Atmospheres* 115 (May).
+<https://doi.org/10.1029/2009JD012182>.
 
 Cordero, Raúl R., Sarah Feron, Alessandro Damiani, Edgardo Sepúlveda,
 Jose Jorquera, Alberto Redondas, Gunther Seckmeyer, Jorge Carrasco,
@@ -684,6 +818,12 @@ Optical Depth and Solar Zenith Angle." *Solar Energy* 136 (October):
 R Core Team. 2023. *R: A Language and Environment for Statistical
 Computing*. Vienna, Austria: R Foundation for Statistical Computing.
 <https://www.R-project.org/>.
+
+Sanchez-Lorenzo, Arturo, Aaron Enriquez-Alonso, Josep Calbó, Josep-Abel
+González, Martin Wild, Doris Folini, Joel R. Norris, and Sergio M.
+Vicente-Serrano. 2017. "Fewer Clouds in the Mediterranean: Consistency
+of Observations and Climate Simulations." *Scientific Reports* 7 (1):
+41475. <https://doi.org/10.1038/srep41475>.
 
 Thuillier, Gérard, Jean-Marie Perrin, Philippe Keckhut, and François
 Huppert. 2013. "Local Enhanced Solar Irradiance on the Ground Generated

@@ -673,13 +673,17 @@ least frequent events (about $1\,\%$) occur in August and during winter (Decembe
 February).  This seasonality is a combined effect of different factors, among them
 the types of clouds, their frequency of occurrence, the seasonally varying relative
 position of the sun, as well as the local landscape characteristics that may
-influence the formation of the clouds.
-For example, during May and June the frequent formation of cumulus clouds in the area leads to a significant increase in the CE events.
-However, the lack
-of detailed data on cloud formation, type and location is not allowing further
-analysis. The interannual variability of the monthly CE events is quite high as
-manifested by the large monthly extremes, especially in the summer.
-
+influence the formation of the clouds.  For example, during May and June the frequent
+formation of cumulus clouds in the area leads to a significant increase in the CE
+events.  However, the lack of detailed data in the area of cloud characteristics does
+not allow further analysis. Finally, the interannual variability of the monthly CE
+events is quite high as manifested by the size of the boxes and the large monthly
+extremes, especially in the summer. Investigation of the causes of this variability
+is beyond the scope of this study. It could possibly be related to the cloud cover
+variability in winter and autumn over southern Europe, associated with the North
+Atlantic Oscillation (NAO) circulation [@Chiacchio2010], or to the observed
+decreasing trend in cloud cover as a result of global warming [e.g.,
+@SanchezLorenzo2017].
 
 \begin{figure}
 
@@ -687,7 +691,7 @@ manifested by the large monthly extremes, especially in the summer.
 
 }
 
-\caption{Seasonal variability of the number of CE events relative to the corresponding number of GHI measurements in Thessaloniki for the period 1994 -- 2023, in the form of a box and whisker plot. The box contains the data between the lower $25\,\%$ and the upper $75\,\%$ percentiles, the thick horizontal line and the diamond symbol represent the median and the mean values, respectively. The vertical lines (whiskers) extend between the maximum and minimum monthly values.}\label{fig:relative-month-occurrences}
+\caption{Seasonal variability of the relative occurrence of CE events in Thessaloniki for the period 1994 -- 2023, in the form of a box and whisker plot. The box contains the data between the lower $25\,\%$ and the upper $75\,\%$ percentiles, with the thick horizontal line representing the median. The vertical lines (whiskers) extend between the maximum and minimum monthly values.}\label{fig:relative-month-occurrences}
 \end{figure}
 
 <!--
@@ -706,10 +710,16 @@ The distribution of the number of CE events as a function of OI is shown in
 Figure\nobreakspace{}\ref{fig:ovir-distribution}.  There is an inverse
 relationship between the frequency of CE events and OI with an exponential-like
 decline. This is expected, as the stronger the CE events are, the rarer the
-conditions favoring the occurrence of CE events.  For the majority (over $62\,\%$) of
+conditions favoring the occurrence of CE events.
+
+
+!!!!
+
+For the majority (over $62\,\%$) of
 the CE events the OI is below the long-term average of
 $42.6\,\text{W}/\text{m}^2$, while about
-$8.1\,\%$ of the events correspond to OI larger than $100\,\text{W}/\text{m}^2$ and
+$8.1\,\%$ of the events correspond to OI larger than
+$100\,\text{W}/\text{m}^2$ and
 up to the highest value of $412.4\,\text{W}/\text{m}^2$.  This distribution is
 indicative of the magnitude and the probability of the expected CE events over
 Thessaloniki.  Similar distribution of CE events, albeit with larger OI values, has
