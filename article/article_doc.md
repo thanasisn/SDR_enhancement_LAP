@@ -18,9 +18,9 @@ Brewer spectrophotometer. We found a trend in CE events of
 $+ 111 \pm 27\,\text{cases}/\text{year}$, and a trend in the
 corresponding irradiation of $+ 325.2 \pm 88\,\text{kJ}/\text{year}$.
 The peak of the CE events was observed during May and June. CE events
-with duration longer than 5min are very rare, with exceptions lasting
-over an hour and up to 140 minutes. Finally, we have detected
-enhancements above the total solar irradiance at the top of the
+with duration longer than 10min are very rare ($< 8\,\%$), with
+exceptions lasting over an hour and up to 140 minutes. Finally, we have
+detected enhancements above the total solar irradiance at the top of the
 atmosphere for the same solar zenith angle of up to
 $400\,\text{W}/\text{m}^{2}$, with the $75\,\%$ of the cases below
 $200\,\text{W}/\text{m}^{2}$. Most of these extreme events occur in
@@ -390,8 +390,8 @@ irradiance (approximated with the green line).
 one minute steps. Red line shows the modelled threshold E for the
 detection of CE events, which are denoted with red circles.Black curve
 represents the TOA TSI on horizontal
-plane.](media/rId35.png){width="3.8028160542432197in"
-height="4.408450349956255in"}
+plane.](media/rId35.png){width="4.422534995625547in"
+height="4.54929571303587in"}
 
 Figure 2.3: Example of CE identification in Thessaloniki for 2019-07-11.
 The green line with blue symbols depicts the measured GHI in one minute
