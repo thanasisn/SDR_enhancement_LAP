@@ -529,7 +529,7 @@ irradiance (approximated with the green line).
 
 \begin{figure}[H]
 
-{\centering \includegraphics[width=1\linewidth]{../images/P-example-day-2} 
+{\centering \includegraphics[width=1\linewidth]{../images/P-example-day-5} 
 
 }
 
