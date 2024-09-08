@@ -914,7 +914,7 @@ points(temp[TYPE == "Cloud", wattGLB, Date], col = "blue", pch = 3, cex = 0.3)
 title(main = paste(as.Date(example_day, origin = "1970-01-01")))
 
 legend("bottom", ncol = 2,
-       c(  "GHI","CE threshold","TSI at TOA on horizontal plane","Solar Constant", "CE events","ECE events","Identified clouds",  "Cloud-free"),
+       c(  "GHI","CE threshold","TSI at TOA on horizontal plane","Solar Constant", "CE events   ","ECE events     ","Identified clouds    ",  "Cloud-free    "),
        col = c("green",         "red",                  "black",       "orange2","burlywood4",       "red",             "blue","darkorchid"),
        pch = c(     NA,            NA,                       NA,              NA,          1 ,          1 ,                  3,           NA),
        lty = c(      1,             1,                        1,               1,          NA,          NA,                 NA,            1),
