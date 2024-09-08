@@ -108,9 +108,11 @@ and a trend in the corresponding irradiation of
 $+325.2\pm
 88\,\text{kJ}/\text{year}$.
 The peak of the CE events was observed during May and June. CE events with duration
-longer than 5\nobreakspace{}min are very rare, with exceptions lasting over an hour and up to
-140 minutes.  Finally, we have detected enhancements above the total solar irradiance
-at the top of the atmosphere for the same solar zenith angle of up to
+longer than 10\nobreakspace{}min are very rare
+($<8\,\%$), with exceptions lasting
+over an hour and up to 140 minutes.  Finally, we have detected enhancements above the
+total solar irradiance at the top of the atmosphere for the same solar zenith angle
+of up to
 $400\,\text{W}/\text{m}^{2}$, with the $75\,\%$ of the cases below
 $200\,\text{W}/\text{m}^{2}$. Most of these  extreme events occur in spring -- early
 summer, with a secondary peak in autumn.

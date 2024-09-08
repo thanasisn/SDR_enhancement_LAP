@@ -616,6 +616,15 @@ pvar    <- "wattGLB"
 #      main = "Duration of enhancement of CE groups cases groups")
 
 
+ST_G0[ , sum(GLB_ench.N==0)]
+
+
+cat("Duration < 5 minutes",  round(100 * ST_G0[ , sum(GLB_ench.N<5) / .N],1),"%\n\n")
+cat("Duration <=5 minutes", round(100 * ST_G0[ , sum(GLB_ench.N<=5) / .N],1),"%\n\n")
+cat("Duration > 10 minutes",  round(100 * ST_G0[ , sum(GLB_ench.N>10) / .N],1),"%\n\n")
+
+
+ceiling(100 * ST_G0[ , sum(GLB_ench.N>10) / .N])
 
 
 binwidth <- 2

@@ -141,9 +141,11 @@ and a trend in the corresponding irradiation of
 $`r plus_sign(round(yearlyCE[var=="GLB_diff.sum",slope],1))`\pm
 `r round(2*yearlyCE[var=="GLB_diff.sum",slope.sd],1)`\,\text{kJ}/\text{year}$.
 The peak of the CE events was observed during May and June. CE events with duration
-longer than 5\nobreakspace{}min are very rare, with exceptions lasting over an hour and up to
-140 minutes.  Finally, we have detected enhancements above the total solar irradiance
-at the top of the atmosphere for the same solar zenith angle of up to
+longer than 10\nobreakspace{}min are very rare
+($<`r ceiling(100*ST_G0[,sum(GLB_ench.N>10)/.N])`\,\%$), with exceptions lasting
+over an hour and up to 140 minutes.  Finally, we have detected enhancements above the
+total solar irradiance at the top of the atmosphere for the same solar zenith angle
+of up to
 $400\,\text{W}/\text{m}^{2}$, with the $75\,\%$ of the cases below
 $200\,\text{W}/\text{m}^{2}$. Most of these  extreme events occur in spring -- early
 summer, with a secondary peak in autumn.

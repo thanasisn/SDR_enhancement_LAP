@@ -271,6 +271,11 @@ ggplot(data = DATA[GLB_diff > 0,], aes(x = GLB_diff)) +
 #'
 #+ extremedistributions, echo=F, include=T, results="asis"
 
+DATA[]
+
+stop()
+
+
 hist(DATA[wattGLB > ETH, GLB_ench],
      breaks = breaks,
      freq   = FALSE,
@@ -476,6 +481,8 @@ grid.arrange(grobs = lapply(p1, "+", margin), ncol = 2, nrow = 1,
 ## Extreme CE distribution  -------
 
 #+ P-extreme-distribution, echo=F, include=T, results="asis"
+
+
 
 binwidth = 10
 ggplot(data = DATA[wattGLB > ETH], aes(x = GLB_diff)) +
@@ -810,20 +817,20 @@ rr <- image_scale(
 
 
 A <- image_ggplot(ll1) +
-  annotate(geom = "text", x = 10, y = 15,  label = "(a)",       hjust = 0, vjust = 0, size =  6, colour = "orange") +
-  annotate(geom = "text", x = 15, y = 585, label = "09:30 UTC", hjust = 0, vjust = 1, size =  6, colour = "orange")
+  annotate(geom = "text", x = 10, y = 15,  label = "(a)",       hjust = 0, vjust = 0, size =  4, colour = "orange") +
+  annotate(geom = "text", x = 15, y = 585, label = "09:30 UTC", hjust = 0, vjust = 1, size =  4, colour = "orange")
 date_A <- as.POSIXct(strptime(paste(example_day,   "09:30"), "%F %H:%M"))
 
 
 B <- image_ggplot(ll) +
-  annotate(geom = "text", x = 10, y = 15,  label = "(b)",       hjust = 0, vjust = 0, size =  6, colour = "orange") +
-  annotate(geom = "text", x = 15, y = 585, label = "10:15 UTC", hjust = 0, vjust = 1, size =  6, colour = "orange")
+  annotate(geom = "text", x = 10, y = 15,  label = "(b)",       hjust = 0, vjust = 0, size =  4, colour = "orange") +
+  annotate(geom = "text", x = 15, y = 585, label = "10:15 UTC", hjust = 0, vjust = 1, size =  4, colour = "orange")
 date_B <- as.POSIXct(strptime(paste(example_day,   "10:15"), "%F %H:%M"))
 
 
 C <- image_ggplot(rr) +
-  annotate(geom = "text", x = 10, y = 15,  label = "(c)",       hjust = 0, vjust = 0, size =  6, colour = "orange") +
-  annotate(geom = "text", x = 15, y = 585, label = "10:30 UTC", hjust = 0, vjust = 1, size =  6, colour = "orange")
+  annotate(geom = "text", x = 10, y = 15,  label = "(c)",       hjust = 0, vjust = 0, size =  4, colour = "orange") +
+  annotate(geom = "text", x = 15, y = 585, label = "10:30 UTC", hjust = 0, vjust = 1, size =  4, colour = "orange")
 date_C <- as.POSIXct(strptime(paste(example_day,   "10:30"), "%F %H:%M"))
 
 grid.arrange(A, B, C, nrow = 1)
@@ -847,8 +854,15 @@ grid.arrange(A, B, C, nrow = 1)
 
 
 temp <- DATA[Day == example_day]
+
 par(mar = c(4, 4, 1, 1))
-# ylim <- range(0, temp$ETH, temp$wattGLB, na.rm = TRUE)
+par(cex       = 0.7
+    # cex.main = 0.8, #change font size of title
+    # cex.sub  = 0.8,  #change font size of subtitle
+    # cex.lab  = 0.8, #change font size of axis labels
+    # cex.axis = 0.8,
+    ) #change font size of axis text
+
 ylim <- range(0, temp$ETH, temp$wattGLB, solar_constant, na.rm = TRUE)
 
 plot(temp$Date, temp$wattGLB, col = "green",
@@ -863,9 +877,9 @@ abline(v = date_B, col = "grey", lwd = 2, lty = 2)
 abline(v = date_C, col = "grey", lwd = 2, lty = 2)
 
 
-text(x = date_A, y = 250, "(a)", pos = 2, offset = 0.2, col = "gray")
-text(x = date_B, y = 250, "(b)", pos = 2, offset = 0.2, col = "gray")
-text(x = date_C, y = 250, "(c)", pos = 4, offset = 0.2, col = "gray")
+text(x = date_A, y = 250, "(a)", pos = 2, offset = 0.2, col = "gray", cex = 0.8)
+text(x = date_B, y = 250, "(b)", pos = 2, offset = 0.2, col = "gray", cex = 0.8)
+text(x = date_C, y = 250, "(c)", pos = 4, offset = 0.2, col = "gray", cex = 0.8)
 
 
 abline(h = solar_constant, col = "orange2", lty = 1, lwd = 2)
