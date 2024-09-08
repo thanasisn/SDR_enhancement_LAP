@@ -271,9 +271,13 @@ ggplot(data = DATA[GLB_diff > 0,], aes(x = GLB_diff)) +
 #'
 #+ extremedistributions, echo=F, include=T, results="asis"
 
-DATA[]
+DATA[, TSI_OI := wattGLB - ETH]
 
-stop()
+cat("Maximum TSI OI:", round(max(DATA[TSI_OI > 0, TSI_OI]), 1), "W/m^2\n\n")
+
+cat("Quantiles of TSI OI:\n")
+print(round(quantile(DATA[TSI_OI > 0, TSI_OI]), 1))
+
 
 
 hist(DATA[wattGLB > ETH, GLB_ench],
@@ -909,7 +913,7 @@ points(temp[TYPE == "Cloud", wattGLB, Date], col = "blue", pch = 3, cex = 0.3)
 # title(main = paste(as.Date(aday, origin = "1970-01-01"), temp[get(SelEnhanc) == TRUE, .N], temp[TYPE == "Cloud", .N], vec_days$Descriprion[ii]))
 title(main = paste(as.Date(example_day, origin = "1970-01-01")))
 
-legend("bottomright", ncol = 2,
+legend("bottom", ncol = 2,
        c(  "GHI","CE threshold","TSI at TOA on horizontal plane","Solar Constant", "CE events","ECE events","Identified clouds",  "Cloud-free"),
        col = c("green",         "red",                  "black",       "orange2","burlywood4",       "red",             "blue","darkorchid"),
        pch = c(     NA,            NA,                       NA,              NA,          1 ,          1 ,                  3,           NA),

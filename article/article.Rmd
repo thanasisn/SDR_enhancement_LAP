@@ -146,8 +146,8 @@ longer than 10\nobreakspace{}min are very rare
 over an hour and up to 140 minutes.  Finally, we have detected enhancements above the
 total solar irradiance at the top of the atmosphere for the same solar zenith angle
 of up to
-$400\,\text{W}/\text{m}^{2}$, with the $75\,\%$ of the cases below
-$200\,\text{W}/\text{m}^{2}$. Most of these  extreme events occur in spring -- early
+$209\,\text{W}/\text{m}^{2}$, with the $75\,\%$ of the cases below
+$40\,\text{W}/\text{m}^{2}$. Most of these extreme events occur in spring -- early
 summer, with a secondary peak in autumn.
 
 
@@ -205,7 +205,8 @@ Instruments response ....
 @Martins2022
 -->
 
-Methods of identification of CE events usually include the use of simulated cloud-free irradiance as baseline, combined with an appropriate threshold or some
+Methods of identification of CE events usually include the use of simulated
+cloud-free irradiance as baseline, combined with an appropriate threshold or some
 other statistical characteristics, and in some cases, with visual inspection of sky
 camera images [@Vamvakas2020; @Mol2023 and references therein].
 
@@ -295,7 +296,7 @@ clear sky radiation model and was already adjusted and applied to our data
 [@Natsis2023].  We created a threshold by using an appropriate relative and/or an
 additional constant offset.  The initial results showed that we can detect a big
 portion of the actual CE events.  However, by inspecting the daily plots of
-irradiance it became evident that changes in atmospheric conditions introduced
+irradiance, it became evident that changes in atmospheric conditions introduced
 numerous false positive or false negative results. The main reason for these
 discrepancies is the variability of the effects of aerosols and water vapor which
 were not considered in the simple method.  To produce a more representative reference
@@ -318,6 +319,10 @@ this context, the model was run for SZAs in the range $10$ -- $90^\circ$ with a 
 of $0.2^\circ$ and for the atmospheric profiles of the Air Force Geophysics
 Laboratory [@Anderson1986] midlatitude summer and midlatitude winter, representative
 of the warm and cold seasons.
+
+The variable parameters of LUT consists of the month along with the relevant seasonal atmospheric profile,
+the climatological values of the alpha, beta parameters of the Ångström
+equation for 500nm derived from the 340nm, the WC and the SZA of the simulation.
 
 Main factors responsible for the attenuation of the broadband downward solar
 radiation under cloud free atmospheres are aerosols and water vapor.  At

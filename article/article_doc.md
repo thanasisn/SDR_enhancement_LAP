@@ -22,8 +22,8 @@ with duration longer than 10min are very rare ($< 8\,\%$), with
 exceptions lasting over an hour and up to 140 minutes. Finally, we have
 detected enhancements above the total solar irradiance at the top of the
 atmosphere for the same solar zenith angle of up to
-$400\,\text{W}/\text{m}^{2}$, with the $75\,\%$ of the cases below
-$200\,\text{W}/\text{m}^{2}$. Most of these extreme events occur in
+$209\,\text{W}/\text{m}^{2}$, with the $75\,\%$ of the cases below
+$40\,\text{W}/\text{m}^{2}$. Most of these extreme events occur in
 spring -- early summer, with a secondary peak in autumn.
 
 # 1 Introduction
@@ -175,7 +175,7 @@ applied to our data (Natsis, Bais, and Meleti 2023). We created a
 threshold by using an appropriate relative and/or an additional constant
 offset. The initial results showed that we can detect a big portion of
 the actual CE events. However, by inspecting the daily plots of
-irradiance it became evident that changes in atmospheric conditions
+irradiance, it became evident that changes in atmospheric conditions
 introduced numerous false positive or false negative results. The main
 reason for these discrepancies is the variability of the effects of
 aerosols and water vapor which were not considered in the simple method.
@@ -201,6 +201,11 @@ with a step of ${0.2}^{\circ}$ and for the atmospheric profiles of the
 Air Force Geophysics Laboratory (Anderson et al. 1986) midlatitude
 summer and midlatitude winter, representative of the warm and cold
 seasons.
+
+The variable parameters of LUT consists of the month along with the
+relevant seasonal atmospheric profile, the climatological values of the
+alpha, beta parameters of the Ångström equation for 500nm derived from
+the 340nm, the WC and the SZA of the simulation.
 
 Main factors responsible for the attenuation of the broadband downward
 solar radiation under cloud free atmospheres are aerosols and water
@@ -390,7 +395,7 @@ irradiance (approximated with the green line).
 one minute steps. Red line shows the modelled threshold E for the
 detection of CE events, which are denoted with red circles.Black curve
 represents the TOA TSI on horizontal
-plane.](media/rId35.png){width="4.422534995625547in"
+plane.](media/rId35.png){width="4.436619641294838in"
 height="4.54929571303587in"}
 
 Figure 2.3: Example of CE identification in Thessaloniki for 2019-07-11.
