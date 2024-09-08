@@ -285,12 +285,13 @@ transfer model uvspec, part of libRadtran [@Emde2016], similarly to the approach
 by @Vamvakas2020.  In uvspec we used the solar spectrum of @Kurucz1994 in the range
 $280$ to $2500\,\text{nm}$, the radiative transfer solver "disort" in
 "pseudospherical" geometry and the "LOWTRAN" gas parameterization.  The model was run
-for a range of variables to create a look-up table (LUT) for the estimation of the
-cloud-free reference irradiance for each individual observation of our dataset. In
-this context, the model was run for SZAs in the range $10$ -- $90^\circ$ with a step
-of $0.2^\circ$ and for the atmospheric profiles of the Air Force Geophysics
-Laboratory [@Anderson1986] midlatitude summer and midlatitude winter, representative
-of the warm and cold seasons.
+for climatological values of the Angstrom coefficients, water column (WC), SZA and
+the appropriate seasonal atmospheric profile to create a look-up table (LUT) for the
+estimation of the cloud-free reference irradiance for each individual observation of
+our dataset. In this context, the model was run for SZAs in the range $10$ --
+$90^\circ$ with a step of $0.2^\circ$ and for the atmospheric profiles of the Air
+Force Geophysics Laboratory [@Anderson1986] midlatitude summer and midlatitude
+winter, representative of the warm and cold seasons.
 
 
 Main factors responsible for the attenuation of the broadband downward solar
@@ -315,8 +316,7 @@ library [@AstropyCollaboration2022].
 
 
 <!-- Lookup table -->
-**to edit**
-
+<!-- 
 The variable parameters of LUT consists of the month along with the relevant seasonal
 atmospheric profile, the climatological values of the alpha, beta parameters of the
 Ångström equation for 500nm derived from the 340nm, the WC, with the perturbation as
@@ -333,6 +333,7 @@ we used the appropriate atmospheric profile (afglms or afglmw).  Finally, we
 calculated the cloud-free irradiance value at the horizontal plane.  With this
 method, the modeled cloud-free irradiances schemes can be directly compared to each
 measured one-minute value of GHI.
+-->
 
 
 ### Long-term change of cloud-free irradiance
@@ -352,14 +353,25 @@ sporadically during each day and are less dense compared to the AERONET data. By
 comparing monthly AOD data at $340\,\text{nm}$ of the two instruments for the common
 periods of operation we adjusted the Brewer data and filled the missing months of the
 Cimel record data with Brewer data.  Using the monthly time series of AOD at
-$340\,\text{nm}$, as well as monthly climatological values of the Angstrom exponent
+$340\,\text{nm}$, as well as monthly climatological values of the Ångström exponent
 and constant WC of $15.6\,\text{mm}$ derived from the Cimel record, we simulated with
 the RTM the cloud-free GHI at SZA of $55^\circ$ for each month in the period 1997 --
 2023. The SZA of $55^\circ$ was chosen as representative of all days in the year to
 get a rough estimate of the annually averaged change in cloud-free GHI. A
 second-degree polynomial fit was applied to the simulated yearly averaged GHI
-to derive the long-term change in GHI due to aerosols (Equation\nobreakspace{}\ref{eq:AODchange}).
+to derive the long-term change in GHI due to aerosols:
+\begin{equation}
+\Delta(\text{AOD}) [\%] = -12170 + 12.05 \cdot y + -0.002981 \cdot y^2 \label{eq:AODchange}
+\end{equation}
+where $y$ is the date as a decimal fraction of the year. For the period of the study
+the relative change of AOD ranges between $-1.88$ and $-0.23\,\%$.  Finally, we
+applied these long-term changes of Equation\nobreakspace{}\ref{eq:AODchange} to the
+climatological $\text{GHI}_\text{ref}$, to create a more realistic representation of
+the cloud-free irradiance for the entire period of study. For the period 1994 -- 1996
+where no AOD data are available, we assumed that the changes in GHI follow the same
+polynomial fit.
 
+<!--
 As AERONET data
 start only in 2003, we used for the period 1994 -- 2005 estimates of changes in AOD
 at $340\,\text{nm}$ derived from a collocated Brewer spectrophotometer
@@ -367,7 +379,6 @@ at $340\,\text{nm}$ derived from a collocated Brewer spectrophotometer
 during this period.
 
 
-<!--
 To create a unified trend for the long-term change of the cloud-free irradiance, we
 simulated the values of AOD derived from those sources with Libradtran. For both
 inputs, we used the AOD at $500\,\text{nm}$, which was inferred by the available
@@ -375,6 +386,7 @@ inputs, we used the AOD at $500\,\text{nm}$, which was inferred by the available
 all the runs.
 -->
 
+<!--
 According to @Kazadzis2007, in the period 1997 -- 2005 the mean AOD at $340\,\text{nm}$
 is $0.4$ with a change of $-3.8\pm0.93\,\%$ per year, corresponding to a change of
 $0.0153$ per year.  Using an Ångström coefficient $\alpha = 1.6$, this translates to
@@ -394,6 +406,7 @@ irradiance for the whole period of study.  The rate of changes in the two subper
 are different, but reasonable, since the effect of the enforced air pollution
 abatement measures in the area in the 1990s had greater effects in the first years of
 application.
+-->
 
 <!--
 \begin{figure}
@@ -411,11 +424,6 @@ GHI_model (%)
  = -12170 + 12.05 * year_frac + -0.002981 * year_frac^2
 -->
 
-\begin{equation}
-\Delta(\text{AOD}) [\%] = -12170 + 12.05 \cdot y + -0.002981 \cdot y^2 \label{eq:AODchange}
-\end{equation}
-where $y$ the date as a decimal fraction of the year. For the period of the study the
-relative change of AOD ranges between $-1.88$ and $-0.23\,\%$.
 
 
 ## Criteria for the identification of CE events

@@ -193,14 +193,15 @@ the radiative transfer model uvspec, part of libRadtran (Emde et al.
 Kazantzidis (2020). In uvspec we used the solar spectrum of Kurucz
 (1994) in the range $280$ to $2500\,\text{nm}$, the radiative transfer
 solver "disort" in "pseudospherical" geometry and the "LOWTRAN" gas
-parameterization. The model was run for a range of variables to create a
-look-up table (LUT) for the estimation of the cloud-free reference
-irradiance for each individual observation of our dataset. In this
-context, the model was run for SZAs in the range $10$ -- $90^{\circ}$
-with a step of ${0.2}^{\circ}$ and for the atmospheric profiles of the
-Air Force Geophysics Laboratory (Anderson et al. 1986) midlatitude
-summer and midlatitude winter, representative of the warm and cold
-seasons.
+parameterization. The model was run for climatological values of the
+Angstrom coefficients, water column (WC), SZA and the appropriate
+seasonal atmospheric profile to create a look-up table (LUT) for the
+estimation of the cloud-free reference irradiance for each individual
+observation of our dataset. In this context, the model was run for SZAs
+in the range $10$ -- $90^{\circ}$ with a step of ${0.2}^{\circ}$ and for
+the atmospheric profiles of the Air Force Geophysics Laboratory
+(Anderson et al. 1986) midlatitude summer and midlatitude winter,
+representative of the warm and cold seasons.
 
 Main factors responsible for the attenuation of the broadband downward
 solar radiation under cloud free atmospheres are aerosols and water
@@ -224,27 +225,6 @@ each $\text{GHI}_{\text{ref}}$ value was adjusted to the actual
 Sun-Earth distance derived by the Astropy software library (Astropy
 Collaboration et al. 2022).
 
-**to edit**
-
-The variable parameters of LUT consists of the month along with the
-relevant seasonal atmospheric profile, the climatological values of the
-alpha, beta parameters of the Ångström equation for 500nm derived from
-the 340nm, the WC, with the perturbation as described above, and the SZA
-of the simulation.
-
-For the application of the LUT, to account for the Sun's variability, in
-our one-minute GHI measurements, we adapted each modeled value by
-scaling the model's input spectrum integral, to the corresponding TSI,
-provided by NOAA (Coddington et al. 2005). Also, we account for the
-effect of the Earth -- Sun distance on the irradiance, by using the
-distance calculated by the Astropy (Astropy Collaboration et al. 2022)
-software library. As needed, we interpolate the resulting irradiances to
-the SZA of our measurements. For each period of the year, we used the
-appropriate atmospheric profile (afglms or afglmw). Finally, we
-calculated the cloud-free irradiance value at the horizontal plane. With
-this method, the modeled cloud-free irradiances schemes can be directly
-compared to each measured one-minute value of GHI.
-
 ### 2.3.2 Long-term change of cloud-free irradiance
 
 The cloud-free reference values discussed above are based on the
@@ -266,48 +246,23 @@ $340\,\text{nm}$ of the two instruments for the common periods of
 operation we adjusted the Brewer data and filled the missing months of
 the Cimel record data with Brewer data. Using the monthly time series of
 AOD at $340\,\text{nm}$, as well as monthly climatological values of the
-Angstrom exponent and constant WC of $15.6\,\text{mm}$ derived from the
+Ångström exponent and constant WC of $15.6\,\text{mm}$ derived from the
 Cimel record, we simulated with the RTM the cloud-free GHI at SZA of
 $55^{\circ}$ for each month in the period 1997 -- 2023. The SZA of
 $55^{\circ}$ was chosen as representative of all days in the year to get
 a rough estimate of the annually averaged change in cloud-free GHI. A
 second-degree polynomial fit was applied to the simulated yearly
-averaged GHI to derive the long-term change in GHI due to aerosols
-(Equation).
-
-As AERONET data start only in 2003, we used for the period 1994 -- 2005
-estimates of changes in AOD at $340\,\text{nm}$ derived from a
-collocated Brewer spectrophotometer (Kazadzis et al. 2007) to calculate
-the trend in $\text{GHI}_{\text{ref}}$ due to aerosols during this
-period.
-
-According to Kazadzis et al. (2007), in the period 1997 -- 2005 the mean
-AOD at $340\,\text{nm}$ is $0.4$ with a change of $- 3.8 \pm 0.93\,\%$
-per year, corresponding to a change of $0.0153$ per year. Using an
-Ångström coefficient $\alpha = 1.6$, this translates to a change in the
-Ångström coefficient $\beta$ of $0.00272$ per year (or $\beta = 0.084$
-in 1997 and $\beta = 0.059$ in 2005). Simulations with uvspec for the
-above Ångström coefficients, assuming constant WC of $15.6\,\text{mm}$
-taken from the Cimel, and for a SZA of $55^{\circ}$ reveal a change of
-$+ 0.21\,\%$ per year in $\text{GHI}_{\text{ref}}$. The SZA of
-$55^{\circ}$ was chosen as representative of all days in the year in
-order to get a rough estimate of the annually averaged change in
-cloud-free irradiance. For the period 2005 -- 2023 we used the mean
-monthly values of AOD and WC from AERONET in a similar simulation scheme
-to calculate the monthly mean cloud-free irradiance, and finally the
-change of $+ 0.14\,\%$ per year. We applied these two long-term changes
-(see Figure) to the climatological $\text{GHI}_{\text{ref}}$, to create
-a more realistic representation of the cloud-free irradiance for the
-whole period of study. The rate of changes in the two subperiods are
-different, but reasonable, since the effect of the enforced air
-pollution abatement measures in the area in the 1990s had greater
-effects in the first years of application.
+averaged GHI to derive the long-term change in GHI due to aerosols:
 
 $$\Delta\left( \text{AOD} \right)\lbrack\%\rbrack = - 12170 + 12.05 \cdot y + - 0.002981 \cdot y^{2}$$
 
-where $y$ the date as a decimal fraction of the year. For the period of
-the study the relative change of AOD ranges between $- 1.88$ and
-$- 0.23\,\%$.
+where $y$ is the date as a decimal fraction of the year. For the period
+of the study the relative change of AOD ranges between $- 1.88$ and
+$- 0.23\,\%$. Finally, we applied these long-term changes of Equation to
+the climatological $\text{GHI}_{\text{ref}}$, to create a more realistic
+representation of the cloud-free irradiance for the entire period of
+study. For the period 1994 -- 1996 where no AOD data are available, we
+assumed that the changes in GHI follow the same polynomial fit.
 
 ## 2.4 Criteria for the identification of CE events
 
@@ -709,11 +664,6 @@ Characterization of Cloud Enhancement Events for Solar Irradiance Using
 a Model-Independent, Statistically-Driven Approach." *Solar Energy* 209
 (October): 547--67. <https://doi.org/10.1016/j.solener.2020.09.046>.
 
-Coddington, Odele, Judith L. Lean, Doug Lindholm, Peter Pilewskie,
-Martin Snow, and NOAA CDR Program. 2005. "NOAA Climate Data Record (CDR)
-of Total Solar Irradiance (TSI), NRLTSI Version 2. Daily."
-<https://doi.org/10.7289/V55B00C1>.
-
 Cordero, Raúl R., Sarah Feron, Alessandro Damiani, Edgardo Sepúlveda,
 Jose Jorquera, Alberto Redondas, Gunther Seckmeyer, Jorge Carrasco,
 Penny Rowe, and Zutao Ouyang. 2023. "Surface Solar Extremes in the Most
@@ -792,11 +742,6 @@ Phenomenon." *Energies* 13 (9): 2185.
 Jones, Richard H. 1980. "Maximum Likelihood Fitting of ARMA Models to
 Time Series with Missing Observations." *Technometrics* 22 (3): 389--95.
 <https://doi.org/10.1080/00401706.1980.10486171>.
-
-Kazadzis, S., A. Bais, V. Amiridis, D. Balis, C. Meleti, N. Kouremeti,
-C. S. Zerefos, et al. 2007. "Nine Years of UV Aerosol Optical Depth
-Measurements at Thessaloniki, Greece." *Atmospheric Chemistry and
-Physics* 7 (8): 2091--101. <https://doi.org/cmjz23>.
 
 Kurucz, Robert L. 1994. "Synthetic Infrared Spectra." In *Infrared Solar
 Physics*, edited by D. M. Rabin, J. T. Jefferies, and C. Lindsey,
