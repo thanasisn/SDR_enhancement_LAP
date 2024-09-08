@@ -975,12 +975,12 @@ bt <- grid.arrange(A, B, C, nrow = 1)
 merg <- plot_grid(
   p1, bt,
   nrow = 2,
-  rel_heights = c(2,1)
+  rel_heights = c(3,1)
 )
 
 print(merg)
 
-merg + theme(aspect.ratio = 1.2)
+merg + theme(aspect.ratio = 1)
 
 
 

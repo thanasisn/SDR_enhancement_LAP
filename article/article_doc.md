@@ -390,8 +390,8 @@ irradiance (approximated with the green line).
 one minute steps. Red line shows the modelled threshold E for the
 detection of CE events, which are denoted with red circles.Black curve
 represents the TOA TSI on horizontal
-plane.](media/rId35.png){width="5.833333333333333in"
-height="3.8333333333333335in"}
+plane.](media/rId35.png){width="3.8028160542432197in"
+height="4.408450349956255in"}
 
 Figure 2.3: Example of CE identification in Thessaloniki for 2019-07-11.
 The green line with blue symbols depicts the measured GHI in one minute
