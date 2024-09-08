@@ -324,21 +324,23 @@ ggplot(KEEP, aes(wattGLB, Low_B.Low_W.glo)) +
   geom_point(colour = "black",
              alpha  = .1,
              na.rm  = TRUE,
-             size   = 0.3) +
-  geom_abline(aes(intercept = 0, slope = 1,                       colour = "green")) +
-  geom_abline(aes(intercept = coef(fit)[1], slope = coef(fit)[2], colour = "blue")) +
+             size   = 0.4) +
+  # geom_abline(aes(intercept = 0, slope = 1,                       colour = "green")) +
+  geom_abline(aes(intercept = coef(fit)[1], slope = coef(fit)[2], colour = "blue"), linewidth = 1) +
   ylab(bquote("Cloud-free modeled GHI" ~ group("[", W/m^2,"]"))) +
   xlab(bquote("GHI" ~ group("[", W/m^2,"]"))) +
   labs(caption = caption) +
-  scale_color_manual(values = c("blue", "green"),
+  # scale_color_manual(values = c("blue", "green"),
+  scale_color_manual(values = c("blue"),
                      labels = unname(TeX(c(
                        paste("$y =", signif(coef(fit)[1], 3),
                              "+",     signif(coef(fit)[2], 4),
                              "\\cdot x $, ",
                              "$R^2 = ",
                              signif(summary(fit)$r.squared, 3),
-                             "$"),
-                       "$y = x$")))) +
+                             "$")#,
+                       # "$y = x$"
+                       )))) +
   theme(
     legend.title         = element_blank(),
     legend.position      = c(.03, .97),
@@ -373,21 +375,23 @@ ggplot(KEEP, aes(wattGLB, Enhanc_C_4_ref)) +
   geom_point(colour = "black",
              alpha  = .1,
              na.rm  = TRUE,
-             size   = 0.3) +
-  geom_abline(aes(intercept = 0, slope = 1,                       colour = "green")) +
-  geom_abline(aes(intercept = coef(fit)[1], slope = coef(fit)[2], colour = "blue")) +
+             size   = 0.4) +
+  # geom_abline(aes(intercept = 0, slope = 1,                       colour = "green")) +
+  geom_abline(aes(intercept = coef(fit)[1], slope = coef(fit)[2], colour = "blue"), linewidth = 1) +
   ylab(bquote("CE threshold" ~ group("[", W/m^2,"]"))) +
   xlab(bquote("GHI" ~ group("[", W/m^2,"]"))) +
   labs(caption = caption) +
-  scale_color_manual(values = c("blue", "green"),
+  # scale_color_manual(values = c("blue", "green"),
+  scale_color_manual(values = c("blue"),
                      labels = unname(TeX(c(
                        paste("$y =", signif(coef(fit)[1], 3),
                               "+",     signif(coef(fit)[2], 4),
                               "\\cdot x $, ",
                              "$R^2 = ",
                              signif(summary(fit)$r.squared, 3),
-                             "$"),
-                       "$y = x$")))) +
+                             "$")#,
+                       # "$y = x$"
+                       )))) +
   theme(
     legend.title         = element_blank(),
     legend.position      = c(.03, .97),

@@ -73,5 +73,6 @@ ampl               <- 1.05  ## adjusted HAU amplified threshold
 SZA_BIN            <- 1
 
 
-solar_constant <- 1361.028
+# solar_constant <- 1361.028 ## from NOAA TSI for data
+solar_constant <- 1367     ## WRC
 
