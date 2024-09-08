@@ -863,9 +863,9 @@ abline(v = date_B, col = "grey", lwd = 2, lty = 2)
 abline(v = date_C, col = "grey", lwd = 2, lty = 2)
 
 
-text(x = date_A, y = 200, "(a)", pos = 2, offset = 0.2, col = "gray")
-text(x = date_B, y = 200, "(b)", pos = 2, offset = 0.2, col = "gray")
-text(x = date_C, y = 200, "(c)", pos = 4, offset = 0.2, col = "gray")
+text(x = date_A, y = 250, "(a)", pos = 2, offset = 0.2, col = "gray")
+text(x = date_B, y = 250, "(b)", pos = 2, offset = 0.2, col = "gray")
+text(x = date_C, y = 250, "(c)", pos = 4, offset = 0.2, col = "gray")
 
 
 abline(h = solar_constant, col = "orange2", lty = 1, lwd = 2)
@@ -972,12 +972,16 @@ p1 <- recordPlot()
 
 bt <- grid.arrange(A, B, C, nrow = 1)
 
-
-plot_grid(
+merg <- plot_grid(
   p1, bt,
   nrow = 2,
   rel_heights = c(2,1)
 )
+
+print(merg)
+
+merg + theme(aspect.ratio = 1.2)
+
 
 
 
