@@ -118,7 +118,11 @@ dailytrends <- data.table(
 dailyCE <- dailytrends[DATA == "ST_E_daily"]
 yearlytrends <- data.table(
   read.csv("~/MANUSCRIPTS/02_enhancement/figures/Daily_trends_byYear_Proper.csv"))
+## regular trends
 yearlyCE <- yearlytrends[DATA == "ST_E_yearly"]
+
+## trends with "complete data" !!!!!
+yearlyCE <- yearlytrends[DATA == "ST_E_yearly_Complete"]
 
 BR <- readRDS("~/MANUSCRIPTS/02_enhancement/data/Model_CS_trend.Rds")
 BR <-  unique(BR[typer == "BR SZA 55", .(year, pw_avg_mm, b, a)])
@@ -146,7 +150,7 @@ longer than 10\nobreakspace{}min are very rare
 over an hour and up to 140 minutes.  Finally, we have detected enhancements above the
 total solar irradiance at the top of the atmosphere for the same solar zenith angle
 of up to
-$209\,\text{W}/\text{m}^{2}$, with the $75\,\%$ of the cases below
+$204\,\text{W}/\text{m}^{2}$, with the $75\,\%$ of the cases below
 $40\,\text{W}/\text{m}^{2}$. Most of these extreme events occur in spring -- early
 summer, with a secondary peak in autumn.
 
@@ -448,7 +452,6 @@ GHI_model (%)
 -->
 
 
-
 ## Criteria for the identification of CE events
 
 One of the goals of this study was to quantify the OI related to CEs. A key issue for
@@ -597,13 +600,13 @@ $`r round(MC[Typ == "Max Global", SZA],1)`^\circ$ corresponding to OI of
 $`r round(MC[Typ == "Max Global", GLB_diff],1)`\,\text{W}/\text{m}^2$ or
 $`r round(100*MC[Typ == "Max Global", GLB_ench],1)`\,\%$ above the threshold.
 The strongest CE event of
-$`r round(100*MC[Typ == "Max Enha", GLB_ench],1)`\,\%$ above the 
+$`r round(100*MC[Typ == "Max Enh abs", GLB_ench],1)`\,\%$ above the 
 cloud-free threshold was observed on 
 `r strftime(MC[Typ == "Max Enh abs", Date], "%d\\ %B %Y")` at a SZA of
 $`r round(MC[Typ == "Max Enh abs", SZA],1)`^\circ$ with a GHI value of 
 $`r round(MC[Typ == "Max Enh abs", wattGLB],1)`\,\text{W}/\text{m}^2$ and a OI of
 $`r round(MC[Typ == "Max Enh abs", GLB_diff],1)`\,\text{W}/\text{m}^2$.
-Both cases are ECE events with
+Both cases are also ECE events with
 $`r round(MC[Typ == "Max Global", TSI_OI],1)`\,\text{W}/\text{m}^2$ and
 $`r round(MC[Typ == "Max Enh abs", TSI_OI],1)`\,\text{W}/\text{m}^2$ above the
 TSI at TOA for the same SZA, respectively.
@@ -640,6 +643,17 @@ while the the trend in the yearly mean OI is negligible
 and of no statistical significance.
 The average OI for the entire period is
 $`r plus_sign(round(mean(ST_E_yearly$GLB_diff.mean), 1))`\pm `r round(sd(ST_E_yearly$GLB_diff.mean),1)`\,\text{W}/\text{m}^2$.
+The yearly excess irradiation due to CE events ranges between about $8$ and
+$24\,\text{MJ}/\text{m}^2$. On average, it is about one half of the highest daily
+irradiation of \~31 MJ/m^2^ under cloud-free conditions recorded at the summer
+solstice in Thessaloniki.  Therefore, from solar energy perspective the yearly excess
+irradiation is only a tiny fraction of the available solar energy. Although the
+interannual variability of the mean OI is rather weak, the variability about the
+trend lines is quite large for the number of CE cases and the excess irradiation
+(panels b and c). For these two quantities the spread tends to increase with time,
+suggesting a significant variability in cloud patterns over the area, possibly
+associated to changes in climate.
+
 The interannual variability of the data about the trend lines is quite large.
 Furthermore, the spread tends to increase with time (at least for the quantities of
 panels b and c), suggesting a significant variability in cloud patterns over the
@@ -654,11 +668,11 @@ equivalent cloud-free irradiance by a significant amount.
 \begin{figure}% [h!]
         {\centering 
             \subfloat[\label{fig:P-energy-mean}]
-                {\includegraphics[width=\linewidth]{../images/P-energy-3} }\\
+                {\includegraphics[width=\linewidth]{../images/P-energy-complete-3} }\\
             \subfloat[\label{fig:P-energy-N}]
-                {\includegraphics[width=\linewidth]{../images/P-energy-2} }\\
+                {\includegraphics[width=\linewidth]{../images/P-energy-complete-2} }\\
             \subfloat[\label{fig:P-energy-sum}]
-                {\includegraphics[width=\linewidth]{../images/P-energy-1} }
+                {\includegraphics[width=\linewidth]{../images/P-energy-complete-1} }
         }
     \caption{Time series for the period 1994 -- 2023 of (a) the yearly CE number of occurrences, (b) the yearly mean OI and (c) the yearly excess irradiation. The black lines represent the linear trends on the yearly data.}\label{fig:P-energy}
 \end{figure}
