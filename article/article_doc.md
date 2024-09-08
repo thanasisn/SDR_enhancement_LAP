@@ -1,5 +1,5 @@
 ---
-date: 2024-09-07
+date: 2024-09-08
 title: Analysis of cloud enhancement events in a 30-year record of
   global solar irradiance at Thessaloniki, Greece
 ---
@@ -383,7 +383,7 @@ or with very small OI.
 In addition, we provide in Figure an example scatter plot between the
 measured GHI and the modeled cloud-free irradiance for one year (2005),
 where the CE and ECE events are clearly grouped above the cloud-free
-irradiance (approximated with the green line). (Figure).
+irradiance (approximated with the green line).
 
 ![Figure 2.3: Example of CE identification in Thessaloniki for
 2019-07-11. The green line with blue symbols depicts the measured GHI in
@@ -451,12 +451,12 @@ together with their $2\sigma$ error.
 Figure shows the time series of the yearly number of CE cases (each with
 duration of one minute), the yearly mean OI and the yearly excess
 irradiation for the period 1994 -- 2023, together with corresponding
-linear trends. To account for missing data all three quantities have
+linear trends. To account for missing data, all three quantities have
 been divided with the fraction of the valid GHI observations in each
-month. All three quantities show increasing trends, most pronounced for
-the frequency of occurrence ($+ 111 \pm 27\,\text{cases}/\text{year}$)
-and the excess irradiation ($+ 325.2 \pm 88\,\text{kJ}/\text{year}$),
-which are also statistically significant. In contrast the trend of the
+month. Statistically significant (at the $95\,\%$ confidence level)
+increasing trends appear for the yearly number of CE events
+($+ 111 \pm 27\,\text{cases}/\text{year}$) and the excess irradiation
+($+ 325.2 \pm 88\,\text{kJ}/\text{year}$), while the the trend in the
 yearly mean OI is negligible
 ($+ 0.14 \pm 0.1\,\text{W}/\text{m}^{2}/\text{year}$) and of no
 statistical significance. The average OI for the entire period is

@@ -607,15 +607,14 @@ language [@RCT2023]. All trends are reported together with their $2\sigma$ error
 Figure\nobreakspace{}\ref{fig:P-energy} shows the time series of the yearly number of
 CE cases (each with duration of one minute), the yearly mean OI and the yearly excess
 irradiation for the period 1994 -- 2023, together with corresponding linear trends.
-To account for missing data all three quantities have been divided with the fraction
-of the valid GHI observations in each month.
-All three quantities show increasing trends, most pronounced for the
-frequency of occurrence 
+To account for missing data, all three quantities have been divided with the fraction
+of the valid GHI observations in each month.  Statistically significant (at the
+$95\,\%$ confidence level) increasing trends appear for the yearly number of CE
+events
 ($`r plus_sign(round(yearlyCE[var == "GLB_diff.N", slope], 0))`\pm `r round(2 * yearlyCE[var == "GLB_diff.N", slope.sd], 0)`\,\text{cases}/\text{year}$)
-and the excess irradiation 
+and the excess irradiation
 ($`r plus_sign(round(yearlyCE[var == "GLB_diff.sum", slope], 1))` \pm `r round(2 * yearlyCE[var == "GLB_diff.sum", slope.sd], 1)`\,\text{kJ}/\text{year}$),
-which are also statistically significant.
-In contrast the trend of the yearly mean OI is negligible 
+while the the trend in the yearly mean OI is negligible
 ($`r plus_sign(round(yearlyCE[var == "GLB_diff.mean", slope], 2))`\pm `r round(2 * yearlyCE[var == "GLB_diff.mean", slope.sd], 1)`\,\text{W}/\text{m}^2/\text{year}$)
 and of no statistical significance.
 The average OI for the entire period is
