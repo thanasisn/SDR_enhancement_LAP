@@ -450,21 +450,14 @@ $\tau_{\text{cs}} = \tau_{500\text{nm}} - 1\sigma$ and $w_{h\text{cs}} = w_h - 1
 -->
 These values represent typical atmospheres in Thessaloniki with lower than average
 load of aerosols and humidity, which are the main factors that attenuate the GHI,
-excluding clouds.  With this approach the simulated $\text{GHI}_\text{ref}$ should be
-generally greater than the measured GHI when aerosols are more abundant.  To
-compensate for this, we defined the following threshold $E$ to compare the
-measured $\text{GHI}$:
-\begin{equation}
-\text{CE} : E > 25 + 1 \cdot \text{GHI}_\text{ref} \,\,[\text{W}/\text{m}^2] \label{eq:CE4}
-\end{equation}
-
-To assess the validity of the threshold, we tested the correlation of the measured
-GHI with those of the cloud-free irradiance
-(Figure\nobreakspace{}\ref{fig:validation-GHI}), for only cloud-free measurements of
-days with data availability of greater than 80%. Due to the selection of the
-simulations with lower AOD and WC, these values have a positive bias of more than
-$18\,\text{W}/\text{m}^2$. This bias was desired, so that together with the CE
-criterion, could achieve a clear distinction of CE cases.
+excluding clouds.  With this approach, the simulated $\text{GHI}_\text{ref}$ should be
+generally greater than the measured GHI when aerosols are more abundant. The
+correlation of the $\text{GHI}_\text{ref}$ with the GHI was tested for a subset of
+cloud-free days with more than $80\,\%$ data availability
+(Figure\nobreakspace{}\ref{fig:validation-GHI}) and found to have a positive bias of
+more than $18\,\text{W}/\text{m}^2$ across all levels of radiation.  To achieve a
+robust and clear distinction of CE cases, we set the criteria of CE detection
+$25\,\text{W}/\text{m}^2$ above the $\text{GHI}_\text{ref}$.
 
 \begin{figure}[H]
 
@@ -472,20 +465,30 @@ criterion, could achieve a clear distinction of CE cases.
 
 }
 
-\caption{The reference green line goes through the origin with a slope of one.}\label{fig:validation-GHI}
+\caption{The corelation GHI with $\text{GHI}_\text{ref}$, for cloud-free data of days with data availability more than $80\,\%$.}\label{fig:validation-GHI}
 \end{figure}
 
-
-
+<!--
+To
+compensate for this, we defined the following threshold $E$ to compare the
+measured $\text{GHI}$:
+\begin{equation}
+\text{CE} : E > 25 + 1 \cdot \text{GHI}_\text{ref} \,\,[\text{W}/\text{m}^2] \label{eq:CE4}
+\end{equation}
+-->
+<!--
 This is the criterion of our CE identification.  The constant terms were determined
-through the implementation of an empirical method with manual inspection of the CE
-identification results on selected days of the whole dataset.  We tested seven sets
-of days with different characteristics relevant to the efficiency of the
-identification threshold.  These sets were random groups of about 20 -- 30 days with
-the following characteristics:
+through the implementation of an empirical method
+-->
+
+To further ensure the effectiveness of this CE criterion, we implement a manual
+inspection of the CE identification results on selected days of the whole dataset.
+We tested seven sets of days with different characteristics relevant to the
+efficiency of the identification threshold.  These sets were random groups of about
+20 -- 30 days with the following characteristics:
 (a) the strongest OI CE events,
 (b) the largest daily total OI,
-(c) absence of clouds (by implementing a cloud-free identification algorithm as discussed in @Natsis2023),
+(c) absence of clouds (by implementing a cloud identification algorithm as discussed in @Natsis2023),
 (d) absence of clouds and absence of CE events,
 (e) with at least $60\,\%$ of the day length without clouds and presence of CE events,
 (h) randomly selected days, and
@@ -493,11 +496,7 @@ the following characteristics:
 For the latter case and where needed, we also used images from the sky-camera to
 further aid the decision of the manual inspection.
 
-
 <!-- reasoning for criteria -->
-<!-- We have to note, that the differentiation of the threshold factor was needed, because
-<!-- of the high irradiance values we observed, early in the morning and late in the
-<!-- afternoon. 
 <!-- We have confirmed, by inspecting images from the sky cam, that we have
 <!-- duration of elevated irradiance, either due to the clearness of the atmosphere, or some
 <!-- interferences by reflections on nearby bright surfaces. Although, these cases may
@@ -523,7 +522,7 @@ the TSI on horizontal plane at TOA. In this case the threshold $E$ is given by:
 \label{eq:ECE}
 \end{equation}
 where: $\text{SZA}$ the solar zenith angle, $E_{\odot}$ is the solar constant at the
-mean Sun - Earth distance ($1361\,\text{W}/\text{m}^2$), $r$ is
+mean Sun -- Earth distance ($1367\,\text{W}/\text{m}^2$), $r$ is
 the actual Sun - Earth distance and $r_\text{m}$ is the mean Sun -- Earth distance of
 $1.496\times10^8\,\text{km}$.
 
@@ -540,7 +539,13 @@ model, or with very small OI.
 In addition, we provide in Figure\nobreakspace{}\ref{fig:example-year} an example
 scatter plot between the measured GHI and the modeled cloud-free irradiance for one
 year (2005), where the CE and ECE events are clearly grouped above the cloud-free
-irradiance (approximated with the green line).
+irradiance (approximated with the green line).  The grey colored data points above
+this line correspond to the ambiguous data points discussed above. Finally, the black
+belt just below the green line is formed from data measured mainly under cloud-free
+conditions,conditions with the spread likely caused by the short-term variability of
+AOD. A small fraction of these data corresponds also to cases with thin cirrus clouds
+causing weak attenuation of GHI, often indistinguishable from the attenuation by
+aerosols.
 
 
 \begin{figure}[H]
@@ -549,7 +554,7 @@ irradiance (approximated with the green line).
 
 }
 
-\caption{Example of CE identification in Thessaloniki for 2019-07-11. The green line with blue symbols depicts the measured GHI in one minute steps. Red line shows the modelled threshold $E$ for the detection of CE events, which are denoted with red circles.Black curve represents the TOA TSI on horizontal plane.}\label{fig:example-day}
+\caption{Example of CE identification in Thessaloniki for 2019-07-11. The green line with blue symbols depicts the measured GHI in one-minute steps. The red line shows the modelled threshold for the detection of CE events, which are denoted with red circles. The black line represents the TOA TSI on a horizontal plane, equivalent to the threshold for the identification of ECE events, shown with red circles. The purple line is the modeled cloud-free irradiance. The dark yellow line is the solar constant of $1367\,\text{W}/\text{m}^{2}$}\label{fig:example-day}
 \end{figure}
 
 \begin{figure}[H]
@@ -558,7 +563,7 @@ irradiance (approximated with the green line).
 
 }
 
-\caption{Example scatter plot of the measured GHI and the reference cloud-free irradiance in Thessaloniki for the year 2005. The over-irradiance for CE and ECE events is color coded, while the remaining data points are shown in black. The reference green line goes through the origin with a slope of one.}\label{fig:example-year}
+\caption{Example scatter plot of the measured GHI and the reference cloud-free irradiance in Thessaloniki for the year 2005. The over-irradiance for CE and ECE events is colour coded, while the remaining data points are shown in black. The reference green line goes through the origin with a slope of one.}\label{fig:example-year}
 \end{figure}
 
 <!-- ```{r echo=F, include=T, warning=FALSE, message=FALSE} -->
@@ -576,7 +581,7 @@ irradiance (approximated with the green line).
 Following the application of the above discussed methodology to the entire dataset 
 ($6$ million of one-minute GHI measurements),
 $2.32\,\%$ were identified as CE events and
-$0.04\,\%$ as ECE events.
+$0.036\,\%$ as ECE events.
 The highest recorded GHI due to CE was
 $1416.6\,\text{W}/\text{m}^2$ on
  24\ May 2007 at a SZA of
@@ -591,8 +596,8 @@ $59.2^\circ$ with a GHI value of
 $861.8\,\text{W}/\text{m}^2$ and a OI of
 $298.4\,\text{W}/\text{m}^2$.
 Both cases are ECE events with
-$136.8\,\text{W}/\text{m}^2$ and
-$164.5\,\text{W}/\text{m}^2$ above the
+$131.2\,\text{W}/\text{m}^2$ and
+$161.5\,\text{W}/\text{m}^2$ above the
 TSI at TOA for the same SZA, respectively.
 In the following sections we are discussing the long-term trends and variability of
 the CE events as well as of the corresponding OI and excess irradiation.
