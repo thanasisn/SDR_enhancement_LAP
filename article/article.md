@@ -113,8 +113,8 @@ longer than 10\nobreakspace{}min are very rare
 over an hour and up to 140 minutes.  Finally, we have detected enhancements above the
 total solar irradiance at the top of the atmosphere for the same solar zenith angle
 of up to
-$400\,\text{W}/\text{m}^{2}$, with the $75\,\%$ of the cases below
-$200\,\text{W}/\text{m}^{2}$. Most of these  extreme events occur in spring -- early
+$209\,\text{W}/\text{m}^{2}$, with the $75\,\%$ of the cases below
+$40\,\text{W}/\text{m}^{2}$. Most of these extreme events occur in spring -- early
 summer, with a secondary peak in autumn.
 
 
@@ -172,7 +172,8 @@ Instruments response ....
 @Martins2022
 -->
 
-Methods of identification of CE events usually include the use of simulated cloud-free irradiance as baseline, combined with an appropriate threshold or some
+Methods of identification of CE events usually include the use of simulated
+cloud-free irradiance as baseline, combined with an appropriate threshold or some
 other statistical characteristics, and in some cases, with visual inspection of sky
 camera images [@Vamvakas2020; @Mol2023 and references therein].
 
