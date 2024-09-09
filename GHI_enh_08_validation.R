@@ -112,7 +112,7 @@ set.seed(RANDOM_SEED)
 
 
 
-cat("Drop all enhacement cases\n\n")
+cat("Drop all enhancement cases\n\n")
 DATA <- DATA[Enhanc_C_4 == F]
 
 cat("Drop all clouds\n\n")
@@ -327,9 +327,9 @@ ggplot(KEEP, aes(wattGLB, Low_B.Low_W.glo)) +
              size   = 0.4) +
   # geom_abline(aes(intercept = 0, slope = 1,                       colour = "green")) +
   geom_abline(aes(intercept = coef(fit)[1], slope = coef(fit)[2], colour = "blue"), linewidth = 1) +
-  ylab(bquote("Cloud-free modeled GHI" ~ group("[", W/m^2,"]"))) +
-  xlab(bquote("GHI" ~ group("[", W/m^2,"]"))) +
-  labs(caption = caption) +
+  ylab(bquote("Modeled Cloud-free GHI" ~ group("[", W/m^2,"]"))) +
+  xlab(bquote("Measured GHI" ~ group("[", W/m^2,"]"))) +
+  # labs(caption = caption) +
   # scale_color_manual(values = c("blue", "green"),
   scale_color_manual(values = c("blue"),
                      labels = unname(TeX(c(
@@ -379,8 +379,8 @@ ggplot(KEEP, aes(wattGLB, Enhanc_C_4_ref)) +
   # geom_abline(aes(intercept = 0, slope = 1,                       colour = "green")) +
   geom_abline(aes(intercept = coef(fit)[1], slope = coef(fit)[2], colour = "blue"), linewidth = 1) +
   ylab(bquote("CE threshold" ~ group("[", W/m^2,"]"))) +
-  xlab(bquote("GHI" ~ group("[", W/m^2,"]"))) +
-  labs(caption = caption) +
+  xlab(bquote("Measured GHI" ~ group("[", W/m^2,"]"))) +
+  # labs(caption = caption) +
   # scale_color_manual(values = c("blue", "green"),
   scale_color_manual(values = c("blue"),
                      labels = unname(TeX(c(

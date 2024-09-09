@@ -775,7 +775,7 @@ for (pyear in yearstodo) {
                           high     = "red",
                           limits   = c(0, NA),  ## always display zero
                           na.value = NA) +
-    labs(title = pyear) +
+    # labs(title = pyear) +
     ylab(bquote("Measured GHI" ~ group("[", W/m^2,"]"))) +
     xlab(bquote("GHI reference" ~ group("[", W/m^2,"]"))) +
     labs(color = bquote("OI" ~ group("[", W/m^2,"]"))) +

@@ -381,15 +381,16 @@ chosen as representative of all days in the year to get a rough estimate
 of the annually averaged change in cloud-free GHI. A second-degree
 polynomial fit was applied to the simulated yearly averaged GHI to
 derive the long-term change in GHI due to aerosols: \begin{equation}
-\Delta(\text{GHI}) [\%] = -12170 + 12.05 \cdot y + -0.002981 \cdot y^2 \label{eq:AODchange}
+\Delta(\text{GHI}) [\%] = -12170 + 12.05 \cdot x + -0.002981 \cdot x^2 \label{eq:AODchange}
 \end{equation} where \(y\) is the date as a decimal fraction of the
-year. For the period of the study the relative change of AOD ranges
-between \(-1.88\) and \(-0.23\,\%\). Finally, we applied these long-term
-changes of Equation\nobreakspace{}\ref{eq:AODchange} to the
-climatological \(\text{GHI}_\text{ref}\), to create a more realistic
-representation of the cloud-free irradiance for the entire period of
-study. For the period 1994 -- 1996 where no AOD data are available, we
-assumed that the changes in GHI follow the same polynomial fit.
+year. The resulting change in \(\text{GHI}_\text{ref}\) ranges between
+\(-1.88\) in 1994, a peak of \(0.23\,\%\) in mid-2020 and \(-0.19\,\%\)
+in the end of 2023. Finally, we applied these long-term changes of
+Equation\nobreakspace{}\ref{eq:AODchange} to the
+\(\text{GHI}_\text{ref}\), to create a more realistic representation of
+the cloud-free irradiance for the entire period of study. For the period
+1994 -- 1996 where no AOD data are available, we assumed that the
+changes in GHI follow the same polynomial fit.
 
 \hypertarget{criteria-for-the-identification-of-ce-events}{%
 \subsection{Criteria for the identification of CE
@@ -400,7 +401,7 @@ key issue for achieving this goal is to define a threshold for the CE
 identification, representative of the cloud-free irradiance at the time
 of each GHI measurement. This depends on the selection of the
 appropriate atmospheric parameterization for the RTM simulations. The
-implementation of the long-term change in AOD, discussed in
+implementation of the long-term changes in GHI due to AOD, discussed in
 section\nobreakspace{}\ref{rtmcs}, allows capturing a large part of the
 natural variability of cloud-free GHI. However, the short-term
 variability of AOD cannot be taken adequately into account when using
@@ -409,22 +410,25 @@ to strengthen the robustness of the methodology and to compensate for
 the limited accuracy of the RTM input data and the unpredictable natural
 variability of the atmosphere.
 
-First, we evaluated the performance of the modelled
+First, we evaluated the performance of the modeled
 \(\text{GHI}_\text{ref}\) in relation to the measured GHI for different
 levels of atmospheric clearness, by using in the RTM the monthly
 climatological AOD and WC, less their respective standard deviations.
-These values represent typical atmospheres in Thessaloniki with lower
-than average load of aerosols and humidity, which are the main factors
-that attenuate the GHI, excluding clouds. With this approach, the
-simulated \(\text{GHI}_\text{ref}\) should be generally greater than the
-measured GHI when aerosols are more abundant. The correlation of the
-\(\text{GHI}_\text{ref}\) with the GHI was tested for a subset of
-cloud-free days with more than \(80\,\%\) data availability
-(Figure\nobreakspace{}\ref{fig:validation-GHI}) and found to have a
-positive bias of more than \(18\,\text{W}/\text{m}^2\) across all levels
-of radiation. To achieve a robust and clear distinction of CE cases, we
-set the criteria of CE detection \(25\,\text{W}/\text{m}^2\) above the
-\(\text{GHI}_\text{ref}\).
+These values represent typical atmospheres in Thessaloniki with
+lower-than-average load of aerosols and humidity, which are the main
+factors that attenuate the GHI, in the absence of clouds. With this
+approach, the simulated \(\text{GHI}_\text{ref}\) should generally be
+greater than the measured GHI when aerosols are more abundant. The
+correlation of the \(\text{GHI}_\text{ref}\) with the GHI was tested for
+a subset of 513 cloud-free days with more than \(80\,\%\) data
+availability (Figure\nobreakspace{}\ref{fig:validation-GHI}). The
+scatter plot shows a good agreement between the modeled and the measured
+GHI with a spread that arises mainly from the short-term variability of
+AOD and WC. The linear regression reveals a positive bias of
+\(18.4\,\text{W}/\text{m}^2\) and a slope very close to unity. To
+achieve a robust and clear distinction of the CE cases, we applied on
+the \(\text{GHI}_\text{ref}\) an additional offset of
+\(25\,\text{W}/\text{m}^2\).
 
 \begin{figure}[H]
 
@@ -432,14 +436,12 @@ set the criteria of CE detection \(25\,\text{W}/\text{m}^2\) above the
 
 }
 
-\caption{The corelation GHI with $\text{GHI}_\text{ref}$, for cloud-free data of days with data availability more than $80\,\%$.}\label{fig:validation-GHI}
+\caption{Scatter plot of the measured GHI and the $\text{GHI}_\text{ref}$, for cloud-free days with data availability of more than $80\,\%$. The linear regression on the data is also shown on the figure with the blue line.}\label{fig:validation-GHI}
 \end{figure}
 
-To further ensure the effectiveness of this CE criterion, we implement a
-manual inspection of the CE identification results on selected days of
-the whole dataset. We tested seven sets of days with different
-characteristics relevant to the efficiency of the identification
-threshold. These sets were random groups of about 20 -- 30 days with the
+To further ensure the effectiveness of this CE criterion, we inspected
+manually the CE identification results on selected days of the whole
+dataset. We tested seven random groups of about 20 -- 30 days with the
 following characteristics: (a) the strongest OI CE events, (b) the
 largest daily total OI, (c) absence of clouds (by implementing a cloud
 identification algorithm as discussed in \citet{Natsis2023}), (d)
@@ -447,20 +449,20 @@ absence of clouds and absence of CE events, (e) with at least \(60\,\%\)
 of the day length without clouds and presence of CE events, (h) randomly
 selected days, and (i) manually selected days. For the latter case and
 where needed, we also used images from the sky-camera to further aid the
-decision of the manual inspection.
+inspection.
 
 The definition of the CE events with this method has a degree of
 subjectivity, since the actual cloud-free irradiance is not known and
 can only be approximated. However, this method was proven capable in
 detecting all major CE events. Where some CE events with very low OI may
-be not detected, these are few with small over-irradiance, and it is
-unlikely that will affect significantly our results.
+be not detected, these were few with small over-irradiance, and it is
+unlikely that will significantly affect our results.
 
-A sub-category of the CE events that is often discussed in the
-literature \citep{Cordero2023, Martins2022, Yordanov2015}, are the
-extreme cloud enhancement (ECE) events. These are cases of CE where the
-measured intensity of the irradiance exceeds the TSI on horizontal plane
-at TOA. In this case the threshold \(E\) is given by: \begin{equation}
+A subcategory of the CE events that is often discussed in the literature
+\citep{Cordero2023, Martins2022, Yordanov2015}, are the extreme cloud
+enhancement events. These are cases of CE where the measured intensity
+of the irradiance exceeds the TSI on a horizontal plane at TOA. In this
+case the threshold \(E\) is given by: \begin{equation}
 \text{ECE}: E > \cos(\text{SZA}) \cdot E_{\odot} \frac{r^2_\text{m}} {r^2}
 \label{eq:ECE}
 \end{equation} where: \(\text{SZA}\) the solar zenith angle,
@@ -472,13 +474,16 @@ distance and \(r_\text{m}\) is the mean Sun -- Earth distance of
 An example of the identification of CE events for a selected day is
 given in the Figure\nobreakspace{}\ref{fig:example-day}, where the daily
 course of the cloud-free reference irradiance and the CE and ECE
-thresholds are shown along with the actual GHI measurements. The GHI
-data in the periods 7:30 -- 8:30 and after 14:00 are very close to the
-modeled cloud-free GHI (light blue line) thus were identified as
-cloud-free instances. There is some ambiguity for the data points laying
-between the CE threshold and the cloud-free irradiance, which are not
-identified as CE events. These data points correspond to cases either
-with AOD below the one assumed in the model, or with very small OI.
+thresholds are shown along with the actual GHI measurements. Three
+sky-camera images at the bottom illustrate the cloud conditions during
+the highest ECE events (a and c), while (b) shows the conditions where
+clouds caused a substantial reduction in GHI. The GHI data in the
+periods 7:30 -- 8:30 and after 14:00 are very close to the modeled
+cloud-free GHI (purple line) thus were identified as cloud-free
+instances. There is some ambiguity for the data points lying between the
+CE threshold and the cloud-free irradiance, which are not identified as
+CE events. These data points correspond to cases either with AOD below
+the one assumed in the model, or with very small OI.
 
 In addition, we provide in Figure\nobreakspace{}\ref{fig:example-year}
 an example scatter plot between the measured GHI and the modeled

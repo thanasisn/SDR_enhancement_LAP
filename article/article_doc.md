@@ -289,29 +289,34 @@ levels of atmospheric clearness, by using in the RTM the monthly
 climatological AOD and WC, less their respective standard deviations.
 These values represent typical atmospheres in Thessaloniki with
 lower-than-average load of aerosols and humidity, which are the main
-factors that attenuate the GHI, excluding clouds. With this approach,
-the simulated $\text{GHI}_{\text{ref}}$ should be generally greater than
-the measured GHI when aerosols are more abundant. The correlation of the
-$\text{GHI}_{\text{ref}}$ with the GHI was tested for a subset of
-cloud-free days with more than $80\,\%$ data availability (Figure) and
-found to have a positive bias of more than $18\,\text{W}/\text{m}^{2}$
-across all levels of radiation. To achieve a robust and clear
-distinction of CE cases, we set the criteria of CE detection
-$25\,\text{W}/\text{m}^{2}$ above the $\text{GHI}_{\text{ref}}$.
+factors that attenuate the GHI, in the absence of clouds. With this
+approach, the simulated $\text{GHI}_{\text{ref}}$ should generally be
+greater than the measured GHI when aerosols are more abundant. The
+correlation of the $\text{GHI}_{\text{ref}}$ with the GHI was tested for
+a subset of 513 cloud-free days with more than $80\,\%$ data
+availability (Figure). The scatter plot shows a good agreement between
+the modeled and the measured GHI with a spread that arises mainly from
+the short-term variability of AOD and WC. The linear regression reveals
+a positive bias of $18.4\,\text{W}/\text{m}^{2}$ and a slope very close
+to unity. To achieve a robust and clear distinction of the CE cases, we
+applied on the $\text{GHI}_{\text{ref}}$ an additional offset of
+$25\,\text{W}/\text{m}^{2}$.
 
-![Figure 2.2: The corelation GHI with \\text{GHI}\_\\text{ref}, for
-cloud-free data of days with data availability more than
-80\\,\\%.](media/rId31.png){width="5.833333333333333in"
+![Figure 2.2: Scatter plot of the measured GHI and the
+\\text{GHI}\_\\text{ref}, for cloud-free days with data availability of
+more than 80\\,\\%. The linear regression on the data is also shown on
+the figure with the blue
+line.](media/rId31.png){width="5.833333333333333in"
 height="3.6948403324584427in"}
 
-Figure 2.2: The corelation GHI with $\text{GHI}_{\text{ref}}$, for
-cloud-free data of days with data availability more than $80\,\%$.
+Figure 2.2: Scatter plot of the measured GHI and the
+$\text{GHI}_{\text{ref}}$, for cloud-free days with data availability of
+more than $80\,\%$. The linear regression on the data is also shown on
+the figure with the blue line.
 
-To further ensure the effectiveness of this CE criterion, we implement a
-manual inspection of the CE identification results on selected days of
-the whole dataset. We tested seven sets of days with different
-characteristics relevant to the efficiency of the identification
-threshold. These sets were random groups of about 20 -- 30 days with the
+To further ensure the effectiveness of this CE criterion, we inspected
+manually the CE identification results on selected days of the whole
+dataset. We tested seven random groups of about 20 -- 30 days with the
 following characteristics: (a) the strongest OI CE events, (b) the
 largest daily total OI, (c) absence of clouds (by implementing a cloud
 identification algorithm as discussed in Natsis, Bais, and Meleti
@@ -319,21 +324,21 @@ identification algorithm as discussed in Natsis, Bais, and Meleti
 least $60\,\%$ of the day length without clouds and presence of CE
 events, (h) randomly selected days, and (i) manually selected days. For
 the latter case and where needed, we also used images from the
-sky-camera to further aid the decision of the manual inspection.
+sky-camera to further aid the inspection.
 
 The definition of the CE events with this method has a degree of
 subjectivity, since the actual cloud-free irradiance is not known and
 can only be approximated. However, this method was proven capable in
 detecting all major CE events. Where some CE events with very low OI may
-be not detected, these are few with small over-irradiance, and it is
-unlikely that will affect significantly our results.
+be not detected, these were few with small over-irradiance, and it is
+unlikely that will significantly affect our results.
 
-A sub-category of the CE events that is often discussed in the
-literature (Cordero et al. 2023; Martins, Mantelli, and Rüther 2022;
-Georgi Hristov Yordanov, Saetre, and Midtgård 2015), are the extreme
-cloud enhancement (ECE) events. These are cases of CE where the measured
-intensity of the irradiance exceeds the TSI on horizontal plane at TOA.
-In this case the threshold $E$ is given by:
+A subcategory of the CE events that is often discussed in the literature
+(Cordero et al. 2023; Martins, Mantelli, and Rüther 2022; Georgi Hristov
+Yordanov, Saetre, and Midtgård 2015), are the extreme cloud enhancement
+events. These are cases of CE where the measured intensity of the
+irradiance exceeds the TSI on a horizontal plane at TOA. In this case
+the threshold $E$ is given by:
 
 $$\text{ECE}:E > \cos\left( \text{SZA} \right) \cdot E_{\odot}\frac{r_{\text{m}}^{2}}{r^{2}}$$
 
@@ -346,71 +351,77 @@ $1.496 \times 10^{8}\,\text{km}$.
 An example of the identification of CE events for a selected day is
 given in the Figure, where the daily course of the cloud-free reference
 irradiance and the CE and ECE thresholds are shown along with the actual
-GHI measurements. The GHI data in the periods 7:30 -- 8:30 and after
-14:00 are very close to the modeled cloud-free GHI (light blue line)
-thus were identified as cloud-free instances. There is some ambiguity
-for the data points laying between the CE threshold and the cloud-free
-irradiance, which are not identified as CE events. These data points
-correspond to cases either with AOD below the one assumed in the model,
-or with very small OI.
+GHI measurements. Three sky-camera images at the bottom illustrate the
+cloud conditions during the highest ECE events (a and c), while (b)
+shows the conditions where clouds caused a substantial reduction in GHI.
+The GHI data in the periods 7:30 -- 8:30 and after 14:00 are very close
+to the modeled cloud-free GHI (purple line) thus were identified as
+cloud-free instances. There is some ambiguity for the data points lying
+between the CE threshold and the cloud-free irradiance, which are not
+identified as CE events. These data points correspond to cases either
+with AOD below the one assumed in the model, or with very small OI.
 
 In addition, we provide in Figure an example scatter plot between the
-measured GHI and the modeled cloud-free irradiance for one year (2005),
-where the CE and ECE events are clearly grouped above the cloud-free
-irradiance (approximated with the green line). The grey colored data
+measured GHI and the modeled cloud-free irradiance for year 2005, where
+the CE and ECE events are clearly grouped above the cloud-free
+irradiance (approximated with the green line). The gray colored data
 points above this line correspond to the ambiguous data points discussed
 above. Finally, the black belt just below the green line is formed from
-data measured mainly under cloud-free conditions,conditions with the
-spread likely caused by the short-term variability of AOD. A small
-fraction of these data corresponds also to cases with thin cirrus clouds
-causing weak attenuation of GHI, often indistinguishable from the
-attenuation by aerosols.
+data measured mainly under cloud-free conditions, with the spread likely
+caused by the short-term variability of AOD. A small fraction of these
+data corresponds also to cases with thin cirrus clouds causing weak
+attenuation of GHI, often indistinguishable from the attenuation by
+aerosols.
 
 ![Figure 2.3: Example of CE identification in Thessaloniki for
 2019-07-11. The green line with blue symbols depicts the measured GHI in
-one-minute steps. The red line shows the modelled threshold for the
-detection of CE events, which are denoted with red circles. The black
+one-minute steps. The red line shows the modeled threshold for the
+detection of CE events, which are denoted with gray circles. The black
 line represents the TOA TSI on a horizontal plane, equivalent to the
 threshold for the identification of ECE events, shown with red circles.
 The purple line is the modeled cloud-free irradiance. The dark yellow
-line is the solar constant of
-1367\\,\\text{W}/\\text{m}\^{2}.](media/rId35.png){width="4.436619641294838in"
+line is the solar constant of 1367\\,\\text{W}/\\text{m}\^{2}. The three
+sky images below the figure are taken at three characteristic instances
+(a, b, c) denoted on the figure with vertical dashed
+lines.](media/rId35.png){width="4.436619641294838in"
 height="4.54929571303587in"}
 
 Figure 2.3: Example of CE identification in Thessaloniki for 2019-07-11.
 The green line with blue symbols depicts the measured GHI in one-minute
-steps. The red line shows the modelled threshold for the detection of CE
-events, which are denoted with red circles. The black line represents
+steps. The red line shows the modeled threshold for the detection of CE
+events, which are denoted with gray circles. The black line represents
 the TOA TSI on a horizontal plane, equivalent to the threshold for the
 identification of ECE events, shown with red circles. The purple line is
 the modeled cloud-free irradiance. The dark yellow line is the solar
-constant of $1367\,\text{W}/\text{m}^{2}$.
+constant of $1367\,\text{W}/\text{m}^{2}$. The three sky images below
+the figure are taken at three characteristic instances (a, b, c) denoted
+on the figure with vertical dashed lines.
 
 ![Figure 2.4: Example scatter plot of the measured GHI and the reference
 cloud-free irradiance in Thessaloniki for the year 2005. The
-over-irradiance for CE and ECE events is colour coded, while the
+over-irradiance for CE and ECE events is color coded, while the
 remaining data points are shown in black. The reference green line goes
 through the origin with a slope of
-one.](media/rId39.png){width="5.833333333333333in"
+unity.](media/rId39.png){width="5.833333333333333in"
 height="3.6280479002624673in"}
 
 Figure 2.4: Example scatter plot of the measured GHI and the reference
 cloud-free irradiance in Thessaloniki for the year 2005. The
-over-irradiance for CE and ECE events is colour coded, while the
+over-irradiance for CE and ECE events is color coded, while the
 remaining data points are shown in black. The reference green line goes
-through the origin with a slope of one.
+through the origin with a slope of unity.
 
 # 3 Results
 
 Following the application of the above discussed methodology to the
-entire dataset ($6$ million of one-minute GHI measurements), $2.32\,\%$
-were identified as CE events and $0.036\,\%$ as ECE events. The highest
-recorded GHI due to CE was $1416.6\,\text{W}/\text{m}^{2}$ on 24 May
-2007 at a SZA of ${19.9}^{\circ}$ corresponding to OI of
+entire dataset ($> 6$ million of one-minute GHI measurements),
+$2.32\,\%$ were identified as CE events and $0.036\,\%$ as ECE events.
+The highest recorded GHI due to CE was $1416.6\,\text{W}/\text{m}^{2}$
+on 24 May 2007 at a SZA of ${19.9}^{\circ}$ corresponding to OI of
 $369.3\,\text{W}/\text{m}^{2}$ or $35.3\,\%$ above the threshold. The
 strongest CE event of $53\,\%$ above the cloud-free threshold was
-observed on 28 October 2016 at a SZA of ${59.2}^{\circ}$ with a GHI
-value of $861.8\,\text{W}/\text{m}^{2}$ and a OI of
+observed on 28 October 2016 at a SZA of ${59.2}^{\circ}$ with a GHI of
+$861.8\,\text{W}/\text{m}^{2}$ and a OI of
 $298.4\,\text{W}/\text{m}^{2}$. Both cases are also ECE events with
 $131.2\,\text{W}/\text{m}^{2}$ and $161.5\,\text{W}/\text{m}^{2}$ above
 the TSI at TOA for the same SZA, respectively. In the following sections
@@ -443,9 +454,9 @@ been divided with the fraction of the valid GHI observations in each
 month. Statistically significant (at the $95\,\%$ confidence level)
 increasing trends appear for the yearly number of CE events
 ($+ 112 \pm 35\,\text{cases}/\text{year}$) and the excess irradiation
-($+ 329.9 \pm 112\,\text{kJ}/\text{year}$), while the the trend in the
+($+ 329.9 \pm 112\,\text{kJ}/\text{year}$), while the trend in the
 yearly mean OI is negligible
-($+ 0.11 \pm 0.2\,\text{W}/\text{m}^{2}/\text{year}$) and of no
+($+ 0.1 \pm 0.2\,\text{W}/\text{m}^{2}/\text{year}$) and of no
 statistical significance. The average OI for the entire period is
 $+ 42.6 \pm 2.8\,\text{W}/\text{m}^{2}$. The yearly excess irradiation
 due to CE events ranges between about $8$ and
@@ -458,14 +469,15 @@ the mean OI is rather weak, the variability about the trend lines is
 quite large for the number of CE cases and the excess irradiation
 (panels b and c). For these two quantities the spread tends to increase
 with time, suggesting a significant variability in cloud patterns over
-the area, possibly associated to changes in climate.
+the area, possibly associated with changes in climate.
 
 We must note that the excess irradiation from the CE events that is
 received at the surface does not affect the balance of the energy budget
 in the atmosphere. The incoming solar radiation in the region is not
-increased by the OI but is rather redistributed through the CE events.
-This is also depicted by the ECE irradiance values, which exceed the
-equivalent cloud-free irradiance by a significant amount.
+increased by the OI but is rather redistributed at the specific location
+as asdditional scattered radiation. This is also depicted by the ECE
+irradiance values, which exceed the equivalent cloud-free irradiance by
+a significant amount.
 
 ## 3.2 Climatology of cloud enhancement events
 
