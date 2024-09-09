@@ -255,7 +255,7 @@ a rough estimate of the annually averaged change in cloud-free GHI. A
 second-degree polynomial fit was applied to the simulated yearly
 averaged GHI to derive the long-term change in GHI due to aerosols:
 
-$$\Delta\left( \text{AOD} \right)\lbrack\%\rbrack = - 12170 + 12.05 \cdot y + - 0.002981 \cdot y^{2}$$
+$$\Delta\left( \text{GHI} \right)\lbrack\%\rbrack = - 12170 + 12.05 \cdot y + - 0.002981 \cdot y^{2}$$
 
 where $y$ is the date as a decimal fraction of the year. For the period
 of the study the relative change of AOD ranges between $- 1.88$ and
