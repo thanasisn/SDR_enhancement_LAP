@@ -141,7 +141,7 @@ steps. An overview of the GHI data used in this study is given in Figure
 least 60% of data availability; however, all available one-minute
 measurements have been used for the detection of CE events.
 
-![](media/image11.png){width="3.03125in" height="1.9375in"}
+![](media/image8.png){width="3.03125in" height="1.9375in"}
 
 Figure 1: Timeseries of daily mean GHI measured at Thessaloniki for the
 period 1994 -- 2023.
@@ -342,7 +342,7 @@ data corresponds also to cases with thin cirrus clouds causing weak
 attenuation of GHI, often indistinguishable from the attenuation by
 aerosols.
 
-![](media/image6.png){width="6.5in" height="4.121527777777778in"}
+![](media/image4.png){width="6.5in" height="4.121527777777778in"}
 
 *Figure 2.2: Example of CE identification in Thessaloniki for
 2019-07-11. The green line with blue symbols depicts the measured GHI in
@@ -358,7 +358,7 @@ clear sky irradiance in Thessaloniki for the year 2005. The
 over-irradiance for CE and ECE events is color coded, while the
 remaining data points are shown in black. The reference green line goes
 through the origin with a slope of
-one.](media/image5.png){width="5.833333333333333in"
+one.](media/image3.png){width="5.833333333333333in"
 height="3.6354166666666665in"}
 
 *Figure 2.3: Example scatter plot of the measured GHI and the reference
@@ -431,7 +431,7 @@ increased by the OI but is rather redistributed through the CE events.
 This is also depicted by the ECE irradiance values, which exceed the
 equivalent cloud-free irradiance by a significant amount.
 
-![](media/image4.png){width="3.15625in" height="6.15625in"}
+![](media/image2.png){width="3.15625in" height="6.15625in"}
 
 Figure 5: Time series of (a) the yearly CE number of occurrences, (b)
 the yearly mean OI and (c) the yearly excess irradiation at Thessaloniki
@@ -465,7 +465,7 @@ circulation (Chiacchio and Wild, 2010), or to the observed decreasing
 trend in cloud cover as a result of global warming (e.g.,
 Sanchez-Lorenzo et al, 2017).
 
-![](media/image3.png){width="5.03125in" height="3.0625in"}
+![](media/image10.png){width="5.03125in" height="3.0625in"}
 
 *Figure 3.1: Seasonal variability of the relative occurrence of CE
 events in Thessaloniki for the period 1994 -- 2023, in the form of a box
@@ -479,22 +479,22 @@ in Figure. There is an inverse relationship between the frequency of CE
 events and OI with an exponential-like decline. This is expected, as the
 stronger the CE events are, the rarer the conditions favouring the
 occurrence of CE events. For the majority (over $62\%$) of the CE events
-the OI is below the long-term average of $40.1\frac{W}{m^{2}}$, while
-about $8.1\%$ of the events correspond to OI larger than
+the OI is below the long-term average of $420.61\frac{W}{m^{2}}$, while
+$98.61\%$ of the events correspond to OI larger than
 $100\frac{W}{m^{2}}$ and up to the highest value of
-$412.4\frac{W}{m^{2}}$. This distribution is indicative of the magnitude
-and the probability of the expected CE events over Thessaloniki. Similar
-distribution of CE events, albeit with larger OI values, has been
-reported by Vamvakas, Salamalikis, and Kazantzidis (2020), for the city
-of Patras. This site is located ${2.5}^{\circ}$ south of Thessaloniki
-and is exposed to air masses coming mainly from the eastern
-Mediterranean, resulting in different cloud patterns, that may affect
-the characteristics and magnitude of the CE events.
+$43712.4\frac{W}{m^{2}}$. This distribution is indicative of the
+magnitude and the probability of the expected CE events over
+Thessaloniki. Similar distribution of CE events, albeit with larger OI
+values, has been reported by Vamvakas, Salamalikis, and Kazantzidis
+(2020), for the city of Patras. This site is located ${2.5}^{\circ}$
+south of Thessaloniki and is exposed to air masses coming mainly from
+the eastern Mediterranean, resulting in different cloud patterns, that
+may affect the characteristics and magnitude of the CE events.
 
 ![Figure 3.2: Relative frequency distribution of CE events in
 Thessaloniki for the period 1993 -- 2023 as a function of OI. The
 histogram was split in two plots with different y-axis scales for better
-readability.](media/image9.png){width="5.833333333333333in"
+readability.](media/image6.png){width="5.833333333333333in"
 height="3.702777777777778in"}
 
 *Figure 3.2: Relative frequency distribution of CE events in
@@ -512,14 +512,14 @@ whole period of study. The group with the longest duration of 140
 minutes occurred on 07 July 2013 with SZA ranging between 52.1° and
 77.9°. Figure shows the frequency distribution of the CE events
 according to their duration. We conclude that although some groups of
-events last for more than an hour, about $80\%$ have duration of less
+events last for more than an hour, about $80\%$ have a duration of less
 than 5 minutes.
 
 ![Figure 3.3: Relative frequency distribution of CE groups of consequent
 CE events according to their duration for Thessaloniki in the period
 1993 -- 2023. The histogram was split in two plots with different y-axis
 scales for better
-readability.](media/image1.png){width="5.833333333333333in"
+readability.](media/image5.png){width="5.833333333333333in"
 height="3.7375in"}
 
 *Figure 3.3: Relative frequency distribution of CE groups of consequent
@@ -542,7 +542,7 @@ far higher sampling rate ($100Hz$) than ours.
 ![Figure 3.4: Relation of excess irradiation of CE groups with their
 duration for Thessaloniki in the period 1993 -- 2023. The logarithmic
 color scale denotes the frequency of the respective groups of
-events.](media/image7.png){width="5.833333333333333in"
+events.](media/image9.png){width="5.833333333333333in"
 height="3.6951388888888888in"}
 
 *Figure 3.4: Relation of excess irradiation of CE groups with their
@@ -573,7 +573,7 @@ well below 0.1 % of the data, therefore on average it would not affect
 the production of solar energy. However, during short, isolated periods
 extreme enhancements of GHI can be of concern.
 
-![](media/image8.png){width="5.177083333333333in"
+![](media/image7.png){width="5.177083333333333in"
 height="3.1930555555555555in"} Figure 3.5: Seasonal variability of the
 relative occurrence of ECE events in Thessaloniki for the period 1994 --
 2023, in the form of a box and whisker plot. The box contains the data
@@ -590,7 +590,7 @@ with the results of Vamvakas, Salamalikis, and Kazantzidis (2020), the
 only difference being that the OI values reported for are higher than
 those for Thessaloniki.
 
-![](media/image2.png){width="4.0625in" height="2.526388888888889in"}
+![](media/image11.png){width="4.0625in" height="2.526388888888889in"}
 
 *Figure 3.6: Relative frequency distribution of ECE events in
 Thessaloniki for the period 1994 -- 2023.*
