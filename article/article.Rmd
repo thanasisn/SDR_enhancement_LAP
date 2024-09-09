@@ -33,10 +33,25 @@ address:
 #     text: "This is the first author footnote."
 #   - code: 2
 #     text: "Another author footnote."
-# abstract: |
-#   In this study we investigate the characteristics of global horizontal irradiance
-#   \(200\,\text{W}/\text{m}^{2}\). The most active period of these extreme events is
-#   spring -- early summer with a secondary peak in autumn.
+abstract: |
+  In this study, we investigate the characteristics of global horizontal
+  irradiance enhancement events induced by clouds over Thessaloniki for
+  the period 1994 -- 2023 using data recorded every one minute. To our
+  knowledge, there isn't a similar study with such a long time series. We
+  identified the cloud enhancement (CE) events by creating an appropriate
+  cloud-free irradiance reference using a radiative transfer model and
+  aerosol optical depth data from a collocated Cimel sun photometer and a
+  Brewer spectrophotometer. We found a trend in CE events of
+  \(+112\pm 35\,\text{cases}/\text{year}\), and a trend in the
+  corresponding irradiation of \(+329.9\pm 112\,\text{kJ}/\text{year}\).
+  The peak of the CE events was observed during May and June. CE events
+  with duration longer than 10\nobreakspace{}min are very rare
+  (\(<8\,\%\)), with exceptions lasting over an hour and up to 140
+  minutes. Finally, we have detected enhancements above the total solar
+  irradiance at the top of the atmosphere for the same solar zenith angle
+  of up to \(204\,\text{W}/\text{m}^{2}\), with the \(75\,\%\) of the
+  cases below \(40\,\text{W}/\text{m}^{2}\). Most of these extreme events
+  occur in spring -- early summer, with a secondary peak in autumn.
 
 header-includes:
   - \usepackage{caption}
@@ -132,6 +147,7 @@ BR <-  unique(BR[typer == "BR SZA 55", .(year, pw_avg_mm, b, a)])
 MC <- readRDS("~/MANUSCRIPTS/02_enhancement/data/Max_cases.Rds")
 ```
 
+<!--
 # Abstract {.unnumbered}
 
 **Abstract temporary placed here for technical reasons**
@@ -157,7 +173,7 @@ of up to
 $204\,\text{W}/\text{m}^{2}$, with the $75\,\%$ of the cases below
 $40\,\text{W}/\text{m}^{2}$. Most of these extreme events occur in spring -- early
 summer, with a secondary peak in autumn.
-
+-->
 
 
 # Introduction
@@ -239,10 +255,9 @@ measured with a Kipp\ & Zonen CM-21 pyranometer and cover the period
 `r strftime(min(ST_daily$Date), "%d\\ %B %Y")` to
 `r strftime(max(ST_daily$Date), "%d\\ %B %Y")`.
 <!-- Instrument -->
-  During the study
-period, the pyranometer was independently calibrated three times at the
-Meteorologisches Observatorium Lindenberg, DWD, verifying that the stability of the
-instrument’s sensitivity was better than $0.7\,\%$ relative to the initial
+During the study period, the pyranometer was independently calibrated three times at
+the Meteorologisches Observatorium Lindenberg, DWD, verifying that the stability of
+the instrument’s sensitivity was better than $0.7\,\%$ relative to the initial
 calibration by the manufacturer.
 <!-- Measurements -->
 For the acquisition of radiometric data, the signal of the pyranometer was sampled at
@@ -327,7 +342,6 @@ $10$ -- $90^\circ$ with a step of $0.2^\circ$ and for the atmospheric profiles o
 Air Force Geophysics Laboratory [@Anderson1986] midlatitude summer and midlatitude
 winter, representative of the warm and cold seasons.
 
-
 Main factors responsible for the attenuation of the broadband downward solar
 radiation under cloud-free atmospheres are aerosols and water vapor.  At
 Thessaloniki, such measurements have been available since 2003 from a Cimel sun
@@ -347,7 +361,6 @@ $\text{GHI}_\text{ref}$ for all combinations of the AOD and WC with the
 above-mentioned standard deviation offsets.  Finally, each $\text{GHI}_\text{ref}$
 value was adjusted to the actual Sun-Earth distance derived by the Astropy software
 library [@AstropyCollaboration2022].
-
 
 <!-- Lookup table -->
 <!-- 
@@ -651,7 +664,7 @@ associated with changes in climate.
 We must note that the excess irradiation from the CE events that is received at the
 surface does not affect the balance of the energy budget in the atmosphere. The
 incoming solar radiation in the region is not increased by the OI but is rather
-redistributed at the specific location as asdditional scattered radiation.  This is
+redistributed at the specific location as additional scattered radiation.  This is
 also depicted by the ECE irradiance values, which exceed the equivalent cloud-free
 irradiance by a significant amount.
 
@@ -682,7 +695,7 @@ the types of clouds, their frequency of occurrence, the seasonally varying relat
 position of the sun, as well as the local landscape characteristics that may
 influence the formation of the clouds.  For example, during May and June the frequent
 formation of cumulus clouds in the area leads to a significant increase in the CE
-events.  However, the lack of detailed data in the area of cloud characteristics does
+events.  However, the lack of detailed data on cloud characteristics in the area does
 not allow further analysis. Finally, the interannual variability of the monthly CE
 events is quite high as manifested by the size of the boxes and the large monthly
 extremes, especially in the summer. Investigation of the causes of this variability
@@ -706,7 +719,7 @@ knitr::include_graphics("../images/clim-CE-month-norm-MAX-median-N-MW-1.png")
 The distribution of the number of CE events as a function of OI is shown in
 Figure\nobreakspace{}\ref{fig:ovir-distribution}.  There is an inverse relationship
 between the frequency of CE events and OI with an exponential-like decline. This is
-expected, as the stronger the CE events are, the rarer the conditions favouring the
+expected, as the stronger the CE events are, the rarer the conditions favoring the
 occurrence of CE events.
 For the majority (over $`r round(some01$Enh_pc_below_mean,0)`\,\%$) of
 the CE events the OI is below the long-term average of
@@ -718,7 +731,7 @@ This distribution is indicative of the magnitude and the probability of the expe
 CE events over Thessaloniki.  Similar distribution of CE events, albeit with larger
 OI values, has been reported by @Vamvakas2020, for the city of Patras. This site is
 located $2.5^\circ$ south of Thessaloniki and is exposed to air masses coming mainly
-from the eastern Mediterranean, resulting in different cloud patterns, that may
+from the eastern Mediterranean, resulting in different cloud patterns that may
 affect the characteristics and magnitude of the CE events.
 
 ```{r ovir-distribution, echo=FALSE, fig.cap="Relative frequency distribution of CE events in Thessaloniki for the period 1994 -- 2023 as a function of OI. The histogram was split in two plots with different y-axis scales for better readability."}
@@ -741,7 +754,8 @@ Figure\nobreakspace{}\ref{fig:ceg-duration-distribution} shows the frequency
 distribution of the CE events according to their duration.  We conclude that although
 some groups of events last for more than an hour, about
 $`r round(100*ST_G0[,sum(GLB_ench.N<=5)/.N],0)`\,\%$ have a duration of
-equal or less than 5 minutes.
+equal or less than 5 minutes, likely due to the movements of clouds causing frequent
+blocking of the direct irradiance, which reduce the duration of the CE events.
 
 ```{r ceg-duration-distribution, echo=FALSE, fig.cap="Relative frequency distribution of CE groups of consequent CE events according to their duration for Thessaloniki in the period 1994 -- 2023. The histogram was split in two plots with different y-axis scales for better readability."}
 # knitr::include_graphics("../images/groups-1.png")
@@ -773,7 +787,7 @@ measured GHI exceeds the expected irradiance at the TOA at the same SZA
 (Equation\nobreakspace{}\ref{eq:ECE}).  In analogy to
 Figure\nobreakspace{}\ref{fig:relative-month-occurrences}, we show in 
 Figure\nobreakspace{}\ref{fig:relative-month-occurancies-ECE} the number of ECE
-events relative to the total number of one-min observations in each month. Judging by
+events relative to the available number of one-min observations in each month. Judging by
 the distribution of the monthly medians, the most active months in ECE events are
 January -- March and November and the least active are July and August. The highest
 interannual variability in the 30-year record occurs from October to April. In the
@@ -782,7 +796,14 @@ in July and August.  Although the most active months for CE events are May and J
 (Figure\nobreakspace{}\ref{fig:relative-month-occurrences}), these months behave
 differently for the ECE events, suggesting that the cumulus clouds that usually cause
 enhancements of irradiance are incapable to produce extreme events, possibly because
-of their size and structure, in conjunction with the smaller SZAs in the summer.
+of their size and structure, in conjunction with the smaller SZAs in the summer.  In
+contrast, during winter the Sun is lower in the sky and clouds are frequently less
+dense allowing a large fraction of radiation to be scattered forward and enhance the
+irradiance at the surface. These conclusions are based on manual inspection of many
+sky-camera images during the summer and winter periods. An automated procedure of
+checking the sky-camera images for such events would greatly improve our ability to
+classify the CE and ECE events and help in the attribution of the causes of the
+events.
 
 In general, the fraction of ECE events during the year is very small, well below
 $0.1\,\%$ of the data, therefore on average it would not affect the production of
@@ -815,9 +836,9 @@ knitr::include_graphics("../images/P-extreme-distribution-2.png")
 # Conclusions
 
 By creating a cloud-free approximation representing the long- and short-term
-variability of the expected cloud-free GHI, we were able to identify cases of CE
-events in Thessaloniki for the period 1994 -- 2023.  After analyzing the CE cases, we
-found an increase of
+variability of the expected cloud-free GHI, we were able to identify cases of CE and
+ECE events in Thessaloniki for the period 1994 -- 2023.  After analyzing the CE
+cases, we found an increasing tendency of
 $`r plus_sign(round(yearlyCE[var == "GLB_diff.N", slope], 1))`\pm `r round(2 * yearlyCE[var == "GLB_diff.N", slope.sd], 1)`\,\text{cases}/\text{year}$,
 with the mean annual irradiation of the CE events increasing with a rate of
 $`r plus_sign(round(yearlyCE[var == "GLB_diff.sum", slope], 1))`\pm `r round(2 * yearlyCE[var == "GLB_diff.sum", slope.sd], 1)`\,\text{kJ}/\text{year}$.
@@ -825,24 +846,25 @@ The most active months of CE events are May and June.  We found that continuous 
 events can last up to $140$ minutes, while the duration of $79\,\%$ of them is equal
 or bellow $5$ minutes.
 
-We have observed ECE cases with GHI exceeding the TOA TSI on horizontal plane by more
-than $200\,\text{W}/\text{m}^{2}$ while for $75\,\%$ of the cases the excess
-irradiance (relative to TOA TSI on horizontal plane) is below
+We have observed ECE cases with GHI exceeding the TOA TSI on a horizontal plane by
+more than $200\,\text{W}/\text{m}^{2}$ while for $75\,\%$ of the cases the excess
+irradiance (relative to TOA TSI on a horizontal plane) is below
 $40\,\text{W}/\text{m}^{2}$. The climatological characteristics of the ECE events
-showed that the most active months are spread over half of the year, and particularly in
-the periods March -- June and September -- October.  The magnitude of the ECE events
-identified in Thessaloniki events does not exceed the values reported for sites with
-more favourable conditions for the phenomenon [e.g., @Cordero2023]. Some of the
-characteristics of CE and ECE events we analyzed have strong similarities with the
-results of @Vamvakas2020 for the city of Patras, south of Thessaloniki, albeit with
-differences in the magnitude of OI.
+showed that the most active months are spread over half of the year, and particularly
+in the months January -- March and November, while ECE events are practically absent
+in July and August.  The magnitude of the ECE events identified in Thessaloniki does
+not exceed the values reported for sites with more favorable conditions for the
+phenomenon [e.g., @Cordero2023]. Some of the characteristics of CE and ECE events we
+analyzed have strong similarities with the results of @Vamvakas2020 for the city of
+Patras, south of Thessaloniki, albeit with differences in the magnitude of OI.
 
-An interpretation of the CE trends shows that the interaction of GHI with the clouds,
-through this 30-year period, is a dynamic phenomenon that needs further
-investigation. For such studies, it would be essential to have more detailed
-information on cloud characteristics, especially in order to investigate possible
-associations of the observed trends with changes in climate.
-
+The investigation of the CE trends in Thessaloniki through this 30-year period shows
+that the interaction of GHI with clouds is a complex phenomenon that merits further
+attention. For such studies, it would be essential to have more detailed information
+on cloud characteristics, especially in order to investigate possible associations of
+the observed trends with changes in climate.  Finally, automated procedures to
+analyze the sky-camera images would greatly improve our knowledge about the
+generation of these events.
 
 
 <!-- END -->
