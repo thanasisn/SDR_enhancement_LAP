@@ -409,7 +409,7 @@ sb_counts <- sum(sb$counts)
 sa_ratio <- sa_counts / (sa_counts + sb_counts)
 sb_ratio <- sb_counts / (sa_counts + sb_counts)
 
-
+## left
 pa <- ggplot(data = DATA[GLB_diff > 0], aes(x = GLB_diff)) +
   geom_histogram(aes(y = (sa_ratio * after_stat(count))/sum(after_stat(count)) * 100),
                  binwidth = binwidth,
@@ -419,11 +419,10 @@ pa <- ggplot(data = DATA[GLB_diff > 0], aes(x = GLB_diff)) +
   xlab(bquote("OI" ~ group("[", W/m^2,"]"))) +
   ylab("Relative frequency [%]") +
   scale_x_continuous(
-    breaks = seq(0, split + binwidth, binwidth),
+    breaks = sort(unique(seq(0, split + binwidth, binwidth*2), split)),
     limits = c(0, split))
-# print(pa)
 
-
+## right
 pb <- ggplot(data = DATA[GLB_diff > 0], aes(x = GLB_diff)) +
   geom_histogram(aes(y = (sb_ratio * after_stat(count))/sum(after_stat(count)) * 100),
                  binwidth = binwidth,
@@ -433,11 +432,8 @@ pb <- ggplot(data = DATA[GLB_diff > 0], aes(x = GLB_diff)) +
   xlab(bquote("OI" ~ group("[", W/m^2,"]"))) +
   ylab("Relative frequency [%]") +
   scale_x_continuous(
-    breaks = c(seq(split, max(DATA[GLB_diff > 0, GLB_diff]), binwidth), ceiling(max(DATA[GLB_diff > 0, GLB_diff]))),
+    breaks = c(seq(split, max(DATA[GLB_diff > 0, GLB_diff]), binwidth*2), ceiling(max(DATA[GLB_diff > 0, GLB_diff]))),
     limits = c(split, ceiling(max(DATA[GLB_diff > 0, GLB_diff]))))
-# print(pb)
-
-
 
 ## merge plots
 
@@ -447,13 +443,12 @@ library(ggpubr)
 p      <- list(pa, pb) |> map(~.x + labs(x=NULL, y=NULL, caption = NULL))
 yleft  <- textGrob("Relative frequency [%]", rot = 90)
 bottom <- textGrob(bquote("OI" ~ group("[", W/m^2,"]")))
-
-
-margin = theme(plot.margin = unit(c(.1,.1,.1,.1), "cm"))
+margin <- theme(plot.margin = unit(c(.1,.1,.1,.1), "cm"))
 
 ## no labels
 grid.arrange(grobs = lapply(p, "+", margin), ncol = 2, nrow = 1,
              left = yleft, bottom = bottom)
+
 
 pa1 <- pa + labs(x=NULL, y=NULL, caption = NULL)
 pa1 <- annotate_figure(pa1, fig.lab = "(a)")
