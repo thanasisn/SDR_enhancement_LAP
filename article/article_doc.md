@@ -10,7 +10,8 @@ title: Analysis of cloud enhancement events in a 30-year record of
 
 In this study, we investigate the characteristics of global horizontal
 irradiance enhancement events induced by clouds over Thessaloniki for
-the period 1994 -- 2023 using data recorded every one minute. We
+the period 1994 -- 2023 using data recorded every one minute. To our
+knowledge, there isn't a similar study with such a long time series. We
 identified the cloud enhancement (CE) events by creating an appropriate
 cloud-free irradiance reference using a radiative transfer model and
 aerosol optical depth data from a collocated Cimel sun photometer and a
@@ -643,28 +644,29 @@ $+ 112.1 \pm 34.9\,\text{cases}/\text{year}$, with the mean annual
 irradiation of the CE events increasing with a rate of
 $+ 329.9 \pm 112\,\text{kJ}/\text{year}$. The most active months of CE
 events are May and June. We found that continuous CE events can last up
-to $140$ minutes, while the duration of $80\,\%$ of them is bellow $5$
-minutes.
+to $140$ minutes, while the duration of $79\,\%$ of them is equal or
+bellow $5$ minutes.
 
-We have observed ECE cases exceeding the TSI by
-$400\,\text{W}/\text{m}^{2}$ with $75\,\%$ of the cases under
-$200\,\text{W}/\text{m}^{2}$. The climatological characteristics of the
-ECE events showed that the most active months are spread in half of the
-year and particularly in the periods March -- June and September --
-October. The magnitude of the ECE events identified in Thessaloniki
-events does not exceed the values reported for sites with more
-favourable conditions for the phenomenon (e.g., Cordero et al. 2023).
-Some of the characteristics of CE and ECE events we analyzed have strong
-similarities with the results of Vamvakas, Salamalikis, and Kazantzidis
-(2020) for the city of Patras, south of Thessaloniki, albeit with
-differences in the magnitude of OI.
+We have observed ECE cases with GHI exceeding the TOA TSI on horizontal
+plane by more than $200\,\text{W}/\text{m}^{2}$ while for $75\,\%$ of
+the cases the excess irradiance (relative to TOA TSI on horizontal
+plane) is below $40\,\text{W}/\text{m}^{2}$. The climatological
+characteristics of the ECE events showed that the most active months are
+spread over half of the year, and particularly in the periods March --
+June and September -- October. The magnitude of the ECE events
+identified in Thessaloniki events does not exceed the values reported
+for sites with more favourable conditions for the phenomenon (e.g.,
+Cordero et al. 2023). Some of the characteristics of CE and ECE events
+we analyzed have strong similarities with the results of Vamvakas,
+Salamalikis, and Kazantzidis (2020) for the city of Patras, south of
+Thessaloniki, albeit with differences in the magnitude of OI.
 
 An interpretation of the CE trends shows that the interaction of GHI
 with the clouds, through this 30-year period, is a dynamic phenomenon
-that needs further investigation. For such studies it would be essential
-to have more detailed information on cloud characteristics, especially
-in order to investigate possible associations of the observed trends
-with changes in climate.
+that needs further investigation. For such studies, it would be
+essential to have more detailed information on cloud characteristics,
+especially in order to investigate possible associations of the observed
+trends with changes in climate.
 
 Anderson, G. P., J. H. Chetwynd, S. A. Clough, E. P. Shettle, and F. X.
 Kneizys. 1986. "AFGL Atmospheric Constituent Profiles (0-120km)." Air

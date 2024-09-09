@@ -7,7 +7,8 @@ title: Analysis of cloud enhancement events in a 30-year record of
 
 In this study, we investigate the characteristics of global horizontal
 irradiance enhancement events induced by clouds over Thessaloniki for
-the period 1994 -- 2023 using data recorded every one minute. We
+the period 1994 -- 2023 using data recorded every one minute. To our
+knowledge, there isn't a similar study with such a long time series. We
 identified the cloud enhancement (CE) events by creating an appropriate
 cloud-free irradiance reference using a radiative transfer model and
 aerosol optical depth data from a collocated Cimel sun photometer and a
@@ -141,7 +142,7 @@ steps. An overview of the GHI data used in this study is given in Figure
 least 60% of data availability; however, all available one-minute
 measurements have been used for the detection of CE events.
 
-![](media/image3.png){width="3.03125in" height="1.9375in"}
+![](media/image8.png){width="3.03125in" height="1.9375in"}
 
 Figure 1: Timeseries of daily mean GHI measured at Thessaloniki for the
 period 1994 -- 2023.
@@ -342,7 +343,7 @@ data corresponds also to cases with thin cirrus clouds causing weak
 attenuation of GHI, often indistinguishable from the attenuation by
 aerosols.
 
-![](media/image10.png){width="6.5in" height="4.121527777777778in"}
+![](media/image2.png){width="6.5in" height="4.121527777777778in"}
 
 *Figure 2.2: Example of CE identification in Thessaloniki for
 2019-07-11. The green line with blue symbols depicts the measured GHI in
@@ -358,7 +359,7 @@ clear sky irradiance in Thessaloniki for the year 2005. The
 over-irradiance for CE and ECE events is color coded, while the
 remaining data points are shown in black. The reference green line goes
 through the origin with a slope of
-one.](media/image8.png){width="5.833333333333333in"
+one.](media/image3.png){width="5.833333333333333in"
 height="3.6354166666666665in"}
 
 *Figure 2.3: Example scatter plot of the measured GHI and the reference
@@ -431,7 +432,7 @@ increased by the OI but is rather redistributed through the CE events.
 This is also depicted by the ECE irradiance values, which exceed the
 equivalent cloud-free irradiance by a significant amount.
 
-![](media/image5.png){width="3.15625in" height="6.15625in"}
+![](media/image6.png){width="3.15625in" height="6.15625in"}
 
 Figure 5: Time series of (a) the yearly CE number of occurrences, (b)
 the yearly mean OI and (c) the yearly excess irradiation at Thessaloniki
@@ -465,7 +466,7 @@ circulation (Chiacchio and Wild, 2010), or to the observed decreasing
 trend in cloud cover as a result of global warming (e.g.,
 Sanchez-Lorenzo et al, 2017).
 
-![](media/image1.png){width="5.03125in" height="3.0625in"}
+![](media/image11.png){width="5.03125in" height="3.0625in"}
 
 *Figure 3.1: Seasonal variability of the relative occurrence of CE
 events in Thessaloniki for the period 1994 -- 2023, in the form of a box
@@ -494,7 +495,7 @@ may affect the characteristics and magnitude of the CE events.
 ![Figure 3.2: Relative frequency distribution of CE events in
 Thessaloniki for the period 1993 -- 2023 as a function of OI. The
 histogram was split in two plots with different y-axis scales for better
-readability.](media/image6.png){width="5.833333333333333in"
+readability.](media/image4.png){width="5.833333333333333in"
 height="3.702777777777778in"}
 
 *Figure 3.2: Relative frequency distribution of CE events in
@@ -519,7 +520,7 @@ equal or less than 5 minutes.
 CE events according to their duration for Thessaloniki in the period
 1993 -- 2023. The histogram was split in two plots with different y-axis
 scales for better
-readability.](media/image2.png){width="5.833333333333333in"
+readability.](media/image9.png){width="5.833333333333333in"
 height="3.7375in"}
 
 *Figure 3.3: Relative frequency distribution of CE groups of consequent
@@ -542,7 +543,7 @@ far higher sampling rate ($100Hz$) than ours.
 ![Figure 3.4: Relation of excess irradiation of CE groups with their
 duration for Thessaloniki in the period 1993 -- 2023. The logarithmic
 color scale denotes the frequency of the respective groups of
-events.](media/image11.png){width="5.833333333333333in"
+events.](media/image7.png){width="5.833333333333333in"
 height="3.6951388888888888in"}
 
 *Figure 3.4: Relation of excess irradiation of CE groups with their
@@ -573,7 +574,7 @@ well below 0.1 % of the data, therefore on average it would not affect
 the production of solar energy. However, during short, isolated periods
 extreme enhancements of GHI can be of concern.
 
-![](media/image4.png){width="5.177083333333333in"
+![](media/image5.png){width="5.177083333333333in"
 height="3.1930555555555555in"} Figure 3.5: Seasonal variability of the
 relative occurrence of ECE events in Thessaloniki for the period 1994 --
 2023, in the form of a box and whisker plot. The box contains the data
@@ -590,10 +591,11 @@ findings are in accordance with the results of Vamvakas, Salamalikis,
 and Kazantzidis (2020), the only difference being that the OI values
 reported are higher than those for Thessaloniki.
 
-![](media/image7.png){width="4.0625in" height="2.526388888888889in"}
+![](media/image10.png){width="4.0625in" height="2.526388888888889in"}
 
 *Figure 3.6: Relative frequency distribution of ECE events in
-Thessaloniki for the period 1994 -- 2023.*
+Thessaloniki for the period 1994 -- 2023, as a function of the extra
+irradiance over TSI at TOA for the same SZA.*
 
 # 4 Conclusions
 
@@ -605,28 +607,29 @@ $+ 45.6 \pm 21.9\frac{cases}{year}$, with the mean annual irradiation of
 the CE events increasing with a rate of
 $+ 116.9 \pm 67.8\frac{kJ}{year}$. The most active months of CE events
 are May and June. We found that continuous CE events can last up to
-$140$ minutes, while the duration of $80\%$ of them is bellow $5$
-minutes.
+$140$ minutes, while the duration of $7980\%$ of them is equal or bellow
+$5$ minutes.
 
 We have observed ECE cases with GHI exceeding the TSI on horizontal
 plane by $400\frac{W}{m^{2}}$ while for $75\%$ of the cases the excess
-irradiance is below $200\frac{W}{m^{2}}$. The climatological
-characteristics of the ECE events showed that the most active months are
-spread over half of the year and particularly in the periods March --
-June and September -- October. The magnitude of the ECE events
-identified in Thessaloniki events does not exceed the values reported
-for sites with more favourable conditions for the phenomenon (e.g.,
-Cordero et al. 2023). Some of the characteristics of CE and ECE events
-we analyzed have strong similarities with the results of Vamvakas,
-Salamalikis, and Kazantzidis (2020) for the city of Patras, south of
-Thessaloniki, albeit with differences in the magnitude of OI.
+irradiance (relative to TOA TSI on horizontal plane) is below
+$4200\frac{W}{m^{2}}$. The climatological characteristics of the ECE
+events showed that the most active months are spread over half of the
+year, and particularly in the periods March -- June and September --
+October. The magnitude of the ECE events identified in Thessaloniki
+events does not exceed the values reported for sites with more
+favourable conditions for the phenomenon (e.g., Cordero et al. 2023).
+Some of the characteristics of CE and ECE events we analyzed have strong
+similarities with the results of Vamvakas, Salamalikis, and Kazantzidis
+(2020) for the city of Patras, south of Thessaloniki, albeit with
+differences in the magnitude of OI.
 
 An interpretation of the CE trends shows that the interaction of GHI
 with the clouds, through this 30-year period, is a dynamic phenomenon
-that needs further investigation. For such studies it would be essential
-to have more detailed information on cloud characteristics, especially
-in order to investigate possible associations of the observed trends
-with changes in climate.
+that needs further investigation. For such studies, it would be
+essential to have more detailed information on cloud characteristics,
+especially in order to investigate possible associations of the observed
+trends with changes in climate.
 
 Anderson, G. P., J. H. Chetwynd, S. A. Clough, E. P. Shettle, and F. X.
 Kneizys. 1986. "AFGL Atmospheric Constituent Profiles (0-120km)." Air

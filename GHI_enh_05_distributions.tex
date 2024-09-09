@@ -432,8 +432,53 @@ range (`geom_bar()`).
 \caption{ - empty caption - }\label{fig:P-extreme-distribution-1}
 \end{figure}
 
-0\% 25\% 50\% 75\% 100\%
-71.34672 127.60122 159.97876 210.58761 436.99182
+\begin{longtable}[]{@{}
+  >{\raggedleft\arraybackslash}p{(\columnwidth - 8\tabcolsep) * \real{0.1111}}
+  >{\raggedleft\arraybackslash}p{(\columnwidth - 8\tabcolsep) * \real{0.1111}}
+  >{\raggedleft\arraybackslash}p{(\columnwidth - 8\tabcolsep) * \real{0.0833}}
+  >{\raggedleft\arraybackslash}p{(\columnwidth - 8\tabcolsep) * \real{0.1111}}
+  >{\raggedleft\arraybackslash}p{(\columnwidth - 8\tabcolsep) * \real{0.1111}}@{}}
+\toprule
+\begin{minipage}[b]{\linewidth}\raggedleft
+0\%
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+25\%
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+50\%
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+75\%
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+100\%
+\end{minipage} \\
+\midrule
+\endhead
+71.35 & 127.6 & 160 & 210.6 & 437 \\
+\bottomrule
+\end{longtable}
+
+\begin{longtable}[]{@{}
+  >{\raggedleft\arraybackslash}p{(\columnwidth - 8\tabcolsep) * \real{0.1528}}
+  >{\raggedleft\arraybackslash}p{(\columnwidth - 8\tabcolsep) * \real{0.0972}}
+  >{\raggedleft\arraybackslash}p{(\columnwidth - 8\tabcolsep) * \real{0.1111}}
+  >{\raggedleft\arraybackslash}p{(\columnwidth - 8\tabcolsep) * \real{0.1111}}
+  >{\raggedleft\arraybackslash}p{(\columnwidth - 8\tabcolsep) * \real{0.1111}}@{}}
+\toprule
+\begin{minipage}[b]{\linewidth}\raggedleft
+0\%
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+25\%
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+50\%
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+75\%
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+100\%
+\end{minipage} \\
+\midrule
+\endhead
+0.005494 & 8.23 & 20.02 & 39.66 & 204.3 \\
+\bottomrule
+\end{longtable}
 
 \begin{figure}[H]
 
@@ -1695,7 +1740,7 @@ Warning in is.na(x): 'length(x) = 3 > 1' in coercion to 'logical(1)'
 \textbf{END}
 
 \begin{verbatim}
-2024-09-09 05:56:45.6 athan@tyler GHI_enh_05_distributions.R 4.799232 mins
+2024-09-09 08:23:43.4 athan@tyler GHI_enh_05_distributions.R 2.852566 mins
 \end{verbatim}
 
 \end{document}
