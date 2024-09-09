@@ -7,16 +7,19 @@
   10pt,
   a4paper,oneside]{article}
 \usepackage{amsmath,amssymb}
-\usepackage{lmodern}
 \usepackage{iftex}
 \ifPDFTeX
   \usepackage[T1]{fontenc}
   \usepackage[utf8]{inputenc}
   \usepackage{textcomp} % provide euro and other symbols
 \else % if luatex or xetex
-  \usepackage{unicode-math}
+  \usepackage{unicode-math} % this also loads fontspec
   \defaultfontfeatures{Scale=MatchLowercase}
   \defaultfontfeatures[\rmfamily]{Ligatures=TeX,Scale=1}
+\fi
+\usepackage{lmodern}
+\ifPDFTeX\else
+  % xetex/luatex font selection
 \fi
 % Use upquote if available, for straight quotes in verbatim environments
 \IfFileExists{upquote.sty}{\usepackage{upquote}}{}
@@ -35,18 +38,6 @@
   \KOMAoptions{parskip=half}}
 \makeatother
 \usepackage{xcolor}
-\IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
-\IfFileExists{bookmark.sty}{\usepackage{bookmark}}{\usepackage{hyperref}}
-\hypersetup{
-  pdftitle={Enhancement of SDR in Thessaloniki},
-  pdfauthor={Natsis Athanasios; Alkiviadis Bais},
-  colorlinks=true,
-  linkcolor={Maroon},
-  filecolor={Maroon},
-  citecolor={Blue},
-  urlcolor={Blue},
-  pdfcreator={LaTeX via pandoc}}
-\urlstyle{same} % disable monospaced font for URLs
 \usepackage[left=0.5in,right=0.5in,top=0.5in,bottom=0.5in]{geometry}
 \usepackage{longtable,booktabs,array}
 \usepackage{calc} % for calculating minipage widths
@@ -82,6 +73,18 @@
 \ifLuaTeX
   \usepackage{selnolig}  % disable illegal ligatures
 \fi
+\usepackage{bookmark}
+\IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
+\urlstyle{same}
+\hypersetup{
+  pdftitle={Enhancement of SDR in Thessaloniki},
+  pdfauthor={Natsis Athanasios; Alkiviadis Bais},
+  colorlinks=true,
+  linkcolor={Maroon},
+  filecolor={Maroon},
+  citecolor={Blue},
+  urlcolor={Blue},
+  pdfcreator={LaTeX via pandoc}}
 
 \title{Enhancement of SDR in Thessaloniki}
 \author{Natsis Athanasios\footnote{Laboratory of Atmospheric Physics, AUTH, \href{mailto:natsisphysicist@gmail.com}{\nolinkurl{natsisphysicist@gmail.com}}} \and Alkiviadis Bais\footnote{Laboratory of Atmospheric Physics, AUTH}}
@@ -99,6 +102,7 @@ Study of GHI enchantment.
 \tableofcontents
 }
 \begin{verbatim}
+
 Attaching package: 'cowplot'
 \end{verbatim}
 
@@ -118,8 +122,7 @@ Enhancemnet criteria: Enhanc_C_4
 
 \FloatBarrier
 
-\hypertarget{frequency-distributions}{%
-\subsubsection{Frequency Distributions}\label{frequency-distributions}}
+\subsubsection{Frequency Distributions}\label{frequency-distributions}
 
 \begin{figure}[H]
 
@@ -148,8 +151,7 @@ Enhancemnet criteria: Enhanc_C_4
 
 \FloatBarrier
 
-\hypertarget{distributions}{%
-\subsubsection{Distributions}\label{distributions}}
+\subsubsection{Distributions}\label{distributions}
 
 \begin{verbatim}
 Warning in hist.default(DATA[GLB_diff > 0, GLB_ench], breaks = breaks, freq =
@@ -197,7 +199,8 @@ FALSE, : arguments 'freq', 'col', 'main', 'xlab' are not made use of
 Warning: The dot-dot notation (`..count..`) was deprecated in ggplot2 3.4.0.
 i Please use `after_stat(count)` instead.
 This warning is displayed once every 8 hours.
-Call `lifecycle::last_lifecycle_warnings()` to see where this warning was generated.
+Call `lifecycle::last_lifecycle_warnings()` to see where this warning was
+generated.
 \end{verbatim}
 
 \begin{figure}[H]
@@ -211,8 +214,7 @@ Call `lifecycle::last_lifecycle_warnings()` to see where this warning was genera
 
 \FloatBarrier
 
-\hypertarget{extreme-cases-distributions}{%
-\subsubsection{Extreme cases Distributions}\label{extreme-cases-distributions}}
+\subsubsection{Extreme cases Distributions}\label{extreme-cases-distributions}
 
 Maximum TSI OI: 204.3 W/m\^{}2
 
@@ -224,7 +226,7 @@ Quantiles of TSI OI:
   >{\raggedleft\arraybackslash}p{(\columnwidth - 8\tabcolsep) * \real{0.1111}}
   >{\raggedleft\arraybackslash}p{(\columnwidth - 8\tabcolsep) * \real{0.1111}}
   >{\raggedleft\arraybackslash}p{(\columnwidth - 8\tabcolsep) * \real{0.1111}}@{}}
-\toprule
+\toprule\noalign{}
 \begin{minipage}[b]{\linewidth}\raggedleft
 0\%
 \end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
@@ -236,10 +238,11 @@ Quantiles of TSI OI:
 \end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
 100\%
 \end{minipage} \\
-\midrule
+\midrule\noalign{}
 \endhead
+\bottomrule\noalign{}
+\endlastfoot
 0.005494 & 8.23 & 20.02 & 39.66 & 204.3 \\
-\bottomrule
 \end{longtable}
 
 \begin{figure}[H]
@@ -318,7 +321,7 @@ Enhanc\_C\_4
   >{\raggedleft\arraybackslash}p{(\columnwidth - 10\tabcolsep) * \real{0.1111}}
   >{\raggedleft\arraybackslash}p{(\columnwidth - 10\tabcolsep) * \real{0.1389}}
   >{\raggedleft\arraybackslash}p{(\columnwidth - 10\tabcolsep) * \real{0.0972}}@{}}
-\toprule
+\toprule\noalign{}
 \begin{minipage}[b]{\linewidth}\raggedleft
 Min.
 \end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
@@ -332,10 +335,11 @@ Mean
 \end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
 Max.
 \end{minipage} \\
-\midrule
+\midrule\noalign{}
 \endhead
+\bottomrule\noalign{}
+\endlastfoot
 0.000469 & 12.65 & 30.68 & 42.99 & 60.54 & 437 \\
-\bottomrule
 \end{longtable}
 
 \begin{longtable}[]{@{}
@@ -344,7 +348,7 @@ Max.
   >{\raggedleft\arraybackslash}p{(\columnwidth - 8\tabcolsep) * \real{0.1111}}
   >{\raggedleft\arraybackslash}p{(\columnwidth - 8\tabcolsep) * \real{0.1111}}
   >{\raggedleft\arraybackslash}p{(\columnwidth - 8\tabcolsep) * \real{0.1111}}@{}}
-\toprule
+\toprule\noalign{}
 \begin{minipage}[b]{\linewidth}\raggedleft
 0\%
 \end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
@@ -356,10 +360,11 @@ Max.
 \end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
 100\%
 \end{minipage} \\
-\midrule
+\midrule\noalign{}
 \endhead
+\bottomrule\noalign{}
+\endlastfoot
 0.000469 & 12.65 & 30.68 & 60.54 & 437 \\
-\bottomrule
 \end{longtable}
 
 9.63522660599035 \% of the values are above 100 W/m\^{}2
@@ -367,6 +372,7 @@ Max.
 62 \% of the values are below mean 42.61 W/m\^{}2
 
 \begin{verbatim}
+
 Attaching package: 'ggpubr'
 \end{verbatim}
 
@@ -387,8 +393,8 @@ Warning: Removed 138993 rows containing non-finite outside the scale range
 \end{verbatim}
 
 \begin{verbatim}
-Warning: Removed 1 row containing missing values or values outside the scale
-range (`geom_bar()`).
+Warning: Removed 1 row containing missing values or values outside the scale range
+(`geom_bar()`).
 \end{verbatim}
 
 \begin{figure}[H]
@@ -411,8 +417,8 @@ Warning: Removed 138993 rows containing non-finite outside the scale range
 \end{verbatim}
 
 \begin{verbatim}
-Warning: Removed 1 row containing missing values or values outside the scale
-range (`geom_bar()`).
+Warning: Removed 1 row containing missing values or values outside the scale range
+(`geom_bar()`).
 \end{verbatim}
 
 \begin{figure}[H]
@@ -438,7 +444,7 @@ range (`geom_bar()`).
   >{\raggedleft\arraybackslash}p{(\columnwidth - 8\tabcolsep) * \real{0.0833}}
   >{\raggedleft\arraybackslash}p{(\columnwidth - 8\tabcolsep) * \real{0.1111}}
   >{\raggedleft\arraybackslash}p{(\columnwidth - 8\tabcolsep) * \real{0.1111}}@{}}
-\toprule
+\toprule\noalign{}
 \begin{minipage}[b]{\linewidth}\raggedleft
 0\%
 \end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
@@ -450,10 +456,11 @@ range (`geom_bar()`).
 \end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
 100\%
 \end{minipage} \\
-\midrule
+\midrule\noalign{}
 \endhead
+\bottomrule\noalign{}
+\endlastfoot
 71.35 & 127.6 & 160 & 210.6 & 437 \\
-\bottomrule
 \end{longtable}
 
 \begin{longtable}[]{@{}
@@ -462,7 +469,7 @@ range (`geom_bar()`).
   >{\raggedleft\arraybackslash}p{(\columnwidth - 8\tabcolsep) * \real{0.1111}}
   >{\raggedleft\arraybackslash}p{(\columnwidth - 8\tabcolsep) * \real{0.1111}}
   >{\raggedleft\arraybackslash}p{(\columnwidth - 8\tabcolsep) * \real{0.1111}}@{}}
-\toprule
+\toprule\noalign{}
 \begin{minipage}[b]{\linewidth}\raggedleft
 0\%
 \end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
@@ -474,10 +481,11 @@ range (`geom_bar()`).
 \end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
 100\%
 \end{minipage} \\
-\midrule
+\midrule\noalign{}
 \endhead
+\bottomrule\noalign{}
+\endlastfoot
 0.005494 & 8.23 & 20.02 & 39.66 & 204.3 \\
-\bottomrule
 \end{longtable}
 
 \begin{figure}[H]
@@ -501,7 +509,7 @@ range (`geom_bar()`).
   >{\raggedleft\arraybackslash}p{(\columnwidth - 18\tabcolsep) * \real{0.0804}}
   >{\raggedleft\arraybackslash}p{(\columnwidth - 18\tabcolsep) * \real{0.0536}}@{}}
 \caption{Max enhancements (continued below)}\tabularnewline
-\toprule
+\toprule\noalign{}
 \begin{minipage}[b]{\linewidth}\raggedleft
 Typ
 \end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
@@ -523,9 +531,9 @@ TSI\_OI
 \end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
 DOY
 \end{minipage} \\
-\midrule
+\midrule\noalign{}
 \endfirsthead
-\toprule
+\toprule\noalign{}
 \begin{minipage}[b]{\linewidth}\raggedleft
 Typ
 \end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
@@ -547,28 +555,30 @@ TSI\_OI
 \end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
 DOY
 \end{minipage} \\
-\midrule
+\midrule\noalign{}
 \endhead
+\bottomrule\noalign{}
+\endlastfoot
 Max Global & 1417 & 19.89 & 0.3526 & 369.3 & 1.353 & 2007-05-24 10:23:30 & 1285 & 131.2 & 144 \\
 Max Enh abs & 861.8 & 59.18 & 0.5297 & 298.4 & 1.53 & 2016-10-28 08:26:30 & 700.3 & 161.5 & 302 \\
 Max Enh rat & 861.8 & 59.18 & 0.5297 & 298.4 & 1.53 & 2016-10-28 08:26:30 & 700.3 & 161.5 & 302 \\
 Max ECE & 1330 & 34.6 & 0.4896 & 437 & 1.49 & 2015-06-10 08:05:30 & 1125 & 204.3 & 161 \\
-\bottomrule
 \end{longtable}
 
 \begin{longtable}[]{@{}
   >{\raggedleft\arraybackslash}p{(\columnwidth - 0\tabcolsep) * \real{0.3056}}@{}}
-\toprule
+\toprule\noalign{}
 \begin{minipage}[b]{\linewidth}\raggedleft
 Localtime
 \end{minipage} \\
-\midrule
+\midrule\noalign{}
 \endhead
+\bottomrule\noalign{}
+\endlastfoot
 2007-05-24 13:23:30 \\
 2016-10-28 11:26:30 \\
 2016-10-28 11:26:30 \\
 2015-06-10 11:05:30 \\
-\bottomrule
 \end{longtable}
 
 \begin{longtable}[]{@{}
@@ -581,7 +591,7 @@ Localtime
   >{\raggedleft\arraybackslash}p{(\columnwidth - 14\tabcolsep) * \real{0.0566}}
   >{\raggedleft\arraybackslash}p{(\columnwidth - 14\tabcolsep) * \real{0.2075}}@{}}
 \caption{Max duration}\tabularnewline
-\toprule
+\toprule\noalign{}
 \begin{minipage}[b]{\linewidth}\raggedleft
 Date
 \end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
@@ -599,9 +609,9 @@ DOY
 \end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
 Localtime
 \end{minipage} \\
-\midrule
+\midrule\noalign{}
 \endfirsthead
-\toprule
+\toprule\noalign{}
 \begin{minipage}[b]{\linewidth}\raggedleft
 Date
 \end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
@@ -619,10 +629,11 @@ DOY
 \end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
 Localtime
 \end{minipage} \\
-\midrule
+\midrule\noalign{}
 \endhead
+\bottomrule\noalign{}
+\endlastfoot
 2013-07-07 04:19:30 & 140 & 77.9 & 52.07 & 52.07 & 77.9 & 188 & 2013-07-07 07:19:30 \\
-\bottomrule
 \end{longtable}
 
 Missing days 0 \% 0 from 10957
@@ -746,22 +757,24 @@ Keeping 0.6 of each day, removes 704 days of 10253 total days or 6.866283 %
   >{\raggedleft\arraybackslash}p{(\columnwidth - 2\tabcolsep) * \real{0.0833}}
   >{\raggedleft\arraybackslash}p{(\columnwidth - 2\tabcolsep) * \real{0.0833}}@{}}
 \caption{There are 49 doys with all days no missing more than 60 \% data}\tabularnewline
-\toprule
+\toprule\noalign{}
 \begin{minipage}[b]{\linewidth}\raggedleft
 doy
 \end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
 V1
 \end{minipage} \\
-\midrule
+\midrule\noalign{}
 \endfirsthead
-\toprule
+\toprule\noalign{}
 \begin{minipage}[b]{\linewidth}\raggedleft
 doy
 \end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
 V1
 \end{minipage} \\
-\midrule
+\midrule\noalign{}
 \endhead
+\bottomrule\noalign{}
+\endlastfoot
 62 & 0 \\
 63 & 0 \\
 64 & 0 \\
@@ -811,7 +824,6 @@ V1
 309 & 0 \\
 314 & 0 \\
 366 & 0 \\
-\bottomrule
 \end{longtable}
 
 \begin{verbatim}
@@ -831,7 +843,7 @@ Solar constant at 1au from NOAA TSI for the same data: 1361.028
   >{\raggedleft\arraybackslash}p{(\columnwidth - 4\tabcolsep) * \real{0.1111}}
   >{\raggedleft\arraybackslash}p{(\columnwidth - 4\tabcolsep) * \real{0.1667}}@{}}
 \caption{Solstices from Libradtran}\tabularnewline
-\toprule
+\toprule\noalign{}
 \begin{minipage}[b]{\linewidth}\raggedleft
 Date
 \end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
@@ -839,9 +851,9 @@ SZA
 \end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
 Enerhy\_Kj
 \end{minipage} \\
-\midrule
+\midrule\noalign{}
 \endfirsthead
-\toprule
+\toprule\noalign{}
 \begin{minipage}[b]{\linewidth}\raggedleft
 Date
 \end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
@@ -849,8 +861,10 @@ SZA
 \end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
 Enerhy\_Kj
 \end{minipage} \\
-\midrule
+\midrule\noalign{}
 \endhead
+\bottomrule\noalign{}
+\endlastfoot
 1994-06-21 & 17.19 & 30726 \\
 1995-06-21 & 17.19 & 30726 \\
 1996-06-21 & 17.19 & 30726 \\
@@ -881,7 +895,6 @@ Enerhy\_Kj
 2021-06-21 & 17.19 & 30725 \\
 2022-06-21 & 17.19 & 30725 \\
 2023-06-21 & 17.19 & 30725 \\
-\bottomrule
 \end{longtable}
 
 \begin{verbatim}
@@ -892,8 +905,7 @@ Solstice max for all period 30.73569 MJ
 Solstice mean for all period 30.72609 MJ 
 \end{verbatim}
 
-\hypertarget{example-day}{%
-\subsection{Example day}\label{example-day}}
+\subsection{Example day}\label{example-day}
 
 \begin{verbatim}
 Doy 192 
@@ -906,7 +918,7 @@ Doy 192
   >{\raggedleft\arraybackslash}p{(\columnwidth - 10\tabcolsep) * \real{0.1733}}
   >{\raggedleft\arraybackslash}p{(\columnwidth - 10\tabcolsep) * \real{0.1467}}
   >{\raggedleft\arraybackslash}p{(\columnwidth - 10\tabcolsep) * \real{0.1467}}@{}}
-\toprule
+\toprule\noalign{}
 \begin{minipage}[b]{\linewidth}\raggedleft
 Date
 \end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
@@ -920,8 +932,10 @@ GLB\_diff
 \end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
 TSI\_OI
 \end{minipage} \\
-\midrule
+\midrule\noalign{}
 \endhead
+\bottomrule\noalign{}
+\endlastfoot
 2019-07-11 04:21:30 & 50.05 & Cloud & FALSE & NA & NA \\
 2019-07-11 04:22:30 & 50.66 & Cloud & FALSE & NA & NA \\
 2019-07-11 04:23:30 & 49.35 & Cloud & FALSE & NA & NA \\
@@ -1667,7 +1681,6 @@ TSI\_OI
 2019-07-11 16:43:30 & 147.4 & Clear & FALSE & NA & NA \\
 2019-07-11 16:44:30 & 144.4 & Clear & FALSE & NA & NA \\
 2019-07-11 16:45:30 & 140 & Clear & FALSE & NA & NA \\
-\bottomrule
 \end{longtable}
 
 \begin{verbatim}
@@ -1737,10 +1750,44 @@ Warning in is.na(x): 'length(x) = 3 > 1' in coercion to 'logical(1)'
 \caption{ - empty caption - }\label{fig:P-example-day-5}
 \end{figure}
 
+\begin{verbatim}
+Warning: A numeric `legend.position` argument in `theme()` was deprecated in ggplot2
+3.5.0.
+i Please use the `legend.position.inside` argument of `theme()` instead.
+This warning is displayed once every 8 hours.
+Call `lifecycle::last_lifecycle_warnings()` to see where this warning was
+generated.
+\end{verbatim}
+
+\begin{figure}[H]
+
+{\centering \includegraphics[width=1\linewidth]{GHI_enh_05_distributions_files/figure-latex/P-example-day-6} 
+
+}
+
+\caption{ - empty caption - }\label{fig:P-example-day-6}
+\end{figure}
+\begin{figure}[H]
+
+{\centering \includegraphics[width=1\linewidth]{GHI_enh_05_distributions_files/figure-latex/P-example-day-7} 
+
+}
+
+\caption{ - empty caption - }\label{fig:P-example-day-7}
+\end{figure}
+\begin{figure}[H]
+
+{\centering \includegraphics[width=1\linewidth]{GHI_enh_05_distributions_files/figure-latex/P-example-day-8} 
+
+}
+
+\caption{ - empty caption - }\label{fig:P-example-day-8}
+\end{figure}
+
 \textbf{END}
 
 \begin{verbatim}
-2024-09-09 15:56:31.8 athan@tyler GHI_enh_05_distributions.R 2.090087 mins
+2024-09-09 19:52:17.1 athan@tyler GHI_enh_05_distributions.R 2.137090 mins
 \end{verbatim}
 
 \end{document}

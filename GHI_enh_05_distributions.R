@@ -959,20 +959,27 @@ merg + theme(aspect.ratio = 1)
 
 ## redo example in ggplot !!!---------
 
-ggplot(data = temp, aes(x = Date)) +
+pp1 <- ggplot(data = temp, aes(x = Date)) +
+  ## DATA lines
   geom_line(aes(y = wattGLB                        , colour = "GHI"                           )) +
   geom_line(aes(y = get(paste0(SelEnhanc, "_ref")) , colour = "CE Threshold"                  )) +
   geom_line(aes(y = get(paste0(csmodel,".glo"))    , colour = "Cloud-free"                    )) +
   geom_line(aes(y = ETH                            , colour = "TOA TSI on horiz. plane"       )) +
+  ## constant liens
   geom_hline(aes(yintercept = solar_constant       , colour = "Solar Constant") , linewidth = 1.0 ) +
+  geom_vline(aes(xintercept = date_A), linetype = 1, linewidth = .5) +
+  geom_vline(aes(xintercept = date_B), linetype = 1, linewidth = .5) +
+  geom_vline(aes(xintercept = date_C), linetype = 1, linewidth = .5) +
+  ## data points
   geom_point(data = temp[TYPE == "Cloud"],
-             aes(y =  wattGLB, colour = "Identified clouds"), shape = 3, size = 0.6                 ) +
+             aes(y =  wattGLB, colour = "Identified clouds"), shape = 3, size = 0.7          ) +
   geom_point(data = temp[get(SelEnhanc) == TRUE & wattGLB <  ETH, ],
-             aes(y =  wattGLB, colour = "CE events"), shape = 1, size = 1.5             ) +
+             aes(y =  wattGLB, colour = "CE events"),         shape = 1, size = 1.6          ) +
   geom_point(data = temp[get(SelEnhanc) == TRUE & wattGLB >= ETH, ],
-             aes(y =  wattGLB, colour = "ECE events"), shape = 1, size = 1.5                    ) +
-
+             aes(y =  wattGLB, colour = "ECE events"),        shape = 1, size = 1.6          ) +
+  ## legend
   scale_colour_manual("",
+                      guide = guide_legend(ncol = 2),
                       breaks = c("GHI",
                                  "Cloud-free",
                                  "CE Threshold",
@@ -989,24 +996,38 @@ ggplot(data = temp, aes(x = Date)) +
                                  "ECE events"              = "red",
                                  "Solar Constant"          = "orange2",
                                  "Cloud-free"              = "darkorchid")) +
-  guides(fill = guide_legend(ncol = 2)) +
+  # guides(fill = guide_legend(ncol = 2)) +
+
   theme(
-  #   legend.title         = element_text(size = 10),
-    legend.position      = c(.03, .97),
-    legend.justification = c("left", "top"),
-  #   legend.box.just      = "right",
-    legend.key           = element_blank(),
-  #   legend.background    = element_rect(fill = "transparent"),
-    legend.margin        = margin(6, 6, 6, 6) ) +
+    #   legend.title         = element_text(size = 10),
+    legend.position       = c(.995, .005),
+    legend.justification  = c("right", "bottom"),
+    # legend.box.just       = "right",
+    legend.background     = element_blank(),
+    legend.spacing.y = unit(0, 'cm'),
+    legend.spacing.x = unit(.005, 'cm'),
+    legend.box.background = element_rect(color = NA, fill = NA),
+    legend.key            = element_blank(),
+    legend.margin         = margin(1, 1, 1, 1) ) +
+
+  ## AXIS ##
   # scale_x_continuous(expand = expansion(mult = c(0.03, 0.03))) +
   scale_y_continuous(breaks = seq(0, 1600, 200)) +
-
   ylab(bquote("GHI" ~ group("[", W/m^2,"]"))) +
   xlab(bquote("Time (UTC)"))
+pp1
 
 
 
+merg <- plot_grid(
+  pp1, bt,
+  nrow = 2,
+  rel_heights = c(3,1)
+)
 
+print(merg)
+
+merg + theme(aspect.ratio = 1)
 
 
 
