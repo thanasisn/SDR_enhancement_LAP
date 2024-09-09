@@ -141,7 +141,7 @@ steps. An overview of the GHI data used in this study is given in Figure
 least 60% of data availability; however, all available one-minute
 measurements have been used for the detection of CE events.
 
-![](media/image8.png){width="3.03125in" height="1.9375in"}
+![](media/image3.png){width="3.03125in" height="1.9375in"}
 
 Figure 1: Timeseries of daily mean GHI measured at Thessaloniki for the
 period 1994 -- 2023.
@@ -342,7 +342,7 @@ data corresponds also to cases with thin cirrus clouds causing weak
 attenuation of GHI, often indistinguishable from the attenuation by
 aerosols.
 
-![](media/image4.png){width="6.5in" height="4.121527777777778in"}
+![](media/image10.png){width="6.5in" height="4.121527777777778in"}
 
 *Figure 2.2: Example of CE identification in Thessaloniki for
 2019-07-11. The green line with blue symbols depicts the measured GHI in
@@ -358,7 +358,7 @@ clear sky irradiance in Thessaloniki for the year 2005. The
 over-irradiance for CE and ECE events is color coded, while the
 remaining data points are shown in black. The reference green line goes
 through the origin with a slope of
-one.](media/image3.png){width="5.833333333333333in"
+one.](media/image8.png){width="5.833333333333333in"
 height="3.6354166666666665in"}
 
 *Figure 2.3: Example scatter plot of the measured GHI and the reference
@@ -431,7 +431,7 @@ increased by the OI but is rather redistributed through the CE events.
 This is also depicted by the ECE irradiance values, which exceed the
 equivalent cloud-free irradiance by a significant amount.
 
-![](media/image2.png){width="3.15625in" height="6.15625in"}
+![](media/image5.png){width="3.15625in" height="6.15625in"}
 
 Figure 5: Time series of (a) the yearly CE number of occurrences, (b)
 the yearly mean OI and (c) the yearly excess irradiation at Thessaloniki
@@ -465,7 +465,7 @@ circulation (Chiacchio and Wild, 2010), or to the observed decreasing
 trend in cloud cover as a result of global warming (e.g.,
 Sanchez-Lorenzo et al, 2017).
 
-![](media/image10.png){width="5.03125in" height="3.0625in"}
+![](media/image1.png){width="5.03125in" height="3.0625in"}
 
 *Figure 3.1: Seasonal variability of the relative occurrence of CE
 events in Thessaloniki for the period 1994 -- 2023, in the form of a box
@@ -512,14 +512,14 @@ whole period of study. The group with the longest duration of 140
 minutes occurred on 07 July 2013 with SZA ranging between 52.1° and
 77.9°. Figure shows the frequency distribution of the CE events
 according to their duration. We conclude that although some groups of
-events last for more than an hour, about $80\%$ have a duration of less
-than 5 minutes.
+events last for more than an hour, about $7980\%$ have a duration of
+equal or less than 5 minutes.
 
 ![Figure 3.3: Relative frequency distribution of CE groups of consequent
 CE events according to their duration for Thessaloniki in the period
 1993 -- 2023. The histogram was split in two plots with different y-axis
 scales for better
-readability.](media/image5.png){width="5.833333333333333in"
+readability.](media/image2.png){width="5.833333333333333in"
 height="3.7375in"}
 
 *Figure 3.3: Relative frequency distribution of CE groups of consequent
@@ -542,7 +542,7 @@ far higher sampling rate ($100Hz$) than ours.
 ![Figure 3.4: Relation of excess irradiation of CE groups with their
 duration for Thessaloniki in the period 1993 -- 2023. The logarithmic
 color scale denotes the frequency of the respective groups of
-events.](media/image9.png){width="5.833333333333333in"
+events.](media/image11.png){width="5.833333333333333in"
 height="3.6951388888888888in"}
 
 *Figure 3.4: Relation of excess irradiation of CE groups with their
@@ -558,9 +558,9 @@ irradiance at the TOA at the same SZA (Equation). In analogy to Figure
 6, we show in Figure 10 the number of ECE events relative to the total
 number of one-min observations in each month. Judging by the
 distribution of the monthly medians, the most active months in ECE
-events are January - March and November and the least active are July
+events are January \-- March and November and the least active are July
 and August. The highest interannual variability in the 30-year record
-occurs from October to April. In the summer period the fraction of ECE
+occurs from October to April. In the summer period, the fraction of ECE
 events is very small, with almost zero variability in July and August.
 Although the most active months for CE events are May and June (Figure
 6), these months behave differently for the ECE events, suggesting that
@@ -573,24 +573,24 @@ well below 0.1 % of the data, therefore on average it would not affect
 the production of solar energy. However, during short, isolated periods
 extreme enhancements of GHI can be of concern.
 
-![](media/image7.png){width="5.177083333333333in"
+![](media/image4.png){width="5.177083333333333in"
 height="3.1930555555555555in"} Figure 3.5: Seasonal variability of the
 relative occurrence of ECE events in Thessaloniki for the period 1994 --
 2023, in the form of a box and whisker plot. The box contains the data
 between the lower $25\%$ and the upper $75\%$ percentiles, with the
-thick horizontal line representing the. The vertical lines (whiskers)
-extend between the maximum and minimum monthly values.
+thick horizontal line representing the median. The vertical lines
+(whiskers) extend between the maximum and minimum monthly values.
 
 The distribution of the ECE events (Figure) shows that in rare cases the
-measured GHI exceeds the TSI at the same SZA even by more than
-$400\frac{W}{m^{2}}$, while in $75\%$ of the cases the excess irradiance
-is below $200\frac{W}{m^{2}}$. The OI for the most frequent ECEs ranges
-between $140$ and $180\frac{W}{m^{2}}$. These findings are in accordance
-with the results of Vamvakas, Salamalikis, and Kazantzidis (2020), the
-only difference being that the OI values reported for are higher than
-those for Thessaloniki.
+measured GHI exceeds the TOA TSI at the same SZA even by more than
+$2400\frac{W}{m^{2}}$, while in $75\%$ of the cases the excess
+irradiance is below $4200\frac{W}{m^{2}}$. The 50% OI of the most
+frequent ECEs ranges between $140$ and $180\frac{W}{m^{2}}$. These
+findings are in accordance with the results of Vamvakas, Salamalikis,
+and Kazantzidis (2020), the only difference being that the OI values
+reported are higher than those for Thessaloniki.
 
-![](media/image11.png){width="4.0625in" height="2.526388888888889in"}
+![](media/image7.png){width="4.0625in" height="2.526388888888889in"}
 
 *Figure 3.6: Relative frequency distribution of ECE events in
 Thessaloniki for the period 1994 -- 2023.*

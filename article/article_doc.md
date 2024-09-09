@@ -544,9 +544,7 @@ minutes occurred on 07 July 2013 with SZA ranging between
 ${52.1}^{\circ}$ and ${77.9}^{\circ}$. Figure shows the frequency
 distribution of the CE events according to their duration. We conclude
 that although some groups of events last for more than an hour, about
-$80\,\%$ have a duration of less than 5 minutes.
-
-($21\,\%$)
+$79\,\%$ have a duration of equal or less than 5 minutes.
 
 ![Figure 3.3: Relative frequency distribution of CE groups of consequent
 CE events according to their duration for Thessaloniki in the period
@@ -560,76 +558,80 @@ CE events according to their duration for Thessaloniki in the period
 1994 -- 2023. The histogram was split in two plots with different y-axis
 scales for better readability.
 
-The relation between the duration and the mean OI of the groups has also
-been studied (Figure). Evidently, events of high excess irradiation have
-small duration and vice versa. The vast majority of grouped events are
-associated with small excess irradiation ($< 5\,\text{kJ}/\text{m}^{2}$)
-and small duration ($< 5\,\text{min}$). For example the extra energy
-flux of $5\,\text{kJ}/\text{m}^{2}$ for $5\,\text{min}$ is equivalent to
-OI of $\sim 17\,\text{W}/\text{m}^{2}$ for the same duration. While
-groups with strong excess irradiation and long duration are very rare.
-Similar results of this relation have been reported by Zhang et al.
-(2018) in a study using a far higher sampling rate ($100\,\text{Hz}$)
-than ours.
+The relation between the duration and the mean OI of the CE groups is
+shown in Figure. As expected, events with small duration and low OI are
+accumulated close to the origin of the plot. Events of high excess
+irradiation have a short duration and vice versa. The vast majority of
+grouped events are associated with small excess irradiation
+($< 5\,\text{kJ}/\text{m}^{2}$) and short duration ($< 5\,\text{min}$).
+For example, the excess irradiation of $5\,\text{kJ}/\text{m}^{2}$ for
+$5\,\text{min}$ is equivalent to an OI of $16.7\,\text{W}/\text{m}^{2}$
+with duration of $5\,\text{min}$. On the contrary, groups with strong
+excess irradiation and long duration are very rare. Similar results of
+this relation have been reported by Zhang et al. (2018) in a study using
+a far higher sampling rate ($100\,\text{Hz}$) than ours.
 
 ![Figure 3.4: Relation of excess irradiation of CE groups with their
 duration for Thessaloniki in the period 1994 -- 2023. The logarithmic
-color scale denotes the frequency of the respective groups of
-events.](media/rId59.png){width="5.833333333333333in"
+color scale denotes the frequency of the respective
+groups.](media/rId59.png){width="5.833333333333333in"
 height="3.687330489938758in"}
 
 Figure 3.4: Relation of excess irradiation of CE groups with their
 duration for Thessaloniki in the period 1994 -- 2023. The logarithmic
-color scale denotes the frequency of the respective groups of events.
+color scale denotes the frequency of the respective groups.
 
 ## 3.4 Extreme cloud enhancement events
 
 An aspect of the CE events that is commonly reported and has some
 significance on the solar energy production infrastructure are the
-extreme CE events (ECE), where solar irradiance exceeds the expected
-irradiance on top of the atmosphere at the same SZA (Equation).
-Analogous to Figure we have computed the distribution of the number of
-occurrences of ECE events by month in Figure. The most active period for
-ECE events is in spring and early summer (March -- June), followed by a
-period in early autumn (September and October). This is probably related
-to the weather characteristics in these periods, with frequent
-alternations between cloud-free periods and clouds.
+extreme CE (ECE) events, where the measured GHI exceeds the expected
+irradiance at the TOA at the same SZA (Equation). In analogy to Figure,
+we show in Figure the number of ECE events relative to the total number
+of one-min observations in each month. Judging by the distribution of
+the monthly medians, the most active months in ECE events are January --
+March and November and the least active are July and August. The highest
+interannual variability in the 30-year record occurs from October to
+April. In the summer period, the fraction of ECE events is very small,
+with almost zero variability in July and August. Although the most
+active months for CE events are May and June (Figure), these months
+behave differently for the ECE events, suggesting that the cumulus
+clouds that usually cause enhancements of irradiance are incapable to
+produce extreme events, possibly because of their size and structure, in
+conjunction with the smaller SZAs in the summer.
 
-![Figure 3.5: Seasonal variability of the number of ECE events relative
-to the the corresponding number of GHI measurements in Thessaloniki for
-the period 1994 -- 2023, in the form of a box and whisker plot. The box
-contains the data between the lower 25\\,\\% and the upper 75\\,\\%
-percentiles. The thick horizontal line and the diamond symbol represent
-the median and the mean values, respectively. The vertical lines
-(whiskers) extend between the maximum and minimum monthly
+In general, the fraction of ECE events during the year is very small,
+well below $0.1\,\%$ of the data, therefore on average it would not
+affect the production of solar energy. However, during short, isolated
+periods extreme enhancements of GHI can be of concern.
+
+![Figure 3.5: Seasonal variability of the relative occurrence of ECE
+events in Thessaloniki for the period 1994 -- 2023, in the form of a box
+and whisker plot. The box contains the data between the lower 25\\,\\%
+and the upper 75\\,\\% percentiles, with the thick horizontal line
+representing the median. The vertical lines (whiskers) extend between
+the maximum and minimum monthly
 values.](media/rId64.png){width="5.833333333333333in"
 height="3.5285126859142606in"}
 
-Figure 3.5: Seasonal variability of the number of ECE events relative to
-the the corresponding number of GHI measurements in Thessaloniki for the
-period 1994 -- 2023, in the form of a box and whisker plot. The box
-contains the data between the lower $25\,\%$ and the upper $75\,\%$
-percentiles. The thick horizontal line and the diamond symbol represent
-the median and the mean values, respectively. The vertical lines
-(whiskers) extend between the maximum and minimum monthly values.
-
 The distribution of the ECE events (Figure) shows that in rare cases the
-OI can exceed the TSI at TOA for the same SZA even by more than
-$400\,\text{W}/\text{m}^{2}$, while in $75\,\%$ of the cases the OI is
-below $200\,\text{W}/\text{m}^{2}$. The OI for the most frequent ECEs
-ranges between $140$ and $180\,\text{W}/\text{m}^{2}$. These findings
-are in accordance with the results of Vamvakas, Salamalikis, and
-Kazantzidis (2020), the only difference being that the OI values
-reported for are higher than those for Thessaloniki.
+measured GHI exceeds the TOA TSI at the same SZA even by more than
+$200\,\text{W}/\text{m}^{2}$, while in $75\,\%$ of the cases the OI is
+below $40\,\text{W}/\text{m}^{2}$. The $50\,\%$ OI of the most frequent
+ECEs cases ranges between $127$ and $211\,\text{W}/\text{m}^{2}$. These
+findings are in accordance with the results of Vamvakas, Salamalikis,
+and Kazantzidis (2020), the only difference being that the OI values
+reported are higher than those for Thessaloniki.
 
-![Figure 3.6: Distribution of ECE events in Thessaloniki for the period
-1994 -- 2023. Measured as extra irradiance over TSI at TOA for the same
-SZA.](media/rId68.png){width="5.833333333333333in"
+![Figure 3.6: Relative frequency distribution of ECE events, in
+Thessaloniki for the period 1994 -- 2023, as a function of the extra
+irradiance over TSI at TOA for the same
+SZA.](media/rId67.png){width="5.833333333333333in"
 height="3.647317366579178in"}
 
-Figure 3.6: Distribution of ECE events in Thessaloniki for the period
-1994 -- 2023. Measured as extra irradiance over TSI at TOA for the same
-SZA.
+Figure 3.6: Relative frequency distribution of ECE events, in
+Thessaloniki for the period 1994 -- 2023, as a function of the extra
+irradiance over TSI at TOA for the same SZA.
 
 # 4 Conclusions
 

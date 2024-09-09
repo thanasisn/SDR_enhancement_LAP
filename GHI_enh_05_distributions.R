@@ -508,7 +508,12 @@ ggplot(data = DATA[wattGLB > ETH], aes(x = GLB_diff)) +
 #               align_to = "plot")
 
 
-quantile(DATA[wattGLB > ETH, GLB_diff])
+pander(quantile(DATA[wattGLB > ETH, GLB_diff]),
+       caption = "OI of ECE")
+
+pander(quantile(DATA[wattGLB > ETH, TSI_OI]),
+       caption = "TSI OI of ECE")
+
 
 
 
