@@ -960,19 +960,49 @@ merg + theme(aspect.ratio = 1)
 ## redo example in ggplot !!!---------
 
 ggplot(data = temp, aes(x = Date)) +
-  geom_line(aes(y = wattGLB),                        color = "green") +
-  geom_line(aes(y = get(paste0(SelEnhanc, "_ref"))), color = "red") +
-  geom_line(aes(y = get(paste0(csmodel,".glo"))),    color = "darkorchid") +
-  geom_line(aes(y = ETH,                             color = "black")
+  geom_line(aes(y = wattGLB                        , colour = "GHI"                           )) +
+  geom_line(aes(y = get(paste0(SelEnhanc, "_ref")) , colour = "CE Threshold"                  )) +
+  geom_line(aes(y = get(paste0(csmodel,".glo"))    , colour = "Cloud-free"                    )) +
+  geom_line(aes(y = ETH                            , colour = "TOA TSI on horiz. plane"       )) +
+  geom_hline(aes(yintercept = solar_constant       , colour = "Solar Constant") , linewidth = 1.0 ) +
+  geom_point(data = temp[TYPE == "Cloud"],
+             aes(y =  wattGLB, colour = "Identified clouds"), shape = 3, size = 0.6                 ) +
+  geom_point(data = temp[get(SelEnhanc) == TRUE & wattGLB <  ETH, ],
+             aes(y =  wattGLB, colour = "CE events"), shape = 1, size = 1.5             ) +
+  geom_point(data = temp[get(SelEnhanc) == TRUE & wattGLB >= ETH, ],
+             aes(y =  wattGLB, colour = "ECE events"), shape = 1, size = 1.5                    ) +
 
+  scale_colour_manual("",
+                      breaks = c("GHI",
+                                 "Cloud-free",
+                                 "CE Threshold",
+                                 "TOA TSI on horiz. plane",
+                                 "Solar Constant",
+                                 "CE events",
+                                 "ECE events",
+                                 "Identified clouds"),
+                      values = c("GHI"                     = "green",
+                                 "CE Threshold"            = "red" ,
+                                 "TOA TSI on horiz. plane" = "black",
+                                 "Identified clouds"       = "blue",
+                                 "CE events"               = "burlywood4",
+                                 "ECE events"              = "red",
+                                 "Solar Constant"          = "orange2",
+                                 "Cloud-free"              = "darkorchid")) +
+  guides(fill = guide_legend(ncol = 2)) +
+  theme(
+  #   legend.title         = element_text(size = 10),
+    legend.position      = c(.03, .97),
+    legend.justification = c("left", "top"),
+  #   legend.box.just      = "right",
+    legend.key           = element_blank(),
+  #   legend.background    = element_rect(fill = "transparent"),
+    legend.margin        = margin(6, 6, 6, 6) ) +
+  # scale_x_continuous(expand = expansion(mult = c(0.03, 0.03))) +
+  scale_y_continuous(breaks = seq(0, 1600, 200)) +
 
-
-
-
-
-
-
-
+  ylab(bquote("GHI" ~ group("[", W/m^2,"]"))) +
+  xlab(bquote("Time (UTC)"))
 
 
 
