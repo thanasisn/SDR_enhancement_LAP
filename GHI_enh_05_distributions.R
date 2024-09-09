@@ -894,11 +894,9 @@ abline(v = date_A, col = "grey", lwd = 2, lty = 2)
 abline(v = date_B, col = "grey", lwd = 2, lty = 2)
 abline(v = date_C, col = "grey", lwd = 2, lty = 2)
 
-
 text(x = date_A, y = 250, "(a)", pos = 2, offset = 0.2, col = "gray", cex = 0.8)
 text(x = date_B, y = 250, "(b)", pos = 2, offset = 0.2, col = "gray", cex = 0.8)
 text(x = date_C, y = 250, "(c)", pos = 4, offset = 0.2, col = "gray", cex = 0.8)
-
 
 abline(h = solar_constant, col = "orange2", lty = 1, lwd = 2)
 
@@ -938,68 +936,8 @@ legend("bottom", ncol = 2,
 )
 
 
-
+## store base plot
 p1 <- recordPlot()
-
-
-
-# par(mar = c(4, 4, 1, 1))
-# # ylim <- range(0, temp$ETH, temp$wattGLB, na.rm = TRUE)
-# ylim <- range(0, temp$ETH, temp$wattGLB, solar_constant, na.rm = TRUE)
-#
-# plot(temp$Date, temp$wattGLB, col = "green",
-#      pch  = ".", cex = 2,
-#      ylim = ylim,
-#      ylab = bquote("GHI" ~ group("[", W/m^2,"]")),
-#      xlab = "Time (UTC)")
-#
-# ## mark photos
-# abline(v = date_A, col = "grey", lwd = 2, lty = 2)
-# abline(v = date_B, col = "grey", lwd = 2, lty = 2)
-#
-# text(x = date_A, y = 200, "(a)", pos = 2, offset = 0.4, col = "gray")
-# text(x = date_B, y = 200, "(b)", pos = 4, offset = 0.4, col = "gray")
-#
-#
-# abline(h = solar_constant, col = "orange2", lty = 1, lwd = 2)
-#
-# ## Global
-# lines(temp$Date, temp$wattGLB, col = "green")
-#
-# ## TSI on ground
-# lines(temp$Date, temp$ETH)
-#
-# ## Active model reference
-# lines(temp[, get(paste0(SelEnhanc, "_ref")), Date], col = "red" )
-#
-# ## Cloud-free ref
-# lines(temp[, get(paste0(csmodel,".glo")), Date], col = "darkorchid" )
-#
-#
-# ## Enchantment cases
-# points(temp[get(SelEnhanc) == TRUE & wattGLB <  ETH, wattGLB, Date], col = "burlywood4")
-# points(temp[get(SelEnhanc) == TRUE & wattGLB >= ETH, wattGLB, Date], col = "red")
-#
-#
-# ## Cloud cases
-# points(temp[TYPE == "Cloud", wattGLB, Date], col = "blue", pch = 3, cex = 0.3)
-#
-# ## Decorations
-# # title(main = paste(as.Date(aday, origin = "1970-01-01"), temp[get(SelEnhanc) == TRUE, .N], temp[TYPE == "Cloud", .N], vec_days$Descriprion[ii]))
-# title(main = paste(as.Date(example_day, origin = "1970-01-01")))
-#
-# legend("bottomright", ncol = 2,
-#        c(  "GHI","CE threshold","TSI at TOA on horizontal plane","Solar Constant", "CE events","ECE events","Identified clouds",  "Cloud-free"),
-#        col = c("green",         "red",                  "black",       "orange2","burlywood4",       "red",             "blue","darkorchid"),
-#        pch = c(     NA,            NA,                       NA,              NA,          1 ,          1 ,                  3,           NA),
-#        lty = c(      1,             1,                        1,               1,          NA,          NA,                 NA,            1),
-#        lwd = c(      1,             1,                        1,               2,          NA,          NA,                 NA,            1),
-#        bty = "n",
-#        cex = 0.8
-# )
-
-
-
 
 
 bt <- grid.arrange(A, B, C, nrow = 1)
@@ -1013,6 +951,38 @@ merg <- plot_grid(
 print(merg)
 
 merg + theme(aspect.ratio = 1)
+
+
+
+
+
+
+## redo example in ggplot !!!---------
+
+ggplot(data = temp, aes(x = Date)) +
+  geom_line(aes(y = wattGLB),                        color = "green") +
+  geom_line(aes(y = get(paste0(SelEnhanc, "_ref"))), color = "red") +
+  geom_line(aes(y = get(paste0(csmodel,".glo"))),    color = "darkorchid") +
+  geom_line(aes(y = ETH,                             color = "black")
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
