@@ -636,7 +636,7 @@ ggplot(monthly, aes(y = 100 * Relative_enha_GLB,
                                     labels = month.abb[1:12]))) +
   geom_boxplot(fill = varcol("GLB_diff"), outliers = FALSE) +
   xlab("") +
-  ylab("CE occurence frequency relative to GHI [%]") +
+  ylab("Relative frequency [%]") +
   # stat_summary(fun.y = mean, geom = "point", shape = 23, size = 3) +
   theme(
     panel.grid.major.x = element_blank(),
@@ -685,7 +685,7 @@ ggplot(monthlyE, aes(y = 100 * Relative_enha_GLB,
                                     labels = month.abb[1:12]))) +
   geom_boxplot(fill = "lightblue", outliers = FALSE) +
   xlab("") +
-  ylab("ECE occurence frequency relative to GHI [%]") +
+  ylab("ECE occurrence frequency relative to GHI [%]") +
   # stat_summary(fun.y = mean, geom = "point", shape = 23, size = 3) +
   theme(
     panel.grid.major.x = element_blank(),
@@ -723,7 +723,7 @@ boxplot(mont[, CE_OI/OI_N] ~ mont$month)
 title("Mean monthly OI")
 
 
-## Check days for reviers
+## Check days for reviews
 
 
 
@@ -760,7 +760,6 @@ mean(DATA$TSIextEARTH_comb, na.rm = T)
 
 ## Solstice --------------------
 LUK <- readRDS("./data/lookuptable_datatable.Rds")
-# LUK <- LUK[SZA > 17]
 
 solstis <- data.table()
 for (ay in unique(year(LUK$Date))) {
@@ -777,7 +776,7 @@ for (ay in unique(year(LUK$Date))) {
 
 }
 
-pander(solstis, caption = "Solstices from Libratran")
+pander(solstis, caption = "Solstices from Libradtran")
 
 
 cat("Solstice max for all period", max(solstis$Enerhy_Kj/1000, na.rm = T), "MJ", "\n\n")

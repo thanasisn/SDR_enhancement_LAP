@@ -776,8 +776,8 @@ for (pyear in yearstodo) {
                           limits   = c(0, NA),  ## always display zero
                           na.value = NA) +
     labs(title = pyear) +
-    ylab(bquote("GHI" ~ group("[", W/m^2,"]"))) +
-    xlab(bquote("Cloud-free reference" ~ group("[", W/m^2,"]"))) +
+    ylab(bquote("Measured GHI" ~ group("[", W/m^2,"]"))) +
+    xlab(bquote("GHI reference" ~ group("[", W/m^2,"]"))) +
     labs(color = bquote("OI" ~ group("[", W/m^2,"]"))) +
     theme(
       legend.title         = element_text(size = 10),

@@ -204,6 +204,15 @@ trend_polyf <- function(tsy) {
   (polym_C[3] / polyf_zero) * tsy^2
 }
 
+
+
+x    <- (seq(1994, 2024, 0.01))
+test <- data.table(x = x, y = 100 * trend_polyf(x)  )
+
+first(test)
+last(test)
+test[which.max(y),]
+
 cat("Range of delta(AOD):", signif(100 * range(trend_polyf(seq(1994, 2024, 0.01))), 2), "\n\n")
 
 cat("Range of delta(AOD):", round(100 * range(trend_polyf(seq(1994, 2024, 0.01))), 2), "\n\n")
