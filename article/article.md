@@ -51,7 +51,7 @@ keywords:
   - over irradiance
 
 journal:        "Atmospheric Research"
-date:           "2024-09-08"
+date:           "2024-09-09"
 linenumbers:    false
 numbersections: true
 bibliography:   bibliography.bib
@@ -707,26 +707,22 @@ decreasing trend in cloud cover as a result of global warming [e.g.,
 
 
 The distribution of the number of CE events as a function of OI is shown in
-Figure\nobreakspace{}\ref{fig:ovir-distribution}.  There is an inverse
-relationship between the frequency of CE events and OI with an exponential-like
-decline. This is expected, as the stronger the CE events are, the rarer the
-conditions favoring the occurrence of CE events.
-
-
-!!!!
-
+Figure\nobreakspace{}\ref{fig:ovir-distribution}.  There is an inverse relationship
+between the frequency of CE events and OI with an exponential-like decline. This is
+expected, as the stronger the CE events are, the rarer the conditions favouring the
+occurrence of CE events.
 For the majority (over $62\,\%$) of
 the CE events the OI is below the long-term average of
-$42.6\,\text{W}/\text{m}^2$, while about
-$8.1\,\%$ of the events correspond to OI larger than
-$100\,\text{W}/\text{m}^2$ and
-up to the highest value of $412.4\,\text{W}/\text{m}^2$.  This distribution is
-indicative of the magnitude and the probability of the expected CE events over
-Thessaloniki.  Similar distribution of CE events, albeit with larger OI values, has
-been reported by @Vamvakas2020, for the city of Patras. This site is located
-$2.5^\circ$ south of Thessaloniki and is exposed to air masses coming mainly from the
-eastern Mediterranean resulting in different cloud patterns, that may affect the
-characteristics and magnitude of the CE events.
+$42.6\,\text{W}/\text{m}^2$, while
+$9.6\,\%$ of the events correspond to OI larger than
+$100\,\text{W}/\text{m}^2$ and up to the highest value of
+$437\,\text{W}/\text{m}^2$.
+This distribution is indicative of the magnitude and the probability of the expected
+CE events over Thessaloniki.  Similar distribution of CE events, albeit with larger
+OI values, has been reported by @Vamvakas2020, for the city of Patras. This site is
+located $2.5^\circ$ south of Thessaloniki and is exposed to air masses coming mainly
+from the eastern Mediterranean, resulting in different cloud patterns, that may
+affect the characteristics and magnitude of the CE events.
 
 \begin{figure}
 
@@ -740,18 +736,21 @@ characteristics and magnitude of the CE events.
 ## Duration of cloud enhancement events
 
 The duration of the CE events is variable and can last for several minutes or even
-more than an hour. In order to study the characteristics of these consecutive events,
-we grouped them into bins of increasing duration in steps of one minute.  We have
-identified 34849 groups of CE in the whole period of study, where the group
-of the longest duration of
+more than an hour. To study the characteristics of these consecutive events, we
+grouped them into bins of increasing duration in steps of one minute.  We have
+identified 34849 groups of CE events in the whole period of study, where
+the group with the longest duration of
 140 minutes occurred on
-07\ July 2013 in a SZA range of 
-$52.1^\circ$ -- 
+07\ July 2013
+with SZA ranging between
+$52.1^\circ$ and
 $77.9^\circ$.
 Figure\nobreakspace{}\ref{fig:ceg-duration-distribution} shows the frequency
 distribution of the CE events according to their duration.  We conclude that although
-some groups of events last for more than an hour, about $80\,\%$ have duration of
+some groups of events last for more than an hour, about $80\,\%$ have a duration of
 less than 5 minutes.
+
+($21\,\%$)
 
 \begin{figure}
 

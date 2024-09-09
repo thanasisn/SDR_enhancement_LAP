@@ -131,6 +131,8 @@ cat("Enhancemnet criteria:", SelEnhanc, "\n\n")
 
 
 
+
+
 ##  Daily  ---------------------------------------------------------------------
 
 #'
@@ -383,17 +385,26 @@ cat(pander(summary(DATA[GLB_diff > 0, GLB_diff])),"\n")
 
 cat(pander(quantile(DATA[GLB_diff > 0, GLB_diff])),"\n")
 
-above <- 100
-per   <- 100 * DATA[GLB_diff > 0 & GLB_diff > above, .N] / DATA[GLB_diff > 0, .N]
+above100 <- 100
+per100   <- 100 * DATA[GLB_diff > 0 & GLB_diff > above100, .N] / DATA[GLB_diff > 0, .N]
 
-cat(paste("\n", per, "% of the values are above", above, "W/m^2\n\n" ))
+cat(paste("\n", per100, "% of the values are above", above100, "W/m^2\n\n" ))
 
 
-below <- mean(ST_E_yearly$GLB_diff.mean)
-per   <- 100 * DATA[GLB_diff > 0 & GLB_diff < below, .N] / DATA[GLB_diff > 0, .N]
+belowAVG <- mean(ST_E_yearly$GLB_diff.mean)
+perAVG   <- 100 * DATA[GLB_diff > 0 & GLB_diff < belowAVG, .N] / DATA[GLB_diff > 0, .N]
 
-cat(paste("\n", per, "% of the values are below", below, "W/m^2\n\n" ))
+cat(paste("\n", round(perAVG,1), "% of the values are below mean", round(belowAVG,2), "W/m^2\n\n" ))
 
+
+some_values <-  list(
+    Enh_pc_below_mean = perAVG,
+    Enh_OI_AVG        = belowAVG,
+    Enh_pc_below_100  = per100,
+    Enh_OI_100        = above100,
+    Max_OI            = DATA[GLB_diff > 0, max(GLB_diff)]
+  )
+saveRDS(some_values, "./data/some_values_01.Rds")
 
 
 ## split histogram
@@ -419,7 +430,7 @@ pa <- ggplot(data = DATA[GLB_diff > 0], aes(x = GLB_diff)) +
   xlab(bquote("OI" ~ group("[", W/m^2,"]"))) +
   ylab("Relative frequency [%]") +
   scale_x_continuous(
-    breaks = sort(unique(seq(0, split + binwidth, binwidth*2), split)),
+    breaks = sort(unique(c(seq(0, split, binwidth * 2), split))),
     limits = c(0, split))
 
 ## right
