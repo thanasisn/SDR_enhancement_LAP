@@ -36,9 +36,9 @@ application in industries related to energy and agricultural production.
 The variability of its intensity can impose difficulties in predicting
 the yield and in designing the specifications of the appropriate
 equipment. A significant portion of the relevant research has been
-focused on predicting the renewable energy production in a fine
-timescale and in near real-time (for a review see Inman, Pedro, and
-Coimbra 2013; Graabak and Korpås 2016).
+focused on predicting renewable energy production in a fine timescale
+and in near real-time (for a review see Inman, Pedro, and Coimbra 2013;
+Graabak and Korpås 2016).
 
 An important aspect of the variability of solar radiation is its
 interaction with the clouds. In general, clouds can attenuate a fraction
@@ -50,19 +50,19 @@ irradiance \[Cordero et al. (2023); Vamvakas, Salamalikis, and
 Kazantzidis (2020); Castillejo-Cuberos and Escobar (2020); and
 references therein\].
 
-Some of the proposed underling mechanisms of those enhancements have
+Some of the proposed underlying mechanisms of those enhancements have
 been summarized by Gueymard (2017); the most important being the
 scattering of radiation on the edges of cumulus clouds. It has also been
 suggested that enhancement of GHI can be produced by thin cirrus clouds
-though refraction and scattering (Thuillier et al. 2013). Further
+through refraction and scattering (Thuillier et al. 2013). Further
 investigation with radiative transfer modeling and observations pointed
 as the prevailing mechanism, the strong forward Mie scattering through
 clouds of low optical depth (Pecenak et al. 2016; Thuillier et al. 2013;
 G. H. Yordanov et al. 2013; Georgi Hristov Yordanov, Saetre, and
-Midtgård 2015). Overall, the appearance of CE events depend on different
-interactive factors, which include cloud thickness, structure and type,
-and the relative position of the sun and the clouds (Gueymard 2017;
-Veerman, Van Stratum, and Van Heerwaarden 2022).
+Midtgård 2015). Overall, the appearance of CE events depends on
+different interactive factors, which include cloud thickness, structure
+and type, and the relative position of the sun and the clouds (Gueymard
+2017; Veerman, Van Stratum, and Van Heerwaarden 2022).
 
 On multiple sites, cloud enhancements have been reported that exceed
 momentarily the solar constant, resulting in clearness indices above
@@ -80,7 +80,7 @@ decades. Liu et al. (2023) reported increases in cloud cover over the
 tropical and subtropical oceans and decreases over most continents,
 while Dong, Sutton, and Wilcox (2023) reported decreases over North
 America and Europe. To our knowledge, there is no evidence of whether
-this trend has affected also the number and strength of CE events.
+this trend has also affected the number and strength of CE events.
 
 Methods of identification of CE events usually include the use of
 simulated cloud-free irradiance as baseline, combined with an
@@ -121,7 +121,7 @@ before (morning) or after (evening) the Sun reaches an elevation angle
 of $- 10^{\circ}$. The signal was converted to irradiance using the
 ramped value of the instrument's sensitivity between subsequent
 calibrations. We note that the specific model of the pyranometer is not
-capable in recording the instrument's temperature, therefore any
+capable of recording the instrument's temperature, therefore any
 temperature changes that may occur during the day (including those due
 to sudden increases or decreases in incidence irradiance) were not
 considered in the data reduction procedure. However, the sensitivity of
@@ -139,25 +139,25 @@ Furthermore, due to the significant measurement uncertainty in GHI when
 the Sun is near the horizon, and due to some systematic obstructions by
 nearby buildings, we have excluded all measurements with solar zenith
 angle (SZA) greater than $78^{\circ}$. Finally, images from a sky camera
-have been used in the manual inspection of the CE identification. The
-sky camera has been operating since 2012 and stores images in 5 min time
-steps. An overview of the GHI data used in this study is given in
+have been used in the manual inspection of the CE events identification.
+The sky camera has been operating since 2012 and stores images in 15 min
+time steps. An overview of the GHI data used in this study is given in
 Figure, as the daily means. Daily means were calculated only for days
 with at least $60\,\%$ of data availability; however, all available
 one-minute measurements have been used for the detection of CE events.
 
-![Figure 2.1: Timeseries of daily mean GHI measured at Thessaloniki for
+![Figure 2.1: Time-series of daily mean GHI measured at Thessaloniki for
 the period 1994 -- 2023.](media/rId22.png){width="5.833333333333333in"
 height="3.5861603237095365in"}
 
-Figure 2.1: Timeseries of daily mean GHI measured at Thessaloniki for
+Figure 2.1: Time-series of daily mean GHI measured at Thessaloniki for
 the period 1994 -- 2023.
 
-## 2.2 Cloud enhancement detection
+## 2.2 Detection of cloud enhancements
 
 In this study, we define an event as CE when the measured GHI at ground
-level exceeds the expected value under cloud-free conditions. Similarly,
-we define as extreme cloud enhancement events (ECE), the cases when GHI
+level exceeds the expected GHI under cloud-free conditions. Similarly,
+we define as extreme cloud enhancement (ECE) events the cases when GHI
 at ground level exceeds the Total Solar Irradiance (TSI) at the top of
 the atmosphere (TOA) for the same SZA. Although the duration of these
 bursts can vary from seconds to several minutes, here we are constrained
@@ -165,14 +165,14 @@ by the temporal resolution of our data to identify events with a
 duration of at minimum one-minute.
 
 For the detection of CE cases, we established a baseline of irradiance
-above which we characterized each data point as an enhancement event and
+above which we characterized each data point as a CE event and
 calculated the over irradiance (OI). The OI is defined as the irradiance
 difference of the measured one-minute GHI from the
 $\text{GHI}_{\text{ref}}$ corresponding to cloud-free atmosphere. First,
 we used a simple approach for the determination of
 $\text{GHI}_{\text{ref}}$: The Haurwitz's model (Haurwitz 1945), which
 is a simple clear sky radiation model and was already adjusted and
-applied to our data (Natsis, Bais, and Meleti 2023). We created a
+applied to our data in Natsis, Bais, and Meleti (2023). We created a
 threshold by using an appropriate relative and/or an additional constant
 offset. The initial results showed that we can detect a big portion of
 the actual CE events. However, by inspecting the daily plots of
@@ -184,7 +184,7 @@ To produce a more representative reference we included the effects of
 these factors using a radiative transfer model (RTM). The applied
 methodology is discussed in section.
 
-## 2.3 Modeled cloud-free Irradiance
+## 2.3 Modeled cloud-free irradiance
 
 ### 2.3.1 Climatology of cloud-free irradiance
 
@@ -195,26 +195,27 @@ Kazantzidis (2020). In uvspec we used the solar spectrum of Kurucz
 (1994) in the range $280$ to $2500\,\text{nm}$, the radiative transfer
 solver "disort" in "pseudospherical" geometry and the "LOWTRAN" gas
 parameterization. The model was run for climatological values of the
-Angstrom coefficients, water column (WC), SZA and the appropriate
-seasonal atmospheric profile to create a look-up table (LUT) for the
-estimation of the cloud-free reference irradiance for each individual
-observation of our dataset. In this context, the model was run for SZAs
-in the range $10$ -- $90^{\circ}$ with a step of ${0.2}^{\circ}$ and for
-the atmospheric profiles of the Air Force Geophysics Laboratory
-(Anderson et al. 1986) midlatitude summer and midlatitude winter,
-representative of the warm and cold seasons.
+aerosol Ångström coefficients, water column (WC), SZA and the
+appropriate seasonal atmospheric profile to create a look-up table (LUT)
+for the estimation of the cloud-free reference irradiance for each
+individual observation of our dataset. In this context, the model was
+run for SZAs in the range $10$ -- $90^{\circ}$ with a step of
+${0.2}^{\circ}$ and for the atmospheric profiles of the Air Force
+Geophysics Laboratory (Anderson et al. 1986) midlatitude summer and
+midlatitude winter, representative of the warm and cold seasons.
 
 Main factors responsible for the attenuation of the broadband downward
-solar radiation under cloud free atmospheres are aerosols and water
-vapor. At Thessaloniki, such measurements are available since 2003 from
-a Cimel sun photometer, which is part of the Aerosol Robotic Network
-(AERONET) (Giles et al. 2019; Buis et al. 1998). From the observations
-in the period 2003 -- 2023 we calculated the monthly climatological
-means and standard deviation ($\sigma$) for the aerosol optical depth
-(AOD) at $500\,\text{nm}$ and the equivalent height of the water column
-(WC). The monthly climatological values of AOD and WC, as well as
-combinations with additional offsets of $\pm 1\sigma$ and $\pm 2\sigma$,
-were used as inputs to the RTM in the construction of the LUT.
+solar radiation under cloud-free atmospheres are aerosols and water
+vapor. At Thessaloniki, such measurements have been available since 2003
+from a Cimel sun photometer, which is part of the Aerosol Robotic
+Network (AERONET) (Giles et al. 2019; Buis et al. 1998). From the
+observations in the period 2003 -- 2023 we calculated the monthly
+climatological means and standard deviations ($\sigma$) for the aerosol
+optical depth (AOD) at $500\,\text{nm}$ and the equivalent height of the
+water column (WC). The monthly climatological values of AOD and WC, as
+well as combinations with additional offsets of $\pm 1\sigma$ and
+$\pm 2\sigma$, were used as inputs to the RTM in the construction of the
+LUT.
 
 For each measurement of the dataset, we calculated from the LUT a
 $\text{GHI}_{\text{ref}}$ value for the respective season and SZA (by
@@ -226,7 +227,7 @@ each $\text{GHI}_{\text{ref}}$ value was adjusted to the actual
 Sun-Earth distance derived by the Astropy software library (Astropy
 Collaboration et al. 2022).
 
-### 2.3.2 Long-term change of cloud-free irradiance
+### 2.3.2 Long-term changes in cloud-free irradiance
 
 The cloud-free reference values discussed above are based on the
 climatological AOD and WC; hence they cannot describe accurately the
@@ -238,32 +239,34 @@ cloud-free data was attributed to long-term changes in aerosol effects.
 Therefore, an adjustment of the $\text{GHI}_{\text{ref}}$ during the
 period of study was made using RTM simulations to account for the
 long-term variations of the AOD. High quality AOD data with a Cimel
-sun-photometer (part of AERONET) at Thessaloniki start only in 2003,
-while spectral AOD measurements using direct-sun observations with a
-MKIII Brewer spectrophotometer are available for the period 1997 --
-2017. These data are taken sporadically during each day and are less
-dense compared to the AERONET data. By comparing monthly AOD data at
+sun-photometer at Thessaloniki start only in 2003, while spectral AOD
+measurements using direct-sun observations with a MKIII Brewer
+spectrophotometer are available for the period 1997 -- 2017. The Brewer
+AOD data are taken sporadically during each day and are less dense
+compared to the AERONET data. By comparing monthly AOD data at
 $340\,\text{nm}$ of the two instruments for the common periods of
 operation we adjusted the Brewer data and filled the missing months of
-the Cimel record data with Brewer data. Using the monthly time series of
-AOD at $340\,\text{nm}$, as well as monthly climatological values of the
-Ångström exponent and constant WC of $15.6\,\text{mm}$ derived from the
-Cimel record, we simulated with the RTM the cloud-free GHI at SZA of
-$55^{\circ}$ for each month in the period 1997 -- 2023. The SZA of
-$55^{\circ}$ was chosen as representative of all days in the year to get
-a rough estimate of the annually averaged change in cloud-free GHI. A
-second-degree polynomial fit was applied to the simulated yearly
-averaged GHI to derive the long-term change in GHI due to aerosols:
+the Cimel record with Brewer data. Using the extended monthly time
+series of AOD at $340\,\text{nm}$, as well as monthly climatological
+values of the Ångström exponent and constant WC of $15.6\,\text{mm}$
+derived from the Cimel record, we simulated with the RTM the cloud-free
+GHI at SZA of $55^{\circ}$ for each month in the period 1997 -- 2023.
+The SZA of $55^{\circ}$ was chosen as representative of all days in the
+year to get a rough estimate of the annually averaged change in
+cloud-free GHI. A second-degree polynomial fit was applied to the
+simulated yearly averaged GHI to derive the long-term change in GHI due
+to aerosols:
 
-$$\Delta\left( \text{GHI} \right)\lbrack\%\rbrack = - 12170 + 12.05 \cdot y + - 0.002981 \cdot y^{2}$$
+$$\Delta\left( \text{GHI} \right)\lbrack\%\rbrack = - 12170 + 12.05 \cdot x + - 0.002981 \cdot x^{2}$$
 
-where $y$ is the date as a decimal fraction of the year. For the period
-of the study the relative change of AOD ranges between $- 1.88$ and
-$- 0.23\,\%$. Finally, we applied these long-term changes of Equation to
-the climatological $\text{GHI}_{\text{ref}}$, to create a more realistic
-representation of the cloud-free irradiance for the entire period of
-study. For the period 1994 -- 1996 where no AOD data are available, we
-assumed that the changes in GHI follow the same polynomial fit.
+where $y$ is the date as a decimal fraction of the year. The resulting
+change in $\text{GHI}_{\text{ref}}$ ranges between $- 1.88$ in 1994, a
+peak of $0.23\,\%$ in mid-2020 and $- 0.19\,\%$ in the end of 2023.
+Finally, we applied these long-term changes of Equation to the
+$\text{GHI}_{\text{ref}}$, to create a more realistic representation of
+the cloud-free irradiance for the entire period of study. For the period
+1994 -- 1996 where no AOD data are available, we assumed that the
+changes in GHI follow the same polynomial fit.
 
 ## 2.4 Criteria for the identification of CE events
 
@@ -272,23 +275,23 @@ key issue for achieving this goal is to define a threshold for the CE
 identification, representative of the cloud-free irradiance at the time
 of each GHI measurement. This depends on the selection of the
 appropriate atmospheric parameterization for the RTM simulations. The
-implementation of the long-term change in AOD, discussed in section,
-allows capturing a large part of the natural variability of cloud-free
-GHI. However, the short-term variability of AOD cannot be taken
-adequately into account when using monthly values in the model
+implementation of the long-term changes in GHI due to AOD, discussed in
+section, allows capturing a large part of the natural variability of
+cloud-free GHI. However, the short-term variability of AOD cannot be
+taken adequately into account when using monthly values in the model
 simulations. We tried different approaches to strengthen the robustness
 of the methodology and to compensate for the limited accuracy of the RTM
 input data and the unpredictable natural variability of the atmosphere.
 
-First, we evaluated the performance of the modelled
+First, we evaluated the performance of the modeled
 $\text{GHI}_{\text{ref}}$ in relation to the measured GHI for different
 levels of atmospheric clearness, by using in the RTM the monthly
 climatological AOD and WC, less their respective standard deviations.
-These values represent typical atmospheres in Thessaloniki with lower
-than average load of aerosols and humidity, which are the main factors
-that attenuate the GHI, excluding clouds. With this approach, the
-simulated $\text{GHI}_{\text{ref}}$ should be generally greater than the
-measured GHI when aerosols are more abundant. The correlation of the
+These values represent typical atmospheres in Thessaloniki with
+lower-than-average load of aerosols and humidity, which are the main
+factors that attenuate the GHI, excluding clouds. With this approach,
+the simulated $\text{GHI}_{\text{ref}}$ should be generally greater than
+the measured GHI when aerosols are more abundant. The correlation of the
 $\text{GHI}_{\text{ref}}$ with the GHI was tested for a subset of
 cloud-free days with more than $80\,\%$ data availability (Figure) and
 found to have a positive bias of more than $18\,\text{W}/\text{m}^{2}$
@@ -389,7 +392,7 @@ over-irradiance for CE and ECE events is colour coded, while the
 remaining data points are shown in black. The reference green line goes
 through the origin with a slope of
 one.](media/rId39.png){width="5.833333333333333in"
-height="3.635437445319335in"}
+height="3.6280479002624673in"}
 
 Figure 2.4: Example scatter plot of the measured GHI and the reference
 cloud-free irradiance in Thessaloniki for the year 2005. The
@@ -613,7 +616,7 @@ and the upper 75\\,\\% percentiles, with the thick horizontal line
 representing the median. The vertical lines (whiskers) extend between
 the maximum and minimum monthly
 values.](media/rId64.png){width="5.833333333333333in"
-height="3.5285126859142606in"}
+height="3.564154636920385in"}
 
 The distribution of the ECE events (Figure) shows that in rare cases the
 measured GHI exceeds the TOA TSI at the same SZA even by more than
