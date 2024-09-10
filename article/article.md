@@ -66,7 +66,7 @@ keywords:
   - over irradiance
 
 journal:        "Atmospheric Research"
-date:           "2024-09-09"
+date:           "2024-09-10"
 linenumbers:    false
 numbersections: true
 bibliography:   bibliography.bib
@@ -754,7 +754,7 @@ Figure\nobreakspace{}\ref{fig:ceg-duration-distribution} shows the frequency
 distribution of the CE events according to their duration.  We conclude that although
 some groups of events last for more than an hour, about
 $79\,\%$ have a duration of
-equal or less than 5 minutes  likely due to the movements of clouds causing frequent
+equal or less than 5 minutes, likely due to the movements of clouds causing frequent
 blocking of the direct irradiance, which reduce the duration of the CE events.
 
 \begin{figure}
