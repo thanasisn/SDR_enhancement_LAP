@@ -117,7 +117,7 @@ theme_paper <- function(){
       panel.background   = element_rect(fill = 'transparent'), #transparent panel bg
 
 
-      axis.text = element_text(face = "bold"), # bold axis labels
+      # axis.text = element_text(face = "bold"), # bold axis labels
       # text      = element_text(size = 15),     ## srarted at 14
 
       # axis.ticks = element_blank(),          #strip axis ticks
