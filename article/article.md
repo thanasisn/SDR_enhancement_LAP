@@ -36,14 +36,14 @@ address:
 abstract: |
   In this study, we investigate the characteristics of global horizontal
   irradiance enhancement events induced by clouds over Thessaloniki for
-  the period 1994 -- 2023 using data recorded every one minute. To our
-  knowledge, there isn't a similar study with such a long time series. We
+  the period 1994 -- 2023 using data recorded every one minute. We
   identified the cloud enhancement (CE) events by creating an appropriate
   cloud-free irradiance reference using a radiative transfer model and
   aerosol optical depth data from a collocated Cimel sun photometer and a
   Brewer spectrophotometer. We found a trend in CE events of
   \(+112\pm 35\,\text{cases}/\text{year}\), and a trend in the
   corresponding irradiation of \(+329.9\pm 112\,\text{kJ}/\text{year}\).
+  To our knowledge, such long-term changes in CE events have not been presented in the past.
   The peak of the CE events was observed during May and June. CE events
   with duration longer than 10\nobreakspace{}min are very rare
   (\(<8\,\%\)), with exceptions lasting over an hour and up to 140
@@ -71,7 +71,8 @@ linenumbers:    false
 numbersections: true
 bibliography:   bibliography.bib
 
-biblio-style:   elsarticle-num-names # elsarticle-harv author year style for natbib - use 'elsarticle-num' or 'elsarticle-num-names' for numbered scheme
+biblio-style:   elsarticle-harv # elsarticle-harv author year style for natbib - use 'elsarticle-num' or 'elsarticle-num-names' for numbered scheme
+# biblio-style:   elsarticle-num-names # elsarticle-harv author year style for natbib - use 'elsarticle-num' or 'elsarticle-num-names' for numbered scheme
 
 classoption:    preprint, 5p, authoryear # remove authoryear is not using `elsarticle-harv`
 # Use a CSL with `citation_package = "default"`
@@ -114,8 +115,7 @@ output:
 
 In this study, we investigate the characteristics of global horizontal irradiance
 enhancement events induced by clouds over Thessaloniki for the period 1994 -- 2023
-using data recorded every one minute.  To our knowledge, there isn't a similar study
-with such a long time series.  We identified the cloud enhancement (CE) events by
+using data recorded every one minute. We identified the cloud enhancement (CE) events by
 creating an appropriate cloud-free irradiance reference using a radiative transfer
 model and aerosol optical depth data from a collocated Cimel sun photometer and a
 Brewer spectrophotometer. We found a trend in CE events of
@@ -124,6 +124,7 @@ $+112\pm
 and a trend in the corresponding irradiation of
 $+329.9\pm
 112\,\text{kJ}/\text{year}$.
+To our knowledge, such long-term changes in CE events have not been presented in the past.
 The peak of the CE events was observed during May and June. CE events with duration
 longer than 10\nobreakspace{}min are very rare
 ($<8\,\%$), with exceptions lasting
