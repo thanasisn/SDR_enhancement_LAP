@@ -114,6 +114,7 @@ theme_paper <- function(){
 
 
       axis.text = element_text(face = "bold"), # bold axis labels
+      # text      = element_text(size = "bold"),
 
       # axis.ticks = element_blank(),          #strip axis ticks
 
