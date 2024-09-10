@@ -796,7 +796,7 @@ cat("Solstice mean for all period", mean(solstis$Enerhy_Kj/1000, na.rm = T), "MJ
 #'
 #' ## Example day
 #'
-#+ P-example-day,  echo=F, include=T
+#+ P-example-day,  echo=F, include=T, fig.width=7, fig.height=6
 
 ## select day
 example_day <- "2019-07-11"
@@ -849,20 +849,20 @@ rr <- image_scale(
 
 
 A <- image_ggplot(ll1) +
-  annotate(geom = "text", x = 10, y = 15,  label = "(a)",       hjust = 0, vjust = 0, size =  4, colour = "#ff652d", font = "bold") +
-  annotate(geom = "text", x = 15, y = 585, label = "09:30 UTC", hjust = 0, vjust = 1, size =  4, colour = "#ff652d")
+  annotate(geom = "text", x = 10, y = 15,  label = "(a)",       hjust = 0, vjust = 0, size =  4, colour = "#ff652d", fontface = "bold") +
+  annotate(geom = "text", x = 15, y = 585, label = "09:30 UTC", hjust = 0, vjust = 1, size =  4, colour = "#ff652d", fontface = "bold")
 date_A <- as.POSIXct(strptime(paste(example_day,   "09:30"), "%F %H:%M"))
 
 
 B <- image_ggplot(ll) +
-  annotate(geom = "text", x = 10, y = 15,  label = "(b)",       hjust = 0, vjust = 0, size =  4, colour = "#ff652d") +
-  annotate(geom = "text", x = 15, y = 585, label = "10:15 UTC", hjust = 0, vjust = 1, size =  4, colour = "#ff652d")
+  annotate(geom = "text", x = 10, y = 15,  label = "(b)",       hjust = 0, vjust = 0, size =  4, colour = "#ff652d", fontface = "bold") +
+  annotate(geom = "text", x = 15, y = 585, label = "10:15 UTC", hjust = 0, vjust = 1, size =  4, colour = "#ff652d", fontface = "bold")
 date_B <- as.POSIXct(strptime(paste(example_day,   "10:15"), "%F %H:%M"))
 
 
 C <- image_ggplot(rr) +
-  annotate(geom = "text", x = 10, y = 15,  label = "(c)",       hjust = 0, vjust = 0, size =  4, colour = "#ff652d") +
-  annotate(geom = "text", x = 15, y = 585, label = "10:30 UTC", hjust = 0, vjust = 1, size =  4, colour = "#ff652d")
+  annotate(geom = "text", x = 10, y = 15,  label = "(c)",       hjust = 0, vjust = 0, size =  4, colour = "#ff652d", fontface = "bold") +
+  annotate(geom = "text", x = 15, y = 585, label = "10:30 UTC", hjust = 0, vjust = 1, size =  4, colour = "#ff652d", fontface = "bold")
 date_C <- as.POSIXct(strptime(paste(example_day,   "10:30"), "%F %H:%M"))
 
 grid.arrange(A, B, C, nrow = 1)
@@ -958,7 +958,6 @@ temp <- DATA[Day == example_day]
 ## redo example in ggplot !!!---------
 
 
-
 pp1 <- ggplot(data = temp, aes(x = Date)) +
   ## DATA lines
   geom_line(aes(y = wattGLB                        , colour = "GHI"                           )) +
@@ -968,8 +967,11 @@ pp1 <- ggplot(data = temp, aes(x = Date)) +
   ## constant liens
   geom_hline(aes(yintercept = solar_constant       , colour = "Solar Constant"), linewidth = 1.0) +
   geom_vline(aes(xintercept = date_A), linetype = "longdash", linewidth = .6, color = "#ff652d") +
+  annotate(geom = "text", x = date_A - 300, y = 100, label = "(a)", hjust = 1, color = "#ff652d") +
   geom_vline(aes(xintercept = date_B), linetype = "longdash", linewidth = .6, color = "#ff652d") +
-  geom_vline(aes(xintercept = date_C), linetype = "longdash", linewidth = .6, color = "#ff652d") +
+  annotate(geom = "text", x = date_B - 300, y = 100, label = "(b)", hjust = 1, color = "#ff652d") +
+  geom_vline(aes(xintercept = date_C, color = "Sky camera photo"), linetype = "longdash", linewidth = .6) +
+  annotate(geom = "text", x = date_C + 300, y = 100, label = "(c)", hjust = 0, color = "#ff652d") +
   ## data points
   geom_point(data = temp[TYPE == "Cloud"],
              aes(y =  wattGLB, colour = "Identified clouds"), shape = 3, size = 0.9                   ) +
@@ -987,7 +989,8 @@ pp1 <- ggplot(data = temp, aes(x = Date)) +
                                  "Solar Constant",
                                  "CE events",
                                  "ECE events",
-                                 "Identified clouds"),
+                                 "Identified clouds",
+                                 "Sky camera photo"),
                       values = c("GHI"                     = "#317529",
                                  "CE Threshold"            = "#b00821" ,
                                  "TOA TSI on horiz. plane" = "black",
@@ -995,9 +998,11 @@ pp1 <- ggplot(data = temp, aes(x = Date)) +
                                  "CE events"               = "#b00821",
                                  "ECE events"              = "#ff00ff",
                                  "Solar Constant"          = "orange2",
-                                 "Cloud-free"              = "darkorchid")) +
+                                 "Cloud-free"              = "darkorchid",
+                                 "Sky camera photo"        = "#ff652d")) +
   # guides(fill = guide_legend(ncol = 2)) +
 
+  labs(title = paste(as.Date(example_day, origin = "1970-01-01"))) +
   theme(
     #   legend.title         = element_text(size = 10),
     legend.position       = c(.995, .005),
@@ -1008,7 +1013,12 @@ pp1 <- ggplot(data = temp, aes(x = Date)) +
     # legend.spacing.x = unit(.005, 'cm'),
     legend.box.background = element_rect(color = NA, fill = NA),
     legend.key            = element_blank(),
-    legend.margin         = margin(1, 1, 1, 1) ) +
+    legend.margin         = margin(1, 1, 1, 1),
+    plot.title            = element_text(size = gg_text_size - 4,
+                                         hjust = 0.5,
+                                         face = "bold",
+                                         margin = margin(0,0,0,0))
+    ) +
 
   ## AXIS ##
   # scale_x_continuous(expand = expansion(mult = c(0.03, 0.03))) +
@@ -1018,30 +1028,28 @@ pp1 <- ggplot(data = temp, aes(x = Date)) +
 pp1
 
 
-pp1 + theme(legend.key.size = unit(.9, "lines"))
-
-pp1 + theme(legend.title = element_text(size = 10),
-            legend.text  = element_text(size = 10),
-            legend.key.size = unit(.9, "lines"))
-
-
-pp2 <- pp1 + theme(legend.position = "bottom",
-                   legend.key.size = unit(.5, "lines"))
+# pp1 + theme(legend.title = element_text(size = 10),
+#             legend.text  = element_text(size = 10),
+#             legend.key.size = unit(.9, "lines"))
+#
+#
+# pp2 <- pp1 + theme(legend.position = "bottom",
+#                    legend.key.size = unit(.5, "lines"))
 
 pp2 <- pp1 + theme(legend.position       = c(1, .5),
                    legend.title          = element_blank(),
                    legend.text           = element_text(size = 14),
                    legend.justification  = c("right", "center"),
-                   legend.key.size       = unit(.5, "lines"))
+                   legend.key.size       = unit(.4, "lines"))
 
 
-merg <- plot_grid(
-  pp2, bt,
-  nrow = 2,
-  rel_heights = c(3,1)
-)
-
-print(merg)
+# merg <- plot_grid(
+#   pp2, bt,
+#   nrow = 2,
+#   rel_heights = c(3,1)
+# )
+#
+# print(merg)
 
 
 
@@ -1052,6 +1060,7 @@ legend <- get_legend(pp2)
 # legend <- legend + theme(guide = guide_legend(ncol = 1))
 
 
+## prepare second row
 prow <- plot_grid(
   A,
   B,
@@ -1062,13 +1071,12 @@ prow <- plot_grid(
 )
 # prow
 
-
-
+## create complete figure
 mergln <- plot_grid(
-  pp2 + theme(legend.position="none"),
+  pp2 + theme(legend.position = "none"),
   prow,
   nrow = 2,
-  rel_heights = c(3,1.5)
+  rel_heights = c(3,1.4)
 )
 show(mergln)
 
