@@ -891,4 +891,12 @@ analyze the sky-camera images would greatly improve our knowledge about the
 generation of these events.
 
 
+\begin{figure}[H]
+
+{\centering \includegraphics[width=1\linewidth]{../images/P-example-day-12} 
+
+}
+
+\caption{Example of Colar constant of $1367\,\text{W}/\text{m}^{2}$. The three sky images below the figure are taken at three characteristic instances (a, b, c) denoted on the figure with vertical dashed lines.}\label{fig:unnamed-chunk-1}
+\end{figure}
 <!-- END -->
