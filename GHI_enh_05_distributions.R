@@ -452,9 +452,16 @@ library(ggpubr)
 
 # Remove axis titles from all plots
 p      <- list(pa, pb) |> map(~.x + labs(x=NULL, y=NULL, caption = NULL))
-yleft  <- textGrob("Relative frequency [%]", rot = 90)
-bottom <- textGrob(bquote("OI" ~ group("[", W/m^2,"]")))
 margin <- theme(plot.margin = unit(c(.1,.1,.1,.1), "cm"))
+
+yleft  <- textGrob("Relative frequency [%]", rot = 90,
+                   gp = gpar(col = "black", fontsize = gg_text_size))
+bottom <- textGrob("Duration of enhancement group [min]",
+                   gp = gpar(col = "black", fontsize = gg_text_size))
+bottom <- textGrob("Duration of CE groups [min]",
+                   gp = gpar(col = "black", fontsize = gg_text_size))
+
+
 
 ## no labels
 grid.arrange(grobs = lapply(p, "+", margin), ncol = 2, nrow = 1,
@@ -685,7 +692,8 @@ ggplot(monthlyE, aes(y = 100 * Relative_enha_GLB,
                                     labels = month.abb[1:12]))) +
   geom_boxplot(fill = "lightblue", outliers = FALSE) +
   xlab("") +
-  ylab("ECE occurrence frequency relative to GHI [%]") +
+  # ylab("ECE occurrence frequency relative to GHI [%]") +
+  ylab("Relative frequency [%]") +
   # stat_summary(fun.y = mean, geom = "point", shape = 23, size = 3) +
   theme(
     panel.grid.major.x = element_blank(),

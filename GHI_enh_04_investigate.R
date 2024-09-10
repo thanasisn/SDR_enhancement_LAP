@@ -801,19 +801,43 @@ plot_grid(pa, pb, labels = c("(a)", "(b)"), greedy = TRUE)
 # cowplot::plot_grid(pa, pb, labels = "AUTO")
 
 
+# pa <- pa + theme(text = element_text(size = 16))
+# pb <- pb + theme(text = element_text(size = 16))
 
 
 # Remove axis titles from all plots
 p      <- list(pa, pb) |> map(~.x + labs(x=NULL, y=NULL, caption = NULL))
-yleft  <- textGrob("Relative frequency [%]", rot = 90)
-bottom <- textGrob("Duration of enhancement group [min]")
+yleft  <- textGrob("Relative frequency [%]", rot = 90,
+                   gp = gpar(col = "black", fontsize = gg_text_size))
+bottom <- textGrob("Duration of enhancement group [min]",
+                   gp = gpar(col = "black", fontsize = gg_text_size))
+bottom <- textGrob("Duration of CE groups [min]",
+                   gp = gpar(col = "black", fontsize = gg_text_size))
 
 # grid.arrange(grobs = p, ncol = 2, nrow = 1,
 #             left = yleft, bottom = bottom)
 
-margin = theme(plot.margin = unit(c(.1,.1,.1,.1), "cm"))
+
+
+margin <- theme(
+  plot.margin = unit(c(.1,.1,.1,.1), "cm"),
+  # text        = element_text(size = 16),
+  # axis.text   = element_text(face = "bold", size = 16)
+)
+
 grid.arrange(grobs = lapply(p, "+", margin), ncol = 2, nrow = 1,
-             left = yleft, bottom = bottom)
+             left   = yleft,
+             bottom = bottom)
+
+# grid.arrange(pa,pb, ncol = 2, nrow = 1,
+#              left = yleft, bottom = bottom)
+
+
+# grid.arrange(grobs = lapply(p, "+", margin), ncol = 2, nrow = 1,
+#              left = yleft, bottom = bottom)  +
+#   theme(text = element_text(size = 18))
+
+
 
 pa1 <- pa + labs(x=NULL, y=NULL, caption = NULL)
 pa1 <- annotate_figure(pa1, fig.lab = "(a)")
@@ -826,9 +850,11 @@ p1 <- list(pa1, pb1)
 ## this is prettier
 mp <- grid.arrange(grobs = lapply(p1, "+", margin), ncol = 2, nrow = 1,
              left = yleft, bottom = bottom)
-mp
 
-mp + theme(text = element_text(size = 16))
+
+show(mp)
+
+mp
 
 
 ## _ Use point density  --------------------------
