@@ -25,7 +25,7 @@
 #'   bookdown::pdf_document2:
 #'     number_sections: no
 #'     fig_caption:     yes
-#'     keep_tex:        no
+#'     keep_tex:        yes
 #'     latex_engine:    xelatex
 #'     toc:             yes
 #'     toc_depth:       4
