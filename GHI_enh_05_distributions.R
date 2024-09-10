@@ -849,37 +849,24 @@ rr <- image_scale(
 
 
 A <- image_ggplot(ll1) +
-  annotate(geom = "text", x = 10, y = 15,  label = "(a)",       hjust = 0, vjust = 0, size =  4, colour = "orange") +
-  annotate(geom = "text", x = 15, y = 585, label = "09:30 UTC", hjust = 0, vjust = 1, size =  4, colour = "orange")
+  annotate(geom = "text", x = 10, y = 15,  label = "(a)",       hjust = 0, vjust = 0, size =  4, colour = "#ff652d", font = "bold") +
+  annotate(geom = "text", x = 15, y = 585, label = "09:30 UTC", hjust = 0, vjust = 1, size =  4, colour = "#ff652d")
 date_A <- as.POSIXct(strptime(paste(example_day,   "09:30"), "%F %H:%M"))
 
 
 B <- image_ggplot(ll) +
-  annotate(geom = "text", x = 10, y = 15,  label = "(b)",       hjust = 0, vjust = 0, size =  4, colour = "orange") +
-  annotate(geom = "text", x = 15, y = 585, label = "10:15 UTC", hjust = 0, vjust = 1, size =  4, colour = "orange")
+  annotate(geom = "text", x = 10, y = 15,  label = "(b)",       hjust = 0, vjust = 0, size =  4, colour = "#ff652d") +
+  annotate(geom = "text", x = 15, y = 585, label = "10:15 UTC", hjust = 0, vjust = 1, size =  4, colour = "#ff652d")
 date_B <- as.POSIXct(strptime(paste(example_day,   "10:15"), "%F %H:%M"))
 
 
 C <- image_ggplot(rr) +
-  annotate(geom = "text", x = 10, y = 15,  label = "(c)",       hjust = 0, vjust = 0, size =  4, colour = "orange") +
-  annotate(geom = "text", x = 15, y = 585, label = "10:30 UTC", hjust = 0, vjust = 1, size =  4, colour = "orange")
+  annotate(geom = "text", x = 10, y = 15,  label = "(c)",       hjust = 0, vjust = 0, size =  4, colour = "#ff652d") +
+  annotate(geom = "text", x = 15, y = 585, label = "10:30 UTC", hjust = 0, vjust = 1, size =  4, colour = "#ff652d")
 date_C <- as.POSIXct(strptime(paste(example_day,   "10:30"), "%F %H:%M"))
 
 grid.arrange(A, B, C, nrow = 1)
 
-
-# library(grid)
-# library(gridExtra)
-#
-# image_info(ll)
-#
-# a <- rasterGrob(ll)
-# b <- rasterGrob(rr)
-#
-# grid.arrange(a, b, nrow = 1, labels = c("a", "b"))
-#
-# library(ggpubr)
-# ggarrange(a, b, ncol = 2, labels = c("a)","b)"))
 
 
 
@@ -887,110 +874,109 @@ grid.arrange(A, B, C, nrow = 1)
 
 temp <- DATA[Day == example_day]
 
-par(mar = c(4, 4, 1, 1))
-par(cex       = 0.7
-    # cex.main = 0.8, #change font size of title
-    # cex.sub  = 0.8,  #change font size of subtitle
-    # cex.lab  = 0.8, #change font size of axis labels
-    # cex.axis = 0.8,
-    ) #change font size of axis text
-
-ylim <- range(0, temp$ETH, temp$wattGLB, solar_constant, na.rm = TRUE)
-
-plot(temp$Date, temp$wattGLB, col = "green",
-     pch  = ".", cex = 2,
-     ylim = ylim,
-     ylab = bquote("GHI" ~ group("[", W/m^2,"]")),
-     xlab = "Time (UTC)")
-
-## mark photos
-abline(v = date_A, col = "grey", lwd = 2, lty = 2)
-abline(v = date_B, col = "grey", lwd = 2, lty = 2)
-abline(v = date_C, col = "grey", lwd = 2, lty = 2)
-
-text(x = date_A, y = 250, "(a)", pos = 2, offset = 0.2, col = "gray", cex = 0.8)
-text(x = date_B, y = 250, "(b)", pos = 2, offset = 0.2, col = "gray", cex = 0.8)
-text(x = date_C, y = 250, "(c)", pos = 4, offset = 0.2, col = "gray", cex = 0.8)
-
-abline(h = solar_constant, col = "orange2", lty = 1, lwd = 2)
-
-## Global
-lines(temp$Date, temp$wattGLB, col = "green")
-
-## TSI on ground
-lines(temp$Date, temp$ETH)
-
-## Active model reference
-lines(temp[, get(paste0(SelEnhanc, "_ref")), Date], col = "red" )
-
-## Cloud-free ref
-lines(temp[, get(paste0(csmodel,".glo")), Date], col = "darkorchid" )
-
-
-## Enchantment cases
-points(temp[get(SelEnhanc) == TRUE & wattGLB <  ETH, wattGLB, Date], col = "burlywood4")
-points(temp[get(SelEnhanc) == TRUE & wattGLB >= ETH, wattGLB, Date], col = "red")
-
-
-## Cloud cases
-points(temp[TYPE == "Cloud", wattGLB, Date], col = "blue", pch = 3, cex = 0.3)
-
-## Decorations
-# title(main = paste(as.Date(aday, origin = "1970-01-01"), temp[get(SelEnhanc) == TRUE, .N], temp[TYPE == "Cloud", .N], vec_days$Descriprion[ii]))
-title(main = paste(as.Date(example_day, origin = "1970-01-01")))
-
-legend("bottom", ncol = 2,
-       c(  "GHI","CE threshold","TOA TSI on horiz. plane             ","Solar Constant", "CE events   ","ECE events     ","Identified clouds    ",  "Cloud-free    "),
-       col = c("green",         "red",                  "black",       "orange2","burlywood4",       "red",             "blue","darkorchid"),
-       pch = c(     NA,            NA,                       NA,              NA,          1 ,          1 ,                  3,           NA),
-       lty = c(      1,             1,                        1,               1,          NA,          NA,                 NA,            1),
-       lwd = c(      1,             1,                        1,               2,          NA,          NA,                 NA,            1),
-       bty = "n",
-       cex = 0.8
-)
-
-
-## store base plot
-p1 <- recordPlot()
-
-
-bt <- grid.arrange(A, B, C, nrow = 1)
-
-merg <- plot_grid(
-  p1, bt,
-  nrow = 2,
-  rel_heights = c(3,1)
-)
-
-print(merg)
-
-merg + theme(aspect.ratio = 1)
-
-
-
+# par(mar = c(4, 4, 1, 1))
+# par(cex       = 0.7
+#     # cex.main = 0.8, #change font size of title
+#     # cex.sub  = 0.8,  #change font size of subtitle
+#     # cex.lab  = 0.8, #change font size of axis labels
+#     # cex.axis = 0.8,
+#     ) #change font size of axis text
+#
+# ylim <- range(0, temp$ETH, temp$wattGLB, solar_constant, na.rm = TRUE)
+#
+# plot(temp$Date, temp$wattGLB, col = "green",
+#      pch  = ".", cex = 2,
+#      ylim = ylim,
+#      ylab = bquote("GHI" ~ group("[", W/m^2,"]")),
+#      xlab = "Time (UTC)")
+#
+# ## mark photos
+# abline(v = date_A, col = "grey", lwd = 2, lty = 2)
+# abline(v = date_B, col = "grey", lwd = 2, lty = 2)
+# abline(v = date_C, col = "grey", lwd = 2, lty = 2)
+#
+# text(x = date_A, y = 250, "(a)", pos = 2, offset = 0.2, col = "gray", cex = 0.8)
+# text(x = date_B, y = 250, "(b)", pos = 2, offset = 0.2, col = "gray", cex = 0.8)
+# text(x = date_C, y = 250, "(c)", pos = 4, offset = 0.2, col = "gray", cex = 0.8)
+#
+# abline(h = solar_constant, col = "orange2", lty = 1, lwd = 2)
+#
+# ## Global
+# lines(temp$Date, temp$wattGLB, col = "green")
+#
+# ## TSI on ground
+# lines(temp$Date, temp$ETH)
+#
+# ## Active model reference
+# lines(temp[, get(paste0(SelEnhanc, "_ref")), Date], col = "red" )
+#
+# ## Cloud-free ref
+# lines(temp[, get(paste0(csmodel,".glo")), Date], col = "darkorchid" )
+#
+#
+# ## Enchantment cases
+# points(temp[get(SelEnhanc) == TRUE & wattGLB <  ETH, wattGLB, Date], col = "burlywood4")
+# points(temp[get(SelEnhanc) == TRUE & wattGLB >= ETH, wattGLB, Date], col = "red")
+#
+#
+# ## Cloud cases
+# points(temp[TYPE == "Cloud", wattGLB, Date], col = "blue", pch = 3, cex = 0.3)
+#
+# ## Decorations
+# # title(main = paste(as.Date(aday, origin = "1970-01-01"), temp[get(SelEnhanc) == TRUE, .N], temp[TYPE == "Cloud", .N], vec_days$Descriprion[ii]))
+# title(main = paste(as.Date(example_day, origin = "1970-01-01")))
+#
+# legend("bottom", ncol = 2,
+#        c(  "GHI","CE threshold","TOA TSI on horiz. plane             ","Solar Constant", "CE events   ","ECE events     ","Identified clouds    ",  "Cloud-free    "),
+#        col = c("green",         "red",                  "black",       "orange2","burlywood4",       "red",             "blue","darkorchid"),
+#        pch = c(     NA,            NA,                       NA,              NA,          1 ,          1 ,                  3,           NA),
+#        lty = c(      1,             1,                        1,               1,          NA,          NA,                 NA,            1),
+#        lwd = c(      1,             1,                        1,               2,          NA,          NA,                 NA,            1),
+#        bty = "n",
+#        cex = 0.8
+# )
+#
+#
+# ## store base plot
+# p1 <- recordPlot()
+#
+#
+# bt <- grid.arrange(A, B, C, nrow = 1)
+#
+# merg <- plot_grid(
+#   p1, bt,
+#   nrow = 2,
+#   rel_heights = c(3,1)
+# )
+#
+# print(merg)
+#
+# merg + theme(aspect.ratio = 1)
 
 
 
 ## redo example in ggplot !!!---------
 
+
+
 pp1 <- ggplot(data = temp, aes(x = Date)) +
   ## DATA lines
   geom_line(aes(y = wattGLB                        , colour = "GHI"                           )) +
-  geom_line(aes(y = get(paste0(SelEnhanc, "_ref")) , colour = "CE Threshold"                  )) +
-  geom_line(aes(y = get(paste0(csmodel,".glo"))    , colour = "Cloud-free"                    )) +
-  geom_line(aes(y = ETH                            , colour = "TOA TSI on horiz. plane"       )) +
+  geom_line(aes(y = get(paste0(SelEnhanc, "_ref")) , colour = "CE Threshold"                  ), linewidth = .8) +
+  geom_line(aes(y = get(paste0(csmodel,".glo"))    , colour = "Cloud-free"                    ), linewidth = .8) +
+  geom_line(aes(y = ETH                            , colour = "TOA TSI on horiz. plane"       ), linewidth = .8) +
   ## constant liens
-  geom_hline(aes(yintercept = solar_constant       , colour = "Solar Constant") , linewidth = 1.0 ) +
-  geom_vline(aes(xintercept = date_A), linetype = 1, linewidth = .5) +
-  geom_vline(aes(xintercept = date_B), linetype = 1, linewidth = .5) +
-  geom_vline(aes(xintercept = date_C), linetype = 1, linewidth = .5) +
+  geom_hline(aes(yintercept = solar_constant       , colour = "Solar Constant"), linewidth = 1.0) +
+  geom_vline(aes(xintercept = date_A), linetype = "longdash", linewidth = .6, color = "#ff652d") +
+  geom_vline(aes(xintercept = date_B), linetype = "longdash", linewidth = .6, color = "#ff652d") +
+  geom_vline(aes(xintercept = date_C), linetype = "longdash", linewidth = .6, color = "#ff652d") +
   ## data points
   geom_point(data = temp[TYPE == "Cloud"],
-             aes(y =  wattGLB, colour = "Identified clouds"), shape = 3, size = 0.7          ) +
+             aes(y =  wattGLB, colour = "Identified clouds"), shape = 3, size = 0.9                   ) +
   geom_point(data = temp[get(SelEnhanc) == TRUE & wattGLB <  ETH, ],
-             aes(y =  wattGLB, colour = "CE events"),         shape = 1, size = 1.6          ) +
+             aes(y =  wattGLB, colour = "CE events"),         shape = 21, size = 1.8, stroke = 0.8    ) +
   geom_point(data = temp[get(SelEnhanc) == TRUE & wattGLB >= ETH, ],
-             aes(y =  wattGLB, colour = "ECE events"),        shape = 1, size = 1.6          ) +
+             aes(y =  wattGLB, colour = "ECE events"),        shape = 21, size = 1.8, stroke = 0.8    ) +
   ## legend
   scale_colour_manual("",
                       guide = guide_legend(ncol = 1),
@@ -1002,12 +988,12 @@ pp1 <- ggplot(data = temp, aes(x = Date)) +
                                  "CE events",
                                  "ECE events",
                                  "Identified clouds"),
-                      values = c("GHI"                     = "green",
-                                 "CE Threshold"            = "red" ,
+                      values = c("GHI"                     = "#317529",
+                                 "CE Threshold"            = "#b00821" ,
                                  "TOA TSI on horiz. plane" = "black",
-                                 "Identified clouds"       = "blue",
-                                 "CE events"               = "burlywood4",
-                                 "ECE events"              = "red",
+                                 "Identified clouds"       = "#0000cd",
+                                 "CE events"               = "#b00821",
+                                 "ECE events"              = "#ff00ff",
                                  "Solar Constant"          = "orange2",
                                  "Cloud-free"              = "darkorchid")) +
   # guides(fill = guide_legend(ncol = 2)) +
@@ -1057,10 +1043,6 @@ merg <- plot_grid(
 
 print(merg)
 
-merg + theme(aspect.ratio = 1)
-
-merg + theme(aspect.ratio = 0.8)
-
 
 
 ## seperate legend
@@ -1068,7 +1050,6 @@ merg + theme(aspect.ratio = 0.8)
 
 legend <- get_legend(pp2)
 # legend <- legend + theme(guide = guide_legend(ncol = 1))
-
 
 
 prow <- plot_grid(
