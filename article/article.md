@@ -375,14 +375,13 @@ derive the long-term change in GHI due to aerosols:
 \begin{equation}
 \Delta(\text{GHI}) [\%] = -12170 + 12.05 \cdot x + -0.002981 \cdot x^2 \label{eq:AODchange}
 \end{equation}
-where $y$ is the date as a decimal fraction of the year.
-The resulting change in $\text{GHI}_\text{ref}$ ranges between $-1.88$ in 1994, a
-peak of $0.23\,\%$ in mid-2020 and $-0.19\,\%$ in the end of 2023. Finally, we
-applied these long-term changes of Equation\nobreakspace{}\ref{eq:AODchange} to the
-$\text{GHI}_\text{ref}$, to create a more realistic representation of
-the cloud-free irradiance for the entire period of study. For the period 1994 -- 1996
-where no AOD data are available, we assumed that the changes in GHI follow the same
-polynomial fit.
+where $y$ is the date as a decimal fraction of the year.  The resulting change in
+$\text{GHI}_\text{ref}$ ranges between $-1.88$ in 1994 and $-0.19\,\%$ in the end of
+2023, peaking at $0.23\,\%$ in the mid-2020. Finally, we applied these long-term
+changes of Equation\nobreakspace{}\ref{eq:AODchange} to the $\text{GHI}_\text{ref}$,
+to create a more realistic representation of the cloud-free irradiance for the entire
+period of study. For the period 1994 -- 1996 where no AOD data are available, we
+assumed that the changes in GHI follow the same polynomial fit.
 
 <!--
 GHI_model (%)
@@ -464,7 +463,7 @@ The scatter plot shows a good agreement between the modeled and the measured GHI
 a spread that arises mainly from the short-term variability of AOD and WC.  The
 linear regression reveals a positive bias of $18.4\,\text{W}/\text{m}^2$ and a slope
 very close to unity.  To achieve a robust and clear distinction of the CE cases, we
-applied on the $\text{GHI}_\text{ref}$ an additional offset of
+applied to the $\text{GHI}_\text{ref}$ an additional offset of
 $25\,\text{W}/\text{m}^2$.
 
 \begin{figure}[H]
@@ -755,7 +754,7 @@ distribution of the CE events according to their duration.  We conclude that alt
 some groups of events last for more than an hour, about
 $79\,\%$ have a duration of
 equal or less than 5 minutes, likely due to the movements of clouds causing frequent
-blocking of the direct irradiance, which reduce the duration of the CE events.
+blockings of the direct irradiance, which reduce the duration of the CE events.
 
 \begin{figure}
 
