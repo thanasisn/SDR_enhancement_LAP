@@ -103,11 +103,13 @@ staname("GLB_diff.p_95")
 
 ## __ Set ggplot global theme  -------------------------------------------------
 
+gg_text_size <- 16
+
 theme_paper <- function(){
   # font <- "Georgia"   #assign font family up front
 
   theme_bw(
-    base_size = 16  # global font size was 14
+    base_size = gg_text_size  # global font size was 14
     ) %+replace%    #replace elements we want to change
     theme(
       # panel.grid.major = element_blank(),    #strip major gridlines
