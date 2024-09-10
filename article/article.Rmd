@@ -585,8 +585,8 @@ causing weak attenuation of GHI, often indistinguishable from the attenuation by
 aerosols.
 
 
-```{r example-day, echo=FALSE, fig.cap="Example of CE identification in Thessaloniki for 2019-07-11. The green line with blue symbols depicts the measured GHI in one-minute steps. The red line shows the modeled threshold for the detection of CE events, which are denoted with gray circles. The black line represents the TOA TSI on a horizontal plane, equivalent to the threshold for the identification of ECE events, shown with red circles. The purple line is the modeled cloud-free irradiance. The dark yellow line is the solar constant of $1367\\,\\text{W}/\\text{m}^{2}$. The three sky images below the figure are taken at three characteristic instances (a, b, c) denoted on the figure with vertical dashed lines.", fig.pos='H'}
-knitr::include_graphics("../images/P-example-day-5.png")
+```{r example-day, echo=FALSE, fig.cap="Example of CE identification in Thessaloniki for 2019-07-11. The green line with blue symbols depicts the measured GHI in one-minute steps. The red line shows the modeled threshold for the detection of CE events, which are denoted with red circles. The black line represents the TOA TSI on a horizontal plane, equivalent to the threshold for the identification of ECE events, shown with magenta circles. The purple line is the modeled cloud-free irradiance. The dark yellow line is the solar constant of $1367\\,\\text{W}/\\text{m}^{2}$. The three sky images below the figure are taken at three characteristic instances (a, b, c) denoted on the figure with vertical orange dashed lines.", fig.pos='H'}
+knitr::include_graphics("../images/P-example-day-3.png")
 ```
 
 ```{r example-year, echo=FALSE, fig.cap="Example scatter plot of the measured GHI and the reference cloud-free irradiance in Thessaloniki for the year 2005. The over-irradiance for CE and ECE events is color coded, while the remaining data points are shown in black. The reference green line goes through the origin with a slope of unity.", fig.pos='H'}
@@ -867,15 +867,6 @@ analyze the sky-camera images would greatly improve our knowledge about the
 generation of these events.
 
 
-```{r  echo=FALSE, fig.cap="Example of Colar constant of $1367\\,\\text{W}/\\text{m}^{2}$. The three sky images below the figure are taken at three characteristic instances (a, b, c) denoted on the figure with vertical dashed lines.", fig.pos='H'}
-knitr::include_graphics("../images/P-example-day-3.png")
-```
 
-```{r  echo=FALSE, fig.cap="Example of Colar constant of $1367\\,\\text{W}/\\text{m}^{2}$. The three sky images below the figure are taken at three characteristic instances (a, b, c) denoted on the figure with vertical dashed lines.", fig.pos='H'}
-knitr::include_graphics("../images/P-example-day-4.png")
-```
 
-```{r  echo=FALSE, fig.cap="Example of Colar constant of $1367\\,\\text{W}/\\text{m}^{2}$. The three sky images below the figure are taken at three characteristic instances (a, b, c) denoted on the figure with vertical dashed lines.", fig.pos='H'}
-knitr::include_graphics("../images/P-example-day-5.png")
-```
 <!-- END -->

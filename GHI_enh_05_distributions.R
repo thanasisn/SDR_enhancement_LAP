@@ -25,7 +25,7 @@
 #'   bookdown::pdf_document2:
 #'     number_sections: no
 #'     fig_caption:     yes
-#'     keep_tex:        yes
+#'     keep_tex:        no
 #'     latex_engine:    xelatex
 #'     toc:             yes
 #'     toc_depth:       4
@@ -970,7 +970,7 @@ pp1 <- ggplot(data = temp, aes(x = Date)) +
   annotate(geom = "text", x = date_A - 300, y = 100, label = "(a)", hjust = 1, color = "#ff652d") +
   geom_vline(aes(xintercept = date_B), linetype = "longdash", linewidth = .6, color = "#ff652d") +
   annotate(geom = "text", x = date_B - 300, y = 100, label = "(b)", hjust = 1, color = "#ff652d") +
-  geom_vline(aes(xintercept = date_C, color = "Sky camera photo"), linetype = "longdash", linewidth = .6) +
+  geom_vline(aes(xintercept = date_C, color = "Sky camera photos"), linetype = "longdash", linewidth = .6) +
   annotate(geom = "text", x = date_C + 300, y = 100, label = "(c)", hjust = 0, color = "#ff652d") +
   ## data points
   geom_point(data = temp[TYPE == "Cloud"],
@@ -990,7 +990,7 @@ pp1 <- ggplot(data = temp, aes(x = Date)) +
                                  "CE events",
                                  "ECE events",
                                  "Identified clouds",
-                                 "Sky camera photo"),
+                                 "Sky camera photos"),
                       values = c("GHI"                     = "#317529",
                                  "CE Threshold"            = "#b00821" ,
                                  "TOA TSI on horiz. plane" = "black",
@@ -999,7 +999,7 @@ pp1 <- ggplot(data = temp, aes(x = Date)) +
                                  "ECE events"              = "#ff00ff",
                                  "Solar Constant"          = "orange2",
                                  "Cloud-free"              = "darkorchid",
-                                 "Sky camera photo"        = "#ff652d")) +
+                                 "Sky camera photos"       = "#ff652d")) +
   # guides(fill = guide_legend(ncol = 2)) +
 
   labs(title = paste(as.Date(example_day, origin = "1970-01-01"))) +
@@ -1076,15 +1076,14 @@ mergln <- plot_grid(
   pp2 + theme(legend.position = "none"),
   prow,
   nrow = 2,
-  rel_heights = c(3,1.4)
+  rel_heights = c(3, 1.2)
 )
 show(mergln)
 
 
-mergln + theme(aspect.ratio = 1)
+# mergln + theme(aspect.ratio = 1)
 
 mergln + theme(aspect.ratio = 0.8)
-
 
 
 

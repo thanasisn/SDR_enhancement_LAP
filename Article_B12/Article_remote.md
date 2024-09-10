@@ -147,7 +147,7 @@ with at least $60\%$ of data availability; however, all available
 one-minute measurements have been used for the detection of CE events.
 
 ![Figure 2.1: Timeseries of daily mean GHI measured at Thessaloniki for
-the period 1994 -- 2023.](media/image5.png){width="5.833333333333333in"
+the period 1994 -- 2023.](media/image7.png){width="5.833333333333333in"
 height="3.5861111111111112in"}
 
 *Figure 2.1: Time-series of daily mean GHI measured at Thessaloniki for
@@ -298,7 +298,7 @@ $25\frac{W}{m^{2}}$.
 
 ![Figure 2.2: The corelation GHI with \\text{GHI}\_\\text{ref}, for
 cloud-free data of days with data availability more than
-80\\,\\%.](media/image8.png){width="5.833333333333333in"
+80\\,\\%.](media/image4.png){width="5.833333333333333in"
 height="3.6951388888888888in"}
 
 *Figure 2.2: Scatter plot of the measured GHI and the* ${GHI}_{ref}$*,
@@ -372,7 +372,7 @@ line represents the TOA TSI on a horizontal plane, equivalent to the
 threshold for the identification of ECE events, shown with red circles.
 The purple line is the modeled cloud-free irradiance. The dark yellow
 line is the solar constant of
-1367\\,\\text{W}/\\text{m}\^{2}.](media/image7.png){width="4.436805555555556in"
+1367\\,\\text{W}/\\text{m}\^{2}.](media/image1.png){width="4.436805555555556in"
 height="4.549305555555556in"}
 
 *Figure 2.3: Example of CE identification in Thessaloniki for
@@ -391,7 +391,7 @@ cloud-free irradiance in Thessaloniki for the year 2005. The
 over-irradiance for CE and ECE events is colour coded, while the
 remaining data points are shown in black. The reference green line goes
 through the origin with a slope of
-one.](media/image3.png){width="5.833333333333333in"
+one.](media/image2.png){width="5.833333333333333in"
 height="3.6354166666666665in"}
 
 *Figure 2.4: Example scatter plot of the measured GHI and the reference
@@ -499,7 +499,7 @@ and whisker plot. The box contains the data between the lower 25\\,\\%
 and the upper 75\\,\\% percentiles, with the thick horizontal line
 representing the median. The vertical lines (whiskers) extend between
 the maximum and minimum monthly
-values.](media/image6.png){width="5.833333333333333in"
+values.](media/image9.png){width="5.833333333333333in"
 height="3.48125in"}
 
 *Figure 3.1: Seasonal variability of the relative occurrence of CE
@@ -529,7 +529,7 @@ CE events.
 ![Figure 3.2: Relative frequency distribution of CE events in
 Thessaloniki for the period 1994 -- 2023 as a function of OI. The
 histogram was split in two plots with different y-axis scales for better
-readability.](media/image10.png){width="5.833333333333333in"
+readability.](media/image5.png){width="5.833333333333333in"
 height="3.702777777777778in"}
 
 *Figure 3.2: Relative frequency distribution of CE events in
@@ -556,7 +556,7 @@ irradiance, which reduce the duration of the CE events.
 CE events according to their duration for Thessaloniki in the period
 1994 -- 2023. The histogram was split in two plots with different y-axis
 scales for better
-readability.](media/image2.png){width="5.833333333333333in"
+readability.](media/image3.png){width="5.833333333333333in"
 height="3.7375in"}
 
 *Figure 3.3: Relative frequency distribution of CE groups of consequent
@@ -579,7 +579,7 @@ Similar results of this relation have been reported by Zhang et al.
 ![Figure 3.4: Relation of excess irradiation of CE groups with their
 duration for Thessaloniki in the period 1994 -- 2023. The logarithmic
 color scale denotes the frequency of the respective
-groups.](media/image9.png){width="5.833333333333333in"
+groups.](media/image10.png){width="5.833333333333333in"
 height="3.6875in"}
 
 *Figure 3.4: Relation of excess irradiation of CE groups with their
@@ -624,7 +624,7 @@ and whisker plot. The box contains the data between the lower 25\\,\\%
 and the upper 75\\,\\% percentiles, with the thick horizontal line
 representing the median. The vertical lines (whiskers) extend between
 the maximum and minimum monthly
-values.](media/image1.png){width="5.833333333333333in"
+values.](media/image8.png){width="5.833333333333333in"
 height="3.5284722222222222in"}
 
 The distribution of the ECE events (Figure) shows that in rare cases the
@@ -639,7 +639,7 @@ than those for Thessaloniki.
 ![Figure 3.6: Relative frequency distribution of ECE events, in
 Thessaloniki for the period 1994 -- 2023, as a function of the extra
 irradiance over TSI at TOA for the same
-SZA.](media/image4.png){width="5.833333333333333in"
+SZA.](media/image6.png){width="5.833333333333333in"
 height="3.647222222222222in"}
 
 *Figure 3.6: Relative frequency distribution of ECE events, in

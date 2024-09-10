@@ -378,8 +378,8 @@ The purple line is the modeled cloud-free irradiance. The dark yellow
 line is the solar constant of 1367\\,\\text{W}/\\text{m}\^{2}. The three
 sky images below the figure are taken at three characteristic instances
 (a, b, c) denoted on the figure with vertical dashed
-lines.](media/rId34.png){width="4.436619641294838in"
-height="4.54929571303587in"}
+lines.](media/rId34.png){width="5.833333333333333in"
+height="4.546056430446194in"}
 
 Figure 2.3: Example of CE identification in Thessaloniki for 2019-07-11.
 The green line with blue symbols depicts the measured GHI in one-minute
@@ -538,7 +538,7 @@ may affect the characteristics and magnitude of the CE events.
 Thessaloniki for the period 1994 -- 2023 as a function of OI. The
 histogram was split in two plots with different y-axis scales for better
 readability.](media/rId49.png){width="5.833333333333333in"
-height="3.7566655730533682in"}
+height="3.764194006999125in"}
 
 Figure 3.2: Relative frequency distribution of CE events in Thessaloniki
 for the period 1994 -- 2023 as a function of OI. The histogram was split
@@ -690,6 +690,35 @@ especially in order to investigate possible associations of the observed
 trends with changes in climate. Finally, automated procedures to analyze
 the sky-camera images would greatly improve our knowledge about the
 generation of these events.
+
+![Figure 4.1: Example of Colar constant of
+1367\\,\\text{W}/\\text{m}\^{2}. The three sky images below the figure
+are taken at three characteristic instances (a, b, c) denoted on the
+figure with vertical dashed
+lines.](media/rId72.png){width="5.833333333333333in"
+height="4.824386482939633in"}
+
+Figure 4.1: Example of Colar constant of $1367\,\text{W}/\text{m}^{2}$.
+The three sky images below the figure are taken at three characteristic
+instances (a, b, c) denoted on the figure with vertical dashed lines.
+
+![Figure 4.2: Example of Colar constant of
+1367\\,\\text{W}/\\text{m}\^{2}. The three sky images below the figure
+are taken at three characteristic instances (a, b, c) denoted on the
+figure with vertical dashed
+lines.](media/rId76.png){width="5.833333333333333in"
+height="5.630316054243219in"}
+
+Figure 4.2: Example of Colar constant of $1367\,\text{W}/\text{m}^{2}$.
+The three sky images below the figure are taken at three characteristic
+instances (a, b, c) denoted on the figure with vertical dashed lines.
+
+![Figure 4.3: Example of Colar constant of
+1367\\,\\text{W}/\\text{m}\^{2}. The three sky images below the figure
+are taken at three characteristic instances (a, b, c) denoted on the
+figure with vertical dashed
+lines.](media/rId34.png){width="5.833333333333333in"
+height="4.546056430446194in"}
 
 Anderson, G. P., J. H. Chetwynd, S. A. Clough, E. P. Shettle, and F. X.
 Kneizys. 1986. "AFGL Atmospheric Constituent Profiles (0-120km)." Air
