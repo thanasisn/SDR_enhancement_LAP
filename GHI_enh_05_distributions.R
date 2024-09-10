@@ -808,11 +808,17 @@ pander::pander(DT_example)
 
 library(magick)
 
+if (Sys.info()["nodename"] == "tyler") {
+  skycambase <- "/home/folder/LAP_skycam/skycam/"
+} else {
+  skycambase <- "/home/single/LAP_skycam/skycam/"
+}
+
 
 # left  <- image_read("/home/folder/LAP_skycam/skycam/2019/1922019/ 1922019100002.JPEG")
-left   <- image_read("/home/folder/LAP_skycam/skycam/2019/1922019/ 1922019101501.JPEG")
-right  <- image_read("/home/folder/LAP_skycam/skycam/2019/1922019/ 1922019103001.JPEG")
-left1  <- image_read("/home/folder/LAP_skycam/skycam/2019/1922019/ 1922019093002.JPEG")
+left   <- image_read(paste0(skycambase, "/2019/1922019/ 1922019101501.JPEG"))
+right  <- image_read(paste0(skycambase, "/2019/1922019/ 1922019103001.JPEG"))
+left1  <- image_read(paste0(skycambase, "/2019/1922019/ 1922019093002.JPEG"))
 
 
 # print(left)
