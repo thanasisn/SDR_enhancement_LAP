@@ -1,0 +1,289 @@
+% Options for packages loaded elsewhere
+\PassOptionsToPackage{unicode}{hyperref}
+\PassOptionsToPackage{hyphens}{url}
+\PassOptionsToPackage{dvipsnames,svgnames,x11names}{xcolor}
+%
+\documentclass[
+  10pt,
+  a4paper,oneside]{article}
+\usepackage{amsmath,amssymb}
+\usepackage{lmodern}
+\usepackage{iftex}
+\ifPDFTeX
+  \usepackage[T1]{fontenc}
+  \usepackage[utf8]{inputenc}
+  \usepackage{textcomp} % provide euro and other symbols
+\else % if luatex or xetex
+  \usepackage{unicode-math}
+  \defaultfontfeatures{Scale=MatchLowercase}
+  \defaultfontfeatures[\rmfamily]{Ligatures=TeX,Scale=1}
+\fi
+% Use upquote if available, for straight quotes in verbatim environments
+\IfFileExists{upquote.sty}{\usepackage{upquote}}{}
+\IfFileExists{microtype.sty}{% use microtype if available
+  \usepackage[]{microtype}
+  \UseMicrotypeSet[protrusion]{basicmath} % disable protrusion for tt fonts
+}{}
+\makeatletter
+\@ifundefined{KOMAClassName}{% if non-KOMA class
+  \IfFileExists{parskip.sty}{%
+    \usepackage{parskip}
+  }{% else
+    \setlength{\parindent}{0pt}
+    \setlength{\parskip}{6pt plus 2pt minus 1pt}}
+}{% if KOMA class
+  \KOMAoptions{parskip=half}}
+\makeatother
+\usepackage{xcolor}
+\IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
+\IfFileExists{bookmark.sty}{\usepackage{bookmark}}{\usepackage{hyperref}}
+\hypersetup{
+  pdftitle={Enhancement of SDR in Thessaloniki},
+  pdfauthor={Natsis Athanasios; Alkiviadis Bais},
+  colorlinks=true,
+  linkcolor={Maroon},
+  filecolor={Maroon},
+  citecolor={Blue},
+  urlcolor={Blue},
+  pdfcreator={LaTeX via pandoc}}
+\urlstyle{same} % disable monospaced font for URLs
+\usepackage[left=0.5in,right=0.5in,top=0.5in,bottom=0.5in]{geometry}
+\usepackage{longtable,booktabs,array}
+\usepackage{calc} % for calculating minipage widths
+% Correct order of tables after \paragraph or \subparagraph
+\usepackage{etoolbox}
+\makeatletter
+\patchcmd\longtable{\par}{\if@noskipsec\mbox{}\fi\par}{}{}
+\makeatother
+% Allow footnotes in longtable head/foot
+\IfFileExists{footnotehyper.sty}{\usepackage{footnotehyper}}{\usepackage{footnote}}
+\makesavenoteenv{longtable}
+\usepackage{graphicx}
+\makeatletter
+\def\maxwidth{\ifdim\Gin@nat@width>\linewidth\linewidth\else\Gin@nat@width\fi}
+\def\maxheight{\ifdim\Gin@nat@height>\textheight\textheight\else\Gin@nat@height\fi}
+\makeatother
+% Scale images if necessary, so that they will not overflow the page
+% margins by default, and it is still possible to overwrite the defaults
+% using explicit options in \includegraphics[width, height, ...]{}
+\setkeys{Gin}{width=\maxwidth,height=\maxheight,keepaspectratio}
+% Set default figure placement to htbp
+\makeatletter
+\def\fps@figure{htbp}
+\makeatother
+\setlength{\emergencystretch}{3em} % prevent overfull lines
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+\setcounter{secnumdepth}{-\maxdimen} % remove section numbering
+\usepackage{caption}
+\usepackage{float}
+\usepackage{placeins}
+\captionsetup{font=small}
+\ifLuaTeX
+  \usepackage{selnolig}  % disable illegal ligatures
+\fi
+
+\title{Enhancement of SDR in Thessaloniki}
+\author{Natsis Athanasios\footnote{Laboratory of Atmospheric Physics, AUTH, \href{mailto:natsisphysicist@gmail.com}{\nolinkurl{natsisphysicist@gmail.com}}} \and Alkiviadis Bais\footnote{Laboratory of Atmospheric Physics, AUTH}}
+\date{2024-09-10}
+
+\begin{document}
+\maketitle
+\begin{abstract}
+Study of GHI enchantment.
+\end{abstract}
+
+{
+\hypersetup{linkcolor=}
+\setcounter{tocdepth}{4}
+\tableofcontents
+}
+\begin{verbatim}
+Registered S3 methods overwritten by 'ggpp':
+  method                  from   
+  heightDetails.titleGrob ggplot2
+  widthDetails.titleGrob  ggplot2
+\end{verbatim}
+
+\begin{verbatim}
+Attaching package: 'ggpp'
+\end{verbatim}
+
+\begin{verbatim}
+The following object is masked from 'package:ggplot2':
+
+    annotate
+\end{verbatim}
+
+\begin{verbatim}
+Drop all enhancement cases
+\end{verbatim}
+
+\begin{verbatim}
+Drop all clouds
+\end{verbatim}
+
+\begin{figure}[H]
+
+{\centering \includegraphics[width=1\linewidth]{GHI_enh_08_validation_files/figure-latex/unnamed-chunk-4-1} 
+
+}
+
+\caption{ - empty caption - }\label{fig:unnamed-chunk-4}
+\end{figure}
+
+\FloatBarrier
+
+\hypertarget{plot-some-days-with-strong-enhancement-cases}{%
+\section{Plot some days with strong enhancement cases}\label{plot-some-days-with-strong-enhancement-cases}}
+
+\FloatBarrier
+
+\hypertarget{days-with-sunny-day}{%
+\subsection{Days with sunny day}\label{days-with-sunny-day}}
+
+\FloatBarrier
+
+\hypertarget{days-with-sunny-enhancement-day}{%
+\subsection{Days with sunny enhancement day}\label{days-with-sunny-enhancement-day}}
+
+\FloatBarrier
+
+\hypertarget{days-with-cloudy-day}{%
+\subsection{Days with cloudy day}\label{days-with-cloudy-day}}
+
+\FloatBarrier
+
+\hypertarget{days-with-random-day}{%
+\subsection{Days with random day}\label{days-with-random-day}}
+
+\FloatBarrier
+
+\hypertarget{days-with-manual-test-days}{%
+\subsection{Days with manual test days}\label{days-with-manual-test-days}}
+
+\begin{figure}[H]
+
+{\centering \includegraphics[width=1\linewidth]{GHI_enh_08_validation_files/figure-latex/example-days-1} 
+
+}
+
+\caption{ - empty caption - }\label{fig:example-days-1}
+\end{figure}
+
+\begin{figure}[H]
+
+{\centering \includegraphics[width=1\linewidth]{GHI_enh_08_validation_files/figure-latex/example-days-2} 
+
+}
+
+\caption{ - empty caption - }\label{fig:example-days-2}
+\end{figure}
+
+\begin{figure}[H]
+
+{\centering \includegraphics[width=1\linewidth]{GHI_enh_08_validation_files/figure-latex/example-days-3} 
+
+}
+
+\caption{ - empty caption - }\label{fig:example-days-3}
+\end{figure}
+
+\begin{figure}[H]
+
+{\centering \includegraphics[width=1\linewidth]{GHI_enh_08_validation_files/figure-latex/example-days-4} 
+
+}
+
+\caption{ - empty caption - }\label{fig:example-days-4}
+\end{figure}
+
+\begin{figure}[H]
+
+{\centering \includegraphics[width=1\linewidth]{GHI_enh_08_validation_files/figure-latex/example-days-5} 
+
+}
+
+\caption{ - empty caption - }\label{fig:example-days-5}
+\end{figure}
+
+\newpage
+
+\begin{verbatim}
+Warning: A numeric `legend.position` argument in `theme()` was deprecated in ggplot2 3.5.0.
+i Please use the `legend.position.inside` argument of `theme()` instead.
+This warning is displayed once every 8 hours.
+Call `lifecycle::last_lifecycle_warnings()` to see where this warning was generated.
+\end{verbatim}
+
+\begin{figure}[H]
+
+{\centering \includegraphics[width=1\linewidth]{GHI_enh_08_validation_files/figure-latex/P-validation-cloudfree-GHI-1} 
+
+}
+
+\caption{ - empty caption - }\label{fig:P-validation-cloudfree-GHI}
+\end{figure}
+
+\begin{verbatim}
+    Pearson's product-moment correlation
+
+data:  KEEP$wattGLB and KEEP$Low_B.Low_W.glo
+t = 7903.5, df = 345175, p-value < 2.2e-16
+alternative hypothesis: true correlation is not equal to 0
+95 percent confidence interval:
+ 0.9972301 0.9972667
+sample estimates:
+      cor 
+0.9972485 
+\end{verbatim}
+
+\begin{verbatim}
+Call:
+lm(formula = KEEP[, wattGLB, Low_B.Low_W.glo])
+
+Coefficients:
+(Intercept)      wattGLB  
+     18.357        1.038  
+\end{verbatim}
+
+\newpage
+
+\begin{figure}[H]
+
+{\centering \includegraphics[width=1\linewidth]{GHI_enh_08_validation_files/figure-latex/P-validation-threshold-GHI-1} 
+
+}
+
+\caption{ - empty caption - }\label{fig:P-validation-threshold-GHI}
+\end{figure}
+
+\begin{verbatim}
+    Pearson's product-moment correlation
+
+data:  KEEP$wattGLB and KEEP$Enhanc_C_4_ref
+t = 7938, df = 345175, p-value < 2.2e-16
+alternative hypothesis: true correlation is not equal to 0
+95 percent confidence interval:
+ 0.9972540 0.9972904
+sample estimates:
+      cor 
+0.9972722 
+\end{verbatim}
+
+\begin{verbatim}
+Call:
+lm(formula = KEEP[, wattGLB, Enhanc_C_4_ref])
+
+Coefficients:
+(Intercept)      wattGLB  
+     43.323        1.036  
+\end{verbatim}
+
+\textbf{END}
+
+\begin{verbatim}
+2024-09-10 18:34:26.8 athan@sagan GHI_enh_08_validation.R 1.814401 mins
+\end{verbatim}
+
+\end{document}

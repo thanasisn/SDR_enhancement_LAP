@@ -1,0 +1,2230 @@
+% Options for packages loaded elsewhere
+\PassOptionsToPackage{unicode}{hyperref}
+\PassOptionsToPackage{hyphens}{url}
+\PassOptionsToPackage{dvipsnames,svgnames,x11names}{xcolor}
+%
+\documentclass[
+  10pt,
+  a4paper,oneside]{article}
+\usepackage{amsmath,amssymb}
+\usepackage{lmodern}
+\usepackage{iftex}
+\ifPDFTeX
+  \usepackage[T1]{fontenc}
+  \usepackage[utf8]{inputenc}
+  \usepackage{textcomp} % provide euro and other symbols
+\else % if luatex or xetex
+  \usepackage{unicode-math}
+  \defaultfontfeatures{Scale=MatchLowercase}
+  \defaultfontfeatures[\rmfamily]{Ligatures=TeX,Scale=1}
+\fi
+% Use upquote if available, for straight quotes in verbatim environments
+\IfFileExists{upquote.sty}{\usepackage{upquote}}{}
+\IfFileExists{microtype.sty}{% use microtype if available
+  \usepackage[]{microtype}
+  \UseMicrotypeSet[protrusion]{basicmath} % disable protrusion for tt fonts
+}{}
+\makeatletter
+\@ifundefined{KOMAClassName}{% if non-KOMA class
+  \IfFileExists{parskip.sty}{%
+    \usepackage{parskip}
+  }{% else
+    \setlength{\parindent}{0pt}
+    \setlength{\parskip}{6pt plus 2pt minus 1pt}}
+}{% if KOMA class
+  \KOMAoptions{parskip=half}}
+\makeatother
+\usepackage{xcolor}
+\IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
+\IfFileExists{bookmark.sty}{\usepackage{bookmark}}{\usepackage{hyperref}}
+\hypersetup{
+  pdftitle={Enhancement of SDR in Thessaloniki},
+  pdfauthor={Natsis Athanasios; Alkiviadis Bais},
+  colorlinks=true,
+  linkcolor={Maroon},
+  filecolor={Maroon},
+  citecolor={Blue},
+  urlcolor={Blue},
+  pdfcreator={LaTeX via pandoc}}
+\urlstyle{same} % disable monospaced font for URLs
+\usepackage[left=0.5in,right=0.5in,top=0.5in,bottom=0.5in]{geometry}
+\usepackage{color}
+\usepackage{fancyvrb}
+\newcommand{\VerbBar}{|}
+\newcommand{\VERB}{\Verb[commandchars=\\\{\}]}
+\DefineVerbatimEnvironment{Highlighting}{Verbatim}{commandchars=\\\{\}}
+% Add ',fontsize=\small' for more characters per line
+\usepackage{framed}
+\definecolor{shadecolor}{RGB}{248,248,248}
+\newenvironment{Shaded}{\begin{snugshade}}{\end{snugshade}}
+\newcommand{\AlertTok}[1]{\textcolor[rgb]{0.94,0.16,0.16}{#1}}
+\newcommand{\AnnotationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\AttributeTok}[1]{\textcolor[rgb]{0.77,0.63,0.00}{#1}}
+\newcommand{\BaseNTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\BuiltInTok}[1]{#1}
+\newcommand{\CharTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\CommentTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textit{#1}}}
+\newcommand{\CommentVarTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\ConstantTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\ControlFlowTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
+\newcommand{\DataTypeTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{#1}}
+\newcommand{\DecValTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\DocumentationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\ErrorTok}[1]{\textcolor[rgb]{0.64,0.00,0.00}{\textbf{#1}}}
+\newcommand{\ExtensionTok}[1]{#1}
+\newcommand{\FloatTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\FunctionTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\ImportTok}[1]{#1}
+\newcommand{\InformationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\KeywordTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
+\newcommand{\NormalTok}[1]{#1}
+\newcommand{\OperatorTok}[1]{\textcolor[rgb]{0.81,0.36,0.00}{\textbf{#1}}}
+\newcommand{\OtherTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{#1}}
+\newcommand{\PreprocessorTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textit{#1}}}
+\newcommand{\RegionMarkerTok}[1]{#1}
+\newcommand{\SpecialCharTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\SpecialStringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\StringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\VariableTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\VerbatimStringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\WarningTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\usepackage{longtable,booktabs,array}
+\usepackage{calc} % for calculating minipage widths
+% Correct order of tables after \paragraph or \subparagraph
+\usepackage{etoolbox}
+\makeatletter
+\patchcmd\longtable{\par}{\if@noskipsec\mbox{}\fi\par}{}{}
+\makeatother
+% Allow footnotes in longtable head/foot
+\IfFileExists{footnotehyper.sty}{\usepackage{footnotehyper}}{\usepackage{footnote}}
+\makesavenoteenv{longtable}
+\usepackage{graphicx}
+\makeatletter
+\def\maxwidth{\ifdim\Gin@nat@width>\linewidth\linewidth\else\Gin@nat@width\fi}
+\def\maxheight{\ifdim\Gin@nat@height>\textheight\textheight\else\Gin@nat@height\fi}
+\makeatother
+% Scale images if necessary, so that they will not overflow the page
+% margins by default, and it is still possible to overwrite the defaults
+% using explicit options in \includegraphics[width, height, ...]{}
+\setkeys{Gin}{width=\maxwidth,height=\maxheight,keepaspectratio}
+% Set default figure placement to htbp
+\makeatletter
+\def\fps@figure{htbp}
+\makeatother
+\setlength{\emergencystretch}{3em} % prevent overfull lines
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+\setcounter{secnumdepth}{-\maxdimen} % remove section numbering
+\usepackage{caption}
+\usepackage{float}
+\usepackage{placeins}
+\captionsetup{font=small}
+\ifLuaTeX
+  \usepackage{selnolig}  % disable illegal ligatures
+\fi
+
+\title{Enhancement of SDR in Thessaloniki}
+\author{Natsis Athanasios\footnote{Laboratory of Atmospheric Physics, AUTH, \href{mailto:natsisphysicist@gmail.com}{\nolinkurl{natsisphysicist@gmail.com}}} \and Alkiviadis Bais\footnote{Laboratory of Atmospheric Physics, AUTH}}
+\date{2024-09-10}
+
+\begin{document}
+\maketitle
+\begin{abstract}
+Study of GHI enchantment.
+\end{abstract}
+
+{
+\hypersetup{linkcolor=}
+\setcounter{tocdepth}{4}
+\tableofcontents
+}
+\begin{verbatim}
+[1] "Cloud" "Clear"
+\end{verbatim}
+
+\begin{verbatim}
+[1] "Exact_B.Exact_W.edir" "Exact_B.Exact_W.edn"  "Exact_B.Exact_W.eup" 
+[4] "Exact_B.Low_W.edir"   "Exact_B.Low_W.edn"    "Exact_B.Low_W.eup"   
+\end{verbatim}
+
+\begin{verbatim}
+   Min. 1st Qu.  Median    Mean 3rd Qu.    Max.    NA's 
+   1.03    1.03    1.03    1.03    1.04    1.04  210532 
+\end{verbatim}
+
+Alpha * HAU is CS\_ref
+
+\hypertarget{using-criteria-enhanc_c_4-for-final-application}{%
+\subsection{\texorpdfstring{Using criteria \textbf{Enhanc\_C\_4} for final application}{Using criteria Enhanc\_C\_4 for final application}}\label{using-criteria-enhanc_c_4-for-final-application}}
+
+\hypertarget{use-tsi-as-reference-for-cloud-free.}{%
+\subsection{1. Use TSI as reference for Cloud-free.}\label{use-tsi-as-reference-for-cloud-free.}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# \#\# \_\_ 1. My criteria  {-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}}
+\CommentTok{\# \# C1\_GLB\_ench\_THRES     \textless{}{-}  1.10 \#\# enchantment relative to HAU}
+\CommentTok{\# C1\_GLB\_diff\_THRES     \textless{}{-} 20    \#\# enchantment absolute diff to HAU}
+\CommentTok{\# C1\_Clearness\_Kt\_THRES \textless{}{-}  0.8  \#\# enchantment threshold}
+\CommentTok{\# \# C1\_wattGLB\_THRES      \textless{}{-} 20    \#\# minimum value to consider}
+\CommentTok{\#}
+\CommentTok{\# DATA[, Enhanc\_C\_1 := FALSE]}
+\CommentTok{\# \# DATA[wattGLB           \textgreater{} CS\_ref * C1\_GLB\_ench\_THRES + C1\_GLB\_diff\_THRES \&}
+\CommentTok{\# \#      ClearnessIndex\_kt \textgreater{} C1\_Clearness\_Kt\_THRES,}
+\CommentTok{\# \#      Enhanc\_C\_1 := TRUE]}
+\CommentTok{\#}
+\CommentTok{\# DATA[, Enhanc\_C\_1\_ref := ETH * C1\_Clearness\_Kt\_THRES + C1\_GLB\_diff\_THRES]}
+\CommentTok{\# DATA[wattGLB \textgreater{} Enhanc\_C\_1\_ref,}
+\CommentTok{\#      Enhanc\_C\_1 := TRUE]}
+\CommentTok{\#}
+\CommentTok{\# if (SelEnhanc == "Enhanc\_C\_1") \{}
+\CommentTok{\#   DATA[ , GLB\_diff :=   wattGLB {-} Enhanc\_C\_1\_ref                    ] \#\# enhancement}
+\CommentTok{\#   DATA[ , GLB\_ench := ( wattGLB {-} Enhanc\_C\_1\_ref ) / Enhanc\_C\_1\_ref ] \#\# relative enhancement}
+\CommentTok{\#   DATA[ , GLB\_rati :=   wattGLB / Enhanc\_C\_1\_ref                    ]}
+\CommentTok{\# \}}
+\end{Highlighting}
+\end{Shaded}
+
+\hypertarget{use-tsi-as-reference-for-cloud-free.-1}{%
+\subsection{2. Use TSI as reference for Cloud-free.}\label{use-tsi-as-reference-for-cloud-free.-1}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# \#\# \_\_ 2. Gueymard2017 Criteria  {-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}}
+\CommentTok{\# \#\# Clearness index \textgreater{} 0.8 / 1}
+\CommentTok{\# C2\_Clearness\_Kt\_THRES \textless{}{-} 0.8}
+\CommentTok{\# DATA[, Enhanc\_C\_2 := FALSE]}
+\CommentTok{\# DATA[, Enhanc\_C\_2\_ref := ETH * C2\_Clearness\_Kt\_THRES]}
+\CommentTok{\# \# DATA[ClearnessIndex\_kt \textgreater{} C1\_Clearness\_Kt\_THRES,}
+\CommentTok{\# \#      Enhanc\_C\_2 := TRUE]}
+\CommentTok{\# DATA[wattGLB \textgreater{} Enhanc\_C\_2\_ref,}
+\CommentTok{\#      Enhanc\_C\_2 := TRUE]}
+\CommentTok{\#}
+\CommentTok{\# if (SelEnhanc == "Enhanc\_C\_2") \{}
+\CommentTok{\#   DATA[ , GLB\_diff :=   wattGLB {-} Enhanc\_C\_2\_ref                    ] \#\# enhancement}
+\CommentTok{\#   DATA[ , GLB\_ench := ( wattGLB {-} Enhanc\_C\_2\_ref ) / Enhanc\_C\_2\_ref ] \#\# relative enhancement}
+\CommentTok{\#   DATA[ , GLB\_rati :=   wattGLB / Enhanc\_C\_2\_ref                    ]}
+\CommentTok{\# \}}
+\end{Highlighting}
+\end{Shaded}
+
+\hypertarget{use-haurwitz-as-reference-for-cloud-free.}{%
+\subsection{3. Use Haurwitz as reference for Cloud-free.}\label{use-haurwitz-as-reference-for-cloud-free.}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# \#\# \_\_ 3. Vamvakas2020  Criteria  {-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}}
+\CommentTok{\# \#\# +5\% from model =\textgreater{} enhancements above 15 Wm\^{}2 the instrument uncertainty}
+\CommentTok{\# C3\_cs\_ref\_ratio \textless{}{-} 1.05}
+\CommentTok{\# DATA[, Enhanc\_C\_3 := FALSE]}
+\CommentTok{\# DATA[, Enhanc\_C\_3\_ref := CS\_ref * C3\_cs\_ref\_ratio]}
+\CommentTok{\# DATA[wattGLB \textgreater{} Enhanc\_C\_3\_ref,}
+\CommentTok{\#      Enhanc\_C\_3 := TRUE]}
+\CommentTok{\#}
+\CommentTok{\# if (SelEnhanc == "Enhanc\_C\_3") \{}
+\CommentTok{\#   DATA[ , GLB\_diff :=   wattGLB {-} Enhanc\_C\_3\_ref                    ] \#\# enhancement}
+\CommentTok{\#   DATA[ , GLB\_ench := ( wattGLB {-} Enhanc\_C\_3\_ref ) / Enhanc\_C\_3\_ref ] \#\# relative enhancement}
+\CommentTok{\#   DATA[ , GLB\_rati :=   wattGLB / Enhanc\_C\_3\_ref                    ]}
+\CommentTok{\# \}}
+
+
+
+\DocumentationTok{\#\# \_\_ 4. my Criteria  {-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}}
+
+\DocumentationTok{\#\# set values base}
+\NormalTok{csmodel }\OtherTok{\textless{}{-}} \StringTok{"Low\_B.Low\_W"}
+
+
+
+\ControlFlowTok{if}\NormalTok{ (APPLY\_TRANS) \{}
+  \FunctionTok{cat}\NormalTok{(}\StringTok{"USING TRASPARENCY TREND}\SpecialCharTok{\textbackslash{}n}\StringTok{"}\NormalTok{)}
+
+  \CommentTok{\# source("./GHI\_enh\_07\_Aerosols.R")}
+  \DocumentationTok{\#\# choose function}
+  \CommentTok{\# trans\_trend \textless{}{-} trend\_median}
+  \CommentTok{\# trans\_trend \textless{}{-} trend\_median\_adj}
+  \CommentTok{\# trans\_trend \textless{}{-} trend\_55\_adj}
+
+  \FunctionTok{source}\NormalTok{(}\StringTok{"./GHI\_enh\_07\_Aerosols\_BR\_CIM.R"}\NormalTok{)}
+  \CommentTok{\# trend\_polyf(1994:2024)}
+  \CommentTok{\# plot(trend\_polyf(1994:2024), trend\_55\_adj(1994:2024))}
+\NormalTok{  trans\_trend }\OtherTok{\textless{}{-}}\NormalTok{ trend\_polyf}
+
+\NormalTok{\} }\ControlFlowTok{else}\NormalTok{ \{}
+\NormalTok{  trans\_trend }\OtherTok{\textless{}{-}} \ControlFlowTok{function}\NormalTok{(x) \{x }\SpecialCharTok{*} \DecValTok{0}\NormalTok{\}}
+\NormalTok{\}}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+USING TRASPARENCY TREND
+\end{verbatim}
+
+\begin{figure}[H]
+
+{\centering \includegraphics[width=1\linewidth]{GHI_enh_02_ID_CE_files/figure-latex/unnamed-chunk-9-1} 
+
+}
+
+\caption{ - empty caption - }\label{fig:unnamed-chunk-9-1}
+\end{figure}
+
+\begin{verbatim}
+Range of delta(AOD): -1.9 0.23 
+
+Range of delta(AOD): -1.88 0.23 
+
+GHI_model (abs) = -68231.52 + 68.09819 * year_frac + -0.01685135 * year_frac^2 
+
+GHI_model (rat) = -121.7 + 0.1205 * year_frac + -2.981e-05 * year_frac^2 
+
+GHI_model (%)   = -12170 + 12.05 * year_frac + -0.002981 * year_frac^2 
+
+GHI_model (%)   = -12170.26 + 12.0467 * year_frac + -0.003 * year_frac^2 
+\end{verbatim}
+
+\begin{verbatim}
+Warning: A numeric `legend.position` argument in `theme()` was deprecated in ggplot2 3.5.0.
+i Please use the `legend.position.inside` argument of `theme()` instead.
+This warning is displayed once every 8 hours.
+Call `lifecycle::last_lifecycle_warnings()` to see where this warning was generated.
+\end{verbatim}
+
+\begin{figure}[H]
+
+{\centering \includegraphics[width=1\linewidth]{GHI_enh_02_ID_CE_files/figure-latex/unnamed-chunk-9-2} 
+
+}
+
+\caption{ - empty caption - }\label{fig:unnamed-chunk-9-2}
+\end{figure}
+
+\hypertarget{use-libradtran-low_b.low_w-as-reference-for-cloud-free.}{%
+\subsection{\texorpdfstring{4. Use libradtran \textbf{Low\_B.Low\_W} as reference for Cloud-free.}{4. Use libradtran Low\_B.Low\_W as reference for Cloud-free.}}\label{use-libradtran-low_b.low_w-as-reference-for-cloud-free.}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{cat}\NormalTok{(}\StringTok{"}\SpecialCharTok{\textbackslash{}n}\StringTok{ USING CSMODE:"}\NormalTok{,    csmodel,     }\StringTok{"}\SpecialCharTok{\textbackslash{}n\textbackslash{}n}\StringTok{"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+ USING CSMODE: Low_B.Low_W 
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{cat}\NormalTok{(}\StringTok{"}\SpecialCharTok{\textbackslash{}n}\StringTok{ APPLY GHI TREND:"}\NormalTok{, APPLY\_TRANS, }\StringTok{"}\SpecialCharTok{\textbackslash{}n\textbackslash{}n}\StringTok{"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+ APPLY GHI TREND: TRUE 
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\ControlFlowTok{switch}\NormalTok{(csmodel,}
+       \AttributeTok{Exact\_B.Exact\_W =}\NormalTok{ \{ C4\_cs\_ref\_ratio }\OtherTok{\textless{}{-}} \FloatTok{1.02}\NormalTok{; C4\_GLB\_diff\_THRES }\OtherTok{\textless{}{-}} \DecValTok{55}\NormalTok{; C4\_lowcut\_sza }\OtherTok{\textless{}{-}} \DecValTok{60}\NormalTok{; C4\_lowcut\_ratio }\OtherTok{\textless{}{-}} \FloatTok{1.12}\NormalTok{\},}
+       \AttributeTok{Low\_2\_B.Low\_2\_W =}\NormalTok{ \{ C4\_cs\_ref\_ratio }\OtherTok{\textless{}{-}} \FloatTok{1.03}\NormalTok{; C4\_GLB\_diff\_THRES }\OtherTok{\textless{}{-}}  \DecValTok{5}\NormalTok{; C4\_lowcut\_sza }\OtherTok{\textless{}{-}} \DecValTok{60}\NormalTok{; C4\_lowcut\_ratio }\OtherTok{\textless{}{-}} \FloatTok{1.12}\NormalTok{\},}
+       \AttributeTok{Low\_B.Exact\_W   =}\NormalTok{ \{ C4\_cs\_ref\_ratio }\OtherTok{\textless{}{-}} \FloatTok{1.04}\NormalTok{; C4\_GLB\_diff\_THRES }\OtherTok{\textless{}{-}} \DecValTok{20}\NormalTok{; C4\_lowcut\_sza }\OtherTok{\textless{}{-}} \DecValTok{60}\NormalTok{; C4\_lowcut\_ratio }\OtherTok{\textless{}{-}} \FloatTok{1.12}\NormalTok{\},}
+       \AttributeTok{Low\_B.High\_W    =}\NormalTok{ \{ C4\_cs\_ref\_ratio }\OtherTok{\textless{}{-}} \FloatTok{1.05}\NormalTok{; C4\_GLB\_diff\_THRES }\OtherTok{\textless{}{-}} \DecValTok{20}\NormalTok{; C4\_lowcut\_sza }\OtherTok{\textless{}{-}} \DecValTok{60}\NormalTok{; C4\_lowcut\_ratio }\OtherTok{\textless{}{-}} \FloatTok{1.12}\NormalTok{\},}
+       \CommentTok{\# Low\_B.Low\_W     = \{ C4\_cs\_ref\_ratio \textless{}{-} 1.04; C4\_GLB\_diff\_THRES \textless{}{-} 15; C4\_lowcut\_sza \textless{}{-} 90; C4\_lowcut\_ratio \textless{}{-} 1.04\}, \#\# Submitted pater}
+       \AttributeTok{Low\_B.Low\_W     =}\NormalTok{ \{ C4\_cs\_ref\_ratio }\OtherTok{\textless{}{-}} \FloatTok{1.00}\NormalTok{; C4\_GLB\_diff\_THRES }\OtherTok{\textless{}{-}} \DecValTok{25}\NormalTok{; C4\_lowcut\_sza }\OtherTok{\textless{}{-}} \DecValTok{90}\NormalTok{; C4\_lowcut\_ratio }\OtherTok{\textless{}{-}} \FloatTok{1.00}\NormalTok{\},   }\DocumentationTok{\#\# Values from validation}
+\NormalTok{                         \{ C4\_cs\_ref\_ratio }\OtherTok{\textless{}{-}} \DecValTok{1}\NormalTok{   ; C4\_GLB\_diff\_THRES }\OtherTok{\textless{}{-}}  \DecValTok{0}\NormalTok{; C4\_lowcut\_sza }\OtherTok{\textless{}{-}} \DecValTok{90}\NormalTok{; C4\_lowcut\_ratio }\OtherTok{\textless{}{-}} \DecValTok{1}\NormalTok{   \})}
+
+
+\DocumentationTok{\#\# init flag}
+\NormalTok{DATA[, Enhanc\_C\_4 }\SpecialCharTok{:}\ErrorTok{=} \ConstantTok{FALSE}\NormalTok{]}
+
+\NormalTok{C4\_test\_cs\_ref\_ratio   }\OtherTok{\textless{}{-}}  \FloatTok{1.05}
+\NormalTok{C4\_test\_GLB\_diff\_THRES }\OtherTok{\textless{}{-}}  \DecValTok{0}
+\NormalTok{C4\_test\_lowcut\_sza     }\OtherTok{\textless{}{-}} \DecValTok{90}  \DocumentationTok{\#\# Disabled}
+\NormalTok{C4\_test\_lowcut\_ratio   }\OtherTok{\textless{}{-}}  \FloatTok{1.18}
+
+\CommentTok{\# DATA[, max(SZA)]}
+
+\NormalTok{smo }\OtherTok{\textless{}{-}} \FunctionTok{approxfun}\NormalTok{(}
+  \AttributeTok{x =} \FunctionTok{c}\NormalTok{(}\DecValTok{90} \SpecialCharTok{{-}}\NormalTok{ BIO\_ELEVA,  C4\_lowcut\_sza  ),}
+  \AttributeTok{y =} \FunctionTok{c}\NormalTok{(C4\_lowcut\_ratio, C4\_cs\_ref\_ratio)}
+\NormalTok{)}
+
+\NormalTok{smo\_test }\OtherTok{\textless{}{-}} \FunctionTok{approxfun}\NormalTok{(}
+  \AttributeTok{x =} \FunctionTok{c}\NormalTok{(}\DecValTok{90} \SpecialCharTok{{-}}\NormalTok{ BIO\_ELEVA,       C4\_test\_lowcut\_sza  ),}
+  \AttributeTok{y =} \FunctionTok{c}\NormalTok{(C4\_test\_lowcut\_ratio, C4\_test\_cs\_ref\_ratio)}
+\NormalTok{)}
+
+\FunctionTok{smo}\NormalTok{(}\DecValTok{80}\SpecialCharTok{:}\DecValTok{70}\NormalTok{) }\SpecialCharTok{*}\NormalTok{ (}\DecValTok{1}\SpecialCharTok{/}\FunctionTok{cosd}\NormalTok{(}\DecValTok{80}\SpecialCharTok{:}\DecValTok{70}\NormalTok{) }\SpecialCharTok{/} \FunctionTok{max}\NormalTok{(}\DecValTok{1}\SpecialCharTok{/}\FunctionTok{cosd}\NormalTok{(}\DecValTok{80}\SpecialCharTok{:}\DecValTok{70}\NormalTok{)))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+ [1] 1.0000000 0.9100628 0.8352016        NA        NA        NA        NA
+ [8]        NA        NA        NA        NA
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{cat}\NormalTok{(}\StringTok{"C4 factor:"}\NormalTok{, C4\_cs\_ref\_ratio,   }\StringTok{"}\SpecialCharTok{\textbackslash{}n}\StringTok{"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+C4 factor: 1 
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{cat}\NormalTok{(}\StringTok{"C4 offset:"}\NormalTok{, C4\_GLB\_diff\_THRES, }\StringTok{"}\SpecialCharTok{\textbackslash{}n}\StringTok{"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+C4 offset: 25 
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\DocumentationTok{\#\# \_\_\_\_ Create global irradiance W/m\^{}2  {-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}}
+\NormalTok{DATA[, }\FunctionTok{paste0}\NormalTok{(csmodel,}\StringTok{".glo"}\NormalTok{) }\SpecialCharTok{:}\ErrorTok{=}\NormalTok{ (}\FunctionTok{get}\NormalTok{(}\FunctionTok{paste0}\NormalTok{(csmodel,}\StringTok{".edir"}\NormalTok{)) }\SpecialCharTok{+} \FunctionTok{get}\NormalTok{(}\FunctionTok{paste0}\NormalTok{(csmodel,}\StringTok{".edn"}\NormalTok{))) }\SpecialCharTok{/} \DecValTok{1000}\NormalTok{ ]}
+
+
+\DocumentationTok{\#\# \_\_\_\_ Apply sun{-}earth distance correction  {-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}}
+\NormalTok{DATA[, }\FunctionTok{paste0}\NormalTok{(csmodel,}\StringTok{".glo"}\NormalTok{) }\SpecialCharTok{:}\ErrorTok{=} \FunctionTok{get}\NormalTok{(}\FunctionTok{paste0}\NormalTok{(csmodel,}\StringTok{".glo"}\NormalTok{)) }\SpecialCharTok{/}\NormalTok{ sun\_dist}\SpecialCharTok{\^{}}\DecValTok{2}\NormalTok{ ]}
+
+
+\DocumentationTok{\#\# \_\_\_\_ Apply adjustment to Kurudz spectrum  {-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}}
+\NormalTok{DATA[, }\FunctionTok{paste0}\NormalTok{(csmodel,}\StringTok{".glo"}\NormalTok{) }\SpecialCharTok{:}\ErrorTok{=} \FunctionTok{get}\NormalTok{(}\FunctionTok{paste0}\NormalTok{(csmodel,}\StringTok{".glo"}\NormalTok{)) }\SpecialCharTok{*}\NormalTok{ TSI\_Kurudz\_factor ]}
+
+
+\DocumentationTok{\#\# \_\_\_\_ Calculate clearness index  {-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}}
+\NormalTok{DATA[, ClearnessIndex\_C\_4 }\SpecialCharTok{:}\ErrorTok{=}\NormalTok{ wattGLB }\SpecialCharTok{/} \FunctionTok{get}\NormalTok{(}\FunctionTok{paste0}\NormalTok{(csmodel,}\StringTok{".glo"}\NormalTok{)) ]}
+
+\FunctionTok{hist}\NormalTok{(DATA}\SpecialCharTok{$}\NormalTok{ClearnessIndex\_C\_4, }\AttributeTok{breaks =} \DecValTok{100}\NormalTok{)}
+\FunctionTok{abline}\NormalTok{(}\AttributeTok{v =}\NormalTok{ C4\_cs\_ref\_ratio, }\AttributeTok{col =} \StringTok{"red"}\NormalTok{ )}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{figure}[H]
+
+{\centering \includegraphics[width=1\linewidth]{GHI_enh_02_ID_CE_files/figure-latex/unnamed-chunk-10-1} 
+
+}
+
+\caption{ - empty caption - }\label{fig:unnamed-chunk-10}
+\end{figure}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\DocumentationTok{\#\# \_\_\_\_ Calculate reference and mark data  {-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}{-}}
+
+\CommentTok{\#; \#\# for most of the data}
+\CommentTok{\#; DATA[SZA \textless{} C4\_lowcut\_sza, Enhanc\_C\_4\_ref := (get(paste0(csmodel,".glo")) * C4\_cs\_ref\_ratio) + C4\_GLB\_diff\_THRES ]}
+\CommentTok{\#;}
+\CommentTok{\#; \#\# for low sun angles}
+\CommentTok{\#; \# DATA[SZA \textgreater{} C4\_lowcut\_sza, Enhanc\_C\_4\_ref := (get(paste0(csmodel,".glo")) * C4\_lowcut\_ratio) ]}
+\CommentTok{\#; DATA[SZA \textgreater{} C4\_lowcut\_sza, Enhanc\_C\_4\_ref := (get(paste0(csmodel,".glo")) * smo(SZA)) ]}
+
+
+\DocumentationTok{\#\# for most of the data}
+\NormalTok{DATA[SZA }\SpecialCharTok{\textless{}}\NormalTok{ C4\_lowcut\_sza,}
+\NormalTok{     Enhanc\_C\_4\_ref }\SpecialCharTok{:}\ErrorTok{=}
+\NormalTok{       (}\DecValTok{1} \SpecialCharTok{+} \FunctionTok{trans\_trend}\NormalTok{(}\FunctionTok{decimal\_date}\NormalTok{(Date))) }\SpecialCharTok{*}\NormalTok{ (}\FunctionTok{get}\NormalTok{(}\FunctionTok{paste0}\NormalTok{(csmodel,}\StringTok{".glo"}\NormalTok{)) }\SpecialCharTok{*}\NormalTok{ C4\_cs\_ref\_ratio) }\SpecialCharTok{+}\NormalTok{ C4\_GLB\_diff\_THRES ]}
+
+\CommentTok{\# DATA[SZA \textless{} C4\_lowcut\_sza,}
+\CommentTok{\#       (1 + trans\_trend(decimal\_date(Date))) * (get(paste0(csmodel,".glo")) * C4\_cs\_ref\_ratio) + C4\_GLB\_diff\_THRES ]}
+
+\NormalTok{DATA[SZA }\SpecialCharTok{\textless{}}\NormalTok{ C4\_lowcut\_sza,}
+\NormalTok{     Enhanc\_C\_4\_ref\_test }\SpecialCharTok{:}\ErrorTok{=}\NormalTok{                                    (}\FunctionTok{get}\NormalTok{(}\FunctionTok{paste0}\NormalTok{(csmodel,}\StringTok{".glo"}\NormalTok{)) }\SpecialCharTok{*}\NormalTok{ C4\_test\_cs\_ref\_ratio) ]}
+
+\DocumentationTok{\#\# for low sun angles}
+\CommentTok{\# DATA[SZA \textgreater{} C4\_lowcut\_sza, Enhanc\_C\_4\_ref := (get(paste0(csmodel,".glo")) * C4\_lowcut\_ratio) ]}
+\NormalTok{DATA[SZA }\SpecialCharTok{\textgreater{}}\NormalTok{ C4\_lowcut\_sza,}
+\NormalTok{     Enhanc\_C\_4\_ref }\SpecialCharTok{:}\ErrorTok{=}\NormalTok{ (}\DecValTok{1} \SpecialCharTok{+} \FunctionTok{trans\_trend}\NormalTok{(}\FunctionTok{decimal\_date}\NormalTok{(Date))) }\SpecialCharTok{*}\NormalTok{ (}\FunctionTok{get}\NormalTok{(}\FunctionTok{paste0}\NormalTok{(csmodel,}\StringTok{".glo"}\NormalTok{)) }\SpecialCharTok{*} \FunctionTok{smo}\NormalTok{(SZA)) ]}
+
+\NormalTok{DATA[SZA }\SpecialCharTok{\textgreater{}}\NormalTok{ C4\_lowcut\_sza,}
+\NormalTok{     Enhanc\_C\_4\_ref\_test }\SpecialCharTok{:}\ErrorTok{=}\NormalTok{                                    (}\FunctionTok{get}\NormalTok{(}\FunctionTok{paste0}\NormalTok{(csmodel,}\StringTok{".glo"}\NormalTok{)) }\SpecialCharTok{*} \FunctionTok{smo\_test}\NormalTok{(SZA)) ]}
+
+
+
+\NormalTok{DATA[wattGLB }\SpecialCharTok{\textgreater{}}\NormalTok{ Enhanc\_C\_4\_ref ,}
+\NormalTok{     Enhanc\_C\_4 }\SpecialCharTok{:}\ErrorTok{=} \ConstantTok{TRUE}\NormalTok{]}
+\DocumentationTok{\#\# use threshold to compute values}
+\ControlFlowTok{if}\NormalTok{ (SelEnhanc }\SpecialCharTok{==} \StringTok{"Enhanc\_C\_4"}\NormalTok{) \{}
+\NormalTok{  DATA[ , GLB\_diff }\SpecialCharTok{:}\ErrorTok{=}\NormalTok{   wattGLB }\SpecialCharTok{{-}}\NormalTok{ Enhanc\_C\_4\_ref                    ] }\DocumentationTok{\#\# enhancement}
+\NormalTok{  DATA[ , GLB\_ench }\SpecialCharTok{:}\ErrorTok{=}\NormalTok{ ( wattGLB }\SpecialCharTok{{-}}\NormalTok{ Enhanc\_C\_4\_ref ) }\SpecialCharTok{/}\NormalTok{ Enhanc\_C\_4\_ref ] }\DocumentationTok{\#\# relative enhancement}
+\NormalTok{  DATA[ , GLB\_rati }\SpecialCharTok{:}\ErrorTok{=}\NormalTok{   wattGLB }\SpecialCharTok{/}\NormalTok{ Enhanc\_C\_4\_ref                    ]}
+\NormalTok{\}}
+
+\FunctionTok{cat}\NormalTok{(}\StringTok{"C4\_lowcut\_sza"}\NormalTok{,      C4\_lowcut\_sza    , }\StringTok{"}\SpecialCharTok{\textbackslash{}n}\StringTok{"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+C4_lowcut_sza 90 
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{cat}\NormalTok{(}\StringTok{"C4\_cs\_ref\_ratio"}\NormalTok{,    C4\_cs\_ref\_ratio  , }\StringTok{"}\SpecialCharTok{\textbackslash{}n}\StringTok{"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+C4_cs_ref_ratio 1 
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{cat}\NormalTok{(}\StringTok{"C4\_GLB\_diff\_THRES"}\NormalTok{,  C4\_GLB\_diff\_THRES, }\StringTok{"}\SpecialCharTok{\textbackslash{}n}\StringTok{"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+C4_GLB_diff_THRES 25 
+\end{verbatim}
+
+\FloatBarrier
+
+\hypertarget{using-creteria-enhanc_c_4}{%
+\section{Using creteria: Enhanc\_C\_4}\label{using-creteria-enhanc_c_4}}
+
+\hypertarget{distribution-of-different-metrics}{%
+\section{Distribution of different metrics}\label{distribution-of-different-metrics}}
+
+\begin{figure}[H]
+
+{\centering \includegraphics[width=1\linewidth]{GHI_enh_02_ID_CE_files/figure-latex/unnamed-chunk-13-1} 
+
+}
+
+\caption{ - empty caption - }\label{fig:unnamed-chunk-13-1}
+\end{figure}
+\begin{figure}[H]
+
+{\centering \includegraphics[width=1\linewidth]{GHI_enh_02_ID_CE_files/figure-latex/unnamed-chunk-13-2} 
+
+}
+
+\caption{ - empty caption - }\label{fig:unnamed-chunk-13-2}
+\end{figure}
+\begin{figure}[H]
+
+{\centering \includegraphics[width=1\linewidth]{GHI_enh_02_ID_CE_files/figure-latex/unnamed-chunk-13-3} 
+
+}
+
+\caption{ - empty caption - }\label{fig:unnamed-chunk-13-3}
+\end{figure}
+
+\begin{longtable}[]{@{}
+  >{\raggedleft\arraybackslash}p{(\columnwidth - 2\tabcolsep) * \real{0.1389}}
+  >{\raggedleft\arraybackslash}p{(\columnwidth - 2\tabcolsep) * \real{0.1389}}@{}}
+\caption{Enhanc\_C\_4}\tabularnewline
+\toprule
+\begin{minipage}[b]{\linewidth}\raggedleft
+FALSE
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+TRUE
+\end{minipage} \\
+\midrule
+\endfirsthead
+\toprule
+\begin{minipage}[b]{\linewidth}\raggedleft
+FALSE
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+TRUE
+\end{minipage} \\
+\midrule
+\endhead
+6272572 & 139758 \\
+\bottomrule
+\end{longtable}
+
+\begin{figure}[H]
+
+{\centering \includegraphics[width=1\linewidth]{GHI_enh_02_ID_CE_files/figure-latex/unnamed-chunk-13-4} 
+
+}
+
+\caption{ - empty caption - }\label{fig:unnamed-chunk-13-4}
+\end{figure}
+\begin{figure}[H]
+
+{\centering \includegraphics[width=1\linewidth]{GHI_enh_02_ID_CE_files/figure-latex/unnamed-chunk-13-5} 
+
+}
+
+\caption{ - empty caption - }\label{fig:unnamed-chunk-13-5}
+\end{figure}
+\begin{figure}[H]
+
+{\centering \includegraphics[width=1\linewidth]{GHI_enh_02_ID_CE_files/figure-latex/unnamed-chunk-13-6} 
+
+}
+
+\caption{ - empty caption - }\label{fig:unnamed-chunk-13-6}
+\end{figure}
+\begin{figure}[H]
+
+{\centering \includegraphics[width=1\linewidth]{GHI_enh_02_ID_CE_files/figure-latex/unnamed-chunk-13-7} 
+
+}
+
+\caption{ - empty caption - }\label{fig:unnamed-chunk-13-7}
+\end{figure}
+\begin{figure}[H]
+
+{\centering \includegraphics[width=1\linewidth]{GHI_enh_02_ID_CE_files/figure-latex/unnamed-chunk-13-8} 
+
+}
+
+\caption{ - empty caption - }\label{fig:unnamed-chunk-13-8}
+\end{figure}
+\begin{figure}[H]
+
+{\centering \includegraphics[width=1\linewidth]{GHI_enh_02_ID_CE_files/figure-latex/unnamed-chunk-13-9} 
+
+}
+
+\caption{ - empty caption - }\label{fig:unnamed-chunk-13-9}
+\end{figure}
+\begin{figure}[H]
+
+{\centering \includegraphics[width=1\linewidth]{GHI_enh_02_ID_CE_files/figure-latex/unnamed-chunk-13-10} 
+
+}
+
+\caption{ - empty caption - }\label{fig:unnamed-chunk-13-10}
+\end{figure}
+\begin{figure}[H]
+
+{\centering \includegraphics[width=1\linewidth]{GHI_enh_02_ID_CE_files/figure-latex/unnamed-chunk-13-11} 
+
+}
+
+\caption{ - empty caption - }\label{fig:unnamed-chunk-13-11}
+\end{figure}
+\begin{figure}[H]
+
+{\centering \includegraphics[width=1\linewidth]{GHI_enh_02_ID_CE_files/figure-latex/unnamed-chunk-13-12} 
+
+}
+
+\caption{ - empty caption - }\label{fig:unnamed-chunk-13-12}
+\end{figure}
+\begin{figure}[H]
+
+{\centering \includegraphics[width=1\linewidth]{GHI_enh_02_ID_CE_files/figure-latex/unnamed-chunk-13-13} 
+
+}
+
+\caption{ - empty caption - }\label{fig:unnamed-chunk-13-13}
+\end{figure}
+\begin{figure}[H]
+
+{\centering \includegraphics[width=1\linewidth]{GHI_enh_02_ID_CE_files/figure-latex/unnamed-chunk-13-14} 
+
+}
+
+\caption{ - empty caption - }\label{fig:unnamed-chunk-13-14}
+\end{figure}
+\begin{figure}[H]
+
+{\centering \includegraphics[width=1\linewidth]{GHI_enh_02_ID_CE_files/figure-latex/unnamed-chunk-13-15} 
+
+}
+
+\caption{ - empty caption - }\label{fig:unnamed-chunk-13-15}
+\end{figure}
+\begin{figure}[H]
+
+{\centering \includegraphics[width=1\linewidth]{GHI_enh_02_ID_CE_files/figure-latex/unnamed-chunk-13-16} 
+
+}
+
+\caption{ - empty caption - }\label{fig:unnamed-chunk-13-16}
+\end{figure}
+\begin{figure}[H]
+
+{\centering \includegraphics[width=1\linewidth]{GHI_enh_02_ID_CE_files/figure-latex/unnamed-chunk-13-17} 
+
+}
+
+\caption{ - empty caption - }\label{fig:unnamed-chunk-13-17}
+\end{figure}
+\begin{figure}[H]
+
+{\centering \includegraphics[width=1\linewidth]{GHI_enh_02_ID_CE_files/figure-latex/unnamed-chunk-13-18} 
+
+}
+
+\caption{ - empty caption - }\label{fig:unnamed-chunk-13-18}
+\end{figure}
+\begin{figure}[H]
+
+{\centering \includegraphics[width=1\linewidth]{GHI_enh_02_ID_CE_files/figure-latex/unnamed-chunk-13-19} 
+
+}
+
+\caption{ - empty caption - }\label{fig:unnamed-chunk-13-19}
+\end{figure}
+\begin{figure}[H]
+
+{\centering \includegraphics[width=1\linewidth]{GHI_enh_02_ID_CE_files/figure-latex/unnamed-chunk-13-20} 
+
+}
+
+\caption{ - empty caption - }\label{fig:unnamed-chunk-13-20}
+\end{figure}
+\begin{figure}[H]
+
+{\centering \includegraphics[width=1\linewidth]{GHI_enh_02_ID_CE_files/figure-latex/unnamed-chunk-13-21} 
+
+}
+
+\caption{ - empty caption - }\label{fig:unnamed-chunk-13-21}
+\end{figure}
+\begin{figure}[H]
+
+{\centering \includegraphics[width=1\linewidth]{GHI_enh_02_ID_CE_files/figure-latex/unnamed-chunk-13-22} 
+
+}
+
+\caption{ - empty caption - }\label{fig:unnamed-chunk-13-22}
+\end{figure}
+\begin{figure}[H]
+
+{\centering \includegraphics[width=1\linewidth]{GHI_enh_02_ID_CE_files/figure-latex/unnamed-chunk-13-23} 
+
+}
+
+\caption{ - empty caption - }\label{fig:unnamed-chunk-13-23}
+\end{figure}
+\begin{figure}[H]
+
+{\centering \includegraphics[width=1\linewidth]{GHI_enh_02_ID_CE_files/figure-latex/unnamed-chunk-13-24} 
+
+}
+
+\caption{ - empty caption - }\label{fig:unnamed-chunk-13-24}
+\end{figure}
+\begin{figure}[H]
+
+{\centering \includegraphics[width=1\linewidth]{GHI_enh_02_ID_CE_files/figure-latex/unnamed-chunk-13-25} 
+
+}
+
+\caption{ - empty caption - }\label{fig:unnamed-chunk-13-25}
+\end{figure}
+\begin{figure}[H]
+
+{\centering \includegraphics[width=1\linewidth]{GHI_enh_02_ID_CE_files/figure-latex/unnamed-chunk-13-26} 
+
+}
+
+\caption{ - empty caption - }\label{fig:unnamed-chunk-13-26}
+\end{figure}
+\begin{figure}[H]
+
+{\centering \includegraphics[width=1\linewidth]{GHI_enh_02_ID_CE_files/figure-latex/unnamed-chunk-13-27} 
+
+}
+
+\caption{ - empty caption - }\label{fig:unnamed-chunk-13-27}
+\end{figure}
+\begin{figure}[H]
+
+{\centering \includegraphics[width=1\linewidth]{GHI_enh_02_ID_CE_files/figure-latex/unnamed-chunk-13-28} 
+
+}
+
+\caption{ - empty caption - }\label{fig:unnamed-chunk-13-28}
+\end{figure}
+\begin{figure}[H]
+
+{\centering \includegraphics[width=1\linewidth]{GHI_enh_02_ID_CE_files/figure-latex/unnamed-chunk-13-29} 
+
+}
+
+\caption{ - empty caption - }\label{fig:unnamed-chunk-13-29}
+\end{figure}
+\begin{figure}[H]
+
+{\centering \includegraphics[width=1\linewidth]{GHI_enh_02_ID_CE_files/figure-latex/unnamed-chunk-13-30} 
+
+}
+
+\caption{ - empty caption - }\label{fig:unnamed-chunk-13-30}
+\end{figure}
+\begin{figure}[H]
+
+{\centering \includegraphics[width=1\linewidth]{GHI_enh_02_ID_CE_files/figure-latex/unnamed-chunk-13-31} 
+
+}
+
+\caption{ - empty caption - }\label{fig:unnamed-chunk-13-31}
+\end{figure}
+\begin{figure}[H]
+
+{\centering \includegraphics[width=1\linewidth]{GHI_enh_02_ID_CE_files/figure-latex/unnamed-chunk-13-32} 
+
+}
+
+\caption{ - empty caption - }\label{fig:unnamed-chunk-13-32}
+\end{figure}
+\begin{figure}[H]
+
+{\centering \includegraphics[width=1\linewidth]{GHI_enh_02_ID_CE_files/figure-latex/unnamed-chunk-13-33} 
+
+}
+
+\caption{ - empty caption - }\label{fig:unnamed-chunk-13-33}
+\end{figure}
+
+\FloatBarrier
+
+\hypertarget{plot-some-days-with-strong-enhancement-cases}{%
+\section{Plot some days with strong enhancement cases}\label{plot-some-days-with-strong-enhancement-cases}}
+
+\FloatBarrier
+
+\hypertarget{days-with-extreme-cases-day}{%
+\subsection{Days with extreme cases day}\label{days-with-extreme-cases-day}}
+
+\begin{figure}[H]
+
+{\centering \includegraphics[width=1\linewidth]{GHI_enh_02_ID_CE_files/figure-latex/example-days-1} 
+
+}
+
+\caption{ - empty caption - }\label{fig:example-days-1}
+\end{figure}
+
+\begin{figure}[H]
+
+{\centering \includegraphics[width=1\linewidth]{GHI_enh_02_ID_CE_files/figure-latex/example-days-2} 
+
+}
+
+\caption{ - empty caption - }\label{fig:example-days-2}
+\end{figure}
+
+\begin{figure}[H]
+
+{\centering \includegraphics[width=1\linewidth]{GHI_enh_02_ID_CE_files/figure-latex/example-days-3} 
+
+}
+
+\caption{ - empty caption - }\label{fig:example-days-3}
+\end{figure}
+
+\begin{figure}[H]
+
+{\centering \includegraphics[width=1\linewidth]{GHI_enh_02_ID_CE_files/figure-latex/example-days-4} 
+
+}
+
+\caption{ - empty caption - }\label{fig:example-days-4}
+\end{figure}
+
+\begin{figure}[H]
+
+{\centering \includegraphics[width=1\linewidth]{GHI_enh_02_ID_CE_files/figure-latex/example-days-5} 
+
+}
+
+\caption{ - empty caption - }\label{fig:example-days-5}
+\end{figure}
+
+\begin{figure}[H]
+
+{\centering \includegraphics[width=1\linewidth]{GHI_enh_02_ID_CE_files/figure-latex/example-days-6} 
+
+}
+
+\caption{ - empty caption - }\label{fig:example-days-6}
+\end{figure}
+
+\begin{figure}[H]
+
+{\centering \includegraphics[width=1\linewidth]{GHI_enh_02_ID_CE_files/figure-latex/example-days-7} 
+
+}
+
+\caption{ - empty caption - }\label{fig:example-days-7}
+\end{figure}
+
+\begin{figure}[H]
+
+{\centering \includegraphics[width=1\linewidth]{GHI_enh_02_ID_CE_files/figure-latex/example-days-8} 
+
+}
+
+\caption{ - empty caption - }\label{fig:example-days-8}
+\end{figure}
+
+\begin{figure}[H]
+
+{\centering \includegraphics[width=1\linewidth]{GHI_enh_02_ID_CE_files/figure-latex/example-days-9} 
+
+}
+
+\caption{ - empty caption - }\label{fig:example-days-9}
+\end{figure}
+
+\begin{figure}[H]
+
+{\centering \includegraphics[width=1\linewidth]{GHI_enh_02_ID_CE_files/figure-latex/example-days-10} 
+
+}
+
+\caption{ - empty caption - }\label{fig:example-days-10}
+\end{figure}
+
+\begin{figure}[H]
+
+{\centering \includegraphics[width=1\linewidth]{GHI_enh_02_ID_CE_files/figure-latex/example-days-11} 
+
+}
+
+\caption{ - empty caption - }\label{fig:example-days-11}
+\end{figure}
+
+\begin{figure}[H]
+
+{\centering \includegraphics[width=1\linewidth]{GHI_enh_02_ID_CE_files/figure-latex/example-days-12} 
+
+}
+
+\caption{ - empty caption - }\label{fig:example-days-12}
+\end{figure}
+
+\begin{figure}[H]
+
+{\centering \includegraphics[width=1\linewidth]{GHI_enh_02_ID_CE_files/figure-latex/example-days-13} 
+
+}
+
+\caption{ - empty caption - }\label{fig:example-days-13}
+\end{figure}
+
+\begin{figure}[H]
+
+{\centering \includegraphics[width=1\linewidth]{GHI_enh_02_ID_CE_files/figure-latex/example-days-14} 
+
+}
+
+\caption{ - empty caption - }\label{fig:example-days-14}
+\end{figure}
+
+\begin{figure}[H]
+
+{\centering \includegraphics[width=1\linewidth]{GHI_enh_02_ID_CE_files/figure-latex/example-days-15} 
+
+}
+
+\caption{ - empty caption - }\label{fig:example-days-15}
+\end{figure}
+
+\begin{figure}[H]
+
+{\centering \includegraphics[width=1\linewidth]{GHI_enh_02_ID_CE_files/figure-latex/example-days-16} 
+
+}
+
+\caption{ - empty caption - }\label{fig:example-days-16}
+\end{figure}
+
+\begin{figure}[H]
+
+{\centering \includegraphics[width=1\linewidth]{GHI_enh_02_ID_CE_files/figure-latex/example-days-17} 
+
+}
+
+\caption{ - empty caption - }\label{fig:example-days-17}
+\end{figure}
+
+\begin{figure}[H]
+
+{\centering \includegraphics[width=1\linewidth]{GHI_enh_02_ID_CE_files/figure-latex/example-days-18} 
+
+}
+
+\caption{ - empty caption - }\label{fig:example-days-18}
+\end{figure}
+
+\begin{figure}[H]
+
+{\centering \includegraphics[width=1\linewidth]{GHI_enh_02_ID_CE_files/figure-latex/example-days-19} 
+
+}
+
+\caption{ - empty caption - }\label{fig:example-days-19}
+\end{figure}
+
+\begin{figure}[H]
+
+{\centering \includegraphics[width=1\linewidth]{GHI_enh_02_ID_CE_files/figure-latex/example-days-20} 
+
+}
+
+\caption{ - empty caption - }\label{fig:example-days-20}
+\end{figure}
+
+\FloatBarrier
+
+\hypertarget{days-with-strong-enhancement-day}{%
+\subsection{Days with strong enhancement day}\label{days-with-strong-enhancement-day}}
+
+\begin{figure}[H]
+
+{\centering \includegraphics[width=1\linewidth]{GHI_enh_02_ID_CE_files/figure-latex/example-days-21} 
+
+}
+
+\caption{ - empty caption - }\label{fig:example-days-21}
+\end{figure}
+
+\begin{figure}[H]
+
+{\centering \includegraphics[width=1\linewidth]{GHI_enh_02_ID_CE_files/figure-latex/example-days-22} 
+
+}
+
+\caption{ - empty caption - }\label{fig:example-days-22}
+\end{figure}
+
+\begin{figure}[H]
+
+{\centering \includegraphics[width=1\linewidth]{GHI_enh_02_ID_CE_files/figure-latex/example-days-23} 
+
+}
+
+\caption{ - empty caption - }\label{fig:example-days-23}
+\end{figure}
+
+\begin{figure}[H]
+
+{\centering \includegraphics[width=1\linewidth]{GHI_enh_02_ID_CE_files/figure-latex/example-days-24} 
+
+}
+
+\caption{ - empty caption - }\label{fig:example-days-24}
+\end{figure}
+
+\begin{figure}[H]
+
+{\centering \includegraphics[width=1\linewidth]{GHI_enh_02_ID_CE_files/figure-latex/example-days-25} 
+
+}
+
+\caption{ - empty caption - }\label{fig:example-days-25}
+\end{figure}
+
+\begin{figure}[H]
+
+{\centering \includegraphics[width=1\linewidth]{GHI_enh_02_ID_CE_files/figure-latex/example-days-26} 
+
+}
+
+\caption{ - empty caption - }\label{fig:example-days-26}
+\end{figure}
+
+\begin{figure}[H]
+
+{\centering \includegraphics[width=1\linewidth]{GHI_enh_02_ID_CE_files/figure-latex/example-days-27} 
+
+}
+
+\caption{ - empty caption - }\label{fig:example-days-27}
+\end{figure}
+
+\begin{figure}[H]
+
+{\centering \includegraphics[width=1\linewidth]{GHI_enh_02_ID_CE_files/figure-latex/example-days-28} 
+
+}
+
+\caption{ - empty caption - }\label{fig:example-days-28}
+\end{figure}
+
+\begin{figure}[H]
+
+{\centering \includegraphics[width=1\linewidth]{GHI_enh_02_ID_CE_files/figure-latex/example-days-29} 
+
+}
+
+\caption{ - empty caption - }\label{fig:example-days-29}
+\end{figure}
+
+\begin{figure}[H]
+
+{\centering \includegraphics[width=1\linewidth]{GHI_enh_02_ID_CE_files/figure-latex/example-days-30} 
+
+}
+
+\caption{ - empty caption - }\label{fig:example-days-30}
+\end{figure}
+
+\begin{figure}[H]
+
+{\centering \includegraphics[width=1\linewidth]{GHI_enh_02_ID_CE_files/figure-latex/example-days-31} 
+
+}
+
+\caption{ - empty caption - }\label{fig:example-days-31}
+\end{figure}
+
+\begin{figure}[H]
+
+{\centering \includegraphics[width=1\linewidth]{GHI_enh_02_ID_CE_files/figure-latex/example-days-32} 
+
+}
+
+\caption{ - empty caption - }\label{fig:example-days-32}
+\end{figure}
+
+\begin{figure}[H]
+
+{\centering \includegraphics[width=1\linewidth]{GHI_enh_02_ID_CE_files/figure-latex/example-days-33} 
+
+}
+
+\caption{ - empty caption - }\label{fig:example-days-33}
+\end{figure}
+
+\begin{figure}[H]
+
+{\centering \includegraphics[width=1\linewidth]{GHI_enh_02_ID_CE_files/figure-latex/example-days-34} 
+
+}
+
+\caption{ - empty caption - }\label{fig:example-days-34}
+\end{figure}
+
+\begin{figure}[H]
+
+{\centering \includegraphics[width=1\linewidth]{GHI_enh_02_ID_CE_files/figure-latex/example-days-35} 
+
+}
+
+\caption{ - empty caption - }\label{fig:example-days-35}
+\end{figure}
+
+\begin{figure}[H]
+
+{\centering \includegraphics[width=1\linewidth]{GHI_enh_02_ID_CE_files/figure-latex/example-days-36} 
+
+}
+
+\caption{ - empty caption - }\label{fig:example-days-36}
+\end{figure}
+
+\begin{figure}[H]
+
+{\centering \includegraphics[width=1\linewidth]{GHI_enh_02_ID_CE_files/figure-latex/example-days-37} 
+
+}
+
+\caption{ - empty caption - }\label{fig:example-days-37}
+\end{figure}
+
+\begin{figure}[H]
+
+{\centering \includegraphics[width=1\linewidth]{GHI_enh_02_ID_CE_files/figure-latex/example-days-38} 
+
+}
+
+\caption{ - empty caption - }\label{fig:example-days-38}
+\end{figure}
+
+\begin{figure}[H]
+
+{\centering \includegraphics[width=1\linewidth]{GHI_enh_02_ID_CE_files/figure-latex/example-days-39} 
+
+}
+
+\caption{ - empty caption - }\label{fig:example-days-39}
+\end{figure}
+
+\begin{figure}[H]
+
+{\centering \includegraphics[width=1\linewidth]{GHI_enh_02_ID_CE_files/figure-latex/example-days-40} 
+
+}
+
+\caption{ - empty caption - }\label{fig:example-days-40}
+\end{figure}
+
+\begin{figure}[H]
+
+{\centering \includegraphics[width=1\linewidth]{GHI_enh_02_ID_CE_files/figure-latex/example-days-41} 
+
+}
+
+\caption{ - empty caption - }\label{fig:example-days-41}
+\end{figure}
+
+\begin{figure}[H]
+
+{\centering \includegraphics[width=1\linewidth]{GHI_enh_02_ID_CE_files/figure-latex/example-days-42} 
+
+}
+
+\caption{ - empty caption - }\label{fig:example-days-42}
+\end{figure}
+
+\begin{figure}[H]
+
+{\centering \includegraphics[width=1\linewidth]{GHI_enh_02_ID_CE_files/figure-latex/example-days-43} 
+
+}
+
+\caption{ - empty caption - }\label{fig:example-days-43}
+\end{figure}
+
+\begin{figure}[H]
+
+{\centering \includegraphics[width=1\linewidth]{GHI_enh_02_ID_CE_files/figure-latex/example-days-44} 
+
+}
+
+\caption{ - empty caption - }\label{fig:example-days-44}
+\end{figure}
+
+\begin{figure}[H]
+
+{\centering \includegraphics[width=1\linewidth]{GHI_enh_02_ID_CE_files/figure-latex/example-days-45} 
+
+}
+
+\caption{ - empty caption - }\label{fig:example-days-45}
+\end{figure}
+
+\begin{figure}[H]
+
+{\centering \includegraphics[width=1\linewidth]{GHI_enh_02_ID_CE_files/figure-latex/example-days-46} 
+
+}
+
+\caption{ - empty caption - }\label{fig:example-days-46}
+\end{figure}
+
+\begin{figure}[H]
+
+{\centering \includegraphics[width=1\linewidth]{GHI_enh_02_ID_CE_files/figure-latex/example-days-47} 
+
+}
+
+\caption{ - empty caption - }\label{fig:example-days-47}
+\end{figure}
+
+\begin{figure}[H]
+
+{\centering \includegraphics[width=1\linewidth]{GHI_enh_02_ID_CE_files/figure-latex/example-days-48} 
+
+}
+
+\caption{ - empty caption - }\label{fig:example-days-48}
+\end{figure}
+
+\begin{figure}[H]
+
+{\centering \includegraphics[width=1\linewidth]{GHI_enh_02_ID_CE_files/figure-latex/example-days-49} 
+
+}
+
+\caption{ - empty caption - }\label{fig:example-days-49}
+\end{figure}
+
+\begin{figure}[H]
+
+{\centering \includegraphics[width=1\linewidth]{GHI_enh_02_ID_CE_files/figure-latex/example-days-50} 
+
+}
+
+\caption{ - empty caption - }\label{fig:example-days-50}
+\end{figure}
+
+\FloatBarrier
+
+\hypertarget{days-with-sunny-day}{%
+\subsection{Days with sunny day}\label{days-with-sunny-day}}
+
+\begin{figure}[H]
+
+{\centering \includegraphics[width=1\linewidth]{GHI_enh_02_ID_CE_files/figure-latex/example-days-51} 
+
+}
+
+\caption{ - empty caption - }\label{fig:example-days-51}
+\end{figure}
+
+\begin{figure}[H]
+
+{\centering \includegraphics[width=1\linewidth]{GHI_enh_02_ID_CE_files/figure-latex/example-days-52} 
+
+}
+
+\caption{ - empty caption - }\label{fig:example-days-52}
+\end{figure}
+
+\begin{figure}[H]
+
+{\centering \includegraphics[width=1\linewidth]{GHI_enh_02_ID_CE_files/figure-latex/example-days-53} 
+
+}
+
+\caption{ - empty caption - }\label{fig:example-days-53}
+\end{figure}
+
+\begin{figure}[H]
+
+{\centering \includegraphics[width=1\linewidth]{GHI_enh_02_ID_CE_files/figure-latex/example-days-54} 
+
+}
+
+\caption{ - empty caption - }\label{fig:example-days-54}
+\end{figure}
+
+\begin{figure}[H]
+
+{\centering \includegraphics[width=1\linewidth]{GHI_enh_02_ID_CE_files/figure-latex/example-days-55} 
+
+}
+
+\caption{ - empty caption - }\label{fig:example-days-55}
+\end{figure}
+
+\begin{figure}[H]
+
+{\centering \includegraphics[width=1\linewidth]{GHI_enh_02_ID_CE_files/figure-latex/example-days-56} 
+
+}
+
+\caption{ - empty caption - }\label{fig:example-days-56}
+\end{figure}
+
+\begin{figure}[H]
+
+{\centering \includegraphics[width=1\linewidth]{GHI_enh_02_ID_CE_files/figure-latex/example-days-57} 
+
+}
+
+\caption{ - empty caption - }\label{fig:example-days-57}
+\end{figure}
+
+\begin{figure}[H]
+
+{\centering \includegraphics[width=1\linewidth]{GHI_enh_02_ID_CE_files/figure-latex/example-days-58} 
+
+}
+
+\caption{ - empty caption - }\label{fig:example-days-58}
+\end{figure}
+
+\begin{figure}[H]
+
+{\centering \includegraphics[width=1\linewidth]{GHI_enh_02_ID_CE_files/figure-latex/example-days-59} 
+
+}
+
+\caption{ - empty caption - }\label{fig:example-days-59}
+\end{figure}
+
+\begin{figure}[H]
+
+{\centering \includegraphics[width=1\linewidth]{GHI_enh_02_ID_CE_files/figure-latex/example-days-60} 
+
+}
+
+\caption{ - empty caption - }\label{fig:example-days-60}
+\end{figure}
+
+\begin{figure}[H]
+
+{\centering \includegraphics[width=1\linewidth]{GHI_enh_02_ID_CE_files/figure-latex/example-days-61} 
+
+}
+
+\caption{ - empty caption - }\label{fig:example-days-61}
+\end{figure}
+
+\begin{figure}[H]
+
+{\centering \includegraphics[width=1\linewidth]{GHI_enh_02_ID_CE_files/figure-latex/example-days-62} 
+
+}
+
+\caption{ - empty caption - }\label{fig:example-days-62}
+\end{figure}
+
+\begin{figure}[H]
+
+{\centering \includegraphics[width=1\linewidth]{GHI_enh_02_ID_CE_files/figure-latex/example-days-63} 
+
+}
+
+\caption{ - empty caption - }\label{fig:example-days-63}
+\end{figure}
+
+\begin{figure}[H]
+
+{\centering \includegraphics[width=1\linewidth]{GHI_enh_02_ID_CE_files/figure-latex/example-days-64} 
+
+}
+
+\caption{ - empty caption - }\label{fig:example-days-64}
+\end{figure}
+
+\begin{figure}[H]
+
+{\centering \includegraphics[width=1\linewidth]{GHI_enh_02_ID_CE_files/figure-latex/example-days-65} 
+
+}
+
+\caption{ - empty caption - }\label{fig:example-days-65}
+\end{figure}
+
+\begin{figure}[H]
+
+{\centering \includegraphics[width=1\linewidth]{GHI_enh_02_ID_CE_files/figure-latex/example-days-66} 
+
+}
+
+\caption{ - empty caption - }\label{fig:example-days-66}
+\end{figure}
+
+\begin{figure}[H]
+
+{\centering \includegraphics[width=1\linewidth]{GHI_enh_02_ID_CE_files/figure-latex/example-days-67} 
+
+}
+
+\caption{ - empty caption - }\label{fig:example-days-67}
+\end{figure}
+
+\begin{figure}[H]
+
+{\centering \includegraphics[width=1\linewidth]{GHI_enh_02_ID_CE_files/figure-latex/example-days-68} 
+
+}
+
+\caption{ - empty caption - }\label{fig:example-days-68}
+\end{figure}
+
+\begin{figure}[H]
+
+{\centering \includegraphics[width=1\linewidth]{GHI_enh_02_ID_CE_files/figure-latex/example-days-69} 
+
+}
+
+\caption{ - empty caption - }\label{fig:example-days-69}
+\end{figure}
+
+\begin{figure}[H]
+
+{\centering \includegraphics[width=1\linewidth]{GHI_enh_02_ID_CE_files/figure-latex/example-days-70} 
+
+}
+
+\caption{ - empty caption - }\label{fig:example-days-70}
+\end{figure}
+
+\FloatBarrier
+
+\hypertarget{days-with-sunny-enhancement-day}{%
+\subsection{Days with sunny enhancement day}\label{days-with-sunny-enhancement-day}}
+
+\begin{figure}[H]
+
+{\centering \includegraphics[width=1\linewidth]{GHI_enh_02_ID_CE_files/figure-latex/example-days-71} 
+
+}
+
+\caption{ - empty caption - }\label{fig:example-days-71}
+\end{figure}
+
+\begin{figure}[H]
+
+{\centering \includegraphics[width=1\linewidth]{GHI_enh_02_ID_CE_files/figure-latex/example-days-72} 
+
+}
+
+\caption{ - empty caption - }\label{fig:example-days-72}
+\end{figure}
+
+\begin{figure}[H]
+
+{\centering \includegraphics[width=1\linewidth]{GHI_enh_02_ID_CE_files/figure-latex/example-days-73} 
+
+}
+
+\caption{ - empty caption - }\label{fig:example-days-73}
+\end{figure}
+
+\begin{figure}[H]
+
+{\centering \includegraphics[width=1\linewidth]{GHI_enh_02_ID_CE_files/figure-latex/example-days-74} 
+
+}
+
+\caption{ - empty caption - }\label{fig:example-days-74}
+\end{figure}
+
+\FloatBarrier
+
+\hypertarget{days-with-cloudy-day}{%
+\subsection{Days with cloudy day}\label{days-with-cloudy-day}}
+
+\begin{figure}[H]
+
+{\centering \includegraphics[width=1\linewidth]{GHI_enh_02_ID_CE_files/figure-latex/example-days-75} 
+
+}
+
+\caption{ - empty caption - }\label{fig:example-days-75}
+\end{figure}
+
+\begin{figure}[H]
+
+{\centering \includegraphics[width=1\linewidth]{GHI_enh_02_ID_CE_files/figure-latex/example-days-76} 
+
+}
+
+\caption{ - empty caption - }\label{fig:example-days-76}
+\end{figure}
+
+\begin{figure}[H]
+
+{\centering \includegraphics[width=1\linewidth]{GHI_enh_02_ID_CE_files/figure-latex/example-days-77} 
+
+}
+
+\caption{ - empty caption - }\label{fig:example-days-77}
+\end{figure}
+
+\begin{figure}[H]
+
+{\centering \includegraphics[width=1\linewidth]{GHI_enh_02_ID_CE_files/figure-latex/example-days-78} 
+
+}
+
+\caption{ - empty caption - }\label{fig:example-days-78}
+\end{figure}
+
+\begin{figure}[H]
+
+{\centering \includegraphics[width=1\linewidth]{GHI_enh_02_ID_CE_files/figure-latex/example-days-79} 
+
+}
+
+\caption{ - empty caption - }\label{fig:example-days-79}
+\end{figure}
+
+\begin{figure}[H]
+
+{\centering \includegraphics[width=1\linewidth]{GHI_enh_02_ID_CE_files/figure-latex/example-days-80} 
+
+}
+
+\caption{ - empty caption - }\label{fig:example-days-80}
+\end{figure}
+
+\begin{figure}[H]
+
+{\centering \includegraphics[width=1\linewidth]{GHI_enh_02_ID_CE_files/figure-latex/example-days-81} 
+
+}
+
+\caption{ - empty caption - }\label{fig:example-days-81}
+\end{figure}
+
+\begin{figure}[H]
+
+{\centering \includegraphics[width=1\linewidth]{GHI_enh_02_ID_CE_files/figure-latex/example-days-82} 
+
+}
+
+\caption{ - empty caption - }\label{fig:example-days-82}
+\end{figure}
+
+\begin{figure}[H]
+
+{\centering \includegraphics[width=1\linewidth]{GHI_enh_02_ID_CE_files/figure-latex/example-days-83} 
+
+}
+
+\caption{ - empty caption - }\label{fig:example-days-83}
+\end{figure}
+
+\begin{figure}[H]
+
+{\centering \includegraphics[width=1\linewidth]{GHI_enh_02_ID_CE_files/figure-latex/example-days-84} 
+
+}
+
+\caption{ - empty caption - }\label{fig:example-days-84}
+\end{figure}
+
+\begin{figure}[H]
+
+{\centering \includegraphics[width=1\linewidth]{GHI_enh_02_ID_CE_files/figure-latex/example-days-85} 
+
+}
+
+\caption{ - empty caption - }\label{fig:example-days-85}
+\end{figure}
+
+\begin{figure}[H]
+
+{\centering \includegraphics[width=1\linewidth]{GHI_enh_02_ID_CE_files/figure-latex/example-days-86} 
+
+}
+
+\caption{ - empty caption - }\label{fig:example-days-86}
+\end{figure}
+
+\begin{figure}[H]
+
+{\centering \includegraphics[width=1\linewidth]{GHI_enh_02_ID_CE_files/figure-latex/example-days-87} 
+
+}
+
+\caption{ - empty caption - }\label{fig:example-days-87}
+\end{figure}
+
+\begin{figure}[H]
+
+{\centering \includegraphics[width=1\linewidth]{GHI_enh_02_ID_CE_files/figure-latex/example-days-88} 
+
+}
+
+\caption{ - empty caption - }\label{fig:example-days-88}
+\end{figure}
+
+\begin{figure}[H]
+
+{\centering \includegraphics[width=1\linewidth]{GHI_enh_02_ID_CE_files/figure-latex/example-days-89} 
+
+}
+
+\caption{ - empty caption - }\label{fig:example-days-89}
+\end{figure}
+
+\begin{figure}[H]
+
+{\centering \includegraphics[width=1\linewidth]{GHI_enh_02_ID_CE_files/figure-latex/example-days-90} 
+
+}
+
+\caption{ - empty caption - }\label{fig:example-days-90}
+\end{figure}
+
+\begin{figure}[H]
+
+{\centering \includegraphics[width=1\linewidth]{GHI_enh_02_ID_CE_files/figure-latex/example-days-91} 
+
+}
+
+\caption{ - empty caption - }\label{fig:example-days-91}
+\end{figure}
+
+\begin{figure}[H]
+
+{\centering \includegraphics[width=1\linewidth]{GHI_enh_02_ID_CE_files/figure-latex/example-days-92} 
+
+}
+
+\caption{ - empty caption - }\label{fig:example-days-92}
+\end{figure}
+
+\begin{figure}[H]
+
+{\centering \includegraphics[width=1\linewidth]{GHI_enh_02_ID_CE_files/figure-latex/example-days-93} 
+
+}
+
+\caption{ - empty caption - }\label{fig:example-days-93}
+\end{figure}
+
+\begin{figure}[H]
+
+{\centering \includegraphics[width=1\linewidth]{GHI_enh_02_ID_CE_files/figure-latex/example-days-94} 
+
+}
+
+\caption{ - empty caption - }\label{fig:example-days-94}
+\end{figure}
+
+\FloatBarrier
+
+\hypertarget{days-with-random-day}{%
+\subsection{Days with random day}\label{days-with-random-day}}
+
+\begin{figure}[H]
+
+{\centering \includegraphics[width=1\linewidth]{GHI_enh_02_ID_CE_files/figure-latex/example-days-95} 
+
+}
+
+\caption{ - empty caption - }\label{fig:example-days-95}
+\end{figure}
+
+\begin{figure}[H]
+
+{\centering \includegraphics[width=1\linewidth]{GHI_enh_02_ID_CE_files/figure-latex/example-days-96} 
+
+}
+
+\caption{ - empty caption - }\label{fig:example-days-96}
+\end{figure}
+
+\begin{figure}[H]
+
+{\centering \includegraphics[width=1\linewidth]{GHI_enh_02_ID_CE_files/figure-latex/example-days-97} 
+
+}
+
+\caption{ - empty caption - }\label{fig:example-days-97}
+\end{figure}
+
+\begin{figure}[H]
+
+{\centering \includegraphics[width=1\linewidth]{GHI_enh_02_ID_CE_files/figure-latex/example-days-98} 
+
+}
+
+\caption{ - empty caption - }\label{fig:example-days-98}
+\end{figure}
+
+\begin{figure}[H]
+
+{\centering \includegraphics[width=1\linewidth]{GHI_enh_02_ID_CE_files/figure-latex/example-days-99} 
+
+}
+
+\caption{ - empty caption - }\label{fig:example-days-99}
+\end{figure}
+
+\begin{figure}[H]
+
+{\centering \includegraphics[width=1\linewidth]{GHI_enh_02_ID_CE_files/figure-latex/example-days-100} 
+
+}
+
+\caption{ - empty caption - }\label{fig:example-days-100}
+\end{figure}
+
+\begin{figure}[H]
+
+{\centering \includegraphics[width=1\linewidth]{GHI_enh_02_ID_CE_files/figure-latex/example-days-101} 
+
+}
+
+\caption{ - empty caption - }\label{fig:example-days-101}
+\end{figure}
+
+\begin{figure}[H]
+
+{\centering \includegraphics[width=1\linewidth]{GHI_enh_02_ID_CE_files/figure-latex/example-days-102} 
+
+}
+
+\caption{ - empty caption - }\label{fig:example-days-102}
+\end{figure}
+
+\begin{figure}[H]
+
+{\centering \includegraphics[width=1\linewidth]{GHI_enh_02_ID_CE_files/figure-latex/example-days-103} 
+
+}
+
+\caption{ - empty caption - }\label{fig:example-days-103}
+\end{figure}
+
+\begin{figure}[H]
+
+{\centering \includegraphics[width=1\linewidth]{GHI_enh_02_ID_CE_files/figure-latex/example-days-104} 
+
+}
+
+\caption{ - empty caption - }\label{fig:example-days-104}
+\end{figure}
+
+\begin{figure}[H]
+
+{\centering \includegraphics[width=1\linewidth]{GHI_enh_02_ID_CE_files/figure-latex/example-days-105} 
+
+}
+
+\caption{ - empty caption - }\label{fig:example-days-105}
+\end{figure}
+
+\begin{figure}[H]
+
+{\centering \includegraphics[width=1\linewidth]{GHI_enh_02_ID_CE_files/figure-latex/example-days-106} 
+
+}
+
+\caption{ - empty caption - }\label{fig:example-days-106}
+\end{figure}
+
+\begin{figure}[H]
+
+{\centering \includegraphics[width=1\linewidth]{GHI_enh_02_ID_CE_files/figure-latex/example-days-107} 
+
+}
+
+\caption{ - empty caption - }\label{fig:example-days-107}
+\end{figure}
+
+\begin{figure}[H]
+
+{\centering \includegraphics[width=1\linewidth]{GHI_enh_02_ID_CE_files/figure-latex/example-days-108} 
+
+}
+
+\caption{ - empty caption - }\label{fig:example-days-108}
+\end{figure}
+
+\begin{figure}[H]
+
+{\centering \includegraphics[width=1\linewidth]{GHI_enh_02_ID_CE_files/figure-latex/example-days-109} 
+
+}
+
+\caption{ - empty caption - }\label{fig:example-days-109}
+\end{figure}
+
+\begin{figure}[H]
+
+{\centering \includegraphics[width=1\linewidth]{GHI_enh_02_ID_CE_files/figure-latex/example-days-110} 
+
+}
+
+\caption{ - empty caption - }\label{fig:example-days-110}
+\end{figure}
+
+\begin{figure}[H]
+
+{\centering \includegraphics[width=1\linewidth]{GHI_enh_02_ID_CE_files/figure-latex/example-days-111} 
+
+}
+
+\caption{ - empty caption - }\label{fig:example-days-111}
+\end{figure}
+
+\begin{figure}[H]
+
+{\centering \includegraphics[width=1\linewidth]{GHI_enh_02_ID_CE_files/figure-latex/example-days-112} 
+
+}
+
+\caption{ - empty caption - }\label{fig:example-days-112}
+\end{figure}
+
+\begin{figure}[H]
+
+{\centering \includegraphics[width=1\linewidth]{GHI_enh_02_ID_CE_files/figure-latex/example-days-113} 
+
+}
+
+\caption{ - empty caption - }\label{fig:example-days-113}
+\end{figure}
+
+\begin{figure}[H]
+
+{\centering \includegraphics[width=1\linewidth]{GHI_enh_02_ID_CE_files/figure-latex/example-days-114} 
+
+}
+
+\caption{ - empty caption - }\label{fig:example-days-114}
+\end{figure}
+
+\begin{figure}[H]
+
+{\centering \includegraphics[width=1\linewidth]{GHI_enh_02_ID_CE_files/figure-latex/example-days-115} 
+
+}
+
+\caption{ - empty caption - }\label{fig:example-days-115}
+\end{figure}
+
+\begin{figure}[H]
+
+{\centering \includegraphics[width=1\linewidth]{GHI_enh_02_ID_CE_files/figure-latex/example-days-116} 
+
+}
+
+\caption{ - empty caption - }\label{fig:example-days-116}
+\end{figure}
+
+\begin{figure}[H]
+
+{\centering \includegraphics[width=1\linewidth]{GHI_enh_02_ID_CE_files/figure-latex/example-days-117} 
+
+}
+
+\caption{ - empty caption - }\label{fig:example-days-117}
+\end{figure}
+
+\begin{figure}[H]
+
+{\centering \includegraphics[width=1\linewidth]{GHI_enh_02_ID_CE_files/figure-latex/example-days-118} 
+
+}
+
+\caption{ - empty caption - }\label{fig:example-days-118}
+\end{figure}
+
+\begin{figure}[H]
+
+{\centering \includegraphics[width=1\linewidth]{GHI_enh_02_ID_CE_files/figure-latex/example-days-119} 
+
+}
+
+\caption{ - empty caption - }\label{fig:example-days-119}
+\end{figure}
+
+\begin{figure}[H]
+
+{\centering \includegraphics[width=1\linewidth]{GHI_enh_02_ID_CE_files/figure-latex/example-days-120} 
+
+}
+
+\caption{ - empty caption - }\label{fig:example-days-120}
+\end{figure}
+
+\begin{figure}[H]
+
+{\centering \includegraphics[width=1\linewidth]{GHI_enh_02_ID_CE_files/figure-latex/example-days-121} 
+
+}
+
+\caption{ - empty caption - }\label{fig:example-days-121}
+\end{figure}
+
+\begin{figure}[H]
+
+{\centering \includegraphics[width=1\linewidth]{GHI_enh_02_ID_CE_files/figure-latex/example-days-122} 
+
+}
+
+\caption{ - empty caption - }\label{fig:example-days-122}
+\end{figure}
+
+\begin{figure}[H]
+
+{\centering \includegraphics[width=1\linewidth]{GHI_enh_02_ID_CE_files/figure-latex/example-days-123} 
+
+}
+
+\caption{ - empty caption - }\label{fig:example-days-123}
+\end{figure}
+
+\begin{figure}[H]
+
+{\centering \includegraphics[width=1\linewidth]{GHI_enh_02_ID_CE_files/figure-latex/example-days-124} 
+
+}
+
+\caption{ - empty caption - }\label{fig:example-days-124}
+\end{figure}
+
+\FloatBarrier
+
+\hypertarget{days-with-manual-test-days}{%
+\subsection{Days with manual test days}\label{days-with-manual-test-days}}
+
+\begin{figure}[H]
+
+{\centering \includegraphics[width=1\linewidth]{GHI_enh_02_ID_CE_files/figure-latex/example-days-125} 
+
+}
+
+\caption{ - empty caption - }\label{fig:example-days-125}
+\end{figure}
+
+\begin{figure}[H]
+
+{\centering \includegraphics[width=1\linewidth]{GHI_enh_02_ID_CE_files/figure-latex/example-days-126} 
+
+}
+
+\caption{ - empty caption - }\label{fig:example-days-126}
+\end{figure}
+
+\begin{figure}[H]
+
+{\centering \includegraphics[width=1\linewidth]{GHI_enh_02_ID_CE_files/figure-latex/example-days-127} 
+
+}
+
+\caption{ - empty caption - }\label{fig:example-days-127}
+\end{figure}
+
+\begin{figure}[H]
+
+{\centering \includegraphics[width=1\linewidth]{GHI_enh_02_ID_CE_files/figure-latex/example-days-128} 
+
+}
+
+\caption{ - empty caption - }\label{fig:example-days-128}
+\end{figure}
+
+\newpage
+\FloatBarrier
+
+\hypertarget{plot-years-with-enhancement-cases}{%
+\section{Plot years with enhancement cases}\label{plot-years-with-enhancement-cases}}
+
+\begin{figure}[H]
+
+{\centering \includegraphics[width=1\linewidth]{GHI_enh_02_ID_CE_files/figure-latex/P-example-years-1} 
+
+}
+
+\caption{ - empty caption - }\label{fig:P-example-years-1}
+\end{figure}
+\begin{figure}[H]
+
+{\centering \includegraphics[width=1\linewidth]{GHI_enh_02_ID_CE_files/figure-latex/P-example-years-2} 
+
+}
+
+\caption{ - empty caption - }\label{fig:P-example-years-2}
+\end{figure}
+\begin{figure}[H]
+
+{\centering \includegraphics[width=1\linewidth]{GHI_enh_02_ID_CE_files/figure-latex/P-example-years-3} 
+
+}
+
+\caption{ - empty caption - }\label{fig:P-example-years-3}
+\end{figure}
+\begin{figure}[H]
+
+{\centering \includegraphics[width=1\linewidth]{GHI_enh_02_ID_CE_files/figure-latex/P-example-years-4} 
+
+}
+
+\caption{ - empty caption - }\label{fig:P-example-years-4}
+\end{figure}
+\begin{figure}[H]
+
+{\centering \includegraphics[width=1\linewidth]{GHI_enh_02_ID_CE_files/figure-latex/P-example-years-5} 
+
+}
+
+\caption{ - empty caption - }\label{fig:P-example-years-5}
+\end{figure}
+\begin{figure}[H]
+
+{\centering \includegraphics[width=1\linewidth]{GHI_enh_02_ID_CE_files/figure-latex/P-example-years-6} 
+
+}
+
+\caption{ - empty caption - }\label{fig:P-example-years-6}
+\end{figure}
+\begin{figure}[H]
+
+{\centering \includegraphics[width=1\linewidth]{GHI_enh_02_ID_CE_files/figure-latex/P-example-years-7} 
+
+}
+
+\caption{ - empty caption - }\label{fig:P-example-years-7}
+\end{figure}
+\begin{figure}[H]
+
+{\centering \includegraphics[width=1\linewidth]{GHI_enh_02_ID_CE_files/figure-latex/P-example-years-8} 
+
+}
+
+\caption{ - empty caption - }\label{fig:P-example-years-8}
+\end{figure}
+\begin{figure}[H]
+
+{\centering \includegraphics[width=1\linewidth]{GHI_enh_02_ID_CE_files/figure-latex/P-example-years-9} 
+
+}
+
+\caption{ - empty caption - }\label{fig:P-example-years-9}
+\end{figure}
+\begin{figure}[H]
+
+{\centering \includegraphics[width=1\linewidth]{GHI_enh_02_ID_CE_files/figure-latex/P-example-years-10} 
+
+}
+
+\caption{ - empty caption - }\label{fig:P-example-years-10}
+\end{figure}
+\begin{figure}[H]
+
+{\centering \includegraphics[width=1\linewidth]{GHI_enh_02_ID_CE_files/figure-latex/P-example-years-11} 
+
+}
+
+\caption{ - empty caption - }\label{fig:P-example-years-11}
+\end{figure}
+\begin{figure}[H]
+
+{\centering \includegraphics[width=1\linewidth]{GHI_enh_02_ID_CE_files/figure-latex/P-example-years-12} 
+
+}
+
+\caption{ - empty caption - }\label{fig:P-example-years-12}
+\end{figure}
+\begin{figure}[H]
+
+{\centering \includegraphics[width=1\linewidth]{GHI_enh_02_ID_CE_files/figure-latex/P-example-years-13} 
+
+}
+
+\caption{ - empty caption - }\label{fig:P-example-years-13}
+\end{figure}
+\begin{figure}[H]
+
+{\centering \includegraphics[width=1\linewidth]{GHI_enh_02_ID_CE_files/figure-latex/P-example-years-14} 
+
+}
+
+\caption{ - empty caption - }\label{fig:P-example-years-14}
+\end{figure}
+\begin{figure}[H]
+
+{\centering \includegraphics[width=1\linewidth]{GHI_enh_02_ID_CE_files/figure-latex/P-example-years-15} 
+
+}
+
+\caption{ - empty caption - }\label{fig:P-example-years-15}
+\end{figure}
+\begin{figure}[H]
+
+{\centering \includegraphics[width=1\linewidth]{GHI_enh_02_ID_CE_files/figure-latex/P-example-years-16} 
+
+}
+
+\caption{ - empty caption - }\label{fig:P-example-years-16}
+\end{figure}
+\begin{figure}[H]
+
+{\centering \includegraphics[width=1\linewidth]{GHI_enh_02_ID_CE_files/figure-latex/P-example-years-17} 
+
+}
+
+\caption{ - empty caption - }\label{fig:P-example-years-17}
+\end{figure}
+\begin{figure}[H]
+
+{\centering \includegraphics[width=1\linewidth]{GHI_enh_02_ID_CE_files/figure-latex/P-example-years-18} 
+
+}
+
+\caption{ - empty caption - }\label{fig:P-example-years-18}
+\end{figure}
+\begin{figure}[H]
+
+{\centering \includegraphics[width=1\linewidth]{GHI_enh_02_ID_CE_files/figure-latex/P-example-years-19} 
+
+}
+
+\caption{ - empty caption - }\label{fig:P-example-years-19}
+\end{figure}
+\begin{figure}[H]
+
+{\centering \includegraphics[width=1\linewidth]{GHI_enh_02_ID_CE_files/figure-latex/P-example-years-20} 
+
+}
+
+\caption{ - empty caption - }\label{fig:P-example-years-20}
+\end{figure}
+\begin{figure}[H]
+
+{\centering \includegraphics[width=1\linewidth]{GHI_enh_02_ID_CE_files/figure-latex/P-example-years-21} 
+
+}
+
+\caption{ - empty caption - }\label{fig:P-example-years-21}
+\end{figure}
+\begin{figure}[H]
+
+{\centering \includegraphics[width=1\linewidth]{GHI_enh_02_ID_CE_files/figure-latex/P-example-years-22} 
+
+}
+
+\caption{ - empty caption - }\label{fig:P-example-years-22}
+\end{figure}
+\begin{figure}[H]
+
+{\centering \includegraphics[width=1\linewidth]{GHI_enh_02_ID_CE_files/figure-latex/P-example-years-23} 
+
+}
+
+\caption{ - empty caption - }\label{fig:P-example-years-23}
+\end{figure}
+\begin{figure}[H]
+
+{\centering \includegraphics[width=1\linewidth]{GHI_enh_02_ID_CE_files/figure-latex/P-example-years-24} 
+
+}
+
+\caption{ - empty caption - }\label{fig:P-example-years-24}
+\end{figure}
+\begin{figure}[H]
+
+{\centering \includegraphics[width=1\linewidth]{GHI_enh_02_ID_CE_files/figure-latex/P-example-years-25} 
+
+}
+
+\caption{ - empty caption - }\label{fig:P-example-years-25}
+\end{figure}
+\begin{figure}[H]
+
+{\centering \includegraphics[width=1\linewidth]{GHI_enh_02_ID_CE_files/figure-latex/P-example-years-26} 
+
+}
+
+\caption{ - empty caption - }\label{fig:P-example-years-26}
+\end{figure}
+\begin{figure}[H]
+
+{\centering \includegraphics[width=1\linewidth]{GHI_enh_02_ID_CE_files/figure-latex/P-example-years-27} 
+
+}
+
+\caption{ - empty caption - }\label{fig:P-example-years-27}
+\end{figure}
+\begin{figure}[H]
+
+{\centering \includegraphics[width=1\linewidth]{GHI_enh_02_ID_CE_files/figure-latex/P-example-years-28} 
+
+}
+
+\caption{ - empty caption - }\label{fig:P-example-years-28}
+\end{figure}
+\begin{figure}[H]
+
+{\centering \includegraphics[width=1\linewidth]{GHI_enh_02_ID_CE_files/figure-latex/P-example-years-29} 
+
+}
+
+\caption{ - empty caption - }\label{fig:P-example-years-29}
+\end{figure}
+\begin{figure}[H]
+
+{\centering \includegraphics[width=1\linewidth]{GHI_enh_02_ID_CE_files/figure-latex/P-example-years-30} 
+
+}
+
+\caption{ - empty caption - }\label{fig:P-example-years-30}
+\end{figure}
+
+\textbf{END}
+
+\begin{verbatim}
+2024-09-10 18:21:31.3 athan@sagan GHI_enh_02_ID_CE.R 16.543297 mins
+\end{verbatim}
+
+\end{document}
