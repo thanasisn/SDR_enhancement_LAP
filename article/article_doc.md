@@ -18,7 +18,7 @@ abstract: In this study, we investigate the characteristics of global
   $204\,\text{W}/\text{m}^{2}$, with the $75\,\%$ of the cases below
   $40\,\text{W}/\text{m}^{2}$. Most of these extreme events occur in
   spring -- early summer, with a secondary peak in autumn.
-date: 2024-09-09
+date: 2024-09-10
 title: Analysis of cloud enhancement events in a 30-year record of
   global solar irradiance at Thessaloniki, Greece
 ---
@@ -144,7 +144,7 @@ one-minute measurements have been used for the detection of CE events.
 
 ![Figure 2.1: Time-series of daily mean GHI measured at Thessaloniki for
 the period 1994 -- 2023.](media/rId21.png){width="5.833333333333333in"
-height="3.5861603237095365in"}
+height="3.593332239720035in"}
 
 Figure 2.1: Time-series of daily mean GHI measured at Thessaloniki for
 the period 1994 -- 2023.
@@ -256,8 +256,8 @@ to aerosols:
 $$\Delta\left( \text{GHI} \right)\lbrack\%\rbrack = - 12170 + 12.05 \cdot x + - 0.002981 \cdot x^{2}$$
 
 where $y$ is the date as a decimal fraction of the year. The resulting
-change in $\text{GHI}_{\text{ref}}$ ranges between $- 1.88$ in 1994, a
-peak of $0.23\,\%$ in mid-2020 and $- 0.19\,\%$ in the end of 2023.
+change in $\text{GHI}_{\text{ref}}$ ranges between $- 1.88$ in 1994 and
+$- 0.19\,\%$ in the end of 2023, peaking at $0.23\,\%$ in the mid-2020.
 Finally, we applied these long-term changes of Equation to the
 $\text{GHI}_{\text{ref}}$, to create a more realistic representation of
 the cloud-free irradiance for the entire period of study. For the period
@@ -295,7 +295,7 @@ the modeled and the measured GHI with a spread that arises mainly from
 the short-term variability of AOD and WC. The linear regression reveals
 a positive bias of $18.4\,\text{W}/\text{m}^{2}$ and a slope very close
 to unity. To achieve a robust and clear distinction of the CE cases, we
-applied on the $\text{GHI}_{\text{ref}}$ an additional offset of
+applied to the $\text{GHI}_{\text{ref}}$ an additional offset of
 $25\,\text{W}/\text{m}^{2}$.
 
 ![Figure 2.2: Scatter plot of the measured GHI and the
@@ -303,7 +303,7 @@ $25\,\text{W}/\text{m}^{2}$.
 more than 80\\,\\%. The linear regression on the data is also shown on
 the figure with the blue
 line.](media/rId30.png){width="5.833333333333333in"
-height="3.6399048556430444in"}
+height="3.638377077865267in"}
 
 Figure 2.2: Scatter plot of the measured GHI and the
 $\text{GHI}_{\text{ref}}$, for cloud-free days with data availability of
@@ -399,7 +399,7 @@ over-irradiance for CE and ECE events is color coded, while the
 remaining data points are shown in black. The reference green line goes
 through the origin with a slope of
 unity.](media/rId38.png){width="5.833333333333333in"
-height="3.6399048556430444in"}
+height="3.638377077865267in"}
 
 Figure 2.4: Example scatter plot of the measured GHI and the reference
 cloud-free irradiance in Thessaloniki for the year 2005. The
@@ -509,7 +509,7 @@ and the upper 75\\,\\% percentiles, with the thick horizontal line
 representing the median. The vertical lines (whiskers) extend between
 the maximum and minimum monthly
 values.](media/rId45.png){width="5.833333333333333in"
-height="3.480990813648294in"}
+height="3.4594400699912513in"}
 
 Figure 3.1: Seasonal variability of the relative occurrence of CE events
 in Thessaloniki for the period 1994 -- 2023, in the form of a box and
@@ -557,7 +557,7 @@ ${52.1}^{\circ}$ and ${77.9}^{\circ}$. Figure shows the frequency
 distribution of the CE events according to their duration. We conclude
 that although some groups of events last for more than an hour, about
 $79\,\%$ have a duration of equal or less than 5 minutes, likely due to
-the movements of clouds causing frequent blocking of the direct
+the movements of clouds causing frequent blockings of the direct
 irradiance, which reduce the duration of the CE events.
 
 ![Figure 3.3: Relative frequency distribution of CE groups of consequent
@@ -589,7 +589,7 @@ a far higher sampling rate ($100\,\text{Hz}$) than ours.
 duration for Thessaloniki in the period 1994 -- 2023. The logarithmic
 color scale denotes the frequency of the respective
 groups.](media/rId58.png){width="5.833333333333333in"
-height="3.687330489938758in"}
+height="3.777321741032371in"}
 
 Figure 3.4: Relation of excess irradiation of CE groups with their
 duration for Thessaloniki in the period 1994 -- 2023. The logarithmic
@@ -634,7 +634,7 @@ and the upper 75\\,\\% percentiles, with the thick horizontal line
 representing the median. The vertical lines (whiskers) extend between
 the maximum and minimum monthly
 values.](media/rId63.png){width="5.833333333333333in"
-height="3.564154636920385in"}
+height="3.5787314085739284in"}
 
 The distribution of the ECE events (Figure) shows that in rare cases the
 measured GHI exceeds the TOA TSI at the same SZA even by more than
@@ -649,7 +649,7 @@ reported are higher than those for Thessaloniki.
 Thessaloniki for the period 1994 -- 2023, as a function of the extra
 irradiance over TSI at TOA for the same
 SZA.](media/rId66.png){width="5.833333333333333in"
-height="3.647317366579178in"}
+height="3.638377077865267in"}
 
 Figure 3.6: Relative frequency distribution of ECE events, in
 Thessaloniki for the period 1994 -- 2023, as a function of the extra

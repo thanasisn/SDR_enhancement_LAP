@@ -67,22 +67,23 @@ if (!interactive()) {
 
 #+ echo=F, include=T
 suppressPackageStartupMessages({
-  library(data.table    , quietly = TRUE, warn.conflicts = FALSE)
-  library(pander        , quietly = TRUE, warn.conflicts = FALSE)
-  library(lubridate     , quietly = TRUE, warn.conflicts = FALSE)
-  library(ggpmisc       , quietly = TRUE, warn.conflicts = FALSE)
+  library(Matrix)
   library(ggplot2       , quietly = TRUE, warn.conflicts = FALSE)
-  library(lmtest        , quietly = TRUE, warn.conflicts = FALSE)
-  library(viridis       , quietly = TRUE, warn.conflicts = FALSE)
-  library(ggpointdensity, quietly = TRUE, warn.conflicts = FALSE)
-  library(patchwork     , quietly = TRUE, warn.conflicts = FALSE)
-  library(ggh4x         , quietly = TRUE, warn.conflicts = FALSE)
-  library(grid          , quietly = TRUE, warn.conflicts = FALSE)
-  library(latex2exp     , quietly = TRUE, warn.conflicts = FALSE)
+  # library(ggpmisc       , quietly = TRUE, warn.conflicts = FALSE)
   library(cowplot       , quietly = TRUE, warn.conflicts = FALSE)
-  library(tidyverse     , quietly = TRUE, warn.conflicts = FALSE)
-  library(gridExtra     , quietly = TRUE, warn.conflicts = FALSE)
+  library(data.table    , quietly = TRUE, warn.conflicts = FALSE)
+  library(ggh4x         , quietly = TRUE, warn.conflicts = FALSE)
+  library(ggpointdensity, quietly = TRUE, warn.conflicts = FALSE)
+  library(ggpubr        , quietly = TRUE, warn.conflicts = FALSE)
   library(grid          , quietly = TRUE, warn.conflicts = FALSE)
+  library(gridExtra     , quietly = TRUE, warn.conflicts = FALSE)
+  library(latex2exp     , quietly = TRUE, warn.conflicts = FALSE)
+  library(lmtest        , quietly = TRUE, warn.conflicts = FALSE)
+  library(lubridate     , quietly = TRUE, warn.conflicts = FALSE)
+  library(pander        , quietly = TRUE, warn.conflicts = FALSE)
+  library(patchwork     , quietly = TRUE, warn.conflicts = FALSE)
+  library(tidyverse     , quietly = TRUE, warn.conflicts = FALSE)
+  library(viridis       , quietly = TRUE, warn.conflicts = FALSE)
   # library(gridtext)
   # library(ggpubr        , quietly = TRUE, warn.conflicts = FALSE)
 })
@@ -580,7 +581,6 @@ pvar    <- "wattGLB"
 
 
 
-
 # {
 #   g1 <- ggplotGrob(pp[[1]])
 #   g2 <- ggplotGrob(pp[[2]])
@@ -802,8 +802,6 @@ plot_grid(pa, pb, labels = c("(a)", "(b)"), greedy = TRUE)
 
 
 
-library(ggpubr)
-
 
 # Remove axis titles from all plots
 p      <- list(pa, pb) |> map(~.x + labs(x=NULL, y=NULL, caption = NULL))
@@ -826,11 +824,11 @@ pb1 <- annotate_figure(pb1, fig.lab = "(b)")
 p1 <- list(pa1, pb1)
 
 ## this is prettier
-grid.arrange(grobs = lapply(p1, "+", margin), ncol = 2, nrow = 1,
+mp <- grid.arrange(grobs = lapply(p1, "+", margin), ncol = 2, nrow = 1,
              left = yleft, bottom = bottom)
+mp
 
-
-
+mp + theme(text = element_text(size = 16))
 
 
 ## _ Use point density  --------------------------
@@ -933,7 +931,7 @@ bins      <- 60
 ggplot(data    = ST_G0,
        mapping = aes(x = GLB_ench.N, y = GLB_diff.sum/GLB_ench.N)) +
   xlab("Duration of enhancement group [min]") +
-  ylab(bquote("Excess irradiation of CE groups" ~ group("[", kJ/m^2,"]"))) +
+  ylab(bquote("CE groups excess irradiation" ~ group("[", kJ/m^2,"]"))) +
   geom_bin_2d(bins = bins) +
   scale_fill_continuous(type = "viridis", transform = "log",
                         breaks = my_breaks, labels = my_breaks) +
@@ -953,7 +951,7 @@ ggplot(data    = ST_G0,
 ggplot(data    = ST_G0,
        mapping = aes(x = GLB_ench.N, y = GLB_diff.sum/GLB_ench.N)) +
   xlab("Duration of enhancement group [min]") +
-  ylab(bquote("Excess irradiation of CE groups" ~ group("[", kJ/m^2,"]"))) +
+  ylab(bquote("CE groups excess irradiation" ~ group("[", kJ/m^2,"]"))) +
   geom_bin_2d(bins = 30) +
   scale_fill_viridis()  +
   # scale_fill_continuous(type = "viridis", transform = "log",
