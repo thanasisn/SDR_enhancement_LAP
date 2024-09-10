@@ -106,7 +106,9 @@ staname("GLB_diff.p_95")
 theme_paper <- function(){
   # font <- "Georgia"   #assign font family up front
 
-  theme_bw(base_size = 14) %+replace%    #replace elements we want to change
+  theme_bw(
+    base_size = 15  # global font size was 14
+    ) %+replace%    #replace elements we want to change
     theme(
       # panel.grid.major = element_blank(),    #strip major gridlines
       # panel.grid.minor = element_blank(),    #strip minor gridlines
@@ -114,7 +116,7 @@ theme_paper <- function(){
 
 
       axis.text = element_text(face = "bold"), # bold axis labels
-      # text      = element_text(size = "bold"),
+      # text      = element_text(size = 15),     ## srarted at 14
 
       # axis.ticks = element_blank(),          #strip axis ticks
 
