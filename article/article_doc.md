@@ -2,22 +2,21 @@
 abstract: In this study, we investigate the characteristics of global
   horizontal irradiance enhancement events induced by clouds over
   Thessaloniki for the period 1994 -- 2023 using data recorded every one
-  minute. To our knowledge, there isn't a similar study with such a long
-  time series. We identified the cloud enhancement (CE) events by
-  creating an appropriate cloud-free irradiance reference using a
-  radiative transfer model and aerosol optical depth data from a
-  collocated Cimel sun photometer and a Brewer spectrophotometer. We
-  found a trend in CE events of
-  $+ 112 \pm 35\,\text{cases}/\text{year}$, and a trend in the
+  minute. We identified the cloud enhancement (CE) events by creating an
+  appropriate cloud-free irradiance reference using a radiative transfer
+  model and aerosol optical depth data from a collocated Cimel sun
+  photometer and a Brewer spectrophotometer. We found a trend in CE
+  events of $+ 112 \pm 35\,\text{cases}/\text{year}$, and a trend in the
   corresponding irradiation of $+ 329.9 \pm 112\,\text{kJ}/\text{year}$.
-  The peak of the CE events was observed during May and June. CE events
-  with duration longer than 10min are very rare ($< 8\,\%$), with
-  exceptions lasting over an hour and up to 140 minutes. Finally, we
-  have detected enhancements above the total solar irradiance at the top
-  of the atmosphere for the same solar zenith angle of up to
-  $204\,\text{W}/\text{m}^{2}$, with the $75\,\%$ of the cases below
-  $40\,\text{W}/\text{m}^{2}$. Most of these extreme events occur in
-  spring -- early summer, with a secondary peak in autumn.
+  To our knowledge, such long-term changes in CE events have not been
+  presented in the past. The peak of the CE events was observed during
+  May and June. CE events with duration longer than 10min are very rare
+  ($< 8\,\%$), with exceptions lasting over an hour and up to 140
+  minutes. Finally, we have detected enhancements above the total solar
+  irradiance at the top of the atmosphere for the same solar zenith
+  angle of up to $204\,\text{W}/\text{m}^{2}$, with the $75\,\%$ of the
+  cases below $40\,\text{W}/\text{m}^{2}$. Most of these extreme events
+  occur in spring -- early summer, with a secondary peak in autumn.
 date: 2024-09-10
 title: Analysis of cloud enhancement events in a 30-year record of
   global solar irradiance at Thessaloniki, Greece
@@ -539,7 +538,7 @@ may affect the characteristics and magnitude of the CE events.
 Thessaloniki for the period 1994 -- 2023 as a function of OI. The
 histogram was split in two plots with different y-axis scales for better
 readability.](media/rId49.png){width="5.833333333333333in"
-height="3.702594050743657in"}
+height="3.7566655730533682in"}
 
 Figure 3.2: Relative frequency distribution of CE events in Thessaloniki
 for the period 1994 -- 2023 as a function of OI. The histogram was split
@@ -565,7 +564,7 @@ CE events according to their duration for Thessaloniki in the period
 1994 -- 2023. The histogram was split in two plots with different y-axis
 scales for better
 readability.](media/rId54.png){width="5.833333333333333in"
-height="3.7375240594925634in"}
+height="3.7566655730533682in"}
 
 Figure 3.3: Relative frequency distribution of CE groups of consequent
 CE events according to their duration for Thessaloniki in the period
@@ -589,7 +588,7 @@ a far higher sampling rate ($100\,\text{Hz}$) than ours.
 duration for Thessaloniki in the period 1994 -- 2023. The logarithmic
 color scale denotes the frequency of the respective
 groups.](media/rId58.png){width="5.833333333333333in"
-height="3.777321741032371in"}
+height="3.769597550306212in"}
 
 Figure 3.4: Relation of excess irradiation of CE groups with their
 duration for Thessaloniki in the period 1994 -- 2023. The logarithmic
@@ -634,7 +633,7 @@ and the upper 75\\,\\% percentiles, with the thick horizontal line
 representing the median. The vertical lines (whiskers) extend between
 the maximum and minimum monthly
 values.](media/rId63.png){width="5.833333333333333in"
-height="3.5787314085739284in"}
+height="3.4594400699912513in"}
 
 The distribution of the ECE events (Figure) shows that in rare cases the
 measured GHI exceeds the TOA TSI at the same SZA even by more than

@@ -993,7 +993,7 @@ pp1 <- ggplot(data = temp, aes(x = Date)) +
              aes(y =  wattGLB, colour = "ECE events"),        shape = 1, size = 1.6          ) +
   ## legend
   scale_colour_manual("",
-                      guide = guide_legend(ncol = 2),
+                      guide = guide_legend(ncol = 1),
                       breaks = c("GHI",
                                  "Cloud-free",
                                  "CE Threshold",
@@ -1018,8 +1018,8 @@ pp1 <- ggplot(data = temp, aes(x = Date)) +
     legend.justification  = c("right", "bottom"),
     # legend.box.just       = "right",
     legend.background     = element_blank(),
-    legend.spacing.y = unit(0, 'cm'),
-    legend.spacing.x = unit(.005, 'cm'),
+    # legend.spacing.y = unit(0, 'cm'),
+    # legend.spacing.x = unit(.005, 'cm'),
     legend.box.background = element_rect(color = NA, fill = NA),
     legend.key            = element_blank(),
     legend.margin         = margin(1, 1, 1, 1) ) +
@@ -1032,9 +1032,19 @@ pp1 <- ggplot(data = temp, aes(x = Date)) +
 pp1
 
 
+pp1 + theme(legend.key.size = unit(.9, "lines"))
+
+pp1 + theme(legend.title = element_text(size = 10),
+            legend.text  = element_text(size = 10),
+            legend.key.size = unit(.9, "lines"))
+
+
+pp2 <- pp1 + theme(legend.position = "bottom",
+                   legend.key.size = unit(.5, "lines"))
+
 
 merg <- plot_grid(
-  pp1, bt,
+  pp2, bt,
   nrow = 2,
   rel_heights = c(3,1)
 )
@@ -1043,24 +1053,39 @@ print(merg)
 
 merg + theme(aspect.ratio = 1)
 
-
-
-calc_element(
-  "axis.text.x.bottom",
-  ggplot2:::plot_theme(ggplot_build(pp1)$plot)
-)$size
-
-calc_element(
-  "text",
-  ggplot2:::plot_theme(ggplot_build(pp1)$plot)
-)$size
+merg + theme(aspect.ratio = 0.8)
 
 
 
+## seperate legend
+
+
+legend <- get_legend(pp1)
+legend <- legend + theme(guide = guide_legend(ncol = 1))
+
+
+
+bt     <- grid.arrange(A, B, C, legend, nrow = 1)
+mergln <- plot_grid(
+  pp2 + theme(legend.position="none"),
+  bt,
+  nrow = 2,
+  rel_heights = c(3,1)
+)
 
 
 
 
+
+# calc_element(
+#   "axis.text.x.bottom",
+#   ggplot2:::plot_theme(ggplot_build(pp1)$plot)
+# )$size
+#
+# calc_element(
+#   "text",
+#   ggplot2:::plot_theme(ggplot_build(pp1)$plot)
+# )$size
 
 
 #' **END**

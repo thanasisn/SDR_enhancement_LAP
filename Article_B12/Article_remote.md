@@ -11,21 +11,22 @@ title: Analysis of cloud enhancement events in a 30-year record of
 
 In this study, we investigate the characteristics of global horizontal
 irradiance enhancement events induced by clouds over Thessaloniki for
-the period 1994 -- 2023 using data recorded every one minute. To our
-knowledge, there isn't a similar study with such a long time series. We
+the period 1994 -- 2023 using data recorded every one minute. We
 identified the cloud enhancement (CE) events by creating an appropriate
 cloud-free irradiance reference using a radiative transfer model and
 aerosol optical depth data from a collocated Cimel sun photometer and a
 Brewer spectrophotometer. We found a trend in CE events of
 $+ 112 \pm 35\frac{cases}{year}$, and a trend in the corresponding
-irradiation of $+ 329.9 \pm 112\frac{kJ}{year}$. The peak of the CE
-events was observed during May and June. CE events with duration longer
-than 10min are very rare ($8\%$), with exceptions lasting over an hour
-and up to 140 minutes. Finally, we have detected enhancements above the
-total solar irradiance at the top of the atmosphere for the same solar
-zenith angle of up to $204\frac{W}{m^{2}}$, with the $75\%$ of the cases
-below $40\frac{W}{m^{2}}$. Most of these extreme events occur in spring
--- early summer, with a secondary peak in autumn.
+irradiation of $+ 329.9 \pm 112\frac{kJ}{year}$. To our knowledge, such
+long-term changes in CE events have not been presented in the past. The
+peak of the CE events was observed during May and June. CE events with
+duration longer than 10min are very rare ($8\%$), with exceptions
+lasting over an hour and up to 140 minutes. Finally, we have detected
+enhancements above the total solar irradiance at the top of the
+atmosphere for the same solar zenith angle of up to
+$204\frac{W}{m^{2}}$, with the $75\%$ of the cases below
+$40\frac{W}{m^{2}}$. Most of these extreme events occur in spring --
+early summer, with a secondary peak in autumn.
 
 # 1 Introduction
 
@@ -371,7 +372,7 @@ line represents the TOA TSI on a horizontal plane, equivalent to the
 threshold for the identification of ECE events, shown with red circles.
 The purple line is the modeled cloud-free irradiance. The dark yellow
 line is the solar constant of
-1367\\,\\text{W}/\\text{m}\^{2}.](media/image2.png){width="4.436805555555556in"
+1367\\,\\text{W}/\\text{m}\^{2}.](media/image7.png){width="4.436805555555556in"
 height="4.549305555555556in"}
 
 *Figure 2.3: Example of CE identification in Thessaloniki for
@@ -498,7 +499,7 @@ and whisker plot. The box contains the data between the lower 25\\,\\%
 and the upper 75\\,\\% percentiles, with the thick horizontal line
 representing the median. The vertical lines (whiskers) extend between
 the maximum and minimum monthly
-values.](media/image9.png){width="5.833333333333333in"
+values.](media/image6.png){width="5.833333333333333in"
 height="3.48125in"}
 
 *Figure 3.1: Seasonal variability of the relative occurrence of CE
@@ -528,7 +529,7 @@ CE events.
 ![Figure 3.2: Relative frequency distribution of CE events in
 Thessaloniki for the period 1994 -- 2023 as a function of OI. The
 histogram was split in two plots with different y-axis scales for better
-readability.](media/image4.png){width="5.833333333333333in"
+readability.](media/image10.png){width="5.833333333333333in"
 height="3.702777777777778in"}
 
 *Figure 3.2: Relative frequency distribution of CE events in
@@ -555,7 +556,7 @@ irradiance, which reduce the duration of the CE events.
 CE events according to their duration for Thessaloniki in the period
 1994 -- 2023. The histogram was split in two plots with different y-axis
 scales for better
-readability.](media/image10.png){width="5.833333333333333in"
+readability.](media/image2.png){width="5.833333333333333in"
 height="3.7375in"}
 
 *Figure 3.3: Relative frequency distribution of CE groups of consequent
@@ -578,7 +579,7 @@ Similar results of this relation have been reported by Zhang et al.
 ![Figure 3.4: Relation of excess irradiation of CE groups with their
 duration for Thessaloniki in the period 1994 -- 2023. The logarithmic
 color scale denotes the frequency of the respective
-groups.](media/image7.png){width="5.833333333333333in"
+groups.](media/image9.png){width="5.833333333333333in"
 height="3.6875in"}
 
 *Figure 3.4: Relation of excess irradiation of CE groups with their
@@ -623,7 +624,7 @@ and whisker plot. The box contains the data between the lower 25\\,\\%
 and the upper 75\\,\\% percentiles, with the thick horizontal line
 representing the median. The vertical lines (whiskers) extend between
 the maximum and minimum monthly
-values.](media/image6.png){width="5.833333333333333in"
+values.](media/image1.png){width="5.833333333333333in"
 height="3.5284722222222222in"}
 
 The distribution of the ECE events (Figure) shows that in rare cases the
@@ -638,7 +639,7 @@ than those for Thessaloniki.
 ![Figure 3.6: Relative frequency distribution of ECE events, in
 Thessaloniki for the period 1994 -- 2023, as a function of the extra
 irradiance over TSI at TOA for the same
-SZA.](media/image1.png){width="5.833333333333333in"
+SZA.](media/image4.png){width="5.833333333333333in"
 height="3.647222222222222in"}
 
 *Figure 3.6: Relative frequency distribution of ECE events, in
