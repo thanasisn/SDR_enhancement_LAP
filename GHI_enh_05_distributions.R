@@ -1031,8 +1031,15 @@ merg + theme(aspect.ratio = 1)
 
 
 
+calc_element(
+  "axis.text.x.bottom",
+  ggplot2:::plot_theme(ggplot_build(pp1)$plot)
+)$size
 
-
+calc_element(
+  "text",
+  ggplot2:::plot_theme(ggplot_build(pp1)$plot)
+)$size
 
 
 
