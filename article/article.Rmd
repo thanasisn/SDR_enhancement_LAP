@@ -867,4 +867,7 @@ analyze the sky-camera images would greatly improve our knowledge about the
 generation of these events.
 
 
+```{r  echo=FALSE, fig.cap="Example of Colar constant of $1367\\,\\text{W}/\\text{m}^{2}$. The three sky images below the figure are taken at three characteristic instances (a, b, c) denoted on the figure with vertical dashed lines.", fig.pos='H'}
+knitr::include_graphics("../images/P-example-day-12.png")
+```
 <!-- END -->

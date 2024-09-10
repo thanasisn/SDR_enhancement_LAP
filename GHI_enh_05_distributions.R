@@ -1042,6 +1042,12 @@ pp1 + theme(legend.title = element_text(size = 10),
 pp2 <- pp1 + theme(legend.position = "bottom",
                    legend.key.size = unit(.5, "lines"))
 
+pp2 <- pp1 + theme(legend.position       = c(1, .5),
+                   legend.title          = element_blank(),
+                   legend.text           = element_text(size = 14),
+                   legend.justification  = c("right", "center"),
+                   legend.key.size       = unit(.5, "lines"))
+
 
 merg <- plot_grid(
   pp2, bt,
@@ -1058,21 +1064,37 @@ merg + theme(aspect.ratio = 0.8)
 
 
 ## seperate legend
+# theme(legend.box.margin = margin(0, 0, 0, 12))
+
+legend <- get_legend(pp2)
+# legend <- legend + theme(guide = guide_legend(ncol = 1))
 
 
-legend <- get_legend(pp1)
-legend <- legend + theme(guide = guide_legend(ncol = 1))
+
+prow <- plot_grid(
+  A,
+  B,
+  C,
+  legend,
+  nrow = 1,
+  rel_widths = c(1,1,1, 1.5)
+)
+# prow
 
 
 
-bt     <- grid.arrange(A, B, C, legend, nrow = 1)
 mergln <- plot_grid(
   pp2 + theme(legend.position="none"),
-  bt,
+  prow,
   nrow = 2,
-  rel_heights = c(3,1)
+  rel_heights = c(3,1.5)
 )
+show(mergln)
 
+
+mergln + theme(aspect.ratio = 1)
+
+mergln + theme(aspect.ratio = 0.8)
 
 
 
