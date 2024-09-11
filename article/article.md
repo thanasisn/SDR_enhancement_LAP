@@ -66,7 +66,7 @@ keywords:
   - over irradiance
 
 journal:        "Atmospheric Research"
-date:           "2024-09-10"
+date:           "2024-09-11"
 linenumbers:    false
 numbersections: true
 bibliography:   bibliography.bib
@@ -662,8 +662,10 @@ irradiance by a significant amount.
             \subfloat[\label{fig:P-energy-sum}]
                 {\includegraphics[width=\linewidth]{../images/P-energy-complete-1} }
         }
-    \caption{Time series of (a) the yearly CE number of occurrences, (b) the yearly mean OI and (c) the yearly excess irradiation at Thessaloniki for the period 1994 – 2023. The black lines represent the linear trends on the yearly data.}\label{fig:P-energy}
+    \caption{Time-series of (a) the yearly CE number of occurrences, (b) the yearly mean OI and (c) the yearly excess irradiation at Thessaloniki for the period 1994 – 2023. The black lines represent the linear trends on the yearly data.}\label{fig:P-energy}
 \end{figure}
+
+
 
 
 ## Climatology of cloud enhancement events
