@@ -969,8 +969,8 @@ ggplot(data    = ST_G0,
                      minor_breaks = seq(0, 500, by = 25)) +
   scale_x_continuous(guide        = "axis_minor",
                      minor_breaks = seq(0, 500, by = 10)) +
-  labs(caption = paste("Removed", ST_G0[GLB_ench.N > lim_dur, .N],
-                       "points with duration >", lim_dur, "minutes.")) +
+  # labs(caption = paste("Removed", ST_G0[GLB_ench.N > lim_dur, .N],
+  #                      "points with duration >", lim_dur, "minutes.")) +
   xlim(-1, lim_dur)
 
 
@@ -990,8 +990,8 @@ ggplot(data    = ST_G0,
                      minor_breaks = seq(0, 500, by = 25)) +
   scale_x_continuous(guide        = "axis_minor",
                      minor_breaks = seq(0, 500, by = 10)) +
-  labs(caption = paste("Removed", ST_G0[GLB_ench.N > lim_dur, .N],
-                       "points with duration >", lim_dur, "minutes.")) +
+  # labs(caption = paste("Removed", ST_G0[GLB_ench.N > lim_dur, .N],
+  #                      "points with duration >", lim_dur, "minutes.")) +
   xlim(-1, lim_dur)
 
 
@@ -1013,8 +1013,8 @@ ggplot(data    = ST_G0,
                      minor_breaks = seq(0, 500, by = 25)) +
   scale_x_continuous(guide        = "axis_minor",
                      minor_breaks = seq(0, 500, by = 10)) +
-  labs(caption = paste("Removed", ST_G0[GLB_ench.N > lim_dur, .N],
-                       "points with duration >", lim_dur, "minutes.")) +
+  # labs(caption = paste("Removed", ST_G0[GLB_ench.N > lim_dur, .N],
+  #                      "points with duration >", lim_dur, "minutes.")) +
   xlim(-1, lim_dur)
 
 
@@ -1036,8 +1036,8 @@ ggplot(data    = ST_G0[GLB_ench.N > 1,],
                      minor_breaks = seq(0, 500, by = 25)) +
   scale_x_continuous(guide        = "axis_minor",
                      minor_breaks = seq(0, 500, by = 10)) +
-  labs(caption = paste("Removed", ST_G0[GLB_ench.N > lim_dur, .N],
-                       "points with duration >", lim_dur, "minutes.")) +
+  # labs(caption = paste("Removed", ST_G0[GLB_ench.N > lim_dur, .N],
+  #                      "points with duration >", lim_dur, "minutes.")) +
   xlim(-1, lim_dur)
 
 
@@ -2066,19 +2066,33 @@ p3 + theme(aspect.ratio = 0.35)
 
 
 #+ P-energy-complete-multi, echo=F, include=T, results="asis", fig.width=7, fig.height=10.5
-plot_grid(p2,p3,p1,
+plot_grid(p2,
+          p3,
+          p1,
           ncol = 1,
           align = "v",
           labels = c("(a)","(b)","(c)"),
-          label_x = 0.13,
-          label_y = 0.9,
-          hjust = -1, vjust = 1
+          label_x = 0.16,
+          label_y = 0.93,
+          hjust = 0, vjust = 1
           )
 
 
+P <- plot_grid(
+  p2 + xlab(element_blank()) + theme(plot.margin = margin(0, 0, 0, 0)),
+  p3 + xlab(element_blank()) + theme(plot.margin = margin(0, 0, 0, 0)),
+  p1 + xlab(element_blank()) + theme(plot.margin = margin(0, 0, 0, 0)),
+  ncol = 1,
+  align = "v",
+  labels = c("(a)","(b)","(c)"),
+  label_x = 0.16,
+  label_y = 0.93,
+  hjust = 0, vjust = 1,
+  rel_heights = c(1,1,1)
+) #+ theme(plot.margin = margin(0, 0, 0, 0))
+P
 
-
-
+ggdraw(add_sub(P, "Year", hjust = 0, vjust = 0, size = gg_text_size))
 
 
 

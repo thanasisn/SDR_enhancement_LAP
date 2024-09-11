@@ -653,6 +653,7 @@ redistributed at the specific location as additional scattered radiation.  This 
 also depicted by the ECE irradiance values, which exceed the equivalent cloud-free
 irradiance by a significant amount.
 
+<!--
 \begin{figure}% [h!]
         {\centering
             \subfloat[\label{fig:P-energy-N}]
@@ -664,8 +665,16 @@ irradiance by a significant amount.
         }
     \caption{Time-series of (a) the yearly CE number of occurrences, (b) the yearly mean OI and (c) the yearly excess irradiation at Thessaloniki for the period 1994 – 2023. The black lines represent the linear trends on the yearly data.}\label{fig:P-energy}
 \end{figure}
+-->
 
+\begin{figure}
 
+{\centering \includegraphics[width=1\linewidth]{../images/P-energy-complete-multi-3} 
+
+}
+
+\caption{Time-series of (a) the yearly CE number of occurrences, (b) the yearly mean OI and (c) the yearly excess irradiation at Thessaloniki for the period 1994 – 2023. The black lines represent the linear trends on the yearly data.}\label{fig:P-energy}
+\end{figure}
 
 
 ## Climatology of cloud enhancement events
@@ -786,7 +795,7 @@ rate ($100\,\text{Hz}$) than ours.
 
 }
 
-\caption{Relation of excess irradiation of CE groups with their duration for Thessaloniki in the period 1994 -- 2023. The logarithmic color scale denotes the frequency of the respective groups.}\label{fig:group-2d}
+\caption{Relation of excess irradiation of CE groups with their duration for Thessaloniki in the period 1994 -- 2023. The logarithmic color scale denotes the frequency of the respective groups. Note that 19 pints with duration higher than 60 min are not shown.}\label{fig:group-2d}
 \end{figure}
 
 
@@ -891,6 +900,9 @@ on cloud characteristics, especially in order to investigate possible associatio
 the observed trends with changes in climate.  Finally, automated procedures to
 analyze the sky-camera images would greatly improve our knowledge about the
 generation of these events.
+
+
+# Data availability {.unnumbered}
 
 
 
