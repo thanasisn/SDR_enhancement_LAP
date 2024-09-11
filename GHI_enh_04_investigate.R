@@ -281,7 +281,7 @@ for (DBn in dbs) {
 
     # x axis
     axis.Date(1,
-              at = seq(as.Date("1993-01-01"), max(dataset$Date), by = "year"),
+              at = seq(as.Date("1994-01-01"), max(dataset$Date), by = "year"),
               format = "%Y",
               labels = NA,
               tcl = -0.25)
@@ -360,7 +360,7 @@ dataset |>
              size  = 1) +
   geom_abline(intercept = unlist(Tint[1]), slope = unlist(Tres[1])) +
   ylab(bquote("CE" ~ .(varname(pvar)) ~ group("[", W/m^2,"]"))) +
-  xlab("Date") +
+  xlab("Year") +
   # annotation_custom(grob) +
   scale_y_continuous(guide        = "axis_minor",
                      minor_breaks = seq(0, 500, by = 25)) +
@@ -389,7 +389,7 @@ p <- ggplot(dataset, aes(x = yts,
              size  = 1) +
   geom_abline(intercept = unlist(Tint[1]), slope = unlist(Tres[1])) +
   ylab(bquote("" ~ .(varname(pvar)) ~ group("[", W/m^2,"]"))) +
-  xlab("Date") +
+  xlab("Year") +
   # annotation_custom(grob) +
   scale_y_continuous(guide        = "axis_minor",
                      minor_breaks = seq(0, 500, by = 25)) +
@@ -435,7 +435,7 @@ yleft <- textGrob(expression(paste("GHI [W/m"^"2"*"]")),
 grid.arrange(pp[[1]], pp[[2]], pp[[3]],
              vp = viewport(height = 0.96),
              left   =  yleft,
-             bottom = "Date")
+             bottom = "Year")
 
 
 ###  Plot only complete days  -------------------------
@@ -460,7 +460,7 @@ p <- ggplot(dataset, aes(x = yts,
              size  = 1) +
   geom_abline(intercept = unlist(Tint[1]), slope = unlist(Tres[1])) +
   ylab(bquote("" ~ .(varname(pvar)) ~ group("[", W/m^2,"]"))) +
-  xlab("Date") +
+  xlab("Year") +
   # annotation_custom(grob) +
   scale_y_continuous(guide        = "axis_minor",
                      minor_breaks = seq(0, 500, by = 25)) +
@@ -506,7 +506,7 @@ yleft <- textGrob(expression(paste("GHI [W/m"^"2"*"]")),
 grid.arrange(pp[[1]], pp[[2]], pp[[3]],
              vp = viewport(height = 0.96),
              left   =  yleft,
-             bottom = "Date")
+             bottom = "Year")
 
 
 
@@ -524,7 +524,7 @@ pvar    <- "wattGLB"
 #              size  = 1) +
 #   geom_abline(intercept = unlist(Tint[1]), slope = unlist(Tres[1])) +
 #   ylab(bquote("" ~ .(varname(pvar)) ~ group("[", W/m^2,"]"))) +
-#   xlab("Date") +
+#   xlab("Year") +
 #   # annotation_custom(grob) +
 #   scale_y_continuous(guide        = "axis_minor",
 #                      minor_breaks = seq(0, 500, by = 25)) +
@@ -570,7 +570,7 @@ pvar    <- "wattGLB"
 # grid.arrange(pp[[1]], pp[[2]], pp[[3]],
 #              vp = viewport(height = 0.96),
 #              left   =  yleft,
-#              bottom = "Date")
+#              bottom = "Year")
 
 
 
@@ -1532,15 +1532,15 @@ p1 <- ggplot(dataset,
              size  = 3) +
   geom_abline(intercept = lmY1$coefficients[1], slope = lmY1$coefficients[2]) +
   ylab(bquote("CE excess irradiation" ~ group("[", MJ/m^2,"]"))) +
-  xlab("Date") +
+  xlab("Year") +
   annotation_custom(grob) +
   scale_y_continuous(guide        = "axis_minor",
                      labels = function(x) x / 1000,
                      minor_breaks = seq(0, 500, by = 25)) +
   scale_x_continuous(guide        = "axis_minor",
-                     limits = c(1993, NA),
+                     limits = c(1994, NA),
                      breaks = c(
-                       1993,
+                       1994,
                        pretty(dataset[, year], n = 4),
                        max(ceiling(dataset[, year]))),
                      minor_breaks = seq(1990, 2050, by = 1) )
@@ -1553,7 +1553,6 @@ p1
 pvar2   <- "GLB_diff.N"
 dataset <- copy(ST_E_yearly)
 # partial year N is not valid
-dataset <- dataset[year > 1993]
 
 ## linear model by year step
 lmY2 <- lm(dataset[[pvar2]] ~ dataset$year)
@@ -1590,14 +1589,14 @@ p2 <- ggplot(dataset,
              size  = 3) +
   geom_abline(intercept = lmY2$coefficients[1], slope = lmY2$coefficients[2]) +
   ylab(bquote("CE" ~ .(varname(pvar2)) ~ .(staname(pvar2)))) +
-  xlab("Date") +
+  xlab("Year") +
   annotation_custom(grob) +
   scale_y_continuous(guide        = "axis_minor",
                      minor_breaks = seq(0, 500, by = 25)) +
   scale_x_continuous(guide        = "axis_minor",
-                     limits = c(1993, NA),
+                     limits = c(1994, NA),
                      breaks = c(
-                       1993,
+                       1994,
                        pretty(dataset[,year], n = 4),
                        max(ceiling(dataset[,year]))),
                      minor_breaks = seq(1990, 2050, by = 1) )
@@ -1608,7 +1607,6 @@ p2
 
 pvar3   <- "GLB_diff.mean"
 dataset <- copy(ST_E_yearly)
-dataset <- dataset[year > 1993]
 
 ## linear model by year step
 lmY3 <- lm(dataset[[pvar3]] ~ dataset$year)
@@ -1646,14 +1644,14 @@ p3 <- ggplot(dataset,
   geom_abline(intercept = lmY3$coefficients[1], slope = lmY3$coefficients[2]) +
   # ylab(bquote(.(stringr::str_to_title(staname(pvar3))) ~ "CE" ~ .(varname(pvar3)) ~ group("[", W/m^2,"]"))) +
   ylab(bquote("Mean CE" ~ .(varname(pvar3)) ~ group("[", W/m^2,"]"))) +
-  xlab("Date") +
+  xlab("Year") +
   annotation_custom(grob) +
   scale_y_continuous(guide        = "axis_minor",
                      minor_breaks = seq(0, 500, by = 25)) +
   scale_x_continuous(guide        = "axis_minor",
-                     limits = c(1993, NA),
+                     limits = c(1994, NA),
                      breaks = c(
-                       1993,
+                       1994,
                        pretty(dataset[,year], n = 4),
                        max(ceiling(dataset[,year]))),
                      minor_breaks = seq(1990, 2050, by = 1) )
@@ -1666,7 +1664,6 @@ p3
 
 pvar4   <- "GLB_diff.median"
 dataset <- copy(ST_E_yearly)
-dataset <- dataset[year > 1993]
 
 ## linear model by year step
 lmY4 <- lm(dataset[[pvar4]] ~ dataset$year)
@@ -1705,18 +1702,22 @@ p4 <- ggplot(dataset,
              size  = 3) +
   geom_abline(intercept = lmY4$coefficients[1], slope = lmY4$coefficients[2]) +
   ylab(bquote("CE" ~ .(varname(pvar4)) ~ .(staname(pvar4)) ~ group("[", W/m^2,"]"))) +
-  xlab("Date") +
+  xlab("Year") +
   annotation_custom(grob) +
   scale_y_continuous(guide        = "axis_minor",
                      minor_breaks = seq(0, 500, by = 25)) +
   scale_x_continuous(guide        = "axis_minor",
-                     limits = c(1993, NA),
+                     limits = c(1994, NA),
                      breaks = c(
-                       1993,
+                       1994,
                        pretty(dataset[,year], n = 4),
                        max(ceiling(dataset[,year]))),
                      minor_breaks = seq(1990, 2050, by = 1) )
 p4
+
+
+
+
 
 
 
@@ -1748,7 +1749,6 @@ ST_MW_yearly <- ST_monthly[, .(
 pvar1   <- "GLB_diff.sum"
 dataset <- copy(ST_MW_yearly)
 # partial year sum is not valid
-dataset <- dataset[year > 1993]
 
 ## linear model by year step
 lmY1 <- lm(dataset[[pvar1]] ~ dataset$year)
@@ -1785,15 +1785,15 @@ p1 <- ggplot(dataset,
              size  = 3) +
   geom_abline(intercept = lmY1$coefficients[1], slope = lmY1$coefficients[2]) +
   ylab(bquote("CE" ~ .(varname(pvar1)) ~ .(staname(pvar1)) ~ group("[", MJ/m^2,"]"))) +
-  xlab("Date") +
+  xlab("Year") +
   annotation_custom(grob) +
   scale_y_continuous(guide        = "axis_minor",
                      labels = function(x) x / 1000,
                      minor_breaks = seq(0, 500, by = 25)) +
   scale_x_continuous(guide        = "axis_minor",
-                     limits = c(1993, NA),
+                     limits = c(1994, NA),
                      breaks = c(
-                       1993,
+                       1994,
                        pretty(dataset[, year], n = 4),
                        max(ceiling(dataset[, year]))),
                      minor_breaks = seq(1990, 2050, by = 1) )
@@ -1806,7 +1806,7 @@ p1
 pvar2   <- "GLB_diff.N"
 dataset <- copy(ST_MW_yearly)
 # partial year N is not valid
-dataset <- dataset[year > 1993]
+dataset <- dataset[year > 1994]
 
 ## linear model by year step
 lmY2 <- lm(dataset[[pvar2]] ~ dataset$year)
@@ -1843,14 +1843,14 @@ p2 <- ggplot(dataset,
              size  = 3) +
   geom_abline(intercept = lmY2$coefficients[1], slope = lmY2$coefficients[2]) +
   ylab(bquote("CE" ~ .(varname(pvar2)) ~ .(staname(pvar2)))) +
-  xlab("Date") +
+  xlab("Year") +
   annotation_custom(grob) +
   scale_y_continuous(guide        = "axis_minor",
                      minor_breaks = seq(0, 500, by = 25)) +
   scale_x_continuous(guide        = "axis_minor",
-                     limits = c(1993, NA),
+                     limits = c(1994, NA),
                      breaks = c(
-                       1993,
+                       1994,
                        pretty(dataset[,year], n = 4),
                        max(ceiling(dataset[,year]))),
                      minor_breaks = seq(1990, 2050, by = 1) )
@@ -1931,15 +1931,15 @@ p1 <- ggplot(dataset,
              size  = 3) +
   geom_abline(intercept = lmY1$coefficients[1], slope = lmY1$coefficients[2]) +
   ylab(bquote("CE excess irradiation" ~ group("[", MJ/m^2,"]"))) +
-  xlab("Date") +
+  xlab("Year") +
   annotation_custom(grob) +
   scale_y_continuous(guide        = "axis_minor",
                      labels = function(x) x / 1000,
                      minor_breaks = seq(0, 50000, by = 500)) +
   scale_x_continuous(guide        = "axis_minor",
-                     limits = c(1993, NA),
+                     limits = c(1994, NA),
                      breaks = c(
-                       1993,
+                       1994,
                        pretty(dataset[, year], n = 4),
                        max(ceiling(dataset[, year]))),
                      minor_breaks = seq(1990, 2050, by = 1) )
@@ -1990,14 +1990,14 @@ p2 <- ggplot(dataset,
   geom_abline(intercept = lmY2$coefficients[1], slope = lmY2$coefficients[2]) +
   # ylab(bquote("CE" ~ .(varname(pvar2)) ~ .(staname(pvar2)))) +
   ylab("Number of CE events") +
-  xlab("Date") +
+  xlab("Year") +
   annotation_custom(grob) +
   scale_y_continuous(guide        = "axis_minor",
                      minor_breaks = seq(0, 50000, by = 200)) +
   scale_x_continuous(guide        = "axis_minor",
-                     limits = c(1993, NA),
+                     limits = c(1994, NA),
                      breaks = c(
-                       1993,
+                       1994,
                        pretty(dataset[,year], n = 4),
                        max(ceiling(dataset[,year]))),
                      minor_breaks = seq(1990, 2050, by = 1) )
@@ -2047,18 +2047,40 @@ p3 <- ggplot(dataset,
   geom_abline(intercept = lmY3$coefficients[1], slope = lmY3$coefficients[2]) +
   # ylab(bquote(.(stringr::str_to_title(staname(pvar3))) ~ "CE" ~ .(varname(pvar3)) ~ group("[", W/m^2,"]"))) +
   ylab(bquote("Mean CE" ~ .(varname(pvar3)) ~ group("[", W/m^2,"]"))) +
-  xlab("Date") +
+  xlab("Year") +
   annotation_custom(grob) +
   scale_y_continuous(guide        = "axis_minor",
                      minor_breaks = seq(0, 500, by = 1)) +
   scale_x_continuous(guide        = "axis_minor",
-                     limits = c(1993, NA),
+                     limits = c(1994, NA),
                      breaks = c(
-                       1993,
+                       1994,
                        pretty(dataset[,year], n = 4),
                        max(ceiling(dataset[,year]))),
                      minor_breaks = seq(1990, 2050, by = 1) )
 p3 + theme(aspect.ratio = 0.35)
+
+
+
+
+
+
+#+ P-energy-complete-multi, echo=F, include=T, results="asis", fig.width=7, fig.height=10.5
+plot_grid(p2,p3,p1,
+          ncol = 1,
+          align = "v",
+          labels = c("(a)","(b)","(c)"),
+          label_x = 0.13,
+          label_y = 0.9,
+          hjust = -1, vjust = 1
+          )
+
+
+
+
+
+
+
 
 
 
@@ -2107,14 +2129,14 @@ p4 <- ggplot(dataset,
              size  = 3) +
   geom_abline(intercept = lmY4$coefficients[1], slope = lmY4$coefficients[2]) +
   ylab(bquote("CE" ~ .(varname(pvar4)) ~ .(staname(pvar4)) ~ group("[", W/m^2,"]"))) +
-  xlab("Date") +
+  xlab("Year") +
   annotation_custom(grob) +
   scale_y_continuous(guide        = "axis_minor",
                      minor_breaks = seq(0, 500, by = 1)) +
   scale_x_continuous(guide        = "axis_minor",
-                     limits = c(1993, NA),
+                     limits = c(1994, NA),
                      breaks = c(
-                       1993,
+                       1994,
                        pretty(dataset[,year], n = 4),
                        max(ceiling(dataset[,year]))),
                      minor_breaks = seq(1990, 2050, by = 1) )
@@ -2139,8 +2161,6 @@ write.csv(yeartrends, "./figures/Daily_trends_byYear_Proper.csv")
 # ggdraw(aligned[[2]])
 # ggdraw(aligned[[3]])
 # ggdraw(aligned[[4]])
-#
-#
 #
 # #+ energy-multi, echo=F, include=T, out.heigth="100%"
 # plot_grid(p1, p2, p3, labels = c('A', 'B', "(C)"), ncol = 1, align = "v")
