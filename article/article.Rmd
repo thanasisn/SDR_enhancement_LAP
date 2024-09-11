@@ -668,6 +668,7 @@ redistributed at the specific location as additional scattered radiation.  This 
 also depicted by the ECE irradiance values, which exceed the equivalent cloud-free
 irradiance by a significant amount.
 
+<!--
 \begin{figure}% [h!]
         {\centering
             \subfloat[\label{fig:P-energy-N}]
@@ -677,8 +678,13 @@ irradiance by a significant amount.
             \subfloat[\label{fig:P-energy-sum}]
                 {\includegraphics[width=\linewidth]{../images/P-energy-complete-1} }
         }
-    \caption{Time series of (a) the yearly CE number of occurrences, (b) the yearly mean OI and (c) the yearly excess irradiation at Thessaloniki for the period 1994 – 2023. The black lines represent the linear trends on the yearly data.}\label{fig:P-energy}
+    \caption{Time-series of (a) the yearly CE number of occurrences, (b) the yearly mean OI and (c) the yearly excess irradiation at Thessaloniki for the period 1994 – 2023. The black lines represent the linear trends on the yearly data.}\label{fig:P-energy}
 \end{figure}
+-->
+
+```{r P-energy, echo=FALSE, fig.cap="Time-series of (a) the yearly CE number of occurrences, (b) the yearly mean OI and (c) the yearly excess irradiation at Thessaloniki for the period 1994 – 2023. The black lines represent the linear trends on the yearly data."}
+knitr::include_graphics("../images/P-energy-complete-multi-3.png")
+```
 
 
 ## Climatology of cloud enhancement events
@@ -774,7 +780,7 @@ with strong excess irradiation and long duration are very rare.  Similar results
 this relation have been reported by @Zhang2018 in a study using a far higher sampling
 rate ($100\,\text{Hz}$) than ours.
 
-```{r group-2d, echo=FALSE, fig.cap="Relation of excess irradiation of CE groups with their duration for Thessaloniki in the period 1994 -- 2023. The logarithmic color scale denotes the frequency of the respective groups."}
+```{r group-2d, echo=FALSE, fig.cap="Relation of excess irradiation of CE groups with their duration for Thessaloniki in the period 1994 -- 2023. The logarithmic color scale denotes the frequency of the respective groups. Note that 19 pints with duration higher than 60 min are not shown."}
 knitr::include_graphics("../images/P-groups-bin2d-1.png")
 ```
 
@@ -865,6 +871,9 @@ on cloud characteristics, especially in order to investigate possible associatio
 the observed trends with changes in climate.  Finally, automated procedures to
 analyze the sky-camera images would greatly improve our knowledge about the
 generation of these events.
+
+
+# Data availability {.unnumbered}
 
 
 

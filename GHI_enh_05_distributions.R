@@ -343,7 +343,7 @@ hist(DATA[get(unique(CEC)) == TRUE & year(Date) == ayear, GLB_rati],
 
 
 
-## P-relative-distribution-diff replot for paper  -------
+##  re-plot for paper  -------
 
 #+ P-relative-distribution-diff, echo=F, include=T, results="asis"
 binwidth <- 20
@@ -456,9 +456,7 @@ margin <- theme(plot.margin = unit(c(.1,.1,.1,.1), "cm"))
 
 yleft  <- textGrob("Relative frequency [%]", rot = 90,
                    gp = gpar(col = "black", fontsize = gg_text_size))
-bottom <- textGrob("Duration of enhancement group [min]",
-                   gp = gpar(col = "black", fontsize = gg_text_size))
-bottom <- textGrob("Duration of CE groups [min]",
+bottom <- textGrob(bquote("OI" ~ group("[", W/m^2,"]")),
                    gp = gpar(col = "black", fontsize = gg_text_size))
 
 
