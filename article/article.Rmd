@@ -875,17 +875,13 @@ generation of these events.
 
 # Reproducibility {.unnumbered}
 
-The GHI data are available as hourly values in the WMO World Radiation Data Center (http://wrdc.mgo.rssi.ru).
-The relevant source code can be found in github and is register to zenodo
-the preparation of GHI data
-the detection of clouds
-the processes for this manuscript
+The GHI data are available as hourly values in the WMO World Radiation Data Center[^1].The relevant source code is available in three repositories for
+(a) the preparation of GHI data [@natsis_2024_13744467]
+(b) the detection of clouds [@thanasis_n_2024_13744460] and
+(c) the processes for this manuscript [@thanasis_n_2024_13744472].
 
-Cloud identification @thanasis_n_2024_13744460
+[^1]: [http://wrdc.mgo.rssi.ru](http://wrdc.mgo.rssi.ru)
 
-GHI @natsis_2024_13744467
-
-this @thanasis_n_2024_13744472
 
 
 <!-- END -->
