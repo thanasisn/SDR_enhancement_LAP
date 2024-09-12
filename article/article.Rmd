@@ -294,7 +294,7 @@ data availability; however, all available one-minute measurements have been used
 the detection of CE events.
 
 ```{r CLB-daily, echo=FALSE, fig.cap="Time-series of daily mean GHI measured at Thessaloniki for the period 1994 -- 2023."}
-knitr::include_graphics("../images/P_daily_trend-5.png")
+knitr::include_graphics("../images/P_daily_trend-5.pdf")
 ```
 
 
@@ -460,7 +460,7 @@ application.
 
 <!--
 ```{r CS-change, echo=FALSE, fig.cap="Simulated long-term change in cloud-free irradiance relative to the climatological values due to changes in AOD in Thessaloniki for the period 1994 -- 2023."}
-knitr::include_graphics("../images/P-CS-change-1.png")
+knitr::include_graphics("../images/P-CS-change-1.pdf")
 ```
 -->
 
@@ -498,7 +498,7 @@ applied to the $\text{GHI}_\text{ref}$ an additional offset of
 $`r C4_GLB_diff_THRES`\,\text{W}/\text{m}^2$.
 
 ```{r validation-GHI, echo=FALSE, fig.cap="Scatter plot of the measured GHI and the $\\text{GHI}_\\text{ref}$, for cloud-free days with data availability of more than $80\\,\\%$. The linear regression on the data is also shown on the figure with the blue line.", fig.pos='H'}
-knitr::include_graphics("../images/P-validation-cloudfree-GHI-1.png")
+knitr::include_graphics("../images/P-validation-cloudfree-GHI-1.pdf")
 ```
 
 <!--
@@ -586,11 +586,11 @@ aerosols.
 
 
 ```{r example-day, echo=FALSE, fig.cap="Example of CE identification in Thessaloniki for 2019-07-11. The green line with blue symbols depicts the measured GHI in one-minute steps. The red line shows the modeled threshold for the detection of CE events, which are denoted with red circles. The black line represents the TOA TSI on a horizontal plane, equivalent to the threshold for the identification of ECE events, shown with magenta circles. The purple line is the modeled cloud-free irradiance. The dark yellow line is the solar constant of $1367\\,\\text{W}/\\text{m}^{2}$. The three sky images below the figure are taken at three characteristic instances (a, b, c) denoted on the figure with vertical orange dashed lines.", fig.pos='H'}
-knitr::include_graphics("../images/P-example-day-3.png")
+knitr::include_graphics("../images/P-example-day-3.pdf")
 ```
 
 ```{r example-year, echo=FALSE, fig.cap="Example scatter plot of the measured GHI and the reference cloud-free irradiance in Thessaloniki for the year 2005. The over-irradiance for CE and ECE events is color coded, while the remaining data points are shown in black. The reference green line goes through the origin with a slope of unity.", fig.pos='H'}
-knitr::include_graphics("../images/P-example-years-12.png")
+knitr::include_graphics("../images/P-example-years-12.pdf")
 ```
 
 
@@ -683,7 +683,7 @@ irradiance by a significant amount.
 -->
 
 ```{r P-energy, echo=FALSE, fig.cap="Time-series of (a) the yearly CE number of occurrences, (b) the yearly mean OI and (c) the yearly excess irradiation at Thessaloniki for the period 1994 – 2023. The black lines represent the linear trends on the yearly data."}
-knitr::include_graphics("../images/P-energy-complete-multi-3.png")
+knitr::include_graphics("../images/P-energy-complete-multi-3.pdf")
 ```
 
 
@@ -712,12 +712,12 @@ decreasing trend in cloud cover as a result of global warming [e.g.,
 @SanchezLorenzo2017].
 
 ```{r relative-month-occurrences, echo=FALSE, fig.cap="Seasonal variability of the relative occurrence of CE events in Thessaloniki for the period 1994 -- 2023, in the form of a box and whisker plot. The box contains the data between the lower $25\\,\\%$ and the upper $75\\,\\%$ percentiles, with the thick horizontal line representing the median. The vertical lines (whiskers) extend between the maximum and minimum monthly values."}
-knitr::include_graphics("../images/P-CE-climatology-normlz-1.png")
+knitr::include_graphics("../images/P-CE-climatology-normlz-1.pdf")
 ```
 
 <!--
 ```{r relative-month-occurrence, echo=FALSE, fig.cap="Seasonal variability of the number of CE events in Thessaloniki for the period 1994 -- 2023 normalized to the maximum occurring in June, in the form of a box and whisker plot. The monthly values have also been normalized to the relative abundance of valid GHI observations. The box contains the data between the lower $25\\,\\%$ and the upper $75\\,\\%$ percentiles, the thick horizontal line and the diamond symbol represent the median and the mean values, respectively. The vertical lines (whiskers) extend between the maximum and minimum monthly values."}
-knitr::include_graphics("../images/clim-CE-month-norm-MAX-median-N-MW-1.png")
+knitr::include_graphics("../images/clim-CE-month-norm-MAX-median-N-MW-1.pdf")
 ```
 -->
 
@@ -741,7 +741,7 @@ from the eastern Mediterranean, resulting in different cloud patterns that may
 affect the characteristics and magnitude of the CE events.
 
 ```{r ovir-distribution, echo=FALSE, fig.cap="Relative frequency distribution of CE events in Thessaloniki for the period 1994 -- 2023 as a function of OI. The histogram was split in two plots with different y-axis scales for better readability."}
-knitr::include_graphics("../images/P-relative-distribution-diff-2.png")
+knitr::include_graphics("../images/P-relative-distribution-diff-2.pdf")
 ```
 
 ## Duration of cloud enhancement events
@@ -764,8 +764,8 @@ equal or less than 5 minutes, likely due to the movements of clouds causing freq
 blockings of the direct irradiance, which reduce the duration of the CE events.
 
 ```{r ceg-duration-distribution, echo=FALSE, fig.cap="Relative frequency distribution of CE groups of consequent CE events according to their duration for Thessaloniki in the period 1994 -- 2023. The histogram was split in two plots with different y-axis scales for better readability."}
-# knitr::include_graphics("../images/groups-1.png")
-knitr::include_graphics("../images/groups-7.png")
+# knitr::include_graphics("../images/groups-1.pdf")
+knitr::include_graphics("../images/groups-7.pdf")
 ```
 
 The relation between the duration and the mean OI of the CE groups is shown in
@@ -781,7 +781,7 @@ this relation have been reported by @Zhang2018 in a study using a far higher sam
 rate ($100\,\text{Hz}$) than ours.
 
 ```{r group-2d, echo=FALSE, fig.cap="Relation of excess irradiation of CE groups with their duration for Thessaloniki in the period 1994 -- 2023. The logarithmic color scale denotes the frequency of the respective groups. Note that 19 pints with duration higher than 60 min are not shown."}
-knitr::include_graphics("../images/P-groups-bin2d-1.png")
+knitr::include_graphics("../images/P-groups-bin2d-1.pdf")
 ```
 
 
@@ -817,11 +817,11 @@ solar energy. However, during short, isolated periods extreme enhancements of GH
 be of concern.
 
 ```{r relative-month-occurancies-ECE, echo=FALSE, fig.cap="Seasonal variability of the relative occurrence of ECE events in Thessaloniki for the period 1994 -- 2023, in the form of a box and whisker plot. The box contains the data between the lower $25\\,\\%$ and the upper $75\\,\\%$ percentiles, with the thick horizontal line representing the median. The vertical lines (whiskers) extend between the maximum and minimum monthly values."}
-knitr::include_graphics("../images/P-ECE-climatology-normlz-1.png")
+knitr::include_graphics("../images/P-ECE-climatology-normlz-1.pdf")
 ```
 <!--
 ```{r relative-month-occurancies-ECEs, echo=FALSE, fig.cap="Seasonal variability of the number of ECE events in Thessaloniki for the period 1994 -- 2023 normalized to the maximum occurring in March, in the form of a box and whisker plot. The box contains the data between the lower $25\\,\\%$ and the upper $75\\,\\%$ percentiles. The thick horizontal line and the diamond symbol represent the median and the mean values, respectively. The vertical lines (whiskers) extend between the maximum and minimum monthly values."}
-knitr::include_graphics("../images/clim-ECE-month-norm-MAX-median-N-2.png")
+knitr::include_graphics("../images/clim-ECE-month-norm-MAX-median-N-2.pdf")
 ```
 -->
 
@@ -835,7 +835,7 @@ the results of @Vamvakas2020, the only difference being that the OI values repor
 are higher than those for Thessaloniki.
 
 ```{r P-extreme-distribution, echo=FALSE, fig.cap="Relative frequency distribution of ECE events, in Thessaloniki for the period 1994 -- 2023, as a function of the extra irradiance over TSI at TOA for the same SZA."}
-knitr::include_graphics("../images/P-extreme-distribution-2.png")
+knitr::include_graphics("../images/P-extreme-distribution-2.pdf")
 ```
 
 
