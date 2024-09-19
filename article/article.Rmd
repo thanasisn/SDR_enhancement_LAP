@@ -780,7 +780,7 @@ with strong excess irradiation and long duration are very rare.  Similar results
 this relation have been reported by @Zhang2018 in a study using a far higher sampling
 rate ($100\,\text{Hz}$) than ours.
 
-```{r group-2d, echo=FALSE, fig.cap="Relation of excess irradiation of CE groups with their duration for Thessaloniki in the period 1994 -- 2023. The logarithmic color scale denotes the frequency of the respective groups. Note that 19 pints with duration higher than 60 min are not shown."}
+```{r group-2d, echo=FALSE, fig.cap="Relation of excess irradiation of CE groups with their duration for Thessaloniki in the period 1994 -- 2023. The logarithmic color scale denotes the frequency of the respective groups. Note that 19 points of groups with duration higher than 60 min are not shown."}
 knitr::include_graphics("../images/P-groups-bin2d-1.pdf")
 ```
 
