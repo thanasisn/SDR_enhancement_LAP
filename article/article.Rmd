@@ -280,8 +280,8 @@ To further improve the quality of the irradiance data, a manual screening was
 performed, to remove inconsistent and erroneous recordings that can occur
 stochastically or systematically during the long operation of the instrument.  The
 manual screening was aided by a radiation data quality assurance procedure, adjusted
-for the site, which was based on the methods of Long and Shi\ [@Long2006;
-@Long2008a].  Thus, problematic recordings have been excluded from further
+for the site, which was based on the methods of Long and Shi\ [-@Long2006;
+-@Long2008a].  Thus, problematic recordings have been excluded from further
 processing.  Furthermore, due to the significant measurement uncertainty in GHI when
 the Sun is near the horizon, and due to some systematic obstructions by nearby
 buildings, we have excluded all measurements with solar zenith angle (SZA) greater
