@@ -66,7 +66,7 @@ keywords:
   - over irradiance
 
 journal:        "Atmospheric Research"
-date:           "2024-09-11"
+date:           "2024-10-07"
 linenumbers:    false
 numbersections: true
 bibliography:   bibliography.bib
@@ -240,8 +240,8 @@ To further improve the quality of the irradiance data, a manual screening was
 performed, to remove inconsistent and erroneous recordings that can occur
 stochastically or systematically during the long operation of the instrument.  The
 manual screening was aided by a radiation data quality assurance procedure, adjusted
-for the site, which was based on the methods of Long and Shi\ [@Long2006;
-@Long2008a].  Thus, problematic recordings have been excluded from further
+for the site, which was based on the methods of Long and Shi\ [-@Long2006;
+-@Long2008a].  Thus, problematic recordings have been excluded from further
 processing.  Furthermore, due to the significant measurement uncertainty in GHI when
 the Sun is near the horizon, and due to some systematic obstructions by nearby
 buildings, we have excluded all measurements with solar zenith angle (SZA) greater
@@ -374,10 +374,10 @@ get a rough estimate of the annually averaged change in cloud-free GHI. A
 second-degree polynomial fit was applied to the simulated yearly averaged GHI to
 derive the long-term change in GHI due to aerosols:
 \begin{equation}
-\Delta(\text{GHI}) [\%] = -12170 + 12.05 \cdot x + -0.002981 \cdot x^2 \label{eq:AODchange}
+\Delta(\text{GHI}) [\%] = -12170 + 12.05 \cdot x -0.002981 \cdot x^2 \label{eq:AODchange}
 \end{equation}
-where $y$ is the date as a decimal fraction of the year.  The resulting change in
-$\text{GHI}_\text{ref}$ ranges between $-1.88$ in 1994 and $-0.19\,\%$ in the end of
+where $x$ is the date as a decimal fraction of the year.  The resulting change in
+$\text{GHI}_\text{ref}$ ranges between $-1.88\,\%$ in 1994 and $-0.19\,\%$ in the end of
 2023, peaking at $0.23\,\%$ in the mid-2020. Finally, we applied these long-term
 changes of Equation\nobreakspace{}\ref{eq:AODchange} to the $\text{GHI}_\text{ref}$,
 to create a more realistic representation of the cloud-free irradiance for the entire
@@ -440,15 +440,15 @@ application.
 
 One of the goals of this study was to quantify the OI related to CEs. A key issue for
 achieving this goal is to define a threshold for the CE identification,
-representative of the cloud-free irradiance at the time of each GHI measurement. This
-depends on the selection of the appropriate atmospheric parameterization for the RTM
-simulations. The implementation of the long-term changes in GHI due to AOD, discussed
-in section\nobreakspace{}\ref{rtmcs}, allows capturing a large part of the natural
-variability of cloud-free GHI. However, the short-term variability of AOD cannot be
-taken adequately into account when using monthly values in the model simulations. We
-tried different approaches to strengthen the robustness of the methodology and to
-compensate for the limited accuracy of the RTM input data and the unpredictable
-natural variability of the atmosphere.
+representative of the cloud-free irradiance at the time of each GHI measurement.
+This depends on the selection of the appropriate values of the input parameters for
+the RTM simulations.  The implementation of the long-term changes in GHI due to AOD,
+discussed in section\nobreakspace{}\ref{rtmcs}, allows capturing a large part of the
+natural variability of cloud-free GHI. However, the short-term variability of AOD
+cannot be taken adequately into account when using monthly values in the model
+simulations. We tried different approaches to strengthen the robustness of the
+methodology and to compensate for the limited accuracy of the RTM input data and the
+unpredictable natural variability of the atmosphere.
 
 First, we evaluated the performance of the modeled $\text{GHI}_\text{ref}$ in
 relation to the measured GHI for different levels of atmospheric clearness, by using
@@ -795,7 +795,7 @@ rate ($100\,\text{Hz}$) than ours.
 
 }
 
-\caption{Relation of excess irradiation of CE groups with their duration for Thessaloniki in the period 1994 -- 2023. The logarithmic color scale denotes the frequency of the respective groups. Note that 19 pints with duration higher than 60 min are not shown.}\label{fig:group-2d}
+\caption{Relation of excess irradiation of CE groups with their duration for Thessaloniki in the period 1994 -- 2023. The logarithmic color scale denotes the frequency of the respective groups. Note that 19 points of groups with duration higher than 60 min are not shown.}\label{fig:group-2d}
 \end{figure}
 
 

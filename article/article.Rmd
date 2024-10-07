@@ -409,10 +409,10 @@ get a rough estimate of the annually averaged change in cloud-free GHI. A
 second-degree polynomial fit was applied to the simulated yearly averaged GHI to
 derive the long-term change in GHI due to aerosols:
 \begin{equation}
-\Delta(\text{GHI}) [\%] = -12170 + 12.05 \cdot x + -0.002981 \cdot x^2 \label{eq:AODchange}
+\Delta(\text{GHI}) [\%] = -12170 + 12.05 \cdot x -0.002981 \cdot x^2 \label{eq:AODchange}
 \end{equation}
 where $x$ is the date as a decimal fraction of the year.  The resulting change in
-$\text{GHI}_\text{ref}$ ranges between $-1.88$ in 1994 and $-0.19\,\%$ in the end of
+$\text{GHI}_\text{ref}$ ranges between $-1.88\,\%$ in 1994 and $-0.19\,\%$ in the end of
 2023, peaking at $0.23\,\%$ in the mid-2020. Finally, we applied these long-term
 changes of Equation\nobreakspace{}\ref{eq:AODchange} to the $\text{GHI}_\text{ref}$,
 to create a more realistic representation of the cloud-free irradiance for the entire
@@ -470,15 +470,15 @@ knitr::include_graphics("../images/P-CS-change-1.pdf")
 
 One of the goals of this study was to quantify the OI related to CEs. A key issue for
 achieving this goal is to define a threshold for the CE identification,
-representative of the cloud-free irradiance at the time of each GHI measurement. This
-depends on the selection of the appropriate atmospheric parameterization for the RTM
-simulations. The implementation of the long-term changes in GHI due to AOD, discussed
-in section\nobreakspace{}\ref{rtmcs}, allows capturing a large part of the natural
-variability of cloud-free GHI. However, the short-term variability of AOD cannot be
-taken adequately into account when using monthly values in the model simulations. We
-tried different approaches to strengthen the robustness of the methodology and to
-compensate for the limited accuracy of the RTM input data and the unpredictable
-natural variability of the atmosphere.
+representative of the cloud-free irradiance at the time of each GHI measurement.
+This depends on the selection of the appropriate values of the input parameters for
+the RTM simulations.  The implementation of the long-term changes in GHI due to AOD,
+discussed in section\nobreakspace{}\ref{rtmcs}, allows capturing a large part of the
+natural variability of cloud-free GHI. However, the short-term variability of AOD
+cannot be taken adequately into account when using monthly values in the model
+simulations. We tried different approaches to strengthen the robustness of the
+methodology and to compensate for the limited accuracy of the RTM input data and the
+unpredictable natural variability of the atmosphere.
 
 First, we evaluated the performance of the modeled $\text{GHI}_\text{ref}$ in
 relation to the measured GHI for different levels of atmospheric clearness, by using
