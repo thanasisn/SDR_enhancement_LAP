@@ -1517,8 +1517,8 @@ yeartrends <- rbind(yeartrends,
 grob <- grobTree(
   textGrob(
     label = TeX(
-      paste("Trend:  $", round(lmY1$coefficients[2], 1),
-            "\\pm",      round(2 * d2[2,2],          1),       ## show 2 sigma
+      paste("Trend:  $", format(round(lmY1$coefficients[2], 1), nsmall = 1),
+            "\\pm",      format(round(2 * d2[2,2],          1), nsmall = 1),       ## show 2 sigma
             "\\,kJ/m^2/year$")),
     x = 0.95,  y = 0.05, hjust = 1,
     gp = gpar(col = "black", fontsize = 13, fontface = "bold")
@@ -1916,8 +1916,8 @@ yeartrends <- rbind(yeartrends,
 grob <- grobTree(
   textGrob(
     label = TeX(
-      paste("Trend:  $", round(lmY1$coefficients[2], 1),
-            "\\pm",      round(2 * d2[2,2],          1),       ## show 2 sigma
+      paste("Trend:  $", format(round(lmY1$coefficients[2], 1), nsmall = 1),
+            "\\pm",      format(round(2 * d2[2,2],          1), nsmall = 1), ## show 2 sigma
             "\\,kJ/m^2/year$")),
     x = 0.95,  y = 0.05, hjust = 1,
     gp = gpar(col = "black", fontsize = 13, fontface = "bold")
