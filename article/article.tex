@@ -242,8 +242,9 @@ screening was performed, to remove inconsistent and erroneous recordings
 that can occur stochastically or systematically during the long
 operation of the instrument. The manual screening was aided by a
 radiation data quality assurance procedure, adjusted for the site, which
-was based on the methods of Long and Shi~\citep{Long2006, Long2008a}.
-Thus, problematic recordings have been excluded from further processing.
+was based on the methods of Long and
+Shi~\citetext{\citeyear{Long2006}; \citeyear{Long2008a}}. Thus,
+problematic recordings have been excluded from further processing.
 Furthermore, due to the significant measurement uncertainty in GHI when
 the Sun is near the horizon, and due to some systematic obstructions by
 nearby buildings, we have excluded all measurements with solar zenith
@@ -374,10 +375,10 @@ chosen as representative of all days in the year to get a rough estimate
 of the annually averaged change in cloud-free GHI. A second-degree
 polynomial fit was applied to the simulated yearly averaged GHI to
 derive the long-term change in GHI due to aerosols: \begin{equation}
-\Delta(\text{GHI}) [\%] = -12170 + 12.05 \cdot x + -0.002981 \cdot x^2 \label{eq:AODchange}
-\end{equation} where \(y\) is the date as a decimal fraction of the
+\Delta(\text{GHI}) [\%] = -12170 + 12.05 \cdot x -0.002981 \cdot x^2 \label{eq:AODchange}
+\end{equation} where \(x\) is the date as a decimal fraction of the
 year. The resulting change in \(\text{GHI}_\text{ref}\) ranges between
-\(-1.88\) in 1994 and \(-0.19\,\%\) in the end of 2023, peaking at
+\(-1.88\,\%\) in 1994 and \(-0.19\,\%\) in the end of 2023, peaking at
 \(0.23\,\%\) in the mid-2020. Finally, we applied these long-term
 changes of Equation\nobreakspace{}\ref{eq:AODchange} to the
 \(\text{GHI}_\text{ref}\), to create a more realistic representation of
@@ -393,7 +394,7 @@ One of the goals of this study was to quantify the OI related to CEs. A
 key issue for achieving this goal is to define a threshold for the CE
 identification, representative of the cloud-free irradiance at the time
 of each GHI measurement. This depends on the selection of the
-appropriate atmospheric parameterization for the RTM simulations. The
+appropriate values of the input parameters for the RTM simulations. The
 implementation of the long-term changes in GHI due to AOD, discussed in
 section\nobreakspace{}\ref{rtmcs}, allows capturing a large part of the
 natural variability of cloud-free GHI. However, the short-term
@@ -699,7 +700,7 @@ are very rare. Similar results of this relation have been reported by
 
 }
 
-\caption{Relation of excess irradiation of CE groups with their duration for Thessaloniki in the period 1994 -- 2023. The logarithmic color scale denotes the frequency of the respective groups. Note that 19 pints with duration higher than 60 min are not shown.}\label{fig:group-2d}
+\caption{Relation of excess irradiation of CE groups with their duration for Thessaloniki in the period 1994 -- 2023. The logarithmic color scale denotes the frequency of the respective groups. Note that 19 points of groups with duration higher than 60 min are not shown.}\label{fig:group-2d}
 \end{figure}
 
 \hypertarget{extreme-cloud-enhancement-events}{%
