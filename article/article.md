@@ -42,7 +42,7 @@ abstract: |
   aerosol optical depth data from a collocated Cimel sun photometer and a
   Brewer spectrophotometer. We found a trend in CE events of
   \(+112\pm 35\,\text{cases}/\text{year}\), and a trend in the
-  corresponding irradiation of \(+329.9\pm 112\,\text{kJ}/\text{year}\).
+  corresponding irradiation of \(+329.9\pm 112.0\,\text{kJ}/\text{year}\).
   To our knowledge, such long-term changes in CE events have not been presented in the past.
   The peak of the CE events was observed during May and June. CE events
   with duration longer than 10\nobreakspace{}min are very rare
@@ -122,8 +122,7 @@ Brewer spectrophotometer. We found a trend in CE events of
 $+112\pm
 35\,\text{cases}/\text{year}$,
 and a trend in the corresponding irradiation of
-$+329.9\pm
-112\,\text{kJ}/\text{year}$.
+$+329.9\pm 112.0\,\text{kJ}/\text{year}$.
 To our knowledge, such long-term changes in CE events have not been presented in the past.
 The peak of the CE events was observed during May and June. CE events with duration
 longer than 10\nobreakspace{}min are very rare
@@ -629,7 +628,7 @@ $95\,\%$ confidence level) increasing trends appear for the yearly number of CE
 events
 ($+112\pm 35\,\text{cases}/\text{year}$)
 and the excess irradiation
-($+329.9 \pm 112\,\text{kJ}/\text{year}$),
+($+329.9\pm 112.0\,\text{kJ}/\text{year}$),
 while the trend in the yearly mean OI is negligible
 ($+0.1\pm 0.2\,\text{W}/\text{m}^2/\text{year}$)
 and of no statistical significance.
@@ -876,7 +875,7 @@ ECE events in Thessaloniki for the period 1994 -- 2023.  After analyzing the CE
 cases, we found an increasing tendency of
 $+112.1\pm 34.9\,\text{cases}/\text{year}$,
 with the mean annual irradiation of the CE events increasing with a rate of
-$+329.9\pm 112\,\text{kJ}/\text{year}$.
+$+329.9\pm 112.0\,\text{kJ}/\text{year}$.
 The most active months of CE events are May and June.  We found that continuous CE
 events can last up to $140$ minutes, while the duration of $79\,\%$ of them is equal
 or bellow $5$ minutes.
