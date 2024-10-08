@@ -18,7 +18,7 @@ abstract: In this study, we investigate the characteristics of global
   $204\,\text{W}/\text{m}^{2}$, with the $75\,\%$ of the cases below
   $40\,\text{W}/\text{m}^{2}$. Most of these extreme events occur in
   spring -- early summer, with a secondary peak in autumn.
-date: 2024-10-07
+date: 2024-10-08
 title: Analysis of cloud enhancement events in a 30-year record of
   global solar irradiance at Thessaloniki, Greece
 ---

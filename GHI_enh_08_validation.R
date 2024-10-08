@@ -317,7 +317,7 @@ for (ii in 1:nrow(gather_days)) {
 #+ P-validation-cloudfree-GHI, echo=F, include=T
 
 
-fit <- lm(KEEP$Low_B.Low_W.glo ~ KEEP$wattGLB)
+fit     <- lm(KEEP$Low_B.Low_W.glo ~ KEEP$wattGLB)
 caption <- paste0(KEEP[, sum(!is.na(wattGLB))], " data points from ", length(unique(KEEP[, Day])), " clear days with >", 100 * day_fill, "% data available")
 
 ggplot(KEEP, aes(wattGLB, Low_B.Low_W.glo)) +
@@ -358,6 +358,27 @@ print(lm(KEEP[, wattGLB, Low_B.Low_W.glo]))
 # plot(KEEP[, Low_B.Low_W.glo, wattGLB], xlab = "Low_B.Low_W.glo Cloud-free")
 # title(paste("Days:", length(unique(KEEP[, Day])), "Day fill:", day_fill, "Points:", KEEP[, sum(!is.na(wattGLB))]))
 # abline(a = 0, b = 1, col = "green")
+
+
+KEEP[, diff := wattGLB - Low_B.Low_W.glo]
+KEEP[, rati := wattGLB - Low_B.Low_W.glo]
+KEEP[, yts := (year(Date) - min(year(Date))) + ( yday(Date) - 1 ) / Hmisc::yearDays(Date)]
+
+lmRa <- lm(KEEP$rati ~ KEEP$yts)
+plot(KEEP$yts, KEEP$rati)
+abline(lmRa, col = "red")
+
+
+coefficients(lmRa)
+summary(lmRa)
+
+lmDf <- lm(KEEP$diff ~ KEEP$yts)
+plot(KEEP$yts, KEEP$diff)
+abline(lmDf, col = "red")
+
+coefficients(lmDf)
+summary(lmDf)
+
 
 
 
