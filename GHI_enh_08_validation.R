@@ -53,7 +53,7 @@ knitr::opts_chunk$set(out.width  = "100%"   )
 knitr::opts_chunk$set(fig.align  = "center" )
 knitr::opts_chunk$set(fig.cap    = " - empty caption - " )
 knitr::opts_chunk$set(cache      =  FALSE   )  ## !! breaks calculations
-knitr::opts_chunk$set(fig.pos    = 'H'    )
+knitr::opts_chunk$set(fig.pos    = 'h!'    )
 
 #+ echo=FALSE, include=TRUE
 ## __ Set environment  ---------------------------------------------------------
@@ -78,6 +78,13 @@ library(latex2exp   , quietly = TRUE, warn.conflicts = FALSE)
 
 panderOptions("table.alignment.default", "right")
 panderOptions("table.split.table",        120   )
+
+def.chunk.hook  <- knitr::knit_hooks$get("chunk")
+knitr::knit_hooks$set(chunk = function(x, options) {
+  x <- def.chunk.hook(x, options)
+  ifelse(options$size != "normalsize", paste0("\n \\", options$size,"\n\n", x, "\n\n \\normalsize"), x)
+})
+
 
 ## __ Load external functions --------------------------------------------------
 ## Functions from `https://github.com/thanasisn/IStillBreakStuff/tree/main/FUNCTIONS/R`
@@ -314,7 +321,7 @@ for (ii in 1:nrow(gather_days)) {
 
 
 #' \newpage
-#+ P-validation-cloudfree-GHI, echo=T, include=T
+#+ P-validation-cloudfree-GHI, echo=T, include=T, size="small"
 
 
 fit     <- lm(KEEP$Low_B.Low_W.glo ~ KEEP$wattGLB)
@@ -360,9 +367,11 @@ print(lm(KEEP[, wattGLB, Low_B.Low_W.glo]))
 # abline(a = 0, b = 1, col = "green")
 
 
-KEEP[, diff := wattGLB - Low_B.Low_W.glo]
-KEEP[, rati := wattGLB - Low_B.Low_W.glo]
-KEEP[, yts := (year(Date) - min(year(Date))) + ( yday(Date) - 1 ) / Hmisc::yearDays(Date)]
+KEEP[, diff   :=        wattGLB - Low_B.Low_W.glo]
+KEEP[, rati   :=        wattGLB / Low_B.Low_W.glo]
+KEEP[, perc   := 100 * (wattGLB - Low_B.Low_W.glo) / Low_B.Low_W.glo]
+
+KEEP[, yts := min(year(Date)) + (year(Date) - min(year(Date))) + ( yday(Date) - 1 ) / Hmisc::yearDays(Date)]
 
 lmRa <- lm(KEEP$rati ~ KEEP$yts)
 plot(KEEP$yts, KEEP$rati)
@@ -372,13 +381,21 @@ abline(lmRa, col = "red")
 coefficients(lmRa)
 summary(lmRa)
 
-lmDf <- lm(KEEP$diff ~ KEEP$yts)
-plot(KEEP$yts, KEEP$diff)
-abline(lmDf, col = "red")
 
-coefficients(lmDf)
-summary(lmDf)
+# lmDf <- lm(KEEP$diff ~ KEEP$yts)
+# plot(KEEP$yts, KEEP$diff)
+# abline(lmDf, col = "red")
+#
+# coefficients(lmDf)
+# summary(lmDf)
 
+
+lmPc <- lm(KEEP$perc ~ KEEP$yts)
+plot(KEEP$yts, KEEP$perc)
+abline(lmPc, col = "red")
+
+coefficients(lmPc)
+summary(lmPc)
 
 
 

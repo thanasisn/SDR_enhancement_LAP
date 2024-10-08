@@ -163,7 +163,7 @@ Drop all enhancement cases
 Drop all clouds
 \end{verbatim}
 
-\begin{figure}[H]
+\begin{figure}[h!]
 
 {\centering \includegraphics[width=1\linewidth]{GHI_enh_08_validation_files/figure-latex/unnamed-chunk-4-1} 
 
@@ -202,7 +202,7 @@ Drop all clouds
 \hypertarget{days-with-manual-test-days}{%
 \subsection{Days with manual test days}\label{days-with-manual-test-days}}
 
-\begin{figure}[H]
+\begin{figure}[h!]
 
 {\centering \includegraphics[width=1\linewidth]{GHI_enh_08_validation_files/figure-latex/example-days-1} 
 
@@ -211,7 +211,7 @@ Drop all clouds
 \caption{ - empty caption - }\label{fig:example-days-1}
 \end{figure}
 
-\begin{figure}[H]
+\begin{figure}[h!]
 
 {\centering \includegraphics[width=1\linewidth]{GHI_enh_08_validation_files/figure-latex/example-days-2} 
 
@@ -220,7 +220,7 @@ Drop all clouds
 \caption{ - empty caption - }\label{fig:example-days-2}
 \end{figure}
 
-\begin{figure}[H]
+\begin{figure}[h!]
 
 {\centering \includegraphics[width=1\linewidth]{GHI_enh_08_validation_files/figure-latex/example-days-3} 
 
@@ -229,7 +229,7 @@ Drop all clouds
 \caption{ - empty caption - }\label{fig:example-days-3}
 \end{figure}
 
-\begin{figure}[H]
+\begin{figure}[h!]
 
 {\centering \includegraphics[width=1\linewidth]{GHI_enh_08_validation_files/figure-latex/example-days-4} 
 
@@ -238,7 +238,7 @@ Drop all clouds
 \caption{ - empty caption - }\label{fig:example-days-4}
 \end{figure}
 
-\begin{figure}[H]
+\begin{figure}[h!]
 
 {\centering \includegraphics[width=1\linewidth]{GHI_enh_08_validation_files/figure-latex/example-days-5} 
 
@@ -248,6 +248,8 @@ Drop all clouds
 \end{figure}
 
 \newpage
+
+\small
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -294,7 +296,7 @@ This warning is displayed once every 8 hours.
 Call `lifecycle::last_lifecycle_warnings()` to see where this warning was generated.
 \end{verbatim}
 
-\begin{figure}[H]
+\begin{figure}[h!]
 
 {\centering \includegraphics[width=1\linewidth]{GHI_enh_08_validation_files/figure-latex/P-validation-cloudfree-GHI-1} 
 
@@ -344,9 +346,11 @@ Coefficients:
 \CommentTok{\# abline(a = 0, b = 1, col = "green")}
 
 
-\NormalTok{KEEP[, diff }\SpecialCharTok{:}\ErrorTok{=}\NormalTok{ wattGLB }\SpecialCharTok{{-}}\NormalTok{ Low\_B.Low\_W.glo]}
-\NormalTok{KEEP[, rati }\SpecialCharTok{:}\ErrorTok{=}\NormalTok{ wattGLB }\SpecialCharTok{{-}}\NormalTok{ Low\_B.Low\_W.glo]}
-\NormalTok{KEEP[, yts }\SpecialCharTok{:}\ErrorTok{=}\NormalTok{ (}\FunctionTok{year}\NormalTok{(Date) }\SpecialCharTok{{-}} \FunctionTok{min}\NormalTok{(}\FunctionTok{year}\NormalTok{(Date))) }\SpecialCharTok{+}\NormalTok{ ( }\FunctionTok{yday}\NormalTok{(Date) }\SpecialCharTok{{-}} \DecValTok{1}\NormalTok{ ) }\SpecialCharTok{/}\NormalTok{ Hmisc}\SpecialCharTok{::}\FunctionTok{yearDays}\NormalTok{(Date)]}
+\NormalTok{KEEP[, diff   }\SpecialCharTok{:}\ErrorTok{=}\NormalTok{        wattGLB }\SpecialCharTok{{-}}\NormalTok{ Low\_B.Low\_W.glo]}
+\NormalTok{KEEP[, rati   }\SpecialCharTok{:}\ErrorTok{=}\NormalTok{        wattGLB }\SpecialCharTok{/}\NormalTok{ Low\_B.Low\_W.glo]}
+\NormalTok{KEEP[, perc   }\SpecialCharTok{:}\ErrorTok{=} \DecValTok{100} \SpecialCharTok{*}\NormalTok{ (wattGLB }\SpecialCharTok{{-}}\NormalTok{ Low\_B.Low\_W.glo) }\SpecialCharTok{/}\NormalTok{ Low\_B.Low\_W.glo]}
+
+\NormalTok{KEEP[, yts }\SpecialCharTok{:}\ErrorTok{=} \FunctionTok{min}\NormalTok{(}\FunctionTok{year}\NormalTok{(Date)) }\SpecialCharTok{+}\NormalTok{ (}\FunctionTok{year}\NormalTok{(Date) }\SpecialCharTok{{-}} \FunctionTok{min}\NormalTok{(}\FunctionTok{year}\NormalTok{(Date))) }\SpecialCharTok{+}\NormalTok{ ( }\FunctionTok{yday}\NormalTok{(Date) }\SpecialCharTok{{-}} \DecValTok{1}\NormalTok{ ) }\SpecialCharTok{/}\NormalTok{ Hmisc}\SpecialCharTok{::}\FunctionTok{yearDays}\NormalTok{(Date)]}
 
 \NormalTok{lmRa }\OtherTok{\textless{}{-}} \FunctionTok{lm}\NormalTok{(KEEP}\SpecialCharTok{$}\NormalTok{rati }\SpecialCharTok{\textasciitilde{}}\NormalTok{ KEEP}\SpecialCharTok{$}\NormalTok{yts)}
 \FunctionTok{plot}\NormalTok{(KEEP}\SpecialCharTok{$}\NormalTok{yts, KEEP}\SpecialCharTok{$}\NormalTok{rati)}
@@ -354,7 +358,7 @@ Coefficients:
 \end{Highlighting}
 \end{Shaded}
 
-\begin{figure}[H]
+\begin{figure}[h!]
 
 {\centering \includegraphics[width=1\linewidth]{GHI_enh_08_validation_files/figure-latex/P-validation-cloudfree-GHI-2} 
 
@@ -370,8 +374,8 @@ Coefficients:
 \end{Shaded}
 
 \begin{verbatim}
-(Intercept)    KEEP$yts 
--45.1622780   0.1846214 
+ (Intercept)     KEEP$yts 
+0.3284309580 0.0003001579 
 \end{verbatim}
 
 \begin{Shaded}
@@ -385,19 +389,19 @@ Call:
 lm(formula = KEEP$rati ~ KEEP$yts)
 
 Residuals:
-    Min      1Q  Median      3Q     Max 
--95.977 -14.203   0.179  14.594  65.107 
+      Min        1Q    Median        3Q       Max 
+-0.207397 -0.018775  0.002093  0.021216  0.194623 
 
 Coefficients:
-              Estimate Std. Error t value Pr(>|t|)    
-(Intercept) -45.162278   0.088715 -509.07   <2e-16 ***
-KEEP$yts      0.184621   0.004554   40.54   <2e-16 ***
+             Estimate Std. Error t value Pr(>|t|)    
+(Intercept) 3.284e-01  1.532e-02   21.45   <2e-16 ***
+KEEP$yts    3.002e-04  7.612e-06   39.43   <2e-16 ***
 ---
 Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 
-Residual standard error: 20.35 on 345175 degrees of freedom
-Multiple R-squared:  0.004739,  Adjusted R-squared:  0.004737 
-F-statistic:  1644 on 1 and 345175 DF,  p-value: < 2.2e-16
+Residual standard error: 0.03401 on 345175 degrees of freedom
+Multiple R-squared:  0.004484,  Adjusted R-squared:  0.004482 
+F-statistic:  1555 on 1 and 345175 DF,  p-value: < 2.2e-16
 \end{verbatim}
 
 \begin{Shaded}
@@ -408,7 +412,7 @@ F-statistic:  1644 on 1 and 345175 DF,  p-value: < 2.2e-16
 \end{Highlighting}
 \end{Shaded}
 
-\begin{figure}[H]
+\begin{figure}[h!]
 
 {\centering \includegraphics[width=1\linewidth]{GHI_enh_08_validation_files/figure-latex/P-validation-cloudfree-GHI-3} 
 
@@ -424,8 +428,8 @@ F-statistic:  1644 on 1 and 345175 DF,  p-value: < 2.2e-16
 \end{Shaded}
 
 \begin{verbatim}
-(Intercept)    KEEP$yts 
--45.1622780   0.1846214 
+ (Intercept)     KEEP$yts 
+-413.2973644    0.1846214 
 \end{verbatim}
 
 \begin{Shaded}
@@ -444,8 +448,8 @@ Residuals:
 
 Coefficients:
               Estimate Std. Error t value Pr(>|t|)    
-(Intercept) -45.162278   0.088715 -509.07   <2e-16 ***
-KEEP$yts      0.184621   0.004554   40.54   <2e-16 ***
+(Intercept) -4.133e+02  9.162e+00  -45.11   <2e-16 ***
+KEEP$yts     1.846e-01  4.554e-03   40.54   <2e-16 ***
 ---
 Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 
@@ -454,9 +458,65 @@ Multiple R-squared:  0.004739,  Adjusted R-squared:  0.004737
 F-statistic:  1644 on 1 and 345175 DF,  p-value: < 2.2e-16
 \end{verbatim}
 
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{lmPc }\OtherTok{\textless{}{-}} \FunctionTok{lm}\NormalTok{(KEEP}\SpecialCharTok{$}\NormalTok{perc }\SpecialCharTok{\textasciitilde{}}\NormalTok{ KEEP}\SpecialCharTok{$}\NormalTok{yts)}
+\FunctionTok{plot}\NormalTok{(KEEP}\SpecialCharTok{$}\NormalTok{yts, KEEP}\SpecialCharTok{$}\NormalTok{perc)}
+\FunctionTok{abline}\NormalTok{(lmPc, }\AttributeTok{col =} \StringTok{"red"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{figure}[h!]
+
+{\centering \includegraphics[width=1\linewidth]{GHI_enh_08_validation_files/figure-latex/P-validation-cloudfree-GHI-4} 
+
+}
+
+\caption{ - empty caption - }\label{fig:P-validation-cloudfree-GHI-4}
+\end{figure}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{coefficients}\NormalTok{(lmPc)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+ (Intercept)     KEEP$yts 
+-67.15690420   0.03001579 
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{summary}\NormalTok{(lmPc)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+Call:
+lm(formula = KEEP$perc ~ KEEP$yts)
+
+Residuals:
+     Min       1Q   Median       3Q      Max 
+-20.7397  -1.8775   0.2093   2.1216  19.4623 
+
+Coefficients:
+              Estimate Std. Error t value Pr(>|t|)    
+(Intercept) -6.716e+01  1.532e+00  -43.85   <2e-16 ***
+KEEP$yts     3.002e-02  7.612e-04   39.43   <2e-16 ***
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+
+Residual standard error: 3.401 on 345175 degrees of freedom
+Multiple R-squared:  0.004484,  Adjusted R-squared:  0.004482 
+F-statistic:  1555 on 1 and 345175 DF,  p-value: < 2.2e-16
+\end{verbatim}
+
+\normalsize
+
 \newpage
 
-\begin{figure}[H]
+\begin{figure}[h!]
 
 {\centering \includegraphics[width=1\linewidth]{GHI_enh_08_validation_files/figure-latex/P-validation-threshold-GHI-1} 
 
@@ -490,7 +550,7 @@ Coefficients:
 \textbf{END}
 
 \begin{verbatim}
-2024-10-08 07:22:34.0 athan@sagan GHI_enh_08_validation.R 3.482017 mins
+2024-10-08 08:54:55.7 athan@sagan GHI_enh_08_validation.R 2.803341 mins
 \end{verbatim}
 
 \end{document}
