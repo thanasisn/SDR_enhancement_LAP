@@ -314,7 +314,7 @@ for (ii in 1:nrow(gather_days)) {
 
 
 #' \newpage
-#+ P-validation-cloudfree-GHI, echo=F, include=T
+#+ P-validation-cloudfree-GHI, echo=T, include=T
 
 
 fit     <- lm(KEEP$Low_B.Low_W.glo ~ KEEP$wattGLB)
