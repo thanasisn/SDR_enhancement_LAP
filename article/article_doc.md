@@ -18,7 +18,7 @@ abstract: In this study, we investigate the characteristics of global
   $204\,\text{W}/\text{m}^{2}$, with the $75\,\%$ of the cases below
   $40\,\text{W}/\text{m}^{2}$. Most of these extreme events occur in
   spring -- early summer, with a secondary peak in autumn.
-date: 2024-10-08
+date: 2024-10-09
 title: Analysis of cloud enhancement events in a 30-year record of
   global solar irradiance at Thessaloniki, Greece
 ---
@@ -244,7 +244,7 @@ $340\,\text{nm}$ of the two instruments for the common periods of
 operation we adjusted the Brewer data and filled the missing months of
 the Cimel record with Brewer data. Using the extended monthly time
 series of AOD at $340\,\text{nm}$, as well as monthly climatological
-values of the Ångström exponent and constant WC of $15.6\,\text{mm}$
+values of the Ångström exponent and constant WC of $15.5\,\text{mm}$
 derived from the Cimel record, we simulated with the RTM the cloud-free
 GHI at SZA of $55^{\circ}$ for each month in the period 1997 -- 2023.
 The SZA of $55^{\circ}$ was chosen as representative of all days in the
@@ -253,12 +253,12 @@ cloud-free GHI. A second-degree polynomial fit was applied to the
 simulated yearly averaged GHI to derive the long-term change in GHI due
 to aerosols:
 
-$$\Delta\left( \text{GHI} \right)\lbrack\%\rbrack = - 12170 + 12.05 \cdot x - 0.002981 \cdot x^{2}$$
+$$\Delta\left( \text{GHI} \right)\lbrack\%\rbrack = - 12154 + 12.03 \cdot x - 0.002977 \cdot x^{2}$$
 
-where $x$ is the date as a decimal fraction of the year. The resulting
-change in $\text{GHI}_{\text{ref}}$ ranges between $- 1.88\,\%$ in 1994
-and $- 0.19\,\%$ in the end of 2023, peaking at $0.23\,\%$ in the
-mid-2020. Finally, we applied these long-term changes of Equation to the
+where $x$ the year as a continuous variable. The resulting change in
+$\text{GHI}_{\text{ref}}$ ranges between $- 1.88\,\%$ in 1994 and
+$- 0.19\,\%$ in the end of 2023, peaking at $0.23\,\%$ in the mid-2020.
+Finally, we applied these long-term changes of Equation to the
 $\text{GHI}_{\text{ref}}$, to create a more realistic representation of
 the cloud-free irradiance for the entire period of study. For the period
 1994 -- 1996 where no AOD data are available, we assumed that the
@@ -296,7 +296,12 @@ the short-term variability of AOD and WC. The linear regression reveals
 a positive bias of $18.4\,\text{W}/\text{m}^{2}$ and a slope very close
 to unity. To achieve a robust and clear distinction of the CE cases, we
 applied to the $\text{GHI}_{\text{ref}}$ an additional offset of
-$25\,\text{W}/\text{m}^{2}$.
+$25\,\text{W}/\text{m}^{2}$. We also calculated the trend of the
+relative different of the measured GHI over the
+$\text{GHI}_{\text{ref}}$ for the same cloud-free days, and found a
+change of $0.03\,\%$ with a strong statistical significance. This
+further assures that the produced reference can adequate describe the
+long term variability of the observed GHI.
 
 ![Figure 2.2: Scatter plot of the measured GHI and the
 \\text{GHI}\_\\text{ref}, for cloud-free days with data availability of
