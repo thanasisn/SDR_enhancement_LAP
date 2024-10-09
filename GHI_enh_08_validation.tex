@@ -125,7 +125,7 @@
 
 \title{Enhancement of SDR in Thessaloniki}
 \author{Natsis Athanasios\footnote{Laboratory of Atmospheric Physics, AUTH, \href{mailto:natsisphysicist@gmail.com}{\nolinkurl{natsisphysicist@gmail.com}}} \and Alkiviadis Bais\footnote{Laboratory of Atmospheric Physics, AUTH}}
-\date{2024-10-08}
+\date{2024-10-09}
 
 \begin{document}
 \maketitle
@@ -406,9 +406,17 @@ F-statistic:  1555 on 1 and 345175 DF,  p-value: < 2.2e-16
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\NormalTok{lmDf }\OtherTok{\textless{}{-}} \FunctionTok{lm}\NormalTok{(KEEP}\SpecialCharTok{$}\NormalTok{diff }\SpecialCharTok{\textasciitilde{}}\NormalTok{ KEEP}\SpecialCharTok{$}\NormalTok{yts)}
-\FunctionTok{plot}\NormalTok{(KEEP}\SpecialCharTok{$}\NormalTok{yts, KEEP}\SpecialCharTok{$}\NormalTok{diff)}
-\FunctionTok{abline}\NormalTok{(lmDf, }\AttributeTok{col =} \StringTok{"red"}\NormalTok{)}
+\CommentTok{\# lmDf \textless{}{-} lm(KEEP$diff \textasciitilde{} KEEP$yts)}
+\CommentTok{\# plot(KEEP$yts, KEEP$diff)}
+\CommentTok{\# abline(lmDf, col = "red")}
+\CommentTok{\#}
+\CommentTok{\# coefficients(lmDf)}
+\CommentTok{\# summary(lmDf)}
+
+
+\NormalTok{lmPc }\OtherTok{\textless{}{-}} \FunctionTok{lm}\NormalTok{(KEEP}\SpecialCharTok{$}\NormalTok{perc }\SpecialCharTok{\textasciitilde{}}\NormalTok{ KEEP}\SpecialCharTok{$}\NormalTok{yts)}
+\FunctionTok{plot}\NormalTok{(KEEP}\SpecialCharTok{$}\NormalTok{yts, KEEP}\SpecialCharTok{$}\NormalTok{perc)}
+\FunctionTok{abline}\NormalTok{(lmPc, }\AttributeTok{col =} \StringTok{"red"}\NormalTok{)}
 \end{Highlighting}
 \end{Shaded}
 
@@ -419,60 +427,6 @@ F-statistic:  1555 on 1 and 345175 DF,  p-value: < 2.2e-16
 }
 
 \caption{ - empty caption - }\label{fig:P-validation-cloudfree-GHI-3}
-\end{figure}
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\FunctionTok{coefficients}\NormalTok{(lmDf)}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{verbatim}
- (Intercept)     KEEP$yts 
--413.2973644    0.1846214 
-\end{verbatim}
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\FunctionTok{summary}\NormalTok{(lmDf)}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{verbatim}
-Call:
-lm(formula = KEEP$diff ~ KEEP$yts)
-
-Residuals:
-    Min      1Q  Median      3Q     Max 
--95.977 -14.203   0.179  14.594  65.107 
-
-Coefficients:
-              Estimate Std. Error t value Pr(>|t|)    
-(Intercept) -4.133e+02  9.162e+00  -45.11   <2e-16 ***
-KEEP$yts     1.846e-01  4.554e-03   40.54   <2e-16 ***
----
-Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
-
-Residual standard error: 20.35 on 345175 degrees of freedom
-Multiple R-squared:  0.004739,  Adjusted R-squared:  0.004737 
-F-statistic:  1644 on 1 and 345175 DF,  p-value: < 2.2e-16
-\end{verbatim}
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\NormalTok{lmPc }\OtherTok{\textless{}{-}} \FunctionTok{lm}\NormalTok{(KEEP}\SpecialCharTok{$}\NormalTok{perc }\SpecialCharTok{\textasciitilde{}}\NormalTok{ KEEP}\SpecialCharTok{$}\NormalTok{yts)}
-\FunctionTok{plot}\NormalTok{(KEEP}\SpecialCharTok{$}\NormalTok{yts, KEEP}\SpecialCharTok{$}\NormalTok{perc)}
-\FunctionTok{abline}\NormalTok{(lmPc, }\AttributeTok{col =} \StringTok{"red"}\NormalTok{)}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{figure}[h!]
-
-{\centering \includegraphics[width=1\linewidth]{GHI_enh_08_validation_files/figure-latex/P-validation-cloudfree-GHI-4} 
-
-}
-
-\caption{ - empty caption - }\label{fig:P-validation-cloudfree-GHI-4}
 \end{figure}
 
 \begin{Shaded}
@@ -550,7 +504,7 @@ Coefficients:
 \textbf{END}
 
 \begin{verbatim}
-2024-10-08 08:54:55.7 athan@sagan GHI_enh_08_validation.R 2.803341 mins
+2024-10-09 17:06:08.4 athan@sagan GHI_enh_08_validation.R 2.287397 mins
 \end{verbatim}
 
 \end{document}

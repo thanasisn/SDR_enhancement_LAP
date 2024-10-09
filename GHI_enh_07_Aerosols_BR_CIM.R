@@ -159,11 +159,11 @@ xlim <- range(1994, COM[, tsy])
 plot(COM[, glo, tsy],
      xlim = xlim)
 
-# lmm  <- lm(    COM[, glo]  ~ COM[, tsy])
-# logm <- lm(log(COM[, glo]) ~ COM[, tsy])
+lmm  <- lm(    COM[, glo]  ~ COM[, tsy])
+logm <- lm(log(COM[, glo]) ~ COM[, tsy])
 polm <- lm(COM[, glo] ~ poly(COM[, tsy], 2, raw=TRUE))
 
-# logm_C  <- coef(logm)
+logm_C  <- coef(logm)
 polym_C <- coef(polm)
 
 summary(polm)
@@ -280,44 +280,44 @@ ggplot(relativ,
                      minor_breaks = seq(1990, 2050, by = 1) )
 
 
-lm()
 
 
-lmts <- lm(relativ[, secon] ~ poly(relativ[, tsy], 2, raw=TRUE))
-dd <- coefficients(lmts)
-
-tess  <- function(x) dd[1] + dd[2] * x + dd[3] *x^2
-
-trend_polyf(1994)
-
-tess(1994)
-tess(2024)
-
-
-cat("GHI_model (%)   =",
-    round(dd[1], digits = 4), "+",
-    round(dd[2], digits = 4), "* x +",
-    round(dd[3], digits = 4), "* x^2", "\n\n")
-
-
-
--12153.97 + 12.0304 * 1994 - 0.003 * 1994*1994
-
-dd[1] + dd[2] * 1994 + dd[3] * 1994^2
-
-
-( -1 + (polym_C[1] / polyf_zero)          +
-       (polym_C[2] / polyf_zero) * 1994   +
-       (polym_C[3] / polyf_zero) * 1994^2 ) * 100
-
-paste(
-  (-1 + (polym_C[1] / polyf_zero)) * 100,
-  (     (polym_C[2] / polyf_zero)) * 100,
-  (     (polym_C[3] / polyf_zero)) * 100
-)
-
--12153.9716401981 + 12.0304174067744 * 1994  -0.0029770072925644 * 1994^2
-
+#
+# lmts <- lm(relativ[, secon] ~ poly(relativ[, tsy], 2, raw=TRUE))
+# dd <- coefficients(lmts)
+#
+# tess  <- function(x) dd[1] + dd[2] * x + dd[3] *x^2
+#
+# trend_polyf(1994)
+#
+# tess(1994)
+# tess(2024)
+#
+#
+# cat("GHI_model (%)   =",
+#     round(dd[1], digits = 4), "+",
+#     round(dd[2], digits = 4), "* x +",
+#     round(dd[3], digits = 4), "* x^2", "\n\n")
+#
+#
+#
+# -12153.97 + 12.0304 * 1994 - 0.003 * 1994*1994
+#
+# dd[1] + dd[2] * 1994 + dd[3] * 1994^2
+#
+#
+# ( -1 + (polym_C[1] / polyf_zero)          +
+#        (polym_C[2] / polyf_zero) * 1994   +
+#        (polym_C[3] / polyf_zero) * 1994^2 ) * 100
+#
+# paste(
+#   (-1 + (polym_C[1] / polyf_zero)) * 100,
+#   (     (polym_C[2] / polyf_zero)) * 100,
+#   (     (polym_C[3] / polyf_zero)) * 100
+# )
+#
+# -12153.9716401981 + 12.0304174067744 * 1994  -0.0029770072925644 * 1994^2
+#
 
 
 #' **END**
