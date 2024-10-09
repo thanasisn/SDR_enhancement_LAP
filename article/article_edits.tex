@@ -1,7 +1,7 @@
 \documentclass[preprint, 5p,
 %DIF LATEXDIFF DIFFERENCE FILE
 %DIF DEL /home/athan/MANUSCRIPTS/02_enhancement/SUBMISSION_02/article/article.tex   Wed Sep 11 11:07:21 2024
-%DIF ADD /home/athan/MANUSCRIPTS/02_enhancement/article/article.tex                 Wed Oct  9 20:49:57 2024
+%DIF ADD /home/athan/MANUSCRIPTS/02_enhancement/article/article.tex                 Wed Oct  9 21:53:59 2024
 authoryear]{elsarticle} %review=doublespace preprint=single 5p=2 column
 %%% Begin My package additions %%%%%%%%%%%%%%%%%%%
 
@@ -455,14 +455,14 @@ instruments for the common periods of operation we adjusted the Brewer
 data and filled the missing months of the Cimel record with Brewer data.
 Using the extended monthly time series of AOD at \(340\,\text{nm}\), as
 well as monthly climatological values of the Ångström exponent and
-constant WC of \DIFdelbegin \DIFdel{\(15.6\,\text{mm}\) }\DIFdelend \DIFaddbegin \DIFadd{\(15.5\,\text{mm}\) }\DIFaddend derived from the Cimel record, we
+constant WC of \(15.6\,\text{mm}\) derived from the Cimel record, we
 simulated with the RTM the cloud-free GHI at SZA of \(55^\circ\) for
 each month in the period 1997 -- 2023. The SZA of \(55^\circ\) was
 chosen as representative of all days in the year to get a rough estimate
 of the annually averaged change in cloud-free GHI. A second-degree
 polynomial fit was applied to the simulated yearly averaged GHI to
 derive the long-term change in GHI due to aerosols: \begin{equation}
-\Delta(\text{GHI}) [\%] = \DIFdelbegin \DIFdel{-12170 }\DIFdelend \DIFaddbegin \DIFadd{-12154 }\DIFaddend + \DIFdelbegin \DIFdel{12.05 }\DIFdelend \DIFaddbegin \DIFadd{12.03 }\DIFaddend \cdot x \DIFdelbegin \DIFdel{+ -0.002981 }\DIFdelend \DIFaddbegin \DIFadd{-0.002977 }\DIFaddend \cdot x^2 \label{eq:AODchange}
+\Delta(\text{GHI}) [\%] = \DIFdelbegin \DIFdel{-12170 }\DIFdelend \DIFaddbegin \DIFadd{-12153.97 }\DIFaddend + \DIFdelbegin \DIFdel{12.05 }\DIFdelend \DIFaddbegin \DIFadd{12.0304 }\DIFaddend \cdot x \DIFdelbegin \DIFdel{+ -0.002981 }\DIFdelend \DIFaddbegin \DIFadd{-0.002977 }\DIFaddend \cdot x^2 \label{eq:AODchange}
 \end{equation} where \DIFdelbegin \DIFdel{\(y\) is the date as a decimal fraction of the
 year}\DIFdelend \DIFaddbegin \DIFadd{\(x\) the year as a continuous variable}\DIFaddend . The
 resulting change in \(\text{GHI}_\text{ref}\) ranges between
@@ -510,13 +510,7 @@ AOD and WC. The linear regression reveals a positive bias of
 \(18.4\,\text{W}/\text{m}^2\) and a slope very close to unity. To
 achieve a robust and clear distinction of the CE cases, we applied to
 the \(\text{GHI}_\text{ref}\) an additional offset of
-\(25\,\text{W}/\text{m}^2\). \DIFaddbegin \DIFadd{We also calculated the trend of the
-relative different of the measured GHI over the
-\(\text{GHI}_\text{ref}\) for the same cloud-free days, and found a
-change of \(0.03\,\%\) with a strong statistical significance. This
-further assures that the produced reference can adequate describe the
-long term variability of the observed GHI.
-}\DIFaddend 
+\(25\,\text{W}/\text{m}^2\).
 
 \begin{figure}[H]
 
