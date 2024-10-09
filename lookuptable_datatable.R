@@ -59,11 +59,12 @@ model_cs <- "./data/Model_CS_2.Rds"
 
 ## _ Get raw data we want to create reference for  -----------------------------
 DATA <- data.table(readRDS("~/MANUSCRIPTS/02_enhancement/data/CE_ID_Input.Rds"))
-
+DATA <- DATA[, .(Date, SZA, sun_dist, wattGLB)]
 
 ## _ Fill with CS approximation model  -----------------------------------------
 CS <- data.table(readRDS(model_cs))
 CS[, SZA := sza]
+
 
 ## drop some not used data
 CS <- janitor::remove_constant(CS)
@@ -127,6 +128,12 @@ LKUO <- LKUO[SZA > 16]
 write_RDS(LKUO, paste0("./data/", sub(".R", ".Rds", basename(Script.Name))))
 
 summary(LKUO)
+
+CS[, unique(type)]
+
+test <- CS[type == "Exact B.Exact W" & atmosphere_file == "afglmw"]
+
+unique(test$pw_avg_mm)
 
 
 
