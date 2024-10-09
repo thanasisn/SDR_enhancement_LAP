@@ -371,7 +371,7 @@ KEEP[, diff   :=        wattGLB - Low_B.Low_W.glo]
 KEEP[, rati   :=        wattGLB / Low_B.Low_W.glo]
 KEEP[, perc   := 100 * (wattGLB - Low_B.Low_W.glo) / Low_B.Low_W.glo]
 
-KEEP[, yts := min(year(Date)) + (year(Date) - min(year(Date))) + ( yday(Date) - 1 ) / Hmisc::yearDays(Date)]
+KEEP[, yts := decimal_date(Date)]
 
 lmRa <- lm(KEEP$rati ~ KEEP$yts)
 plot(KEEP$yts, KEEP$rati)
@@ -380,7 +380,6 @@ abline(lmRa, col = "red")
 
 coefficients(lmRa)
 summary(lmRa)
-
 
 # lmDf <- lm(KEEP$diff ~ KEEP$yts)
 # plot(KEEP$yts, KEEP$diff)

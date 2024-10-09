@@ -366,14 +366,14 @@ AOD data at $340\,\text{nm}$ of the two instruments for the common periods of
 operation we adjusted the Brewer data and filled the missing months of the Cimel
 record with Brewer data.  Using the extended monthly time series of AOD at
 $340\,\text{nm}$, as well as monthly climatological values of the Ångström exponent
-and constant WC of $15.6\,\text{mm}$ derived from the Cimel record, we simulated with
+and constant WC of $15.5\,\text{mm}$ derived from the Cimel record, we simulated with
 the RTM the cloud-free GHI at SZA of $55^\circ$ for each month in the period 1997 --
 2023. The SZA of $55^\circ$ was chosen as representative of all days in the year to
 get a rough estimate of the annually averaged change in cloud-free GHI. A
 second-degree polynomial fit was applied to the simulated yearly averaged GHI to
 derive the long-term change in GHI due to aerosols:
 \begin{equation}
-\Delta(\text{GHI}) [\%] = -12153.97 + 12.0304 \cdot x -0.002977 \cdot x^2 \label{eq:AODchange}
+\Delta(\text{GHI}) [\%] = -12154 + 12.03 \cdot x -0.002977 \cdot x^2 \label{eq:AODchange}
 \end{equation}
 where $x$ the year as a continuous variable.  The resulting change in
 $\text{GHI}_\text{ref}$ ranges between $-1.88\,\%$ in 1994 and $-0.19\,\%$ in the end of
@@ -385,7 +385,7 @@ assumed that the changes in GHI follow the same polynomial fit.
 
 <!--
 GHI_model (%)
- = -12170 + 12.05 * year_frac + -0.002981 * year_frac^2
+ = -12153.97 + 12.0304 \cdot x -0.002977 * year_frac^2
 -->
 <!--
 As AERONET data
@@ -465,6 +465,11 @@ linear regression reveals a positive bias of $18.4\,\text{W}/\text{m}^2$ and a s
 very close to unity.  To achieve a robust and clear distinction of the CE cases, we
 applied to the $\text{GHI}_\text{ref}$ an additional offset of
 $25\,\text{W}/\text{m}^2$.
+We also calculated the trend of the relative different of the measured GHI over the
+$\text{GHI}_\text{ref}$ for the same cloud-free days, and found a change of
+$0.03\,\%$ with a strong statistical significance. This further assures that the
+produced reference can adequate describe the long term variability of the observed
+GHI.
 
 \begin{figure}[H]
 

@@ -6,8 +6,8 @@ SHELL = /bin/bash
 
 all:       clean_all pdf
 render:    pdf upload
-Ap:        Ap1
-pdf:       p1 p2 p3 p4 p5 p6 p7 p7b p8 p9 Ap
+Ap:        Ap1 diff
+pdf:       p1 p2 p3 p4 p5 p6 p7b p8 p9 Ap
 clean_all: clean_cache clean_pdfs
 
 include .buildver.makefile
@@ -48,7 +48,7 @@ $(PDF): $(RMD)
 ## Diff of pdfs
 diff: article/article_edits.pdf
 article/article_edits.pdf: article/article.tex
-	-latexdiff /home/athan/MANUSCRIPTS/02_enhancement/SUBMISSION_01/article/article.tex /home/athan/MANUSCRIPTS/02_enhancement/article/article.tex > /home/athan/MANUSCRIPTS/02_enhancement/article/article_edits.tex
+	-latexdiff /home/athan/MANUSCRIPTS/02_enhancement/SUBMISSION_02/article/article.tex /home/athan/MANUSCRIPTS/02_enhancement/article/article.tex > /home/athan/MANUSCRIPTS/02_enhancement/article/article_edits.tex
 	-cd /home/athan/MANUSCRIPTS/02_enhancement/article; pdflatex -interaction=nonstopmode  article_edits.tex
 	@-rsync -a "$@" ${LIBRARY}
 

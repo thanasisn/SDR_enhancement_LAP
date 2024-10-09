@@ -147,8 +147,12 @@ summary(ll)
 
 range(AE1$tsy)
 range(AE1$date)
+mean(AE1$pw_mm,na.rm = T)
 
 
+
+
+AA <- readRDS("~/LibRadTranG/Clear_sky_model_AERONET_monthly/Model_CS_trend_fix_2.Rds")
 
 
 
