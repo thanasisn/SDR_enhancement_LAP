@@ -224,19 +224,19 @@ cat("GHI_model (abs) =", polym_C[1], "+",
 
 cat("GHI_model (rat) =",
      signif((polym_C[1] / polyf_zero) - 1, digits = 4), "+",
-     signif(polym_C[2] / polyf_zero,       digits = 4), "* year_frac +",
-     signif(polym_C[3] / polyf_zero,       digits = 4), "* year_frac^2", "\n\n")
+     signif( polym_C[2] / polyf_zero,       digits = 4), "* x +",
+     signif( polym_C[3] / polyf_zero,       digits = 4), "* x^2", "\n\n")
 
 cat("GHI_model (%)   =",
     signif(100 * ((polym_C[1] / polyf_zero) - 1), digits = 4), "+",
-    signif(100 * polym_C[2] / polyf_zero,         digits = 4), "* year_frac +",
-    signif(100 * polym_C[3] / polyf_zero,         digits = 4), "* year_frac^2", "\n\n")
+    signif(100 *   polym_C[2] / polyf_zero,       digits = 4), "* x +",
+    signif(100 *   polym_C[3] / polyf_zero,       digits = 4), "* x^2", "\n\n")
 
 
 cat("GHI_model (%)   =",
     round(100 * ((polym_C[1] / polyf_zero) - 1), digits = 4), "+",
-    round(100 * polym_C[2] / polyf_zero,         digits = 4), "* year_frac +",
-    round(100 * polym_C[3] / polyf_zero,         digits = 4), "* year_frac^2", "\n\n")
+    round(100 *   polym_C[2] / polyf_zero,       digits = 4), "* x +",
+    round(100 *   polym_C[3] / polyf_zero,       digits = 4), "* x^2", "\n\n")
 
 
 
@@ -265,8 +265,6 @@ ggplot(relativ,
   #          hjust    = 1.1,
   #          vjust    = 0) +
   theme(legend.justification = c(0, 1),
-        legend.title         = element_text(size=10),
-        legend.position      = c(0.01, .99),
         legend.key           = element_blank(),
         legend.background    = element_rect(fill = "transparent")) +
   scale_x_continuous(guide  = "axis_minor",
