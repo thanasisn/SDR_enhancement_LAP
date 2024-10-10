@@ -276,6 +276,14 @@ if (APPLY_TRANS) {
   # plot(trend_polyf(1994:2024), trend_55_adj(1994:2024))
   trans_trend <- trend_polyf
 
+  trans_trend(2000)
+
+  ## TEST
+  ## remove long term change of GHI for testing
+  warning("!! THIS IS A TEST !!")
+  trans_trend <- function(x) {x * 0}
+  trans_trend(2000)
+
 } else {
   trans_trend <- function(x) {x * 0}
 }
