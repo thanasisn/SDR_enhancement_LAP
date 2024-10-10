@@ -7,16 +7,19 @@
   10pt,
   a4paper,oneside]{article}
 \usepackage{amsmath,amssymb}
-\usepackage{lmodern}
 \usepackage{iftex}
 \ifPDFTeX
   \usepackage[T1]{fontenc}
   \usepackage[utf8]{inputenc}
   \usepackage{textcomp} % provide euro and other symbols
 \else % if luatex or xetex
-  \usepackage{unicode-math}
+  \usepackage{unicode-math} % this also loads fontspec
   \defaultfontfeatures{Scale=MatchLowercase}
   \defaultfontfeatures[\rmfamily]{Ligatures=TeX,Scale=1}
+\fi
+\usepackage{lmodern}
+\ifPDFTeX\else
+  % xetex/luatex font selection
 \fi
 % Use upquote if available, for straight quotes in verbatim environments
 \IfFileExists{upquote.sty}{\usepackage{upquote}}{}
@@ -35,18 +38,6 @@
   \KOMAoptions{parskip=half}}
 \makeatother
 \usepackage{xcolor}
-\IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
-\IfFileExists{bookmark.sty}{\usepackage{bookmark}}{\usepackage{hyperref}}
-\hypersetup{
-  pdftitle={Enhancement of SDR in Thessaloniki},
-  pdfauthor={Natsis Athanasios; Alkiviadis Bais},
-  colorlinks=true,
-  linkcolor={Maroon},
-  filecolor={Maroon},
-  citecolor={Blue},
-  urlcolor={Blue},
-  pdfcreator={LaTeX via pandoc}}
-\urlstyle{same} % disable monospaced font for URLs
 \usepackage[left=0.5in,right=0.5in,top=0.5in,bottom=0.5in]{geometry}
 \usepackage{color}
 \usepackage{fancyvrb}
@@ -59,13 +50,13 @@
 \newenvironment{Shaded}{\begin{snugshade}}{\end{snugshade}}
 \newcommand{\AlertTok}[1]{\textcolor[rgb]{0.94,0.16,0.16}{#1}}
 \newcommand{\AnnotationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
-\newcommand{\AttributeTok}[1]{\textcolor[rgb]{0.77,0.63,0.00}{#1}}
+\newcommand{\AttributeTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{#1}}
 \newcommand{\BaseNTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
 \newcommand{\BuiltInTok}[1]{#1}
 \newcommand{\CharTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
 \newcommand{\CommentTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textit{#1}}}
 \newcommand{\CommentVarTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
-\newcommand{\ConstantTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\ConstantTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{#1}}
 \newcommand{\ControlFlowTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
 \newcommand{\DataTypeTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{#1}}
 \newcommand{\DecValTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
@@ -73,7 +64,7 @@
 \newcommand{\ErrorTok}[1]{\textcolor[rgb]{0.64,0.00,0.00}{\textbf{#1}}}
 \newcommand{\ExtensionTok}[1]{#1}
 \newcommand{\FloatTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
-\newcommand{\FunctionTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\FunctionTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
 \newcommand{\ImportTok}[1]{#1}
 \newcommand{\InformationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
 \newcommand{\KeywordTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
@@ -82,7 +73,7 @@
 \newcommand{\OtherTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{#1}}
 \newcommand{\PreprocessorTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textit{#1}}}
 \newcommand{\RegionMarkerTok}[1]{#1}
-\newcommand{\SpecialCharTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\SpecialCharTok}[1]{\textcolor[rgb]{0.81,0.36,0.00}{\textbf{#1}}}
 \newcommand{\SpecialStringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
 \newcommand{\StringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
 \newcommand{\VariableTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
@@ -122,6 +113,18 @@
 \ifLuaTeX
   \usepackage{selnolig}  % disable illegal ligatures
 \fi
+\usepackage{bookmark}
+\IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
+\urlstyle{same}
+\hypersetup{
+  pdftitle={Enhancement of SDR in Thessaloniki},
+  pdfauthor={Natsis Athanasios; Alkiviadis Bais},
+  colorlinks=true,
+  linkcolor={Maroon},
+  filecolor={Maroon},
+  citecolor={Blue},
+  urlcolor={Blue},
+  pdfcreator={LaTeX via pandoc}}
 
 \title{Enhancement of SDR in Thessaloniki}
 \author{Natsis Athanasios\footnote{Laboratory of Atmospheric Physics, AUTH, \href{mailto:natsisphysicist@gmail.com}{\nolinkurl{natsisphysicist@gmail.com}}} \and Alkiviadis Bais\footnote{Laboratory of Atmospheric Physics, AUTH}}
@@ -146,6 +149,7 @@ Registered S3 methods overwritten by 'ggpp':
 \end{verbatim}
 
 \begin{verbatim}
+
 Attaching package: 'ggpp'
 \end{verbatim}
 
@@ -180,6 +184,7 @@ The following object is masked from 'package:ggplot2':
 \end{Shaded}
 
 \begin{verbatim}
+
 Call:
 lm(formula = AE1$pw_mm ~ AE1$tsy)
 
@@ -237,6 +242,7 @@ F-statistic: 0.1958 on 1 and 189 DF,  p-value: 0.6586
 \end{Shaded}
 
 \begin{verbatim}
+
 Call:
 lm(formula = 100 * (AE1$pw_mm - (mean(AE1$pw_mm, na.rm = T)))/mean(AE1$pw_mm, 
     na.rm = T) ~ AE1$tsy)
@@ -313,6 +319,7 @@ F-statistic: 0.1958 on 1 and 189 DF,  p-value: 0.6586
 \end{Shaded}
 
 \begin{verbatim}
+
 Call:
 lm(formula = 100 * (AEY$pw_mm - (mean(AEY$pw_mm, na.rm = T)))/mean(AEY$pw_mm, 
     na.rm = T) ~ AEY$Year)
@@ -453,14 +460,14 @@ F-statistic: 0.03813 on 1 and 18 DF,  p-value: 0.8474
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\NormalTok{gather[, slope.sd }\SpecialCharTok{:}\ErrorTok{=} \ConstantTok{NULL}\NormalTok{]}
-\NormalTok{gather[, intercept.ConfInt\_0}\FloatTok{.95} \SpecialCharTok{:}\ErrorTok{=} \ConstantTok{NULL}\NormalTok{]}
-\NormalTok{gather[, intercept.ConfInt\_0}\FloatTok{.99} \SpecialCharTok{:}\ErrorTok{=} \ConstantTok{NULL}\NormalTok{]}
-\NormalTok{gather[, intercept.sd }\SpecialCharTok{:}\ErrorTok{=} \ConstantTok{NULL}\NormalTok{]}
-\NormalTok{gather[, Rsqrd   }\SpecialCharTok{:}\ErrorTok{=} \ConstantTok{NULL}\NormalTok{]}
-\NormalTok{gather[, RsqrdAdj }\SpecialCharTok{:}\ErrorTok{=} \ConstantTok{NULL}\NormalTok{]}
-\NormalTok{gather[, slope.ConfInt\_0}\FloatTok{.95} \SpecialCharTok{:}\ErrorTok{=} \ConstantTok{NULL}\NormalTok{]}
-\NormalTok{gather[, slope.ConfInt\_0}\FloatTok{.99} \SpecialCharTok{:}\ErrorTok{=} \ConstantTok{NULL}\NormalTok{]}
+\NormalTok{gather[, slope.sd }\SpecialCharTok{:=} \ConstantTok{NULL}\NormalTok{]}
+\NormalTok{gather[, intercept.ConfInt\_0}\FloatTok{.95} \SpecialCharTok{:=} \ConstantTok{NULL}\NormalTok{]}
+\NormalTok{gather[, intercept.ConfInt\_0}\FloatTok{.99} \SpecialCharTok{:=} \ConstantTok{NULL}\NormalTok{]}
+\NormalTok{gather[, intercept.sd }\SpecialCharTok{:=} \ConstantTok{NULL}\NormalTok{]}
+\NormalTok{gather[, Rsqrd   }\SpecialCharTok{:=} \ConstantTok{NULL}\NormalTok{]}
+\NormalTok{gather[, RsqrdAdj }\SpecialCharTok{:=} \ConstantTok{NULL}\NormalTok{]}
+\NormalTok{gather[, slope.ConfInt\_0}\FloatTok{.95} \SpecialCharTok{:=} \ConstantTok{NULL}\NormalTok{]}
+\NormalTok{gather[, slope.ConfInt\_0}\FloatTok{.99} \SpecialCharTok{:=} \ConstantTok{NULL}\NormalTok{]}
 
 
 \FunctionTok{pander}\NormalTok{(gather)}
@@ -475,7 +482,7 @@ F-statistic: 0.03813 on 1 and 18 DF,  p-value: 0.8474
   >{\raggedleft\arraybackslash}p{(\columnwidth - 12\tabcolsep) * \real{0.1795}}
   >{\raggedleft\arraybackslash}p{(\columnwidth - 12\tabcolsep) * \real{0.1795}}
   >{\raggedleft\arraybackslash}p{(\columnwidth - 12\tabcolsep) * \real{0.1026}}@{}}
-\toprule
+\toprule\noalign{}
 \begin{minipage}[b]{\linewidth}\raggedleft
 intercept
 \end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
@@ -491,8 +498,10 @@ intercept.p
 \end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
 Month
 \end{minipage} \\
-\midrule
+\midrule\noalign{}
 \endhead
+\bottomrule\noalign{}
+\endlastfoot
 -219.2 & 0.1089 & 0.1371 & 0.8928 & -0.1371 & 0.8928 & 1 \\
 -802.5 & 0.3983 & 0.5802 & 0.5725 & -0.5802 & 0.5725 & 2 \\
 1542 & -0.7656 & -1.21 & 0.2497 & 1.21 & 0.2497 & 3 \\
@@ -505,7 +514,6 @@ Month
 294.7 & -0.1465 & -0.3074 & 0.7631 & 0.3074 & 0.7631 & 10 \\
 -939.2 & 0.4666 & 0.8036 & 0.4334 & -0.8036 & 0.4334 & 11 \\
 611.3 & -0.3038 & -0.32 & 0.7534 & 0.32 & 0.7534 & 12 \\
-\bottomrule
 \end{longtable}
 
 \begin{Shaded}
@@ -522,7 +530,7 @@ Month
   >{\raggedleft\arraybackslash}p{(\columnwidth - 12\tabcolsep) * \real{0.1452}}
   >{\raggedleft\arraybackslash}p{(\columnwidth - 12\tabcolsep) * \real{0.1371}}
   >{\raggedleft\arraybackslash}p{(\columnwidth - 12\tabcolsep) * \real{0.1371}}@{}}
-\toprule
+\toprule\noalign{}
 \begin{minipage}[b]{\linewidth}\raggedleft
 intercept
 \end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
@@ -538,15 +546,16 @@ intercept.p
 \end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
 Month
 \end{minipage} \\
-\midrule
+\midrule\noalign{}
 \endhead
+\bottomrule\noalign{}
+\endlastfoot
 Min. :-939.17 & Min. :-0.76556 & Min. :-1.4461 & Min. :0.1738 & Min. :-0.9665 & Min. :0.1738 & Min. : 1.00 \\
 1st Qu.:-272.51 & 1st Qu.:-0.21754 & 1st Qu.:-0.4819 & 1st Qu.:0.4123 & 1st Qu.:-0.2840 & 1st Qu.:0.4123 & 1st Qu.: 3.75 \\
 Median : 80.91 & Median :-0.04013 & Median :-0.1052 & Median :0.6235 & Median : 0.1052 & Median :0.6235 & Median : 6.50 \\
 Mean : 138.68 & Mean :-0.06883 & Mean :-0.1317 & Mean :0.5981 & Mean : 0.1317 & Mean :0.5981 & Mean : 6.50 \\
 3rd Qu.: 438.02 & 3rd Qu.: 0.13532 & 3rd Qu.: 0.2840 & 3rd Qu.:0.7862 & 3rd Qu.: 0.4819 & 3rd Qu.:0.7862 & 3rd Qu.: 9.25 \\
 Max. :1542.48 & Max. : 0.46659 & Max. : 0.9665 & Max. :0.9241 & Max. : 1.4461 & Max. :0.9241 & Max. :12.00 \\
-\bottomrule
 \end{longtable}
 
 \begin{longtable}[]{@{}
@@ -557,7 +566,7 @@ Max. :1542.48 & Max. : 0.46659 & Max. : 0.9665 & Max. :0.9241 & Max. : 1.4461 & 
   >{\raggedleft\arraybackslash}p{(\columnwidth - 12\tabcolsep) * \real{0.1098}}
   >{\raggedleft\arraybackslash}p{(\columnwidth - 12\tabcolsep) * \real{0.1098}}
   >{\raggedleft\arraybackslash}p{(\columnwidth - 12\tabcolsep) * \real{0.1098}}@{}}
-\toprule
+\toprule\noalign{}
 \begin{minipage}[b]{\linewidth}\raggedleft
 atmosphere\_file
 \end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
@@ -573,8 +582,10 @@ eup
 \end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
 glo
 \end{minipage} \\
-\midrule
+\midrule\noalign{}
 \endhead
+\bottomrule\noalign{}
+\endlastfoot
 afglms & 200 & 18.16 & 425769 & 137535 & 112659 & 563.3 \\
 afglms & 200 & 17.36 & 426852 & 137669 & 112902 & 564.5 \\
 afglms & 275 & 18.16 & 424342 & 136572 & 112181 & 560.9 \\
@@ -589,7 +600,6 @@ afglms & 400 & 17.36 & 423111 & 135317 & 111684 & 558.4 \\
 afglms & 400 & 18.16 & 422030 & 135184 & 111441 & 557.2 \\
 afglms & 500 & 17.36 & 421306 & 134321 & 111123 & 555.6 \\
 afglms & 500 & 18.16 & 420226 & 134188 & 110881 & 554.4 \\
-\bottomrule
 \end{longtable}
 
 \begin{longtable}[]{@{}
@@ -600,7 +610,7 @@ afglms & 500 & 18.16 & 420226 & 134188 & 110881 & 554.4 \\
   >{\raggedleft\arraybackslash}p{(\columnwidth - 12\tabcolsep) * \real{0.1098}}
   >{\raggedleft\arraybackslash}p{(\columnwidth - 12\tabcolsep) * \real{0.1098}}
   >{\raggedleft\arraybackslash}p{(\columnwidth - 12\tabcolsep) * \real{0.1098}}@{}}
-\toprule
+\toprule\noalign{}
 \begin{minipage}[b]{\linewidth}\raggedleft
 atmosphere\_file
 \end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
@@ -616,8 +626,10 @@ eup
 \end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
 glo
 \end{minipage} \\
-\midrule
+\midrule\noalign{}
 \endhead
+\bottomrule\noalign{}
+\endlastfoot
 afglms & 200 & 17.36 & 426852 & 137669 & 112902 & 564.5 \\
 afglms & 275 & 17.36 & 425425 & 136706 & 112424 & 562.1 \\
 afglms & 276 & 17.36 & 425406 & 136694 & 112418 & 562.1 \\
@@ -632,13 +644,12 @@ afglms & 300 & 18.16 & 423874 & 136277 & 112028 & 560.2 \\
 afglms & 327 & 18.16 & 423372 & 135970 & 111866 & 559.3 \\
 afglms & 400 & 18.16 & 422030 & 135184 & 111441 & 557.2 \\
 afglms & 500 & 18.16 & 420226 & 134188 & 110881 & 554.4 \\
-\bottomrule
 \end{longtable}
 
 \textbf{END}
 
 \begin{verbatim}
-2024-10-10 17:55:17.3 athan@tyler GHI_enh_09_watter_ozone.R 0.162688 mins
+2024-10-10 09:52:53.6 athan@sagan GHI_enh_09_watter_ozone.R 0.080618 mins
 \end{verbatim}
 
 \end{document}

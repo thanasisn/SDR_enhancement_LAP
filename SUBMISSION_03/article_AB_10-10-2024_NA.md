@@ -254,7 +254,7 @@ cloud-free GHI. A second-degree polynomial fit was applied to the
 simulated yearly averaged GHI to derive the long-term change in GHI due
 to aerosols:
 
-where $x$ is the year in decimal form. The resulting change in
+where $x$ the year as a continuous variable. The resulting change in
 $\text{GHI}_{\text{ref}}$ ranges between $- 1.88\text{\%}$ in 1994 and
 $- 0.19\text{\%}$ in the end of 2023, peaking at $0.23\text{\%}$ in the
 mid-2020. Finally, we applied these long-term changes of Equation to the
