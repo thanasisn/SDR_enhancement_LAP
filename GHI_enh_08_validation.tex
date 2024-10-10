@@ -7,16 +7,19 @@
   10pt,
   a4paper,oneside]{article}
 \usepackage{amsmath,amssymb}
-\usepackage{lmodern}
 \usepackage{iftex}
 \ifPDFTeX
   \usepackage[T1]{fontenc}
   \usepackage[utf8]{inputenc}
   \usepackage{textcomp} % provide euro and other symbols
 \else % if luatex or xetex
-  \usepackage{unicode-math}
+  \usepackage{unicode-math} % this also loads fontspec
   \defaultfontfeatures{Scale=MatchLowercase}
   \defaultfontfeatures[\rmfamily]{Ligatures=TeX,Scale=1}
+\fi
+\usepackage{lmodern}
+\ifPDFTeX\else
+  % xetex/luatex font selection
 \fi
 % Use upquote if available, for straight quotes in verbatim environments
 \IfFileExists{upquote.sty}{\usepackage{upquote}}{}
@@ -35,18 +38,6 @@
   \KOMAoptions{parskip=half}}
 \makeatother
 \usepackage{xcolor}
-\IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
-\IfFileExists{bookmark.sty}{\usepackage{bookmark}}{\usepackage{hyperref}}
-\hypersetup{
-  pdftitle={Enhancement of SDR in Thessaloniki},
-  pdfauthor={Natsis Athanasios; Alkiviadis Bais},
-  colorlinks=true,
-  linkcolor={Maroon},
-  filecolor={Maroon},
-  citecolor={Blue},
-  urlcolor={Blue},
-  pdfcreator={LaTeX via pandoc}}
-\urlstyle{same} % disable monospaced font for URLs
 \usepackage[left=0.5in,right=0.5in,top=0.5in,bottom=0.5in]{geometry}
 \usepackage{color}
 \usepackage{fancyvrb}
@@ -59,13 +50,13 @@
 \newenvironment{Shaded}{\begin{snugshade}}{\end{snugshade}}
 \newcommand{\AlertTok}[1]{\textcolor[rgb]{0.94,0.16,0.16}{#1}}
 \newcommand{\AnnotationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
-\newcommand{\AttributeTok}[1]{\textcolor[rgb]{0.77,0.63,0.00}{#1}}
+\newcommand{\AttributeTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{#1}}
 \newcommand{\BaseNTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
 \newcommand{\BuiltInTok}[1]{#1}
 \newcommand{\CharTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
 \newcommand{\CommentTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textit{#1}}}
 \newcommand{\CommentVarTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
-\newcommand{\ConstantTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\ConstantTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{#1}}
 \newcommand{\ControlFlowTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
 \newcommand{\DataTypeTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{#1}}
 \newcommand{\DecValTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
@@ -73,7 +64,7 @@
 \newcommand{\ErrorTok}[1]{\textcolor[rgb]{0.64,0.00,0.00}{\textbf{#1}}}
 \newcommand{\ExtensionTok}[1]{#1}
 \newcommand{\FloatTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
-\newcommand{\FunctionTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\FunctionTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
 \newcommand{\ImportTok}[1]{#1}
 \newcommand{\InformationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
 \newcommand{\KeywordTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
@@ -82,7 +73,7 @@
 \newcommand{\OtherTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{#1}}
 \newcommand{\PreprocessorTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textit{#1}}}
 \newcommand{\RegionMarkerTok}[1]{#1}
-\newcommand{\SpecialCharTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\SpecialCharTok}[1]{\textcolor[rgb]{0.81,0.36,0.00}{\textbf{#1}}}
 \newcommand{\SpecialStringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
 \newcommand{\StringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
 \newcommand{\VariableTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
@@ -122,6 +113,18 @@
 \ifLuaTeX
   \usepackage{selnolig}  % disable illegal ligatures
 \fi
+\usepackage{bookmark}
+\IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
+\urlstyle{same}
+\hypersetup{
+  pdftitle={Enhancement of SDR in Thessaloniki},
+  pdfauthor={Natsis Athanasios; Alkiviadis Bais},
+  colorlinks=true,
+  linkcolor={Maroon},
+  filecolor={Maroon},
+  citecolor={Blue},
+  urlcolor={Blue},
+  pdfcreator={LaTeX via pandoc}}
 
 \title{Enhancement of SDR in Thessaloniki}
 \author{Natsis Athanasios\footnote{Laboratory of Atmospheric Physics, AUTH, \href{mailto:natsisphysicist@gmail.com}{\nolinkurl{natsisphysicist@gmail.com}}} \and Alkiviadis Bais\footnote{Laboratory of Atmospheric Physics, AUTH}}
@@ -146,6 +149,7 @@ Registered S3 methods overwritten by 'ggpp':
 \end{verbatim}
 
 \begin{verbatim}
+
 Attaching package: 'ggpp'
 \end{verbatim}
 
@@ -174,33 +178,27 @@ Drop all clouds
 
 \FloatBarrier
 
-\hypertarget{plot-some-days-with-strong-enhancement-cases}{%
-\section{Plot some days with strong enhancement cases}\label{plot-some-days-with-strong-enhancement-cases}}
+\section{Plot some days with strong enhancement cases}\label{plot-some-days-with-strong-enhancement-cases}
 
 \FloatBarrier
 
-\hypertarget{days-with-sunny-day}{%
-\subsection{Days with sunny day}\label{days-with-sunny-day}}
+\subsection{Days with sunny day}\label{days-with-sunny-day}
 
 \FloatBarrier
 
-\hypertarget{days-with-sunny-enhancement-day}{%
-\subsection{Days with sunny enhancement day}\label{days-with-sunny-enhancement-day}}
+\subsection{Days with sunny enhancement day}\label{days-with-sunny-enhancement-day}
 
 \FloatBarrier
 
-\hypertarget{days-with-cloudy-day}{%
-\subsection{Days with cloudy day}\label{days-with-cloudy-day}}
+\subsection{Days with cloudy day}\label{days-with-cloudy-day}
 
 \FloatBarrier
 
-\hypertarget{days-with-random-day}{%
-\subsection{Days with random day}\label{days-with-random-day}}
+\subsection{Days with random day}\label{days-with-random-day}
 
 \FloatBarrier
 
-\hypertarget{days-with-manual-test-days}{%
-\subsection{Days with manual test days}\label{days-with-manual-test-days}}
+\subsection{Days with manual test days}\label{days-with-manual-test-days}
 
 \begin{figure}[h!]
 
@@ -290,10 +288,12 @@ Drop all clouds
 \end{Shaded}
 
 \begin{verbatim}
-Warning: A numeric `legend.position` argument in `theme()` was deprecated in ggplot2 3.5.0.
+Warning: A numeric `legend.position` argument in `theme()` was deprecated in ggplot2
+3.5.0.
 i Please use the `legend.position.inside` argument of `theme()` instead.
 This warning is displayed once every 8 hours.
-Call `lifecycle::last_lifecycle_warnings()` to see where this warning was generated.
+Call `lifecycle::last_lifecycle_warnings()` to see where this warning was
+generated.
 \end{verbatim}
 
 \begin{figure}[h!]
@@ -312,6 +312,7 @@ Call `lifecycle::last_lifecycle_warnings()` to see where this warning was genera
 \end{Shaded}
 
 \begin{verbatim}
+
     Pearson's product-moment correlation
 
 data:  KEEP$wattGLB and KEEP$Low_B.Low_W.glo
@@ -331,6 +332,7 @@ sample estimates:
 \end{Shaded}
 
 \begin{verbatim}
+
 Call:
 lm(formula = KEEP[, wattGLB, Low_B.Low_W.glo])
 
@@ -346,15 +348,23 @@ Coefficients:
 \CommentTok{\# abline(a = 0, b = 1, col = "green")}
 
 
-\NormalTok{KEEP[, diff   }\SpecialCharTok{:}\ErrorTok{=}\NormalTok{        wattGLB }\SpecialCharTok{{-}}\NormalTok{ Low\_B.Low\_W.glo]}
-\NormalTok{KEEP[, rati   }\SpecialCharTok{:}\ErrorTok{=}\NormalTok{        wattGLB }\SpecialCharTok{/}\NormalTok{ Low\_B.Low\_W.glo]}
-\NormalTok{KEEP[, perc   }\SpecialCharTok{:}\ErrorTok{=} \DecValTok{100} \SpecialCharTok{*}\NormalTok{ (wattGLB }\SpecialCharTok{{-}}\NormalTok{ Low\_B.Low\_W.glo) }\SpecialCharTok{/}\NormalTok{ Low\_B.Low\_W.glo]}
+\NormalTok{KEEP[, diff   }\SpecialCharTok{:=}\NormalTok{        wattGLB }\SpecialCharTok{{-}}\NormalTok{ Low\_B.Low\_W.glo]}
+\NormalTok{KEEP[, rati   }\SpecialCharTok{:=}\NormalTok{        wattGLB }\SpecialCharTok{/}\NormalTok{ Low\_B.Low\_W.glo]}
+\NormalTok{KEEP[, perc   }\SpecialCharTok{:=} \DecValTok{100} \SpecialCharTok{*}\NormalTok{ (wattGLB }\SpecialCharTok{{-}}\NormalTok{ Low\_B.Low\_W.glo) }\SpecialCharTok{/}\NormalTok{ Low\_B.Low\_W.glo]}
 
-\NormalTok{KEEP[, yts }\SpecialCharTok{:}\ErrorTok{=} \FunctionTok{decimal\_date}\NormalTok{(Date)]}
+\NormalTok{KEEP[, yts }\SpecialCharTok{:=} \FunctionTok{decimal\_date}\NormalTok{(Date)]}
 
-\NormalTok{lmRa }\OtherTok{\textless{}{-}} \FunctionTok{lm}\NormalTok{(KEEP}\SpecialCharTok{$}\NormalTok{rati }\SpecialCharTok{\textasciitilde{}}\NormalTok{ KEEP}\SpecialCharTok{$}\NormalTok{yts)}
-\FunctionTok{plot}\NormalTok{(KEEP}\SpecialCharTok{$}\NormalTok{yts, KEEP}\SpecialCharTok{$}\NormalTok{rati)}
-\FunctionTok{abline}\NormalTok{(lmRa, }\AttributeTok{col =} \StringTok{"red"}\NormalTok{)}
+\CommentTok{\# lmRa \textless{}{-} lm(KEEP$rati \textasciitilde{} KEEP$yts)}
+\CommentTok{\# plot(KEEP$yts, KEEP$rati)}
+\CommentTok{\# abline(lmRa, col = "red")}
+\CommentTok{\# coefficients(lmRa)}
+\CommentTok{\# summary(lmRa)}
+
+
+
+\NormalTok{lmDf }\OtherTok{\textless{}{-}} \FunctionTok{lm}\NormalTok{(KEEP}\SpecialCharTok{$}\NormalTok{diff }\SpecialCharTok{\textasciitilde{}}\NormalTok{ KEEP}\SpecialCharTok{$}\NormalTok{yts)}
+\FunctionTok{plot}\NormalTok{(KEEP}\SpecialCharTok{$}\NormalTok{yts, KEEP}\SpecialCharTok{$}\NormalTok{diff)}
+\FunctionTok{abline}\NormalTok{(lmDf, }\AttributeTok{col =} \StringTok{"red"}\NormalTok{)}
 \end{Highlighting}
 \end{Shaded}
 
@@ -369,51 +379,44 @@ Coefficients:
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\FunctionTok{coefficients}\NormalTok{(lmRa)}
+\FunctionTok{coefficients}\NormalTok{(lmDf)}
 \end{Highlighting}
 \end{Shaded}
 
 \begin{verbatim}
  (Intercept)     KEEP$yts 
-0.3284104965 0.0003001679 
+-413.3278365    0.1846364 
 \end{verbatim}
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\FunctionTok{summary}\NormalTok{(lmRa)}
+\FunctionTok{summary}\NormalTok{(lmDf)}
 \end{Highlighting}
 \end{Shaded}
 
 \begin{verbatim}
+
 Call:
-lm(formula = KEEP$rati ~ KEEP$yts)
+lm(formula = KEEP$diff ~ KEEP$yts)
 
 Residuals:
-      Min        1Q    Median        3Q       Max 
--0.207397 -0.018775  0.002093  0.021216  0.194623 
+    Min      1Q  Median      3Q     Max 
+-95.977 -14.203   0.179  14.594  65.107 
 
 Coefficients:
-             Estimate Std. Error t value Pr(>|t|)    
-(Intercept) 3.284e-01  1.532e-02   21.44   <2e-16 ***
-KEEP$yts    3.002e-04  7.612e-06   39.43   <2e-16 ***
+              Estimate Std. Error t value Pr(>|t|)    
+(Intercept) -4.133e+02  9.162e+00  -45.11   <2e-16 ***
+KEEP$yts     1.846e-01  4.554e-03   40.55   <2e-16 ***
 ---
 Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 
-Residual standard error: 0.03401 on 345175 degrees of freedom
-Multiple R-squared:  0.004485,  Adjusted R-squared:  0.004482 
-F-statistic:  1555 on 1 and 345175 DF,  p-value: < 2.2e-16
+Residual standard error: 20.35 on 345175 degrees of freedom
+Multiple R-squared:  0.00474,   Adjusted R-squared:  0.004737 
+F-statistic:  1644 on 1 and 345175 DF,  p-value: < 2.2e-16
 \end{verbatim}
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\CommentTok{\# lmDf \textless{}{-} lm(KEEP$diff \textasciitilde{} KEEP$yts)}
-\CommentTok{\# plot(KEEP$yts, KEEP$diff)}
-\CommentTok{\# abline(lmDf, col = "red")}
-\CommentTok{\#}
-\CommentTok{\# coefficients(lmDf)}
-\CommentTok{\# summary(lmDf)}
-
-
 \NormalTok{lmPc }\OtherTok{\textless{}{-}} \FunctionTok{lm}\NormalTok{(KEEP}\SpecialCharTok{$}\NormalTok{perc }\SpecialCharTok{\textasciitilde{}}\NormalTok{ KEEP}\SpecialCharTok{$}\NormalTok{yts)}
 \FunctionTok{plot}\NormalTok{(KEEP}\SpecialCharTok{$}\NormalTok{yts, KEEP}\SpecialCharTok{$}\NormalTok{perc)}
 \FunctionTok{abline}\NormalTok{(lmPc, }\AttributeTok{col =} \StringTok{"red"}\NormalTok{)}
@@ -447,6 +450,7 @@ F-statistic:  1555 on 1 and 345175 DF,  p-value: < 2.2e-16
 \end{Shaded}
 
 \begin{verbatim}
+
 Call:
 lm(formula = KEEP$perc ~ KEEP$yts)
 
@@ -480,6 +484,7 @@ F-statistic:  1555 on 1 and 345175 DF,  p-value: < 2.2e-16
 \end{figure}
 
 \begin{verbatim}
+
     Pearson's product-moment correlation
 
 data:  KEEP$wattGLB and KEEP$Enhanc_C_4_ref
@@ -493,6 +498,7 @@ sample estimates:
 \end{verbatim}
 
 \begin{verbatim}
+
 Call:
 lm(formula = KEEP[, wattGLB, Enhanc_C_4_ref])
 
@@ -504,7 +510,7 @@ Coefficients:
 \textbf{END}
 
 \begin{verbatim}
-2024-10-10 08:08:32.6 athan@sagan GHI_enh_08_validation.R 2.424066 mins
+2024-10-10 09:51:55.1 athan@sagan GHI_enh_08_validation.R 2.387089 mins
 \end{verbatim}
 
 \end{document}

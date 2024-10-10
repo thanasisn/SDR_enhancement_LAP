@@ -373,20 +373,21 @@ KEEP[, perc   := 100 * (wattGLB - Low_B.Low_W.glo) / Low_B.Low_W.glo]
 
 KEEP[, yts := decimal_date(Date)]
 
-lmRa <- lm(KEEP$rati ~ KEEP$yts)
-plot(KEEP$yts, KEEP$rati)
-abline(lmRa, col = "red")
+# lmRa <- lm(KEEP$rati ~ KEEP$yts)
+# plot(KEEP$yts, KEEP$rati)
+# abline(lmRa, col = "red")
+# coefficients(lmRa)
+# summary(lmRa)
 
 
-coefficients(lmRa)
-summary(lmRa)
 
-# lmDf <- lm(KEEP$diff ~ KEEP$yts)
-# plot(KEEP$yts, KEEP$diff)
-# abline(lmDf, col = "red")
-#
-# coefficients(lmDf)
-# summary(lmDf)
+lmDf <- lm(KEEP$diff ~ KEEP$yts)
+plot(KEEP$yts, KEEP$diff)
+abline(lmDf, col = "red")
+
+coefficients(lmDf)
+summary(lmDf)
+
 
 
 lmPc <- lm(KEEP$perc ~ KEEP$yts)
