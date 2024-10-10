@@ -68,7 +68,8 @@ $(DOC1): $(RMD)
 	# rclone --config $${HOME}/Documents/rclone.conf sync "lapauththanasis:/Enhance/SUBMISSION_01/Article_B11_AB_6-9-2024.docx" ./Article_B11/
 	# pandoc -s ./Article_B11/Article_B11_AB_6-9-2024.docx -o ./Article_B11/Article_remote.md
 	rclone --config $${HOME}/Documents/rclone.conf sync "lapauththanasis:/Enhance/SUBMISSION_01/Article_B12_AB.docx"          ./Article_B12/
-	pandoc -s ./Article_B12/Article_B12_AB.docx          -o ./Article_B12/Article_remote.md
+	pandoc -s ./SUBMISSION_03/article_AB_10-10-2024_NA.docx          -o ./SUBMISSION_03/article_AB_10-10-2024_NA.md
+
 
 
 ##   Article with build number   ######################

@@ -176,7 +176,7 @@ position of the sun and the clouds \citep{Gueymard2017, Veerman2022}.
 On multiple sites, cloud enhancements have been reported that exceed
 momentarily the solar constant, resulting in clearness indices above
 unit. A summary of extreme cloud enhancement (ECE) cases has been
-compiled by \citet{Martins2022}. Cloud enhancements can have also some
+compiled by \citet{Martins2022}. Cloud enhancements can also have some
 practical implications. The intensity and duration of enhancements can
 affect the efficiency and stability of photovoltaic power production
 \citep{Lappalainen2020, Jaervelae2020}, while ECEs have the potential to
@@ -333,8 +333,12 @@ and standard deviations (\(\sigma\)) for the aerosol optical depth (AOD)
 at \(500\,\text{nm}\) and the equivalent height of the water column
 (WC). The monthly climatological values of AOD and WC, as well as
 combinations with additional offsets of \(\pm1\sigma\) and
-\(\pm2\sigma\), were used as inputs to the RTM in the construction of
-the LUT.
+\(\pm2\sigma\), were used as inputs to the RTM for the construction of
+the LUT. Of note, the total ozone column plays a minor role in GHI as it
+affects mainly the UV wavelengths. However, it is entered in the RTM
+simulations via the seasonal atmospheric profiles. The long-term
+variability of total ozone in Thessaloniki for the period of study is
+very small thus cannot affect the long-term \(\text{GHI}_\text{ref}\).
 
 For each measurement of the dataset, we calculated from the LUT a
 \(\text{GHI}_\text{ref}\) value for the respective season and SZA (by
@@ -423,12 +427,11 @@ AOD and WC. The linear regression reveals a positive bias of
 \(18.4\,\text{W}/\text{m}^2\) and a slope very close to unity. To
 achieve a robust and clear distinction of the CE cases, we applied to
 the \(\text{GHI}_\text{ref}\) an additional offset of
-\(25\,\text{W}/\text{m}^2\). We also calculated the trend of the
-difference of the measured GHI versus the \(\text{GHI}_\text{ref}\) for
-the same cloud-free days, and found a change of !!!!!! \(0.03\,\%\)
-!!!!!! with a strong statistical significance. This further assures that
-the produced reference can adequate describe the long term variability
-of the observed GHI.
+\(`r C4_GLB_diff_THRES`\,\text{W}/\text{m}^2\). The long-term difference
+between the measured GHI and the \(\text{GHI}_{\text{ref}}\) for the
+same cloud-free days has a trend of \(0.2\,\text{W}/\text{m}^2\) per
+year which further supports the validity of the produced long-term
+\(\text{GHI}_\text{ref}\).
 
 \begin{figure}[H]
 
