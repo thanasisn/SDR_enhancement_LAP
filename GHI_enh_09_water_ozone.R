@@ -210,8 +210,26 @@ pander(gather)
 pander(summary(gather))
 
 
+#+ include=T, echo=F
 
-AA <- readRDS("~/LibRadTranG/Clear_sky_model_AERONET_monthly/Model_CS_trend_fix_2.Rds")
+libtest <- readRDS("./data/Model_CS_trend_fix_manual.Rds")
+libtest <- remove_constant(libtest)
+libtest[, ticTime  := NULL]
+libtest[, tacTime  := NULL]
+libtest[, hostname := NULL]
+libtest[, ID       := NULL]
+libtest[, uavgdir  := NULL]
+libtest[, uavgdn   := NULL]
+libtest[, uavgup   := NULL]
+
+libtest <- libtest[atmosphere_file == "afglms"]
+libtest[, glo := (edir + edn) / 1000]
+
+setorder(libtest, mol_modify_O3)
+pander(libtest)
+
+setorder(libtest, pw_avg_mm)
+pander(libtest)
 
 
 
