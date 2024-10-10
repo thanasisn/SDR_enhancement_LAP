@@ -115,9 +115,9 @@ Thessaloniki},city={Thessaloniki},postcode={54124},country={Greece},}
   appropriate cloud-free irradiance reference using a radiative transfer
   model and aerosol optical depth data from a collocated Cimel sun
   photometer and a Brewer spectrophotometer. We found a trend in CE
-  events of \(+112\pm 35\,\text{cases}/\text{year}\), and a trend in the
+  events of \(+113\pm 35\,\text{cases}/\text{year}\), and a trend in the
   corresponding irradiation of
-  \(+329.9\pm 112.0\,\text{kJ}/\text{year}\). To our knowledge, such
+  \(+336.2\pm 114.1\,\text{kJ}/\text{year}\). To our knowledge, such
   long-term changes in CE events have not been presented in the past.
   The peak of the CE events was observed during May and June. CE events
   with duration longer than 10\nobreakspace{}min are very rare
@@ -373,19 +373,19 @@ instruments for the common periods of operation we adjusted the Brewer
 data and filled the missing months of the Cimel record with Brewer data.
 Using the extended monthly time series of AOD at \(340\,\text{nm}\), as
 well as monthly climatological values of the Ångström exponent and
-constant WC of \(15.6\,\text{mm}\) derived from the Cimel record, we
+constant WC of \(15.5\,\text{mm}\) derived from the Cimel record, we
 simulated with the RTM the cloud-free GHI at SZA of \(55^\circ\) for
 each month in the period 1997 -- 2023. The SZA of \(55^\circ\) was
 chosen as representative of all days in the year to get a rough estimate
 of the annually averaged change in cloud-free GHI. A second-degree
 polynomial fit was applied to the simulated yearly averaged GHI to
 derive the long-term change in GHI due to aerosols: \begin{equation}
-\Delta(\text{GHI}) [\%] = -12153.97 + 12.0304 \cdot x -0.002977 \cdot x^2 \label{eq:AODchange}
-\end{equation} where \(x\) the year as a continuous variable. The
-resulting change in \(\text{GHI}_\text{ref}\) ranges between
-\(-1.88\,\%\) in 1994 and \(-0.19\,\%\) in the end of 2023, peaking at
-\(0.23\,\%\) in the mid-2020. Finally, we applied these long-term
-changes of Equation\nobreakspace{}\ref{eq:AODchange} to the
+\Delta(\text{GHI}) [\%] = -12153.97 + 12.0304 \cdot y -0.002977 \cdot y^2 \label{eq:AODchange}
+\end{equation} where \(y\) is the year in decimal form. The resulting
+change in \(\text{GHI}_\text{ref}\) ranges between \(-2\,\%\) in 1994
+and \(0.05\,\%\) in the end of 2023, peaking at \(0.09\,\%\) in the
+mid-2020. Finally, we applied these long-term changes of
+Equation\nobreakspace{}\ref{eq:AODchange} to the
 \(\text{GHI}_\text{ref}\), to create a more realistic representation of
 the cloud-free irradiance for the entire period of study. For the period
 1994 -- 1996 where no AOD data are available, we assumed that the
@@ -427,10 +427,10 @@ AOD and WC. The linear regression reveals a positive bias of
 \(18.4\,\text{W}/\text{m}^2\) and a slope very close to unity. To
 achieve a robust and clear distinction of the CE cases, we applied to
 the \(\text{GHI}_\text{ref}\) an additional offset of
-\(`r C4_GLB_diff_THRES`\,\text{W}/\text{m}^2\). The long-term difference
-between the measured GHI and the \(\text{GHI}_{\text{ref}}\) for the
-same cloud-free days has a trend of \(0.2\,\text{W}/\text{m}^2\) per
-year which further supports the validity of the produced long-term
+\(25\,\text{W}/\text{m}^2\). The long-term difference between the
+measured GHI and the \(\text{GHI}_{\text{ref}}\) for the same cloud-free
+days has a trend of \(0.2\,\text{W}/\text{m}^2\) per year which further
+supports the validity of the produced long-term
 \(\text{GHI}_\text{ref}\).
 
 \begin{figure}[H]
@@ -496,8 +496,8 @@ green line). The gray colored data points above this line correspond to
 the ambiguous data points discussed above. Finally, the black belt just
 below the green line is formed from data measured mainly under
 cloud-free conditions, with the spread likely caused by the short-term
-variability of AOD. A small fraction of these data corresponds also to
-cases with thin cirrus clouds causing weak attenuation of GHI, often
+variability of AOD. A small fraction of these data corresponds to cases
+with thin cirrus clouds causing weak attenuation of GHI, often
 indistinguishable from the attenuation by aerosols.
 
 \begin{figure}[H]
@@ -709,7 +709,7 @@ are very rare. Similar results of this relation have been reported by
 
 }
 
-\caption{Relation of excess irradiation of CE groups with their duration for Thessaloniki in the period 1994 -- 2023. The logarithmic color scale denotes the frequency of the respective groups. Note that 19 points of groups with duration higher than 60 min are not shown.}\label{fig:group-2d}
+\caption{Relation of excess irradiation of CE groups with their duration for Thessaloniki in the period 1994 -- 2023. The logarithmic color scale denotes the frequency of the respective groups. Note that 19 points for groups with duration higher than 60 min are not shown.}\label{fig:group-2d}
 \end{figure}
 
 \hypertarget{extreme-cloud-enhancement-events}{%
