@@ -162,6 +162,7 @@ The following object is masked from 'package:ggplot2':
 \begin{Shaded}
 \begin{Highlighting}[]
 \FunctionTok{plot}\NormalTok{(AE1}\SpecialCharTok{$}\NormalTok{tsy, AE1}\SpecialCharTok{$}\NormalTok{pw\_mm)}
+
 \NormalTok{ll }\OtherTok{\textless{}{-}} \FunctionTok{lm}\NormalTok{(AE1}\SpecialCharTok{$}\NormalTok{pw\_mm }\SpecialCharTok{\textasciitilde{}}\NormalTok{ AE1}\SpecialCharTok{$}\NormalTok{tsy)}
 \FunctionTok{abline}\NormalTok{(ll, }\AttributeTok{col =} \StringTok{"red"}\NormalTok{)}
 \end{Highlighting}
@@ -204,23 +205,22 @@ F-statistic: 0.1958 on 1 and 189 DF,  p-value: 0.6586
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\FunctionTok{plot}\NormalTok{(AE1}\SpecialCharTok{$}\NormalTok{tsy, }\DecValTok{100} \SpecialCharTok{*}\NormalTok{ (AE1}\SpecialCharTok{$}\NormalTok{pw\_mm }\SpecialCharTok{{-}}\NormalTok{ (}\FunctionTok{mean}\NormalTok{(AE1}\SpecialCharTok{$}\NormalTok{pw\_mm,}\AttributeTok{na.rm =}\NormalTok{ T))) }\SpecialCharTok{/} \FunctionTok{mean}\NormalTok{(AE1}\SpecialCharTok{$}\NormalTok{pw\_mm,}\AttributeTok{na.rm =}\NormalTok{ T),}
-     \AttributeTok{ylab =} \StringTok{"Δ(water) \%"}\NormalTok{)}
+\NormalTok{AE1}\SpecialCharTok{$}\NormalTok{lm\_mod }\OtherTok{\textless{}{-}} \FunctionTok{predict}\NormalTok{(ll, AE1)}
+
+
+\DocumentationTok{\#\# Water column range of change}
+\NormalTok{AE1[tsy }\SpecialCharTok{\%in\%} \FunctionTok{range}\NormalTok{(tsy), lm\_mod ]}
 \end{Highlighting}
 \end{Shaded}
 
 \begin{verbatim}
-Warning in title(...): conversion failure on 'Δ(water) %' in 'mbcsToSbcs': dot
-substituted for <ce>
-\end{verbatim}
-
-\begin{verbatim}
-Warning in title(...): conversion failure on 'Δ(water) %' in 'mbcsToSbcs': dot
-substituted for <94>
+[1] 17.3563 18.1607
 \end{verbatim}
 
 \begin{Shaded}
 \begin{Highlighting}[]
+\FunctionTok{plot}\NormalTok{(AE1}\SpecialCharTok{$}\NormalTok{tsy, }\DecValTok{100} \SpecialCharTok{*}\NormalTok{ (AE1}\SpecialCharTok{$}\NormalTok{pw\_mm }\SpecialCharTok{{-}}\NormalTok{ (}\FunctionTok{mean}\NormalTok{(AE1}\SpecialCharTok{$}\NormalTok{pw\_mm,}\AttributeTok{na.rm =}\NormalTok{ T))) }\SpecialCharTok{/} \FunctionTok{mean}\NormalTok{(AE1}\SpecialCharTok{$}\NormalTok{pw\_mm,}\AttributeTok{na.rm =}\NormalTok{ T),}
+     \AttributeTok{ylab =} \StringTok{"Delta(water) \%"}\NormalTok{)}
 \NormalTok{ll }\OtherTok{\textless{}{-}} \FunctionTok{lm}\NormalTok{(}\DecValTok{100} \SpecialCharTok{*}\NormalTok{ (AE1}\SpecialCharTok{$}\NormalTok{pw\_mm }\SpecialCharTok{{-}}\NormalTok{ (}\FunctionTok{mean}\NormalTok{(AE1}\SpecialCharTok{$}\NormalTok{pw\_mm,}\AttributeTok{na.rm =}\NormalTok{ T))) }\SpecialCharTok{/} \FunctionTok{mean}\NormalTok{(AE1}\SpecialCharTok{$}\NormalTok{pw\_mm,}\AttributeTok{na.rm =}\NormalTok{ T) }\SpecialCharTok{\textasciitilde{}}\NormalTok{ AE1}\SpecialCharTok{$}\NormalTok{tsy)}
 \FunctionTok{abline}\NormalTok{(ll, }\AttributeTok{col =} \StringTok{"red"}\NormalTok{)}
 \end{Highlighting}
@@ -294,6 +294,272 @@ F-statistic: 0.1958 on 1 and 189 DF,  p-value: 0.6586
 
 \begin{Shaded}
 \begin{Highlighting}[]
+\DocumentationTok{\#\# Yearly}
+\NormalTok{AEY }\OtherTok{\textless{}{-}}\NormalTok{ AE1[, .(}\AttributeTok{pw\_mm =} \FunctionTok{mean}\NormalTok{(pw\_mm, }\AttributeTok{na.rm =}\NormalTok{ T)), by }\OtherTok{=}\NormalTok{ Year ]}
+\FunctionTok{plot}\NormalTok{(AEY}\SpecialCharTok{$}\NormalTok{Year, }\DecValTok{100} \SpecialCharTok{*}\NormalTok{ (AEY}\SpecialCharTok{$}\NormalTok{pw\_mm }\SpecialCharTok{{-}}\NormalTok{ (}\FunctionTok{mean}\NormalTok{(AEY}\SpecialCharTok{$}\NormalTok{pw\_mm,}\AttributeTok{na.rm =}\NormalTok{ T))) }\SpecialCharTok{/} \FunctionTok{mean}\NormalTok{(AEY}\SpecialCharTok{$}\NormalTok{pw\_mm,}\AttributeTok{na.rm =}\NormalTok{ T),}
+     \AttributeTok{ylab =} \StringTok{"Delta(water) \%"}\NormalTok{)}
+\NormalTok{ll }\OtherTok{\textless{}{-}} \FunctionTok{lm}\NormalTok{(}\DecValTok{100} \SpecialCharTok{*}\NormalTok{ (AEY}\SpecialCharTok{$}\NormalTok{pw\_mm }\SpecialCharTok{{-}}\NormalTok{ (}\FunctionTok{mean}\NormalTok{(AEY}\SpecialCharTok{$}\NormalTok{pw\_mm,}\AttributeTok{na.rm =}\NormalTok{ T))) }\SpecialCharTok{/} \FunctionTok{mean}\NormalTok{(AEY}\SpecialCharTok{$}\NormalTok{pw\_mm,}\AttributeTok{na.rm =}\NormalTok{ T) }\SpecialCharTok{\textasciitilde{}}\NormalTok{ AEY}\SpecialCharTok{$}\NormalTok{Year)}
+\FunctionTok{abline}\NormalTok{(ll, }\AttributeTok{col =} \StringTok{"red"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{figure}[h!]
+
+{\centering \includegraphics[width=1\linewidth]{GHI_enh_09_water_ozone_files/figure-latex/unnamed-chunk-5-3} 
+
+}
+
+\caption{ - empty caption - }\label{fig:unnamed-chunk-5-3}
+\end{figure}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{summary}\NormalTok{(ll)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+
+Call:
+lm(formula = 100 * (AEY$pw_mm - (mean(AEY$pw_mm, na.rm = T)))/mean(AEY$pw_mm, 
+    na.rm = T) ~ AEY$Year)
+
+Residuals:
+     Min       1Q   Median       3Q      Max 
+-22.2820  -6.6245   0.9933   7.0769  27.7005 
+
+Coefficients:
+              Estimate Std. Error t value Pr(>|t|)
+(Intercept) -197.38397 1010.81040  -0.195    0.847
+AEY$Year       0.09803    0.50201   0.195    0.847
+
+Residual standard error: 12.95 on 18 degrees of freedom
+Multiple R-squared:  0.002114,  Adjusted R-squared:  -0.05332 
+F-statistic: 0.03813 on 1 and 18 DF,  p-value: 0.8474
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\DocumentationTok{\#\# by month}
+\NormalTok{gather }\OtherTok{\textless{}{-}} \FunctionTok{data.table}\NormalTok{()}
+\ControlFlowTok{for}\NormalTok{ (am }\ControlFlowTok{in} \FunctionTok{sort}\NormalTok{(}\FunctionTok{unique}\NormalTok{(AE1}\SpecialCharTok{$}\NormalTok{Month))) \{}
+\NormalTok{  AEM }\OtherTok{\textless{}{-}}\NormalTok{ AE1[Month }\SpecialCharTok{==}\NormalTok{ am]}
+
+  \FunctionTok{plot}\NormalTok{(AEM}\SpecialCharTok{$}\NormalTok{Year, }\DecValTok{100} \SpecialCharTok{*}\NormalTok{ (AEM}\SpecialCharTok{$}\NormalTok{pw\_mm }\SpecialCharTok{{-}}\NormalTok{ (}\FunctionTok{mean}\NormalTok{(AEM}\SpecialCharTok{$}\NormalTok{pw\_mm,}\AttributeTok{na.rm =}\NormalTok{ T))) }\SpecialCharTok{/} \FunctionTok{mean}\NormalTok{(AEM}\SpecialCharTok{$}\NormalTok{pw\_mm,}\AttributeTok{na.rm =}\NormalTok{ T),}
+       \AttributeTok{ylab =} \StringTok{"Delta(water) \%"}\NormalTok{)}
+  \FunctionTok{title}\NormalTok{(month.name[am])}
+\NormalTok{  ll }\OtherTok{\textless{}{-}} \FunctionTok{lm}\NormalTok{(}\DecValTok{100} \SpecialCharTok{*}\NormalTok{ (AEM}\SpecialCharTok{$}\NormalTok{pw\_mm }\SpecialCharTok{{-}}\NormalTok{ (}\FunctionTok{mean}\NormalTok{(AEM}\SpecialCharTok{$}\NormalTok{pw\_mm,}\AttributeTok{na.rm =}\NormalTok{ T))) }\SpecialCharTok{/} \FunctionTok{mean}\NormalTok{(AEM}\SpecialCharTok{$}\NormalTok{pw\_mm,}\AttributeTok{na.rm =}\NormalTok{ T) }\SpecialCharTok{\textasciitilde{}}\NormalTok{ AEY}\SpecialCharTok{$}\NormalTok{Year)}
+  \FunctionTok{abline}\NormalTok{(ll, }\AttributeTok{col =} \StringTok{"red"}\NormalTok{)}
+  \FunctionTok{summary}\NormalTok{(ll)}
+
+\NormalTok{  temp }\OtherTok{\textless{}{-}} \FunctionTok{data.table}\NormalTok{(}
+    \FunctionTok{linear\_fit\_stats}\NormalTok{(ll, }\AttributeTok{confidence\_interval =} \FloatTok{0.99}\NormalTok{),}
+    \AttributeTok{Month =}\NormalTok{  am)}
+\NormalTok{  gather }\OtherTok{\textless{}{-}} \FunctionTok{rbind}\NormalTok{(gather, temp)}
+
+\NormalTok{\}}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{figure}[h!]
+
+{\centering \includegraphics[width=1\linewidth]{GHI_enh_09_water_ozone_files/figure-latex/unnamed-chunk-5-4} 
+
+}
+
+\caption{ - empty caption - }\label{fig:unnamed-chunk-5-4}
+\end{figure}
+\begin{figure}[h!]
+
+{\centering \includegraphics[width=1\linewidth]{GHI_enh_09_water_ozone_files/figure-latex/unnamed-chunk-5-5} 
+
+}
+
+\caption{ - empty caption - }\label{fig:unnamed-chunk-5-5}
+\end{figure}
+\begin{figure}[h!]
+
+{\centering \includegraphics[width=1\linewidth]{GHI_enh_09_water_ozone_files/figure-latex/unnamed-chunk-5-6} 
+
+}
+
+\caption{ - empty caption - }\label{fig:unnamed-chunk-5-6}
+\end{figure}
+\begin{figure}[h!]
+
+{\centering \includegraphics[width=1\linewidth]{GHI_enh_09_water_ozone_files/figure-latex/unnamed-chunk-5-7} 
+
+}
+
+\caption{ - empty caption - }\label{fig:unnamed-chunk-5-7}
+\end{figure}
+\begin{figure}[h!]
+
+{\centering \includegraphics[width=1\linewidth]{GHI_enh_09_water_ozone_files/figure-latex/unnamed-chunk-5-8} 
+
+}
+
+\caption{ - empty caption - }\label{fig:unnamed-chunk-5-8}
+\end{figure}
+\begin{figure}[h!]
+
+{\centering \includegraphics[width=1\linewidth]{GHI_enh_09_water_ozone_files/figure-latex/unnamed-chunk-5-9} 
+
+}
+
+\caption{ - empty caption - }\label{fig:unnamed-chunk-5-9}
+\end{figure}
+\begin{figure}[h!]
+
+{\centering \includegraphics[width=1\linewidth]{GHI_enh_09_water_ozone_files/figure-latex/unnamed-chunk-5-10} 
+
+}
+
+\caption{ - empty caption - }\label{fig:unnamed-chunk-5-10}
+\end{figure}
+\begin{figure}[h!]
+
+{\centering \includegraphics[width=1\linewidth]{GHI_enh_09_water_ozone_files/figure-latex/unnamed-chunk-5-11} 
+
+}
+
+\caption{ - empty caption - }\label{fig:unnamed-chunk-5-11}
+\end{figure}
+\begin{figure}[h!]
+
+{\centering \includegraphics[width=1\linewidth]{GHI_enh_09_water_ozone_files/figure-latex/unnamed-chunk-5-12} 
+
+}
+
+\caption{ - empty caption - }\label{fig:unnamed-chunk-5-12}
+\end{figure}
+\begin{figure}[h!]
+
+{\centering \includegraphics[width=1\linewidth]{GHI_enh_09_water_ozone_files/figure-latex/unnamed-chunk-5-13} 
+
+}
+
+\caption{ - empty caption - }\label{fig:unnamed-chunk-5-13}
+\end{figure}
+\begin{figure}[h!]
+
+{\centering \includegraphics[width=1\linewidth]{GHI_enh_09_water_ozone_files/figure-latex/unnamed-chunk-5-14} 
+
+}
+
+\caption{ - empty caption - }\label{fig:unnamed-chunk-5-14}
+\end{figure}
+\begin{figure}[h!]
+
+{\centering \includegraphics[width=1\linewidth]{GHI_enh_09_water_ozone_files/figure-latex/unnamed-chunk-5-15} 
+
+}
+
+\caption{ - empty caption - }\label{fig:unnamed-chunk-5-15}
+\end{figure}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{gather[, slope.sd }\SpecialCharTok{:=} \ConstantTok{NULL}\NormalTok{]}
+\NormalTok{gather[, intercept.ConfInt\_0}\FloatTok{.95} \SpecialCharTok{:=} \ConstantTok{NULL}\NormalTok{]}
+\NormalTok{gather[, intercept.ConfInt\_0}\FloatTok{.99} \SpecialCharTok{:=} \ConstantTok{NULL}\NormalTok{]}
+\NormalTok{gather[, intercept.sd }\SpecialCharTok{:=} \ConstantTok{NULL}\NormalTok{]}
+\NormalTok{gather[, Rsqrd   }\SpecialCharTok{:=} \ConstantTok{NULL}\NormalTok{]}
+\NormalTok{gather[, RsqrdAdj }\SpecialCharTok{:=} \ConstantTok{NULL}\NormalTok{]}
+\NormalTok{gather[, slope.ConfInt\_0}\FloatTok{.95} \SpecialCharTok{:=} \ConstantTok{NULL}\NormalTok{]}
+\NormalTok{gather[, slope.ConfInt\_0}\FloatTok{.99} \SpecialCharTok{:=} \ConstantTok{NULL}\NormalTok{]}
+
+
+\FunctionTok{pander}\NormalTok{(gather)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{longtable}[]{@{}
+  >{\raggedleft\arraybackslash}p{(\columnwidth - 12\tabcolsep) * \real{0.1538}}
+  >{\raggedleft\arraybackslash}p{(\columnwidth - 12\tabcolsep) * \real{0.1282}}
+  >{\raggedleft\arraybackslash}p{(\columnwidth - 12\tabcolsep) * \real{0.1282}}
+  >{\raggedleft\arraybackslash}p{(\columnwidth - 12\tabcolsep) * \real{0.1282}}
+  >{\raggedleft\arraybackslash}p{(\columnwidth - 12\tabcolsep) * \real{0.1795}}
+  >{\raggedleft\arraybackslash}p{(\columnwidth - 12\tabcolsep) * \real{0.1795}}
+  >{\raggedleft\arraybackslash}p{(\columnwidth - 12\tabcolsep) * \real{0.1026}}@{}}
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedleft
+intercept
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+slope
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+slope.t
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+slope.p
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+intercept.t
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+intercept.p
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+Month
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+-219.2 & 0.1089 & 0.1371 & 0.8928 & -0.1371 & 0.8928 & 1 \\
+-802.5 & 0.3983 & 0.5802 & 0.5725 & -0.5802 & 0.5725 & 2 \\
+1542 & -0.7656 & -1.21 & 0.2497 & 1.21 & 0.2497 & 3 \\
+1277 & -0.6339 & -1.446 & 0.1738 & 1.446 & 0.1738 & 4 \\
+-210.3 & 0.1044 & 0.1853 & 0.8555 & -0.1853 & 0.8555 & 5 \\
+-432.3 & 0.2147 & 0.9665 & 0.3491 & -0.9665 & 0.3491 & 6 \\
+238.4 & -0.1183 & -0.4304 & 0.6745 & 0.4304 & 0.6745 & 7 \\
+380.3 & -0.1888 & -0.6364 & 0.5348 & 0.6364 & 0.5348 & 8 \\
+-76.55 & 0.03803 & 0.09689 & 0.9241 & -0.09689 & 0.9241 & 9 \\
+294.7 & -0.1465 & -0.3074 & 0.7631 & 0.3074 & 0.7631 & 10 \\
+-939.2 & 0.4666 & 0.8036 & 0.4334 & -0.8036 & 0.4334 & 11 \\
+611.3 & -0.3038 & -0.32 & 0.7534 & 0.32 & 0.7534 & 12 \\
+\end{longtable}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{pander}\NormalTok{(}\FunctionTok{summary}\NormalTok{(gather))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{longtable}[]{@{}
+  >{\raggedleft\arraybackslash}p{(\columnwidth - 12\tabcolsep) * \real{0.1452}}
+  >{\raggedleft\arraybackslash}p{(\columnwidth - 12\tabcolsep) * \real{0.1532}}
+  >{\raggedleft\arraybackslash}p{(\columnwidth - 12\tabcolsep) * \real{0.1452}}
+  >{\raggedleft\arraybackslash}p{(\columnwidth - 12\tabcolsep) * \real{0.1371}}
+  >{\raggedleft\arraybackslash}p{(\columnwidth - 12\tabcolsep) * \real{0.1452}}
+  >{\raggedleft\arraybackslash}p{(\columnwidth - 12\tabcolsep) * \real{0.1371}}
+  >{\raggedleft\arraybackslash}p{(\columnwidth - 12\tabcolsep) * \real{0.1371}}@{}}
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedleft
+intercept
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+slope
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+slope.t
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+slope.p
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+intercept.t
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+intercept.p
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+Month
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+Min. :-939.17 & Min. :-0.76556 & Min. :-1.4461 & Min. :0.1738 & Min. :-0.9665 & Min. :0.1738 & Min. : 1.00 \\
+1st Qu.:-272.51 & 1st Qu.:-0.21754 & 1st Qu.:-0.4819 & 1st Qu.:0.4123 & 1st Qu.:-0.2840 & 1st Qu.:0.4123 & 1st Qu.: 3.75 \\
+Median : 80.91 & Median :-0.04013 & Median :-0.1052 & Median :0.6235 & Median : 0.1052 & Median :0.6235 & Median : 6.50 \\
+Mean : 138.68 & Mean :-0.06883 & Mean :-0.1317 & Mean :0.5981 & Mean : 0.1317 & Mean :0.5981 & Mean : 6.50 \\
+3rd Qu.: 438.02 & 3rd Qu.: 0.13532 & 3rd Qu.: 0.2840 & 3rd Qu.:0.7862 & 3rd Qu.: 0.4819 & 3rd Qu.:0.7862 & 3rd Qu.: 9.25 \\
+Max. :1542.48 & Max. : 0.46659 & Max. : 0.9665 & Max. :0.9241 & Max. : 1.4461 & Max. :0.9241 & Max. :12.00 \\
+\end{longtable}
+
+\begin{Shaded}
+\begin{Highlighting}[]
 \NormalTok{AA }\OtherTok{\textless{}{-}} \FunctionTok{readRDS}\NormalTok{(}\StringTok{"\textasciitilde{}/LibRadTranG/Clear\_sky\_model\_AERONET\_monthly/Model\_CS\_trend\_fix\_2.Rds"}\NormalTok{)}
 \end{Highlighting}
 \end{Shaded}
@@ -301,7 +567,7 @@ F-statistic: 0.1958 on 1 and 189 DF,  p-value: 0.6586
 \textbf{END}
 
 \begin{verbatim}
-2024-10-10 06:56:05.1 athan@sagan GHI_enh_09_watter_ozone.R 0.105677 mins
+2024-10-10 07:55:55.0 athan@sagan GHI_enh_09_watter_ozone.R 0.335029 mins
 \end{verbatim}
 
 \end{document}

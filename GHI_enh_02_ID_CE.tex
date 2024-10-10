@@ -254,9 +254,9 @@ Alpha * HAU is CS\_ref
 
   \DocumentationTok{\#\# }\AlertTok{TEST}
   \DocumentationTok{\#\# remove long term change of GHI for testing}
-  \FunctionTok{warning}\NormalTok{(}\StringTok{"!! THIS IS A TEST !!"}\NormalTok{)}
-\NormalTok{  trans\_trend }\OtherTok{\textless{}{-}} \ControlFlowTok{function}\NormalTok{(x) \{x }\SpecialCharTok{*} \DecValTok{0}\NormalTok{\}}
-  \FunctionTok{trans\_trend}\NormalTok{(}\DecValTok{2000}\NormalTok{)}
+  \CommentTok{\# warning("!! THIS IS A }\AlertTok{TEST}\CommentTok{ !!")}
+  \CommentTok{\# trans\_trend \textless{}{-} function(x) \{x * 0\}}
+  \CommentTok{\# trans\_trend(2000)}
 
 \NormalTok{\} }\ControlFlowTok{else}\NormalTok{ \{}
 \NormalTok{  trans\_trend }\OtherTok{\textless{}{-}} \ControlFlowTok{function}\NormalTok{(x) \{x }\SpecialCharTok{*} \DecValTok{0}\NormalTok{\}}
@@ -300,11 +300,8 @@ GHI_model (%)   = -12153.97 + 12.0304 * x + -0.002977 * x^2
 \end{verbatim}
 
 \begin{verbatim}
-Warning: !! THIS IS A TEST !!
-\end{verbatim}
-
-\begin{verbatim}
-[1] 0
+(Intercept) 
+-0.01165997 
 \end{verbatim}
 
 \hypertarget{use-libradtran-low_b.low_w-as-reference-for-cloud-free.}{%
@@ -545,7 +542,7 @@ TRUE
 \end{minipage} \\
 \midrule
 \endhead
-6277905 & 134425 \\
+6269887 & 142443 \\
 \bottomrule
 \end{longtable}
 
@@ -1481,11 +1478,6 @@ TRUE
 \caption{ - empty caption - }\label{fig:example-days-74}
 \end{figure}
 
-\FloatBarrier
-
-\hypertarget{days-with-cloudy-day}{%
-\subsection{Days with cloudy day}\label{days-with-cloudy-day}}
-
 \begin{figure}[H]
 
 {\centering \includegraphics[width=1\linewidth]{GHI_enh_02_ID_CE_files/figure-latex/example-days-75} 
@@ -1494,6 +1486,11 @@ TRUE
 
 \caption{ - empty caption - }\label{fig:example-days-75}
 \end{figure}
+
+\FloatBarrier
+
+\hypertarget{days-with-cloudy-day}{%
+\subsection{Days with cloudy day}\label{days-with-cloudy-day}}
 
 \begin{figure}[H]
 
@@ -1666,11 +1663,6 @@ TRUE
 \caption{ - empty caption - }\label{fig:example-days-94}
 \end{figure}
 
-\FloatBarrier
-
-\hypertarget{days-with-random-day}{%
-\subsection{Days with random day}\label{days-with-random-day}}
-
 \begin{figure}[H]
 
 {\centering \includegraphics[width=1\linewidth]{GHI_enh_02_ID_CE_files/figure-latex/example-days-95} 
@@ -1679,6 +1671,11 @@ TRUE
 
 \caption{ - empty caption - }\label{fig:example-days-95}
 \end{figure}
+
+\FloatBarrier
+
+\hypertarget{days-with-random-day}{%
+\subsection{Days with random day}\label{days-with-random-day}}
 
 \begin{figure}[H]
 
@@ -1941,11 +1938,6 @@ TRUE
 \caption{ - empty caption - }\label{fig:example-days-124}
 \end{figure}
 
-\FloatBarrier
-
-\hypertarget{days-with-manual-test-days}{%
-\subsection{Days with manual test days}\label{days-with-manual-test-days}}
-
 \begin{figure}[H]
 
 {\centering \includegraphics[width=1\linewidth]{GHI_enh_02_ID_CE_files/figure-latex/example-days-125} 
@@ -1954,6 +1946,11 @@ TRUE
 
 \caption{ - empty caption - }\label{fig:example-days-125}
 \end{figure}
+
+\FloatBarrier
+
+\hypertarget{days-with-manual-test-days}{%
+\subsection{Days with manual test days}\label{days-with-manual-test-days}}
 
 \begin{figure}[H]
 
@@ -1980,6 +1977,15 @@ TRUE
 }
 
 \caption{ - empty caption - }\label{fig:example-days-128}
+\end{figure}
+
+\begin{figure}[H]
+
+{\centering \includegraphics[width=1\linewidth]{GHI_enh_02_ID_CE_files/figure-latex/example-days-129} 
+
+}
+
+\caption{ - empty caption - }\label{fig:example-days-129}
 \end{figure}
 
 \newpage
@@ -2239,7 +2245,7 @@ Call `lifecycle::last_lifecycle_warnings()` to see where this warning was genera
 \textbf{END}
 
 \begin{verbatim}
-2024-10-10 07:10:34.5 athan@sagan GHI_enh_02_ID_CE.R 20.222211 mins
+2024-10-10 07:54:22.2 athan@sagan GHI_enh_02_ID_CE.R 20.283627 mins
 \end{verbatim}
 
 \end{document}
