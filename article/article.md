@@ -119,10 +119,10 @@ using data recorded every one minute. We identified the cloud enhancement (CE) e
 creating an appropriate cloud-free irradiance reference using a radiative transfer
 model and aerosol optical depth data from a collocated Cimel sun photometer and a
 Brewer spectrophotometer. We found a trend in CE events of
-$+148\pm
+$+113\pm
 35\,\text{cases}/\text{year}$,
 and a trend in the corresponding irradiation of
-$+430.8\pm 113.2\,\text{kJ}/\text{year}$.
+$+336.2\pm 114.1\,\text{kJ}/\text{year}$.
 To our knowledge, such long-term changes in CE events have not been presented in the past.
 The peak of the CE events was observed during May and June. CE events with duration
 longer than 10\nobreakspace{}min are very rare
@@ -582,21 +582,21 @@ aerosols.
 
 Following the application of the above discussed methodology to the entire dataset
 ($>6$ million of one-minute GHI measurements),
-$2.23\,\%$ were identified as CE events and
+$2.36\,\%$ were identified as CE events and
 $0.036\,\%$ as ECE events.
 The highest recorded GHI due to CE was
 $1416.6\,\text{W}/\text{m}^2$ on
  24\ May 2007 at a SZA of
 $19.9^\circ$ corresponding to OI of
-$366.3\,\text{W}/\text{m}^2$ or
-$34.9\,\%$ above the threshold.
+$370.6\,\text{W}/\text{m}^2$ or
+$35.4\,\%$ above the threshold.
 The strongest CE event of
 $53.2\,\%$ above the
 cloud-free threshold was observed on
 28\ October 2016 at a SZA of
 $59.2^\circ$ with a GHI of
 $861.8\,\text{W}/\text{m}^2$ and a OI of
-$299.4\,\text{W}/\text{m}^2$.
+$299.1\,\text{W}/\text{m}^2$.
 Both cases are also ECE events with
 $131.2\,\text{W}/\text{m}^2$ and
 $161.5\,\text{W}/\text{m}^2$ above the
@@ -626,14 +626,14 @@ To account for missing data, all three quantities have been divided with the fra
 of the valid GHI observations in each month.  Statistically significant (at the
 $95\,\%$ confidence level) increasing trends appear for the yearly number of CE
 events
-($+148\pm 35\,\text{cases}/\text{year}$)
+($+113\pm 35\,\text{cases}/\text{year}$)
 and the excess irradiation
-($+430.8\pm 113.2\,\text{kJ}/\text{year}$),
+($+336.2\pm 114.1\,\text{kJ}/\text{year}$),
 while the trend in the yearly mean OI is negligible
-($+0.2\pm 0.2\,\text{W}/\text{m}^2/\text{year}$)
+($+0.1\pm 0.2\,\text{W}/\text{m}^2/\text{year}$)
 and of no statistical significance.
 The average OI for the entire period is
-$+42.4\pm 3.1\,\text{W}/\text{m}^2$.
+$+42.7\pm 2.8\,\text{W}/\text{m}^2$.
 The yearly excess irradiation due to CE events ranges between about $8$ and
 $24\,\text{MJ}/\text{m}^2$. On average, it is about one half of the highest daily
 irradiation of \~31 MJ/m^2^ under cloud-free conditions recorded at the summer
@@ -728,10 +728,10 @@ expected, as the stronger the CE events are, the rarer the conditions favoring t
 occurrence of CE events.
 For the majority (over $62\,\%$) of
 the CE events the OI is below the long-term average of
-$42.4\,\text{W}/\text{m}^2$, while
-$9.6\,\%$ of the events correspond to OI larger than
+$42.7\,\text{W}/\text{m}^2$, while
+$9.7\,\%$ of the events correspond to OI larger than
 $100\,\text{W}/\text{m}^2$ and up to the highest value of
-$438.3\,\text{W}/\text{m}^2$.
+$438.2\,\text{W}/\text{m}^2$.
 This distribution is indicative of the magnitude and the probability of the expected
 CE events over Thessaloniki.  Similar distribution of CE events, albeit with larger
 OI values, has been reported by @Vamvakas2020, for the city of Patras. This site is
@@ -753,7 +753,7 @@ affect the characteristics and magnitude of the CE events.
 The duration of the CE events is variable and can last for several minutes or even
 more than an hour. To study the characteristics of these consecutive events, we
 grouped them into bins of increasing duration in steps of one minute.  We have
-identified 33663 groups of CE events in the whole period of study, where
+identified 35342 groups of CE events in the whole period of study, where
 the group with the longest duration of
 140 minutes occurred on
 07\ July 2013
@@ -873,9 +873,9 @@ By creating a cloud-free approximation representing the long- and short-term
 variability of the expected cloud-free GHI, we were able to identify cases of CE and
 ECE events in Thessaloniki for the period 1994 -- 2023.  After analyzing the CE
 cases, we found an increasing tendency of
-$+148.3\pm 35.3\,\text{cases}/\text{year}$,
+$+113.4\pm 35.5\,\text{cases}/\text{year}$,
 with the mean annual irradiation of the CE events increasing with a rate of
-$+430.8\pm 113.2\,\text{kJ}/\text{year}$.
+$+336.2\pm 114.1\,\text{kJ}/\text{year}$.
 The most active months of CE events are May and June.  We found that continuous CE
 events can last up to $140$ minutes, while the duration of $79\,\%$ of them is equal
 or bellow $5$ minutes.
