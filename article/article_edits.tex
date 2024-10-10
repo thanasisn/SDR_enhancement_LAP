@@ -1,7 +1,7 @@
 \documentclass[preprint, 5p,
 %DIF LATEXDIFF DIFFERENCE FILE
 %DIF DEL /home/athan/MANUSCRIPTS/02_enhancement/SUBMISSION_02/article/article.tex   Wed Sep 11 11:07:21 2024
-%DIF ADD /home/athan/MANUSCRIPTS/02_enhancement/article/article.tex                 Thu Oct 10 12:59:54 2024
+%DIF ADD /home/athan/MANUSCRIPTS/02_enhancement/article/article.tex                 Thu Oct 10 19:07:08 2024
 authoryear]{elsarticle} %review=doublespace preprint=single 5p=2 column
 %%% Begin My package additions %%%%%%%%%%%%%%%%%%%
 
@@ -197,9 +197,17 @@ Thessaloniki},city={Thessaloniki},postcode={54124},country={Greece},}
   appropriate cloud-free irradiance reference using a radiative transfer
   model and aerosol optical depth data from a collocated Cimel sun
   photometer and a Brewer spectrophotometer. We found a trend in CE
-  events of \(+112\pm 35\,\text{cases}/\text{year}\), and a trend in the
+  events of \DIFdelbegin \DIFdel{%
+\mbox{%DIFAUXCMD
+\(+112\pm 35\,\text{cases}/\text{year}\)
+}%DIFAUXCMD
+}\DIFdelend \DIFaddbegin \DIFadd{%
+\mbox{%DIFAUXCMD
+\(+113\pm 35\,\text{cases}/\text{year}\)
+}%DIFAUXCMD
+}\DIFaddend , and a trend in the
   corresponding irradiation of
-  \DIFdelbegin \DIFdel{\(+329.9\pm 112\,\text{kJ}/\text{year}\)}\DIFdelend \DIFaddbegin \DIFadd{\(+329.9\pm 112.0\,\text{kJ}/\text{year}\)}\DIFaddend . To our knowledge, such
+  \DIFdelbegin \DIFdel{\(+329.9\pm 112\,\text{kJ}/\text{year}\)}\DIFdelend \DIFaddbegin \DIFadd{\(+336.2\pm 114.1\,\text{kJ}/\text{year}\)}\DIFaddend . To our knowledge, such
   long-term changes in CE events have not been presented in the past.
   The peak of the CE events was observed during May and June. CE events
   with duration longer than 10\nobreakspace{}min are very rare
@@ -258,7 +266,7 @@ position of the sun and the clouds \citep{Gueymard2017, Veerman2022}.
 On multiple sites, cloud enhancements have been reported that exceed
 momentarily the solar constant, resulting in clearness indices above
 unit. A summary of extreme cloud enhancement (ECE) cases has been
-compiled by \citet{Martins2022}. Cloud enhancements can have also some
+compiled by \citet{Martins2022}. Cloud enhancements can \DIFdelbegin \DIFdel{have also }\DIFdelend \DIFaddbegin \DIFadd{also have }\DIFaddend some
 practical implications. The intensity and duration of enhancements can
 affect the efficiency and stability of photovoltaic power production
 \citep{Lappalainen2020, Jaervelae2020}, while ECEs have the potential to
@@ -419,8 +427,13 @@ and standard deviations (\(\sigma\)) for the aerosol optical depth (AOD)
 at \(500\,\text{nm}\) and the equivalent height of the water column
 (WC). The monthly climatological values of AOD and WC, as well as
 combinations with additional offsets of \(\pm1\sigma\) and
-\(\pm2\sigma\), were used as inputs to the RTM in the construction of
-the LUT.
+\(\pm2\sigma\), were used as inputs to the RTM \DIFdelbegin \DIFdel{in }\DIFdelend \DIFaddbegin \DIFadd{for }\DIFaddend the construction of
+the LUT. \DIFaddbegin \DIFadd{Of note, the total ozone column plays a minor role in GHI as it
+affects mainly the UV wavelengths. However, it is entered in the RTM
+simulations via the seasonal atmospheric profiles. The long-term
+variability of total ozone in Thessaloniki for the period of study is
+very small thus cannot affect the long-term \(\text{GHI}_\text{ref}\).
+}\DIFaddend 
 
 For each measurement of the dataset, we calculated from the LUT a
 \(\text{GHI}_\text{ref}\) value for the respective season and SZA (by
@@ -455,20 +468,20 @@ instruments for the common periods of operation we adjusted the Brewer
 data and filled the missing months of the Cimel record with Brewer data.
 Using the extended monthly time series of AOD at \(340\,\text{nm}\), as
 well as monthly climatological values of the Ångström exponent and
-constant WC of \(15.6\,\text{mm}\) derived from the Cimel record, we
+constant WC of \DIFdelbegin \DIFdel{\(15.6\,\text{mm}\) }\DIFdelend \DIFaddbegin \DIFadd{\(15.5\,\text{mm}\) }\DIFaddend derived from the Cimel record, we
 simulated with the RTM the cloud-free GHI at SZA of \(55^\circ\) for
 each month in the period 1997 -- 2023. The SZA of \(55^\circ\) was
 chosen as representative of all days in the year to get a rough estimate
 of the annually averaged change in cloud-free GHI. A second-degree
 polynomial fit was applied to the simulated yearly averaged GHI to
 derive the long-term change in GHI due to aerosols: \begin{equation}
-\Delta(\text{GHI}) [\%] = \DIFdelbegin \DIFdel{-12170 }\DIFdelend \DIFaddbegin \DIFadd{-12153.97 }\DIFaddend + \DIFdelbegin \DIFdel{12.05 }\DIFdelend \DIFaddbegin \DIFadd{12.0304 }\DIFaddend \cdot x \DIFdelbegin \DIFdel{+ -0.002981 }\DIFdelend \DIFaddbegin \DIFadd{-0.002977 }\DIFaddend \cdot x^2 \label{eq:AODchange}
-\end{equation} where \DIFdelbegin \DIFdel{\(y\) is the date as a decimal fraction of the
-year}\DIFdelend \DIFaddbegin \DIFadd{\(x\) the year as a continuous variable}\DIFaddend . The
-resulting change in \(\text{GHI}_\text{ref}\) ranges between
-\DIFdelbegin \DIFdel{\(-1.88\) }\DIFdelend \DIFaddbegin \DIFadd{\(-1.88\,\%\) }\DIFaddend in 1994 and \(-0.19\,\%\) in the end of 2023, peaking at
-\(0.23\,\%\) in the mid-2020. Finally, we applied these long-term
-changes of Equation\nobreakspace{}\ref{eq:AODchange} to the
+\Delta(\text{GHI}) [\%] = \DIFdelbegin \DIFdel{-12170 }\DIFdelend \DIFaddbegin \DIFadd{-12153.97 }\DIFaddend + \DIFdelbegin \DIFdel{12.05 }\DIFdelend \DIFaddbegin \DIFadd{12.0304 }\DIFaddend \cdot \DIFdelbegin \DIFdel{x + -0.002981 }\DIFdelend \DIFaddbegin \DIFadd{y -0.002977 }\DIFaddend \cdot \DIFdelbegin \DIFdel{x}\DIFdelend \DIFaddbegin \DIFadd{y}\DIFaddend ^2 \label{eq:AODchange}
+\end{equation} where \(y\) is the \DIFdelbegin \DIFdel{date as a decimal fraction of the
+year }\DIFdelend \DIFaddbegin \DIFadd{year in decimal form}\DIFaddend . The resulting
+change in \(\text{GHI}_\text{ref}\) ranges between \DIFdelbegin \DIFdel{\(-1.88\) }\DIFdelend \DIFaddbegin \DIFadd{\(-2\,\%\) }\DIFaddend in 1994
+and \DIFdelbegin \DIFdel{\(-0.19\,\%\) }\DIFdelend \DIFaddbegin \DIFadd{\(0.05\,\%\) }\DIFaddend in the end of 2023, peaking at \DIFdelbegin \DIFdel{\(0.23\,\%\) }\DIFdelend \DIFaddbegin \DIFadd{\(0.09\,\%\) }\DIFaddend in the
+mid-2020. Finally, we applied these long-term changes of
+Equation\nobreakspace{}\ref{eq:AODchange} to the
 \(\text{GHI}_\text{ref}\), to create a more realistic representation of
 the cloud-free irradiance for the entire period of study. For the period
 1994 -- 1996 where no AOD data are available, we assumed that the
@@ -510,12 +523,11 @@ AOD and WC. The linear regression reveals a positive bias of
 \(18.4\,\text{W}/\text{m}^2\) and a slope very close to unity. To
 achieve a robust and clear distinction of the CE cases, we applied to
 the \(\text{GHI}_\text{ref}\) an additional offset of
-\(25\,\text{W}/\text{m}^2\). \DIFaddbegin \DIFadd{We also calculated the trend of the
-difference of the measured GHI versus the \(\text{GHI}_\text{ref}\) for
-the same cloud-free days, and found a change of !!!!!! \(0.03\,\%\)
-!!!!!! with a strong statistical significance. This further assures that
-the produced reference can adequate describe the long term variability
-of the observed GHI.
+\(25\,\text{W}/\text{m}^2\). \DIFaddbegin \DIFadd{The long-term difference between the
+measured GHI and the \(\text{GHI}_{\text{ref}}\) for the same cloud-free
+days has a trend of \(0.2\,\text{W}/\text{m}^2\) per year which further
+supports the validity of the produced long-term
+\(\text{GHI}_\text{ref}\).
 }\DIFaddend 
 
 \begin{figure}[H]
@@ -581,8 +593,8 @@ green line). The gray colored data points above this line correspond to
 the ambiguous data points discussed above. Finally, the black belt just
 below the green line is formed from data measured mainly under
 cloud-free conditions, with the spread likely caused by the short-term
-variability of AOD. A small fraction of these data corresponds also to
-cases with thin cirrus clouds causing weak attenuation of GHI, often
+variability of AOD. A small fraction of these data corresponds \DIFdelbegin \DIFdel{also }\DIFdelend to cases
+with thin cirrus clouds causing weak attenuation of GHI, often
 indistinguishable from the attenuation by aerosols.
 
 \begin{figure}[H]
@@ -805,7 +817,7 @@ are very rare. Similar results of this relation have been reported by
 
 }
 
-\caption{Relation of excess irradiation of CE groups with their duration for Thessaloniki in the period 1994 -- 2023. The logarithmic color scale denotes the frequency of the respective groups. Note that 19 \DIFdelbeginFL \DIFdelFL{pints }\DIFdelendFL \DIFaddbeginFL \DIFaddFL{points of groups }\DIFaddendFL with duration higher than 60 min are not shown.}\label{fig:group-2d}
+\caption{Relation of excess irradiation of CE groups with their duration for Thessaloniki in the period 1994 -- 2023. The logarithmic color scale denotes the frequency of the respective groups. Note that 19 \DIFdelbeginFL \DIFdelFL{pints }\DIFdelendFL \DIFaddbeginFL \DIFaddFL{points for groups }\DIFaddendFL with duration higher than 60 min are not shown.}\label{fig:group-2d}
 \end{figure}
 
 \hypertarget{extreme-cloud-enhancement-events}{%
