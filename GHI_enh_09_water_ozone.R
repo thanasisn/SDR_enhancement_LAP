@@ -91,7 +91,7 @@ knitr::knit_hooks$set(chunk = function(x, options) {
 ## Functions from `https://github.com/thanasisn/IStillBreakStuff/tree/main/FUNCTIONS/R`
 source("~/CODE/FUNCTIONS/R/data.R")
 source("~/CODE/FUNCTIONS/R/trig_deg.R")
-
+source("~/CODE/FUNCTIONS/R/linear_fit_stats.R")
 
 ## __ Source initial scripts  --------------------------------------------------
 source("./GHI_enh_00_variables.R")
@@ -148,10 +148,15 @@ ll <- lm(AE1$pw_mm ~ AE1$tsy)
 abline(ll, col = "red")
 summary(ll)
 
-predict(ll, 2000)
+AE1$lm_mod <- predict(ll, AE1)
+
+
+## Water column range of change
+AE1[tsy %in% range(tsy), lm_mod ]
+
 
 plot(AE1$tsy, 100 * (AE1$pw_mm - (mean(AE1$pw_mm,na.rm = T))) / mean(AE1$pw_mm,na.rm = T),
-     ylab = "Δ(water) %")
+     ylab = "Delta(water) %")
 ll <- lm(100 * (AE1$pw_mm - (mean(AE1$pw_mm,na.rm = T))) / mean(AE1$pw_mm,na.rm = T) ~ AE1$tsy)
 abline(ll, col = "red")
 summary(ll)
@@ -160,6 +165,49 @@ range(AE1$tsy)
 range(AE1$date)
 mean(AE1$pw_mm,na.rm = T)
 
+
+
+## Yearly
+AEY <- AE1[, .(pw_mm = mean(pw_mm, na.rm = T)), by = Year ]
+plot(AEY$Year, 100 * (AEY$pw_mm - (mean(AEY$pw_mm,na.rm = T))) / mean(AEY$pw_mm,na.rm = T),
+     ylab = "Delta(water) %")
+ll <- lm(100 * (AEY$pw_mm - (mean(AEY$pw_mm,na.rm = T))) / mean(AEY$pw_mm,na.rm = T) ~ AEY$Year)
+abline(ll, col = "red")
+summary(ll)
+
+
+## by month
+gather <- data.table()
+for (am in sort(unique(AE1$Month))) {
+  AEM <- AE1[Month == am]
+
+  plot(AEM$Year, 100 * (AEM$pw_mm - (mean(AEM$pw_mm,na.rm = T))) / mean(AEM$pw_mm,na.rm = T),
+       ylab = "Delta(water) %")
+  title(month.name[am])
+  ll <- lm(100 * (AEM$pw_mm - (mean(AEM$pw_mm,na.rm = T))) / mean(AEM$pw_mm,na.rm = T) ~ AEY$Year)
+  abline(ll, col = "red")
+  summary(ll)
+
+  temp <- data.table(
+    linear_fit_stats(ll, confidence_interval = 0.99),
+    Month =  am)
+  gather <- rbind(gather, temp)
+
+}
+
+gather[, slope.sd := NULL]
+gather[, intercept.ConfInt_0.95 := NULL]
+gather[, intercept.ConfInt_0.99 := NULL]
+gather[, intercept.sd := NULL]
+gather[, Rsqrd   := NULL]
+gather[, RsqrdAdj := NULL]
+gather[, slope.ConfInt_0.95 := NULL]
+gather[, slope.ConfInt_0.99 := NULL]
+
+
+pander(gather)
+
+pander(summary(gather))
 
 
 

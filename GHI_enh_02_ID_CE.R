@@ -280,9 +280,9 @@ if (APPLY_TRANS) {
 
   ## TEST
   ## remove long term change of GHI for testing
-  warning("!! THIS IS A TEST !!")
-  trans_trend <- function(x) {x * 0}
-  trans_trend(2000)
+  # warning("!! THIS IS A TEST !!")
+  # trans_trend <- function(x) {x * 0}
+  # trans_trend(2000)
 
 } else {
   trans_trend <- function(x) {x * 0}
