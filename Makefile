@@ -64,7 +64,6 @@ $(DOC1): $(RMD)
 	Rscript -e "rmarkdown::find_pandoc(dir = '/usr/lib/rstudio/resources/app/bin/quarto/bin/tools'); rmarkdown::render('$?', clean = TRUE, output_format='bookdown::word_document2', output_file='$@',  output_dir='article')"
 	pandoc -s $(DOC1)                              -o ./article/article_doc.md
 	## get a docx from remote and convert to md for comparison
-	# pandoc -s ./Article_B11/Article_B11_AB_NA.docx -o ./Article_B11/Article_B11_AB_NA.md
 	# rclone --config $${HOME}/Documents/rclone.conf sync "lapauththanasis:/Enhance/SUBMISSION_01/Article_B11_AB_6-9-2024.docx" ./Article_B11/
 	# pandoc -s ./Article_B11/Article_B11_AB_6-9-2024.docx -o ./Article_B11/Article_remote.md
 	rclone --config $${HOME}/Documents/rclone.conf sync "lapauththanasis:/Enhance/SUBMISSION_01/Article_B12_AB.docx"          ./Article_B12/
