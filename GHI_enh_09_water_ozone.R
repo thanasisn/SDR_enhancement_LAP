@@ -132,12 +132,23 @@ AE1[, tsy := Year + (Month - 1) / 12]
 AE1$pw_mm                 <- AE1$precipitable_water_cm * 10
 AE1$precipitable_water_cm <- NULL
 
+## Use whole years
+AE1 <- AE1[tsy >= 2004 ]
+AE1 <- AE1[tsy <  2024 ]
+
+
+
+
+
 
 #+ echo=T
 plot(AE1$tsy, AE1$pw_mm)
+
 ll <- lm(AE1$pw_mm ~ AE1$tsy)
 abline(ll, col = "red")
 summary(ll)
+
+predict(ll, 2000)
 
 plot(AE1$tsy, 100 * (AE1$pw_mm - (mean(AE1$pw_mm,na.rm = T))) / mean(AE1$pw_mm,na.rm = T),
      ylab = "Δ(water) %")

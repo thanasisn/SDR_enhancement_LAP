@@ -7,16 +7,19 @@
   10pt,
   a4paper,oneside]{article}
 \usepackage{amsmath,amssymb}
-\usepackage{lmodern}
 \usepackage{iftex}
 \ifPDFTeX
   \usepackage[T1]{fontenc}
   \usepackage[utf8]{inputenc}
   \usepackage{textcomp} % provide euro and other symbols
 \else % if luatex or xetex
-  \usepackage{unicode-math}
+  \usepackage{unicode-math} % this also loads fontspec
   \defaultfontfeatures{Scale=MatchLowercase}
   \defaultfontfeatures[\rmfamily]{Ligatures=TeX,Scale=1}
+\fi
+\usepackage{lmodern}
+\ifPDFTeX\else
+  % xetex/luatex font selection
 \fi
 % Use upquote if available, for straight quotes in verbatim environments
 \IfFileExists{upquote.sty}{\usepackage{upquote}}{}
@@ -35,18 +38,6 @@
   \KOMAoptions{parskip=half}}
 \makeatother
 \usepackage{xcolor}
-\IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
-\IfFileExists{bookmark.sty}{\usepackage{bookmark}}{\usepackage{hyperref}}
-\hypersetup{
-  pdftitle={Enhancement of SDR in Thessaloniki},
-  pdfauthor={Natsis Athanasios; Alkiviadis Bais},
-  colorlinks=true,
-  linkcolor={Maroon},
-  filecolor={Maroon},
-  citecolor={Blue},
-  urlcolor={Blue},
-  pdfcreator={LaTeX via pandoc}}
-\urlstyle{same} % disable monospaced font for URLs
 \usepackage[left=0.5in,right=0.5in,top=0.5in,bottom=0.5in]{geometry}
 \usepackage{color}
 \usepackage{fancyvrb}
@@ -59,13 +50,13 @@
 \newenvironment{Shaded}{\begin{snugshade}}{\end{snugshade}}
 \newcommand{\AlertTok}[1]{\textcolor[rgb]{0.94,0.16,0.16}{#1}}
 \newcommand{\AnnotationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
-\newcommand{\AttributeTok}[1]{\textcolor[rgb]{0.77,0.63,0.00}{#1}}
+\newcommand{\AttributeTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{#1}}
 \newcommand{\BaseNTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
 \newcommand{\BuiltInTok}[1]{#1}
 \newcommand{\CharTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
 \newcommand{\CommentTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textit{#1}}}
 \newcommand{\CommentVarTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
-\newcommand{\ConstantTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\ConstantTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{#1}}
 \newcommand{\ControlFlowTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
 \newcommand{\DataTypeTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{#1}}
 \newcommand{\DecValTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
@@ -73,7 +64,7 @@
 \newcommand{\ErrorTok}[1]{\textcolor[rgb]{0.64,0.00,0.00}{\textbf{#1}}}
 \newcommand{\ExtensionTok}[1]{#1}
 \newcommand{\FloatTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
-\newcommand{\FunctionTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\FunctionTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
 \newcommand{\ImportTok}[1]{#1}
 \newcommand{\InformationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
 \newcommand{\KeywordTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
@@ -82,7 +73,7 @@
 \newcommand{\OtherTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{#1}}
 \newcommand{\PreprocessorTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textit{#1}}}
 \newcommand{\RegionMarkerTok}[1]{#1}
-\newcommand{\SpecialCharTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\SpecialCharTok}[1]{\textcolor[rgb]{0.81,0.36,0.00}{\textbf{#1}}}
 \newcommand{\SpecialStringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
 \newcommand{\StringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
 \newcommand{\VariableTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
@@ -122,10 +113,22 @@
 \ifLuaTeX
   \usepackage{selnolig}  % disable illegal ligatures
 \fi
+\usepackage{bookmark}
+\IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
+\urlstyle{same}
+\hypersetup{
+  pdftitle={Enhancement of SDR in Thessaloniki},
+  pdfauthor={Natsis Athanasios; Alkiviadis Bais},
+  colorlinks=true,
+  linkcolor={Maroon},
+  filecolor={Maroon},
+  citecolor={Blue},
+  urlcolor={Blue},
+  pdfcreator={LaTeX via pandoc}}
 
 \title{Enhancement of SDR in Thessaloniki}
 \author{Natsis Athanasios\footnote{Laboratory of Atmospheric Physics, AUTH, \href{mailto:natsisphysicist@gmail.com}{\nolinkurl{natsisphysicist@gmail.com}}} \and Alkiviadis Bais\footnote{Laboratory of Atmospheric Physics, AUTH}}
-\date{2024-10-09}
+\date{2024-10-10}
 
 \begin{document}
 \maketitle
@@ -146,6 +149,7 @@ Registered S3 methods overwritten by 'ggpp':
 \end{verbatim}
 
 \begin{verbatim}
+
 Attaching package: 'ggpp'
 \end{verbatim}
 
@@ -179,22 +183,23 @@ The following object is masked from 'package:ggplot2':
 \end{Shaded}
 
 \begin{verbatim}
+
 Call:
 lm(formula = AE1$pw_mm ~ AE1$tsy)
 
 Residuals:
-     Min       1Q   Median       3Q      Max 
--11.5833  -6.3334  -0.8342   7.1534  13.1783 
+    Min      1Q  Median      3Q     Max 
+-11.588  -6.411  -0.784   7.383  13.177 
 
 Coefficients:
              Estimate Std. Error t value Pr(>|t|)
-(Intercept) -87.15935  175.20861  -0.497    0.619
-AE1$tsy       0.05208    0.08700   0.599    0.550
+(Intercept) -63.58166  183.83984  -0.346    0.730
+AE1$tsy       0.04039    0.09127   0.443    0.659
 
-Residual standard error: 7.118 on 194 degrees of freedom
-  (63 observations deleted due to missingness)
-Multiple R-squared:  0.001843,  Adjusted R-squared:  -0.003302 
-F-statistic: 0.3583 on 1 and 194 DF,  p-value: 0.5502
+Residual standard error: 7.164 on 189 degrees of freedom
+  (49 observations deleted due to missingness)
+Multiple R-squared:  0.001035,  Adjusted R-squared:  -0.004251 
+F-statistic: 0.1958 on 1 and 189 DF,  p-value: 0.6586
 \end{verbatim}
 
 \begin{Shaded}
@@ -237,23 +242,24 @@ substituted for <94>
 \end{Shaded}
 
 \begin{verbatim}
+
 Call:
 lm(formula = 100 * (AE1$pw_mm - (mean(AE1$pw_mm, na.rm = T)))/mean(AE1$pw_mm, 
     na.rm = T) ~ AE1$tsy)
 
 Residuals:
     Min      1Q  Median      3Q     Max 
--65.386 -35.751  -4.709  40.380  74.389 
+-65.223 -36.083  -4.413  41.551  74.166 
 
 Coefficients:
              Estimate Std. Error t value Pr(>|t|)
-(Intercept) -591.9980   989.0194  -0.599     0.55
-AE1$tsy        0.2940     0.4911   0.599     0.55
+(Intercept) -457.8563  1034.7048  -0.442    0.659
+AE1$tsy        0.2273     0.5137   0.443    0.659
 
-Residual standard error: 40.18 on 194 degrees of freedom
-  (63 observations deleted due to missingness)
-Multiple R-squared:  0.001843,  Adjusted R-squared:  -0.003302 
-F-statistic: 0.3583 on 1 and 194 DF,  p-value: 0.5502
+Residual standard error: 40.32 on 189 degrees of freedom
+  (49 observations deleted due to missingness)
+Multiple R-squared:  0.001035,  Adjusted R-squared:  -0.004251 
+F-statistic: 0.1958 on 1 and 189 DF,  p-value: 0.6586
 \end{verbatim}
 
 \begin{Shaded}
@@ -263,7 +269,7 @@ F-statistic: 0.3583 on 1 and 194 DF,  p-value: 0.5502
 \end{Shaded}
 
 \begin{verbatim}
-[1] 2003.417 2024.917
+[1] 2004.000 2023.917
 \end{verbatim}
 
 \begin{Shaded}
@@ -273,7 +279,7 @@ F-statistic: 0.3583 on 1 and 194 DF,  p-value: 0.5502
 \end{Shaded}
 
 \begin{verbatim}
-[1] "2003-AUG" "2024-SEP"
+[1] "2004-APR" "2023-SEP"
 \end{verbatim}
 
 \begin{Shaded}
@@ -283,7 +289,7 @@ F-statistic: 0.3583 on 1 and 194 DF,  p-value: 0.5502
 \end{Shaded}
 
 \begin{verbatim}
-[1] 17.71539
+[1] 17.76737
 \end{verbatim}
 
 \begin{Shaded}
@@ -295,7 +301,7 @@ F-statistic: 0.3583 on 1 and 194 DF,  p-value: 0.5502
 \textbf{END}
 
 \begin{verbatim}
-2024-10-09 18:47:49.5 athan@sagan GHI_enh_09_watter_ozone.R 0.106470 mins
+2024-10-10 06:56:05.1 athan@sagan GHI_enh_09_watter_ozone.R 0.105677 mins
 \end{verbatim}
 
 \end{document}
