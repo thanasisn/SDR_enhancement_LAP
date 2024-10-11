@@ -1,7 +1,4 @@
 \documentclass[preprint, 5p,
-%DIF LATEXDIFF DIFFERENCE FILE
-%DIF DEL /home/athan/MANUSCRIPTS/02_enhancement/SUBMISSION_02/article/article.tex   Wed Sep 11 11:07:21 2024
-%DIF ADD /home/athan/MANUSCRIPTS/02_enhancement/article/article.tex                 Fri Oct 11 19:48:10 2024
 authoryear]{elsarticle} %review=doublespace preprint=single 5p=2 column
 %%% Begin My package additions %%%%%%%%%%%%%%%%%%%
 
@@ -82,87 +79,8 @@ authoryear]{elsarticle} %review=doublespace preprint=single 5p=2 column
 \usepackage[normalem]{ulem}
 \usepackage{makecell}
 \usepackage{xcolor}
-%DIF PREAMBLE EXTENSION ADDED BY LATEXDIFF
-%DIF UNDERLINE PREAMBLE %DIF PREAMBLE
-\RequirePackage[normalem]{ulem} %DIF PREAMBLE
-\RequirePackage{color}\definecolor{RED}{rgb}{1,0,0}\definecolor{BLUE}{rgb}{0,0,1} %DIF PREAMBLE
-\providecommand{\DIFaddtex}[1]{{\protect\color{blue}\uwave{#1}}} %DIF PREAMBLE
-\providecommand{\DIFdeltex}[1]{{\protect\color{red}\sout{#1}}}                      %DIF PREAMBLE
-%DIF SAFE PREAMBLE %DIF PREAMBLE
-\providecommand{\DIFaddbegin}{} %DIF PREAMBLE
-\providecommand{\DIFaddend}{} %DIF PREAMBLE
-\providecommand{\DIFdelbegin}{} %DIF PREAMBLE
-\providecommand{\DIFdelend}{} %DIF PREAMBLE
-\providecommand{\DIFmodbegin}{} %DIF PREAMBLE
-\providecommand{\DIFmodend}{} %DIF PREAMBLE
-%DIF FLOATSAFE PREAMBLE %DIF PREAMBLE
-\providecommand{\DIFaddFL}[1]{\DIFadd{#1}} %DIF PREAMBLE
-\providecommand{\DIFdelFL}[1]{\DIFdel{#1}} %DIF PREAMBLE
-\providecommand{\DIFaddbeginFL}{} %DIF PREAMBLE
-\providecommand{\DIFaddendFL}{} %DIF PREAMBLE
-\providecommand{\DIFdelbeginFL}{} %DIF PREAMBLE
-\providecommand{\DIFdelendFL}{} %DIF PREAMBLE
-%DIF HYPERREF PREAMBLE %DIF PREAMBLE
-\providecommand{\DIFadd}[1]{\texorpdfstring{\DIFaddtex{#1}}{#1}} %DIF PREAMBLE
-\providecommand{\DIFdel}[1]{\texorpdfstring{\DIFdeltex{#1}}{}} %DIF PREAMBLE
-\newcommand{\DIFscaledelfig}{0.5}
-%DIF HIGHLIGHTGRAPHICS PREAMBLE %DIF PREAMBLE
-\RequirePackage{settobox} %DIF PREAMBLE
-\RequirePackage{letltxmacro} %DIF PREAMBLE
-\newsavebox{\DIFdelgraphicsbox} %DIF PREAMBLE
-\newlength{\DIFdelgraphicswidth} %DIF PREAMBLE
-\newlength{\DIFdelgraphicsheight} %DIF PREAMBLE
-% store original definition of \includegraphics %DIF PREAMBLE
-\LetLtxMacro{\DIFOincludegraphics}{\includegraphics} %DIF PREAMBLE
-\newcommand{\DIFaddincludegraphics}[2][]{{\color{blue}\fbox{\DIFOincludegraphics[#1]{#2}}}} %DIF PREAMBLE
-\newcommand{\DIFdelincludegraphics}[2][]{% %DIF PREAMBLE
-\sbox{\DIFdelgraphicsbox}{\DIFOincludegraphics[#1]{#2}}% %DIF PREAMBLE
-\settoboxwidth{\DIFdelgraphicswidth}{\DIFdelgraphicsbox} %DIF PREAMBLE
-\settoboxtotalheight{\DIFdelgraphicsheight}{\DIFdelgraphicsbox} %DIF PREAMBLE
-\scalebox{\DIFscaledelfig}{% %DIF PREAMBLE
-\parbox[b]{\DIFdelgraphicswidth}{\usebox{\DIFdelgraphicsbox}\\[-\baselineskip] \rule{\DIFdelgraphicswidth}{0em}}\llap{\resizebox{\DIFdelgraphicswidth}{\DIFdelgraphicsheight}{% %DIF PREAMBLE
-\setlength{\unitlength}{\DIFdelgraphicswidth}% %DIF PREAMBLE
-\begin{picture}(1,1)% %DIF PREAMBLE
-\thicklines\linethickness{2pt} %DIF PREAMBLE
-{\color[rgb]{1,0,0}\put(0,0){\framebox(1,1){}}}% %DIF PREAMBLE
-{\color[rgb]{1,0,0}\put(0,0){\line( 1,1){1}}}% %DIF PREAMBLE
-{\color[rgb]{1,0,0}\put(0,1){\line(1,-1){1}}}% %DIF PREAMBLE
-\end{picture}% %DIF PREAMBLE
-}\hspace*{3pt}}} %DIF PREAMBLE
-} %DIF PREAMBLE
-\LetLtxMacro{\DIFOaddbegin}{\DIFaddbegin} %DIF PREAMBLE
-\LetLtxMacro{\DIFOaddend}{\DIFaddend} %DIF PREAMBLE
-\LetLtxMacro{\DIFOdelbegin}{\DIFdelbegin} %DIF PREAMBLE
-\LetLtxMacro{\DIFOdelend}{\DIFdelend} %DIF PREAMBLE
-\DeclareRobustCommand{\DIFaddbegin}{\DIFOaddbegin \let\includegraphics\DIFaddincludegraphics} %DIF PREAMBLE
-\DeclareRobustCommand{\DIFaddend}{\DIFOaddend \let\includegraphics\DIFOincludegraphics} %DIF PREAMBLE
-\DeclareRobustCommand{\DIFdelbegin}{\DIFOdelbegin \let\includegraphics\DIFdelincludegraphics} %DIF PREAMBLE
-\DeclareRobustCommand{\DIFdelend}{\DIFOaddend \let\includegraphics\DIFOincludegraphics} %DIF PREAMBLE
-\LetLtxMacro{\DIFOaddbeginFL}{\DIFaddbeginFL} %DIF PREAMBLE
-\LetLtxMacro{\DIFOaddendFL}{\DIFaddendFL} %DIF PREAMBLE
-\LetLtxMacro{\DIFOdelbeginFL}{\DIFdelbeginFL} %DIF PREAMBLE
-\LetLtxMacro{\DIFOdelendFL}{\DIFdelendFL} %DIF PREAMBLE
-\DeclareRobustCommand{\DIFaddbeginFL}{\DIFOaddbeginFL \let\includegraphics\DIFaddincludegraphics} %DIF PREAMBLE
-\DeclareRobustCommand{\DIFaddendFL}{\DIFOaddendFL \let\includegraphics\DIFOincludegraphics} %DIF PREAMBLE
-\DeclareRobustCommand{\DIFdelbeginFL}{\DIFOdelbeginFL \let\includegraphics\DIFdelincludegraphics} %DIF PREAMBLE
-\DeclareRobustCommand{\DIFdelendFL}{\DIFOaddendFL \let\includegraphics\DIFOincludegraphics} %DIF PREAMBLE
-%DIF COLORLISTINGS PREAMBLE %DIF PREAMBLE
-\RequirePackage{listings} %DIF PREAMBLE
-\RequirePackage{color} %DIF PREAMBLE
-\lstdefinelanguage{DIFcode}{ %DIF PREAMBLE
-%DIF DIFCODE_UNDERLINE %DIF PREAMBLE
-  moredelim=[il][\color{red}\sout]{\%DIF\ <\ }, %DIF PREAMBLE
-  moredelim=[il][\color{blue}\uwave]{\%DIF\ >\ } %DIF PREAMBLE
-} %DIF PREAMBLE
-\lstdefinestyle{DIFverbatimstyle}{ %DIF PREAMBLE
-	language=DIFcode, %DIF PREAMBLE
-	basicstyle=\ttfamily, %DIF PREAMBLE
-	columns=fullflexible, %DIF PREAMBLE
-	keepspaces=true %DIF PREAMBLE
-} %DIF PREAMBLE
-\lstnewenvironment{DIFverbatim}{\lstset{style=DIFverbatimstyle}}{} %DIF PREAMBLE
-\lstnewenvironment{DIFverbatim*}{\lstset{style=DIFverbatimstyle,showspaces=true}}{} %DIF PREAMBLE
-%DIF END PREAMBLE EXTENSION ADDED BY LATEXDIFF
+
+
 
 \begin{document}
 
@@ -188,7 +106,7 @@ global solar irradiance at Thessaloniki, Greece}
 Aristotle University of
 Thessaloniki},city={Thessaloniki},postcode={54124},country={Greece},}
     \cortext[cor1]{Corresponding author}
-
+  
   \begin{abstract}
   In this study, we investigate the characteristics of global horizontal
   irradiance enhancement events induced by clouds over Thessaloniki for
@@ -197,34 +115,25 @@ Thessaloniki},city={Thessaloniki},postcode={54124},country={Greece},}
   appropriate cloud-free irradiance reference using a radiative transfer
   model and aerosol optical depth data from a collocated Cimel sun
   photometer and a Brewer spectrophotometer. We found a trend in CE
-  events of \DIFdelbegin \DIFdel{%
-\mbox{%DIFAUXCMD
-\(+112\pm 35\,\text{cases}/\text{year}\)
-}%DIFAUXCMD
-}\DIFdelend \DIFaddbegin \DIFadd{%
-\mbox{%DIFAUXCMD
-\(+113\pm 35\,\text{cases}/\text{year}\)
-}%DIFAUXCMD
-}\DIFaddend , and a trend in the
-  corresponding irradiation of
-  \DIFdelbegin \DIFdel{\(+329.9\pm 112\,\text{kJ}/\text{year}\)}\DIFdelend \DIFaddbegin \DIFadd{\(+336.2\pm 114.1\,\text{kJ}/\text{year}\)}\DIFaddend . To our knowledge, such
-  long-term changes in CE events have not been presented in the past.
-  The peak of the CE events was observed during May and June. CE events
-  with duration longer than 10\nobreakspace{}min are very rare
-  (\(<8\,\%\)), with exceptions lasting over an hour and up to 140
-  minutes. Finally, we have detected enhancements above the total solar
-  irradiance at the top of the atmosphere for the same solar zenith
-  angle of up to \(204\,\text{W}/\text{m}^{2}\), with the \(75\,\%\) of
-  the cases below \(40\,\text{W}/\text{m}^{2}\). Most of these extreme
-  events occur in spring -- early summer, with a secondary peak in
-  autumn.
+  events of \(+112\pm 35\,\text{cases}/\text{year}\), and a trend in the
+  corresponding irradiation of \(+329.9\pm 112.0\,\text{kJ}/\text{year}\).
+  To our knowledge, such long-term changes in CE events have not been
+  presented in the past. The peak of the CE events was observed during
+  May and June. CE events with duration longer than 10\nobreakspace{}min
+  are very rare (\(<8\,\%\)), with exceptions lasting over an hour and
+  up to 140 minutes. Finally, we have detected enhancements above the
+  total solar irradiance at the top of the atmosphere for the same solar
+  zenith angle of up to \(204\,\text{W}/\text{m}^{2}\), with the
+  \(75\,\%\) of the cases below \(40\,\text{W}/\text{m}^{2}\). Most of
+  these extreme events occur in spring -- early summer, with a secondary
+  peak in autumn.
   \end{abstract}
     \begin{keyword}
     cloud enhancement \sep total solar radiation \sep global horizontal
 irradiance \sep 
     over irradiance
   \end{keyword}
-
+  
  \end{frontmatter}
 
 \hypertarget{introduction}{%
@@ -266,7 +175,7 @@ position of the sun and the clouds \citep{Gueymard2017, Veerman2022}.
 On multiple sites, cloud enhancements have been reported that exceed
 momentarily the solar constant, resulting in clearness indices above
 unit. A summary of extreme cloud enhancement (ECE) cases has been
-compiled by \citet{Martins2022}. Cloud enhancements can \DIFdelbegin \DIFdel{have also }\DIFdelend \DIFaddbegin \DIFadd{also have }\DIFaddend some
+compiled by \citet{Martins2022}. Cloud enhancements can also have some
 practical implications. The intensity and duration of enhancements can
 affect the efficiency and stability of photovoltaic power production
 \citep{Lappalainen2020, Jaervelae2020}, while ECEs have the potential to
@@ -333,13 +242,8 @@ screening was performed, to remove inconsistent and erroneous recordings
 that can occur stochastically or systematically during the long
 operation of the instrument. The manual screening was aided by a
 radiation data quality assurance procedure, adjusted for the site, which
-was based on the methods of Long and
-Shi~\DIFdelbegin \DIFdel{\mbox{%DIFAUXCMD
-\citep{Long2006, Long2008a}}\hskip0pt%DIFAUXCMD
-}\DIFdelend \DIFaddbegin \DIFadd{\mbox{%DIFAUXCMD
-\citetext{\citeyear{Long2006}; \citeyear{Long2008a}}}\hskip0pt%DIFAUXCMD
-}\DIFaddend . Thus,
-problematic recordings have been excluded from further processing.
+was based on the methods of Long and Shi~\citep{Long2006, Long2008a}.
+Thus, problematic recordings have been excluded from further processing.
 Furthermore, due to the significant measurement uncertainty in GHI when
 the Sun is near the horizon, and due to some systematic obstructions by
 nearby buildings, we have excluded all measurements with solar zenith
@@ -427,13 +331,12 @@ and standard deviations (\(\sigma\)) for the aerosol optical depth (AOD)
 at \(500\,\text{nm}\) and the equivalent height of the water column
 (WC). The monthly climatological values of AOD and WC, as well as
 combinations with additional offsets of \(\pm1\sigma\) and
-\(\pm2\sigma\), were used as inputs to the RTM \DIFdelbegin \DIFdel{in }\DIFdelend \DIFaddbegin \DIFadd{for }\DIFaddend the construction of
-the LUT. \DIFaddbegin \DIFadd{Of note, the total ozone column plays a minor role in GHI as it
+\(\pm2\sigma\), were used as inputs to the RTM for the construction of
+the LUT. Of note, the total ozone column plays a minor role in GHI as it
 affects mainly the UV wavelengths. However, it is entered in the RTM
 simulations via the seasonal atmospheric profiles. The long-term
 variability of total ozone in Thessaloniki for the period of study is
 very small thus cannot affect the long-term \(\text{GHI}_\text{ref}\).
-}\DIFaddend 
 
 For each measurement of the dataset, we calculated from the LUT a
 \(\text{GHI}_\text{ref}\) value for the respective season and SZA (by
@@ -468,18 +371,17 @@ instruments for the common periods of operation we adjusted the Brewer
 data and filled the missing months of the Cimel record with Brewer data.
 Using the extended monthly time series of AOD at \(340\,\text{nm}\), as
 well as monthly climatological values of the Ångström exponent and
-constant WC of \DIFdelbegin \DIFdel{\(15.6\,\text{mm}\) }\DIFdelend \DIFaddbegin \DIFadd{\(15.5\,\text{mm}\) }\DIFaddend derived from the Cimel record, we
+constant WC of \(15.6\,\text{mm}\) derived from the Cimel record, we
 simulated with the RTM the cloud-free GHI at SZA of \(55^\circ\) for
 each month in the period 1997 -- 2023. The SZA of \(55^\circ\) was
 chosen as representative of all days in the year to get a rough estimate
 of the annually averaged change in cloud-free GHI. A second-degree
 polynomial fit was applied to the simulated yearly averaged GHI to
 derive the long-term change in GHI due to aerosols: \begin{equation}
-\Delta(\text{GHI}) [\%] = \DIFdelbegin \DIFdel{-12170 }\DIFdelend \DIFaddbegin \DIFadd{-12153.97 }\DIFaddend + \DIFdelbegin \DIFdel{12.05 }\DIFdelend \DIFaddbegin \DIFadd{12.0304 }\DIFaddend \cdot \DIFdelbegin \DIFdel{x + -0.002981 }\DIFdelend \DIFaddbegin \DIFadd{y -0.002977 }\DIFaddend \cdot \DIFdelbegin \DIFdel{x}\DIFdelend \DIFaddbegin \DIFadd{y}\DIFaddend ^2 \label{eq:AODchange}
-\end{equation} where \(y\) is the \DIFdelbegin \DIFdel{date as a decimal fraction of the
-year }\DIFdelend \DIFaddbegin \DIFadd{year in decimal form}\DIFaddend . The resulting
-change in \(\text{GHI}_\text{ref}\) ranges between \DIFdelbegin \DIFdel{\(-1.88\) }\DIFdelend \DIFaddbegin \DIFadd{\(-2\,\%\) }\DIFaddend in 1994
-and \DIFdelbegin \DIFdel{\(-0.19\,\%\) }\DIFdelend \DIFaddbegin \DIFadd{\(0.05\,\%\) }\DIFaddend in the end of 2023, peaking at \DIFdelbegin \DIFdel{\(0.23\,\%\) }\DIFdelend \DIFaddbegin \DIFadd{\(0.09\,\%\) }\DIFaddend in the
+\Delta(\text{GHI}) [\%] = -12153.97 + 12.0304 \cdot y -0.002977 \cdot y^2 \label{eq:AODchange}
+\end{equation} where \(y\) is the year in decimal form. The resulting 
+change in \(\text{GHI}_\text{ref}\) ranges between \(-2\,\%\) in 1994
+and \(0.05\,\%\) in the end of 2023, peaking at \(0.09\,\%\) in the
 mid-2020. Finally, we applied these long-term changes of
 Equation\nobreakspace{}\ref{eq:AODchange} to the
 \(\text{GHI}_\text{ref}\), to create a more realistic representation of
@@ -495,7 +397,7 @@ One of the goals of this study was to quantify the OI related to CEs. A
 key issue for achieving this goal is to define a threshold for the CE
 identification, representative of the cloud-free irradiance at the time
 of each GHI measurement. This depends on the selection of the
-appropriate \DIFdelbegin \DIFdel{atmospheric parameterization }\DIFdelend \DIFaddbegin \DIFadd{values of the input parameters }\DIFaddend for the RTM simulations. The
+appropriate values of the input parameters for the RTM simulations. The
 implementation of the long-term changes in GHI due to AOD, discussed in
 section\nobreakspace{}\ref{rtmcs}, allows capturing a large part of the
 natural variability of cloud-free GHI. However, the short-term
@@ -523,12 +425,11 @@ AOD and WC. The linear regression reveals a positive bias of
 \(18.4\,\text{W}/\text{m}^2\) and a slope very close to unity. To
 achieve a robust and clear distinction of the CE cases, we applied to
 the \(\text{GHI}_\text{ref}\) an additional offset of
-\(25\,\text{W}/\text{m}^2\). \DIFaddbegin \DIFadd{The long-term difference between the
+\(25\,\text{W}/\text{m}^2\). The long-term difference between the
 measured GHI and the \(\text{GHI}_{\text{ref}}\) for the same cloud-free
 days has a trend of \(0.2\,\text{W}/\text{m}^2\) per year which further
 supports the validity of the produced long-term
 \(\text{GHI}_\text{ref}\).
-}\DIFaddend 
 
 \begin{figure}[H]
 
@@ -563,7 +464,7 @@ A subcategory of the CE events that is often discussed in the literature
 enhancement events. These are cases of CE where the measured intensity
 of the irradiance exceeds the TSI on a horizontal plane at TOA. In this
 case the threshold \(E\) is given by: \begin{equation}
-\text{ECE}: E > \cos(\text{SZA}) \cdot E_{\odot} \frac{r^2_\text{m}}{r^2}
+\text{ECE}: E > \cos(\text{SZA}) \cdot E_{\odot} \frac{r^2_\text{m}} {r^2}
 \label{eq:ECE}
 \end{equation} where: \(\text{SZA}\) the solar zenith angle,
 \(E_{\odot}\) is the solar constant at the mean Sun -- Earth distance
@@ -593,7 +494,7 @@ green line). The gray colored data points above this line correspond to
 the ambiguous data points discussed above. Finally, the black belt just
 below the green line is formed from data measured mainly under
 cloud-free conditions, with the spread likely caused by the short-term
-variability of AOD. A small fraction of these data corresponds \DIFdelbegin \DIFdel{also }\DIFdelend to cases
+variability of AOD. A small fraction of these data corresponds to cases
 with thin cirrus clouds causing weak attenuation of GHI, often
 indistinguishable from the attenuation by aerosols.
 
@@ -620,16 +521,14 @@ indistinguishable from the attenuation by aerosols.
 
 Following the application of the above discussed methodology to the
 entire dataset (\(>6\) million of one-minute GHI measurements),
-\DIFdelbegin \DIFdel{\(2.32\,\%\) }\DIFdelend \DIFaddbegin \DIFadd{\(2.36\,\%\) }\DIFaddend were identified as CE events and \(0.036\,\%\) as ECE
+\(2.32\,\%\) were identified as CE events and \(0.036\,\%\) as ECE
 events. The highest recorded GHI due to CE was
 \(1416.6\,\text{W}/\text{m}^2\) on 24~May 2007 at a SZA of
-\(19.9^\circ\) corresponding to OI of \DIFdelbegin \DIFdel{\(369.3\,\text{W}/\text{m}^2\) or
-\(35.3\,\%\) }\DIFdelend \DIFaddbegin \DIFadd{\(370.6\,\text{W}/\text{m}^2\) or
-\(35.4\,\%\) }\DIFaddend above the threshold. The strongest CE event of \DIFdelbegin \DIFdel{\(53\,\%\)
-}\DIFdelend \DIFaddbegin \DIFadd{\(53.2\,\%\)
-}\DIFaddend above the cloud-free threshold was observed on 28~October 2016 at a SZA
+\(19.9^\circ\) corresponding to OI of \(369.3\,\text{W}/\text{m}^2\) or
+\(35.3\,\%\) above the threshold. The strongest CE event of \(53\,\%\)
+above the cloud-free threshold was observed on 28~October 2016 at a SZA
 of \(59.2^\circ\) with a GHI of \(861.8\,\text{W}/\text{m}^2\) and a OI
-of \DIFdelbegin \DIFdel{\(298.4\,\text{W}/\text{m}^2\)}\DIFdelend \DIFaddbegin \DIFadd{\(299.1\,\text{W}/\text{m}^2\)}\DIFaddend . Both cases are also ECE events with
+of \(298.4\,\text{W}/\text{m}^2\). Both cases are also ECE events with
 \(131.2\,\text{W}/\text{m}^2\) and \(161.5\,\text{W}/\text{m}^2\) above
 the TSI at TOA for the same SZA, respectively. In the following sections
 we are discussing the long-term trends and variability of the CE events
@@ -660,20 +559,12 @@ together with corresponding linear trends. To account for missing data,
 all three quantities have been divided with the fraction of the valid
 GHI observations in each month. Statistically significant (at the
 \(95\,\%\) confidence level) increasing trends appear for the yearly
-number of CE events (\DIFdelbegin \DIFdel{%
-\mbox{%DIFAUXCMD
-\(+112\pm 35\,\text{cases}/\text{year}\)
-}%DIFAUXCMD
-}\DIFdelend \DIFaddbegin \DIFadd{%
-\mbox{%DIFAUXCMD
-\(+113\pm 35\,\text{cases}/\text{year}\)
-}%DIFAUXCMD
-}\DIFaddend ) and the
-excess irradiation (\DIFdelbegin \DIFdel{\(+329.9 \pm 112\,\text{kJ}/\text{year}\)}\DIFdelend \DIFaddbegin \DIFadd{\(+336.2\pm 114.1\,\text{kJ}/\text{year}\)}\DIFaddend ), while
+number of CE events (\(+112\pm 35\,\text{cases}/\text{year}\)) and the
+excess irradiation (\(+329.9 \pm 112\,\text{kJ}/\text{year}\)), while
 the trend in the yearly mean OI is negligible
 (\(+0.1\pm 0.2\,\text{W}/\text{m}^2/\text{year}\)) and of no statistical
 significance. The average OI for the entire period is
-\DIFdelbegin \DIFdel{\(+42.6\pm 2.8\,\text{W}/\text{m}^2\)}\DIFdelend \DIFaddbegin \DIFadd{\(+42.7\pm 2.8\,\text{W}/\text{m}^2\)}\DIFaddend . The yearly excess irradiation due
+\(+42.6\pm 2.8\,\text{W}/\text{m}^2\). The yearly excess irradiation due
 to CE events ranges between about \(8\) and
 \(24\,\text{MJ}/\text{m}^2\). On average, it is about one half of the
 highest daily irradiation of \textasciitilde31 MJ/m\textsuperscript{2}
@@ -748,11 +639,10 @@ relationship between the frequency of CE events and OI with an
 exponential-like decline. This is expected, as the stronger the CE
 events are, the rarer the conditions favoring the occurrence of CE
 events. For the majority (over \(62\,\%\)) of the CE events the OI is
-below the long-term average of \DIFdelbegin \DIFdel{\(42.6\,\text{W}/\text{m}^2\), while
-\(9.6\,\%\) }\DIFdelend \DIFaddbegin \DIFadd{\(42.7\,\text{W}/\text{m}^2\), while
-\(9.7\,\%\) }\DIFaddend of the events correspond to OI larger than
+below the long-term average of \(42.6\,\text{W}/\text{m}^2\), while
+\(9.6\,\%\) of the events correspond to OI larger than
 \(100\,\text{W}/\text{m}^2\) and up to the highest value of
-\DIFdelbegin \DIFdel{\(437\,\text{W}/\text{m}^2\)}\DIFdelend \DIFaddbegin \DIFadd{\(438.2\,\text{W}/\text{m}^2\)}\DIFaddend . This distribution is indicative of the
+\(437\,\text{W}/\text{m}^2\). This distribution is indicative of the
 magnitude and the probability of the expected CE events over
 Thessaloniki. Similar distribution of CE events, albeit with larger OI
 values, has been reported by \citet{Vamvakas2020}, for the city of
@@ -777,7 +667,7 @@ events}\label{duration-of-cloud-enhancement-events}}
 The duration of the CE events is variable and can last for several
 minutes or even more than an hour. To study the characteristics of these
 consecutive events, we grouped them into bins of increasing duration in
-steps of one minute. We have identified \DIFdelbegin \DIFdel{34849 }\DIFdelend \DIFaddbegin \DIFadd{35342 }\DIFaddend groups of CE events in the
+steps of one minute. We have identified 34849 groups of CE events in the
 whole period of study, where the group with the longest duration of 140
 minutes occurred on 07~July 2013 with SZA ranging between \(52.1^\circ\)
 and \(77.9^\circ\).
@@ -817,7 +707,7 @@ are very rare. Similar results of this relation have been reported by
 
 }
 
-\caption{Relation of excess irradiation of CE groups with their duration for Thessaloniki in the period 1994 -- 2023. The logarithmic color scale denotes the frequency of the respective groups. Note that 19 \DIFdelbeginFL \DIFdelFL{pints }\DIFdelendFL \DIFaddbeginFL \DIFaddFL{points for groups }\DIFaddendFL with duration higher than 60 min are not shown.}\label{fig:group-2d}
+\caption{Relation of excess irradiation of CE groups with their duration for Thessaloniki in the period 1994 -- 2023. The logarithmic color scale denotes the frequency of the respective groups. Note that 19 points for groups with duration higher than 60 min are not shown.}\label{fig:group-2d}
 \end{figure}
 
 \hypertarget{extreme-cloud-enhancement-events}{%
@@ -893,17 +783,9 @@ By creating a cloud-free approximation representing the long- and
 short-term variability of the expected cloud-free GHI, we were able to
 identify cases of CE and ECE events in Thessaloniki for the period 1994
 -- 2023. After analyzing the CE cases, we found an increasing tendency
-of \DIFdelbegin \DIFdel{%
-\mbox{%DIFAUXCMD
-\(+112.1\pm 34.9\,\text{cases}/\text{year}\)
-}%DIFAUXCMD
-}\DIFdelend \DIFaddbegin \DIFadd{%
-\mbox{%DIFAUXCMD
-\(+113.4\pm 35.5\,\text{cases}/\text{year}\)
-}%DIFAUXCMD
-}\DIFaddend , with the mean annual
+of \(+112.1\pm 34.9\,\text{cases}/\text{year}\), with the mean annual
 irradiation of the CE events increasing with a rate of
-\DIFdelbegin \DIFdel{\(+329.9\pm 112\,\text{kJ}/\text{year}\)}\DIFdelend \DIFaddbegin \DIFadd{\(+336.2\pm 114.1\,\text{kJ}/\text{year}\)}\DIFaddend . The most active months of CE
+\(+329.9\pm 112\,\text{kJ}/\text{year}\). The most active months of CE
 events are May and June. We found that continuous CE events can last up
 to \(140\) minutes, while the duration of \(79\,\%\) of them is equal or
 bellow \(5\) minutes.
