@@ -116,6 +116,12 @@ tic  <- Sys.time()
 ##  Get number of minutes -----
 
 ALLDT <- data.table(readRDS("~/DATA/SUN/Pysolar_LAP.Rds"))
+
+## rename
+names(ALLDT)[names(ALLDT) == "DATE"] <- "V1"
+names(ALLDT)[names(ALLDT) == "AZIM"] <- "V2"
+names(ALLDT)[names(ALLDT) == "ELEV"] <- "V3"
+
 summary(ALLDT$V2)
 summary(ALLDT$V3)
 ## above horizon
