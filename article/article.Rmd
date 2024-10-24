@@ -187,6 +187,7 @@ $40\,\text{W}/\text{m}^{2}$. Most of these extreme events occur in spring -- ear
 summer, with a secondary peak in autumn.
 -->
 
+
 # Introduction
 
 The shortwave solar radiation, reaching Earth's surface, is the main energy source
