@@ -78,7 +78,7 @@ keywords:
   - over irradiance
 
 journal:        "Atmospheric Research"
-date:           "2024-10-11"
+date:           "2024-10-24"
 linenumbers:    false
 numbersections: true
 bibliography:   bibliography.bib
@@ -146,6 +146,7 @@ $204\,\text{W}/\text{m}^{2}$, with the $75\,\%$ of the cases below
 $40\,\text{W}/\text{m}^{2}$. Most of these extreme events occur in spring -- early
 summer, with a secondary peak in autumn.
 -->
+
 
 # Introduction
 
