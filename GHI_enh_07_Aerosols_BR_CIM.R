@@ -250,7 +250,7 @@ relativ[, secon := 100 *  trend_polyf(tsy)]
 
 
 #+ P-CS-change-poly, echo=F, include=T, results="asis"
-ggplot(relativ,
+P1 <- ggplot(relativ,
        aes(x = tsy,
            y = secon)) +
   geom_line(linewidth = 1.3) +
@@ -278,9 +278,9 @@ ggplot(relativ,
                        pretty(relativ[, tsy], n = 4),
                        max(ceiling(relativ[, tsy]))),
                      minor_breaks = seq(1990, 2050, by = 1) )
+P1
 
-
-
+P1 + theme(aspect.ratio = 0.4)
 
 #
 # lmts <- lm(relativ[, secon] ~ poly(relativ[, tsy], 2, raw=TRUE))
