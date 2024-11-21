@@ -98,6 +98,17 @@ $(PDFa): $(RMDv)
 
 
 
+###   test data  ####################################
+TARGET := GHI_enh_daily_test_plots
+RMD    := $(TARGET).R
+PDF    := $(TARGET).pdf
+
+ptest: $(PDF)
+$(PDF): $(RMD)
+	@echo "Building: $@"
+	Rscript -e "rmarkdown::find_pandoc(dir = '/usr/lib/rstudio/resources/app/bin/quarto/bin/tools'); rmarkdown::render('$?', output_format='bookdown::pdf_document2', output_file='$@')"
+
+
 ###   1. raw data  ####################################
 TARGET := GHI_enh_01_raw_data
 RMD    := $(TARGET).R
@@ -112,8 +123,6 @@ $(PDF): $(RMD)
 	@-rsync -a "$@" ${LIBRARY}
 	@#-touch article/article.qmd
 	@-touch article/article.Rmd
-
-
 
 ###   2. ID CE  ####################################
 TARGET := GHI_enh_02_ID_CE

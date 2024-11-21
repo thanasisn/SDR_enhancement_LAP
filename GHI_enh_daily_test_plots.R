@@ -47,8 +47,8 @@
 
 #+ echo=FALSE, include=TRUE
 knitr::opts_chunk$set(comment    = ""       )
-knitr::opts_chunk$set(dev        = c("pdf", "png")) ## expected option
-# knitr::opts_chunk$set(dev        = "png"    )       ## for too much data
+knitr::opts_chunk$set(dev        = c("pdf", "png"))
+# knitr::opts_chunk$set(dev        = "png"    )
 knitr::opts_chunk$set(out.width  = "100%"   )
 knitr::opts_chunk$set(fig.align  = "center" )
 knitr::opts_chunk$set(fig.cap    = " - empty caption - " )
@@ -58,22 +58,28 @@ knitr::opts_chunk$set(fig.pos    = 'H'    )
 #+ echo=FALSE, include=TRUE
 ## __ Set environment  ---------------------------------------------------------
 Sys.setenv(TZ = "UTC")
-Script.Name <- "./GHI_enh_02_ID_CE.R"
+Script.Name <- "./GHI_enh_daily_test_plots.R"
 tic <- Sys.time()
 
 if (!interactive()) {
   pdf( file = paste0("./runtime/", basename(sub("\\.R$",".pdf", Script.Name))))
 }
 
-#+ echo=F, include=T
-library(data.table  , quietly = TRUE, warn.conflicts = FALSE)
-require(zoo         , quietly = TRUE, warn.conflicts = FALSE)
-library(pander      , quietly = TRUE, warn.conflicts = FALSE)
-library(ggplot2     , quietly = TRUE, warn.conflicts = FALSE)
-library(RColorBrewer, quietly = TRUE, warn.conflicts = FALSE)
-library(pracma      , quietly = TRUE, warn.conflicts = FALSE)
-library(lubridate   , quietly = TRUE, warn.conflicts = FALSE)
 
+#+ echo=F, include=T
+suppressPackageStartupMessages({
+  library(Matrix)
+  library(ggplot2       , quietly = TRUE, warn.conflicts = FALSE)
+  # library(ggpmisc       , quietly = TRUE, warn.conflicts = FALSE)
+  library(cowplot       , quietly = TRUE, warn.conflicts = FALSE)
+  library(data.table  , quietly = TRUE, warn.conflicts = FALSE)
+  require(zoo         , quietly = TRUE, warn.conflicts = FALSE)
+  library(pander      , quietly = TRUE, warn.conflicts = FALSE)
+  library(ggplot2     , quietly = TRUE, warn.conflicts = FALSE)
+  library(RColorBrewer, quietly = TRUE, warn.conflicts = FALSE)
+  library(pracma      , quietly = TRUE, warn.conflicts = FALSE)
+  library(lubridate   , quietly = TRUE, warn.conflicts = FALSE)
+})
 
 panderOptions("table.alignment.default", "right")
 panderOptions("table.split.table",        120   )
@@ -104,7 +110,7 @@ load("./data/GHI_enh_02_ID_CE.Rda")
 
 
 ## __ Execution control  -------------------------------------------------------
-TEST <- TRUE
+TEST <- FALSE
 # TEST <- TRUE
 
 if (TEST) {
@@ -331,7 +337,7 @@ cat("Doy", unique(yday(DT_example$Date)), "\n\n")
 
 
 temp <- DATA[Day == example_day]
-
+ylim <- range(0, temp$wattGLB, solar_constant, temp$ETH)
 
 pp1 <- ggplot(data = temp, aes(x = Date)) +
   ## DATA lines
@@ -374,8 +380,8 @@ pp1 <- ggplot(data = temp, aes(x = Date)) +
   # labs(title = paste(as.Date(example_day, origin = "1970-01-01"))) +
   theme(
     #   legend.title         = element_text(size = 10),
-    legend.position       = c(.995, .005),
-    legend.justification  = c("right", "bottom"),
+    legend.position       = c(.200, .005),
+    legend.justification  = c("left", "bottom"),
     # legend.box.just       = "right",
     legend.background     = element_blank(),
     # legend.spacing.y = unit(0, 'cm'),
@@ -391,6 +397,7 @@ pp1 <- ggplot(data = temp, aes(x = Date)) +
 
   ## AXIS ##
   # scale_x_continuous(expand = expansion(mult = c(0.03, 0.03))) +
+  ylim(ylim) +
   scale_y_continuous(breaks = seq(0, 1600, 200)) +
   ylab(bquote("GHI" ~ group("[", W/m^2,"]"))) +
   xlab(element_blank())
