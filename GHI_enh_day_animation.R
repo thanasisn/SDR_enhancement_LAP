@@ -59,7 +59,7 @@ knitr::opts_chunk$set(fig.pos    = 'H'    )
 #+ echo=FALSE, include=TRUE
 ## __ Set environment  ---------------------------------------------------------
 Sys.setenv(TZ = "UTC")
-Script.Name <- "./GHI_enh_05_distributions.R"
+Script.Name <- "./GHI_enh_day_animation.R"
 
 if (!interactive()) {
   pdf( file = paste0("./runtime/", basename(sub("\\.R$", ".pdf", Script.Name))))
@@ -107,7 +107,7 @@ options(error = function() {
 ##  Load Enhancement data  -----------------------------------------------------
 
 ## load statistics
-load("./data/GHI_enh_03_process.Rda")
+# load("./data/GHI_enh_03_process.Rda")
 load("./data/GHI_enh_02_ID_CE.Rda")
 tic  <- Sys.time()
 
@@ -165,7 +165,7 @@ imglist <- list.files(path       = paste0(skycambase,"/",strftime(example_day, f
                       full.names = T)
 
 imglist <- data.table(file = imglist,
-                      Date = strptime(sub("\\..*", "", sub(" ", "", basename(imglist))), format = "%j%Y%H%M") + 30)
+                      Date = strptime(sub("\\..*", "", sub(" ", "", basename(imglist))), format = "%j%Y%H%M"))
 
 
 
@@ -174,10 +174,10 @@ pp1 <- ggplot(data = temp, aes(x = Date)) +
   ## DATA lines
   geom_line(aes(y = wattGLB                        , colour = "GHI"                           )) +
   geom_line(aes(y = get(paste0(SelEnhanc, "_ref")) , colour = "CE Threshold"                  ), linewidth = .8) +
-  geom_line(aes(y = get(paste0(csmodel,".glo"))    , colour = "Cloud-free"                    ), linewidth = .8) +
+  # geom_line(aes(y = get(paste0(csmodel,".glo"))    , colour = "Cloud-free"                    ), linewidth = .8) +
   geom_line(aes(y = ETH                            , colour = "TOA TSI on horiz. plane"       ), linewidth = .8) +
   ## constant liens
-  geom_hline(aes(yintercept = solar_constant       , colour = "Solar Constant"), linewidth = 1.0) +
+  # geom_hline(aes(yintercept = solar_constant       , colour = "Solar Constant"), linewidth = 1.0) +
   # geom_vline(aes(xintercept = date_A), linetype = "longdash", linewidth = .6, color = "#ff652d") +
   # annotate(geom = "text", x = date_A - 300, y = 100, label = "(a)", hjust = 1, color = "#ff652d") +
   # geom_vline(aes(xintercept = date_B), linetype = "longdash", linewidth = .6, color = "#ff652d") +
@@ -217,8 +217,8 @@ pp1 <- ggplot(data = temp, aes(x = Date)) +
   # labs(title = paste(as.Date(example_day, origin = "1970-01-01"))) +
   theme(
     #   legend.title         = element_text(size = 10),
-    legend.position       = c(.995, .005),
-    legend.justification  = c("right", "bottom"),
+    legend.position       = c(.200, .005),
+    legend.justification  = c("left", "bottom"),
     # legend.box.just       = "right",
     legend.background     = element_blank(),
     # legend.spacing.y = unit(0, 'cm'),
@@ -226,154 +226,84 @@ pp1 <- ggplot(data = temp, aes(x = Date)) +
     legend.box.background = element_rect(color = NA, fill = NA),
     legend.key            = element_blank(),
     legend.margin         = margin(1, 1, 1, 1),
-    plot.title            = element_text(size = gg_text_size - 4,
+    plot.title            = element_text(size = gg_text_size - 6,
                                          hjust = 0.5,
                                          face = "bold",
-                                         margin = margin(0,0,0,0))
+                                         margin = margin(0,0,0,0)),
+    aspect.ratio = 1
   ) +
+  guides(color = guide_legend(ncol = 2)) +
   ## AXIS ##
   # scale_x_continuous(expand = expansion(mult = c(0.03, 0.03))) +
   scale_y_continuous(breaks = seq(0, 1600, 200)) +
-  ylab(bquote("GHI" ~ group("[", W/m^2,"]"))) +
-  xlab(bquote("Time (UTC)"))
+  # ylab(bquote("GHI" ~ group("[", W/m^2,"]"))) +
+  ylab(element_blank()) +
+  xlab(element_blank())
 pp1
 
 
+img <- imglist[13]
 
 
-
-
-
-
-
-# left  <- image_read("/home/folder/LAP_skycam/skycam/2019/1922019/ 1922019100002.JPEG")
-left   <- image_read(paste0(skycambase, "/2019/1922019/ 1922019101501.JPEG"))
-right  <- image_read(paste0(skycambase, "/2019/1922019/ 1922019103001.JPEG"))
-left1  <- image_read(paste0(skycambase, "/2019/1922019/ 1922019093002.JPEG"))
-
-
-    k
-
-stop()
-
-
-
-# print(left)
-
-
-# image_info(left)
-
-ll1 <- image_scale(
-  image_crop(left1,
-             geometry = "960x1200+180+0"),
-  "600")
-ll <- image_scale(
-  image_crop(left,
-             geometry = "960x1200+180+0"),
-  "600")
-rr <- image_scale(
-  image_crop(right,
+aimg <- image_read(img$file)
+aimg <- image_scale(
+  image_crop(aimg,
              geometry = "960x1200+180+0"),
   "600")
 
+tag <- paste0(strftime(img$Date, "%H:%M UTC"), "\n",
+             strftime(img$Date, "%H:%M LOC", tz = "Europe/Athens")
+)
 
-A <- image_ggplot(ll1) +
-  annotate(geom = "text", x = 10, y = 15,  label = "(a)",       hjust = 0, vjust = 0, size =  4, colour = "#ff652d", fontface = "bold") +
-  annotate(geom = "text", x = 15, y = 585, label = "09:30 UTC", hjust = 0, vjust = 1, size =  4, colour = "#ff652d", fontface = "bold")
-date_A <- as.POSIXct(strptime(paste(example_day,   "09:30"), "%F %H:%M"))
+aimg <-
+  image_ggplot(aimg) +
+  annotate(geom = "text",
+           x = 10, y = 585,
+           label = tag,
+           hjust = 0, vjust = 1,
+           size =  4, colour = "#ff652d", fontface = "bold")
 
-
-B <- image_ggplot(ll) +
-  annotate(geom = "text", x = 10, y = 15,  label = "(b)",       hjust = 0, vjust = 0, size =  4, colour = "#ff652d", fontface = "bold") +
-  annotate(geom = "text", x = 15, y = 585, label = "10:15 UTC", hjust = 0, vjust = 1, size =  4, colour = "#ff652d", fontface = "bold")
-date_B <- as.POSIXct(strptime(paste(example_day,   "10:15"), "%F %H:%M"))
-
-
-C <- image_ggplot(rr) +
-  annotate(geom = "text", x = 10, y = 15,  label = "(c)",       hjust = 0, vjust = 0, size =  4, colour = "#ff652d", fontface = "bold") +
-  annotate(geom = "text", x = 15, y = 585, label = "10:30 UTC", hjust = 0, vjust = 1, size =  4, colour = "#ff652d", fontface = "bold")
-date_C <- as.POSIXct(strptime(paste(example_day,   "10:30"), "%F %H:%M"))
-
-grid.arrange(A, B, C, nrow = 1)
+grid.arrange(pp1, aimg, nrow = 1)
 
 
 
 
 
-
-
-
-
-
-
-# pp1 + theme(legend.title = element_text(size = 10),
-#             legend.text  = element_text(size = 10),
-#             legend.key.size = unit(.9, "lines"))
+# pp2 <- pp1 + theme(legend.position       = c(1, .5),
+#                    legend.title          = element_blank(),
+#                    legend.text           = element_text(size = 14),
+#                    legend.justification  = c("right", "center"),
+#                    legend.key.size       = unit(.4, "lines"))
 #
 #
-# pp2 <- pp1 + theme(legend.position = "bottom",
-#                    legend.key.size = unit(.5, "lines"))
-
-pp2 <- pp1 + theme(legend.position       = c(1, .5),
-                   legend.title          = element_blank(),
-                   legend.text           = element_text(size = 14),
-                   legend.justification  = c("right", "center"),
-                   legend.key.size       = unit(.4, "lines"))
-
-
-# merg <- plot_grid(
-#   pp2, bt,
-#   nrow = 2,
-#   rel_heights = c(3,1)
+# ## seperate legend
+# legend <- get_legend(pp2)
+#
+#
+# ## prepare second row
+# prow <- plot_grid(
+#   A,
+#   B,
+#   C,
+#   legend,
+#   nrow = 1,
+#   rel_widths = c(1,1,1, 1.5)
 # )
+# # prow
 #
-# print(merg)
-
-
-
-## seperate legend
-# theme(legend.box.margin = margin(0, 0, 0, 12))
-
-legend <- get_legend(pp2)
-# legend <- legend + theme(guide = guide_legend(ncol = 1))
-
-
-## prepare second row
-prow <- plot_grid(
-  A,
-  B,
-  C,
-  legend,
-  nrow = 1,
-  rel_widths = c(1,1,1, 1.5)
-)
-# prow
-
-## create complete figure
-mergln <- plot_grid(
-  pp2 + theme(legend.position = "none"),
-  prow,
-  nrow = 2,
-  rel_heights = c(3, 1.2)
-)
-show(mergln)
-
-
-# mergln + theme(aspect.ratio = 1)
-
-mergln + theme(aspect.ratio = 0.8)
-
-
-
-# calc_element(
-#   "axis.text.x.bottom",
-#   ggplot2:::plot_theme(ggplot_build(pp1)$plot)
-# )$size
+# ## create complete figure
+# mergln <- plot_grid(
+#   pp2 + theme(legend.position = "none"),
+#   prow,
+#   nrow = 2,
+#   rel_heights = c(3, 1.2)
+# )
+# show(mergln)
 #
-# calc_element(
-#   "text",
-#   ggplot2:::plot_theme(ggplot_build(pp1)$plot)
-# )$size
+# mergln + theme(aspect.ratio = 0.8)
+#
+
+
 
 
 #' **END**
