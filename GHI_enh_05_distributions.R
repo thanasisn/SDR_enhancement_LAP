@@ -130,9 +130,6 @@ cat("Reference mode:      ", csmodel,   "\n\n")
 cat("Enhancemnet criteria:", SelEnhanc, "\n\n")
 
 
-
-
-
 ##  Daily  ---------------------------------------------------------------------
 
 #'
