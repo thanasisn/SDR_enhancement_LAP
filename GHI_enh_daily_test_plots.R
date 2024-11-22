@@ -341,7 +341,8 @@ temp <- DATA[Day == example_day]
 ## add fave value for scale
 temp <- rbind(temp, data.table(ETH = solar_constant), fill = T)
 
-ylim <- range(0, temp$wattGLB, solar_constant, temp$ETH)
+ylim <- range(0, temp$wattGLB, solar_constant, temp$ETH, na.rm = T)
+eylim <- c(0, solar_constant)
 
 pp1 <- ggplot(data = temp, aes(x = Date)) +
   ## DATA lines
@@ -392,6 +393,7 @@ pp1 <- ggplot(data = temp, aes(x = Date)) +
   # scale_x_continuous(expand = expansion(mult = c(0.03, 0.03))) +
   ylim(ylim) +
   scale_y_continuous(breaks = seq(0, 1600, 200)) +
+  expand_limits(y = eylim) +
   ylab(bquote("GHI" ~ group("[", W/m^2,"]"))) +
   xlab(element_blank()) +
   theme(aspect.ratio = 0.8) +
@@ -440,6 +442,12 @@ pp7
 
 # ggplotly(pp1)
 
+
+layer_scales(pp1)$y$range$range
+layer_scales(pp7)$y$range$range
+ylim
+ggplot_build(pp1)$layout$panel_params[[1]]$y.range
+ggplot_build(pp7)$layout$panel_params[[1]]$y.range
 
 
 #
