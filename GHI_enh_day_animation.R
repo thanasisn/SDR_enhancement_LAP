@@ -125,7 +125,7 @@ theme_paper <- function(){
     theme(
       panel.background = element_rect(fill   = "white",
                                       colour = "white"),
-      plot.background       = element_rect(fill = 'transparent', color = NA), #transparent plot bg
+      plot.backgro.und       = element_rect(fill = 'transparent', color = NA), #transparent plot bg
       legend.background     = element_rect(fill = 'transparent',
                                            linewidth = 0.5,
                                            color = "black"), #transparent legend bg
