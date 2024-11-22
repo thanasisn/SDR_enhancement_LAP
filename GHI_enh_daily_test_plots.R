@@ -320,9 +320,10 @@ library(plotly)
 #+ P-example-day-present,  echo=F, include=T, fig.width=7, fig.height=6
 
 ## select day
-example_day <- "1999-06-24"
+# example_day <- "1999-06-24"
 # example_day <- "2007-05-24"
 # example_day <- "2016-10-28"
+example_day <- "2019-07-11"
 
 
 DT_example <- DATA[Day == example_day, .(Date, wattGLB, TYPE, Enhanc_C_4, GLB_diff, TSI_OI = wattGLB - ETH)]
@@ -378,17 +379,15 @@ pp1 <- ggplot(data = temp, aes(x = Date)) +
     legend.justification  = c("left", "bottom"),
     # legend.box.just       = "right",
     legend.background     = element_blank(),
-    # legend.spacing.y = unit(0, 'cm'),
-    # legend.spacing.x = unit(.005, 'cm'),
     legend.box.background = element_rect(color = NA, fill = NA),
     legend.key            = element_blank(),
     legend.margin         = margin(1, 1, 1, 1),
-    plot.title            = element_text(size = gg_text_size - 4,
+    plot.title            = element_text(size = gg_text_size - 8,
                                          hjust = 0.5,
                                          face = "bold",
                                          margin = margin(0,0,0,0))
   ) +
-
+  guides(color = guide_legend(ncol = 2)) +
   ## AXIS ##
   # scale_x_continuous(expand = expansion(mult = c(0.03, 0.03))) +
   ylim(ylim) +
@@ -396,7 +395,7 @@ pp1 <- ggplot(data = temp, aes(x = Date)) +
   expand_limits(y = eylim) +
   ylab(bquote("GHI" ~ group("[", W/m^2,"]"))) +
   xlab(element_blank()) +
-  theme(aspect.ratio = 0.8) +
+  theme(aspect.ratio = .6) +
   theme(
     panel.background = element_rect(fill   = "white",
                                     colour = "white")
