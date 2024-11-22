@@ -131,18 +131,24 @@ cat("Enhancemnet criteria:", SelEnhanc, "\n\n")
 ## select day
 example_day <- "2019-07-11"
 
-DT_example <- DATA[Day == example_day, .(Date, wattGLB, TYPE, Enhanc_C_4, GLB_diff, TSI_OI = wattGLB - ETH)]
+temp <- DATA[Day == example_day,
+             .(Date,
+               wattGLB,
+               TYPE,
+               Enhanc_C_4,
+               Low_B.Low_W.glo,
+               Enhanc_C_4_ref,
+               GLB_diff,
+               ETH,
+               TSI_OI = wattGLB - ETH)]
 
-DT_example[  TSI_OI < 0,   TSI_OI := NA]
-DT_example[GLB_diff < 0, GLB_diff := NA]
+temp[  TSI_OI < 0,   TSI_OI := NA]
+temp[GLB_diff < 0, GLB_diff := NA]
 
-cat("Doy", unique(yday(DT_example$Date)), "\n\n")
-
-pander::pander(DT_example)
+cat("Doy", unique(yday(temp$Date)), "\n\n")
 
 
 ## display sky cam images ---------
-
 
 library(magick)
 
@@ -152,20 +158,92 @@ if (Sys.info()["nodename"] == "tyler") {
   skycambase <- "/home/single/LAP_skycam/skycam/"
 }
 
-
-example_day
-
-paste0(skycambase,"/",strftime(example_day, format = "%Y"))
-strftime(example_day, format = "%j%Y.*.JPEG")
-
+## list files
 imglist <- list.files(path       = paste0(skycambase,"/",strftime(example_day, format = "%Y")),
                       pattern    = strftime(example_day, format = "%j%Y.*.JPEG"),
                       recursive  = T,
                       full.names = T)
 
+imglist <- data.table(file = imglist,
+                      Date = strptime(sub("\\..*", "", sub(" ", "", basename(imglist))), format = "%j%Y%H%M") + 30)
 
-basename(imglist) |> sub(pattern = " ", replacement = "", .)
-basename(imglist) |> { gsub(pattern = "\\.", replacement="") }
+
+
+## create the base plot
+pp1 <- ggplot(data = temp, aes(x = Date)) +
+  ## DATA lines
+  geom_line(aes(y = wattGLB                        , colour = "GHI"                           )) +
+  geom_line(aes(y = get(paste0(SelEnhanc, "_ref")) , colour = "CE Threshold"                  ), linewidth = .8) +
+  geom_line(aes(y = get(paste0(csmodel,".glo"))    , colour = "Cloud-free"                    ), linewidth = .8) +
+  geom_line(aes(y = ETH                            , colour = "TOA TSI on horiz. plane"       ), linewidth = .8) +
+  ## constant liens
+  geom_hline(aes(yintercept = solar_constant       , colour = "Solar Constant"), linewidth = 1.0) +
+  # geom_vline(aes(xintercept = date_A), linetype = "longdash", linewidth = .6, color = "#ff652d") +
+  # annotate(geom = "text", x = date_A - 300, y = 100, label = "(a)", hjust = 1, color = "#ff652d") +
+  # geom_vline(aes(xintercept = date_B), linetype = "longdash", linewidth = .6, color = "#ff652d") +
+  # annotate(geom = "text", x = date_B - 300, y = 100, label = "(b)", hjust = 1, color = "#ff652d") +
+  # geom_vline(aes(xintercept = date_C, color = "Sky camera photos"), linetype = "longdash", linewidth = .6) +
+  # annotate(geom = "text", x = date_C + 300, y = 100, label = "(c)", hjust = 0, color = "#ff652d") +
+  ## data points
+  geom_point(data = temp[TYPE == "Cloud"],
+             aes(y =  wattGLB, colour = "Identified clouds"), shape = 3, size = 0.9                   ) +
+  geom_point(data = temp[get(SelEnhanc) == TRUE & wattGLB <  ETH, ],
+             aes(y =  wattGLB, colour = "CE events"),         shape = 21, size = 1.8, stroke = 0.8    ) +
+  geom_point(data = temp[get(SelEnhanc) == TRUE & wattGLB >= ETH, ],
+             aes(y =  wattGLB, colour = "ECE events"),        shape = 21, size = 1.8, stroke = 0.8    ) +
+  ## legend
+  scale_colour_manual("",
+                      guide = guide_legend(ncol = 1),
+                      breaks = c("GHI",
+                                 "Cloud-free",
+                                 "CE Threshold",
+                                 "TOA TSI on horiz. plane",
+                                 "Solar Constant",
+                                 "CE events",
+                                 "ECE events",
+                                 "Identified clouds",
+                                 "Sky camera photos"),
+                      values = c("GHI"                     = "#317529",
+                                 "CE Threshold"            = "#b00821" ,
+                                 "TOA TSI on horiz. plane" = "black",
+                                 "Identified clouds"       = "#0000cd",
+                                 "CE events"               = "#b00821",
+                                 "ECE events"              = "#ff00ff",
+                                 "Solar Constant"          = "orange2",
+                                 "Cloud-free"              = "darkorchid",
+                                 "Sky camera photos"       = "#ff652d")) +
+  # guides(fill = guide_legend(ncol = 2)) +
+
+  # labs(title = paste(as.Date(example_day, origin = "1970-01-01"))) +
+  theme(
+    #   legend.title         = element_text(size = 10),
+    legend.position       = c(.995, .005),
+    legend.justification  = c("right", "bottom"),
+    # legend.box.just       = "right",
+    legend.background     = element_blank(),
+    # legend.spacing.y = unit(0, 'cm'),
+    # legend.spacing.x = unit(.005, 'cm'),
+    legend.box.background = element_rect(color = NA, fill = NA),
+    legend.key            = element_blank(),
+    legend.margin         = margin(1, 1, 1, 1),
+    plot.title            = element_text(size = gg_text_size - 4,
+                                         hjust = 0.5,
+                                         face = "bold",
+                                         margin = margin(0,0,0,0))
+  ) +
+  ## AXIS ##
+  # scale_x_continuous(expand = expansion(mult = c(0.03, 0.03))) +
+  scale_y_continuous(breaks = seq(0, 1600, 200)) +
+  ylab(bquote("GHI" ~ group("[", W/m^2,"]"))) +
+  xlab(bquote("Time (UTC)"))
+pp1
+
+
+
+
+
+
+
 
 
 # left  <- image_read("/home/folder/LAP_skycam/skycam/2019/1922019/ 1922019100002.JPEG")
@@ -223,160 +301,9 @@ grid.arrange(A, B, C, nrow = 1)
 
 
 
-temp <- DATA[Day == example_day]
-
-# par(mar = c(4, 4, 1, 1))
-# par(cex       = 0.7
-#     # cex.main = 0.8, #change font size of title
-#     # cex.sub  = 0.8,  #change font size of subtitle
-#     # cex.lab  = 0.8, #change font size of axis labels
-#     # cex.axis = 0.8,
-#     ) #change font size of axis text
-#
-# ylim <- range(0, temp$ETH, temp$wattGLB, solar_constant, na.rm = TRUE)
-#
-# plot(temp$Date, temp$wattGLB, col = "green",
-#      pch  = ".", cex = 2,
-#      ylim = ylim,
-#      ylab = bquote("GHI" ~ group("[", W/m^2,"]")),
-#      xlab = "Time (UTC)")
-#
-# ## mark photos
-# abline(v = date_A, col = "grey", lwd = 2, lty = 2)
-# abline(v = date_B, col = "grey", lwd = 2, lty = 2)
-# abline(v = date_C, col = "grey", lwd = 2, lty = 2)
-#
-# text(x = date_A, y = 250, "(a)", pos = 2, offset = 0.2, col = "gray", cex = 0.8)
-# text(x = date_B, y = 250, "(b)", pos = 2, offset = 0.2, col = "gray", cex = 0.8)
-# text(x = date_C, y = 250, "(c)", pos = 4, offset = 0.2, col = "gray", cex = 0.8)
-#
-# abline(h = solar_constant, col = "orange2", lty = 1, lwd = 2)
-#
-# ## Global
-# lines(temp$Date, temp$wattGLB, col = "green")
-#
-# ## TSI on ground
-# lines(temp$Date, temp$ETH)
-#
-# ## Active model reference
-# lines(temp[, get(paste0(SelEnhanc, "_ref")), Date], col = "red" )
-#
-# ## Cloud-free ref
-# lines(temp[, get(paste0(csmodel,".glo")), Date], col = "darkorchid" )
-#
-#
-# ## Enchantment cases
-# points(temp[get(SelEnhanc) == TRUE & wattGLB <  ETH, wattGLB, Date], col = "burlywood4")
-# points(temp[get(SelEnhanc) == TRUE & wattGLB >= ETH, wattGLB, Date], col = "red")
-#
-#
-# ## Cloud cases
-# points(temp[TYPE == "Cloud", wattGLB, Date], col = "blue", pch = 3, cex = 0.3)
-#
-# ## Decorations
-# # title(main = paste(as.Date(aday, origin = "1970-01-01"), temp[get(SelEnhanc) == TRUE, .N], temp[TYPE == "Cloud", .N], vec_days$Descriprion[ii]))
-# title(main = paste(as.Date(example_day, origin = "1970-01-01")))
-#
-# legend("bottom", ncol = 2,
-#        c(  "GHI","CE threshold","TOA TSI on horiz. plane             ","Solar Constant", "CE events   ","ECE events     ","Identified clouds    ",  "Cloud-free    "),
-#        col = c("green",         "red",                  "black",       "orange2","burlywood4",       "red",             "blue","darkorchid"),
-#        pch = c(     NA,            NA,                       NA,              NA,          1 ,          1 ,                  3,           NA),
-#        lty = c(      1,             1,                        1,               1,          NA,          NA,                 NA,            1),
-#        lwd = c(      1,             1,                        1,               2,          NA,          NA,                 NA,            1),
-#        bty = "n",
-#        cex = 0.8
-# )
-#
-#
-# ## store base plot
-# p1 <- recordPlot()
-#
-#
-# bt <- grid.arrange(A, B, C, nrow = 1)
-#
-# merg <- plot_grid(
-#   p1, bt,
-#   nrow = 2,
-#   rel_heights = c(3,1)
-# )
-#
-# print(merg)
-#
-# merg + theme(aspect.ratio = 1)
 
 
 
-## redo example in ggplot !!!---------
-
-
-pp1 <- ggplot(data = temp, aes(x = Date)) +
-  ## DATA lines
-  geom_line(aes(y = wattGLB                        , colour = "GHI"                           )) +
-  geom_line(aes(y = get(paste0(SelEnhanc, "_ref")) , colour = "CE Threshold"                  ), linewidth = .8) +
-  geom_line(aes(y = get(paste0(csmodel,".glo"))    , colour = "Cloud-free"                    ), linewidth = .8) +
-  geom_line(aes(y = ETH                            , colour = "TOA TSI on horiz. plane"       ), linewidth = .8) +
-  ## constant liens
-  geom_hline(aes(yintercept = solar_constant       , colour = "Solar Constant"), linewidth = 1.0) +
-  geom_vline(aes(xintercept = date_A), linetype = "longdash", linewidth = .6, color = "#ff652d") +
-  annotate(geom = "text", x = date_A - 300, y = 100, label = "(a)", hjust = 1, color = "#ff652d") +
-  geom_vline(aes(xintercept = date_B), linetype = "longdash", linewidth = .6, color = "#ff652d") +
-  annotate(geom = "text", x = date_B - 300, y = 100, label = "(b)", hjust = 1, color = "#ff652d") +
-  geom_vline(aes(xintercept = date_C, color = "Sky camera photos"), linetype = "longdash", linewidth = .6) +
-  annotate(geom = "text", x = date_C + 300, y = 100, label = "(c)", hjust = 0, color = "#ff652d") +
-  ## data points
-  geom_point(data = temp[TYPE == "Cloud"],
-             aes(y =  wattGLB, colour = "Identified clouds"), shape = 3, size = 0.9                   ) +
-  geom_point(data = temp[get(SelEnhanc) == TRUE & wattGLB <  ETH, ],
-             aes(y =  wattGLB, colour = "CE events"),         shape = 21, size = 1.8, stroke = 0.8    ) +
-  geom_point(data = temp[get(SelEnhanc) == TRUE & wattGLB >= ETH, ],
-             aes(y =  wattGLB, colour = "ECE events"),        shape = 21, size = 1.8, stroke = 0.8    ) +
-  ## legend
-  scale_colour_manual("",
-                      guide = guide_legend(ncol = 1),
-                      breaks = c("GHI",
-                                 "Cloud-free",
-                                 "CE Threshold",
-                                 "TOA TSI on horiz. plane",
-                                 "Solar Constant",
-                                 "CE events",
-                                 "ECE events",
-                                 "Identified clouds",
-                                 "Sky camera photos"),
-                      values = c("GHI"                     = "#317529",
-                                 "CE Threshold"            = "#b00821" ,
-                                 "TOA TSI on horiz. plane" = "black",
-                                 "Identified clouds"       = "#0000cd",
-                                 "CE events"               = "#b00821",
-                                 "ECE events"              = "#ff00ff",
-                                 "Solar Constant"          = "orange2",
-                                 "Cloud-free"              = "darkorchid",
-                                 "Sky camera photos"       = "#ff652d")) +
-  # guides(fill = guide_legend(ncol = 2)) +
-
-  labs(title = paste(as.Date(example_day, origin = "1970-01-01"))) +
-  theme(
-    #   legend.title         = element_text(size = 10),
-    legend.position       = c(.995, .005),
-    legend.justification  = c("right", "bottom"),
-    # legend.box.just       = "right",
-    legend.background     = element_blank(),
-    # legend.spacing.y = unit(0, 'cm'),
-    # legend.spacing.x = unit(.005, 'cm'),
-    legend.box.background = element_rect(color = NA, fill = NA),
-    legend.key            = element_blank(),
-    legend.margin         = margin(1, 1, 1, 1),
-    plot.title            = element_text(size = gg_text_size - 4,
-                                         hjust = 0.5,
-                                         face = "bold",
-                                         margin = margin(0,0,0,0))
-    ) +
-
-  ## AXIS ##
-  # scale_x_continuous(expand = expansion(mult = c(0.03, 0.03))) +
-  scale_y_continuous(breaks = seq(0, 1600, 200)) +
-  ylab(bquote("GHI" ~ group("[", W/m^2,"]"))) +
-  xlab(bquote("Time (UTC)"))
-pp1
 
 
 # pp1 + theme(legend.title = element_text(size = 10),
