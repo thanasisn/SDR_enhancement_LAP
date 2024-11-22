@@ -118,7 +118,24 @@ cat("Reference mode:      ", csmodel,   "\n\n")
 cat("Enhancemnet criteria:", SelEnhanc, "\n\n")
 
 
+theme_paper <- function(){
+  theme_bw(
+    base_size = 12
+  ) %+replace%    #replace elements we want to change
+    theme(
+      panel.background = element_rect(fill   = "white",
+                                      colour = "white"),
+      plot.background       = element_rect(fill = 'transparent', color = NA), #transparent plot bg
+      legend.background     = element_rect(fill = 'transparent',
+                                           linewidth = 0.5,
+                                           color = "black"), #transparent legend bg
+      legend.box.background = element_rect(fill = 'transparent'), #transparent legend panel
 
+      NULL
+    )
+}
+
+theme_set(theme_paper())
 
 
 
@@ -126,7 +143,7 @@ cat("Enhancemnet criteria:", SelEnhanc, "\n\n")
 #'
 #' ## Example day
 #'
-#+ P-example-day,  echo=F, include=T, fig.width=7, fig.height=6
+#+ P-example-day-cam,  echo=F, include=T, fig.width=7, fig.height=6
 
 ## select day
 example_day <- "2019-07-11"
@@ -167,7 +184,8 @@ imglist <- list.files(path       = paste0(skycambase,"/",strftime(example_day, f
 imglist <- data.table(file = imglist,
                       Date = strptime(sub("\\..*", "", sub(" ", "", basename(imglist))), format = "%j%Y%H%M"))
 
-
+imglist <- imglist[Date > min(temp$Date)]
+imglist <- imglist[Date < max(temp$Date)]
 
 ## create the base plot
 pp1 <- ggplot(data = temp, aes(x = Date)) +
@@ -175,9 +193,8 @@ pp1 <- ggplot(data = temp, aes(x = Date)) +
   geom_line(aes(y = wattGLB                        , colour = "GHI"                           )) +
   geom_line(aes(y = get(paste0(SelEnhanc, "_ref")) , colour = "CE Threshold"                  ), linewidth = .8) +
   # geom_line(aes(y = get(paste0(csmodel,".glo"))    , colour = "Cloud-free"                    ), linewidth = .8) +
-  geom_line(aes(y = ETH                            , colour = "TOA TSI on horiz. plane"       ), linewidth = .8) +
+  # geom_line(aes(y = ETH                            , colour = "TOA TSI on horiz. plane"       ), linewidth = .8) +
   ## constant liens
-  # geom_hline(aes(yintercept = solar_constant       , colour = "Solar Constant"), linewidth = 1.0) +
   # geom_vline(aes(xintercept = date_A), linetype = "longdash", linewidth = .6, color = "#ff652d") +
   # annotate(geom = "text", x = date_A - 300, y = 100, label = "(a)", hjust = 1, color = "#ff652d") +
   # geom_vline(aes(xintercept = date_B), linetype = "longdash", linewidth = .6, color = "#ff652d") +
@@ -185,8 +202,8 @@ pp1 <- ggplot(data = temp, aes(x = Date)) +
   # geom_vline(aes(xintercept = date_C, color = "Sky camera photos"), linetype = "longdash", linewidth = .6) +
   # annotate(geom = "text", x = date_C + 300, y = 100, label = "(c)", hjust = 0, color = "#ff652d") +
   ## data points
-  geom_point(data = temp[TYPE == "Cloud"],
-             aes(y =  wattGLB, colour = "Identified clouds"), shape = 3, size = 0.9                   ) +
+  # geom_point(data = temp[TYPE == "Cloud"],
+  #            aes(y =  wattGLB, colour = "Identified clouds"), shape = 3, size = 0.9                   ) +
   geom_point(data = temp[get(SelEnhanc) == TRUE & wattGLB <  ETH, ],
              aes(y =  wattGLB, colour = "CE events"),         shape = 21, size = 1.8, stroke = 0.8    ) +
   geom_point(data = temp[get(SelEnhanc) == TRUE & wattGLB >= ETH, ],
@@ -216,6 +233,7 @@ pp1 <- ggplot(data = temp, aes(x = Date)) +
 
   # labs(title = paste(as.Date(example_day, origin = "1970-01-01"))) +
   theme(
+    # base_size = 14,
     #   legend.title         = element_text(size = 10),
     legend.position       = c(.200, .005),
     legend.justification  = c("left", "bottom"),
@@ -242,31 +260,41 @@ pp1 <- ggplot(data = temp, aes(x = Date)) +
 pp1
 
 
+
+
 img <- imglist[13]
 
+for (i in 1:nrow(imglist)) {
 
-aimg <- image_read(img$file)
-aimg <- image_scale(
-  image_crop(aimg,
-             geometry = "960x1200+180+0"),
-  "600")
-
-tag <- paste0(strftime(img$Date, "%H:%M UTC"), "\n",
-             strftime(img$Date, "%H:%M LOC", tz = "Europe/Athens")
-)
-
-aimg <-
-  image_ggplot(aimg) +
-  annotate(geom = "text",
-           x = 10, y = 585,
-           label = tag,
-           hjust = 0, vjust = 1,
-           size =  4, colour = "#ff652d", fontface = "bold")
-
-grid.arrange(pp1, aimg, nrow = 1)
+  img <- imglist[i]
 
 
+  aimg <- image_read(img$file)
+  aimg <- image_scale(
+    image_crop(aimg,
+               geometry = "960x1200+180+0"),
+    "600")
 
+  tag <- paste0(strftime(img$Date, "%H:%M UTC"), "\n",
+                strftime(img$Date, "%H:%M LOC", tz = "Europe/Athens")
+  )
+
+  aimg <-
+    image_ggplot(aimg) +
+    annotate(geom = "text",
+             x = 10, y = 585,
+             label = tag,
+             hjust = 0, vjust = 1,
+             size =  4, colour = "#ff652d", fontface = "bold")
+
+  grid.arrange(pp1 +
+                 geom_vline(aes(xintercept = img$Date), linetype = "longdash", linewidth = .6, color = "#ff652d") +
+                 theme(legend.position="none"),
+               aimg,
+               nrow = 1)
+
+
+}
 
 
 # pp2 <- pp1 + theme(legend.position       = c(1, .5),
