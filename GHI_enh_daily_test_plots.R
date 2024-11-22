@@ -47,8 +47,8 @@
 
 #+ echo=FALSE, include=TRUE
 knitr::opts_chunk$set(comment    = ""       )
-knitr::opts_chunk$set(dev        = c("pdf", "png"))
-# knitr::opts_chunk$set(dev        = "png"    )
+# knitr::opts_chunk$set(dev        = c("pdf", "png"))
+knitr::opts_chunk$set(dev        = "pdf"    )
 knitr::opts_chunk$set(out.width  = "100%"   )
 knitr::opts_chunk$set(fig.align  = "center" )
 knitr::opts_chunk$set(fig.cap    = " - empty caption - " )
@@ -337,23 +337,16 @@ cat("Doy", unique(yday(DT_example$Date)), "\n\n")
 
 
 temp <- DATA[Day == example_day]
+
+## add fave value for scale
+temp <- rbind(temp, data.table(ETH = solar_constant), fill = T)
+
 ylim <- range(0, temp$wattGLB, solar_constant, temp$ETH)
 
 pp1 <- ggplot(data = temp, aes(x = Date)) +
   ## DATA lines
   geom_line(aes(y = wattGLB                        , colour = "GHI"                           ), linewidth = .9) +
-  # geom_line(aes(y = get(paste0(SelEnhanc, "_ref")) , colour = "CE Threshold"                  ), linewidth = .8) +
-  # geom_line(aes(y = get(paste0(csmodel,".glo"))    , colour = "Cloud-free"                    ), linewidth = .8) +
-  # geom_line(aes(y = ETH                            , colour = "TOA TSI on horiz. plane"       ), linewidth = .8) +
-  ## constant liens
-  # geom_hline(aes(yintercept = solar_constant       , colour = "Solar Constant"), linewidth = 1.0) +
-  ## data points
-  # geom_point(data = temp[TYPE == "Cloud"],
-  #            aes(y =  wattGLB, colour = "Identified clouds"), shape = 3, size = 0.9                   ) +
-  # geom_point(data = temp[get(SelEnhanc) == TRUE & wattGLB <  ETH, ],
-  #            aes(y =  wattGLB, colour = "CE events"),         shape = 21, size = 1.8, stroke = 0.8    ) +
-  # geom_point(data = temp[get(SelEnhanc) == TRUE & wattGLB >= ETH, ],
-  #            aes(y =  wattGLB, colour = "ECE events"),        shape = 21, size = 1.8, stroke = 0.8    ) +
+
   ## legend
   scale_colour_manual("",
                       guide = guide_legend(ncol = 1),
@@ -400,29 +393,49 @@ pp1 <- ggplot(data = temp, aes(x = Date)) +
   ylim(ylim) +
   scale_y_continuous(breaks = seq(0, 1600, 200)) +
   ylab(bquote("GHI" ~ group("[", W/m^2,"]"))) +
-  xlab(element_blank())
+  xlab(element_blank()) +
+  theme(aspect.ratio = 0.8) +
+  theme(
+    panel.background = element_rect(fill   = "white",
+                                    colour = "white")
+  )
 
 
 pp1
 
-pp2 <- pp1 + geom_line(aes(y = get(paste0(csmodel,".glo"))    , colour = "Cloud-free"                    ), linewidth = .8)
+pp2 <- pp1 + geom_line(aes(y = get(paste0(csmodel,".glo")),
+                           colour = "Cloud-free"),
+                       linewidth = .8)
 pp2
 
-pp3 <- pp1 + geom_line(aes(y = get(paste0(SelEnhanc, "_ref")) , colour = "CE Threshold"                  ), linewidth = .8)
+pp3 <- pp1 + geom_line(aes(y = get(paste0(SelEnhanc, "_ref")),
+                           colour = "CE Threshold"),
+                       linewidth = .8)
 pp3
 
 pp4 <- pp3 + geom_point(data = temp[get(SelEnhanc) == TRUE, ],
-                        aes(y =  wattGLB, colour = "CE events"),         shape = 21, size = 1.8, stroke = 0.8    )
+                        aes(y =  wattGLB, colour = "CE events"),
+                        shape  = 21,
+                        size   = 1.8,
+                        stroke = 0.8)
 pp4
 
-pp5 <- pp4 + geom_line(aes(y = ETH                            , colour = "TOA TSI on horiz. plane"       ), linewidth = .8)
+pp5 <- pp4 + geom_line(aes(y = ETH,
+                           colour = "TOA TSI on horiz. plane"),
+                       linewidth = .8)
 pp5
 
 pp6 <- pp5 + geom_point(data = temp[get(SelEnhanc) == TRUE & wattGLB >= ETH, ],
-            aes(y =  wattGLB, colour = "ECE events"),        shape = 21, size = 1.8, stroke = 0.8    )
+                        aes(y =  wattGLB,
+                            colour = "ECE events"),
+                        shape  = 21,
+                        size   = 1.8,
+                        stroke = 0.8    )
 pp6
 
-pp7 <- pp6 + geom_hline(aes(yintercept = solar_constant       , colour = "Solar Constant"), linewidth = 1.0)
+pp7 <- pp6 + geom_hline(aes(yintercept = solar_constant,
+                            colour     = "Solar Constant"),
+                        linewidth      = 1.0)
 pp7
 
 # ggplotly(pp1)
