@@ -1937,7 +1937,7 @@ p1 + theme(aspect.ratio = 0.34)
 
 
 
-### Number of cases per year  -----------------------
+### Number of cases per year  --------------------------------------------------
 
 pvar2   <- "GLB_diff.N"
 dataset <- copy(ST_E_yearly)
@@ -1994,7 +1994,7 @@ p2 <- ggplot(dataset,
 p2 + theme(aspect.ratio = 0.35)
 
 
-###  Mean OIR energy per year -------------
+###  Mean OIR energy per year --------------------------------------------------
 
 pvar3   <- "GLB_diff.mean"
 dataset <- copy(ST_E_yearly)
@@ -2051,7 +2051,63 @@ p3 <- ggplot(dataset,
 p3 + theme(aspect.ratio = 0.35)
 
 
+## plot TSI for reference  ----------------------------------------------------
 
+
+pvar3   <- "ETH.mean"
+dataset <- copy(ST_E_yearly)
+## apply data completeness
+dataset[, eval(pvar3) := get(pvar3) / Data_Complete]
+
+## linear model by year step
+lmY3 <- lm(dataset[[pvar3]] ~ dataset$year)
+d2   <- summary(lmY3)$coefficients
+cat("lmY:     ", round(lmY3$coefficients[2], 6) , "+/-", round(d2[2,2], 6) ,"\n\n")
+## correlation test by day step
+corY <- cor.test(x = dataset[[pvar3]], y = as.numeric(dataset$year), method = 'pearson')
+# capture lm for table
+yeartrends <- rbind(yeartrends,
+                    data.frame(
+                      linear_fit_stats(lmY3, confidence_interval = 0.99),
+                      cor_test_stats(corY),
+                      DATA       = "ST_E_yearly_Complete",
+                      var        = pvar3,
+                      N          = sum(!is.na(dataset[[pvar3]]))
+                    )
+)
+
+grob <- grobTree(
+  textGrob(
+    label = TeX(
+      paste("Trend:  $", format(round(lmY3$coefficients[2], 2), nsmall = 2),
+            "\\pm",      format(round(2 * d2[2,2],          2), nsmall = 2), ## show 2 sigma
+            "\\,W/m^2/year$")),
+    x = 0.95,  y = 0.05, hjust = 1,
+    gp = gpar(col = "black", fontsize = 13, fontface = "bold")
+  ))
+
+p4 <- ggplot(dataset,
+             aes(x = year,
+                 y = get(pvar3))) +
+  geom_point(color = "orange",
+             shape = 16,
+             size  = 3) +
+  geom_abline(intercept = lmY3$coefficients[1], slope = lmY3$coefficients[2]) +
+  # ylab(bquote(.(stringr::str_to_title(staname(pvar3))) ~ "CE" ~ .(varname(pvar3)) ~ group("[", W/m^2,"]"))) +
+  ylab(bquote("Mean TSI on ground" ~ group("[", W/m^2,"]"))) +
+  xlab("Year") +
+  annotation_custom(grob) +
+  scale_y_continuous(guide        = "axis_minor",
+                     minor_breaks = seq(0, 500, by = 1)) +
+  scale_x_continuous(guide        = "axis_minor",
+                     limits = c(1994, NA),
+                     breaks = c(
+                       1994,
+                       pretty(dataset[,year], n = 4),
+                       max(ceiling(dataset[,year]))),
+                     minor_breaks = seq(1990, 2050, by = 1) )
+p4
+p4 + theme(aspect.ratio = 0.35)
 
 
 
