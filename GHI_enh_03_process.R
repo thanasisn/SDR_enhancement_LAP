@@ -255,7 +255,8 @@ enhanc.summary <- function(x, na.rm = FALSE)
 ## Stats for variables
 my.cols <- c("wattGLB",
              "GLB_ench",
-             "GLB_diff")
+             "GLB_diff",
+             "ETH")
 
 
 
